@@ -161,13 +161,13 @@ async function update(_this: Board) {
     team_list: team_list,
     loaded: true,
   });
+  document.title = contest_config.contest_name;
 }
 
 class Board extends React.Component {
   componentDidMount() {
     pathname = window.location.pathname;
     update(this);
-    document.title = this.state.contest_name;
   }
 
   constructor(props: any) {
