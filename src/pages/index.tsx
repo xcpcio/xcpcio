@@ -308,7 +308,7 @@ class Board extends React.Component {
                 <tr className="statistics-1">
                   <td className="empty" colSpan={4}></td>
                   <td className="stnd">
-                    <b>Solved:</b>
+                    <b>Accepted:</b>
                   </td>
                   {this.state.problem_info.map((item: any) => {
                     return (
