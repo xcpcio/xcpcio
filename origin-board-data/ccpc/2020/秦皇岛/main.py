@@ -10,6 +10,11 @@ team_data_filename = "CCPC2020-参赛队伍数据.xlsx"
 qhd_data_filename = "CCPC2020-QHD-正式参赛队榜单-原始.xlsx"
 problem_num = 12
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
+medal = {
+    'gold': 24,
+    'silver': 48,
+    "bronze": 72
+}
 
 def json_output(data):
     return json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'), ensure_ascii=False)
@@ -36,6 +41,7 @@ def config_out():
         'end_time': get_timestamp("2020-10-18 14:00:00"),
         'problem_id': problem_id,
         'result_mode': 1,
+        'medal': medal,
     }
     output("config.json", config)
     
