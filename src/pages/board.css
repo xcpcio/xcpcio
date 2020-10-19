@@ -1,0 +1,919 @@
+/* TABLE.board2{ 
+    text-align: center;
+    border-collapse: collapse;
+    border: none;
+    margin: 0pt;
+    padding: 0pt;
+    width: 100%;
+    max-width: 1560px;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+} */
+
+
+TABLE.standings{
+text-align: center;
+/* border-collapse: collapse; */
+border: none;
+margin: 0pt;
+padding: 0pt;
+width: 100%;
+max-width: 1560px;
+font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+}
+
+IMG {
+border:0;
+}
+
+TD {
+    padding: 1px;
+}
+
+TR.head
+{
+BACKGROUND-COLOR: #eee
+}
+
+TD.stnd
+{
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+
+TD.stndact
+{
+color:#0000FF; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.frost
+{
+background-color: #ffeeaa; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.gold
+{
+background-color: #fff566;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.goldact
+{
+color:#0000FF; background-color: #ffeeaa; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.silver
+{
+background-color: #ffadd2;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.silveract
+{
+color:#0000FF; background-color: #aaaaaa; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.bronze
+{
+background-color: #f0c0a0; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.bronzeact
+{
+color:#0000FF; background-color: #f0c0a0; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.unofficial
+{
+background-color: #fff;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px;
+}
+TD.honorable
+{
+background-color: #e6f7ff; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px;
+}
+TD.firstsolve
+{
+background-color: #3db03d;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.incorrect
+{
+background-color: #ffd0d0; 
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.correct
+{
+background-color: #e1ffb5;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.unattempted
+{
+background-color: #fff;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TH.success
+{
+background-color: #a0f0a0; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TH.tried
+{
+background-color: #ffa0a0; 
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.pending
+{
+background-color: #c8d6fa;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.upsolved
+{
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; color: #FF0000; 
+}
+TD.virtual
+{
+color:#0000FF; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.alive
+{
+color:#FF0000; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.empty
+{
+background-color: #fff;
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TH.stnd
+{
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
+TD.o01
+{
+    BACKGROUND-COLOR: #004080;
+}
+TR.solver
+{
+    BACKGROUND-COLOR: #F0C0A0;
+}
+TR.statistics-0
+{
+background-color: #95de64;
+}
+TR.statistics-1
+{
+background-color:#b7eb8f;
+}
+TD.o00
+{
+    BACKGROUND-COLOR: #004080;
+}
+TR.stand0
+{
+    BACKGROUND-COLOR: #E0E0FF;
+}
+TR.stand1
+{
+    BACKGROUND-COLOR: #E8E8FF;
+}
+TR.stand10
+{    
+    BACKGROUND-COLOR: #F8F8F8;
+}
+TR.stand11
+{
+    BACKGROUND-COLOR: #F2F2F2;
+}
+
+TR.cfres01
+{
+    BACKGROUND-COLOR: #FFFFB0;
+}
+
+.rotatedName
+{
+-moz-transform:rotate(-90deg);
+-o-transform:rotate(-90deg);
+-ms-transform:rotate(-90deg);
+-webkit-transform:rotate(-90deg);
+filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+-ms-filter:"progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+}
+
+TABLE.matches{table-layout:fixed;}
+TD.match
+{
+height:6em;
+width:2em;
+}
+
+.coderTextRed
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent;
+}
+.coderTextYellow
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent;
+}
+.coderTextViolet
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent;
+}
+.coderTextBlue
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent;
+}
+.coderTextGreen
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent
+}
+.coderTextGray
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent
+}
+.coderTextOrange
+{
+    FONT-WEIGHT: bold;
+    BACKGROUND-COLOR: transparent
+}
+.coderTextRed:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextYellow:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextViolet:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextBlue:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextGreen:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextGray:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextOrange:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextWhite:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextBlack:link
+{
+    TEXT-DECORATION: none
+}
+.coderTextRed:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextYellow:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextViolet:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextBlue:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextGreen:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextGray:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextOrange:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextWhite:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextBlack:visited
+{
+    TEXT-DECORATION: none
+}
+.coderTextRed:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextYellow:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextViolet:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextBlue:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextGreen:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextGray:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextOrange:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextWhite:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextBlack:hover
+{
+    TEXT-DECORATION: underline
+}
+.coderTextRed:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextYellow:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextViolet:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextBlue:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextGreen:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextGray:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextOrange:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextWhite:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextBlack:active
+{
+    TEXT-DECORATION: underline
+}
+.coderTextOrange
+{
+    COLOR: #ff9900
+}
+.coderTextOrange:link
+{
+    COLOR: #ff9900
+}
+.coderTextOrange:visited
+{
+    COLOR: #ff9900
+}
+.coderTextOrange:hover
+{
+    COLOR: #ff9900
+}
+.coderTextOrange:active
+{
+    COLOR: #ff9900
+}
+.coderTextRed
+{
+    COLOR: #ee0000
+}
+.coderTextRed:link
+{
+    COLOR: #ee0000
+}
+.coderTextRed:visited
+{
+    COLOR: #ee0000
+}
+.coderTextRed:hover
+{
+    COLOR: #ee0000
+}
+.coderTextRed:active
+{
+    COLOR: #ee0000
+}
+.coderTextYellow
+{
+    COLOR: #ddcc00
+}
+.coderTextYellow:link
+{
+    COLOR: #ddcc00
+}
+.coderTextYellow:visited
+{
+    COLOR: #ddcc00
+}
+.coderTextYellow:hover
+{
+    COLOR: #ddcc00
+}
+.coderTextYellow:active
+{
+    COLOR: #ddcc00
+}
+.coderTextViolet
+{
+    COLOR: #a0a
+}
+.coderTextViolet:link
+{
+    COLOR: #a0a
+}
+.coderTextViolet:visited
+{
+    COLOR: #a0a
+}
+.coderTextViolet:hover
+{
+    COLOR: #a0a
+}
+.coderTextViolet:active
+{
+    COLOR: #a0a
+}
+
+.coderTextBlue
+{
+    COLOR: #6666ff
+}
+.coderTextBlue:link
+{
+    COLOR: #6666ff
+}
+.coderTextBlue:visited
+{
+    COLOR: #6666ff
+}
+.coderTextBlue:hover
+{
+    COLOR: #6666ff
+}
+.coderTextBlue:active
+{
+    COLOR: #6666ff
+}
+.coderTextGreen
+{
+    COLOR: #00a900
+}
+.coderTextGreen:link
+{
+    COLOR: #00a900
+}
+.coderTextGreen:visited
+{
+    COLOR: #00a900
+}
+.coderTextGreen:hover
+{
+    COLOR: #00a900
+}
+.coderTextGreen:active
+{
+    COLOR: #00a900
+}
+.coderTextGray
+{
+    COLOR: #999999
+}
+.coderTextGray:link
+{
+    COLOR: #999999
+}
+.coderTextGray:visited
+{
+    COLOR: #999999
+}
+.coderTextGray:hover
+{
+    COLOR: #999999
+}
+.coderTextGray:active
+{
+    COLOR: #999999
+}
+.coderTextWhite
+{
+    COLOR: #ffffff
+}
+.coderTextWhite:link
+{
+    COLOR: #ffffff
+}
+.coderTextWhite:visited
+{
+    COLOR: #ffffff
+}
+.coderTextWhite:hover
+{
+    COLOR: #ffffff
+}
+.coderTextWhite:active
+{
+    COLOR: #ffffff
+}
+.coderTextBlack
+{
+    COLOR: #000000
+}
+.coderTextBlack:link
+{
+    COLOR: #000000
+}
+.coderTextBlack:visited
+{
+    COLOR: #000000
+}
+.coderTextBlack:hover
+{
+    COLOR: #000000
+}
+.coderTextBlack:active
+{
+    COLOR: #000000
+}
+S {
+	FONT-SIZE: 10px; FONT-STYLE: normal; FONT-WEIGHT: bold; TEXT-DECORATION: none; 
+}
+
+.announce {
+      padding: 0px 8px;
+      float:right;
+      width:50%;
+      border: 1px solid #004080;
+      margin-left: 8px;
+}
+
+p.nmessage {
+      text-align:justify;
+}
+
+
+
+a {
+	color: #004080;
+}
+td.topmenu a {
+		color: #ffffff;
+		text-decoration: none;
+		cursor:hand;
+}
+td.topmenu a:hover {
+	color: #c0c0c0;
+}
+td.topmenu {
+		text-align: center;
+		font-weight: bold;
+		font-style: oblique;
+}
+td.topmenu div {
+		background-color: #004080;
+		height: 25px;
+		padding-top: 2px;
+}
+
+td.menuleft a {
+		color: #ffffff;
+		text-decoration: none;
+		cursor:hand;
+}
+td.menuleft a:hover {
+	color: #c0c0c0;
+}
+
+TD.menuleft {
+
+	FONT-WEIGHT: bold; 
+	FONT-SIZE: 16px; 
+	COLOR: #640d00; 
+	FONT-STYLE: oblique; 
+	TEXT-ALIGN: left;
+
+}
+
+TD.menuleft DIV {
+	PADDING-RIGHT: 8px; 
+	PADDING-LEFT: 8px; 
+	PADDING-BOTTOM: 4px;
+        PADDING-TOP: 4px; 
+        WHITE-SPACE: nowrap; 
+        BACKGROUND-COLOR: #004080;
+        TEXT-ALIGN: center;
+}
+
+td.newsselectcontainer {
+	height: 25px;
+	width: 190px;
+}
+td.newsselectcontainer form {
+	margin: 0px;
+}
+td.newsselectcontainer select {
+	background-color: #004080;
+	color: #fff;
+	width: 140px;
+	font-style: oblique;
+	font-weight: bold;
+}
+.newsselectbtn {
+	background-color: #004080;
+	color: #fff;
+	width: 42px;
+	height: 23px;
+	font-weight: bold;
+}
+
+
+.menuleftblock {
+	border: 1px solid #004080;
+}
+.memorial {
+      padding: 0px 8px;
+      border: 2px solid #000000;
+}
+
+
+
+
+
+/* style the outer div to give it width */
+.menu {z-index:1000;font-size:1em;height:2em;}
+
+/* remove all the bullets, borders and padding from the default list styling */
+.menu ul 
+{
+padding:0;
+margin:0;
+list-style-type:none; 
+height:2em; 
+background:#004080;
+}
+
+/* style the sub-level lists */
+.menu ul ul {width:15em;}
+
+/* float the top list items to make it horizontal and a relative positon so that you can control the dropdown menu positon */
+.menu ul li {float:left;height:2em;line-height:2em;}
+
+/* style the sub level list items */
+.menu ul ul li 
+ {
+  display:block;
+  width:12em;
+  height:auto;
+  position:relative;
+  line-height:1em;
+}
+
+/* style the links for the top level */
+.menu a, .menu a:visited 
+ {
+  display:block;
+  float:left;
+  height:100%;
+  font-size:1em;
+  text-decoration:none;
+  color:#ffffff;
+  background:#004080;
+  padding:0 3em 0 3em;
+  text-align: center;
+  font-weight: bold;
+  font-style: oblique;
+ }
+
+/* style the sub level links */
+.menu ul ul a, .menu ul ul a:visited 
+ {
+  display:block;
+  background:#004080; 
+  color:#ffffff;
+  width:12em; 
+  height:100%;
+  border:1px solid #fff;
+  line-height:1em; 
+  padding:0.5em 1em;
+  text-align: center;
+  font-weight: bold;
+  font-style: oblique;
+ }
+
+.menu ul table ul a, .menu ul table ul a:visited  
+{
+width:14em; 
+width:12em;
+}
+
+/* style the table so that it takes no part in the layout - required for IE to work */
+.menu table 
+ {
+ position:absolute; 
+ left:0; 
+ top:0; 
+ font-size:1em; 
+ z-index:-1;
+}
+
+.menu ul ul table {left:-1px;}
+.menu ul ul table ul.left {margin-left:2px;}
+
+.menu li:hover {position:relative;}
+* html .menu a:hover {position:relative;}
+
+/* style the third level background */
+.menu ul ul ul a, .menu ul ul ul a:visited {background:#004080;}
+/* style the fourth level background */
+.menu ul ul ul ul a, .menu ul ul ul ul a:visited {background:#004080;}
+/* style the sub level 1 background */
+.menu ul :hover a.sub1 {background:#004080;}
+/* style the sub level 2 background */
+.menu ul ul :hover a.sub2 {background:#004080;}
+
+/* style the level hovers */
+/* first */
+.menu a:hover {color:#c0c0c0;background:#014181;}
+.menu :hover > a {color:#c0c0c0;background:#014181;}
+/* second */
+.menu ul ul a:hover{color:#c0c0c0; background:#014181;}
+.menu ul ul :hover > a {color:#c0c0c0; background:#014181;}
+/* third */
+.menu ul ul ul a:hover {color:#c0c0c0; background:#014181;}
+.menu ul ul ul :hover > a {color:#c0c0c0; background:#014181;}
+/* fourth */
+.menu ul ul ul ul a:hover {color:#c0c0c0; background:#014181;}
+
+
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+
+.menu ul ul 
+{visibility:hidden;position:absolute;height:0;top:2em;left:0;width:14em;}
+
+/* position the third level flyout menu */
+.menu ul ul ul{left:14em;top:0;width:14em;}
+
+/* position the third level flyout menu for a left flyout */
+.menu ul ul ul.left {left:-14em;}
+
+
+/* make the second level visible when hover on first level list OR link */
+
+.menu ul li:hover ul, .menu ul a:hover ul 
+ {
+ visibility:visible; 
+ height:auto; 
+ padding-bottom:3em; 
+ /* background:transparent url(images/trans.gif);} */
+ }
+
+/* keep the third level hidden when you hover on first level list OR link */
+.menu ul :hover ul ul{visibility:hidden;}
+/* keep the fourth level hidden when you hover on second level list OR link */
+.menu ul :hover ul :hover ul ul{visibility:hidden;}
+/* make the third level visible when you hover over second level list OR link */
+.menu ul :hover ul :hover ul{visibility:visible;}
+/* make the fourth level visible when you hover over third level list OR link */
+.menu ul :hover ul :hover ul :hover ul {visibility:visible;}
+
+.lmenu {
+height:150px;
+font-size:90%;
+}
+
+/* remove all the bullets, borders and padding from the default list styling */
+.lmenu ul {
+position:relative;
+z-index:500;
+padding:0;
+margin:0;
+list-style-type:none;
+width:15em;
+}
+
+/* style the list items */
+.lmenu li {
+color:#fff;
+height:2.6em;
+text-align: center;
+font-weight: bold;
+font-style: oblique;
+/* for IE7 */
+float:left;
+}
+
+.lmenu li div {
+display:block; 
+text-decoration:none;
+height:2.5em;
+line-height:2.5em;
+width:15em;
+text-indent:0.5em;
+border:1px solid #fff;
+color:#004080;
+height:2.6em;
+/* for IE7 */
+float:left;
+}
+
+
+/* .lmenu li.sub {background:#004080 url(sub.gif) no-repeat right center;}  */
+
+/* get rid of the table */
+.lmenu table {position:absolute; border-collapse:collapse; top:0; left:0; z-index:100; font-size:1em;}
+
+/* style the links */
+.lmenu a, .lmenu a:visited {
+display:block; 
+text-decoration:none;
+height:2.5em;
+line-height:2.5em;
+width:15em;
+color:#fff;
+background:#004080;
+text-indent:0.5em;
+border:1px solid #fff;
+}
+/* hack for IE5.5 */
+* html .lmenu a, * html .menu a:visited {width:150em; width:14.9em;}
+/* style the link hover */
+* html .lmenu a:hover {color:#c0c0c0; background:#014181; position:relative;}
+
+.lmenu li:hover {position:relative;}
+
+/* For accessibility of the top level menu when tabbing */
+.lmenu a:active, .lmenu a:focus {color:#c0c0c0; background:#004080;}
+
+/* retain the hover colors for each sublevel IE7 and Firefox etc */
+.lmenu li:hover > a {color:#c0c0c0; background:#014181;}
+ 
+/* hide the sub levels and give them a positon absolute so that they take up no room */
+.lmenu li ul {
+visibility:hidden;
+position:absolute;
+top:-3em;
+/* set up the overlap (minus the overrun) */
+left:10em;
+/* set up the overrun area */
+padding:3em;
+/* this is for IE to make it interpret the overrrun padding */
+/* background:transparent url(transparent.gif); */
+}
+
+/* for browsers that understand this is all you need for the flyouts */
+.lmenu li:hover > ul {visibility:visible;}
+
+
+/* for IE5.5 and IE6 you need to style each level hover */
+
+/* keep the third level+ hidden when you hover on first level link */
+.lmenu ul a:hover ul ul{
+visibility:hidden;
+}
+/* keep the fourth level+ hidden when you hover on second level link */
+.lmenu ul a:hover ul a:hover ul ul{
+visibility:hidden;
+}
+/* keep the fifth level hidden when you hover on third level link */
+.lmenu ul a:hover ul a:hover ul a:hover ul ul{
+visibility:hidden;
+}
+
+/* make the second level visible when hover on first level link */
+.lmenu ul a:hover ul {
+visibility:visible;
+}
+/* make the third level visible when you hover over second level link */
+.lmenu ul a:hover ul a:hover ul{ 
+visibility:visible;
+}
+/* make the fourth level visible when you hover over third level link */
+.lmenu ul a:hover ul a:hover ul a:hover ul { 
+visibility:visible;
+}
+/* make the fifth level visible when you hover over fourth level link */
+.lmenu ul a:hover ul a:hover ul a:hover ul a:hover ul { 
+visibility:visible;
+}
+

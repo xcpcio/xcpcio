@@ -56,7 +56,7 @@ def team_out():
             team[row[1]] = {}
             team_now = team[row[1]]
             team_now['school'] = row[2]
-            team_now['name'] = row[3].split('_')[2]
+            team_now['name'] = row[3].split('_')[-1]
             if row[4] == "正式队伍":
                 team_now['official'] = 1
             if row[4] == "打星队伍":
@@ -98,7 +98,7 @@ def result_out():
                 if len(attempt_num) > 0:
                     problem_res['attempt_num'] = int(attempt_num)
                 else:
-                    problem_res = 1
+                    problem_res['attempt_num'] = 1
             detail.append(problem_res)
 
     output("result.json", result)
