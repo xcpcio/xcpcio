@@ -1,0 +1,12 @@
+{
+  "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛（秦皇岛）正式赛",
+  "end_time": 1603000800,
+  "medal": {
+    "bronze": 72,
+    "gold": 24,
+    "silver": 48
+  },
+  "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
+  "result_mode": 1,
+  "start_time": 1602982800
+}

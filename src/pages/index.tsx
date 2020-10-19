@@ -27,7 +27,7 @@ const INF = 0x3f3f3f3f;
 async function update(_this: Board) {
   contest_config = await getJSON([pathname, 'config.json'].join('/'));
   team = await getJSON([pathname, 'team.json'].join('/'));
-  console.log(contest_config);
+  // console.log(contest_config);
   problem_id = contest_config.problem_id;
   medal = contest_config.medal;
 

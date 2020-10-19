@@ -5,7 +5,7 @@ import json
 import time
 
 raw_dir = "raw"
-data_dir = "../../../../data/ccpc/2020/秦皇岛"
+data_dir = "../../../../data/ccpc/2020/qinhuangdao"
 team_data_filename = "CCPC2020-参赛队伍数据.xlsx"
 qhd_data_filename = "CCPC2020-QHD-正式参赛队榜单-原始.xlsx"
 problem_num = 12
