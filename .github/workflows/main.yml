@@ -37,3 +37,13 @@ jobs:
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: site # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
+
+      - name: Deploy
+        uses: appleboy/ssh-action@master # 使用ssh链接服务器
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: | 
+            ${{ secrets.RUN_SCRIPT }}
