@@ -10,7 +10,7 @@ class Index extends React.Component {
     state = {};
 
     render() {
-        return <h1>hollp</h1>;
+        return <h1></h1>;
     }
 }
 

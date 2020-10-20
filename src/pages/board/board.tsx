@@ -1,6 +1,6 @@
 import React from 'react';
 import './board.css';
-import Loading from '@/components/Loading';
+import Loading from '@/components/Loading/Loading';
 import { getJSON } from '@/utils/utils';
 import Progress from '@/components/progress/progress';
 

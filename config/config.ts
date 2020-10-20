@@ -15,14 +15,13 @@ export default defineConfig({
         },
         {
             path: '/',
-            component: '@/pages/board',
+            component: '@/pages/board/board',
             exact: false,
         },
     ],
     proxy: {
         '/data': {
-            // target: 'https://board.xcpcio.com',
-            target: 'http://data.top',
+            target: 'https://board.xcpcio.com',
             changeOrigin: true,
         },
     },
