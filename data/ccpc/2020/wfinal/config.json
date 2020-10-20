@@ -1,12 +1,13 @@
 {
-  "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛女生专场-正式赛",
-  "end_time": 1603000800,
-  "medal": {
-    "bronze": 47,
-    "gold": 16,
-    "silver": 31
-  },
-  "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
-  "result_mode": 1,
-  "start_time": 1602982800
+    "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛女生专场-正式赛",
+    "end_time": 1603000800,
+    "frozen_time": 3600,
+    "medal": {
+        "bronze": 47,
+        "gold": 16,
+        "silver": 31
+    },
+    "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
+    "result_mode": 1,
+    "start_time": 1602982800
 }

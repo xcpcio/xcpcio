@@ -1,0 +1,42 @@
+.label {
+    box-sizing: inherit;
+    display: inline-block;
+    background-image: none;
+    text-transform: none;
+    font-weight: bold;
+    border: 0 solid transparent;
+    transition: background 0.1s ease;
+    margin-right: 5px;
+    padding: 0.4em !important;
+    line-height: 1em;
+    text-align: center;
+    border-radius: 500rem;
+    font-size: 0.78571429rem;
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    vertical-align: baseline;
+    color: #FFFFFF;
+}
+
+.PENDING {
+    background-color: #0e90d2;
+    border-color: #0e90d2;
+}
+
+.RUNNING {
+    background-color: rgb(94, 185, 94);
+    border-color: rgb(94, 185, 94);
+}
+
+.FROZEND {
+    background-color: #dd514c;
+    border-color: #dd514c;
+}
+
+.FINISHED {
+    background-color: #3bb4f2;
+    border-color: #3bb4f2;
+}

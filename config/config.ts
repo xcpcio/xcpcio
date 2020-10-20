@@ -11,12 +11,18 @@ export default defineConfig({
         {
             path: '/',
             component: '@/pages/index',
+            exact: true,
+        },
+        {
+            path: '/',
+            component: '@/pages/board',
             exact: false,
         },
     ],
     proxy: {
         '/data': {
-            target: 'https://board.xcpcio.com',
+            // target: 'https://board.xcpcio.com',
+            target: 'http://data.top',
             changeOrigin: true,
         },
     },

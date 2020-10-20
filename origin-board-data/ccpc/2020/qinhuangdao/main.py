@@ -39,6 +39,7 @@ def config_out():
         'contest_name': 'CCPC2020-第六届中国大学生程序设计竞赛（秦皇岛）正式赛',
         'start_time': get_timestamp("2020-10-18 09:00:00"),
         'end_time': get_timestamp("2020-10-18 14:00:00"),
+        'frozen_time' : 60 * 60,
         'problem_id': problem_id,
         'result_mode': 1,
         'medal': medal,
