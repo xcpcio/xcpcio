@@ -1,21 +1,7 @@
 import React from 'react';
 import './standings.css';
 import Placecharts from './placecharts';
-
-const options: Highcharts.Options = {
-    title: {
-        text: '排名变化趋势',
-    },
-    series: [
-        {
-            type: 'line',
-            data: [1, 2, 3],
-        },
-    ],
-    credits: {
-        enabled: false,
-    },
-};
+import Loading from '@/components/Loading/Loading';
 
 const INF = 0x3f3f3f3f;
 
@@ -268,6 +254,7 @@ class Standings extends React.Component {
             team: this.team,
             run: this.run,
             school: this.contest_config.school.name || 0,
+            loaded: true,
         });
     }
 
@@ -279,23 +266,18 @@ class Standings extends React.Component {
         return this.contest_config.problem_id.length;
     }
 
-    componentDidMount() {
-        this.update(this.props);
-    }
+    componentDidMount() {}
 
     //props中的值发生改变时执行
     componentWillReceiveProps(nextProps: any) {
-        if (
-            this.props.contest_config !== nextProps.contest_config ||
-            this.props.team !== nextProps.team ||
-            this.props.run !== nextProps.run
-        ) {
-            this.update(nextProps);
-        }
+        this.update(nextProps);
     }
 
     constructor(props: any) {
         super(props);
+        setTimeout(() => {
+            this.update(this.props);
+        }, 500);
     }
 
     state = {
@@ -306,255 +288,348 @@ class Standings extends React.Component {
         team_list: [],
         school: 0,
         vis: {},
+        loaded: false,
     };
 
     render() {
         return (
-            <table className="standings">
-                <tbody>
-                    <tr>
-                        <th className="title" style={{ width: '4em' }}>
-                            Place
-                        </th>
-                        {this.state.school === 1 && (
-                            <th className="title" style={{ width: '18em' }}>
-                                School
-                            </th>
-                        )}
-                        <th className="title">Team</th>
-                        <th className="title" style={{ width: '4em' }}>
-                            Solved
-                        </th>
-                        <th className="title" style={{ width: '4em' }}>
-                            Time
-                        </th>
-                        {this.state.problem_list.map((item: any) => {
-                            return (
-                                <th
-                                    className="success"
-                                    style={{ width: '4em' }}
-                                >
-                                    {[
-                                        this.state.contest_config.problem_id[
-                                            item.problem_id
-                                        ],
-                                    ]}
-                                    <br />
-                                    <s>
-                                        {item.solved}/{item.total}
-                                    </s>
+            <>
+                {this.state.loaded === false && (
+                    <div
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            height: 'calc(80vh)',
+                        }}
+                    >
+                        <Loading />
+                    </div>
+                )}
+
+                {this.state.loaded === true && (
+                    <table className="standings">
+                        <tbody>
+                            <tr>
+                                <th className="title" style={{ width: '4em' }}>
+                                    Place
                                 </th>
-                            );
-                        })}
-                    </tr>
-
-                    {this.state.team_list.map((item: any, index: number) => {
-                        return (
-                            <>
-                                <tr
-                                    className={[
-                                        ['stand', item.stand_className_id].join(
-                                            '',
-                                        ),
-                                        'team',
-                                    ].join(' ')}
-                                    onClick={() => {
-                                        let item = document.getElementById(
-                                            get_analyze_team_id(index),
-                                        );
-                                        if (item?.style.display === 'none') {
-                                            item.style.display = '';
-                                            this.vis[
-                                                get_analyze_team_id(index)
-                                            ] = 1;
-                                            this.setState({
-                                                vis: this.vis,
-                                            });
-                                        } else if (item?.style.display === '') {
-                                            item.style.display = 'none';
-                                            this.vis[
-                                                get_analyze_team_id(index)
-                                            ] = 0;
-                                            this.setState({
-                                                vis: this.vis,
-                                            });
-                                        }
-                                    }}
-                                >
-                                    <td className={item.place_className}>
-                                        {item.place}
-                                    </td>
-                                    {this.state.school === 1 && (
-                                        <td className="stnd">
-                                            <div style={{ display: 'flex' }}>
-                                                <div
-                                                    style={{
-                                                        float: 'left',
-                                                        fontFamily: 'Georgia',
-                                                        paddingLeft: 5,
-                                                    }}
-                                                >
-                                                    {item.school_place}
-                                                </div>
-                                                <div style={{ flex: '1' }}>
-                                                    {item.school}
-                                                </div>
-                                                <div
-                                                    style={{ float: 'right' }}
-                                                ></div>
-                                            </div>
-                                        </td>
-                                    )}
-                                    <td className="stnd">{item.name}</td>
-                                    <td className="stnd">{item.solved}</td>
-                                    <td className="stnd">{item.time}</td>
-                                    {item.problem.map((item: any) => {
-                                        let ch_status = '-';
-                                        if (item.status === 'correct')
-                                            ch_status = '+';
-                                        if (item.status === 'incorrect')
-                                            ch_status = '-';
-                                        if (item.status === 'pending')
-                                            ch_status = '?';
-                                        if (item.status === 'unattempted')
-                                            ch_status = '.';
-                                        return (
-                                            <td
-                                                className={
-                                                    item.status_className
-                                                }
-                                            >
-                                                {ch_status}
-                                                <br />
-                                                {item.attempt_num
-                                                    ? parseInt(item.attempt_num)
-                                                    : ''}
-                                                {this.state.contest_config
-                                                    .status_time[
-                                                    item.status
-                                                ] === 1 && item.time
-                                                    ? '/' + parseInt(item.time)
-                                                    : ''}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
-                                <tr
-                                    style={{ display: 'none' }}
-                                    id={get_analyze_team_id(index)}
-                                >
-                                    <td
-                                        colSpan={
-                                            this.getInfoCol() +
-                                            this.getProblemCol()
-                                        }
+                                {this.state.school === 1 && (
+                                    <th
+                                        className="title"
+                                        style={{ width: '18em' }}
                                     >
-                                        {this.state.vis[
-                                            get_analyze_team_id(index)
-                                        ] === 1 && (
-                                            <>
-                                                <Placecharts
-                                                    contest_config={
-                                                        this.state
-                                                            .contest_config
+                                        School
+                                    </th>
+                                )}
+                                <th className="title">Team</th>
+                                <th className="title" style={{ width: '4em' }}>
+                                    Solved
+                                </th>
+                                <th className="title" style={{ width: '4em' }}>
+                                    Time
+                                </th>
+                                {this.state.problem_list.map((item: any) => {
+                                    return (
+                                        <th
+                                            className="success"
+                                            style={{ width: '4em' }}
+                                        >
+                                            {[
+                                                this.state.contest_config
+                                                    .problem_id[
+                                                    item.problem_id
+                                                ],
+                                            ]}
+                                            <br />
+                                            <s>
+                                                {item.solved}/{item.total}
+                                            </s>
+                                        </th>
+                                    );
+                                })}
+                            </tr>
+
+                            {this.state.team_list.map(
+                                (item: any, index: number) => {
+                                    return (
+                                        <>
+                                            <tr
+                                                className={[
+                                                    [
+                                                        'stand',
+                                                        item.stand_className_id,
+                                                    ].join(''),
+                                                    'team',
+                                                ].join(' ')}
+                                                onClick={() => {
+                                                    let item = document.getElementById(
+                                                        get_analyze_team_id(
+                                                            index,
+                                                        ),
+                                                    );
+                                                    if (
+                                                        item?.style.display ===
+                                                        'none'
+                                                    ) {
+                                                        item.style.display = '';
+                                                        this.vis[
+                                                            get_analyze_team_id(
+                                                                index,
+                                                            )
+                                                        ] = 1;
+                                                        this.setState({
+                                                            vis: this.vis,
+                                                        });
+                                                    } else if (
+                                                        item?.style.display ===
+                                                        ''
+                                                    ) {
+                                                        item.style.display =
+                                                            'none';
+                                                        this.vis[
+                                                            get_analyze_team_id(
+                                                                index,
+                                                            )
+                                                        ] = 0;
+                                                        this.setState({
+                                                            vis: this.vis,
+                                                        });
                                                     }
-                                                    cur_team={item}
-                                                    team={this.state.team}
-                                                    run={this.state.run}
-                                                />
-                                            </>
-                                        )}
-                                    </td>
-                                </tr>
-                            </>
-                        );
-                    })}
+                                                }}
+                                            >
+                                                <td
+                                                    className={
+                                                        item.place_className
+                                                    }
+                                                >
+                                                    {item.place}
+                                                </td>
+                                                {this.state.school === 1 && (
+                                                    <td className="stnd">
+                                                        <div
+                                                            style={{
+                                                                display: 'flex',
+                                                            }}
+                                                        >
+                                                            <div
+                                                                style={{
+                                                                    float:
+                                                                        'left',
+                                                                    fontFamily:
+                                                                        'Georgia',
+                                                                    paddingLeft: 5,
+                                                                }}
+                                                            >
+                                                                {
+                                                                    item.school_place
+                                                                }
+                                                            </div>
+                                                            <div
+                                                                style={{
+                                                                    flex: '1',
+                                                                }}
+                                                            >
+                                                                {item.school}
+                                                            </div>
+                                                            <div
+                                                                style={{
+                                                                    float:
+                                                                        'right',
+                                                                }}
+                                                            ></div>
+                                                        </div>
+                                                    </td>
+                                                )}
+                                                <td className="stnd">
+                                                    {item.name}
+                                                </td>
+                                                <td className="stnd">
+                                                    {item.solved}
+                                                </td>
+                                                <td className="stnd">
+                                                    {item.time}
+                                                </td>
+                                                {item.problem.map(
+                                                    (item: any) => {
+                                                        let ch_status = '-';
+                                                        if (
+                                                            item.status ===
+                                                            'correct'
+                                                        )
+                                                            ch_status = '+';
+                                                        if (
+                                                            item.status ===
+                                                            'incorrect'
+                                                        )
+                                                            ch_status = '-';
+                                                        if (
+                                                            item.status ===
+                                                            'pending'
+                                                        )
+                                                            ch_status = '?';
+                                                        if (
+                                                            item.status ===
+                                                            'unattempted'
+                                                        )
+                                                            ch_status = '.';
+                                                        return (
+                                                            <td
+                                                                className={
+                                                                    item.status_className
+                                                                }
+                                                            >
+                                                                {ch_status}
+                                                                <br />
+                                                                {item.attempt_num
+                                                                    ? parseInt(
+                                                                          item.attempt_num,
+                                                                      )
+                                                                    : ''}
+                                                                {this.state
+                                                                    .contest_config
+                                                                    .status_time[
+                                                                    item.status
+                                                                ] === 1 &&
+                                                                item.time
+                                                                    ? '/' +
+                                                                      parseInt(
+                                                                          item.time,
+                                                                      )
+                                                                    : ''}
+                                                            </td>
+                                                        );
+                                                    },
+                                                )}
+                                            </tr>
+                                            <tr
+                                                style={{ display: 'none' }}
+                                                id={get_analyze_team_id(index)}
+                                            >
+                                                <td
+                                                    colSpan={
+                                                        this.getInfoCol() +
+                                                        this.getProblemCol()
+                                                    }
+                                                >
+                                                    {this.state.vis[
+                                                        get_analyze_team_id(
+                                                            index,
+                                                        )
+                                                    ] === 1 && (
+                                                        <>
+                                                            <Placecharts
+                                                                contest_config={
+                                                                    this.state
+                                                                        .contest_config
+                                                                }
+                                                                cur_team={item}
+                                                                team={
+                                                                    this.state
+                                                                        .team
+                                                                }
+                                                                run={
+                                                                    this.state
+                                                                        .run
+                                                                }
+                                                            />
+                                                        </>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        </>
+                                    );
+                                },
+                            )}
 
-                    <tr className="statistics-0">
-                        <td
-                            className="empty"
-                            colSpan={this.getInfoCol() - 1}
-                        ></td>
-                        <td className="stnd">
-                            <b>Attempted:</b>
-                        </td>
-                        {this.state.problem_list.map((item: any) => {
-                            return (
+                            <tr className="statistics-0">
+                                <td
+                                    className="empty"
+                                    colSpan={this.getInfoCol() - 1}
+                                ></td>
                                 <td className="stnd">
-                                    <b>{item.total}</b>
+                                    <b>Attempted:</b>
                                 </td>
-                            );
-                        })}
-                    </tr>
+                                {this.state.problem_list.map((item: any) => {
+                                    return (
+                                        <td className="stnd">
+                                            <b>{item.total}</b>
+                                        </td>
+                                    );
+                                })}
+                            </tr>
 
-                    <tr className="statistics-1">
-                        <td
-                            className="empty"
-                            colSpan={this.getInfoCol() - 1}
-                        ></td>
-                        <td className="stnd">
-                            <b>Accepted:</b>
-                        </td>
-                        {this.state.problem_list.map((item: any) => {
-                            return (
+                            <tr className="statistics-1">
+                                <td
+                                    className="empty"
+                                    colSpan={this.getInfoCol() - 1}
+                                ></td>
                                 <td className="stnd">
-                                    <b>{item.solved}</b>
-                                    <br />
-                                    <b>
-                                        (
-                                        {Math.round(
-                                            (item.solved / item.total) * 100,
-                                        )}
-                                        {item.total === 0 ? '' : '%'})
-                                    </b>
+                                    <b>Accepted:</b>
                                 </td>
-                            );
-                        })}
-                    </tr>
+                                {this.state.problem_list.map((item: any) => {
+                                    return (
+                                        <td className="stnd">
+                                            <b>{item.solved}</b>
+                                            <br />
+                                            <b>
+                                                (
+                                                {Math.round(
+                                                    (item.solved / item.total) *
+                                                        100,
+                                                )}
+                                                {item.total === 0 ? '' : '%'})
+                                            </b>
+                                        </td>
+                                    );
+                                })}
+                            </tr>
 
-                    <tr className="statistics-0">
-                        <td
-                            className="empty"
-                            colSpan={this.getInfoCol() - 1}
-                        ></td>
-                        <td className="stnd">
-                            <b>First Solved:</b>
-                        </td>
-                        {this.state.problem_list.map((item: any) => {
-                            return (
+                            <tr className="statistics-0">
+                                <td
+                                    className="empty"
+                                    colSpan={this.getInfoCol() - 1}
+                                ></td>
                                 <td className="stnd">
-                                    <b>
-                                        {item.first_solve_time === INF
-                                            ? 'N/A'
-                                            : item.first_solve_time}
-                                    </b>
+                                    <b>First Solved:</b>
                                 </td>
-                            );
-                        })}
-                    </tr>
+                                {this.state.problem_list.map((item: any) => {
+                                    return (
+                                        <td className="stnd">
+                                            <b>
+                                                {item.first_solve_time === INF
+                                                    ? 'N/A'
+                                                    : item.first_solve_time}
+                                            </b>
+                                        </td>
+                                    );
+                                })}
+                            </tr>
 
-                    <tr className="statistics-1">
-                        <td
-                            className="empty"
-                            colSpan={this.getInfoCol() - 1}
-                        ></td>
-                        <td className="stnd">
-                            <b>Last Solved:</b>
-                        </td>
-                        {this.state.problem_list.map((item: any) => {
-                            return (
+                            <tr className="statistics-1">
+                                <td
+                                    className="empty"
+                                    colSpan={this.getInfoCol() - 1}
+                                ></td>
                                 <td className="stnd">
-                                    <b>
-                                        {item.last_solve_time === 0
-                                            ? 'N/A'
-                                            : item.last_solve_time}
-                                    </b>
+                                    <b>Last Solved:</b>
                                 </td>
-                            );
-                        })}
-                    </tr>
-                </tbody>
-            </table>
+                                {this.state.problem_list.map((item: any) => {
+                                    return (
+                                        <td className="stnd">
+                                            <b>
+                                                {item.last_solve_time === 0
+                                                    ? 'N/A'
+                                                    : item.last_solve_time}
+                                            </b>
+                                        </td>
+                                    );
+                                })}
+                            </tr>
+                        </tbody>
+                    </table>
+                )}
+            </>
         );
     }
 }
