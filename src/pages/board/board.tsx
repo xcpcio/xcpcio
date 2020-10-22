@@ -11,7 +11,7 @@ let contest_config: any = {};
 let team: any = {};
 let run: any = [];
 
-const left_second_menu = ['排行榜'];
+const left_second_menu = ['排行榜', '统计分析'];
 // , '时间线', '统计分析'];
 const right_second_menu = ['所有队伍'];
 // , '关注队伍'];
@@ -56,6 +56,15 @@ async function update(_this: Board) {
 class Board extends React.Component {
     componentDidMount() {
         pathname = window.location.pathname;
+        const params = new URLSearchParams(this.props.location.search);
+        let query: any = {};
+        for (const [key, value] of params) {
+            query[key] = value;
+        }
+        this.props.history.push({
+            pathname: pathname,
+            query: query,
+        });
         update(this);
     }
 

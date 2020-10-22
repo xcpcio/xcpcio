@@ -87,43 +87,39 @@ function getHichartsOptions(
     team: any,
     run: any,
 ) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            const options: Highcharts.Options = {
+    const options: Highcharts.Options = {
+        title: {
+            text: '排名变化趋势',
+        },
+        series: [
+            {
+                name: '排名',
+                type: 'line',
+                data: getTeamPlace(contest_config, cur_team, team, run),
+            },
+        ],
+        xAxis: [
+            {
+                allowDecimals: false,
                 title: {
-                    text: '排名变化趋势',
+                    text: '时间',
                 },
-                series: [
-                    {
-                        name: '排名',
-                        type: 'line',
-                        data: getTeamPlace(contest_config, cur_team, team, run),
-                    },
-                ],
-                xAxis: [
-                    {
-                        allowDecimals: false,
-                        title: {
-                            text: '时间',
-                        },
-                    },
-                ],
-                yAxis: [
-                    {
-                        allowDecimals: false,
-                        reversed: true,
-                        title: {
-                            text: '排名',
-                        },
-                    },
-                ],
-                credits: {
-                    enabled: false,
+            },
+        ],
+        yAxis: [
+            {
+                allowDecimals: false,
+                reversed: true,
+                title: {
+                    text: '排名',
                 },
-            };
-            resolve(options);
-        }, 500);
-    });
+            },
+        ],
+        credits: {
+            enabled: false,
+        },
+    };
+    return options;
 }
 
 class Placecharts extends React.Component {
@@ -137,7 +133,7 @@ class Placecharts extends React.Component {
         this.cur_team = props.cur_team;
         this.team = props.team;
         this.run = props.run;
-        const options = await getHichartsOptions(
+        const options = getHichartsOptions(
             this.contest_config,
             this.cur_team,
             this.team,

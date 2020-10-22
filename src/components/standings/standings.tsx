@@ -364,20 +364,20 @@ class Standings extends React.Component {
                                         );
                                         if (item?.style.display === 'none') {
                                             item.style.display = '';
-                                            if (
-                                                !this.vis[
-                                                    get_analyze_team_id(index)
-                                                ]
-                                            ) {
-                                                this.vis[
-                                                    get_analyze_team_id(index)
-                                                ] = 1;
-                                                this.setState({
-                                                    vis: this.vis,
-                                                });
-                                            }
+                                            this.vis[
+                                                get_analyze_team_id(index)
+                                            ] = 1;
+                                            this.setState({
+                                                vis: this.vis,
+                                            });
                                         } else if (item?.style.display === '') {
                                             item.style.display = 'none';
+                                            this.vis[
+                                                get_analyze_team_id(index)
+                                            ] = 0;
+                                            this.setState({
+                                                vis: this.vis,
+                                            });
                                         }
                                     }}
                                 >
