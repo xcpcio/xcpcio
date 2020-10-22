@@ -152,9 +152,10 @@ class Board extends React.Component {
         return (
             <div style={{ maxWidth: 1560 }}>
                 {this.state.loaded === false && (
+                    // <></>
                     <div
                         style={{
-                            height: 'calc(100vh - 50px)',
+                            height: 'calc(20vh)',
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
@@ -164,7 +165,7 @@ class Board extends React.Component {
                     </div>
                 )}
 
-                {this.state.loaded && (
+                {this.state.loaded === true && (
                     <>
                         <h1>{this.state.contest_config.contest_name}</h1>
 
