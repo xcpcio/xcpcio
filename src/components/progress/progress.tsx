@@ -1,6 +1,7 @@
 import React from 'react';
 import './progress.css';
 import './status.css';
+import '../standings/standings.css';
 import { timeFormat, getTimeDiff, getNowTimeStamp } from '@/utils/utils';
 
 const status_type = ['PENDING', 'RUNNING', 'FROZEND', 'FINISHED'];
@@ -145,11 +146,33 @@ class Progress extends React.Component {
 
                 <div style={{ marginTop: '2px', display: 'flex' }}>
                     <div style={{ float: 'left' }}>
-                        <b>Time elapsed: {this.state.time_elapsed}</b>
+                        <b>Time Elapsed: {this.state.time_elapsed}</b>
                     </div>
-                    <div style={{ flex: '1' }}></div>
+                    <div style={{ flex: '1' }}>
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td className="gold">Gold</td>
+                                    <td className="silver">Silver</td>
+                                    <td className="bronze">Bronze</td>
+                                    <td className="honorable">Honorable</td>
+                                    <td className="unofficial">Unofficial</td>
+                                    <td className="firstsolve">
+                                        First to solve problem
+                                    </td>
+                                    <td className="correct">Solved problem</td>
+                                    <td className="incorrect">
+                                        Attempted problem
+                                    </td>
+                                    <td className="pending">
+                                        Pending judgement
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div style={{ float: 'right' }}>
-                        <b>Time remaining: {this.state.time_remaining}</b>
+                        <b>Time Remaining: {this.state.time_remaining}</b>
                     </div>
                 </div>
             </>

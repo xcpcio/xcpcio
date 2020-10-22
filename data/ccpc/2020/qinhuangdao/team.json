@@ -49,11 +49,6 @@
         "official": 1,
         "school": "北华大学"
     },
-    "T019": {
-        "name": "AC亩产一千八",
-        "school": "北京化工大学",
-        "unofficial": 1
-    },
     "T020": {
         "name": "啊这",
         "official": 1,
@@ -64,25 +59,10 @@
         "official": 1,
         "school": "北京化工大学"
     },
-    "T022": {
-        "name": "飞快地爬",
-        "school": "北京化工大学",
-        "unofficial": 1
-    },
-    "T023": {
-        "name": "三傻大闹北化",
-        "school": "北京化工大学",
-        "unofficial": 1
-    },
     "T024": {
         "name": "AC马",
         "official": 1,
         "school": "北京交通大学"
-    },
-    "T025": {
-        "name": "被题AK",
-        "school": "北京交通大学",
-        "unofficial": 1
     },
     "T026": {
         "name": "崂山啤酒酒花",
@@ -99,11 +79,6 @@
         "official": 1,
         "school": "北京理工大学"
     },
-    "T029": {
-        "name": "北林幻想机场",
-        "school": "北京林业大学",
-        "unofficial": 1
-    },
     "T030": {
         "name": "北林三十八队",
         "official": 1,
@@ -118,11 +93,6 @@
         "name": "快乐水",
         "official": 1,
         "school": "北京师范大学"
-    },
-    "T035": {
-        "name": "人菜瘾大",
-        "school": "北京师范大学",
-        "unofficial": 1
     },
     "T036": {
         "name": "水人波高地",
@@ -139,30 +109,10 @@
         "official": 1,
         "school": "北京信息科技大学"
     },
-    "T040": {
-        "name": "0x424E4453",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
-    "T041": {
-        "name": "孤天里的鹤",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
-    "T042": {
-        "name": "鸿蒙",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
     "T043": {
         "name": "极限过题",
         "official": 1,
         "school": "北京邮电大学"
-    },
-    "T044": {
-        "name": "见到你很高兴",
-        "school": "北京邮电大学",
-        "unofficial": 1
     },
     "T045": {
         "name": "三只蒟蒻",
@@ -173,26 +123,6 @@
         "name": "沙河软件园",
         "official": 1,
         "school": "北京邮电大学"
-    },
-    "T047": {
-        "name": "无限键制",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
-    "T048": {
-        "name": "咸鱼GO",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
-    "T049": {
-        "name": "幸福安心养老所",
-        "school": "北京邮电大学",
-        "unofficial": 1
-    },
-    "T051": {
-        "name": "东风",
-        "school": "常熟理工学院",
-        "unofficial": 1
     },
     "T052": {
         "name": "我爱吃炸鸡",
@@ -239,11 +169,6 @@
         "official": 1,
         "school": "四川大学"
     },
-    "T066": {
-        "name": "不会吧不会吧",
-        "school": "四川大学锦城学院",
-        "unofficial": 1
-    },
     "T067": {
         "name": "莫名塘深度优先",
         "official": 1,
@@ -269,50 +194,20 @@
         "official": 1,
         "school": "大连理工大学"
     },
-    "T075": {
-        "name": "ac automaton",
-        "school": "中国地质大学（武汉）",
-        "unofficial": 1
-    },
     "T076": {
         "name": "滑稽自动机",
         "official": 1,
         "school": "中国地质大学（武汉）"
-    },
-    "T080": {
-        "name": "河童重工",
-        "school": "东北大学",
-        "unofficial": 1
     },
     "T081": {
         "name": "剪完枝暴力搜",
         "official": 1,
         "school": "东北大学"
     },
-    "T082": {
-        "name": "起队名好nan",
-        "school": "东北大学",
-        "unofficial": 1
-    },
-    "T083": {
-        "name": "二息步行",
-        "school": "东北林业大学",
-        "unofficial": 1
-    },
     "T084": {
         "name": "喵内不要打篮球",
         "official": 1,
         "school": "东北林业大学"
-    },
-    "T085": {
-        "name": "三个顶个球",
-        "school": "东北林业大学",
-        "unofficial": 1
-    },
-    "T086": {
-        "name": "三个演员",
-        "school": "东北林业大学",
-        "unofficial": 1
     },
     "T087": {
         "name": "先WA一发",
@@ -349,85 +244,10 @@
         "official": 1,
         "school": "东南大学"
     },
-    "T099": {
-        "name": "常盘台女子技校",
-        "school": "东南大学",
-        "unofficial": 1
-    },
     "T100": {
         "name": "咸水小黄鸭",
         "official": 1,
         "school": "东南大学"
-    },
-    "T101": {
-        "name": "awen粉丝团",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T102": {
-        "name": "CFA-Y剑指",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T103": {
-        "name": "Friday",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T104": {
-        "name": "lucky crystal",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T105": {
-        "name": "WA自动机",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T106": {
-        "name": "不兼容",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T107": {
-        "name": "码码小能手",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T108": {
-        "name": "面包杀手",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T109": {
-        "name": "面向bug编程",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T110": {
-        "name": "妙啊",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T111": {
-        "name": "十三",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T112": {
-        "name": "西瓜汁小分队",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T113": {
-        "name": "严肃活泼",
-        "school": "东北大学秦皇岛分校",
-        "unofficial": 1
-    },
-    "T114": {
-        "name": "就进来看看题",
-        "school": "福建工程学院",
-        "unofficial": 1
     },
     "T115": {
         "name": "猫猫不流泪",
@@ -448,11 +268,6 @@
         "name": "全机房都叫大能石米",
         "official": 1,
         "school": "福州大学"
-    },
-    "T123": {
-        "name": "我和两个憨憨",
-        "school": "福州大学",
-        "unofficial": 1
     },
     "T125": {
         "name": "FCT太难啦",
@@ -484,11 +299,6 @@
         "official": 1,
         "school": "广东工业大学"
     },
-    "T133": {
-        "name": "老爷保号",
-        "official": 1,
-        "school": "广东工业大学"
-    },
     "T134": {
         "name": "猪猪冲冲冲",
         "official": 1,
@@ -511,11 +321,6 @@
     },
     "T139": {
         "name": "爆0爆0爆0",
-        "official": 1,
-        "school": "桂林电子科技大学"
-    },
-    "T140": {
-        "name": "这题必能a",
         "official": 1,
         "school": "桂林电子科技大学"
     },
@@ -543,11 +348,6 @@
         "name": "哈工大还是没有空调",
         "official": 1,
         "school": "哈尔滨工业大学"
-    },
-    "T148": {
-        "name": "汤姆不在的1e8+7天",
-        "school": "哈尔滨工业大学",
-        "unofficial": 1
     },
     "T149": {
         "name": "希望气球没事",
@@ -604,20 +404,10 @@
         "official": 1,
         "school": "哈尔滨理工大学"
     },
-    "T161": {
-        "name": "哈理工5队",
-        "school": "哈尔滨理工大学",
-        "unofficial": 1
-    },
     "T162": {
         "name": "可乐鸡",
         "official": 1,
         "school": "哈尔滨学院"
-    },
-    "T163": {
-        "name": "你看我还有机会吗",
-        "school": "哈尔滨学院",
-        "unofficial": 1
     },
     "T165": {
         "name": "BonVoyage",
@@ -654,16 +444,6 @@
         "official": 1,
         "school": "合肥学院"
     },
-    "T175": {
-        "name": "秦皇岛一日游",
-        "school": "合肥工业大学",
-        "unofficial": 1
-    },
-    "T176": {
-        "name": "歪比巴卜",
-        "school": "合肥工业大学",
-        "unofficial": 1
-    },
     "T177": {
         "name": "飞升辣椒",
         "official": 1,
@@ -688,11 +468,6 @@
         "name": "两极反转",
         "official": 1,
         "school": "河北师范大学"
-    },
-    "T186": {
-        "name": "依旧两极反转",
-        "school": "河北师范大学",
-        "unofficial": 1
     },
     "T187": {
         "name": "咸鱼翻身",
@@ -729,20 +504,10 @@
         "official": 1,
         "school": "河南理工大学"
     },
-    "T197": {
-        "name": "三个菜鸡齐力下厨",
-        "official": 1,
-        "school": "河南理工大学"
-    },
     "T199": {
         "name": "我想要个offer",
         "official": 1,
         "school": "河南农业大学"
-    },
-    "T200": {
-        "name": "从WA开始的打铁生涯",
-        "school": "黑龙江大学",
-        "unofficial": 1
     },
     "T201": {
         "name": "加帕里哲学三轮车改",
@@ -758,11 +523,6 @@
         "name": "不要停下来啊",
         "official": 1,
         "school": "湖北第二师范学院"
-    },
-    "T204": {
-        "name": "您看我还有机会吗",
-        "school": "湖北第二师范学院",
-        "unofficial": 1
     },
     "T205": {
         "name": "膜先堡的小膜仙",
@@ -834,20 +594,10 @@
         "official": 1,
         "school": "暨南大学"
     },
-    "T226": {
-        "name": "三只绵羊去秦皇",
-        "school": "嘉应学院",
-        "unofficial": 1
-    },
     "T227": {
         "name": "拿金就女装",
         "official": 1,
         "school": "江苏科技大学"
-    },
-    "T231": {
-        "name": "唧唧思密达",
-        "school": "江西财经大学",
-        "unofficial": 1
     },
     "T232": {
         "name": "下一回合就刷cf",
@@ -858,46 +608,6 @@
         "name": "从零开始的ACM生活",
         "official": 1,
         "school": "江西师范大学"
-    },
-    "T238": {
-        "name": "求求了给萌新一个牌吧",
-        "school": "江西师范大学",
-        "unofficial": 1
-    },
-    "T241": {
-        "name": "华南虎",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T242": {
-        "name": "华南三少",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T243": {
-        "name": "可达二号",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T244": {
-        "name": "可达深中队",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T245": {
-        "name": "可达一号",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T246": {
-        "name": "三个臭皮匠",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
-    },
-    "T247": {
-        "name": "星队",
-        "school": "深圳可达教育科技有限公司",
-        "unofficial": 1
     },
     "T249": {
         "name": "摸着我可爱的自己",
@@ -924,16 +634,6 @@
         "official": 1,
         "school": "南昌大学"
     },
-    "T260": {
-        "name": "supernova",
-        "school": "南昌大学",
-        "unofficial": 1
-    },
-    "T261": {
-        "name": "大佬带我",
-        "school": "南昌大学",
-        "unofficial": 1
-    },
     "T263": {
         "name": "三个工具人",
         "official": 1,
@@ -944,50 +644,15 @@
         "official": 1,
         "school": "南昌航空大学"
     },
-    "T265": {
-        "name": "AC大队",
-        "school": "南昌理工学院",
-        "unofficial": 1
-    },
-    "T266": {
-        "name": "LLL",
-        "school": "南昌理工学院",
-        "unofficial": 1
-    },
-    "T267": {
-        "name": "啾咪",
-        "school": "南昌理工学院",
-        "unofficial": 1
-    },
     "T268": {
         "name": "最终一战",
         "official": 1,
         "school": "南昌理工学院"
     },
-    "T270": {
-        "name": "AquaNeko",
-        "school": "南京大学",
-        "unofficial": 1
-    },
     "T271": {
         "name": "Icdereap",
         "official": 1,
         "school": "南京大学"
-    },
-    "T272": {
-        "name": "别卷了别卷了",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T273": {
-        "name": "冰冰三元一个十元三个",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T274": {
-        "name": "戳戳让戳戳别戳戳戳",
-        "school": "南京大学",
-        "unofficial": 1
     },
     "T275": {
         "name": "吊打yyb",
@@ -999,45 +664,10 @@
         "official": 1,
         "school": "南京大学"
     },
-    "T277": {
-        "name": "鸽屋咕",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T278": {
-        "name": "还没想好叫什么",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T279": {
-        "name": "杰尼龟红烧针不戳",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T280": {
-        "name": "卷翻天",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T281": {
-        "name": "看看队名到底能起多长",
-        "school": "南京大学",
-        "unofficial": 1
-    },
-    "T282": {
-        "name": "烂飞机",
-        "school": "南京大学",
-        "unofficial": 1
-    },
     "T283": {
         "name": "想吃派蒙的旅行者",
         "official": 1,
         "school": "南京大学"
-    },
-    "T286": {
-        "name": "阿尔高",
-        "school": "南方科技大学",
-        "unofficial": 1
     },
     "T287": {
         "name": "奥奈克斯",
@@ -1089,11 +719,6 @@
         "official": 1,
         "school": "南京邮电大学"
     },
-    "T308": {
-        "name": "三只单身狗",
-        "school": "南京邮电大学",
-        "unofficial": 1
-    },
     "T310": {
         "name": "可持久化深度学习",
         "official": 1,
@@ -1123,11 +748,6 @@
         "name": "泰深",
         "official": 1,
         "school": "厦门大学"
-    },
-    "T321": {
-        "name": "雨过天晴二重虹",
-        "school": "厦门大学",
-        "unofficial": 1
     },
     "T324": {
         "name": "Pikachu",
@@ -1179,50 +799,10 @@
         "official": 1,
         "school": "山东科技大学"
     },
-    "T338": {
-        "name": "白给大队",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T339": {
-        "name": "快乐自动机",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T340": {
-        "name": "蓝到紫",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
     "T341": {
         "name": "老当益壮",
         "official": 1,
         "school": "山东大学（威海）"
-    },
-    "T342": {
-        "name": "老鸽别哇了",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T343": {
-        "name": "石室诗士施氏誓食十狮",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T344": {
-        "name": "树新蜂",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T345": {
-        "name": "徐巨女装哪有这么可爱",
-        "school": "山东大学（威海）",
-        "unofficial": 1
-    },
-    "T346": {
-        "name": "这么小声还想AC",
-        "school": "山东大学（威海）",
-        "unofficial": 1
     },
     "T348": {
         "name": "魔菜队",
@@ -1274,15 +854,6 @@
         "official": 1,
         "school": "中国石油大学（北京）"
     },
-    "T366": {
-        "name": "英雄扬鞭催战马",
-        "school": "中国石油大学（北京）"
-    },
-    "T368": {
-        "name": "假如给我三天不爆零",
-        "school": "树德学院",
-        "unofficial": 1
-    },
     "T371": {
         "name": "可持久化键盘冒鸽",
         "official": 1,
@@ -1317,11 +888,6 @@
         "name": "small guo guo退役了",
         "official": 1,
         "school": "天津大学仁爱学院"
-    },
-    "T382": {
-        "name": "蜡笔小心",
-        "school": "天津大学仁爱学院",
-        "unofficial": 1
     },
     "T385": {
         "name": "电脑",
@@ -1453,11 +1019,6 @@
         "official": 1,
         "school": "西南科技大学"
     },
-    "T424": {
-        "name": "宁说得都对",
-        "school": "西南民族大学",
-        "unofficial": 1
-    },
     "T425": {
         "name": "肉蛋葱鸡",
         "official": 1,
@@ -1477,16 +1038,6 @@
         "name": "打完比赛去吃黄焖鸡",
         "official": 1,
         "school": "长安大学"
-    },
-    "T434": {
-        "name": "1是素数",
-        "school": "长春理工大学",
-        "unofficial": 1
-    },
-    "T435": {
-        "name": "金猫非猫",
-        "school": "长春理工大学",
-        "unofficial": 1
     },
     "T436": {
         "name": "听取蛙声一片",
@@ -1512,11 +1063,6 @@
         "name": "小学生轻点虐",
         "official": 1,
         "school": "长沙理工大学"
-    },
-    "T442": {
-        "name": "邪王真眼",
-        "school": "长沙理工大学",
-        "unofficial": 1
     },
     "T443": {
         "name": "CraZyMoon",
@@ -1547,16 +1093,6 @@
         "name": "ZJUT13",
         "official": 1,
         "school": "浙江工业大学"
-    },
-    "T452": {
-        "name": "潮鸣",
-        "school": "浙江工业大学",
-        "unofficial": 1
-    },
-    "T453": {
-        "name": "耶梦加得",
-        "school": "浙江工业大学",
-        "unofficial": 1
     },
     "T456": {
         "name": "这次一定",
@@ -1598,11 +1134,6 @@
         "official": 1,
         "school": "浙江师范大学"
     },
-    "T468": {
-        "name": "你们说对不对",
-        "school": "浙江师范大学",
-        "unofficial": 1
-    },
     "T469": {
         "name": "嘤嘤嘤",
         "official": 1,
@@ -1623,45 +1154,15 @@
         "official": 1,
         "school": "郑州大学"
     },
-    "T475": {
-        "name": "0x22",
-        "school": "郑州大学",
-        "unofficial": 1
-    },
     "T476": {
         "name": "0x44",
         "official": 1,
         "school": "郑州大学"
     },
-    "T477": {
-        "name": "0x88",
-        "school": "郑州大学",
-        "unofficial": 1
-    },
-    "T478": {
-        "name": "0xEE",
-        "school": "郑州大学",
-        "unofficial": 1
-    },
-    "T479": {
-        "name": "NAN",
-        "school": "郑州轻工业大学",
-        "unofficial": 1
-    },
     "T480": {
         "name": "轻大幼儿园",
         "official": 1,
         "school": "郑州轻工业大学"
-    },
-    "T481": {
-        "name": "这题太难，交给队友",
-        "school": "郑州轻工业大学",
-        "unofficial": 1
-    },
-    "T483": {
-        "name": "不做选择我们都要",
-        "school": "中北大学",
-        "unofficial": 1
     },
     "T484": {
         "name": "键盘攻击伤害加倍",
@@ -1677,11 +1178,6 @@
         "name": "枸杞不加冰",
         "official": 1,
         "school": "中山大学"
-    },
-    "T491": {
-        "name": "歪比歪比",
-        "school": "中山大学",
-        "unofficial": 1
     },
     "T492": {
         "name": "午餐奶",
@@ -1717,15 +1213,5 @@
         "name": "老八秘制小汉堡",
         "official": 1,
         "school": "重庆邮电大学"
-    },
-    "T502": {
-        "name": "乐子",
-        "school": "重庆邮电大学",
-        "unofficial": 1
-    },
-    "T503": {
-        "name": "未名",
-        "school": "重庆邮电大学",
-        "unofficial": 1
     }
 }

@@ -21,7 +21,8 @@ export default defineConfig({
     ],
     proxy: {
         '/data': {
-            target: 'https://board.xcpcio.com',
+            // target: 'https://board.xcpcio.com',
+            target: 'http://data.top',
             changeOrigin: true,
         },
     },

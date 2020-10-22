@@ -103,6 +103,11 @@ TH.success
 {
 background-color: #a0f0a0; font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
 }
+TH.title
+{
+background-color: #f5f5d5; 
+font-size: 12px; border-width: 0px; border-color: #000000; margin: 1px; 
+}
 TH.tried
 {
 background-color: #ffa0a0; 

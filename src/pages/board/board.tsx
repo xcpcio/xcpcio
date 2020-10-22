@@ -1,168 +1,56 @@
 import React from 'react';
-import './board.css';
 import Loading from '@/components/Loading/Loading';
-import { getJSON } from '@/utils/utils';
+import { getJSON, getTimeDiff, getNowTimeStamp } from '@/utils/utils';
 import Progress from '@/components/progress/progress';
+import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
+import Standings from '@/components/standings/standings';
 
 let pathname = '';
-let problem_info: any = [];
-let problem_id = [];
-let medal = [];
 
 let contest_config: any = {};
 let team: any = {};
-let result: any = {};
-let run: any = {};
-let team_list: any = [];
+let run: any = [];
 
-const INF = 0x3f3f3f3f;
+const left_second_menu = ['排行榜'];
+// , '时间线', '统计分析'];
+const right_second_menu = ['所有队伍'];
+// , '关注队伍'];
 
-function get_analyze_team_id(index: number) {
-    return ['analyze', 'team', index].join('-');
+function getTimeFlag(contest_config: any) {
+    let timeFlag = getNowTimeStamp();
+    timeFlag = Math.max(timeFlag, contest_config.start_time);
+    timeFlag = Math.min(timeFlag, contest_config.end_time);
+    return Math.ceil(timeFlag - contest_config.start_time);
 }
 
-async function update(_this: Board) {
-    contest_config = await getJSON([pathname, 'config.json'].join('/'));
-    team = await getJSON([pathname, 'team.json'].join('/'));
-    // console.log(contest_config);
-    problem_id = contest_config.problem_id;
-    medal = contest_config.medal;
+let timer: any = null;
 
-    if (!problem_id) {
+async function update(_this: Board) {
+    contest_config = await getJSON(
+        [pathname, `config.json?t=${getNowTimeStamp()}`].join('/'),
+    );
+    team = await getJSON(
+        [pathname, `team.json?t=${getNowTimeStamp()}`].join('/'),
+    );
+    run = await getJSON(
+        [pathname, `run.json?t=${getNowTimeStamp()}`].join('/'),
+    );
+    if (!contest_config.contest_name) {
         return;
     }
-
-    problem_id.map((id: CharacterData) => {
-        problem_info.push({});
-        let item = problem_info[problem_info.length - 1];
-        item['problem_id'] = id;
-        item['solved'] = 0;
-        item['total'] = 0;
-        item['firstsolve_time'] = INF;
-        item['lastsolve_time'] = 0;
-    });
-
-    if (contest_config.result_mode) {
-        result = await getJSON([pathname, 'result.json'].join('/'));
-        for (let key in result) {
-            const item = result[key];
-            team[key]['solved'] = item.solved;
-            team[key]['time'] = item.time;
-            team[key]['detail'] = item.detail;
-            team_list.push(team[key]);
-            for (let i = 0; i < problem_id.length; ++i) {
-                const p_item = item.detail[i];
-                if (p_item['attempt_num']) {
-                    problem_info[i].total += parseInt(p_item['attempt_num']);
-                }
-                if (p_item.status === 'correct') {
-                    problem_info[i].solved += 1;
-                    problem_info[i]['firstsolve_time'] = Math.min(
-                        problem_info[i]['firstsolve_time'],
-                        parseInt(p_item.time),
-                    );
-                    problem_info[i]['lastsolve_time'] = Math.max(
-                        problem_info[i]['lastsolve_time'],
-                        parseInt(p_item.time),
-                    );
-                }
-            }
-        }
-    }
-
-    if (contest_config.run_mode) {
-        run = await getJSON([pathname, 'run.json'].join('/'));
-    }
-
-    team_list.sort((a: any, b: any) => {
-        if (a.solved != b.solved) {
-            if (a.solved > b.solved) return -1;
-            if (a.solved < b.solved) return 1;
-        }
-        if (a.time !== b.time) {
-            if (a.time < b.time) return -1;
-            if (a.time > b.time) return 1;
-        }
-        return 0;
-    });
-
-    for (
-        let i = 0,
-            unofficial = 0,
-            pre_place = 0,
-            pre_time = -1,
-            pre_solved = problem_id.length + 1;
-        i < team_list.length;
-        ++i
-    ) {
-        let item = team_list[i];
-        if (item.unofficial) {
-            item.place = '*';
-            unofficial += 1;
-            item.place_className = 'unofficial';
-            continue;
-        }
-        if (item.solved == pre_solved && item.time == pre_time) {
-            item.place = pre_place;
-        } else {
-            item.place = i + 1 - unofficial;
-            pre_place = item.place;
-            pre_time = item.time;
-            pre_solved = item.solved;
-        }
-        let tot = 0;
-        let ok = false;
-        [
-            { gold: medal.gold },
-            { silver: medal.silver },
-            { bronze: medal.bronze },
-            { honorable: INF },
-        ].forEach((medal: any) => {
-            for (let key in medal) {
-                tot += medal[key];
-                if (item.place <= tot && !ok) {
-                    item.place_className = key;
-                    ok = true;
-                }
-            }
-        });
-    }
-
-    for (let i = 0; i < team_list.length; ++i) {
-        let item = team_list[i];
-        if (i == 0) {
-            item.stand_className_id = 0;
-        } else {
-            const pre_item = team_list[i - 1];
-            if (item.solved == pre_item.solved) {
-                item.stand_className_id = pre_item.stand_className_id ^ 1;
-            } else {
-                const id = pre_item.stand_className_id;
-                item.stand_className_id =
-                    (Math.floor(id / 10) ^ 1) * 10 + (id % 10);
-            }
-        }
-        for (let j = 0; j < problem_id.length; ++j) {
-            let problem = item.detail[j];
-            if (
-                problem.status === 'correct' &&
-                problem.time === problem_info[j].firstsolve_time
-            ) {
-                problem.status = 'firstsolve';
-            }
-        }
-    }
+    const timeFlag = getTimeFlag(contest_config);
 
     _this.setState({
-        contest_name: contest_config.contest_name,
-        start_time: contest_config.start_time || 0,
-        end_time: contest_config.end_time || 0,
-        frozen_time: contest_config.frozen_time || 0,
-        problem_info: problem_info,
-        team_list: team_list,
+        contest_config: contest_config,
+        team: team,
+        run: run,
+        timeFlag: timeFlag,
         loaded: true,
     });
     document.title = contest_config.contest_name;
+    timer = setTimeout(() => {
+        update(_this);
+    }, 30000);
 }
 
 class Board extends React.Component {
@@ -171,18 +59,24 @@ class Board extends React.Component {
         update(this);
     }
 
+    //组件卸载前的操作
+    componentWillUnmount() {
+        timer && clearInterval(timer);
+    }
+
     constructor(props: any) {
         super(props);
     }
 
     state = {
-        contest_name: '',
-        start_time: 0,
-        end_time: 0,
-        frozen_time: 0,
-        problem_info: [],
-        team_list: [],
+        contest_config: {},
+        team: {},
+        run: [],
+        timeFlag: 0,
         loaded: false,
+        left_second_menu_index: 0,
+        right_second_menu_index: 0,
+        tab: 0,
     };
 
     render() {
@@ -200,301 +94,54 @@ class Board extends React.Component {
                         <Loading />
                     </div>
                 )}
+
                 {this.state.loaded && (
                     <>
-                        <h1>{this.state.contest_name}</h1>
+                        <h1>{this.state.contest_config.contest_name}</h1>
 
                         <Progress
-                            start_time={this.state.start_time}
-                            end_time={this.state.end_time}
-                            frozen_time={this.state.frozen_time}
+                            start_time={this.state.contest_config.start_time}
+                            end_time={this.state.contest_config.end_time}
+                            frozen_time={this.state.contest_config.frozen_time}
                         />
 
-                        <div style={{ display: 'flex', marginTop: '30px' }}>
+                        <br />
+
+                        <div style={{ display: 'flex' }}>
                             <div style={{ float: 'left' }}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="gold">Gold</td>
-                                            <td className="silver">Silver</td>
-                                            <td className="bronze">Bronze</td>
-                                            <td className="honorable">
-                                                Honorable
-                                            </td>
-                                            <td className="unofficial">
-                                                Unofficial
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <SecondLevelMenu
+                                    siderItem={right_second_menu}
+                                    currentItem={
+                                        right_second_menu[
+                                            this.state.right_second_menu_index
+                                        ]
+                                    }
+                                />
                             </div>
+
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
-                                <table>
-                                    <tbody>
-                                        <tr>
-                                            <td className="firstsolve">
-                                                First to solve problem
-                                            </td>
-                                            <td className="correct">
-                                                Solved problem
-                                            </td>
-                                            <td className="incorrect">
-                                                Attempted problem
-                                            </td>
-                                            <td className="pending">
-                                                Pending judgement
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <SecondLevelMenu
+                                    siderItem={left_second_menu
+                                        .slice()
+                                        .reverse()}
+                                    currentItem={
+                                        left_second_menu[
+                                            this.state.left_second_menu_index
+                                        ]
+                                    }
+                                />
                             </div>
                         </div>
 
-                        <table className="standings">
-                            <tbody>
-                                <tr>
-                                    <th
-                                        className="stnd"
-                                        style={{ width: '4em' }}
-                                    >
-                                        Place
-                                    </th>
-                                    <th
-                                        className="stnd"
-                                        style={{ width: '15%' }}
-                                    >
-                                        School
-                                    </th>
-                                    <th
-                                        className="stnd"
-                                        style={{ width: '35%' }}
-                                    >
-                                        Team
-                                    </th>
-                                    <th
-                                        className="stnd"
-                                        style={{ width: '4em' }}
-                                    >
-                                        Solved
-                                    </th>
-                                    <th
-                                        className="stnd"
-                                        style={{ width: '4em' }}
-                                    >
-                                        Time
-                                    </th>
-                                    {this.state.problem_info.map(
-                                        (item: any) => {
-                                            return (
-                                                <th
-                                                    className="success"
-                                                    style={{ width: '4em' }}
-                                                >
-                                                    {item.problem_id}
-                                                    <br />
-                                                    <s>
-                                                        {item.solved}/
-                                                        {item.total}
-                                                    </s>
-                                                </th>
-                                            );
-                                        },
-                                    )}
-                                </tr>
-
-                                {this.state.team_list.map(
-                                    (item: any, index: number) => {
-                                        return (
-                                            <>
-                                                <tr
-                                                    className={[
-                                                        [
-                                                            'stand',
-                                                            item.stand_className_id,
-                                                        ].join(''),
-                                                        'team',
-                                                    ].join(' ')}
-                                                    onClick={() => {
-                                                        // let item = document.getElementById(get_analyze_team_id(index));
-                                                        // if (item?.style.display === 'none') {
-                                                        // 	item.style.display = '';
-                                                        // } else if (item?.style.display === '') {
-                                                        // 	item.style.display = 'none';
-                                                        // }
-                                                    }}
-                                                >
-                                                    <td
-                                                        className={
-                                                            item.place_className
-                                                        }
-                                                    >
-                                                        {item.place}
-                                                    </td>
-                                                    <td className="stnd">
-                                                        {item.school}
-                                                    </td>
-                                                    <td className="stnd">
-                                                        {item.name}
-                                                    </td>
-                                                    <td className="stnd">
-                                                        {item.solved}
-                                                    </td>
-                                                    <td className="stnd">
-                                                        {item.time}
-                                                    </td>
-                                                    {item.detail.map(
-                                                        (item: any) => {
-                                                            let ch_status = '-';
-                                                            if (
-                                                                [
-                                                                    'correct',
-                                                                    'firstsolve',
-                                                                ].indexOf(
-                                                                    item.status,
-                                                                ) !== -1
-                                                            )
-                                                                ch_status = '+';
-                                                            if (
-                                                                item.status ===
-                                                                'incorrect'
-                                                            )
-                                                                ch_status = '-';
-                                                            if (
-                                                                item.status ===
-                                                                'pending'
-                                                            )
-                                                                ch_status = '?';
-                                                            if (
-                                                                item.status ===
-                                                                'unattempted'
-                                                            )
-                                                                ch_status = '.';
-                                                            return (
-                                                                <td
-                                                                    className={
-                                                                        item.status
-                                                                    }
-                                                                >
-                                                                    {ch_status}
-                                                                    <br />
-                                                                    {item.attempt_num
-                                                                        ? parseInt(
-                                                                              item.attempt_num,
-                                                                          )
-                                                                        : ''}
-                                                                    {item.time
-                                                                        ? '/' +
-                                                                          parseInt(
-                                                                              item.time,
-                                                                          )
-                                                                        : ''}
-                                                                </td>
-                                                            );
-                                                        },
-                                                    )}
-                                                </tr>
-                                                <tr
-                                                    style={{ display: 'none' }}
-                                                    id={get_analyze_team_id(
-                                                        index,
-                                                    )}
-                                                >
-                                                    <td colSpan={17}></td>
-                                                </tr>
-                                            </>
-                                        );
-                                    },
-                                )}
-
-                                <tr className="statistics-0">
-                                    <td className="empty" colSpan={4}></td>
-                                    <td className="stnd">
-                                        <b>Attempted:</b>
-                                    </td>
-                                    {this.state.problem_info.map(
-                                        (item: any) => {
-                                            return (
-                                                <td className="stnd">
-                                                    <b>{item.total}</b>
-                                                </td>
-                                            );
-                                        },
-                                    )}
-                                </tr>
-
-                                <tr className="statistics-1">
-                                    <td className="empty" colSpan={4}></td>
-                                    <td className="stnd">
-                                        <b>Accepted:</b>
-                                    </td>
-                                    {this.state.problem_info.map(
-                                        (item: any) => {
-                                            return (
-                                                <td className="stnd">
-                                                    <b>{item.solved}</b>
-                                                    <br />
-                                                    <b>
-                                                        (
-                                                        {Math.round(
-                                                            (item.solved /
-                                                                item.total) *
-                                                                100,
-                                                        )}
-                                                        {item.total === 0
-                                                            ? ''
-                                                            : '%'}
-                                                        )
-                                                    </b>
-                                                </td>
-                                            );
-                                        },
-                                    )}
-                                </tr>
-
-                                <tr className="statistics-0">
-                                    <td className="empty" colSpan={4}></td>
-                                    <td className="stnd">
-                                        <b>First Solved:</b>
-                                    </td>
-                                    {this.state.problem_info.map(
-                                        (item: any) => {
-                                            return (
-                                                <td className="stnd">
-                                                    <b>
-                                                        {item.firstsolve_time ===
-                                                        INF
-                                                            ? 'N/A'
-                                                            : item.firstsolve_time}
-                                                    </b>
-                                                </td>
-                                            );
-                                        },
-                                    )}
-                                </tr>
-
-                                <tr className="statistics-1">
-                                    <td className="empty" colSpan={4}></td>
-                                    <td className="stnd">
-                                        <b>Last Solved:</b>
-                                    </td>
-                                    {this.state.problem_info.map(
-                                        (item: any) => {
-                                            return (
-                                                <td className="stnd">
-                                                    <b>
-                                                        {item.lastsolve_time ===
-                                                        0
-                                                            ? 'N/A'
-                                                            : item.lastsolve_time}
-                                                    </b>
-                                                </td>
-                                            );
-                                        },
-                                    )}
-                                </tr>
-                            </tbody>
-                        </table>
+                        {this.state.tab === 0 && (
+                            <Standings
+                                contest_config={this.state.contest_config}
+                                team={this.state.team}
+                                run={this.state.run}
+                                timeFlag={this.state.timeFlag}
+                            />
+                        )}
                     </>
                 )}
             </div>
