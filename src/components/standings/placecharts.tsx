@@ -55,7 +55,7 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
             let status = run_item.status;
             let problem_id = run_item.problem_id;
             let time = run_item.timestamp;
-            if (run_item.status === 'correct') {
+            if (status === 'correct') {
                 teams[team_id].problem[problem_id].solved = 1;
                 teams[team_id].problem[problem_id].time += Math.floor(
                     time / 60,
@@ -174,7 +174,9 @@ class Placecharts extends React.Component {
 
     constructor(props: any) {
         super(props);
-        this.update(this.props);
+        setTimeout(() => {
+            this.update(this.props);
+        }, 500);
     }
 
     render() {
