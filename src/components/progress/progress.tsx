@@ -30,34 +30,35 @@ function getWidth(start_time: number, end_time: number) {
 let timer: any = null;
 
 class Progress extends React.Component {
-    //在组件已经被渲染到 DOM 中后运行
-    async componentDidMount() {
+    update(props: any) {
         this.setState({
-            start_time: this.props.start_time,
-            end_time: this.props.end_time,
-            frozen_time: this.props.frozen_time,
+            head_item: props.head_item,
+            start_time: props.start_time,
+            end_time: props.end_time,
+            frozen_time: props.frozen_time,
             status: getStatus(
-                this.props.start_time,
-                this.props.end_time,
-                this.props.frozen_time,
+                props.start_time,
+                props.end_time,
+                props.frozen_time,
             ),
-            width: getWidth(this.props.start_time, this.props.end_time),
+            width: getWidth(props.start_time, props.end_time),
             time_elapsed: getTimeDiff(
                 Math.max(
                     0,
-                    Math.min(getNowTimeStamp(), this.props.end_time) -
-                        this.props.start_time,
+                    Math.min(getNowTimeStamp(), props.end_time) -
+                        props.start_time,
                 ),
             ),
             time_remaining: getTimeDiff(
                 Math.max(
                     0,
-                    this.props.end_time -
-                        Math.max(this.props.start_time, getNowTimeStamp()),
+                    props.end_time -
+                        Math.max(props.start_time, getNowTimeStamp()),
                 ),
             ),
         });
 
+        timer && clearInterval(timer);
         timer = setInterval(() => {
             this.setState({
                 status: getStatus(
@@ -84,8 +85,15 @@ class Progress extends React.Component {
         }, 500);
     }
 
+    //在组件已经被渲染到 DOM 中后运行
+    async componentDidMount() {
+        this.update(this.props);
+    }
+
     //props中的值发生改变时执行
-    async componentWillReceiveProps(nextProps: any) {}
+    async componentWillReceiveProps(nextProps: any) {
+        this.update(nextProps);
+    }
 
     //组件卸载前的操作
     componentWillUnmount() {
@@ -93,6 +101,7 @@ class Progress extends React.Component {
     }
 
     state = {
+        head_item: null,
         start_time: 0,
         end_time: 0,
         frozen_time: 0,
@@ -148,29 +157,7 @@ class Progress extends React.Component {
                     <div style={{ float: 'left' }}>
                         <b>Time Elapsed: {this.state.time_elapsed}</b>
                     </div>
-                    <div style={{ flex: '1' }}>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td className="gold">Gold</td>
-                                    <td className="silver">Silver</td>
-                                    <td className="bronze">Bronze</td>
-                                    <td className="honorable">Honorable</td>
-                                    <td className="unofficial">Unofficial</td>
-                                    <td className="firstsolve">
-                                        First to solve problem
-                                    </td>
-                                    <td className="correct">Solved problem</td>
-                                    <td className="incorrect">
-                                        Attempted problem
-                                    </td>
-                                    <td className="pending">
-                                        Pending judgement
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <div style={{ flex: '1' }}>{this.state.head_item}</div>
                     <div style={{ float: 'right' }}>
                         <b>Time Remaining: {this.state.time_remaining}</b>
                     </div>

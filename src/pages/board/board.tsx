@@ -4,17 +4,41 @@ import { getJSON, getTimeDiff, getNowTimeStamp } from '@/utils/utils';
 import Progress from '@/components/progress/progress';
 import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
 import Standings from '@/components/standings/standings';
+import Statistics from '@/components/Statistics/statistics';
 
+const INF = 0x3f3f3f3f;
 let pathname = '';
 
 let contest_config: any = {};
 let team: any = {};
 let run: any = [];
 
-const left_second_menu = ['排行榜', '统计分析'];
-// , '时间线', '统计分析'];
-const right_second_menu = ['所有队伍'];
-// , '关注队伍'];
+let timer: any = null;
+
+const menu_item = {
+    type: ['排行榜', '统计分析'],
+    group: ['所有队伍'],
+};
+
+const head_item = [
+    <table>
+        <tbody>
+            <tr>
+                <td className="gold">Gold</td>
+                <td className="silver">Silver</td>
+                <td className="bronze">Bronze</td>
+                <td className="honorable">Honorable</td>
+                <td className="unofficial">Unofficial</td>
+                <td className="firstsolve">First to solve problem</td>
+                <td className="correct">Solved problem</td>
+                <td className="incorrect">Attempted problem</td>
+                <td className="pending">Pending judgement</td>
+            </tr>
+        </tbody>
+    </table>,
+    <></>,
+    <></>,
+];
 
 function getTimeFlag(contest_config: any) {
     let timeFlag = getNowTimeStamp();
@@ -22,8 +46,6 @@ function getTimeFlag(contest_config: any) {
     timeFlag = Math.min(timeFlag, contest_config.end_time);
     return Math.ceil(timeFlag - contest_config.start_time);
 }
-
-let timer: any = null;
 
 async function update(_this: Board) {
     contest_config = await getJSON(
@@ -40,11 +62,23 @@ async function update(_this: Board) {
     }
     const timeFlag = getTimeFlag(contest_config);
 
+    const params = new URLSearchParams(_this.props.location.search);
+    let menu_index: any = {};
+    for (let key in menu_item) {
+        if (params.get(key)) {
+            menu_index[key] = menu_item[key].indexOf(params.get(key));
+            if (menu_index[key] === -1) menu_index[key] = 0;
+        } else {
+            menu_index[key] = 0;
+        }
+    }
+
     _this.setState({
         contest_config: contest_config,
         team: team,
         run: run,
         timeFlag: timeFlag,
+        menu_index: menu_index,
         loaded: true,
     });
     document.title = contest_config.contest_name;
@@ -53,24 +87,48 @@ async function update(_this: Board) {
     }, 30000);
 }
 
+function getRun(run: any, timeFlag: any) {
+    let new_run: any = [];
+    run.forEach((item: any) => {
+        if (item.timestamp <= timeFlag) {
+            new_run.push(item);
+        }
+    });
+    new_run.sort((a: any, b: any) => {
+        if (a.timestamp < b.timestamp) return -1;
+        if (a.timestamp > b.timestamp) return 1;
+        return 0;
+    });
+    let dic: any = {};
+    run = [];
+    new_run.forEach((item: any) => {
+        const id = [item.team_id, item.problem_id].join('-');
+        if (!dic[id] || item.timestamp <= dic[id]) {
+            run.push(item);
+            if (item.status === 'correct') {
+                dic[id] = item.timestamp;
+            } else {
+                dic[id] = INF;
+            }
+        }
+    });
+    return run;
+}
+
 class Board extends React.Component {
     componentDidMount() {
         pathname = window.location.pathname;
-        const params = new URLSearchParams(this.props.location.search);
-        let query: any = {};
-        for (const [key, value] of params) {
-            query[key] = value;
-        }
-        this.props.history.push({
-            pathname: pathname,
-            query: query,
-        });
         update(this);
     }
 
     //组件卸载前的操作
     componentWillUnmount() {
         timer && clearInterval(timer);
+    }
+
+    //props中的值发生改变时执行
+    async componentWillReceiveProps(nextProps: any) {
+        update(this);
     }
 
     constructor(props: any) {
@@ -83,8 +141,10 @@ class Board extends React.Component {
         run: [],
         timeFlag: 0,
         loaded: false,
-        left_second_menu_index: 0,
-        right_second_menu_index: 0,
+        menu_index: {
+            type: 0,
+            group: 0,
+        },
         tab: 0,
     };
 
@@ -109,6 +169,7 @@ class Board extends React.Component {
                         <h1>{this.state.contest_config.contest_name}</h1>
 
                         <Progress
+                            head_item={head_item[this.state.menu_index.type]}
                             start_time={this.state.contest_config.start_time}
                             end_time={this.state.contest_config.end_time}
                             frozen_time={this.state.contest_config.frozen_time}
@@ -119,35 +180,61 @@ class Board extends React.Component {
                         <div style={{ display: 'flex' }}>
                             <div style={{ float: 'left' }}>
                                 <SecondLevelMenu
-                                    siderItem={right_second_menu}
+                                    params={
+                                        new URLSearchParams(
+                                            this.props.location.search,
+                                        )
+                                    }
+                                    history={this.props.history}
+                                    queryName={'group'}
+                                    siderItem={menu_item.group}
                                     currentItem={
-                                        right_second_menu[
-                                            this.state.right_second_menu_index
+                                        menu_item.group[
+                                            this.state.menu_index.group
                                         ]
                                     }
                                 />
                             </div>
-
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
                                 <SecondLevelMenu
-                                    siderItem={left_second_menu
-                                        .slice()
-                                        .reverse()}
+                                    params={
+                                        new URLSearchParams(
+                                            this.props.location.search,
+                                        )
+                                    }
+                                    history={this.props.history}
+                                    queryName={'type'}
+                                    siderItem={menu_item.type.slice().reverse()}
                                     currentItem={
-                                        left_second_menu[
-                                            this.state.left_second_menu_index
+                                        menu_item.type[
+                                            this.state.menu_index.type
                                         ]
                                     }
                                 />
                             </div>
                         </div>
 
-                        {this.state.tab === 0 && (
+                        {this.state.menu_index.type === 0 && (
                             <Standings
                                 contest_config={this.state.contest_config}
                                 team={this.state.team}
-                                run={this.state.run}
+                                run={getRun(
+                                    this.state.run,
+                                    this.state.timeFlag,
+                                )}
+                                timeFlag={this.state.timeFlag}
+                            />
+                        )}
+
+                        {this.state.menu_index.type === 1 && (
+                            <Statistics
+                                contest_config={this.state.contest_config}
+                                team={this.state.team}
+                                run={getRun(
+                                    this.state.run,
+                                    this.state.timeFlag,
+                                )}
                                 timeFlag={this.state.timeFlag}
                             />
                         )}
