@@ -35,7 +35,8 @@
                     "status_time": {
                         "correct": 1
                     }
-                }
+                },
+                "link": "/ccpc/2020/qinhuangdao"
             },
             "wfinal": {
                 "config": {
@@ -71,7 +72,8 @@
                     "status_time": {
                         "correct": 1
                     }
-                }
+                },
+                "link": "/ccpc/2020/wfinal"
             }
         }
     },
@@ -126,7 +128,8 @@
                         "incorrect": 1,
                         "pending": 1
                     }
-                }
+                },
+                "link": "/provincial-contest/2020/zjcpc"
             }
         }
     }

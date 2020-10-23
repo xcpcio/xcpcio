@@ -29,18 +29,19 @@ dist = "../contest_list.json"
 pathname = "../data"
 contest_list = {}
 
-def dfs(contest_list, pathname):
+def dfs(contest_list, pathname, link):
     config_path = path.join(pathname, "config.json") 
     if os.path.isfile(config_path):
         config = json_input(config_path)
         contest_list['config'] = config
+        contest_list['link'] = link
     else:
         for _path in os.listdir(pathname):
             contest_list[_path] = {}
-            dfs(contest_list[_path], path.join(pathname, _path))
+            dfs(contest_list[_path], path.join(pathname, _path), path.join(link, _path))
         
 def work(contest_list, pathname):
-    dfs(contest_list, pathname)
+    dfs(contest_list, pathname, '/')
     output(dist, contest_list)
 
 work(contest_list, pathname)
