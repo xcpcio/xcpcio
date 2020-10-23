@@ -32,6 +32,7 @@ jobs:
         run: |
           cd scripts
           python3 get_contest_list.py
+          cd ..
           npm install
           npm run build
           mkdir site
