@@ -8,10 +8,11 @@ function getChartObj(
     xText: string,
     yText: string,
     cat: any,
-    data: any,
+    series: any,
+    colors: any,
 ) {
     return {
-        colors: ['rgb(124, 181, 236)'],
+        colors: colors,
         chart:
             window.innerWidth < 992
                 ? {
@@ -21,7 +22,7 @@ function getChartObj(
                 : {
                       type: 'column',
                       backgroundColor: 'transparent',
-                      height: '350px',
+                      height: '420px',
                   },
         title: {
             text: title,
@@ -72,13 +73,7 @@ function getChartObj(
         credits: {
             enabled: false,
         },
-        series: [
-            {
-                name: '队伍数',
-                showInLegend: false,
-                data: data,
-            },
-        ],
+        series: series,
     };
 }
 
@@ -114,7 +109,16 @@ function getProblemChart(contest_config: any, team: any, run: any) {
         cat.push(problem.problem_id);
         data.push(problem.solved);
     });
-    return getChartObj('题目通过数统计', '题目编号', '通过数', cat, data);
+    let series = [
+        {
+            name: '队伍数',
+            showInLegend: false,
+            data: data,
+        },
+    ];
+    return getChartObj('题目通过数统计', '题目编号', '通过数', cat, series, [
+        'rgb(124, 181, 236)',
+    ]);
 }
 
 function getTeamChart(contest_config: any, team: any, run: any) {
@@ -150,7 +154,61 @@ function getTeamChart(contest_config: any, team: any, run: any) {
         cat.push(num.index);
         data.push(num.cnt);
     });
-    return getChartObj('队伍过题数统计', '过题数', '队伍数', cat, data);
+    let series = [
+        {
+            name: '队伍数',
+            showInLegend: false,
+            data: data,
+        },
+    ];
+    return getChartObj('队伍过题数统计', '过题数', '队伍数', cat, series, [
+        'rgb(124, 181, 236)',
+    ]);
+}
+
+function getSubmitChart(contest_config: any, team: any, run: any) {
+    let Accepted: any = [];
+    let Rejected: any = [];
+    let Pending: any = [];
+    let cat: any = [];
+    contest_config.problem_id.forEach((problem_id: any, index: number) => {
+        let item: any = {};
+        Accepted.push(0);
+        Rejected.push(0);
+        Pending.push(0);
+        cat.push(problem_id);
+    });
+    run.forEach((run: any) => {
+        if (run.status === 'correct') {
+            Accepted[run.problem_id] += 1;
+        } else if (run.status === 'incorrect') {
+            Rejected[run.problem_id] += 1;
+        } else if (run.status === 'pending') {
+            Pending[run.problem_id] += 1;
+        }
+    });
+    const series = [
+        {
+            name: 'Accepted',
+            showInLegend: false,
+            data: Accepted,
+        },
+        {
+            name: 'Rejected',
+            showInLegend: false,
+            data: Rejected,
+        },
+        {
+            name: 'Pending',
+            showInLegend: false,
+            data: Pending,
+        },
+    ];
+    return getChartObj('提交分类统计', '题目编号', '提交数', cat, series, [
+        '#E1FFB5',
+        '#FFD0D0',
+        '#C8D6FA',
+    ]);
 }
 
 class Statistics extends React.Component {
@@ -173,6 +231,11 @@ class Statistics extends React.Component {
                 this.team,
                 this.run,
             ),
+            submitChartOptions: getSubmitChart(
+                this.contest_config,
+                this.team,
+                this.run,
+            ),
             loaded: true,
         });
     }
@@ -189,6 +252,7 @@ class Statistics extends React.Component {
         loaded: false,
         problemChartOptions: {},
         teamChartOptions: {},
+        submitChartOptions: {},
     };
 
     constructor(props: any) {
@@ -216,6 +280,10 @@ class Statistics extends React.Component {
 
                 {this.state.loaded === true && (
                     <>
+                        <HighchartsReact
+                            highcharts={Highcharts}
+                            options={this.state.submitChartOptions}
+                        />
                         <HighchartsReact
                             highcharts={Highcharts}
                             options={this.state.problemChartOptions}
