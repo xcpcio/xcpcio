@@ -116,6 +116,7 @@ async function update(_this: Board) {
         loaded: true,
     });
     document.title = contest_config.contest_name;
+    timer && clearTimeout(timer);
     timer = setTimeout(() => {
         update(_this);
     }, 30000);
@@ -180,7 +181,7 @@ class Board extends React.Component {
 
     //组件卸载前的操作
     componentWillUnmount() {
-        timer && clearInterval(timer);
+        timer && clearTimeout(timer);
     }
 
     //props中的值发生改变时执行
