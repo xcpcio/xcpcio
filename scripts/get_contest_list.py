@@ -1,4 +1,3 @@
-import xlrd
 from os import path
 import os
 import json
