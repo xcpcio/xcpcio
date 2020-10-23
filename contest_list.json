@@ -1,0 +1,133 @@
+{
+    "ccpc": {
+        "2020": {
+            "qinhuangdao": {
+                "config": {
+                    "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛（秦皇岛）正式赛",
+                    "end_time": 1603000800,
+                    "frozen_time": 3600,
+                    "medal": {
+                        "all": {
+                            "bronze": 72,
+                            "gold": 24,
+                            "silver": 48
+                        }
+                    },
+                    "penalty": 1200,
+                    "problem_id": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L"
+                    ],
+                    "school": {
+                        "name": 1
+                    },
+                    "start_time": 1602982800,
+                    "status_time": {
+                        "correct": 1
+                    }
+                }
+            },
+            "wfinal": {
+                "config": {
+                    "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛女生专场-正式赛",
+                    "end_time": 1603000800,
+                    "frozen_time": 3600,
+                    "medal": {
+                        "all": {
+                            "bronze": 47,
+                            "gold": 16,
+                            "silver": 31
+                        }
+                    },
+                    "penalty": 1200,
+                    "problem_id": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L"
+                    ],
+                    "school": {
+                        "name": 1
+                    },
+                    "start_time": 1602982800,
+                    "status_time": {
+                        "correct": 1
+                    }
+                }
+            }
+        }
+    },
+    "provincial-contest": {
+        "2020": {
+            "zjcpc": {
+                "config": {
+                    "contest_name": "The 17th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple",
+                    "end_time": 1602925200,
+                    "frozen_time": 3600,
+                    "group": {
+                        "girls": "女队",
+                        "highschool": "高中组",
+                        "junior": "专科组",
+                        "official": "正式队伍",
+                        "undergraduate": "本科组",
+                        "unofficial": "打星队伍"
+                    },
+                    "medal": {
+                        "junior": {
+                            "bronze": 35,
+                            "gold": 12,
+                            "silver": 24
+                        },
+                        "undergraduate": {
+                            "bronze": 70,
+                            "gold": 21,
+                            "silver": 38
+                        }
+                    },
+                    "penalty": 1200,
+                    "problem_id": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L"
+                    ],
+                    "school": {
+                        "name": 1
+                    },
+                    "start_time": 1602907200,
+                    "status_time": {
+                        "correct": 1,
+                        "incorrect": 1,
+                        "pending": 1
+                    }
+                }
+            }
+        }
+    }
+}
