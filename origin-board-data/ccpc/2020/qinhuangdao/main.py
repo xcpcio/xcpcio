@@ -29,9 +29,11 @@ qhd_data_filename = "CCPC2020-QHD-正式参赛队榜单-原始.xlsx"
 problem_num = 12
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
 medal = {
-    'gold': 24,
-    'silver': 48,
-    "bronze": 72
+    'all': {
+        'gold': 24,
+        'silver': 48,
+        "bronze": 72
+    },
 }
 group = {
     'official': '正式队伍',
@@ -51,7 +53,7 @@ config = {
     'frozen_time' : 60 * 60,
     'problem_id': problem_id,
     'medal': medal,
-    'group': group,
+    # 'group': group,
     'school': school,
     'status_time': status_time,
     'penalty': 20 * 60,

@@ -4,7 +4,7 @@ import json
 import time
 
 def json_output(data):
-    return json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'), ensure_ascii=False)
+    return json.dumps(data, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
 
 def json_input(path):
     with open(path, 'r') as f:
@@ -35,10 +35,10 @@ problem_id = [chr(ord('A') + i) for i in range(problem_num)]
 group = {
     'official': '正式队伍',
     'unofficial': '打星队伍',
-    'girl': '女队',
-    'highschool': '高中组',
     'undergraduate': '本科组',
     'junior': '专科组',
+    'highschool': '高中组',
+    'girls': '女队',
 }
 school = {
     'name': 1,
@@ -47,6 +47,18 @@ status_time = {
     'correct': 1,
     'incorrect': 1,
     'pending': 1,
+}
+medal = {
+    "undergraduate": {
+        'gold': 21,
+        'silver': 59 - 21,
+        'bronze': 129 - 59,
+    },
+    "junior": {
+        'gold': 12,
+        'silver': 36 - 12,
+        'bronze': 71 - 36
+    }
 }
 config = {
     'contest_name': 'The 17th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple',
@@ -58,6 +70,7 @@ config = {
     'school': school,
     'status_time': status_time,
     'penalty': 20 * 60,
+    'medal': medal,
 }
 
 def config_out():

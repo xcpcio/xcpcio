@@ -1,6 +1,6 @@
 import React from 'react';
 import Loading from '@/components/Loading/Loading';
-import { getJSON, getTimeDiff, getNowTimeStamp } from '@/utils/utils';
+import { getJSON, getTimeDiff, getNowTimeStamp, deepCopy } from '@/utils/utils';
 import Progress from '@/components/progress/progress';
 import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
 import Standings from '@/components/standings/standings';
@@ -15,10 +15,15 @@ let run: any = [];
 
 let timer: any = null;
 
-const menu_item = {
+const group_ = ['所有队伍', '关注队伍'];
+const fgroup_ = ['all', 'concerned'];
+
+let menu_item = {
     type: ['排行榜', '统计分析'],
-    group: ['所有队伍'],
+    group: ['所有队伍', '关注队伍'],
 };
+
+let fgroup = ['all', 'concerned'];
 
 const head_item = [
     <table>
@@ -47,6 +52,18 @@ function getTimeFlag(contest_config: any) {
     return Math.ceil(timeFlag - contest_config.start_time);
 }
 
+function getGroup(search: any) {
+    let group = 'all';
+    const params = new URLSearchParams(search);
+    if (params.get('group')) {
+        const index = menu_item.group.indexOf(params.get('group'));
+        if (index !== -1) {
+            group = fgroup[index];
+        }
+    }
+    return group;
+}
+
 async function update(_this: Board) {
     contest_config = await getJSON(
         [pathname, `config.json?t=${getNowTimeStamp()}`].join('/'),
@@ -60,7 +77,24 @@ async function update(_this: Board) {
     if (!contest_config.contest_name) {
         return;
     }
+    if (contest_config.group) {
+        let _group = deepCopy(group_);
+        let _fgroup: any = deepCopy(fgroup_);
+        for (let k in contest_config.group) {
+            let v = contest_config.group[k];
+            _fgroup.push(k);
+            _group.push(v);
+            menu_item.group = _group;
+            fgroup = _fgroup;
+        }
+    } else {
+        menu_item.group = deepCopy(group_);
+        fgroup = deepCopy(fgroup_);
+    }
     const timeFlag = getTimeFlag(contest_config);
+    for (let team_id in team) {
+        team[team_id]['all'] = 1;
+    }
 
     const params = new URLSearchParams(_this.props.location.search);
     let menu_index: any = {};
@@ -87,7 +121,7 @@ async function update(_this: Board) {
     }, 30000);
 }
 
-function getRun(run: any, timeFlag: any) {
+function getRun(run: any, team: any, timeFlag: any, group: any) {
     let new_run: any = [];
     run.forEach((item: any) => {
         if (item.timestamp <= timeFlag) {
@@ -102,17 +136,40 @@ function getRun(run: any, timeFlag: any) {
     let dic: any = {};
     run = [];
     new_run.forEach((item: any) => {
-        const id = [item.team_id, item.problem_id].join('-');
-        if (!dic[id] || item.timestamp <= dic[id]) {
-            run.push(item);
-            if (item.status === 'correct') {
-                dic[id] = item.timestamp;
-            } else {
-                dic[id] = INF;
+        if (team[item.team_id][group] === 1) {
+            const id = [item.team_id, item.problem_id].join('-');
+            if (!dic[id] || item.timestamp <= dic[id]) {
+                run.push(item);
+                if (item.status === 'correct') {
+                    dic[id] = item.timestamp;
+                } else {
+                    dic[id] = INF;
+                }
             }
         }
     });
     return run;
+}
+
+function getTeam(team: any, group: any) {
+    let team_list: any = {};
+    for (let team_id in team) {
+        let item = team[team_id];
+        if (item[group] === 1) {
+            team_list[team_id] = item;
+        }
+    }
+    return team_list;
+}
+
+function getConfig(contest_config: any, group: any) {
+    let config = deepCopy(contest_config);
+    if (config.medal) {
+        delete config.medal;
+        if (contest_config.medal[group])
+            config.medal = deepCopy(contest_config.medal[group]);
+    }
+    return config;
 }
 
 class Board extends React.Component {
@@ -196,6 +253,7 @@ class Board extends React.Component {
                                     }
                                 />
                             </div>
+                            <div></div>
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
                                 <SecondLevelMenu
@@ -218,11 +276,19 @@ class Board extends React.Component {
 
                         {this.state.menu_index.type === 0 && (
                             <Standings
-                                contest_config={this.state.contest_config}
-                                team={this.state.team}
+                                contest_config={getConfig(
+                                    this.state.contest_config,
+                                    getGroup(this.props.location.search),
+                                )}
+                                team={getTeam(
+                                    this.state.team,
+                                    getGroup(this.props.location.search),
+                                )}
                                 run={getRun(
                                     this.state.run,
+                                    this.state.team,
                                     this.state.timeFlag,
+                                    getGroup(this.props.location.search),
                                 )}
                                 timeFlag={this.state.timeFlag}
                             />
@@ -230,11 +296,19 @@ class Board extends React.Component {
 
                         {this.state.menu_index.type === 1 && (
                             <Statistics
-                                contest_config={this.state.contest_config}
-                                team={this.state.team}
+                                contest_config={getConfig(
+                                    this.state.contest_config,
+                                    getGroup(this.props.location.search),
+                                )}
+                                team={getTeam(
+                                    this.state.team,
+                                    getGroup(this.props.location.search),
+                                )}
                                 run={getRun(
                                     this.state.run,
+                                    this.state.team,
                                     this.state.timeFlag,
+                                    getGroup(this.props.location.search),
                                 )}
                                 timeFlag={this.state.timeFlag}
                             />
