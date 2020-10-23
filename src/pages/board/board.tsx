@@ -1,6 +1,12 @@
 import React from 'react';
 import Loading from '@/components/Loading/Loading';
-import { getJSON, getTimeDiff, getNowTimeStamp, deepCopy } from '@/utils/utils';
+import {
+    getJSON,
+    getTimeDiff,
+    getNowTimeStamp,
+    deepCopy,
+    getStarKey,
+} from '@/utils/utils';
 import Progress from '@/components/progress/progress';
 import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
 import Standings from '@/components/standings/standings';
@@ -156,6 +162,9 @@ function getTeam(team: any, group: any) {
     let team_list: any = {};
     for (let team_id in team) {
         let item = team[team_id];
+        if (window.localStorage.getItem(getStarKey(team_id))) {
+            item.concerned = 1;
+        }
         if (item[group] === 1) {
             team_list[team_id] = item;
         }

@@ -1,7 +1,9 @@
 import React from 'react';
 import './standings.css';
+import './star.css';
 import Placecharts from './placecharts';
 import Loading from '@/components/Loading/Loading';
+import { getStarKey } from '@/utils/utils';
 
 const INF = 0x3f3f3f3f;
 
@@ -225,6 +227,10 @@ function gao_team(contest_config: any, team: any, run: any, problem_list: any) {
     return team_list;
 }
 
+function changeStarStatus(_this: any, team_id: any) {
+    alert('DD');
+}
+
 class Standings extends React.Component {
     contest_config: any = {};
     team: any = {};
@@ -443,7 +449,16 @@ class Standings extends React.Component {
                                                 )}
                                                 <td className="stnd">
                                                     {item.name}
-                                                    {item.concerned === 1 && (
+                                                    <span
+                                                        id={`star-${item.team_id}`}
+                                                        style={{
+                                                            display:
+                                                                item.concerned ===
+                                                                1
+                                                                    ? ''
+                                                                    : 'none',
+                                                        }}
+                                                    >
                                                         <svg
                                                             className="octicon octicon-star-fill"
                                                             height="16"
@@ -457,7 +472,7 @@ class Standings extends React.Component {
                                                                 d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"
                                                             ></path>
                                                         </svg>
-                                                    )}
+                                                    </span>
                                                     {(item.girls === 1 ||
                                                         item.girl === 1) && (
                                                         <svg
@@ -544,6 +559,142 @@ class Standings extends React.Component {
                                                         this.getProblemCol()
                                                     }
                                                 >
+                                                    <div
+                                                        style={{
+                                                            display: 'flex',
+                                                        }}
+                                                    >
+                                                        <div
+                                                            style={{
+                                                                float: 'left',
+                                                                marginTop: 2,
+                                                            }}
+                                                        >
+                                                            <div
+                                                                id={`unstar-btn-${item.team_id}`}
+                                                                className="star-btn"
+                                                                title={`Star ${item.name}`}
+                                                                style={{
+                                                                    display:
+                                                                        item.concerned ===
+                                                                        1
+                                                                            ? ''
+                                                                            : 'none',
+                                                                }}
+                                                                onClick={() => {
+                                                                    let unstar_btn = document.getElementById(
+                                                                        `unstar-btn-${item.team_id}`,
+                                                                    );
+                                                                    let star_btn = document.getElementById(
+                                                                        `star-btn-${item.team_id}`,
+                                                                    );
+                                                                    let star = document.getElementById(
+                                                                        `star-${item.team_id}`,
+                                                                    );
+                                                                    if (
+                                                                        unstar_btn?.style
+                                                                    ) {
+                                                                        unstar_btn.style.display =
+                                                                            'none';
+                                                                    }
+                                                                    if (
+                                                                        star_btn?.style
+                                                                    ) {
+                                                                        star_btn.style.display =
+                                                                            '';
+                                                                    }
+                                                                    if (
+                                                                        star?.style
+                                                                    ) {
+                                                                        star.style.display =
+                                                                            'none';
+                                                                    }
+                                                                    window.localStorage.removeItem(
+                                                                        getStarKey(
+                                                                            item.team_id,
+                                                                        ),
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <svg
+                                                                    className="octicon octicon-star"
+                                                                    height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    version="1.1"
+                                                                    width="16"
+                                                                    aria-hidden="true"
+                                                                >
+                                                                    <path
+                                                                        fill-rule="evenodd"
+                                                                        d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"
+                                                                    ></path>
+                                                                </svg>
+                                                                Unstar
+                                                            </div>
+                                                            <div
+                                                                id={`star-btn-${item.team_id}`}
+                                                                className="star-btn"
+                                                                title={`Star ${item.name}`}
+                                                                style={{
+                                                                    display:
+                                                                        item.concerned ===
+                                                                        1
+                                                                            ? 'none'
+                                                                            : '',
+                                                                }}
+                                                                onClick={() => {
+                                                                    let unstar_btn = document.getElementById(
+                                                                        `unstar-btn-${item.team_id}`,
+                                                                    );
+                                                                    let star_btn = document.getElementById(
+                                                                        `star-btn-${item.team_id}`,
+                                                                    );
+                                                                    let star = document.getElementById(
+                                                                        `star-${item.team_id}`,
+                                                                    );
+                                                                    if (
+                                                                        unstar_btn?.style
+                                                                    ) {
+                                                                        unstar_btn.style.display =
+                                                                            '';
+                                                                    }
+                                                                    if (
+                                                                        star_btn?.style
+                                                                    ) {
+                                                                        star_btn.style.display =
+                                                                            'none';
+                                                                    }
+                                                                    if (
+                                                                        star?.style
+                                                                    ) {
+                                                                        star.style.display =
+                                                                            '';
+                                                                    }
+                                                                    window.localStorage.setItem(
+                                                                        getStarKey(
+                                                                            item.team_id,
+                                                                        ),
+                                                                        '1',
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <svg
+                                                                    className="octicon octicon-star"
+                                                                    height="16"
+                                                                    viewBox="0 0 16 16"
+                                                                    version="1.1"
+                                                                    width="16"
+                                                                    aria-hidden="true"
+                                                                >
+                                                                    <path
+                                                                        fill-rule="evenodd"
+                                                                        d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"
+                                                                    ></path>
+                                                                </svg>
+                                                                Star
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     {this.state.vis[
                                                         get_analyze_team_id(
                                                             index,

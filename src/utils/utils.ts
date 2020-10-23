@@ -28,6 +28,10 @@ export const getNowTimeStamp = () => {
     return Math.round(new Date().getTime() / 1000);
 };
 
+export const getStarKey = (team_id: any) => {
+    return `${window.location.pathname}-star-${team_id}`;
+};
+
 const changeTimeStamp = (timeStamp: number) => {
     return (timeStamp + '').length === 10 ? timeStamp * 1000 : timeStamp;
 };
