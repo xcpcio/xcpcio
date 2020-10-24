@@ -5,7 +5,7 @@ on:
     - cron: '* * * * *'
 
 jobs:
-  build-and-deploy:
+  sync:
     runs-on: ubuntu-latest
     steps:
 
@@ -24,7 +24,7 @@ jobs:
             python3 sync.py
             cd ../../../../
             git add .
-            git commit -m "sync"
+            git commit -m "sync weihei-warmup"
             git push
             cd ..
             rm -rf XCPCIO-board
