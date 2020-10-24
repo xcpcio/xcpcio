@@ -12,7 +12,12 @@ _params = json_input('params.json')
 # print(_params)
 
 cookies = _params['cookies']
+
+print(cookies)
+
 headers = _params['headers']
+
+print(headers)
 
 params = (
     ('page', '0'),
