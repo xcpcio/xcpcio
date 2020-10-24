@@ -15,8 +15,9 @@
     -webkit-transition: .7s;
     transition: .7s;
     cursor: pointer;
-    margin:2px 4px;
-    padding: 5px;
+    margin: 2px 4px !important;
+    padding: 5px !important;
+    box-sizing: content-box !important;
     border-radius: 3px;
 }
 

@@ -1,0 +1,16 @@
+.g-title {
+    --scroll-bar: 0;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    color: rgba(0,0,0,.75);
+    font-size: 32px;
+    font-weight: 400;
+    padding-left: 0px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}

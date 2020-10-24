@@ -118,7 +118,13 @@ class Progress extends React.Component {
     render() {
         return (
             <>
-                <div style={{ marginBottom: '2px', display: 'flex' }}>
+                <div
+                    style={{
+                        marginBottom: '2px',
+                        display: 'flex',
+                        fontSize: '16px',
+                    }}
+                >
                     <div style={{ float: 'left' }}>
                         <b>Start: {timeFormat(this.state.start_time)}</b>
                     </div>
@@ -153,7 +159,13 @@ class Progress extends React.Component {
                     ></div>
                 </div>
 
-                <div style={{ marginTop: '2px', display: 'flex' }}>
+                <div
+                    style={{
+                        marginTop: '2px',
+                        display: 'flex',
+                        fontSize: '16px',
+                    }}
+                >
                     <div style={{ float: 'left' }}>
                         <b>Time Elapsed: {this.state.time_elapsed}</b>
                     </div>

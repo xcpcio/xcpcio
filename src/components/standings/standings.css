@@ -1,20 +1,25 @@
 TABLE.standings{
 text-align: center;
 /* border-collapse: collapse; */
-border: none;
-margin: 0pt;
+border: none ;
+margin: 0pt ;
 padding: 0pt;
 /* width: 100%; */
 max-width: 1560px;
-font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;
+font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
 }
 
 IMG {
-border:0;
+border:0 !important;
+}
+
+TABLE {
+    border-collapse: separate !important;
 }
 
 TD {
-    padding: 1px;
+    box-sizing: content-box !important;
+    padding: 1px !important;
 }
 
 TR.head
@@ -23,7 +28,7 @@ BACKGROUND-COLOR: #eee
 }
 TR.team
 {
-    height: 2em;
+    height: 2.5em;
     cursor: pointer;
 }
 TR.team:hover

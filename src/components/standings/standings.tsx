@@ -227,10 +227,6 @@ function gao_team(contest_config: any, team: any, run: any, problem_list: any) {
     return team_list;
 }
 
-function changeStarStatus(_this: any, team_id: any) {
-    alert('DD');
-}
-
 class Standings extends React.Component {
     contest_config: any = {};
     team: any = {};
@@ -314,18 +310,26 @@ class Standings extends React.Component {
                 )}
 
                 {this.state.loaded === true && (
-                    <table className="standings">
+                    <table style={{ marginTop: '5px' }} className="standings">
                         <tbody>
                             <tr>
                                 <th className="title" style={{ width: '3em' }}>
                                     Place
                                 </th>
                                 {this.state.school === 1 && (
-                                    <th className="title" style={{}}>
+                                    <th
+                                        className="title"
+                                        style={{ minWidth: '12em' }}
+                                    >
                                         School
                                     </th>
                                 )}
-                                <th className="title">Team</th>
+                                <th
+                                    className="title"
+                                    style={{ minWidth: '12em' }}
+                                >
+                                    Team
+                                </th>
                                 <th className="title" style={{ width: '3em' }}>
                                     Solved
                                 </th>
@@ -535,7 +539,9 @@ class Standings extends React.Component {
                                                                     .status_time[
                                                                     item.status
                                                                 ] === 1 &&
-                                                                item.time
+                                                                (item.time ||
+                                                                    item.time ===
+                                                                        0)
                                                                     ? '/' +
                                                                       parseInt(
                                                                           item.time,

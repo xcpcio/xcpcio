@@ -6,11 +6,14 @@ import {
     getNowTimeStamp,
     deepCopy,
     getStarKey,
+    removeDuplicateItems,
 } from '@/utils/utils';
 import Progress from '@/components/progress/progress';
 import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
 import Standings from '@/components/standings/standings';
 import Statistics from '@/components/Statistics/statistics';
+import './board.css';
+import Selected from '@/components/Selected/selected';
 
 const INF = 0x3f3f3f3f;
 let pathname = '';
@@ -128,7 +131,25 @@ async function update(_this: Board) {
     }, 30000);
 }
 
-function getRun(run: any, team: any, timeFlag: any, group: any) {
+function getSchool(team: any) {
+    let school: any = [];
+    for (let team_id in team) {
+        if (team[team_id].school) {
+            school.push(team[team_id].school);
+        }
+    }
+    return removeDuplicateItems(school);
+}
+
+function getCurrentSchool(search: any) {
+    let params = new URLSearchParams(search);
+    if (params.get('school')) {
+        return JSON.parse(params.get('school'));
+    }
+    return [];
+}
+
+function getRun(run: any, team: any, timeFlag: any, group: any, search: any) {
     let new_run: any = [];
     run.forEach((item: any) => {
         if (item.timestamp <= timeFlag) {
@@ -142,8 +163,14 @@ function getRun(run: any, team: any, timeFlag: any, group: any) {
     });
     let dic: any = {};
     run = [];
+    let school = getCurrentSchool(search);
+    if (school.length === 0) school = getSchool(team);
     new_run.forEach((item: any) => {
-        if (team[item.team_id][group] === 1) {
+        if (
+            team[item.team_id][group] === 1 &&
+            (!team[item.team_id].school ||
+                school.indexOf(team[item.team_id].school) !== -1)
+        ) {
             const id = [item.team_id, item.problem_id].join('-');
             if (!dic[id] || item.timestamp <= dic[id]) {
                 run.push(item);
@@ -158,14 +185,19 @@ function getRun(run: any, team: any, timeFlag: any, group: any) {
     return run;
 }
 
-function getTeam(team: any, group: any) {
+function getTeam(team: any, group: any, search: any) {
+    let school = getCurrentSchool(search);
+    if (school.length === 0) school = getSchool(team);
     let team_list: any = {};
     for (let team_id in team) {
         let item = team[team_id];
         if (window.localStorage.getItem(getStarKey(team_id))) {
             item.concerned = 1;
         }
-        if (item[group] === 1) {
+        if (
+            item[group] === 1 &&
+            (!item.school || school.indexOf(item.school) !== -1)
+        ) {
             team_list[team_id] = item;
         }
     }
@@ -219,7 +251,6 @@ class Board extends React.Component {
         return (
             <div style={{ maxWidth: 1560 }}>
                 {this.state.loaded === false && (
-                    // <></>
                     <div
                         style={{
                             height: 'calc(20vh)',
@@ -234,7 +265,9 @@ class Board extends React.Component {
 
                 {this.state.loaded === true && (
                     <>
-                        <h1>{this.state.contest_config.contest_name}</h1>
+                        <div className="g-title">
+                            {this.state.contest_config.contest_name}
+                        </div>
 
                         <Progress
                             head_item={head_item[this.state.menu_index.type]}
@@ -263,13 +296,26 @@ class Board extends React.Component {
                                     }
                                 />
                             </div>
-                            <div>
-                                {/* <select className="selectpicker" multiple data-live-search="true" data-selected-text-format="count">
-                                    <option>Mustard</option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
-                                </select> */}
-                            </div>
+                            {this.state.contest_config.school && (
+                                <div style={{ flex: '1', maxWidth: '480px' }}>
+                                    <Selected
+                                        placeholder={'Filter School'}
+                                        params={
+                                            new URLSearchParams(
+                                                this.props.location.search,
+                                            )
+                                        }
+                                        history={this.props.history}
+                                        queryName={'school'}
+                                        selectedItem={getSchool(
+                                            this.state.team,
+                                        )}
+                                        currentSelected={getCurrentSchool(
+                                            this.props.location.search,
+                                        )}
+                                    />
+                                </div>
+                            )}
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
                                 <SecondLevelMenu
@@ -299,12 +345,14 @@ class Board extends React.Component {
                                 team={getTeam(
                                     this.state.team,
                                     getGroup(this.props.location.search),
+                                    this.props.location.search,
                                 )}
                                 run={getRun(
                                     this.state.run,
                                     this.state.team,
                                     this.state.timeFlag,
                                     getGroup(this.props.location.search),
+                                    this.props.location.search,
                                 )}
                                 timeFlag={this.state.timeFlag}
                             />
@@ -319,12 +367,14 @@ class Board extends React.Component {
                                 team={getTeam(
                                     this.state.team,
                                     getGroup(this.props.location.search),
+                                    this.props.location.search,
                                 )}
                                 run={getRun(
                                     this.state.run,
                                     this.state.team,
                                     this.state.timeFlag,
                                     getGroup(this.props.location.search),
+                                    this.props.location.search,
                                 )}
                                 timeFlag={this.state.timeFlag}
                             />

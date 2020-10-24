@@ -24,6 +24,8 @@ export const getJSON = (url: string) => {
     });
 };
 
+export const removeDuplicateItems = (arr: any) => [...new Set(arr)];
+
 export const getNowTimeStamp = () => {
     return Math.round(new Date().getTime() / 1000);
 };
