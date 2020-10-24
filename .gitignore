@@ -18,5 +18,3 @@
 /src/.umi-production
 /src/.umi-test
 /.env.local
-
-sync.py
