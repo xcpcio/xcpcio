@@ -4,6 +4,19 @@ import contest_list from '../../contest_list.json';
 import Progress_small from '@/components/progress/progress-small';
 import { deepCopy, getTimeDiff, timeFormat } from '@/utils/utils';
 
+// import { Select } from 'antd';
+
+// const { Option } = Select;
+
+// const children = [];
+// for (let i = 10; i < 36; i++) {
+//   children.push(<Option key={i.toString(36) + i}>{i.toString(36) + i}</Option>);
+// }
+
+// function handleChange(value) {
+//   console.log(`selected ${value}`);
+// }
+
 function dfs(contest_list: any, contest: any) {
     if (!contest_list['config']) {
         for (let k in contest_list) {
@@ -43,12 +56,22 @@ class Index extends React.Component {
                     maxWidth: '880px',
                 }}
             >
+                {/* <Select
+      mode="multiple"
+      allowClear
+      style={{ width: '100%' }}
+      placeholder="Please select"
+      defaultValue={['a10', 'c12']}
+      onChange={handleChange}
+    >
+      {children}
+    </Select> */}
                 <div className="border-bottom" style={{ display: 'flex' }}>
                     <div style={{ float: 'left' }}></div>
                     <div style={{ flex: '1' }}></div>
                     <div style={{ float: 'right' }}>
                         <a
-                            className="MuiButtonBase-root MuiIconButton-root"
+                            className="go MuiButtonBase-root MuiIconButton-root"
                             target="_blank"
                             rel="noreferrer"
                             href="https://github.com/XCPCIO/XCPCIO-board"
@@ -105,7 +128,7 @@ class Index extends React.Component {
                                 </div>
                                 <div style={{ float: 'right' }}>
                                     <a
-                                        className="MuiButtonBase-root MuiIconButton-root"
+                                        className="go MuiButtonBase-root MuiIconButton-root"
                                         target="_blank"
                                         rel="noreferrer"
                                         href={contest.link}

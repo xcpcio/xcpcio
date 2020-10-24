@@ -76,13 +76,13 @@
     justify-content: inherit;
   }
 
-  a {
+  a.go{
     text-decoration: none;
     color: #121314;
     position: relative;
   }
 
-  a:after {
+  a.go:after {
     content: "";
     position: absolute;
     z-index: -1;
@@ -94,6 +94,6 @@
     background-color: #91d5ff;
   }
 
-  a:hover:after {
+  a.go:hover:after {
     top: 0%;
   }

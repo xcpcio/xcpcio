@@ -38,6 +38,30 @@
                 },
                 "link": "/ccpc/2020/qinhuangdao"
             },
+            "weihai-warmup": {
+                "config": {
+                    "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛（威海） 热身赛",
+                    "end_time": 1603533600,
+                    "frozen_time": 0,
+                    "group": {
+                        "girl": "女队",
+                        "inside": "晋级参赛",
+                        "official": "正式队伍",
+                        "outside": "外卡参赛",
+                        "unofficial": "打星参赛"
+                    },
+                    "penalty": 1200,
+                    "problem_id": ["A", "B", "C", "D"],
+                    "school": {
+                        "name": 1
+                    },
+                    "start_time": 1603522800,
+                    "status_time": {
+                        "correct": 1
+                    }
+                },
+                "link": "/ccpc/2020/weihai-warmup"
+            },
             "wfinal": {
                 "config": {
                     "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛女生专场 正式赛",

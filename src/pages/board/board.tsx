@@ -263,7 +263,13 @@ class Board extends React.Component {
                                     }
                                 />
                             </div>
-                            <div></div>
+                            <div>
+                                {/* <select className="selectpicker" multiple data-live-search="true" data-selected-text-format="count">
+                                    <option>Mustard</option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select> */}
+                            </div>
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
                                 <SecondLevelMenu

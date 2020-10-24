@@ -23,6 +23,7 @@
     "@ant-design/pro-layout": "^5.0.12",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.23",
+    "antd": "^4.7.2",
     "highcharts": "^8.2.0",
     "highcharts-react-official": "^3.0.0",
     "lint-staged": "^10.0.7",

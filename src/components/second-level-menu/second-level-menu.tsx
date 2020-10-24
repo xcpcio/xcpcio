@@ -35,14 +35,14 @@ class SecondLevelMenu extends React.Component {
 
     render() {
         return (
-            <div className="second-level-menu-list">
+            <div className="g-second-level-menu-list">
                 {this.state.siderItem.map((item: any) => {
                     return (
                         <div
                             className={[
-                                'second-level-menu-item',
+                                'g-second-level-menu-item',
                                 item == this.state.currentItem
-                                    ? 'second-level-menu-item-current'
+                                    ? 'g-second-level-menu-item-current'
                                     : '',
                             ].join(' ')}
                             onClick={() => {
