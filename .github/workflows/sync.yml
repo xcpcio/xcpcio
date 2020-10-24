@@ -33,7 +33,8 @@ jobs:
           cd ccpc
           cd 2020
           cd weihai-warmup
-          echo "${{ secrets.COKIE }}" > params.json
+          pip3 install -U -r requirements.txt
+          echo "" > params.json
           echo params.json
           python3 sync.py
           cd ../../../../
