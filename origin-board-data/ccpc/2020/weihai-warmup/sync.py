@@ -3,8 +3,16 @@ import json
 import grequests
 from os import path
 
-COKIE
+def json_input(path):
+    with open(path, 'r') as f:
+        return json.load(f)
 
+_params = json_input('params.json')
+
+# print(_params)
+
+cookies = _params['cookies']
+headers = _params['headers']
 
 params = (
     ('page', '0'),
