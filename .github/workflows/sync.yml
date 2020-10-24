@@ -35,7 +35,7 @@ jobs:
           cd weihai-warmup
           pip3 install -U -r requirements.txt
           echo ${{ secrets.COKIE }} > params.json
-          echo params.json
+          cat params.json
           python3 sync.py
           cd ../../../../
           npm install
