@@ -1,8 +1,6 @@
 name: Sync
 on:
   workflow_dispatch:
-  schedule:
-    - cron: '* * * * *'
 
 jobs:
   sync:
