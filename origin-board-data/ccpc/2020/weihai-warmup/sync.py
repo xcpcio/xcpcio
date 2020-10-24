@@ -3,7 +3,7 @@ import json
 import grequests
 from os import path
 
-## COKIE
+COKIE
 
 
 params = (
