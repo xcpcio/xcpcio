@@ -53,6 +53,20 @@ school = {
 status_time = {
     'correct': 1,
 }
+balloon_color = [
+    {'background_color': 'rgba(189, 14, 14, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(255, 144, 228, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(255, 255, 255, 0.7)', 'color': '#000' },
+    {'background_color': 'rgba(38, 185, 60, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(239, 217, 9, 0.7)', 'color': '#000' },
+    {'background_color': 'rgba(243, 88, 20, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(12, 76, 138, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(156, 155, 155, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(4, 154, 115, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(159, 19, 236, 0.7)' ,'color': '#fff' },
+    {'background_color': 'rgba(42, 197, 202, 0.7)', 'color': '#fff' },
+    {'background_color': 'rgba(142, 56, 54, 0.7)', 'color': '#fff' },
+]
 config = {
     'contest_name': 'CCPC2020-第六届中国大学生程序设计竞赛（威海） 正式赛',
     'start_time': get_timestamp("2020-10-25 09:00:00"),
@@ -64,6 +78,7 @@ config = {
     'school': school,
     'status_time': status_time,
     'penalty': 20 * 60,
+    'balloon_color': balloon_color
 }
 
 def config_out():

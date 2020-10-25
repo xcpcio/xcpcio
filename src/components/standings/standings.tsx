@@ -48,6 +48,9 @@ function getInitProblem(contest_config: any) {
         item['total'] = 0;
         item['first_solve_time'] = INF;
         item['last_solve_time'] = 0;
+        if (contest_config.balloon_color) {
+            item['balloon_color'] = contest_config.balloon_color[index];
+        }
         problem_list.push(item);
     });
     return problem_list;
@@ -311,7 +314,7 @@ class Standings extends React.Component {
 
                 {this.state.loaded === true && (
                     <table style={{ marginTop: '5px' }} className="standings">
-                        <tbody>
+                        <thead>
                             <tr>
                                 <th className="title" style={{ width: '3em' }}>
                                     Place
@@ -337,26 +340,57 @@ class Standings extends React.Component {
                                     Time
                                 </th>
                                 {this.state.problem_list.map((item: any) => {
-                                    return (
-                                        <th
-                                            className="success"
-                                            style={{ width: '4em' }}
-                                        >
-                                            {[
-                                                this.state.contest_config
-                                                    .problem_id[
-                                                    item.problem_id
-                                                ],
-                                            ]}
-                                            <br />
-                                            <s>
-                                                {item.solved}/{item.total}
-                                            </s>
-                                        </th>
-                                    );
+                                    if (item.balloon_color) {
+                                        return (
+                                            <th
+                                                className="success"
+                                                style={{
+                                                    width: '4em',
+                                                    backgroundColor:
+                                                        item.balloon_color
+                                                            .background_color,
+                                                    color:
+                                                        item.balloon_color
+                                                            .color,
+                                                }}
+                                            >
+                                                {[
+                                                    this.state.contest_config
+                                                        .problem_id[
+                                                        item.problem_id
+                                                    ],
+                                                ]}
+                                                <br />
+                                                <s>
+                                                    {item.solved}/{item.total}
+                                                </s>
+                                            </th>
+                                        );
+                                    } else {
+                                        return (
+                                            <th
+                                                className="success"
+                                                style={{
+                                                    width: '4em',
+                                                }}
+                                            >
+                                                {[
+                                                    this.state.contest_config
+                                                        .problem_id[
+                                                        item.problem_id
+                                                    ],
+                                                ]}
+                                                <br />
+                                                <s>
+                                                    {item.solved}/{item.total}
+                                                </s>
+                                            </th>
+                                        );
+                                    }
                                 })}
                             </tr>
-
+                        </thead>
+                        <tbody>
                             {this.state.team_list.map(
                                 (item: any, index: number) => {
                                     return (
