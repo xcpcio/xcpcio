@@ -379,7 +379,6 @@ class Standings extends React.Component {
                                                         item?.style.display ===
                                                         'none'
                                                     ) {
-                                                        item.style.display = '';
                                                         for (let key in this
                                                             .vis) {
                                                             let item = document.getElementById(
@@ -394,6 +393,7 @@ class Standings extends React.Component {
                                                                     'none';
                                                             }
                                                         }
+                                                        item.style.display = '';
                                                         this.vis = {};
                                                         this.vis[
                                                             get_analyze_team_id(
@@ -409,11 +409,7 @@ class Standings extends React.Component {
                                                     ) {
                                                         item.style.display =
                                                             'none';
-                                                        this.vis[
-                                                            get_analyze_team_id(
-                                                                index,
-                                                            )
-                                                        ] = 0;
+                                                        this.vis = {};
                                                         this.setState({
                                                             vis: this.vis,
                                                         });
