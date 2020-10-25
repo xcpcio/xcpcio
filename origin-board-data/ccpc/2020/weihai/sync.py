@@ -4,7 +4,12 @@ import grequests
 from os import path
 import time
 
-data_dir = "../../../../data/ccpc/2020/weihai"
+def json_output(data):
+    return json.dumps(data, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
+
+def output(filename, data):
+    with open(path.join(data_dir, filename), 'w') as f:
+        f.write(json_output(data))
 
 def json_input(path):
     with open(path, 'r') as f:
@@ -12,15 +17,9 @@ def json_input(path):
 
 _params = json_input('params.json')
 
-# print(_params)
-
 cookies = _params['cookies']
-
-## print(cookies)
-
 headers = _params['headers']
-
-# print(headers)
+data_dir = _params['data_dir']
 
 params = (
     ('page', '0'),
@@ -66,13 +65,6 @@ def getOldData():
         _team[item['problem_id']]['attempted_num'] += 1
     return team
 
-def json_output(data):
-    return json.dumps(data, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
-
-def output(filename, data):
-    with open(path.join(data_dir, filename), 'w') as f:
-        f.write(json_output(data))
-
 def team_output(res_list):
     team_refer = json_input(path.join(data_dir, "team_refer.json"))
     teams = {}
@@ -99,7 +91,7 @@ def team_output(res_list):
                 if _id[0] == 'F':
                     _team['girl'] = 1
                 teams[team_id] = _team
-    output("team.json", teams)
+        output("team.json", teams)
                     
 def run_output(res_list):
     oldData = getOldData()
@@ -117,10 +109,10 @@ def run_output(res_list):
                     _run = team['problemScores'][key]
                     timestamp = int(_run['acceptTime']) * 60
                     cnt = int(_run['submitCountSnapshot'])
-                    # if team_id in oldData.keys():
-                    #     if p_id in oldData[team_id].keys():
-                    #         if oldData[team_id]['status'] == 'correct':
-                    #             cnt = min(cnt, oldData[team_id]['attempted_num'])
+                    if team_id in oldData.keys():
+                        if p_id in oldData[team_id].keys():
+                            if oldData[team_id][p_id]['solved'] == 1:
+                                cnt = min(cnt, oldData[team_id][p_id]['attempted_num'])
                     for i in range(1, cnt):
                         run_ = {
                             'team_id': team_id,
@@ -150,5 +142,7 @@ def sync():
         time.sleep(20)
 
 sync()
+
+
 
 
