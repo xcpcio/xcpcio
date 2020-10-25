@@ -45,10 +45,20 @@
                     "frozen_time": 0,
                     "group": {
                         "girl": "女队",
-                        "inside": "晋级参赛",
                         "official": "正式队伍",
-                        "outside": "外卡参赛",
                         "unofficial": "打星参赛"
+                    },
+                    "medal": {
+                        "all": {
+                            "bronze": 72,
+                            "gold": 24,
+                            "silver": 48
+                        },
+                        "official": {
+                            "bronze": 72,
+                            "gold": 24,
+                            "silver": 48
+                        }
                     },
                     "penalty": 1200,
                     "problem_id": [
@@ -139,6 +149,9 @@
         }
     },
     "provincial-contest": {
+        "2019": {
+            "zjcpc": {}
+        },
         "2020": {
             "zjcpc": {
                 "config": {

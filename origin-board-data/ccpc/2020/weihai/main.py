@@ -33,6 +33,11 @@ medal = {
         'gold': 24,
         'silver': 48,
         "bronze": 72
+    },
+    'official': {
+        'gold': 24,
+        'silver': 48,
+        'bronze': 72
     }
 }
 group = {
@@ -54,7 +59,7 @@ config = {
     'end_time': get_timestamp("2020-10-25 14:00:00"),
     'frozen_time' : 0,
     'problem_id': problem_id,
-    # 'medal': medal,
+    'medal': medal,
     'group': group,
     'school': school,
     'status_time': status_time,

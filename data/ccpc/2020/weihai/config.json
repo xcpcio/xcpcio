@@ -4,6 +4,18 @@
     "end_time": 1603605600,
     "frozen_time": 0,
     "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
+    "medal": {
+        "all": {
+            "gold": 24,
+            "silver": 48,
+            "bronze": 72
+        },
+        "official": {
+            "gold": 24,
+            "silver": 48,
+            "bronze": 72
+        }
+    },
     "group": {
         "official": "正式队伍",
         "unofficial": "打星参赛",
