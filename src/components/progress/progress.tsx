@@ -56,6 +56,9 @@ class Progress extends React.Component {
                         Math.max(props.start_time, getNowTimeStamp()),
                 ),
             ),
+            time_pending: getTimeDiff(
+                Math.max(0, props.start_time - getNowTimeStamp()),
+            ),
         });
 
         timer && clearInterval(timer);
@@ -80,6 +83,9 @@ class Progress extends React.Component {
                         this.state.end_time -
                             Math.max(this.state.start_time, getNowTimeStamp()),
                     ),
+                ),
+                time_pending: getTimeDiff(
+                    Math.max(0, props.start_time - getNowTimeStamp()),
                 ),
             });
         }, 500);
@@ -109,6 +115,7 @@ class Progress extends React.Component {
         width: 100,
         time_elapsed: 0,
         time_remaining: 0,
+        time_pending: 0,
     };
 
     constructor(props: any) {
@@ -135,7 +142,10 @@ class Progress extends React.Component {
                                 status_type[this.state.status],
                             ].join(' ')}
                         ></div>
-                        <b>{status_type[this.state.status]}</b>
+                        <b>
+                            {status_type[this.state.status]}&nbsp;
+                            {this.state.status === 0 && this.state.time_pending}
+                        </b>
                     </div>
                     <div style={{ float: 'right' }}>
                         <b>End: {timeFormat(this.state.end_time)}</b>
