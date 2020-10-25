@@ -2,6 +2,9 @@ import requests
 import json
 import grequests
 from os import path
+import time
+
+data_dir = "../../../../data/ccpc/2020/weihai"
 
 def json_input(path):
     with open(path, 'r') as f:
@@ -22,7 +25,7 @@ headers = _params['headers']
 params = (
     ('page', '0'),
     ('limit', '50'),
-)
+)   
 
 response = requests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings', headers=headers, params=params, cookies=cookies)
 
@@ -31,23 +34,21 @@ response = requests.get('https://pintia.cn/api/problem-sets/1320042663639977984/
 #in case the reproduced version is not "correct".
 # response = requests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings?limit=50', headers=headers, cookies=cookies)
 
-total = json.loads(response.text)['total']
-print(total)
+def fetch():
+    total = json.loads(response.text)['total']
+    print(total)
 
-req_list = []
+    req_list = []
 
-for i in range(((total + 49) // 50)):
-    params = (
-        ('page', str(i)),
-        ('limit', '50'),
-    )
-    req_list.append(grequests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings', headers=headers, params=params, cookies=cookies))
+    for i in range(((total + 49) // 50)):
+        params = (
+            ('page', str(i)),
+            ('limit', '50'),
+        )
+        req_list.append(grequests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings', headers=headers, params=params, cookies=cookies))
 
-res_list = grequests.map(req_list)
-
-run = []
-
-data_dir = "../../../../data/ccpc/2020/weihai"
+    res_list = grequests.map(req_list)
+    return res_list
 
 def getOldData():
     _run = json_input(path.join(data_dir, "run.json"))
@@ -72,7 +73,7 @@ def output(filename, data):
     with open(path.join(data_dir, filename), 'w') as f:
         f.write(json_output(data))
 
-def team_output():
+def team_output(res_list):
     team_refer = json_input(path.join(data_dir, "team_refer.json"))
     teams = {}
     for item in res_list:
@@ -100,9 +101,9 @@ def team_output():
                 teams[team_id] = _team
     output("team.json", teams)
                     
-
-def run_output():
+def run_output(res_list):
     oldData = getOldData()
+    run = []
     # print(oldData)
     for item in res_list:
         item = json.loads(item.text)
@@ -139,7 +140,15 @@ def run_output():
                     run.append(run_)
         output('run.json', run)
 
-team_output()
-run_output()
+def sync():
+    while True:
+        print("fetching...")
+        res_list = fetch()
+        team_output(res_list)
+        run_output(res_list)
+        print("sleeping...")
+        time.sleep(20)
+
+sync()
 
 

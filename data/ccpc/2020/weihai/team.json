@@ -1,4 +1,16 @@
 {
+    "T066": {
+        "name": "黑色骑士团",
+        "school": "复旦大学",
+        "team_id": "T066",
+        "official": 1
+    },
+    "T209": {
+        "name": "小万邦",
+        "school": "清华大学",
+        "team_id": "T209",
+        "official": 1
+    },
     "T371": {
         "name": "ResuscitatedHope",
         "school": "中国地质大学（武汉）",
@@ -17,11 +29,47 @@
         "team_id": "T102",
         "official": 1
     },
+    "T305": {
+        "name": "伊丽莎白",
+        "school": "烟台大学",
+        "team_id": "T305",
+        "official": 1
+    },
+    "T007": {
+        "name": "一塔湖图",
+        "school": "北京大学",
+        "team_id": "T007",
+        "official": 1
+    },
+    "T162": {
+        "name": "盼君勿忘",
+        "school": "江科附中",
+        "team_id": "T162",
+        "unofficial": 1
+    },
+    "T060": {
+        "name": "咸水小黄鸭",
+        "school": "东南大学",
+        "team_id": "T060",
+        "official": 1
+    },
     "T008": {
         "name": "一一一丨",
         "school": "北京大学",
         "team_id": "T008",
         "official": 1
+    },
+    "T217": {
+        "name": "sinsincos",
+        "school": "山东大学",
+        "team_id": "T217",
+        "official": 1
+    },
+    "T173": {
+        "name": "展望未来",
+        "school": "南昌航空大学",
+        "team_id": "T173",
+        "unofficial": 1
     },
     "T391": {
         "name": "无人之境",
@@ -35,10 +83,22 @@
         "team_id": "T048",
         "official": 1
     },
+    "T035": {
+        "name": "ACM太好玩了",
+        "school": "常熟理工学院",
+        "team_id": "T035",
+        "official": 1
+    },
     "T086": {
         "name": "鸽子自动稽",
         "school": "哈尔滨工业大学（深圳）",
         "team_id": "T086",
+        "official": 1
+    },
+    "T210": {
+        "name": "粤飞粤精彩",
+        "school": "清华大学",
+        "team_id": "T210",
         "official": 1
     },
     "T327": {
@@ -47,17 +107,35 @@
         "team_id": "T327",
         "official": 1
     },
-    "T066": {
-        "name": "黑色骑士团",
-        "school": "复旦大学",
-        "team_id": "T066",
+    "T044": {
+        "name": "UpperClass",
+        "school": "电子科技大学",
+        "team_id": "T044",
         "official": 1
     },
-    "T209": {
-        "name": "小万邦",
-        "school": "清华大学",
-        "team_id": "T209",
+    "T283": {
+        "name": "渡渡鸟幼儿园",
+        "school": "西安交通大学",
+        "team_id": "T283",
         "official": 1
+    },
+    "T141": {
+        "name": "我们会嘤嘤嘤",
+        "school": "华南理工大学",
+        "team_id": "T141",
+        "official": 1
+    },
+    "T254": {
+        "name": "星尘天下第一可爱",
+        "school": "深圳大学",
+        "team_id": "T254",
+        "official": 1
+    },
+    "T137": {
+        "name": "下划线",
+        "school": "华东师范大学",
+        "team_id": "T137",
+        "unofficial": 1
     },
     "T018": {
         "name": "芜湖菜",
@@ -65,22 +143,46 @@
         "team_id": "T018",
         "official": 1
     },
+    "T128": {
+        "name": "图一乐",
+        "school": "湖南大学",
+        "team_id": "T128",
+        "official": 1
+    },
+    "T037": {
+        "name": "我们队长英语无敌",
+        "school": "成都东软学院",
+        "team_id": "T037",
+        "official": 1
+    },
+    "T328": {
+        "name": "业余门槛",
+        "school": "浙江大学",
+        "team_id": "T328",
+        "official": 1
+    },
+    "T059": {
+        "name": "常盘台女子技校",
+        "school": "东南大学",
+        "team_id": "T059",
+        "unofficial": 1
+    },
+    "T276": {
+        "name": "队长说ghs不要太明显",
+        "school": "武汉大学",
+        "team_id": "T276",
+        "official": 1
+    },
+    "T067": {
+        "name": "小喵喵已经不适合这个版本了",
+        "school": "复旦大学",
+        "team_id": "T067",
+        "official": 1
+    },
     "T185": {
         "name": "宝键锋从磨砺出",
         "school": "南京邮电大学",
         "team_id": "T185",
-        "official": 1
-    },
-    "T060": {
-        "name": "咸水小黄鸭",
-        "school": "东南大学",
-        "team_id": "T060",
-        "official": 1
-    },
-    "T305": {
-        "name": "伊丽莎白",
-        "school": "烟台大学",
-        "team_id": "T305",
         "official": 1
     },
     "T212": {
@@ -101,12 +203,6 @@
         "team_id": "T349",
         "official": 1
     },
-    "T283": {
-        "name": "渡渡鸟幼儿园",
-        "school": "西安交通大学",
-        "team_id": "T283",
-        "official": 1
-    },
     "T281": {
         "name": "蔚蓝",
         "school": "西安电子科技大学",
@@ -119,28 +215,10 @@
         "team_id": "T393",
         "official": 1
     },
-    "T217": {
-        "name": "sinsincos",
-        "school": "山东大学",
-        "team_id": "T217",
-        "official": 1
-    },
-    "T007": {
-        "name": "一塔湖图",
-        "school": "北京大学",
-        "team_id": "T007",
-        "official": 1
-    },
     "T248": {
         "name": "不朽之夜",
         "school": "上海交通大学",
         "team_id": "T248",
-        "official": 1
-    },
-    "T210": {
-        "name": "粤飞粤精彩",
-        "school": "清华大学",
-        "team_id": "T210",
         "official": 1
     },
     "T136": {
@@ -179,12 +257,6 @@
         "team_id": "T277",
         "official": 1
     },
-    "T162": {
-        "name": "盼君勿忘",
-        "school": "江科附中",
-        "team_id": "T162",
-        "unofficial": 1
-    },
     "T110": {
         "name": "ccpc加油",
         "school": "河海大学",
@@ -214,12 +286,6 @@
         "school": "浙江工业大学",
         "team_id": "T335",
         "official": 1
-    },
-    "T173": {
-        "name": "展望未来",
-        "school": "南昌航空大学",
-        "team_id": "T173",
-        "unofficial": 1
     },
     "T062": {
         "name": "nya",
@@ -348,12 +414,6 @@
         "team_id": "T208",
         "official": 1
     },
-    "T328": {
-        "name": "业余门槛",
-        "school": "浙江大学",
-        "team_id": "T328",
-        "official": 1
-    },
     "T029": {
         "name": "常数抛光机",
         "school": "北京邮电大学",
@@ -390,12 +450,6 @@
         "team_id": "T253",
         "official": 1
     },
-    "T035": {
-        "name": "ACM太好玩了",
-        "school": "常熟理工学院",
-        "team_id": "T035",
-        "official": 1
-    },
     "T019": {
         "name": "一笑奈何",
         "school": "北京交通大学",
@@ -426,10 +480,82 @@
         "team_id": "T040",
         "official": 1
     },
+    "T272": {
+        "name": "做的题都队",
+        "school": "天津工业大学",
+        "team_id": "T272",
+        "official": 1
+    },
+    "T317": {
+        "name": "长理-1队",
+        "school": "长春理工大学",
+        "team_id": "T317",
+        "official": 1
+    },
+    "T324": {
+        "name": "这里地方太小写不下",
+        "school": "浙大宁波理工学院",
+        "team_id": "T324",
+        "official": 1
+    },
+    "T244": {
+        "name": "Mega进化",
+        "school": "上海大学",
+        "team_id": "T244",
+        "official": 1
+    },
+    "T355": {
+        "name": "ZZU",
+        "school": "郑州大学",
+        "team_id": "T355",
+        "official": 1
+    },
+    "T129": {
+        "name": "匿名群友",
+        "school": "湖南科技",
+        "team_id": "T129",
+        "official": 1
+    },
+    "T087": {
+        "name": "逆流沙",
+        "school": "哈尔滨工业大学（深圳）",
+        "team_id": "T087",
+        "official": 1
+    },
+    "T300": {
+        "name": "XTU",
+        "school": "湘潭大学",
+        "team_id": "T300",
+        "official": 1
+    },
+    "T256": {
+        "name": "So Nice Chicken",
+        "school": "深圳职业技术学院",
+        "team_id": "T256",
+        "official": 1
+    },
     "T153": {
         "name": "autowa",
         "school": "暨南大学",
         "team_id": "T153",
+        "official": 1
+    },
+    "T146": {
+        "name": "锅锅锅",
+        "school": "华中师范大学",
+        "team_id": "T146",
+        "unofficial": 1
+    },
+    "T213": {
+        "name": "YOVOY",
+        "school": "厦门大学嘉庚学院",
+        "team_id": "T213",
+        "official": 1
+    },
+    "T268": {
+        "name": "背着队友偷偷WA",
+        "school": "天津大学",
+        "team_id": "T268",
         "official": 1
     },
     "T320": {
@@ -438,17 +564,47 @@
         "team_id": "T320",
         "official": 1
     },
+    "T361": {
+        "name": "明早启城",
+        "school": "郑州轻工业大学",
+        "team_id": "T361",
+        "unofficial": 1
+    },
     "T338": {
         "name": "希望之花",
         "school": "浙江工业大学",
         "team_id": "T338",
         "unofficial": 1
     },
+    "T126": {
+        "name": "好，很有精神",
+        "school": "湖北工业大学",
+        "team_id": "T126",
+        "official": 1
+    },
+    "T176": {
+        "name": "苏黎世",
+        "school": "南方科技大学",
+        "team_id": "T176",
+        "official": 1
+    },
+    "T262": {
+        "name": "给阿夸泡一杯大红袍",
+        "school": "四川大学",
+        "team_id": "T262",
+        "official": 1
+    },
     "T034": {
         "name": "幸福安心养老所",
         "school": "北京邮电大学",
         "team_id": "T034",
         "official": 1
+    },
+    "T030": {
+        "name": "恶魔妈妈买面膜",
+        "school": "北京邮电大学",
+        "team_id": "T030",
+        "unofficial": 1
     },
     "T235": {
         "name": "SKD雷神之子号",
@@ -460,6 +616,12 @@
         "name": "不能承受生命之重",
         "school": "江西财经大学",
         "team_id": "T160",
+        "unofficial": 1
+    },
+    "T237": {
+        "name": "abaX3",
+        "school": "山东理工大学",
+        "team_id": "T237",
         "unofficial": 1
     },
     "T006": {
@@ -515,12 +677,6 @@
         "school": "浙江理工大学",
         "team_id": "T340",
         "unofficial": 1
-    },
-    "T141": {
-        "name": "我们会嘤嘤嘤",
-        "school": "华南理工大学",
-        "team_id": "T141",
-        "official": 1
     },
     "T158": {
         "name": "量子波动速WA",
@@ -612,28 +768,142 @@
         "team_id": "T077",
         "official": 1
     },
-    "T254": {
-        "name": "星尘天下第一可爱",
-        "school": "深圳大学",
-        "team_id": "T254",
+    "T100": {
+        "name": "可乐鸡",
+        "school": "哈尔滨学院",
+        "team_id": "T100",
         "official": 1
     },
-    "T067": {
-        "name": "小喵喵已经不适合这个版本了",
-        "school": "复旦大学",
-        "team_id": "T067",
+    "T316": {
+        "name": "我才是长理九队",
+        "school": "长春理工大学",
+        "team_id": "T316",
+        "unofficial": 1
+    },
+    "T207": {
+        "name": "大佬我能做你的小弟吗",
+        "school": "清华大学",
+        "team_id": "T207",
         "official": 1
     },
-    "T128": {
-        "name": "图一乐",
-        "school": "湖南大学",
-        "team_id": "T128",
+    "T273": {
+        "name": "济鸽",
+        "school": "同济大学",
+        "team_id": "T273",
         "official": 1
     },
-    "T037": {
-        "name": "我们队长英语无敌",
-        "school": "成都东软学院",
-        "team_id": "T037",
+    "T278": {
+        "name": "武钢生产大队",
+        "school": "武汉大学",
+        "team_id": "T278",
+        "official": 1
+    },
+    "T285": {
+        "name": "一袋米要扛几楼",
+        "school": "西安交通大学",
+        "team_id": "T285",
+        "official": 1
+    },
+    "T382": {
+        "name": "矿课",
+        "school": "中国矿业大学",
+        "team_id": "T382",
+        "unofficial": 1
+    },
+    "T135": {
+        "name": "队友看我wa签到",
+        "school": "华东师范大学",
+        "team_id": "T135",
+        "official": 1
+    },
+    "T165": {
+        "name": "最终幻想",
+        "school": "临沂大学",
+        "team_id": "T165",
+        "official": 1
+    },
+    "T154": {
+        "name": "Firefly",
+        "school": "暨南大学",
+        "team_id": "T154",
+        "unofficial": 1
+    },
+    "T222": {
+        "name": "快乐自动机",
+        "school": "山东大学（威海）",
+        "team_id": "T222",
+        "unofficial": 1
+    },
+    "T309": {
+        "name": "总之由崎司就是非常可爱",
+        "school": "信息工程大学",
+        "team_id": "T309",
+        "official": 1
+    },
+    "T145": {
+        "name": "红日初升",
+        "school": "华侨大学",
+        "team_id": "T145",
+        "official": 1
+    },
+    "T329": {
+        "name": "能力突出",
+        "school": "浙工商",
+        "team_id": "T329",
+        "official": 1
+    },
+    "T101": {
+        "name": "FlaMingo",
+        "school": "杭州电子科技大学",
+        "team_id": "T101",
+        "official": 1
+    },
+    "T302": {
+        "name": "acmOrz",
+        "school": "新疆大学",
+        "team_id": "T302",
+        "official": 1
+    },
+    "T147": {
+        "name": "FreshmanXProPlusMax",
+        "school": "吉林大学",
+        "team_id": "T147",
+        "official": 1
+    },
+    "T156": {
+        "name": "凤梨麻麻带两崽",
+        "school": "嘉应学院",
+        "team_id": "T156",
+        "unofficial": 1
+    },
+    "T084": {
+        "name": "头换女装那路或多",
+        "school": "哈尔滨工业大学",
+        "team_id": "T084",
+        "official": 1
+    },
+    "T318": {
+        "name": "龙卷风摧毁垃圾场",
+        "school": "长沙理工大学",
+        "team_id": "T318",
+        "official": 1
+    },
+    "T304": {
+        "name": "长夜有星辰",
+        "school": "徐工",
+        "team_id": "T304",
+        "official": 1
+    },
+    "T083": {
+        "name": "青老年国内线上冲浪团",
+        "school": "哈尔滨工业大学",
+        "team_id": "T083",
+        "unofficial": 1
+    },
+    "T112": {
+        "name": "我永远喜欢由比滨结衣",
+        "school": "河海大学",
+        "team_id": "T112",
         "official": 1
     },
     "T174": {
@@ -691,16 +961,88 @@
         "team_id": "T183",
         "official": 1
     },
-    "T276": {
-        "name": "队长说ghs不要太明显",
-        "school": "武汉大学",
-        "team_id": "T276",
+    "T127": {
+        "name": "我恰个冰棒",
+        "school": "湖北理工学院",
+        "team_id": "T127",
         "official": 1
+    },
+    "T009": {
+        "name": "辉夜大小姐想让我AC",
+        "school": "北京航空航天大学",
+        "team_id": "T009",
+        "official": 1
+    },
+    "T341": {
+        "name": "我先放一盒卫生纸在这",
+        "school": "浙江理工大学",
+        "team_id": "T341",
+        "official": 1
+    },
+    "T138": {
+        "name": "玉米炒葡萄",
+        "school": "华东师范大学",
+        "team_id": "T138",
+        "unofficial": 1
+    },
+    "T051": {
+        "name": "不兼容",
+        "school": "东北大学秦皇岛分校",
+        "team_id": "T051",
+        "official": 1
+    },
+    "T301": {
+        "name": "XTU",
+        "school": "湘潭大学",
+        "team_id": "T301",
+        "official": 1
+    },
+    "T082": {
+        "name": "赤阳",
+        "school": "哈尔滨工业大学",
+        "team_id": "T082",
+        "official": 1
+    },
+    "T150": {
+        "name": "男朋友说的都队",
+        "school": "吉首大学",
+        "team_id": "T150",
+        "official": 1
+    },
+    "T346": {
+        "name": "讨论组",
+        "school": "浙江农林大学",
+        "team_id": "T346",
+        "official": 1
+    },
+    "T113": {
+        "name": "咸鱼翻身",
+        "school": "河海大学常州",
+        "team_id": "T113",
+        "unofficial": 1
     },
     "T107": {
         "name": "摇头熊猫",
         "school": "合肥工业大学",
         "team_id": "T107",
+        "official": 1
+    },
+    "T387": {
+        "name": "小陀螺",
+        "school": "中南大学",
+        "team_id": "T387",
+        "official": 1
+    },
+    "T175": {
+        "name": "施维茨",
+        "school": "南方科技大学",
+        "team_id": "T175",
+        "official": 1
+    },
+    "T022": {
+        "name": "克鲁斯卡尔大战克苏鲁",
+        "school": "北京理工大学",
+        "team_id": "T022",
         "official": 1
     },
     "T367": {
@@ -747,12 +1089,6 @@
         "team_id": "T287",
         "unofficial": 1
     },
-    "T317": {
-        "name": "长理-1队",
-        "school": "长春理工大学",
-        "team_id": "T317",
-        "official": 1
-    },
     "T358": {
         "name": "ZZU",
         "school": "郑州大学",
@@ -772,18 +1108,6 @@
         "official": 1,
         "girl": 1
     },
-    "T154": {
-        "name": "Firefly",
-        "school": "暨南大学",
-        "team_id": "T154",
-        "unofficial": 1
-    },
-    "T127": {
-        "name": "我恰个冰棒",
-        "school": "湖北理工学院",
-        "team_id": "T127",
-        "official": 1
-    },
     "T196": {
         "name": "你以为你cf过题了",
         "school": "南阳师范学院",
@@ -795,18 +1119,6 @@
         "school": "温州大学",
         "team_id": "T275",
         "official": 1
-    },
-    "T030": {
-        "name": "恶魔妈妈买面膜",
-        "school": "北京邮电大学",
-        "team_id": "T030",
-        "unofficial": 1
-    },
-    "T146": {
-        "name": "锅锅锅",
-        "school": "华中师范大学",
-        "team_id": "T146",
-        "unofficial": 1
     },
     "T364": {
         "name": "大威天龙",
@@ -917,12 +1229,6 @@
         "team_id": "T170",
         "official": 1
     },
-    "T341": {
-        "name": "我先放一盒卫生纸在这",
-        "school": "浙江理工大学",
-        "team_id": "T341",
-        "official": 1
-    },
     "T363": {
         "name": "心意相通",
         "school": "郑州轻工业大学",
@@ -947,34 +1253,10 @@
         "team_id": "T383",
         "official": 1
     },
-    "T150": {
-        "name": "男朋友说的都队",
-        "school": "吉首大学",
-        "team_id": "T150",
-        "official": 1
-    },
     "T267": {
         "name": "一九零二",
         "school": "太原理工大学",
         "team_id": "T267",
-        "unofficial": 1
-    },
-    "T324": {
-        "name": "这里地方太小写不下",
-        "school": "浙大宁波理工学院",
-        "team_id": "T324",
-        "official": 1
-    },
-    "T346": {
-        "name": "讨论组",
-        "school": "浙江农林大学",
-        "team_id": "T346",
-        "official": 1
-    },
-    "T156": {
-        "name": "凤梨麻麻带两崽",
-        "school": "嘉应学院",
-        "team_id": "T156",
         "unofficial": 1
     },
     "T204": {
@@ -1013,12 +1295,6 @@
         "team_id": "T299",
         "official": 1
     },
-    "T100": {
-        "name": "可乐鸡",
-        "school": "哈尔滨学院",
-        "team_id": "T100",
-        "official": 1
-    },
     "T298": {
         "name": "面向答案编程",
         "school": "西南石油大学",
@@ -1031,28 +1307,10 @@
         "team_id": "T342",
         "unofficial": 1
     },
-    "T126": {
-        "name": "好，很有精神",
-        "school": "湖北工业大学",
-        "team_id": "T126",
-        "official": 1
-    },
-    "T145": {
-        "name": "红日初升",
-        "school": "华侨大学",
-        "team_id": "T145",
-        "official": 1
-    },
     "T114": {
         "name": "打铁小分队",
         "school": "河南财金",
         "team_id": "T114",
-        "unofficial": 1
-    },
-    "T316": {
-        "name": "我才是长理九队",
-        "school": "长春理工大学",
-        "team_id": "T316",
         "unofficial": 1
     },
     "T056": {
@@ -1060,18 +1318,6 @@
         "school": "东华大学",
         "team_id": "T056",
         "unofficial": 1
-    },
-    "T176": {
-        "name": "苏黎世",
-        "school": "南方科技大学",
-        "team_id": "T176",
-        "official": 1
-    },
-    "T207": {
-        "name": "大佬我能做你的小弟吗",
-        "school": "清华大学",
-        "team_id": "T207",
-        "official": 1
     },
     "T274": {
         "name": "济鶸",
@@ -1140,12 +1386,6 @@
         "team_id": "T194",
         "official": 1
     },
-    "T175": {
-        "name": "施维茨",
-        "school": "南方科技大学",
-        "team_id": "T175",
-        "official": 1
-    },
     "T078": {
         "name": "董拼丙凑广搭",
         "school": "贵州大学",
@@ -1174,18 +1414,6 @@
         "name": "单推圣人惠",
         "school": "华南理工大学",
         "team_id": "T139",
-        "official": 1
-    },
-    "T051": {
-        "name": "不兼容",
-        "school": "东北大学秦皇岛分校",
-        "team_id": "T051",
-        "official": 1
-    },
-    "T084": {
-        "name": "头换女装那路或多",
-        "school": "哈尔滨工业大学",
-        "team_id": "T084",
         "official": 1
     },
     "T333": {
@@ -1244,18 +1472,6 @@
         "team_id": "T195",
         "official": 1
     },
-    "T244": {
-        "name": "Mega进化",
-        "school": "上海大学",
-        "team_id": "T244",
-        "official": 1
-    },
-    "T355": {
-        "name": "ZZU",
-        "school": "郑州大学",
-        "team_id": "T355",
-        "official": 1
-    },
     "T074": {
         "name": "锐利的剑锐利的眼",
         "school": "广东外语外贸大学",
@@ -1287,22 +1503,10 @@
         "team_id": "T177",
         "official": 1
     },
-    "T300": {
-        "name": "XTU",
-        "school": "湘潭大学",
-        "team_id": "T300",
-        "official": 1
-    },
     "T315": {
         "name": "听取蛙声一片",
         "school": "长春理工大学",
         "team_id": "T315",
-        "official": 1
-    },
-    "T387": {
-        "name": "小陀螺",
-        "school": "中南大学",
-        "team_id": "T387",
         "official": 1
     },
     "T303": {
@@ -1347,12 +1551,6 @@
         "team_id": "T231",
         "official": 1
     },
-    "T222": {
-        "name": "快乐自动机",
-        "school": "山东大学（威海）",
-        "team_id": "T222",
-        "unofficial": 1
-    },
     "T336": {
         "name": "吉祥物的自我修养",
         "school": "浙江工业大学",
@@ -1385,12 +1583,6 @@
         "team_id": "T347",
         "unofficial": 1
     },
-    "T022": {
-        "name": "克鲁斯卡尔大战克苏鲁",
-        "school": "北京理工大学",
-        "team_id": "T022",
-        "official": 1
-    },
     "T053": {
         "name": "辉夜大小姐想让我AC",
         "school": "东北农业",
@@ -1413,18 +1605,6 @@
         "name": "二百二十五开方杠ff",
         "school": "浙大城市学院",
         "team_id": "T323",
-        "official": 1
-    },
-    "T382": {
-        "name": "矿课",
-        "school": "中国矿业大学",
-        "team_id": "T382",
-        "unofficial": 1
-    },
-    "T285": {
-        "name": "一袋米要扛几楼",
-        "school": "西安交通大学",
-        "team_id": "T285",
         "official": 1
     },
     "T028": {
@@ -1488,22 +1668,10 @@
         "team_id": "T161",
         "unofficial": 1
     },
-    "T213": {
-        "name": "YOVOY",
-        "school": "厦门大学嘉庚学院",
-        "team_id": "T213",
-        "official": 1
-    },
     "T206": {
         "name": "大耳朵秃秃",
         "school": "青岛大学",
         "team_id": "T206",
-        "official": 1
-    },
-    "T301": {
-        "name": "XTU",
-        "school": "湘潭大学",
-        "team_id": "T301",
         "official": 1
     },
     "T344": {
@@ -1675,12 +1843,6 @@
         "team_id": "T325",
         "official": 1
     },
-    "T129": {
-        "name": "匿名群友",
-        "school": "湖南科技",
-        "team_id": "T129",
-        "official": 1
-    },
     "T120": {
         "name": "半价出售C语言教材",
         "school": "河南农业",
@@ -1698,12 +1860,6 @@
         "school": "中海洋",
         "team_id": "T373",
         "unofficial": 1
-    },
-    "T309": {
-        "name": "总之由崎司就是非常可爱",
-        "school": "信息工程大学",
-        "team_id": "T309",
-        "official": 1
     },
     "T075": {
         "name": "蒟蒻堆",
@@ -1729,12 +1885,6 @@
         "team_id": "T211",
         "official": 1
     },
-    "T044": {
-        "name": "UpperClass",
-        "school": "电子科技大学",
-        "team_id": "T044",
-        "official": 1
-    },
     "T132": {
         "name": "曹妃甸里养小鸡",
         "school": "华北理工大学",
@@ -1751,24 +1901,6 @@
         "name": "小球球啊！！！",
         "school": "天津大学仁爱学院",
         "team_id": "T271",
-        "official": 1
-    },
-    "T101": {
-        "name": "FlaMingo",
-        "school": "杭州电子科技大学",
-        "team_id": "T101",
-        "official": 1
-    },
-    "T082": {
-        "name": "赤阳",
-        "school": "哈尔滨工业大学",
-        "team_id": "T082",
-        "official": 1
-    },
-    "T268": {
-        "name": "背着队友偷偷WA",
-        "school": "天津大学",
-        "team_id": "T268",
         "official": 1
     },
     "T039": {
@@ -1795,23 +1927,11 @@
         "team_id": "T181",
         "official": 1
     },
-    "T137": {
-        "name": "下划线",
-        "school": "华东师范大学",
-        "team_id": "T137",
-        "unofficial": 1
-    },
     "T252": {
         "name": "明治十七年的上海爱丽丝",
         "school": "上海理工大学",
         "team_id": "T252",
         "official": 1
-    },
-    "T059": {
-        "name": "常盘台女子技校",
-        "school": "东南大学",
-        "team_id": "T059",
-        "unofficial": 1
     },
     "T197": {
         "name": "我不知道什么叫int",
@@ -1838,12 +1958,6 @@
         "team_id": "T117",
         "unofficial": 1
     },
-    "T262": {
-        "name": "给阿夸泡一杯大红袍",
-        "school": "四川大学",
-        "team_id": "T262",
-        "official": 1
-    },
     "T085": {
         "name": "4队",
         "school": "哈尔滨工业大学（深圳）",
@@ -1868,12 +1982,6 @@
         "team_id": "T203",
         "official": 1
     },
-    "T318": {
-        "name": "龙卷风摧毁垃圾场",
-        "school": "长沙理工大学",
-        "team_id": "T318",
-        "official": 1
-    },
     "T354": {
         "name": "ZZU",
         "school": "郑州大学",
@@ -1891,12 +1999,6 @@
         "school": "长沙学院",
         "team_id": "T321",
         "unofficial": 1
-    },
-    "T087": {
-        "name": "逆流沙",
-        "school": "哈尔滨工业大学（深圳）",
-        "team_id": "T087",
-        "official": 1
     },
     "T245": {
         "name": "RuntimeError",
@@ -1940,23 +2042,11 @@
         "team_id": "T288",
         "official": 1
     },
-    "T113": {
-        "name": "咸鱼翻身",
-        "school": "河海大学常州",
-        "team_id": "T113",
-        "unofficial": 1
-    },
     "T362": {
         "name": "轻大幼儿园",
         "school": "郑州轻工业大学",
         "team_id": "T362",
         "unofficial": 1
-    },
-    "T112": {
-        "name": "我永远喜欢由比滨结衣",
-        "school": "河海大学",
-        "team_id": "T112",
-        "official": 1
     },
     "T233": {
         "name": "SKD疯马号",
@@ -2000,29 +2090,11 @@
         "team_id": "T157",
         "unofficial": 1
     },
-    "T256": {
-        "name": "So Nice Chicken",
-        "school": "深圳职业技术学院",
-        "team_id": "T256",
-        "official": 1
-    },
-    "T304": {
-        "name": "长夜有星辰",
-        "school": "徐工",
-        "team_id": "T304",
-        "official": 1
-    },
     "T241": {
         "name": "心有猛虎",
         "school": "山东理工大学",
         "team_id": "T241",
         "unofficial": 1
-    },
-    "T302": {
-        "name": "acmOrz",
-        "school": "新疆大学",
-        "team_id": "T302",
-        "official": 1
     },
     "T257": {
         "name": "NSH在树德实名上网并表示歪瓜是什么",
@@ -2036,28 +2108,10 @@
         "team_id": "T350",
         "official": 1
     },
-    "T138": {
-        "name": "玉米炒葡萄",
-        "school": "华东师范大学",
-        "team_id": "T138",
-        "unofficial": 1
-    },
-    "T329": {
-        "name": "能力突出",
-        "school": "浙工商",
-        "team_id": "T329",
-        "official": 1
-    },
     "T282": {
         "name": "我们的舰艇漏水了",
         "school": "西安电子科技大学",
         "team_id": "T282",
-        "official": 1
-    },
-    "T165": {
-        "name": "最终幻想",
-        "school": "临沂大学",
-        "team_id": "T165",
         "official": 1
     },
     "T164": {
@@ -2065,12 +2119,6 @@
         "school": "临沂大学",
         "team_id": "T164",
         "official": 1
-    },
-    "T237": {
-        "name": "abaX3",
-        "school": "山东理工大学",
-        "team_id": "T237",
-        "unofficial": 1
     },
     "T079": {
         "name": "队伍名不允许为空",
@@ -2083,12 +2131,6 @@
         "school": "中国矿业大学徐海学院",
         "team_id": "T385",
         "official": 1
-    },
-    "T083": {
-        "name": "青老年国内线上冲浪团",
-        "school": "哈尔滨工业大学",
-        "team_id": "T083",
-        "unofficial": 1
     },
     "T115": {
         "name": "职业混子队",
@@ -2139,46 +2181,16 @@
         "team_id": "T353",
         "official": 1
     },
-    "T273": {
-        "name": "济鸽",
-        "school": "同济大学",
-        "team_id": "T273",
-        "official": 1
-    },
     "T218": {
         "name": "划水大分队",
         "school": "山东大学",
         "team_id": "T218",
         "unofficial": 1
     },
-    "T147": {
-        "name": "FreshmanXProPlusMax",
-        "school": "吉林大学",
-        "team_id": "T147",
-        "official": 1
-    },
-    "T009": {
-        "name": "辉夜大小姐想让我AC",
-        "school": "北京航空航天大学",
-        "team_id": "T009",
-        "official": 1
-    },
-    "T135": {
-        "name": "队友看我wa签到",
-        "school": "华东师范大学",
-        "team_id": "T135",
-        "official": 1
-    },
     "T190": {
         "name": "被竞赛耽误的念诗先锋",
         "school": "南阳理工学院",
         "team_id": "T190",
-        "official": 1
-    },
-    "T278": {
-        "name": "武钢生产大队",
-        "school": "武汉大学",
-        "team_id": "T278",
         "official": 1
     },
     "T351": {
@@ -2210,18 +2222,6 @@
         "name": "Thinktank",
         "school": "山东理工大学",
         "team_id": "T238",
-        "unofficial": 1
-    },
-    "T272": {
-        "name": "做的题都队",
-        "school": "天津工业大学",
-        "team_id": "T272",
-        "official": 1
-    },
-    "T361": {
-        "name": "明早启城",
-        "school": "郑州轻工业大学",
-        "team_id": "T361",
         "unofficial": 1
     },
     "T279": {
