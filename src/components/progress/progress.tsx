@@ -112,7 +112,7 @@ class Progress extends React.Component {
         end_time: 0,
         frozen_time: 0,
         status: 0,
-        width: 100,
+        width: 0,
         time_elapsed: 0,
         time_remaining: 0,
         time_pending: 0,

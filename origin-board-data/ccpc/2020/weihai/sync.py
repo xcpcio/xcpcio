@@ -72,9 +72,34 @@ def output(filename, data):
     with open(path.join(data_dir, filename), 'w') as f:
         f.write(json_output(data))
 
-# def team_output():
-#     for item in res_list:
-        
+def team_output():
+    team_refer = json_input(path.join(data_dir, "team_refer.json"))
+    teams = {}
+    for item in res_list:
+        item = json.loads(item.text)
+        for team in item['commonRankings']['commonRankings']:
+            if 'studentUser' in team['user'].keys():
+                team_id = team['user']['studentUser']['studentNumber']
+                _name = team['user']['studentUser']['name']
+                name = _name.split('_')[2]
+                school = _name.split('_')[1]
+                if school in team_refer.keys():
+                    school = team_refer[school]
+                _id = _name.split('_')[0]
+                # print(_id)
+                _team = {}
+                _team['name'] = name
+                _team['school'] = school
+                _team['team_id'] = team_id
+                if _id[0] == '*':
+                    _team['unofficial'] = 1
+                else:
+                    _team['official'] = 1
+                if _id[0] == 'F':
+                    _team['girl'] = 1
+                teams[team_id] = _team
+    output("team.json", teams)
+                    
 
 def run_output():
     oldData = getOldData()
@@ -114,7 +139,7 @@ def run_output():
                     run.append(run_)
         output('run.json', run)
 
-# team_output()
+team_output()
 run_output()
 
 
