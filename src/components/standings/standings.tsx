@@ -380,6 +380,21 @@ class Standings extends React.Component {
                                                         'none'
                                                     ) {
                                                         item.style.display = '';
+                                                        for (let key in this
+                                                            .vis) {
+                                                            let item = document.getElementById(
+                                                                key,
+                                                            );
+                                                            if (
+                                                                item?.style
+                                                                    .display ===
+                                                                ''
+                                                            ) {
+                                                                item.style.display =
+                                                                    'none';
+                                                            }
+                                                        }
+                                                        this.vis = {};
                                                         this.vis[
                                                             get_analyze_team_id(
                                                                 index,
