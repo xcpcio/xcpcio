@@ -53,7 +53,7 @@ class Progress_small extends React.Component {
                 ),
                 width: getWidth(this.state.start_time, this.state.end_time),
             });
-        }, 100);
+        }, 500);
     }
 
     //在组件已经被渲染到 DOM 中后运行
@@ -76,7 +76,7 @@ class Progress_small extends React.Component {
         end_time: 0,
         frozen_time: 0,
         status: 0,
-        width: 100,
+        width: 0,
     };
 
     constructor(props: any) {
