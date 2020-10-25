@@ -1,2627 +1,3063 @@
 {
     "1001": {
         "school": "杭州电子科技大学",
-        "name": "杭电1队: 陈惇显、祝之禺、顾奕臻",
+        "name": "杭电1队",
+        "info": "陈惇显、祝之禺、顾奕臻",
         "undergraduate": 1,
         "official": 1
     },
     "1002": {
         "school": "杭州电子科技大学",
-        "name": "杭电2队: 吉兴龙、刘智杰、汤丰瑜",
+        "name": "杭电2队",
+        "info": "吉兴龙、刘智杰、汤丰瑜",
         "undergraduate": 1,
         "official": 1
     },
     "1003": {
         "school": "杭州电子科技大学",
-        "name": "杭电3队: 王淳洋、尹协童、施毅恒",
+        "name": "杭电3队",
+        "info": "王淳洋、尹协童、施毅恒",
         "undergraduate": 1,
         "official": 1
     },
     "1004": {
         "school": "杭州电子科技大学",
-        "name": "杭电4队: 郑伊杰、刘铭洁、万仞峰",
+        "name": "杭电4队",
+        "info": "郑伊杰、刘铭洁、万仞峰",
         "undergraduate": 1,
         "official": 1
     },
     "1005": {
         "school": "杭州电子科技大学",
-        "name": "杭电5队: 石佳玥、金济众、任凌昕",
+        "name": "杭电5队",
+        "info": "石佳玥、金济众、任凌昕",
         "undergraduate": 1,
         "official": 1
     },
     "1006": {
         "school": "杭州电子科技大学",
-        "name": "杭电6队: 白旭东、郑凯心、侯津涛",
+        "name": "杭电6队",
+        "info": "白旭东、郑凯心、侯津涛",
         "undergraduate": 1,
         "official": 1
     },
     "1007": {
         "school": "杭州电子科技大学",
-        "name": "杭电7队: 蔡思林、阮宇宁、俞天瑞",
+        "name": "杭电7队",
+        "info": "蔡思林、阮宇宁、俞天瑞",
         "undergraduate": 1,
         "official": 1
     },
     "1008": {
         "school": "杭州电子科技大学",
-        "name": "杭电8队: 戴志炜、赵政和、尹吴潇",
+        "name": "杭电8队",
+        "info": "戴志炜、赵政和、尹吴潇",
         "undergraduate": 1,
         "official": 1
     },
     "1009": {
         "school": "杭州电子科技大学",
-        "name": "杭电9队: 杨凌涵、杨子江、彭志远",
+        "name": "杭电9队",
+        "info": "杨凌涵、杨子江、彭志远",
         "undergraduate": 1,
         "official": 1
     },
     "1010": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "小人物: 周致远、毛一枭、王权",
+        "name": "小人物",
+        "info": "周致远、毛一枭、王权",
         "undergraduate": 1,
         "official": 1
     },
     "1011": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "信工二队: 梁孝铨、来毅超、徐彬彬",
+        "name": "信工二队",
+        "info": "梁孝铨、来毅超、徐彬彬",
         "undergraduate": 1,
         "official": 1
     },
     "1012": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "信工三队: 范祥烨、卢文凯、韩浩岚",
+        "name": "信工三队",
+        "info": "范祥烨、卢文凯、韩浩岚",
         "undergraduate": 1,
         "official": 1
     },
     "1013": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "广告位招租: 金凯凯、杜鹏、何锝升",
+        "name": "广告位招租",
+        "info": "金凯凯、杜鹏、何锝升",
         "undergraduate": 1,
         "official": 1
     },
     "1014": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "虫虫聚集: 蔡子豪、李诚、施浩杰",
+        "name": "虫虫聚集",
+        "info": "蔡子豪、李诚、施浩杰",
         "undergraduate": 1,
         "official": 1
     },
     "1015": {
         "school": "杭州电子科技大学信息工程学院",
-        "name": "信工六队: 桂枭雄、赵弘弢、孙海烽",
+        "name": "信工六队",
+        "info": "桂枭雄、赵弘弢、孙海烽",
         "undergraduate": 1,
         "official": 1
     },
     "1016": {
         "school": "杭州师范大学",
-        "name": "指尖旋律: 谢作杰、卢霖统、杨昌林",
+        "name": "指尖旋律",
+        "info": "谢作杰、卢霖统、杨昌林",
         "undergraduate": 1,
         "official": 1
     },
     "1017": {
         "school": "杭州师范大学",
-        "name": "炸番茄吧: 毛潜飞、方一昊、叶俊",
+        "name": "炸番茄吧",
+        "info": "毛潜飞、方一昊、叶俊",
         "undergraduate": 1,
         "official": 1
     },
     "1018": {
         "school": "杭州师范大学",
-        "name": "四面杵鸽: 包敏、孙周毅、魏炜",
+        "name": "四面杵鸽",
+        "info": "包敏、孙周毅、魏炜",
         "undergraduate": 1,
         "official": 1
     },
     "1019": {
         "school": "杭州师范大学",
-        "name": "杭师观光团: 张凯莉、邱龙风、张传",
+        "name": "杭师观光团",
+        "info": "张凯莉、邱龙风、张传",
         "undergraduate": 1,
         "official": 1
     },
     "1020": {
         "school": "杭州师范大学",
-        "name": "退潮后发现我们仨在裸泳: 蔡林达、高笑芸、刘兴松",
+        "name": "退潮后发现我们仨在裸泳",
+        "info": "蔡林达、高笑芸、刘兴松",
         "undergraduate": 1,
         "official": 1
     },
     "1021": {
         "school": "杭州师范大学",
-        "name": "薛定谔的猪: 朱湖健、陆家辉、梁文博",
+        "name": "薛定谔的猪",
+        "info": "朱湖健、陆家辉、梁文博",
         "undergraduate": 1,
         "official": 1
     },
     "1022": {
         "school": "杭州师范大学",
-        "name": "果宝三剑客: 温铭浩、魏依洋、李浩然",
+        "name": "果宝三剑客",
+        "info": "温铭浩、魏依洋、李浩然",
         "undergraduate": 1,
         "official": 1
     },
     "1023": {
         "school": "杭州师范大学",
-        "name": "TI1050: 薛鸿涛、潘律旨、罗天松",
+        "name": "TI1050",
+        "info": "薛鸿涛、潘律旨、罗天松",
         "undergraduate": 1,
         "official": 1
     },
     "1024": {
         "school": "杭州师范大学",
-        "name": "Tree-AC: 余赛康、吕张凯、褚真真",
+        "name": "Tree-AC",
+        "info": "余赛康、吕张凯、褚真真",
         "undergraduate": 1,
         "official": 1
     },
     "1025": {
         "school": "湖州师范学院",
-        "name": "关于队名没有想法: 黄冲、王勇凯、陶谦文",
+        "name": "关于队名没有想法",
+        "info": "黄冲、王勇凯、陶谦文",
         "undergraduate": 1,
         "official": 1
     },
     "1026": {
         "school": "湖州师范学院",
-        "name": "又双叒叕: 缪岱烨、顾诤添、黄晨靓",
+        "name": "又双叒叕",
+        "info": "缪岱烨、顾诤添、黄晨靓",
         "undergraduate": 1,
         "official": 1
     },
     "1027": {
         "school": "湖州师范学院",
-        "name": "颁奖典礼到此结束: 孟佳文、池舟阳、叶泽支",
+        "name": "颁奖典礼到此结束",
+        "info": "孟佳文、池舟阳、叶泽支",
         "undergraduate": 1,
         "official": 1
     },
     "1028": {
         "school": "湖州师范学院",
-        "name": "这题，不A也罢: 董剑锋、谢宇成、温钦怡",
+        "name": "这题，不A也罢",
+        "info": "董剑锋、谢宇成、温钦怡",
         "undergraduate": 1,
         "official": 1
     },
     "1029": {
         "school": "湖州师范学院",
-        "name": "你提交的code还A不了: 李敏华、薛伟豪、刘江玲",
+        "name": "你提交的code还A不了",
+        "info": "李敏华、薛伟豪、刘江玲",
         "undergraduate": 1,
         "official": 1
     },
     "1030": {
         "school": "湖州师范学院求真学院",
-        "name": "风水学三坑: 夏怡灵、冯航迪、沈嘉路",
+        "name": "风水学三坑",
+        "info": "夏怡灵、冯航迪、沈嘉路",
         "undergraduate": 1,
         "official": 1
     },
     "1031": {
         "school": "湖州师范学院求真学院",
-        "name": "哔哩哔哩干杯: 陈亮、陈英旺、王怡祺",
+        "name": "哔哩哔哩干杯",
+        "info": "陈亮、陈英旺、王怡祺",
         "undergraduate": 1,
         "official": 1
     },
     "1032": {
         "school": "湖州师范学院求真学院",
-        "name": "钢蹦儿: 施佩佩、吕琳、杨佳涌",
+        "name": "钢蹦儿",
+        "info": "施佩佩、吕琳、杨佳涌",
         "undergraduate": 1,
         "official": 1
     },
     "1033": {
         "school": "湖州师范学院求真学院",
-        "name": "亮剑: 徐世杰、陈振毅、谢铁男",
+        "name": "亮剑",
+        "info": "徐世杰、陈振毅、谢铁男",
         "undergraduate": 1,
         "official": 1
     },
     "1034": {
         "school": "湖州师范学院求真学院",
-        "name": "一鸣队: 陈志远、陈泽、张立健",
+        "name": "一鸣队",
+        "info": "陈志远、陈泽、张立健",
         "undergraduate": 1,
         "official": 1
     },
     "1035": {
         "school": "嘉兴学院",
-        "name": "五号种子: 季兴隆、周逸、应耀鹏",
+        "name": "五号种子",
+        "info": "季兴隆、周逸、应耀鹏",
         "undergraduate": 1,
         "official": 1
     },
     "1036": {
         "school": "嘉兴学院",
-        "name": "名字很长就会有傻子跟着念: 陆星宇、方剑、王建峰",
+        "name": "名字很长就会有傻子跟着念",
+        "info": "陆星宇、方剑、王建峰",
         "undergraduate": 1,
         "official": 1
     },
     "1037": {
         "school": "嘉兴学院",
-        "name": "冲冲冲: 金强、李宁宁、李煜阳",
+        "name": "冲冲冲",
+        "info": "金强、李宁宁、李煜阳",
         "undergraduate": 1,
         "official": 1
     },
     "1038": {
         "school": "嘉兴学院",
-        "name": "自由生长: 林国印、李健、代晓涛",
+        "name": "自由生长",
+        "info": "林国印、李健、代晓涛",
         "undergraduate": 1,
         "official": 1
     },
     "1039": {
         "school": "嘉兴学院",
-        "name": "已连接: 金煜威、林伟谦、应东淼",
+        "name": "已连接",
+        "info": "金煜威、林伟谦、应东淼",
         "undergraduate": 1,
         "official": 1
     },
     "1040": {
         "school": "嘉兴学院南湖学院",
-        "name": "南湖学院一队: 周澳回、张振杰、章驰",
+        "name": "南湖学院一队",
+        "info": "周澳回、张振杰、章驰",
         "undergraduate": 1,
         "official": 1
     },
     "1041": {
         "school": "嘉兴学院南湖学院",
-        "name": "南湖学院二队: 尤天宇、王泽炯、王敏芝",
+        "name": "南湖学院二队",
+        "info": "尤天宇、王泽炯、王敏芝",
         "undergraduate": 1,
         "official": 1
     },
     "1042": {
         "school": "嘉兴学院南湖学院",
-        "name": "南湖学院三队: 郑燕燕、马乐茜、徐向戎",
+        "name": "南湖学院三队",
+        "info": "郑燕燕、马乐茜、徐向戎",
         "undergraduate": 1,
         "official": 1
     },
     "1043": {
         "school": "嘉兴学院南湖学院",
-        "name": "南湖学院四队: 王诗惠、沈宇翔、吴志康",
+        "name": "南湖学院四队",
+        "info": "王诗惠、沈宇翔、吴志康",
         "undergraduate": 1,
         "official": 1
     },
     "1044": {
         "school": "丽水学院",
-        "name": "丽水学院1队: 杜家辉、任燏、何奇鸿",
+        "name": "丽水学院1队",
+        "info": "杜家辉、任燏、何奇鸿",
         "undergraduate": 1,
         "official": 1
     },
     "1045": {
         "school": "丽水学院",
-        "name": "丽水学院2队: 邱宇航、张超、戚洋波 ",
+        "name": "丽水学院2队",
+        "info": "邱宇航、张超、戚洋波 ",
         "undergraduate": 1,
         "official": 1
     },
     "1046": {
         "school": "丽水学院",
-        "name": "丽水学院3队: 潘建宇、黄海忠、吴佳希",
+        "name": "丽水学院3队",
+        "info": "潘建宇、黄海忠、吴佳希",
         "undergraduate": 1,
         "official": 1
     },
     "1047": {
         "school": "宁波财经学院",
-        "name": "同学，炸金花吗？: 孟鑫、周浩、吕钜杰",
+        "name": "同学，炸金花吗？",
+        "info": "孟鑫、周浩、吕钜杰",
         "undergraduate": 1,
         "official": 1
     },
     "1048": {
         "school": "宁波财经学院",
-        "name": "破晓: 周余、付耀山、蒋金峰",
+        "name": "破晓",
+        "info": "周余、付耀山、蒋金峰",
         "undergraduate": 1,
         "official": 1
     },
     "1049": {
         "school": "宁波财经学院",
-        "name": "幸运星: 吴建豪、倪勋、贝佳乐",
+        "name": "幸运星",
+        "info": "吴建豪、倪勋、贝佳乐",
         "undergraduate": 1,
         "official": 1
     },
     "1050": {
         "school": "宁波财经学院",
-        "name": "混沌: 刘潇烔、黄金涛、李佩时",
+        "name": "混沌",
+        "info": "刘潇烔、黄金涛、李佩时",
         "undergraduate": 1,
         "official": 1
     },
     "1051": {
         "school": "宁波大学",
-        "name": "YZNB: 曾佳敏、余嘉瑜、俞智超",
+        "name": "YZNB",
+        "info": "曾佳敏、余嘉瑜、俞智超",
         "undergraduate": 1,
         "official": 1
     },
     "1052": {
         "school": "宁波大学",
-        "name": "NBU2: 陈耀、林陈健、张亮亮",
+        "name": "NBU2",
+        "info": "陈耀、林陈健、张亮亮",
         "undergraduate": 1,
         "official": 1
     },
     "1053": {
         "school": "宁波大学",
-        "name": "的喂队: 陈昊、章铭泽、吴涛",
+        "name": "的喂队",
+        "info": "陈昊、章铭泽、吴涛",
         "undergraduate": 1,
         "official": 1
     },
     "1054": {
         "school": "宁波大学",
-        "name": "这不是人均算法吗: 赵文泽、陈挺扬、陈宇杰",
+        "name": "这不是人均算法吗",
+        "info": "赵文泽、陈挺扬、陈宇杰",
         "undergraduate": 1,
         "official": 1
     },
     "1055": {
         "school": "宁波大学",
-        "name": "快乐的小马驹: 陈余杰、孔凌哲、金钟浩",
+        "name": "快乐的小马驹",
+        "info": "陈余杰、孔凌哲、金钟浩",
         "undergraduate": 1,
         "official": 1
     },
     "1056": {
         "school": "宁波大学",
-        "name": "技不如人，甘拜下风: 易士枫、张王成、潘道栈",
+        "name": "技不如人，甘拜下风",
+        "info": "易士枫、张王成、潘道栈",
         "undergraduate": 1,
         "official": 1
     },
     "1057": {
         "school": "宁波大学",
-        "name": "Over Glory: 徐浩楠、徐玮嘉、张思瀚",
+        "name": "Over Glory",
+        "info": "徐浩楠、徐玮嘉、张思瀚",
         "undergraduate": 1,
         "official": 1
     },
     "1058": {
         "school": "宁波大学",
-        "name": "神仙发量惊人: 夏海斌、徐哲、陈洲宁",
+        "name": "神仙发量惊人",
+        "info": "夏海斌、徐哲、陈洲宁",
         "undergraduate": 1,
         "official": 1
     },
     "1059": {
         "school": "宁波工程学院",
-        "name": "可持续化三线程: 郁鸣、赵金金、王伟臣",
+        "name": "可持续化三线程",
+        "info": "郁鸣、赵金金、王伟臣",
         "undergraduate": 1,
         "official": 1
     },
     "1060": {
         "school": "宁波工程学院",
-        "name": "粉红小海豹: 卢婉青、梁佳誉、马宇昊",
+        "name": "粉红小海豹",
+        "info": "卢婉青、梁佳誉、马宇昊",
         "undergraduate": 1,
         "official": 1
     },
     "1061": {
         "school": "宁波工程学院",
-        "name": "拯救大兵川建国: 田振楠、罗熙浩、周炜昊",
+        "name": "拯救大兵川建国",
+        "info": "田振楠、罗熙浩、周炜昊",
         "undergraduate": 1,
         "official": 1
     },
     "1062": {
         "school": "宁波工程学院",
-        "name": "滚筒洗衣机: 王信泽、陈与桢、张泽烨",
+        "name": "滚筒洗衣机",
+        "info": "王信泽、陈与桢、张泽烨",
         "undergraduate": 1,
         "official": 1
     },
     "1063": {
         "school": "宁波工程学院",
-        "name": "请以上队伍上台领奖: 叶鹏飞、忻彦凯、胡超然",
+        "name": "请以上队伍上台领奖",
+        "info": "叶鹏飞、忻彦凯、胡超然",
         "undergraduate": 1,
         "official": 1
     },
     "1064": {
         "school": "宁波工程学院",
-        "name": "zyy腿长1米8: 胡浩楠、倪泉乐、郑云跃",
+        "name": "zyy腿长1米8",
+        "info": "胡浩楠、倪泉乐、郑云跃",
         "undergraduate": 1,
         "official": 1
     },
     "1065": {
         "school": "宁波工程学院",
-        "name": "非要我过了你才信: 蔡万想、邹悦、周逸天",
+        "name": "非要我过了你才信",
+        "info": "蔡万想、邹悦、周逸天",
         "undergraduate": 1,
         "official": 1
     },
     "1066": {
         "school": "绍兴文理学院",
-        "name": "我想睡午觉: 周建伟、孙叶峰、江啸鹏",
+        "name": "我想睡午觉",
+        "info": "周建伟、孙叶峰、江啸鹏",
         "undergraduate": 1,
         "official": 1
     },
     "1067": {
         "school": "绍兴文理学院",
-        "name": "零壹: 董泽仪、张志伟、蔡亚旭",
+        "name": "零壹",
+        "info": "董泽仪、张志伟、蔡亚旭",
         "undergraduate": 1,
         "official": 1
     },
     "1068": {
         "school": "绍兴文理学院",
-        "name": "梦之蓝: 王旋赫、郭振泽、陈境杰",
+        "name": "梦之蓝",
+        "info": "王旋赫、郭振泽、陈境杰",
         "undergraduate": 1,
         "official": 1
     },
     "1069": {
         "school": "绍兴文理学院",
-        "name": "黑黑向前冲: 陈正飞、吴狄、汪浩洋",
+        "name": "黑黑向前冲",
+        "info": "陈正飞、吴狄、汪浩洋",
         "undergraduate": 1,
         "official": 1
     },
     "1070": {
         "school": "绍兴文理学院",
-        "name": "愿青龙指引你: 俞聪、潘亚敏、李燏阳",
+        "name": "愿青龙指引你",
+        "info": "俞聪、潘亚敏、李燏阳",
         "undergraduate": 1,
         "official": 1
     },
     "1071": {
         "school": "绍兴文理学院",
-        "name": "这个年纪你睡得着觉？: 李笑微、林怡炜、戴鑫淼",
+        "name": "这个年纪你睡得着觉？",
+        "info": "李笑微、林怡炜、戴鑫淼",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1072": {
         "school": "绍兴文理学院",
-        "name": "今天也没敲代码: 郭嘉睿、许骁旸、朱子晨",
+        "name": "今天也没敲代码",
+        "info": "郭嘉睿、许骁旸、朱子晨",
         "undergraduate": 1,
         "official": 1
     },
     "1073": {
         "school": "绍兴文理学院元培学院",
-        "name": "生而为人我很抱歉: 严挺、郑旭辉、张云",
+        "name": "生而为人我很抱歉",
+        "info": "严挺、郑旭辉、张云",
         "undergraduate": 1,
         "official": 1
     },
     "1074": {
         "school": "绍兴文理学院元培学院",
-        "name": "都快忘了怎样恋一个爱: 朱琦翔、郑俊侃、朱文凯",
+        "name": "都快忘了怎样恋一个爱",
+        "info": "朱琦翔、郑俊侃、朱文凯",
         "undergraduate": 1,
         "official": 1
     },
     "1075": {
         "school": "绍兴文理学院元培学院",
-        "name": "别抢我首wa: 谢若珍、彭祥龙、陈渲嶒",
+        "name": "别抢我首wa",
+        "info": "谢若珍、彭祥龙、陈渲嶒",
         "undergraduate": 1,
         "official": 1
     },
     "1076": {
         "school": "绍兴文理学院元培学院",
-        "name": "来碗螺蛳粉: 陈世钦、乐海文、孙质方",
+        "name": "来碗螺蛳粉",
+        "info": "陈世钦、乐海文、孙质方",
         "undergraduate": 1,
         "official": 1
     },
     "1077": {
         "school": "绍兴文理学院元培学院",
-        "name": "法学妹妹看看我: 王韬略、杨衡锐、金胜杰",
+        "name": "法学妹妹看看我",
+        "info": "王韬略、杨衡锐、金胜杰",
         "undergraduate": 1,
         "official": 1
     },
     "1078": {
         "school": "绍兴文理学院元培学院",
-        "name": "朕与兵: 郑为中、缪鑫雨、杨奕斌",
+        "name": "朕与兵",
+        "info": "郑为中、缪鑫雨、杨奕斌",
         "undergraduate": 1,
         "official": 1
     },
     "1079": {
         "school": "绍兴文理学院元培学院",
-        "name": "所以爱会消失对吗: 陈淮、孔禹锌、陈贤培",
+        "name": "所以爱会消失对吗",
+        "info": "陈淮、孔禹锌、陈贤培",
         "undergraduate": 1,
         "official": 1
     },
     "1080": {
         "school": "温州大学",
-        "name": "温大一队(西格玛队): 杨林韬、王世承、黄凤翔",
+        "name": "温大一队(西格玛队)",
+        "info": "杨林韬、王世承、黄凤翔",
         "undergraduate": 1,
         "official": 1
     },
     "1081": {
         "school": "温州大学",
-        "name": "温大二队: 程煜、朱林博、郑文尧",
+        "name": "温大二队",
+        "info": "程煜、朱林博、郑文尧",
         "undergraduate": 1,
         "official": 1
     },
     "1082": {
         "school": "温州大学",
-        "name": "温大三队(拒绝爆零): 吕银聪、林路聃、王国普",
+        "name": "温大三队(拒绝爆零)",
+        "info": "吕银聪、林路聃、王国普",
         "undergraduate": 1,
         "official": 1
     },
     "1083": {
         "school": "温州大学",
-        "name": "温大四队(三个水枪手): 吴达郅、吴圣琪、杨思俊",
+        "name": "温大四队(三个水枪手)",
+        "info": "吴达郅、吴圣琪、杨思俊",
         "undergraduate": 1,
         "official": 1
     },
     "1084": {
         "school": "温州大学",
-        "name": "温大五队(freefantasy): 李涵、严方俊、颜京鹏",
+        "name": "温大五队(freefantasy)",
+        "info": "李涵、严方俊、颜京鹏",
         "undergraduate": 1,
         "official": 1
     },
     "1085": {
         "school": "温州大学",
-        "name": "温大六队(Jackpot): 汤子涛、柳晨笑、沈健",
+        "name": "温大六队(Jackpot)",
+        "info": "汤子涛、柳晨笑、沈健",
         "undergraduate": 1,
         "official": 1
     },
     "1086": {
         "school": "台州学院",
-        "name": "没有异议: 王非凡、丁涵炜、张嘉铭",
+        "name": "没有异议",
+        "info": "王非凡、丁涵炜、张嘉铭",
         "undergraduate": 1,
         "official": 1
     },
     "1087": {
         "school": "台州学院",
-        "name": "C你太美: 俞佳诚、李豪杰、史开予",
+        "name": "C你太美",
+        "info": "俞佳诚、李豪杰、史开予",
         "undergraduate": 1,
         "official": 1
     },
     "1088": {
         "school": "台州学院",
-        "name": "道阻且长: 周文杰、吴博涛、赵奕骏",
+        "name": "道阻且长",
+        "info": "周文杰、吴博涛、赵奕骏",
         "undergraduate": 1,
         "official": 1
     },
     "1089": {
         "school": "台州学院",
-        "name": "来一碗AC: 曾欢、叶丹薇、徐秋雅",
+        "name": "来一碗AC",
+        "info": "曾欢、叶丹薇、徐秋雅",
         "undergraduate": 1,
         "official": 1
     },
     "1090": {
         "school": "台州学院",
-        "name": "嘤嘤没挂机: 谢华超、李起耀、王坤杰",
+        "name": "嘤嘤没挂机",
+        "info": "谢华超、李起耀、王坤杰",
         "undergraduate": 1,
         "official": 1
     },
     "1091": {
         "school": "台州学院",
-        "name": "吉祥三宝: 王利辉、莫绪运、毛宇杰",
+        "name": "吉祥三宝",
+        "info": "王利辉、莫绪运、毛宇杰",
         "undergraduate": 1,
         "official": 1
     },
     "1092": {
         "school": "台州学院",
-        "name": "这就很科学: 邵芸、方晨卓、陈禹良",
+        "name": "这就很科学",
+        "info": "邵芸、方晨卓、陈禹良",
         "undergraduate": 1,
         "official": 1
     },
     "1093": {
         "school": "台州学院",
-        "name": "菜鸟们: 倪中荷、陈晓燕、马凯雯",
+        "name": "菜鸟们",
+        "info": "倪中荷、陈晓燕、马凯雯",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1094": {
         "school": "衢州学院",
-        "name": "吃了花椒和邻居: 曾梦岳、王镇宇、鲍王阁",
+        "name": "吃了花椒和邻居",
+        "info": "曾梦岳、王镇宇、鲍王阁",
         "undergraduate": 1,
         "official": 1
     },
     "1095": {
         "school": "衢州学院",
-        "name": "我垫底你走先: 佘盛波、宋思源、王俊凯",
+        "name": "我垫底你走先",
+        "info": "佘盛波、宋思源、王俊凯",
         "undergraduate": 1,
         "official": 1
     },
     "1096": {
         "school": "同济大学浙江学院",
-        "name": "全体起立队: 韦博涵、郑敏洁、夏雨佳",
+        "name": "全体起立队",
+        "info": "韦博涵、郑敏洁、夏雨佳",
         "undergraduate": 1,
         "official": 1
     },
     "1097": {
         "school": "同济大学浙江学院",
-        "name": "为什么写不队: 张弛、李泽昂、王宇兴",
+        "name": "为什么写不队",
+        "info": "张弛、李泽昂、王宇兴",
         "undergraduate": 1,
         "official": 1
     },
     "1098": {
         "school": "同济大学浙江学院",
-        "name": "天天向上: 胡诗杰、马希赫、王帅鹏",
+        "name": "天天向上",
+        "info": "胡诗杰、马希赫、王帅鹏",
         "undergraduate": 1,
         "official": 1
     },
     "1099": {
         "school": "同济大学浙江学院",
-        "name": "少年冲冲冲: 洪哲铭、章陆斌、卢钇丞",
+        "name": "少年冲冲冲",
+        "info": "洪哲铭、章陆斌、卢钇丞",
         "undergraduate": 1,
         "official": 1
     },
     "1100": {
         "school": "温州大学瓯江学院",
-        "name": "13题你能秒我？13题你能秒杀我？: 钟伟勇、涂成博、王湘泽",
+        "name": "13题你能秒我？13题你能秒杀我？",
+        "info": "钟伟勇、涂成博、王湘泽",
         "undergraduate": 1,
         "official": 1
     },
     "1101": {
         "school": "温州大学瓯江学院",
-        "name": "汝今十三题予秒，臣即以屏食: 吴时鹏、盛泽锋、李培浩",
+        "name": "汝今十三题予秒，臣即以屏食",
+        "info": "吴时鹏、盛泽锋、李培浩",
         "undergraduate": 1,
         "official": 1
     },
     "1102": {
         "school": "温州大学瓯江学院",
-        "name": "Bug终结者: 林晴川、俞家烨、刘锦乐",
+        "name": "Bug终结者",
+        "info": "林晴川、俞家烨、刘锦乐",
         "undergraduate": 1,
         "official": 1
     },
     "1103": {
         "school": "温州大学瓯江学院",
-        "name": "一二零一: 朱郡洲、崔栋凯、陈仕炫",
+        "name": "一二零一",
+        "info": "朱郡洲、崔栋凯、陈仕炫",
         "undergraduate": 1,
         "official": 1
     },
     "1104": {
         "school": "浙大城市学院",
-        "name": "童话术士: 庄博伟、苗皓淇、孙华阳",
+        "name": "童话术士",
+        "info": "庄博伟、苗皓淇、孙华阳",
         "undergraduate": 1,
         "official": 1
     },
     "1105": {
         "school": "浙大城市学院",
-        "name": "sqrt(225)/ff: 邓皓文、吕博图、童鑫聪",
+        "name": "sqrt(225)/ff",
+        "info": "邓皓文、吕博图、童鑫聪",
         "undergraduate": 1,
         "official": 1
     },
     "1106": {
         "school": "浙大城市学院",
-        "name": "滴滴滴: 李晓菁、安俊梦、李正辉",
+        "name": "滴滴滴",
+        "info": "李晓菁、安俊梦、李正辉",
         "undergraduate": 1,
         "official": 1
     },
     "1107": {
         "school": "浙大城市学院",
-        "name": "三个混子不想打铁: 黄宇航、何伟煊、郑瑞焓",
+        "name": "三个混子不想打铁",
+        "info": "黄宇航、何伟煊、郑瑞焓",
         "undergraduate": 1,
         "official": 1
     },
     "1108": {
         "school": "浙大城市学院",
-        "name": "100iq+100iq+100iq: 颜智瑶、章立晨、何勇杰",
+        "name": "100iq+100iq+100iq",
+        "info": "颜智瑶、章立晨、何勇杰",
         "undergraduate": 1,
         "official": 1
     },
     "1109": {
         "school": "浙大城市学院",
-        "name": "AC自动机研发小组: 田会文、吴涛、蒋净洋",
+        "name": "AC自动机研发小组",
+        "info": "田会文、吴涛、蒋净洋",
         "undergraduate": 1,
         "official": 1
     },
     "1110": {
         "school": "浙大城市学院",
-        "name": "就想过壹题: 赵宇阳、余岱蔚、何品翰",
+        "name": "就想过壹题",
+        "info": "赵宇阳、余岱蔚、何品翰",
         "undergraduate": 1,
         "official": 1
     },
     "1111": {
         "school": "浙大城市学院",
-        "name": "让我来朵蜜你: 金方永、徐浩达、潘言",
+        "name": "让我来朵蜜你",
+        "info": "金方永、徐浩达、潘言",
         "undergraduate": 1,
         "official": 1
     },
     "1112": {
         "school": "浙大城市学院",
-        "name": "今天又是没有意向书的一天: 周佳辉、王文海、陶汀",
+        "name": "今天又是没有意向书的一天",
+        "info": "周佳辉、王文海、陶汀",
         "undergraduate": 1,
         "official": 1
     },
     "1113": {
         "school": "浙江财经大学",
-        "name": "天光: 吕效华、周崇凯、徐心如",
+        "name": "天光",
+        "info": "吕效华、周崇凯、徐心如",
         "undergraduate": 1,
         "official": 1
     },
     "1114": {
         "school": "浙江财经大学",
-        "name": "渣男天团: 周人豪、刘洁英、童沈阳",
+        "name": "渣男天团",
+        "info": "周人豪、刘洁英、童沈阳",
         "undergraduate": 1,
         "official": 1
     },
     "1115": {
         "school": "浙江财经大学",
-        "name": "暮光: 丁一凡、徐俊楠、朱智凯",
+        "name": "暮光",
+        "info": "丁一凡、徐俊楠、朱智凯",
         "undergraduate": 1,
         "official": 1
     },
     "1116": {
         "school": "浙江财经大学",
-        "name": "虹光: 王靖淇、陈自然、陈嘉俊",
+        "name": "虹光",
+        "info": "王靖淇、陈自然、陈嘉俊",
         "undergraduate": 1,
         "official": 1
     },
     "1117": {
         "school": "浙江财经大学",
-        "name": "日出入安穷: 池润拓、朱芳菲、吴祥龙",
+        "name": "日出入安穷",
+        "info": "池润拓、朱芳菲、吴祥龙",
         "undergraduate": 1,
         "official": 1
     },
     "1118": {
         "school": "浙江财经大学",
-        "name": "阳光辰露: 赵露、王易阳、仇博辰",
+        "name": "阳光辰露",
+        "info": "赵露、王易阳、仇博辰",
         "undergraduate": 1,
         "official": 1
     },
     "1119": {
         "school": "浙江财经大学",
-        "name": "發財\t: 徐山钧、万子豪、章鑫鹏",
+        "name": "發財\t",
+        "info": "徐山钧、万子豪、章鑫鹏",
         "undergraduate": 1,
         "official": 1
     },
     "1120": {
         "school": "浙江财经大学",
-        "name": "我觉得你说的很队: 庄晨丹、汪凯炜、吴青玲",
+        "name": "我觉得你说的很队",
+        "info": "庄晨丹、汪凯炜、吴青玲",
         "undergraduate": 1,
         "official": 1
     },
     "1121": {
         "school": "浙江财经大学",
-        "name": "尽力而为\t: 刘杰、陈蒙蒙、叶善洪",
+        "name": "尽力而为\t",
+        "info": "刘杰、陈蒙蒙、叶善洪",
         "undergraduate": 1,
         "official": 1
     },
     "1122": {
         "school": "浙江财经大学东方学院",
-        "name": "傻瓜才被动: 项鹏程、翁宇凯、董恒哲",
+        "name": "傻瓜才被动",
+        "info": "项鹏程、翁宇凯、董恒哲",
         "undergraduate": 1,
         "official": 1
     },
     "1123": {
         "school": "浙江财经大学东方学院",
-        "name": "这谁顶得住: 王锦涛、林凯伦、陈嘉良",
+        "name": "这谁顶得住",
+        "info": "王锦涛、林凯伦、陈嘉良",
         "undergraduate": 1,
         "official": 1
     },
     "1124": {
         "school": "浙江传媒学院",
-        "name": "无边: 金一帆、刘逸雄、应勇",
+        "name": "无边",
+        "info": "金一帆、刘逸雄、应勇",
         "undergraduate": 1,
         "official": 1
     },
     "1125": {
         "school": "浙江传媒学院",
-        "name": "铁道游击队: 陈圳涛、刘付鹏、褚庆豪",
+        "name": "铁道游击队",
+        "info": "陈圳涛、刘付鹏、褚庆豪",
         "undergraduate": 1,
         "official": 1
     },
     "1126": {
         "school": "浙江传媒学院",
-        "name": "火锅队: 刘润璞、吴佳浚、张玲丽",
+        "name": "火锅队",
+        "info": "刘润璞、吴佳浚、张玲丽",
         "undergraduate": 1,
         "official": 1
     },
     "1127": {
         "school": "浙江传媒学院",
-        "name": "越努力越幸运: 李函笑、李园清、邓凯华",
+        "name": "越努力越幸运",
+        "info": "李函笑、李园清、邓凯华",
         "undergraduate": 1,
         "official": 1
     },
     "1128": {
         "school": "浙江传媒学院",
-        "name": "听说菜鸟和ACM更配噢: 胡若冰、符慧颖、邓颖杰",
+        "name": "听说菜鸟和ACM更配噢",
+        "info": "胡若冰、符慧颖、邓颖杰",
         "undergraduate": 1,
         "official": 1
     },
     "1129": {
         "school": "浙江大学",
-        "name": "solitary dream: 于倚岑、褚写庭、彭博",
+        "name": "solitary dream",
+        "info": "于倚岑、褚写庭、彭博",
         "undergraduate": 1,
         "official": 1
     },
     "1130": {
         "school": "浙江大学",
-        "name": "Phantom Ensemble: 唐嘉辰、黎伟诺、李昌栋",
+        "name": "Phantom Ensemble",
+        "info": "唐嘉辰、黎伟诺、李昌栋",
         "undergraduate": 1,
         "official": 1
     },
     "1131": {
         "school": "浙江大学",
-        "name": "guofuqian50: 周屹赫、赵广泽、陈彦博",
+        "name": "guofuqian50",
+        "info": "周屹赫、赵广泽、陈彦博",
         "undergraduate": 1,
         "official": 1
     },
     "1132": {
         "school": "浙江大学",
-        "name": "Gensokyo: 刘静明、杨沛霖、章钧豪",
+        "name": "Gensokyo",
+        "info": "刘静明、杨沛霖、章钧豪",
         "undergraduate": 1,
         "official": 1
     },
     "1133": {
         "school": "浙江大学",
-        "name": "subconscious: 李彦奎、潘恩皓、陈思睿",
+        "name": "subconscious",
+        "info": "李彦奎、潘恩皓、陈思睿",
         "undergraduate": 1,
         "official": 1,
         "unofficial": 1
     },
     "1134": {
         "school": "浙江大学",
-        "name": "Refrain: 卢旻昊、褚朱钇恒、冯骁",
+        "name": "Refrain",
+        "info": "卢旻昊、褚朱钇恒、冯骁",
         "undergraduate": 1,
         "official": 1
     },
     "1135": {
         "school": "浙江大学",
-        "name": "CraZyMoon: 陈威志、张静圳、穆梓楠",
+        "name": "CraZyMoon",
+        "info": "陈威志、张静圳、穆梓楠",
         "undergraduate": 1,
         "official": 1
     },
     "1136": {
         "school": "浙江大学",
-        "name": "Lingard: 詹哲远、陈逸、黄文翀",
+        "name": "Lingard",
+        "info": "詹哲远、陈逸、黄文翀",
         "undergraduate": 1,
         "official": 1
     },
     "1137": {
         "school": "浙江大学",
-        "name": "unknown: 龙香遇、凌子恒、樊睿",
+        "name": "unknown",
+        "info": "龙香遇、凌子恒、樊睿",
         "undergraduate": 1,
         "official": 1
     },
     "1138": {
         "school": "浙江农林大学暨阳学院",
-        "name": "无所谓: 朱石磊、王嘉伟、林朝帅",
+        "name": "无所谓",
+        "info": "朱石磊、王嘉伟、林朝帅",
         "undergraduate": 1,
         "official": 1
     },
     "1139": {
         "school": "浙江农林大学暨阳学院",
-        "name": "网抑云: 郑恒意、金俊杰、陶俊豪",
+        "name": "网抑云",
+        "info": "郑恒意、金俊杰、陶俊豪",
         "undergraduate": 1,
         "official": 1
     },
     "1140": {
         "school": "浙江农林大学暨阳学院",
-        "name": "ooo战队: 高飞鹏、郑斌、王宇",
+        "name": "ooo战队",
+        "info": "高飞鹏、郑斌、王宇",
         "undergraduate": 1,
         "official": 1
     },
     "1141": {
         "school": "浙大宁波理工学院",
-        "name": "庞然琐事: 张逸凡、潘肖磊、张秋阳",
+        "name": "庞然琐事",
+        "info": "张逸凡、潘肖磊、张秋阳",
         "undergraduate": 1,
         "official": 1
     },
     "1142": {
         "school": "浙大宁波理工学院",
-        "name": "这里地方太小写不下: 徐航、林旭强、叶泰赫",
+        "name": "这里地方太小写不下",
+        "info": "徐航、林旭强、叶泰赫",
         "undergraduate": 1,
         "official": 1
     },
     "1143": {
         "school": "浙大宁波理工学院",
-        "name": "执笔人: 潘帆、陈彦豪、朱备建",
+        "name": "执笔人",
+        "info": "潘帆、陈彦豪、朱备建",
         "undergraduate": 1,
         "official": 1
     },
     "1144": {
         "school": "浙大宁波理工学院",
-        "name": "我很高贵，wa没机会: 罗吟吟、林晶晶、马宗荣",
+        "name": "我很高贵，wa没机会",
+        "info": "罗吟吟、林晶晶、马宗荣",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1145": {
         "school": "浙大宁波理工学院",
-        "name": "灯火辛勤: 吴亦初、余建赛、刘东昕",
+        "name": "灯火辛勤",
+        "info": "吴亦初、余建赛、刘东昕",
         "undergraduate": 1,
         "official": 1
     },
     "1146": {
         "school": "浙大宁波理工学院",
-        "name": "运气王拿外卖: 翁茹芸、沈佳力、张昊闻",
+        "name": "运气王拿外卖",
+        "info": "翁茹芸、沈佳力、张昊闻",
         "undergraduate": 1,
         "official": 1
     },
     "1147": {
         "school": "浙大宁波理工学院",
-        "name": "拿牌队长请客喝奶茶: 罗执洲、缪京晏、刘洋",
+        "name": "拿牌队长请客喝奶茶",
+        "info": "罗执洲、缪京晏、刘洋",
         "undergraduate": 1,
         "official": 1
     },
     "1148": {
         "school": "浙大宁波理工学院",
-        "name": "接天纵连无穷碧 映日双蛇别样红: 周子曰、黎旭裕、汪昊泽",
+        "name": "接天纵连无穷碧 映日双蛇别样红",
+        "info": "周子曰、黎旭裕、汪昊泽",
         "undergraduate": 1,
         "official": 1
     },
     "1149": {
         "school": "浙大宁波理工学院",
-        "name": "您开心就好: 王麒笙、陈炯烈、谢宇翔",
+        "name": "您开心就好",
+        "info": "王麒笙、陈炯烈、谢宇翔",
         "undergraduate": 1,
         "official": 1
     },
     "1150": {
         "school": "浙江工商大学",
-        "name": "RedocDog: 周琨翔、朱苇炜、吴骏达",
+        "name": "RedocDog",
+        "info": "周琨翔、朱苇炜、吴骏达",
         "undergraduate": 1,
         "official": 1
     },
     "1151": {
         "school": "浙江工商大学",
-        "name": "粉红毛毛兔: 冯则涛、杨柳、李道爽",
+        "name": "粉红毛毛兔",
+        "info": "冯则涛、杨柳、李道爽",
         "undergraduate": 1,
         "official": 1
     },
     "1152": {
         "school": "浙江工商大学",
-        "name": "生不出牌，我很抱歉: 许嘉俊、王铭阳、陈侠",
+        "name": "生不出牌，我很抱歉",
+        "info": "许嘉俊、王铭阳、陈侠",
         "undergraduate": 1,
         "official": 1
     },
     "1153": {
         "school": "浙江工商大学",
-        "name": "铁树开花: 吴威亨、戴超群、吴柯磊",
+        "name": "铁树开花",
+        "info": "吴威亨、戴超群、吴柯磊",
         "undergraduate": 1,
         "official": 1
     },
     "1154": {
         "school": "浙江工商大学",
-        "name": "T1382: 黄毓儒、傅嘉豪、连佳洲",
+        "name": "T1382",
+        "info": "黄毓儒、傅嘉豪、连佳洲",
         "undergraduate": 1,
         "official": 1
     },
     "1155": {
         "school": "浙江工商大学",
-        "name": "哥斯拉面: 杨恩泽、陈旭东、王哲楠",
+        "name": "哥斯拉面",
+        "info": "杨恩泽、陈旭东、王哲楠",
         "undergraduate": 1,
         "official": 1
     },
     "1156": {
         "school": "浙江工商大学",
-        "name": "能力突出: 胡柯青、王龙、林斌武",
+        "name": "能力突出",
+        "info": "胡柯青、王龙、林斌武",
         "undergraduate": 1,
         "official": 1
     },
     "1157": {
         "school": "浙江工商大学",
-        "name": " 少壮不努力，老年观光团 : 缪佩翰、沈彤、徐悦皓",
+        "name": " 少壮不努力，老年观光团 ",
+        "info": "缪佩翰、沈彤、徐悦皓",
         "undergraduate": 1,
         "official": 1
     },
     "1158": {
         "school": "浙江工商大学杭州商学院",
-        "name": "带投大哥: 王威龙、邵泽晨、陈前臻",
+        "name": "带投大哥",
+        "info": "王威龙、邵泽晨、陈前臻",
         "undergraduate": 1,
         "official": 1
     },
     "1159": {
         "school": "浙江工商大学杭州商学院",
-        "name": "随便做都队: 黄晔莹、丁叶贝、陈婕",
+        "name": "随便做都队",
+        "info": "黄晔莹、丁叶贝、陈婕",
         "undergraduate": 1,
         "official": 1
     },
     "1160": {
         "school": "浙江工商大学杭州商学院",
-        "name": "全都做队: 俞谢泽、董琳燕、苏晓光",
+        "name": "全都做队",
+        "info": "俞谢泽、董琳燕、苏晓光",
         "undergraduate": 1,
         "official": 1
     },
     "1161": {
         "school": "浙江工商大学杭州商学院",
-        "name": "速必得: 杨涵予、丁寅、金圣旻",
+        "name": "速必得",
+        "info": "杨涵予、丁寅、金圣旻",
         "undergraduate": 1,
         "official": 1
     },
     "1162": {
         "school": "浙江工业大学之江学院",
-        "name": "别扒拉我: 季俊乐、徐佳聪、毛泽峰",
+        "name": "别扒拉我",
+        "info": "季俊乐、徐佳聪、毛泽峰",
         "undergraduate": 1,
         "official": 1
     },
     "1163": {
         "school": "浙江工业大学之江学院",
-        "name": "毒药: 王涛、程康涵、王奕浩",
+        "name": "毒药",
+        "info": "王涛、程康涵、王奕浩",
         "undergraduate": 1,
         "official": 1
     },
     "1164": {
         "school": "浙江工业大学之江学院",
-        "name": "代码有毒: 梁江斌、柯宏斌、费梦莹",
+        "name": "代码有毒",
+        "info": "梁江斌、柯宏斌、费梦莹",
         "undergraduate": 1,
         "official": 1
     },
     "1165": {
         "school": "浙江工业大学之江学院",
-        "name": "嗷嗷: 葛灿、林雯雯、杨馨悦",
+        "name": "嗷嗷",
+        "info": "葛灿、林雯雯、杨馨悦",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1166": {
         "school": "浙江工业大学之江学院",
-        "name": "专业打铁: 邱杭祺、杨歌、徐敏彰",
+        "name": "专业打铁",
+        "info": "邱杭祺、杨歌、徐敏彰",
         "undergraduate": 1,
         "official": 1
     },
     "1167": {
         "school": "浙江工业大学",
-        "name": "数论强队: 郑卓男、温圳、王锦鸿",
+        "name": "数论强队",
+        "info": "郑卓男、温圳、王锦鸿",
         "undergraduate": 1,
         "official": 1
     },
     "1168": {
         "school": "浙江工业大学",
-        "name": "长久以来积累的东西都是有意义的: 侯潇扬、李泽昊、徐浩凯",
+        "name": "长久以来积累的东西都是有意义的",
+        "info": "侯潇扬、李泽昊、徐浩凯",
         "undergraduate": 1,
         "official": 1
     },
     "1169": {
         "school": "浙江工业大学",
-        "name": "潮鸣: 莫清宇、杨俊尧、董烨",
+        "name": "潮鸣",
+        "info": "莫清宇、杨俊尧、董烨",
         "undergraduate": 1,
         "official": 1
     },
     "1170": {
         "school": "浙江工业大学",
-        "name": "ZJUT3: 方泽雨、杨存远、陈志强",
+        "name": "ZJUT3",
+        "info": "方泽雨、杨存远、陈志强",
         "undergraduate": 1,
         "official": 1
     },
     "1171": {
         "school": "浙江工业大学",
-        "name": "ZJUT4: 叶璇、石煌宽、黄嘉宜",
+        "name": "ZJUT4",
+        "info": "叶璇、石煌宽、黄嘉宜",
         "undergraduate": 1,
         "official": 1
     },
     "1172": {
         "school": "浙江工业大学",
-        "name": "ZJUT5: 徐伟峰、汤启喆、王雪龙",
+        "name": "ZJUT5",
+        "info": "徐伟峰、汤启喆、王雪龙",
         "undergraduate": 1,
         "official": 1
     },
     "1173": {
         "school": "浙江工业大学",
-        "name": "耶梦加得: 戚梦赞、张祎龙、周阳",
+        "name": "耶梦加得",
+        "info": "戚梦赞、张祎龙、周阳",
         "undergraduate": 1,
         "official": 1
     },
     "1174": {
         "school": "浙江工业大学",
-        "name": "ZJUT11: 张宇翔、李亚伦、陈洁怡",
+        "name": "ZJUT11",
+        "info": "张宇翔、李亚伦、陈洁怡",
         "undergraduate": 1,
         "official": 1
     },
     "1175": {
         "school": "浙江工业大学",
-        "name": "吉祥物的自我修养: 符蓝天、张璇、陈悦",
+        "name": "吉祥物的自我修养",
+        "info": "符蓝天、张璇、陈悦",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1176": {
         "school": "浙江海洋大学",
-        "name": "没想到吧，我叕回来了: 余一洲、方恬甜、庄庭友",
+        "name": "没想到吧，我叕回来了",
+        "info": "余一洲、方恬甜、庄庭友",
         "undergraduate": 1,
         "official": 1
     },
     "1177": {
         "school": "浙江海洋大学",
-        "name": "今年考研必搞定: 任宏伟、叶家俊、陈健",
+        "name": "今年考研必搞定",
+        "info": "任宏伟、叶家俊、陈健",
         "undergraduate": 1,
         "official": 1
     },
     "1178": {
         "school": "浙江海洋大学",
-        "name": "三人成伍: 李博仁、童建伟、陈孔溢",
+        "name": "三人成伍",
+        "info": "李博仁、童建伟、陈孔溢",
         "undergraduate": 1,
         "official": 1
     },
     "1179": {
         "school": "浙江海洋大学",
-        "name": "队伍中文名: 林庆旺、顾展滔、周杰",
+        "name": "队伍中文名",
+        "info": "林庆旺、顾展滔、周杰",
         "undergraduate": 1,
         "official": 1
     },
     "1180": {
         "school": "浙江海洋大学",
-        "name": "阿巴阿巴阿巴: 陈盛款、戴光泽、方志鸿",
+        "name": "阿巴阿巴阿巴",
+        "info": "陈盛款、戴光泽、方志鸿",
         "undergraduate": 1,
         "official": 1
     },
     "1181": {
         "school": "浙江万里学院",
-        "name": "草莓酱: 杨霄汉、张李彬、励泽栋",
+        "name": "草莓酱",
+        "info": "杨霄汉、张李彬、励泽栋",
         "undergraduate": 1,
         "official": 1
     },
     "1182": {
         "school": "浙江万里学院",
-        "name": "紫禁城在逃八阿哥: 陈斌格、王佳杰、叶泰胜",
+        "name": "紫禁城在逃八阿哥",
+        "info": "陈斌格、王佳杰、叶泰胜",
         "undergraduate": 1,
         "official": 1
     },
     "1183": {
         "school": "浙江万里学院",
-        "name": "迪士尼在逃程序媛: 朱梦涵、李妍薇、南柳茹",
+        "name": "迪士尼在逃程序媛",
+        "info": "朱梦涵、李妍薇、南柳茹",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1184": {
         "school": "浙江万里学院",
-        "name": "下次一定: 王剑、倪珂、沈文绒",
+        "name": "下次一定",
+        "info": "王剑、倪珂、沈文绒",
         "undergraduate": 1,
         "official": 1
     },
     "1185": {
         "school": "浙江万里学院",
-        "name": "蓝湖: 刘正永、祝震昊、汪洋",
+        "name": "蓝湖",
+        "info": "刘正永、祝震昊、汪洋",
         "undergraduate": 1,
         "official": 1
     },
     "1186": {
         "school": "浙江万里学院",
-        "name": "左手伏特加右手波波沙: 郭义杰、陈星伟、陈明灿",
+        "name": "左手伏特加右手波波沙",
+        "info": "郭义杰、陈星伟、陈明灿",
         "undergraduate": 1,
         "official": 1
     },
     "1187": {
         "school": "浙江科技学院",
-        "name": "猪皮恶霸: 龙旭、林国建、沈序戎",
+        "name": "猪皮恶霸",
+        "info": "龙旭、林国建、沈序戎",
         "undergraduate": 1,
         "official": 1
     },
     "1188": {
         "school": "浙江科技学院",
-        "name": "这次一定: 尹栋豪、陆江涛、孙寅",
+        "name": "这次一定",
+        "info": "尹栋豪、陆江涛、孙寅",
         "undergraduate": 1,
         "official": 1
     },
     "1189": {
         "school": "浙江科技学院",
-        "name": "演完就跑: 岳金锋、王勤涛、蔡炳旭",
+        "name": "演完就跑",
+        "info": "岳金锋、王勤涛、蔡炳旭",
         "undergraduate": 1,
         "official": 1
     },
     "1190": {
         "school": "浙江科技学院",
-        "name": "无题: 徐晨昕、袁佳菲、张叶",
+        "name": "无题",
+        "info": "徐晨昕、袁佳菲、张叶",
         "undergraduate": 1,
         "official": 1
     },
     "1191": {
         "school": "浙江科技学院",
-        "name": "刚才发生了什么: 李世宇、陈圣超、林育森",
+        "name": "刚才发生了什么",
+        "info": "李世宇、陈圣超、林育森",
         "undergraduate": 1,
         "official": 1
     },
     "1192": {
         "school": "浙江科技学院",
-        "name": "高考出题组: 全景涛、周一魏、余将虎",
+        "name": "高考出题组",
+        "info": "全景涛、周一魏、余将虎",
         "undergraduate": 1,
         "official": 1
     },
     "1193": {
         "school": "浙江科技学院",
-        "name": "一朵小红花: 沈嘉鸣、忻建东、余德会",
+        "name": "一朵小红花",
+        "info": "沈嘉鸣、忻建东、余德会",
         "undergraduate": 1,
         "official": 1
     },
     "1194": {
         "school": "浙江科技学院",
-        "name": "一代鸽王: 虞浩然、朱俊辉、杨昊",
+        "name": "一代鸽王",
+        "info": "虞浩然、朱俊辉、杨昊",
         "undergraduate": 1,
         "official": 1
     },
     "1195": {
         "school": "浙江理工大学",
-        "name": "想不出名字: 曹安达、金宇星、张满为",
+        "name": "想不出名字",
+        "info": "曹安达、金宇星、张满为",
         "undergraduate": 1,
         "official": 1
     },
     "1196": {
         "school": "浙江理工大学",
-        "name": "你好骚啊: 蔡乐圆、林苗镔、汤丰玮",
+        "name": "你好骚啊",
+        "info": "蔡乐圆、林苗镔、汤丰玮",
         "undergraduate": 1,
         "official": 1
     },
     "1197": {
         "school": "浙江理工大学",
-        "name": "咕咕自动稽: 周博文、王建成、王宣凯",
+        "name": "咕咕自动稽",
+        "info": "周博文、王建成、王宣凯",
         "undergraduate": 1,
         "official": 1
     },
     "1198": {
         "school": "浙江理工大学",
-        "name": "奶茶茶: 李佳珂、储炳焘、杨陈真",
+        "name": "奶茶茶",
+        "info": "李佳珂、储炳焘、杨陈真",
         "undergraduate": 1,
         "official": 1
     },
     "1199": {
         "school": "浙江理工大学",
-        "name": "三相之力: 虞青松、潘智慧、李成杯",
+        "name": "三相之力",
+        "info": "虞青松、潘智慧、李成杯",
         "undergraduate": 1,
         "official": 1
     },
     "1200": {
         "school": "浙江理工大学",
-        "name": "又双叒叕AC了: 叶俊杰、吴洋、楼康乐",
+        "name": "又双叒叕AC了",
+        "info": "叶俊杰、吴洋、楼康乐",
         "undergraduate": 1,
         "official": 1
     },
     "1201": {
         "school": "浙江理工大学",
-        "name": "我先放一盒卫生纸在这: 胡成一、何光赋、金奇",
+        "name": "我先放一盒卫生纸在这",
+        "info": "胡成一、何光赋、金奇",
         "undergraduate": 1,
         "official": 1
     },
     "1202": {
         "school": "浙江理工大学",
-        "name": "求求你别WA了: 颜才博、刘旺、岳金鸿",
+        "name": "求求你别WA了",
+        "info": "颜才博、刘旺、岳金鸿",
         "undergraduate": 1,
         "official": 1
     },
     "1203": {
         "school": "浙江理工大学",
-        "name": "走A旅行家: 宁宇浩、魏嘉豪、杨子俊",
+        "name": "走A旅行家",
+        "info": "宁宇浩、魏嘉豪、杨子俊",
         "undergraduate": 1,
         "official": 1
     },
     "1204": {
         "school": "浙江理工大学科技与艺术学院",
-        "name": "理工科艺一队: 邱仕洪、贾泽楷、刘健伟",
+        "name": "理工科艺一队",
+        "info": "邱仕洪、贾泽楷、刘健伟",
         "undergraduate": 1,
         "official": 1
     },
     "1205": {
         "school": "浙江理工大学科技与艺术学院",
-        "name": "理工科艺二队: 许倩倩、谭安东、何智恒",
+        "name": "理工科艺二队",
+        "info": "许倩倩、谭安东、何智恒",
         "undergraduate": 1,
         "official": 1
     },
     "1206": {
         "school": "浙江理工大学科技与艺术学院",
-        "name": "理工科艺三队: 吴志竣、徐婕、张艺扬",
+        "name": "理工科艺三队",
+        "info": "吴志竣、徐婕、张艺扬",
         "undergraduate": 1,
         "official": 1
     },
     "1207": {
         "school": "浙江理工大学科技与艺术学院",
-        "name": "理工科艺四队: 李文欣、殷炜、王志远",
+        "name": "理工科艺四队",
+        "info": "李文欣、殷炜、王志远",
         "undergraduate": 1,
         "official": 1
     },
     "1208": {
         "school": "浙江农林大学",
-        "name": "我太难了2.0: 张烨浩、薛卫东、陈志伟",
+        "name": "我太难了2.0",
+        "info": "张烨浩、薛卫东、陈志伟",
         "undergraduate": 1,
         "official": 1
     },
     "1209": {
         "school": "浙江农林大学",
-        "name": "AC不如跳舞: 戴振龙 、盛洪涛、韩文康",
+        "name": "AC不如跳舞",
+        "info": "戴振龙 、盛洪涛、韩文康",
         "undergraduate": 1,
         "official": 1
     },
     "1210": {
         "school": "浙江农林大学",
-        "name": "哭有什么用呢: 戴雨欣、邵晨恒、陈浩",
+        "name": "哭有什么用呢",
+        "info": "戴雨欣、邵晨恒、陈浩",
         "undergraduate": 1,
         "official": 1
     },
     "1211": {
         "school": "浙江农林大学",
-        "name": "zafuccc: 胡红宇、朱泽华、陈城",
+        "name": "zafuccc",
+        "info": "胡红宇、朱泽华、陈城",
         "undergraduate": 1,
         "official": 1
     },
     "1212": {
         "school": "浙江农林大学",
-        "name": "A不出题，我很抱歉: 王子超、黄磊、顾博盛",
+        "name": "A不出题，我很抱歉",
+        "info": "王子超、黄磊、顾博盛",
         "undergraduate": 1,
         "official": 1
     },
     "1213": {
         "school": "浙江农林大学",
-        "name": "123木头人: 陈冉杨、葛霞霞、陈允魁",
+        "name": "123木头人",
+        "info": "陈冉杨、葛霞霞、陈允魁",
         "undergraduate": 1,
         "official": 1
     },
     "1214": {
         "school": "浙江农林大学",
-        "name": "二战408: 叶瑞涛、邓杰、顾泽铭",
+        "name": "二战408",
+        "info": "叶瑞涛、邓杰、顾泽铭",
         "undergraduate": 1,
         "official": 1
     },
     "1215": {
         "school": "浙江农林大学",
-        "name": "讨论组: 孟炜浩、张凌赫、周帆杰 ",
+        "name": "讨论组",
+        "info": "孟炜浩、张凌赫、周帆杰 ",
         "undergraduate": 1,
         "official": 1
     },
     "1216": {
         "school": "浙江农林大学",
-        "name": "活人: 曾唯策、陈重喜、任松涛",
+        "name": "活人",
+        "info": "曾唯策、陈重喜、任松涛",
         "undergraduate": 1,
         "official": 1
     },
     "1217": {
         "school": "中国计量大学现代科技学院",
-        "name": "无所谓: 周正谊、潘忠鸿、林仁豪",
+        "name": "无所谓",
+        "info": "周正谊、潘忠鸿、林仁豪",
         "undergraduate": 1,
         "official": 1
     },
     "1218": {
         "school": "中国计量大学现代科技学院",
-        "name": "鲁邦三世与武士枪手: 董文韬、练旻皓、俞敏",
+        "name": "鲁邦三世与武士枪手",
+        "info": "董文韬、练旻皓、俞敏",
         "undergraduate": 1,
         "official": 1
     },
     "1219": {
         "school": "中国计量大学现代科技学院",
-        "name": "你说的都对: 郑彬熙、余晓聪、蒋宇航",
+        "name": "你说的都对",
+        "info": "郑彬熙、余晓聪、蒋宇航",
         "undergraduate": 1,
         "official": 1
     },
     "1220": {
         "school": "中国计量大学现代科技学院",
-        "name": "皇族永不放弃: 吴岚涛、阮嘉豪、谢臣浩",
+        "name": "皇族永不放弃",
+        "info": "吴岚涛、阮嘉豪、谢臣浩",
         "undergraduate": 1,
         "official": 1
     },
     "1221": {
         "school": "中国计量大学现代科技学院",
-        "name": "这里需要几道送分题: 丁宇欣、林志杰、潘友利",
+        "name": "这里需要几道送分题",
+        "info": "丁宇欣、林志杰、潘友利",
         "undergraduate": 1,
         "official": 1
     },
     "1222": {
         "school": "浙江师范大学",
-        "name": "师傅把妖怪抓走了: 周天辰、陈卓丞、余知航",
+        "name": "师傅把妖怪抓走了",
+        "info": "周天辰、陈卓丞、余知航",
         "undergraduate": 1,
         "official": 1
     },
     "1223": {
         "school": "浙江师范大学",
-        "name": "神樣: 余凡、张燮弛、温启涛",
+        "name": "神樣",
+        "info": "余凡、张燮弛、温启涛",
         "undergraduate": 1,
         "official": 1
     },
     "1224": {
         "school": "浙江师范大学",
-        "name": "婺城区老年人复健中心: 伍泰炜、黄正结、余慧",
+        "name": "婺城区老年人复健中心",
+        "info": "伍泰炜、黄正结、余慧",
         "undergraduate": 1,
         "official": 1
     },
     "1225": {
         "school": "浙江师范大学",
-        "name": "红鲤鱼与绿鲤鱼与驴: 叶佳伟、陈汪怡、毛科捷",
+        "name": "红鲤鱼与绿鲤鱼与驴",
+        "info": "叶佳伟、陈汪怡、毛科捷",
         "undergraduate": 1,
         "official": 1
     },
     "1226": {
         "school": "浙江师范大学",
-        "name": "玛卡巴卡浙师大分卡: 祖龙飞、吴安然、倪伟聪",
+        "name": "玛卡巴卡浙师大分卡",
+        "info": "祖龙飞、吴安然、倪伟聪",
         "undergraduate": 1,
         "official": 1
     },
     "1227": {
         "school": "浙江师范大学",
-        "name": "防WA题研究院: 陈泓江、秦致玮、杨晨",
+        "name": "防WA题研究院",
+        "info": "陈泓江、秦致玮、杨晨",
         "undergraduate": 1,
         "official": 1
     },
     "1228": {
         "school": "浙江师范大学",
-        "name": "达芬奇骑芬达: 李康恬、陈宇轩、胡英豪",
+        "name": "达芬奇骑芬达",
+        "info": "李康恬、陈宇轩、胡英豪",
         "undergraduate": 1,
         "official": 1
     },
     "1229": {
         "school": "浙江师范大学",
-        "name": "ZJNU_X: 丁宇洋、马嘉斌、汤浙栋",
+        "name": "ZJNU_X",
+        "info": "丁宇洋、马嘉斌、汤浙栋",
         "undergraduate": 1,
         "official": 1
     },
     "1230": {
         "school": "浙江师范大学",
-        "name": "秃鸡队: 王景瑶、滕佳倩、杨佳宁",
+        "name": "秃鸡队",
+        "info": "王景瑶、滕佳倩、杨佳宁",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1231": {
         "school": "浙江师范大学行知学院",
-        "name": "麻辣香锅: 陈铭祺、胡奥锋、张玉梦",
+        "name": "麻辣香锅",
+        "info": "陈铭祺、胡奥锋、张玉梦",
         "undergraduate": 1,
         "official": 1
     },
     "1232": {
         "school": "浙江师范大学行知学院",
-        "name": "秋天的第一个AC: 胡昊泽、牟渊金、蒋昱琪",
+        "name": "秋天的第一个AC",
+        "info": "胡昊泽、牟渊金、蒋昱琪",
         "undergraduate": 1,
         "official": 1
     },
     "1233": {
         "school": "浙江师范大学行知学院",
-        "name": "待定: 杜轩屹、何强金、葛恩泽",
+        "name": "待定",
+        "info": "杜轩屹、何强金、葛恩泽",
         "undergraduate": 1,
         "official": 1
     },
     "1234": {
         "school": "浙江水利水电学院",
-        "name": "水分子1队: 吴宇菲、陈承瑞、陈美如",
+        "name": "水分子1队",
+        "info": "吴宇菲、陈承瑞、陈美如",
         "undergraduate": 1,
         "official": 1
     },
     "1235": {
         "school": "浙江水利水电学院",
-        "name": "水院龙舟: 杨荣杰、叶晓炜、吴昊然",
+        "name": "水院龙舟",
+        "info": "杨荣杰、叶晓炜、吴昊然",
         "undergraduate": 1,
         "official": 1
     },
     "1236": {
         "school": "浙江水利水电学院",
-        "name": "水分子2队: 赵沈杰、徐梓皓、陈钇丞",
+        "name": "水分子2队",
+        "info": "赵沈杰、徐梓皓、陈钇丞",
         "undergraduate": 1,
         "official": 1
     },
     "1237": {
         "school": "浙江水利水电学院",
-        "name": "水分子3队: 陈峰浩、陈毫、袁凯龙",
+        "name": "水分子3队",
+        "info": "陈峰浩、陈毫、袁凯龙",
         "undergraduate": 1,
         "official": 1
     },
     "1238": {
         "school": "浙江外国语学院",
-        "name": "算法练习生: 罗凯、杨世鑫、黄钱钱",
+        "name": "算法练习生",
+        "info": "罗凯、杨世鑫、黄钱钱",
         "undergraduate": 1,
         "official": 1
     },
     "1239": {
         "school": "浙江外国语学院",
-        "name": "新月学院: 吴怡、朱伟铭、朱熙明",
+        "name": "新月学院",
+        "info": "吴怡、朱伟铭、朱熙明",
         "undergraduate": 1,
         "official": 1
     },
     "1240": {
         "school": "浙江外国语学院",
-        "name": "灰化肥挥发会发黑: 胡作迎、丁益剑、黄涛",
+        "name": "灰化肥挥发会发黑",
+        "info": "胡作迎、丁益剑、黄涛",
         "undergraduate": 1,
         "official": 1
     },
     "1241": {
         "school": "浙江外国语学院",
-        "name": "无队名: 何凯昊、章诗阳、曹梦汉",
+        "name": "无队名",
+        "info": "何凯昊、章诗阳、曹梦汉",
         "undergraduate": 1,
         "official": 1
     },
     "1242": {
         "school": "浙江海洋大学东海科学技术学院",
-        "name": "我觉得都行: 张博、尉晨浩、朱洪渡 ",
+        "name": "我觉得都行",
+        "info": "张博、尉晨浩、朱洪渡 ",
         "undergraduate": 1,
         "official": 1
     },
     "1243": {
         "school": "浙江海洋大学东海科学技术学院",
-        "name": "熔岩巨兽: 吕鑫伟、罗哲诚、茹烨炜",
+        "name": "熔岩巨兽",
+        "info": "吕鑫伟、罗哲诚、茹烨炜",
         "undergraduate": 1,
         "official": 1
     },
     "1244": {
         "school": "浙江海洋大学东海科学技术学院",
-        "name": "我带你们打: 毛靖栋、俞博文、董浩",
+        "name": "我带你们打",
+        "info": "毛靖栋、俞博文、董浩",
         "undergraduate": 1,
         "official": 1
     },
     "1245": {
         "school": "浙江海洋大学东海科学技术学院",
-        "name": "起个名字好难: 陈欣欣、沈志远 、郑皖东",
+        "name": "起个名字好难",
+        "info": "陈欣欣、沈志远 、郑皖东",
         "undergraduate": 1,
         "official": 1
     },
     "1246": {
         "school": "浙江警察学院",
-        "name": "三道好菜: 廖博政、胡宇坤、吴家健",
+        "name": "三道好菜",
+        "info": "廖博政、胡宇坤、吴家健",
         "undergraduate": 1,
         "official": 1
     },
     "1247": {
         "school": "浙江警察学院",
-        "name": "普通又简单: 赵晓政、史建晖、王三龙",
+        "name": "普通又简单",
+        "info": "赵晓政、史建晖、王三龙",
         "undergraduate": 1,
         "official": 1
     },
     "1248": {
         "school": "浙江警察学院",
-        "name": "一点想法都没有: 郭一璇、范彬彬、郑升",
+        "name": "一点想法都没有",
+        "info": "郭一璇、范彬彬、郑升",
         "undergraduate": 1,
         "official": 1
     },
     "1249": {
         "school": "浙江警察学院",
-        "name": "湖人总冠军: 连远博、王宇辰、徐啸炀",
+        "name": "湖人总冠军",
+        "info": "连远博、王宇辰、徐啸炀",
         "undergraduate": 1,
         "official": 1
     },
     "1250": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-小伙子你那什么车啊: 张润涛、杨丁力、黄双宝",
+        "name": "ZCMU-小伙子你那什么车啊",
+        "info": "张润涛、杨丁力、黄双宝",
         "undergraduate": 1,
         "official": 1
     },
     "1251": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-了加增识知的怪奇 : 宋泽炜、张习远、何烨",
+        "name": "ZCMU-了加增识知的怪奇 ",
+        "info": "宋泽炜、张习远、何烨",
         "undergraduate": 1,
         "official": 1
     },
     "1252": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-奇怪的知识增加了: 朱家伟、饶易安、潘炳发",
+        "name": "ZCMU-奇怪的知识增加了",
+        "info": "朱家伟、饶易安、潘炳发",
         "undergraduate": 1,
         "official": 1
     },
     "1253": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-庆豪琳伏特加: 刘成豪、叶琳、王庆康",
+        "name": "ZCMU-庆豪琳伏特加",
+        "info": "刘成豪、叶琳、王庆康",
         "undergraduate": 1,
         "official": 1
     },
     "1254": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-MIT: 李弘辰、何雁杰、王弘业",
+        "name": "ZCMU-MIT",
+        "info": "李弘辰、何雁杰、王弘业",
         "undergraduate": 1,
         "official": 1
     },
     "1255": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-周一麦当劳会员日: 王少杰、沈浩奇、胡清霞",
+        "name": "ZCMU-周一麦当劳会员日",
+        "info": "王少杰、沈浩奇、胡清霞",
         "undergraduate": 1,
         "official": 1
     },
     "1256": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-妙妙妙A种子: 陈佳文、徐婉婷、董冰茹",
+        "name": "ZCMU-妙妙妙A种子",
+        "info": "陈佳文、徐婉婷、董冰茹",
         "undergraduate": 1,
         "official": 1,
         "girls": 1
     },
     "1257": {
         "school": "浙江中医药大学",
-        "name": "ZCMU-杰哥别放我鸽子了: 韩敏杰、罗苗苗、陈臣",
+        "name": "ZCMU-杰哥别放我鸽子了",
+        "info": "韩敏杰、罗苗苗、陈臣",
         "undergraduate": 1,
         "official": 1
     },
     "1258": {
         "school": "中国计量大学",
-        "name": "一趴一躺一吃瓜: 罗中天、余鸿皓、张家豪",
+        "name": "一趴一躺一吃瓜",
+        "info": "罗中天、余鸿皓、张家豪",
         "undergraduate": 1,
         "official": 1
     },
     "1259": {
         "school": "中国计量大学",
-        "name": "线上旅游真好玩: 蔡佳伦、张霄、王龙欢",
+        "name": "线上旅游真好玩",
+        "info": "蔡佳伦、张霄、王龙欢",
         "undergraduate": 1,
         "official": 1
     },
     "1260": {
         "school": "中国计量大学",
-        "name": "年年有今日: 孙煜海、甘宇琦、毛雨辰",
+        "name": "年年有今日",
+        "info": "孙煜海、甘宇琦、毛雨辰",
         "undergraduate": 1,
         "official": 1
     },
     "1261": {
         "school": "中国计量大学",
-        "name": "三颗大白菜: 郑宇恒、董秋宇、卢展帆",
+        "name": "三颗大白菜",
+        "info": "郑宇恒、董秋宇、卢展帆",
         "undergraduate": 1,
         "official": 1
     },
     "1262": {
         "school": "中国计量大学",
-        "name": "要有上净心: 王铿、王静文、朱炯烨",
+        "name": "要有上净心",
+        "info": "王铿、王静文、朱炯烨",
         "undergraduate": 1,
         "official": 1
     },
     "1263": {
         "school": "中国计量大学",
-        "name": "超时自动机: 刘长奥、朱炜、杨金瀚",
+        "name": "超时自动机",
+        "info": "刘长奥、朱炜、杨金瀚",
         "undergraduate": 1,
         "official": 1
     },
     "1264": {
         "school": "中国计量大学",
-        "name": "菜刀冲冲冲: 陆羿勋、曹吉、陈维杰",
+        "name": "菜刀冲冲冲",
+        "info": "陆羿勋、曹吉、陈维杰",
         "undergraduate": 1,
         "official": 1
     },
     "1265": {
         "school": "杭州职业技术学院",
-        "name": "小鱼吐泡泡: 傅成涛 、虞婧怡、杨峥峥",
+        "name": "小鱼吐泡泡",
+        "info": "傅成涛 、虞婧怡、杨峥峥",
         "junior": 1,
         "official": 1
     },
     "1266": {
         "school": "杭州职业技术学院",
-        "name": "小红小象小红象: 刘振粮、黄巧巧、陈磊",
+        "name": "小红小象小红象",
+        "info": "刘振粮、黄巧巧、陈磊",
         "junior": 1,
         "official": 1
     },
     "1267": {
         "school": "杭州职业技术学院",
-        "name": "果冻三剑客: 郭   迪、林煜昊、周佳琪",
+        "name": "果冻三剑客",
+        "info": "郭   迪、林煜昊、周佳琪",
         "junior": 1,
         "official": 1
     },
     "1268": {
         "school": "杭州职业技术学院",
-        "name": "熊哥哥戴戴我: 熊新欣、戴   盛、陈   馨",
+        "name": "熊哥哥戴戴我",
+        "info": "熊新欣、戴   盛、陈   馨",
         "junior": 1,
         "official": 1
     },
     "1269": {
         "school": "杭州职业技术学院",
-        "name": "品了秋天的第一杯java却在这写C: 求琰锋、黄昭权、林其隆",
+        "name": "品了秋天的第一杯java却在这写C",
+        "info": "求琰锋、黄昭权、林其隆",
         "junior": 1,
         "official": 1
     },
     "1270": {
         "school": "杭州职业技术学院",
-        "name": "蒙题就选b因为adc不行: 王伟豪、王奕相、王   佳",
+        "name": "蒙题就选b因为adc不行",
+        "info": "王伟豪、王奕相、王   佳",
         "junior": 1,
         "official": 1
     },
     "1271": {
         "school": "湖州职业技术学院",
-        "name": "砖家队: 陈健、陈浩然、徐佳琪",
+        "name": "砖家队",
+        "info": "陈健、陈浩然、徐佳琪",
         "junior": 1,
         "official": 1
     },
     "1272": {
         "school": "湖州职业技术学院",
-        "name": "一个队队: 陈思海、徐梓茗、王浩东",
+        "name": "一个队队",
+        "info": "陈思海、徐梓茗、王浩东",
         "junior": 1,
         "official": 1
     },
     "1273": {
         "school": "湖州职业技术学院",
-        "name": "啥也不是: 薛桦焜、杨仕城、王家乐",
+        "name": "啥也不是",
+        "info": "薛桦焜、杨仕城、王家乐",
         "junior": 1,
         "official": 1
     },
     "1274": {
         "school": "湖州职业技术学院",
-        "name": "星之希望: 周威、朱嘉诚、蒋晶晶",
+        "name": "星之希望",
+        "info": "周威、朱嘉诚、蒋晶晶",
         "junior": 1,
         "official": 1
     },
     "1275": {
         "school": "湖州职业技术学院",
-        "name": "考拉: 施玲玲、郑添松、缪越芳",
+        "name": "考拉",
+        "info": "施玲玲、郑添松、缪越芳",
         "junior": 1,
         "official": 1
     },
     "1276": {
         "school": "湖州职业技术学院",
-        "name": "程序青年不秃头: 刘结、汪诗杭、刘叶茜",
+        "name": "程序青年不秃头",
+        "info": "刘结、汪诗杭、刘叶茜",
         "junior": 1,
         "official": 1
     },
     "1277": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院一队: 姜权豪、杨谨瑞、诸葛雷",
+        "name": "嘉职院一队",
+        "info": "姜权豪、杨谨瑞、诸葛雷",
         "junior": 1,
         "official": 1
     },
     "1278": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院二队: 郎夏瑞、郑晨阳、黄路亚",
+        "name": "嘉职院二队",
+        "info": "郎夏瑞、郑晨阳、黄路亚",
         "junior": 1,
         "official": 1
     },
     "1279": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院三队: 陈鸿铭、费頔、王黎杰",
+        "name": "嘉职院三队",
+        "info": "陈鸿铭、费頔、王黎杰",
         "junior": 1,
         "official": 1
     },
     "1280": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院四队: 张晨、朱可赞、徐枭俐",
+        "name": "嘉职院四队",
+        "info": "张晨、朱可赞、徐枭俐",
         "junior": 1,
         "official": 1
     },
     "1281": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院五队: 吴瑶玮、李袁凯、缪振源",
+        "name": "嘉职院五队",
+        "info": "吴瑶玮、李袁凯、缪振源",
         "junior": 1,
         "official": 1
     },
     "1282": {
         "school": "嘉兴职业技术学院",
-        "name": "嘉职院六队: 蒋林志、周佳俊、张梁意",
+        "name": "嘉职院六队",
+        "info": "蒋林志、周佳俊、张梁意",
         "junior": 1,
         "official": 1
     },
     "1283": {
         "school": "金华职业技术学院",
-        "name": "三打白骨精: 叶步云、郑跃、黄成龙",
+        "name": "三打白骨精",
+        "info": "叶步云、郑跃、黄成龙",
         "junior": 1,
         "official": 1
     },
     "1284": {
         "school": "金华职业技术学院",
-        "name": "三只白骨精: 胡张炜、洪胜熙、林瑞亨",
+        "name": "三只白骨精",
+        "info": "胡张炜、洪胜熙、林瑞亨",
         "junior": 1,
         "official": 1
     },
     "1285": {
         "school": "金华职业技术学院",
-        "name": "反向解题: 吴剑敏、杨涵钦、周梦翔",
+        "name": "反向解题",
+        "info": "吴剑敏、杨涵钦、周梦翔",
         "junior": 1,
         "official": 1
     },
     "1286": {
         "school": "金华职业技术学院",
-        "name": "阴曹地府: 任成辉、沈斌鑫、沈涛",
+        "name": "阴曹地府",
+        "info": "任成辉、沈斌鑫、沈涛",
         "junior": 1,
         "official": 1
     },
     "1287": {
         "school": "金华职业技术学院",
-        "name": "淑芬我是富贵: 赵渊博、杜晓波、彭晨博",
+        "name": "淑芬我是富贵",
+        "info": "赵渊博、杜晓波、彭晨博",
         "junior": 1,
         "official": 1
     },
     "1288": {
         "school": "金华职业技术学院",
-        "name": "霉霉: 张薇、王九阳、王江涛",
+        "name": "霉霉",
+        "info": "张薇、王九阳、王江涛",
         "junior": 1,
         "official": 1
     },
     "1289": {
         "school": "金华职业技术学院",
-        "name": "老龙恼怒闹老农，老农恼怒闹老龙: 陶璐、邵江涛、胡明涛",
+        "name": "老龙恼怒闹老农，老农恼怒闹老龙",
+        "info": "陶璐、邵江涛、胡明涛",
         "junior": 1,
         "official": 1
     },
     "1290": {
         "school": "丽水职业技术学院",
-        "name": "火鸡味锅巴: 翁嘉远、钱银家、张兰心",
+        "name": "火鸡味锅巴",
+        "info": "翁嘉远、钱银家、张兰心",
         "junior": 1,
         "official": 1
     },
     "1291": {
         "school": "丽水职业技术学院",
-        "name": "只求Accepted队: 陈源、陈泽杭、李春来",
+        "name": "只求Accepted队",
+        "info": "陈源、陈泽杭、李春来",
         "junior": 1,
         "official": 1
     },
     "1292": {
         "school": "丽水职业技术学院",
-        "name": "难平山河: 崔辰杰、张治函、周杨燕",
+        "name": "难平山河",
+        "info": "崔辰杰、张治函、周杨燕",
         "junior": 1,
         "official": 1
     },
     "1293": {
         "school": "宁波城市职业技术学院",
-        "name": "温两碗酒要一碟茴香豆: 潘敬醒、雷大洪、郭妙岚",
+        "name": "温两碗酒要一碟茴香豆",
+        "info": "潘敬醒、雷大洪、郭妙岚",
         "junior": 1,
         "official": 1
     },
     "1294": {
         "school": "宁波城市职业技术学院",
-        "name": "装逼如我刷题如斯: 吴昊、徐鸿鑫、朱梦璐",
+        "name": "装逼如我刷题如斯",
+        "info": "吴昊、徐鸿鑫、朱梦璐",
         "junior": 1,
         "official": 1
     },
     "1295": {
         "school": "宁波城市职业技术学院",
-        "name": "给朕留个炮灰角色: 王涛、孙焕斌、舒颖洁",
+        "name": "给朕留个炮灰角色",
+        "info": "王涛、孙焕斌、舒颖洁",
         "junior": 1,
         "official": 1
     },
     "1296": {
         "school": "宁波城市职业技术学院",
-        "name": "我是懂王: 杨泽民、刘烨涛、王梁安",
+        "name": "我是懂王",
+        "info": "杨泽民、刘烨涛、王梁安",
         "junior": 1,
         "official": 1
     },
     "1297": {
         "school": "宁波城市职业技术学院",
-        "name": "铜牌请砸我: 沈智超、汤佳鑫、钟文洁",
+        "name": "铜牌请砸我",
+        "info": "沈智超、汤佳鑫、钟文洁",
         "junior": 1,
         "official": 1
     },
     "1298": {
         "school": "宁波城市职业技术学院",
-        "name": "给哥留块铁牌: 温在富、潘雷雷、朱博铖",
+        "name": "给哥留块铁牌",
+        "info": "温在富、潘雷雷、朱博铖",
         "junior": 1,
         "official": 1
     },
     "1299": {
         "school": "衢州学院",
-        "name": "你家水龙头流What: 洪晖、陈儒汉、王雨泽",
+        "name": "你家水龙头流What",
+        "info": "洪晖、陈儒汉、王雨泽",
         "junior": 1,
         "official": 1
     },
     "1300": {
         "school": "衢州学院",
-        "name": "找塞班: 沈弘鑫、陈鹏吉、郑温昊",
+        "name": "找塞班",
+        "info": "沈弘鑫、陈鹏吉、郑温昊",
         "junior": 1,
         "official": 1
     },
     "1301": {
         "school": "衢州学院",
-        "name": "酸辣粉的颜色: 张伟康、楼浩栋、黄磊",
+        "name": "酸辣粉的颜色",
+        "info": "张伟康、楼浩栋、黄磊",
         "junior": 1,
         "official": 1
     },
     "1302": {
         "school": "衢州学院",
-        "name": " 我不想参赛: 燕家祥、戴施杰、董嘉辰",
+        "name": " 我不想参赛",
+        "info": "燕家祥、戴施杰、董嘉辰",
         "junior": 1,
         "official": 1
     },
     "1303": {
         "school": "宁波职业技术学院",
-        "name": "宁职1队: 李凌豪、柯家威、赖泽广",
+        "name": "宁职1队",
+        "info": "李凌豪、柯家威、赖泽广",
         "junior": 1,
         "official": 1
     },
     "1304": {
         "school": "宁波职业技术学院",
-        "name": "宁职2队: 章恺庆、叶浩、沈金芳",
+        "name": "宁职2队",
+        "info": "章恺庆、叶浩、沈金芳",
         "junior": 1,
         "official": 1
     },
     "1305": {
         "school": "宁波职业技术学院",
-        "name": "宁职3队: 章嘉威、汪搏文、张林荣",
+        "name": "宁职3队",
+        "info": "章嘉威、汪搏文、张林荣",
         "junior": 1,
         "official": 1
     },
     "1306": {
         "school": "宁波职业技术学院",
-        "name": "宁职4队: 许江涛、刘涛涛、潘成栲",
+        "name": "宁职4队",
+        "info": "许江涛、刘涛涛、潘成栲",
         "junior": 1,
         "official": 1
     },
     "1307": {
         "school": "宁波职业技术学院",
-        "name": "宁职5队: 吴斐、彭世龙、沈项逸",
+        "name": "宁职5队",
+        "info": "吴斐、彭世龙、沈项逸",
         "junior": 1,
         "official": 1
     },
     "1308": {
         "school": "宁波职业技术学院",
-        "name": "宁职6队: 林家驹、季谋、朱亨",
+        "name": "宁职6队",
+        "info": "林家驹、季谋、朱亨",
         "junior": 1,
         "official": 1
     },
     "1309": {
         "school": "衢州职业技术学院",
-        "name": "波霸奶茶: 张滨杰、王焱、臧勉",
+        "name": "波霸奶茶",
+        "info": "张滨杰、王焱、臧勉",
         "junior": 1,
         "official": 1
     },
     "1310": {
         "school": "衢州职业技术学院",
-        "name": "嵌糕我爱吃: 莫佳伟、徐海智、徐心妍",
+        "name": "嵌糕我爱吃",
+        "info": "莫佳伟、徐海智、徐心妍",
         "junior": 1,
         "official": 1
     },
     "1311": {
         "school": "衢州职业技术学院",
-        "name": "雷神托尔: 杨凯丰、孙晨超、金成俊",
+        "name": "雷神托尔",
+        "info": "杨凯丰、孙晨超、金成俊",
         "junior": 1,
         "official": 1
     },
     "1312": {
         "school": "衢州职业技术学院",
-        "name": "她与发皆失: 唐伟东、雷尔潍、吕政播",
+        "name": "她与发皆失",
+        "info": "唐伟东、雷尔潍、吕政播",
         "junior": 1,
         "official": 1
     },
     "1313": {
         "school": "衢州职业技术学院",
-        "name": "必胜客: 蒋隆龙、刘亚歌、毛继晨",
+        "name": "必胜客",
+        "info": "蒋隆龙、刘亚歌、毛继晨",
         "junior": 1,
         "official": 1
     },
     "1314": {
         "school": "衢州职业技术学院",
-        "name": "阳光养猪场: 郭玉涵、王晨磊、丁佳欢",
+        "name": "阳光养猪场",
+        "info": "郭玉涵、王晨磊、丁佳欢",
         "junior": 1,
         "official": 1
     },
     "1315": {
         "school": "绍兴职业技术学院",
-        "name": "男神大可木木: 吴家成、谢志哲、王雨梦",
+        "name": "男神大可木木",
+        "info": "吴家成、谢志哲、王雨梦",
         "junior": 1,
         "official": 1
     },
     "1316": {
         "school": "绍兴职业技术学院",
-        "name": "洋洋得意: 蓝文兴、张洋洋、徐瑞",
+        "name": "洋洋得意",
+        "info": "蓝文兴、张洋洋、徐瑞",
         "junior": 1,
         "official": 1
     },
     "1317": {
         "school": "绍兴职业技术学院",
-        "name": "男神口天家成: 王奇林、沈杨涵、卢琛祉",
+        "name": "男神口天家成",
+        "info": "王奇林、沈杨涵、卢琛祉",
         "junior": 1,
         "official": 1
     },
     "1318": {
         "school": "绍兴职业技术学院",
-        "name": "守护全世界最好的沈杨涵: 赵吉祥、庄友权、蔡莹洁",
+        "name": "守护全世界最好的沈杨涵",
+        "info": "赵吉祥、庄友权、蔡莹洁",
         "junior": 1,
         "official": 1
     },
     "1319": {
         "school": "绍兴职业技术学院",
-        "name": "wa掘机: 梅寒、吴国校、金淑雯",
+        "name": "wa掘机",
+        "info": "梅寒、吴国校、金淑雯",
         "junior": 1,
         "official": 1
     },
     "1320": {
         "school": "绍兴职业技术学院",
-        "name": "头铁就硬撞: 杨豪博、黄佳晨、边李佳",
+        "name": "头铁就硬撞",
+        "info": "杨豪博、黄佳晨、边李佳",
         "junior": 1,
         "official": 1
     },
     "1321": {
         "school": "绍兴职业技术学院",
-        "name": "WA老板: 邵万维、金一哲、郑继春",
+        "name": "WA老板",
+        "info": "邵万维、金一哲、郑继春",
         "junior": 1,
         "official": 1
     },
     "1322": {
         "school": "台州科技职业学院",
-        "name": "Atlantis: 管文杰、殷宏杰、吴江峰",
+        "name": "Atlantis",
+        "info": "管文杰、殷宏杰、吴江峰",
         "junior": 1,
         "official": 1
     },
     "1323": {
         "school": "台州科技职业学院",
-        "name": "Destiny: 林立、仇华彪、胡文林",
+        "name": "Destiny",
+        "info": "林立、仇华彪、胡文林",
         "junior": 1,
         "official": 1
     },
     "1324": {
         "school": "台州科技职业学院",
-        "name": "自觉跳动: 金鸿霏、邵羿澎、朱乔森",
+        "name": "自觉跳动",
+        "info": "金鸿霏、邵羿澎、朱乔森",
         "junior": 1,
         "official": 1
     },
     "1325": {
         "school": "台州科技职业学院",
-        "name": "TK: 李战胜、周晨阳、曾平银",
+        "name": "TK",
+        "info": "李战胜、周晨阳、曾平银",
         "junior": 1,
         "official": 1
     },
     "1326": {
         "school": "台州职业技术学院",
-        "name": "台州职业技术学院1队: 钟涛、王大鹏、童慈鑫",
+        "name": "台州职业技术学院1队",
+        "info": "钟涛、王大鹏、童慈鑫",
         "junior": 1,
         "official": 1
     },
     "1327": {
         "school": "台州职业技术学院",
-        "name": "台州职业技术学院2队: 余宥萱、苏其鑫、周挺",
+        "name": "台州职业技术学院2队",
+        "info": "余宥萱、苏其鑫、周挺",
         "junior": 1,
         "official": 1
     },
     "1328": {
         "school": "台州职业技术学院",
-        "name": "台州职业技术学院3队: 程嘉诚、朱梦珊、杨骁",
+        "name": "台州职业技术学院3队",
+        "info": "程嘉诚、朱梦珊、杨骁",
         "junior": 1,
         "official": 1
     },
     "1329": {
         "school": "浙江水利水电学院",
-        "name": "鹧鸪天: 徐硕胤  、陈亮亮、杨震",
+        "name": "鹧鸪天",
+        "info": "徐硕胤  、陈亮亮、杨震",
         "junior": 1,
         "official": 1
     },
     "1330": {
         "school": "温州科技职业学院",
-        "name": "温科二队: 戴单一、项理都、王可丽",
+        "name": "温科二队",
+        "info": "戴单一、项理都、王可丽",
         "junior": 1,
         "official": 1
     },
     "1331": {
         "school": "温州科技职业学院",
-        "name": "温科一队: 林晓枭、王易、陈倩倩",
+        "name": "温科一队",
+        "info": "林晓枭、王易、陈倩倩",
         "junior": 1,
         "official": 1
     },
     "1332": {
         "school": "温州科技职业学院",
-        "name": "温科三队: 邓博尔、王结、华梦珠",
+        "name": "温科三队",
+        "info": "邓博尔、王结、华梦珠",
         "junior": 1,
         "official": 1
     },
     "1333": {
         "school": "温州科技职业学院",
-        "name": "删库跑路: 林立威、彭兴燮、张如强",
+        "name": "删库跑路",
+        "info": "林立威、彭兴燮、张如强",
         "junior": 1,
         "official": 1
     },
     "1334": {
         "school": "温州科技职业学院",
-        "name": "温科五队: 张驹、任佳晟、李杨涛",
+        "name": "温科五队",
+        "info": "张驹、任佳晟、李杨涛",
         "junior": 1,
         "official": 1
     },
     "1335": {
         "school": "温州科技职业学院",
-        "name": "温科六队: 蔡竹诚、毛振校、徐君婧",
+        "name": "温科六队",
+        "info": "蔡竹诚、毛振校、徐君婧",
         "junior": 1,
         "official": 1
     },
     "1336": {
         "school": "温州职业技术学院",
-        "name": "一袋米扛几楼: 邵权、陈浩、韦伟杰",
+        "name": "一袋米扛几楼",
+        "info": "邵权、陈浩、韦伟杰",
         "junior": 1,
         "official": 1
     },
     "1337": {
         "school": "温州职业技术学院",
-        "name": "不知道起什么名字: 董斌、许益鑫、边文海",
+        "name": "不知道起什么名字",
+        "info": "董斌、许益鑫、边文海",
         "junior": 1,
         "official": 1
     },
     "1338": {
         "school": "温州职业技术学院",
-        "name": "发际线和我作队: 苏龙辉、苏金水、叶繁",
+        "name": "发际线和我作队",
+        "info": "苏龙辉、苏金水、叶繁",
         "junior": 1,
         "official": 1
     },
     "1339": {
         "school": "温州职业技术学院",
-        "name": "学习小组: 林铮、李鸥洋、苏陈洋",
+        "name": "学习小组",
+        "info": "林铮、李鸥洋、苏陈洋",
         "junior": 1,
         "official": 1
     },
     "1340": {
         "school": "温州职业技术学院",
-        "name": "单手AC: 支瑞恒、董宇、刘婷婷",
+        "name": "单手AC",
+        "info": "支瑞恒、董宇、刘婷婷",
         "junior": 1,
         "official": 1
     },
     "1341": {
         "school": "温州职业技术学院",
-        "name": "全村吃饭: 游广涛、兰慧祥、夏笑平",
+        "name": "全村吃饭",
+        "info": "游广涛、兰慧祥、夏笑平",
         "junior": 1,
         "official": 1
     },
     "1342": {
         "school": "温州职业技术学院",
-        "name": "赞美太阳: 林瑞星、董凯特、唐志伟",
+        "name": "赞美太阳",
+        "info": "林瑞星、董凯特、唐志伟",
         "junior": 1,
         "official": 1
     },
     "1343": {
         "school": "浙江纺织服装职业技术学院",
-        "name": "收到请回复: 王磊、邵文龙、李长生",
+        "name": "收到请回复",
+        "info": "王磊、邵文龙、李长生",
         "junior": 1,
         "official": 1
     },
     "1344": {
         "school": "浙江纺织服装职业技术学院",
-        "name": "马上就到: 林锡涵、王嘉宁、沈金涛",
+        "name": "马上就到",
+        "info": "林锡涵、王嘉宁、沈金涛",
         "junior": 1,
         "official": 1
     },
     "1345": {
         "school": "浙江纺织服装职业技术学院",
-        "name": "正在呼叫...: 王国耀、罗智伟、胡锦浩",
+        "name": "正在呼叫...",
+        "info": "王国耀、罗智伟、胡锦浩",
         "junior": 1,
         "official": 1
     },
     "1346": {
         "school": "浙江纺织服装职业技术学院",
-        "name": "ACM搅屎棍: 方佳晨、贺宇君、潘景涛",
+        "name": "ACM搅屎棍",
+        "info": "方佳晨、贺宇君、潘景涛",
         "junior": 1,
         "official": 1
     },
     "1347": {
         "school": "浙江工商职业技术学院",
-        "name": "你要悄悄AC，然后惊艳所有人: 邢帆、王水强、冯显达",
+        "name": "你要悄悄AC，然后惊艳所有人",
+        "info": "邢帆、王水强、冯显达",
         "junior": 1,
         "official": 1
     },
     "1348": {
         "school": "浙江工商职业技术学院",
-        "name": "我们做的都队: 杨博文、傅纬华、沈晨阳",
+        "name": "我们做的都队",
+        "info": "杨博文、傅纬华、沈晨阳",
         "junior": 1,
         "official": 1
     },
     "1349": {
         "school": "浙江工商职业技术学院",
-        "name": "火力少年王: 潘凯杰、芦豪杰、丁甜帝",
+        "name": "火力少年王",
+        "info": "潘凯杰、芦豪杰、丁甜帝",
         "junior": 1,
         "official": 1
     },
     "1350": {
         "school": "浙江工商职业技术学院",
-        "name": "糖豆人: 柯楠楷、陶博翔、任敏雅",
+        "name": "糖豆人",
+        "info": "柯楠楷、陶博翔、任敏雅",
         "junior": 1,
         "official": 1
     },
     "1351": {
         "school": "浙江工商职业技术学院",
-        "name": "赌局: 朱可财、尹浩浩、曹富强",
+        "name": "赌局",
+        "info": "朱可财、尹浩浩、曹富强",
         "junior": 1,
         "official": 1
     },
     "1352": {
         "school": "浙江工商职业技术学院",
-        "name": "狂吃三大碗: 陈祥城、周宏刚、周佳明",
+        "name": "狂吃三大碗",
+        "info": "陈祥城、周宏刚、周佳明",
         "junior": 1,
         "official": 1
     },
     "1353": {
         "school": "浙江警官职业学院",
-        "name": "三个皮将: 陆中山、沈洪泽、臧俊龙",
+        "name": "三个皮将",
+        "info": "陆中山、沈洪泽、臧俊龙",
         "junior": 1,
         "official": 1
     },
     "1354": {
         "school": "浙江警官职业学院",
-        "name": "C语言是针不戳: 张廷东、毛俊杰、蔡秀都",
+        "name": "C语言是针不戳",
+        "info": "张廷东、毛俊杰、蔡秀都",
         "junior": 1,
         "official": 1
     },
     "1355": {
         "school": "浙江警官职业学院",
-        "name": "后起之秀: 程文、韦旭、黄永旺",
+        "name": "后起之秀",
+        "info": "程文、韦旭、黄永旺",
         "junior": 1,
         "official": 1
     },
     "1356": {
         "school": "浙江警官职业学院",
-        "name": "会放屁的桃: 张丹红、程仙齐、濮诗瑜",
+        "name": "会放屁的桃",
+        "info": "张丹红、程仙齐、濮诗瑜",
         "junior": 1,
         "official": 1,
         "girls": 1
     },
     "1357": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院1队: 吴招阳、瞿信义、宋婉文",
+        "name": "浙江工业职业技术学院1队",
+        "info": "吴招阳、瞿信义、宋婉文",
         "junior": 1,
         "official": 1
     },
     "1358": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院2队: 杨上杰、陈志杰、施小芬",
+        "name": "浙江工业职业技术学院2队",
+        "info": "杨上杰、陈志杰、施小芬",
         "junior": 1,
         "official": 1
     },
     "1359": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院3队: 陈昌鸿、张佳涛、张薇",
+        "name": "浙江工业职业技术学院3队",
+        "info": "陈昌鸿、张佳涛、张薇",
         "junior": 1,
         "official": 1
     },
     "1360": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院4队: 牟泓帆、麻胜存、陈欣",
+        "name": "浙江工业职业技术学院4队",
+        "info": "牟泓帆、麻胜存、陈欣",
         "junior": 1,
         "official": 1
     },
     "1361": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院5队: 滕璐禹、施得瀚、孙炀晨",
+        "name": "浙江工业职业技术学院5队",
+        "info": "滕璐禹、施得瀚、孙炀晨",
         "junior": 1,
         "official": 1
     },
     "1362": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院6队: 朱洪冰、杨子威、林欣茹",
+        "name": "浙江工业职业技术学院6队",
+        "info": "朱洪冰、杨子威、林欣茹",
         "junior": 1,
         "official": 1
     },
     "1363": {
         "school": "浙江工业职业技术学院",
-        "name": "浙江工业职业技术学院7队: 王元、陈熹、杨晓静",
+        "name": "浙江工业职业技术学院7队",
+        "info": "王元、陈熹、杨晓静",
         "junior": 1,
         "official": 1
     },
     "1364": {
         "school": "浙江机电职业技术学院",
-        "name": "你好WF: 郭程、方培辉、李钦翔",
+        "name": "你好WF",
+        "info": "郭程、方培辉、李钦翔",
         "junior": 1,
         "official": 1
     },
     "1365": {
         "school": "浙江机电职业技术学院",
-        "name": "迹奇出力暴: 胡晨阳、尤圣旭、胡伟涛",
+        "name": "迹奇出力暴",
+        "info": "胡晨阳、尤圣旭、胡伟涛",
         "junior": 1,
         "official": 1
     },
     "1366": {
         "school": "浙江机电职业技术学院",
-        "name": "海鲜杂烩饭: 金子涵、肖崇杰、毛燕琳",
+        "name": "海鲜杂烩饭",
+        "info": "金子涵、肖崇杰、毛燕琳",
         "junior": 1,
         "official": 1
     },
     "1367": {
         "school": "浙江机电职业技术学院",
-        "name": "社会加班人: 张启琛、虞林洋、郎婕嫆",
+        "name": "社会加班人",
+        "info": "张启琛、虞林洋、郎婕嫆",
         "junior": 1,
         "official": 1
     },
     "1368": {
         "school": "浙江机电职业技术学院",
-        "name": "骗分过样例: 朱鑫燚、胡俊杰、李卓潮",
+        "name": "骗分过样例",
+        "info": "朱鑫燚、胡俊杰、李卓潮",
         "junior": 1,
         "official": 1
     },
     "1369": {
         "school": "浙江机电职业技术学院",
-        "name": "机电12wa: 赵郑重、鲁溯琦、徐弘",
+        "name": "机电12wa",
+        "info": "赵郑重、鲁溯琦、徐弘",
         "junior": 1,
         "official": 1
     },
     "1370": {
         "school": "浙江机电职业技术学院",
-        "name": "金牌: 杨世纪、周伟剑、柳徐吉",
+        "name": "金牌",
+        "info": "杨世纪、周伟剑、柳徐吉",
         "junior": 1,
         "official": 1
     },
     "1371": {
         "school": "浙江机电职业技术学院",
-        "name": "乌尔班大炮: 金笛声、赵顺泽、钱杰",
+        "name": "乌尔班大炮",
+        "info": "金笛声、赵顺泽、钱杰",
         "junior": 1,
         "official": 1
     },
     "1372": {
         "school": "浙江长征职业技术学院",
-        "name": "长征1队: 董烨、董海伦、徐天同",
+        "name": "长征1队",
+        "info": "董烨、董海伦、徐天同",
         "junior": 1,
         "official": 1
     },
     "1373": {
         "school": "浙江长征职业技术学院",
-        "name": "长征2队: 申广龙、黄文铮、颜传坪",
+        "name": "长征2队",
+        "info": "申广龙、黄文铮、颜传坪",
         "junior": 1,
         "official": 1
     },
     "1374": {
         "school": "浙江长征职业技术学院",
-        "name": "长征3队: 林超凡、郑振鸿、李家旖",
+        "name": "长征3队",
+        "info": "林超凡、郑振鸿、李家旖",
         "junior": 1,
         "official": 1
     },
     "1375": {
         "school": "浙江长征职业技术学院",
-        "name": "长征4队: 郭家勇、吴宏伟、吴敏",
+        "name": "长征4队",
+        "info": "郭家勇、吴宏伟、吴敏",
         "junior": 1,
         "official": 1
     },
     "1376": {
         "school": "浙江长征职业技术学院",
-        "name": "长征5队: 洪喆军、刘杰、蒋佳佳",
+        "name": "长征5队",
+        "info": "洪喆军、刘杰、蒋佳佳",
         "junior": 1,
         "official": 1
     },
     "1377": {
         "school": "浙江长征职业技术学院",
-        "name": "长征6队: 朱博康、龙昊、杨耶牧",
+        "name": "长征6队",
+        "info": "朱博康、龙昊、杨耶牧",
         "junior": 1,
         "official": 1
     },
     "1378": {
         "school": "浙江金融职业学院",
-        "name": "乘风破浪: 包以琳、胡赠军、余晓飞",
+        "name": "乘风破浪",
+        "info": "包以琳、胡赠军、余晓飞",
         "junior": 1,
         "official": 1
     },
     "1379": {
         "school": "浙江金融职业学院",
-        "name": "杠精: 叶晓荣、刘辉辉、王梦娜",
+        "name": "杠精",
+        "info": "叶晓荣、刘辉辉、王梦娜",
         "junior": 1,
         "official": 1
     },
     "1380": {
         "school": "浙江金融职业学院",
-        "name": "南波万: 马思思、吉庆明、项辛迪",
+        "name": "南波万",
+        "info": "马思思、吉庆明、项辛迪",
         "junior": 1,
         "official": 1
     },
     "1381": {
         "school": "浙江金融职业学院",
-        "name": "lwb牛牛牛: 王晓伟、傅瑞豪、何思妤",
+        "name": "lwb牛牛牛",
+        "info": "王晓伟、傅瑞豪、何思妤",
         "junior": 1,
         "official": 1
     },
     "1382": {
         "school": "浙江金融职业学院",
-        "name": "名字一直不给我: 汪湖开、平升阳、缪婷婷",
+        "name": "名字一直不给我",
+        "info": "汪湖开、平升阳、缪婷婷",
         "junior": 1,
         "official": 1
     },
     "1383": {
         "school": "浙江金融职业学院",
-        "name": "这仨很懒没有名字: 陈程豪、苏志江、马天驰",
+        "name": "这仨很懒没有名字",
+        "info": "陈程豪、苏志江、马天驰",
         "junior": 1,
         "official": 1
     },
     "1384": {
         "school": "浙江经贸职业技术学院",
-        "name": "来自艾卡西亚的惊喜: 孟杞云、谢于杰、胡林伟",
+        "name": "来自艾卡西亚的惊喜",
+        "info": "孟杞云、谢于杰、胡林伟",
         "junior": 1,
         "official": 1
     },
     "1385": {
         "school": "浙江经贸职业技术学院",
-        "name": "AC盖奶: 吴凯翔、徐鹏程、张大斌",
+        "name": "AC盖奶",
+        "info": "吴凯翔、徐鹏程、张大斌",
         "junior": 1,
         "official": 1
     },
     "1386": {
         "school": "浙江经贸职业技术学院",
-        "name": "WA天敌: 兰智翔、吕海涛、张迅豪",
+        "name": "WA天敌",
+        "info": "兰智翔、吕海涛、张迅豪",
         "junior": 1,
         "official": 1
     },
     "1387": {
         "school": "浙江经贸职业技术学院",
-        "name": "题题都队: 赵炜、张宁狄 、吴声杰",
+        "name": "题题都队",
+        "info": "赵炜、张宁狄 、吴声杰",
         "junior": 1,
         "official": 1
     },
     "1388": {
         "school": "浙江经贸职业技术学院",
-        "name": "植发请找我们队: 沈叶蕾、蒋浩、方熙来",
+        "name": "植发请找我们队",
+        "info": "沈叶蕾、蒋浩、方熙来",
         "junior": 1,
         "official": 1
     },
     "1389": {
         "school": "浙江经贸职业技术学院",
-        "name": "经贸1队: 伍浩、刘旭锋、陈可及",
+        "name": "经贸1队",
+        "info": "伍浩、刘旭锋、陈可及",
         "junior": 1,
         "official": 1
     },
     "1390": {
         "school": "浙江经贸职业技术学院",
-        "name": "今年回来还奖杯: 林渲梓、徐方野、陈谓钻",
+        "name": "今年回来还奖杯",
+        "info": "林渲梓、徐方野、陈谓钻",
         "junior": 1,
         "official": 1
     },
     "1391": {
         "school": "浙江科贸职业技术学院",
-        "name": "茂名磨刀石: 邹云国、陈轩、刘优贤",
+        "name": "茂名磨刀石",
+        "info": "邹云国、陈轩、刘优贤",
         "junior": 1,
         "official": 1
     },
     "1392": {
         "school": "浙江科贸职业技术学院",
-        "name": "不会英语: 俞李涛、武泽行、尤勇",
+        "name": "不会英语",
+        "info": "俞李涛、武泽行、尤勇",
         "junior": 1,
         "official": 1
     },
     "1393": {
         "school": "浙江科贸职业技术学院",
-        "name": "代码龙卷风: 童良瑀、徐若恒、赵博闻",
+        "name": "代码龙卷风",
+        "info": "童良瑀、徐若恒、赵博闻",
         "junior": 1,
         "official": 1
     },
     "1394": {
         "school": "浙江科贸职业技术学院",
-        "name": "幸运星: 章融、刘舒影、周咏",
+        "name": "幸运星",
+        "info": "章融、刘舒影、周咏",
         "junior": 1,
         "official": 1
     },
     "1395": {
         "school": "浙江邮电职业技术学院",
-        "name": " 轮子队: 包高齐、严佳龙、黄宣涵",
+        "name": " 轮子队",
+        "info": "包高齐、严佳龙、黄宣涵",
         "junior": 1,
         "official": 1
     },
     "1396": {
         "school": "浙江邮电职业技术学院",
-        "name": "最初的代码，无限的未来: 王凯帅、胡晨晖、李宝银",
+        "name": "最初的代码，无限的未来",
+        "info": "王凯帅、胡晨晖、李宝银",
         "junior": 1,
         "official": 1
     },
     "1397": {
         "school": "浙江邮电职业技术学院",
-        "name": "我感觉很难受: 金佳乐 、卢成潼、蔡世元",
+        "name": "我感觉很难受",
+        "info": "金佳乐 、卢成潼、蔡世元",
         "junior": 1,
         "official": 1
     },
     "1398": {
         "school": "浙江邮电职业技术学院",
-        "name": "菜鸟驿站: 肖童、臧佳耀、张家毓",
+        "name": "菜鸟驿站",
+        "info": "肖童、臧佳耀、张家毓",
         "junior": 1,
         "official": 1
     },
     "1399": {
         "school": "浙江邮电职业技术学院",
-        "name": "AC怪: 纪俊杰、陈启迪、陈枳驿",
+        "name": "AC怪",
+        "info": "纪俊杰、陈启迪、陈枳驿",
         "junior": 1,
         "official": 1
     },
     "1400": {
         "school": "浙江邮电职业技术学院",
-        "name": "香菇鸡: 苏子杰、汪峥俊、杨锟",
+        "name": "香菇鸡",
+        "info": "苏子杰、汪峥俊、杨锟",
         "junior": 1,
         "official": 1
     },
     "1401": {
         "school": "浙江育英职业技术学院",
-        "name": "育英五队: 叶铸远、冯浚豪、郑浩宇",
+        "name": "育英五队",
+        "info": "叶铸远、冯浚豪、郑浩宇",
         "junior": 1,
         "official": 1
     },
     "1402": {
         "school": "浙江育英职业技术学院",
-        "name": "育英七队: 李泽瑜、汪黎杰、郑明辉",
+        "name": "育英七队",
+        "info": "李泽瑜、汪黎杰、郑明辉",
         "junior": 1,
         "official": 1
     },
     "1403": {
         "school": "浙江育英职业技术学院",
-        "name": "育英六队: 杨辰、林沙、唐敏",
+        "name": "育英六队",
+        "info": "杨辰、林沙、唐敏",
         "junior": 1,
         "official": 1
     },
     "1404": {
         "school": "浙江育英职业技术学院",
-        "name": "育英九队: 王焕、赵志锋、沈钢杰",
+        "name": "育英九队",
+        "info": "王焕、赵志锋、沈钢杰",
         "junior": 1,
         "official": 1
     },
     "1405": {
         "school": "浙江育英职业技术学院",
-        "name": "育英十一队: 杨帆、朱文南、何龙勇",
+        "name": "育英十一队",
+        "info": "杨帆、朱文南、何龙勇",
         "junior": 1,
         "official": 1
     },
     "1406": {
         "school": "浙江育英职业技术学院",
-        "name": "育英十九队: 周昌飘、吴雅冰、夏杰",
+        "name": "育英十九队",
+        "info": "周昌飘、吴雅冰、夏杰",
         "junior": 1,
         "official": 1
     },
     "1407": {
         "school": "浙江育英职业技术学院",
-        "name": "育英二队: 徐航、夏炫、应佳伟",
+        "name": "育英二队",
+        "info": "徐航、夏炫、应佳伟",
         "junior": 1,
         "official": 1
     },
     "1408": {
         "school": "浙江交通职业技术学院",
-        "name": "交院1队: 何冠华、刘海嘉、杨金翰",
+        "name": "交院1队",
+        "info": "何冠华、刘海嘉、杨金翰",
         "junior": 1,
         "official": 1
     },
     "1409": {
         "school": "浙江交通职业技术学院",
-        "name": "交院2队: 许智鹏、徐浩群、陆昊添",
+        "name": "交院2队",
+        "info": "许智鹏、徐浩群、陆昊添",
         "junior": 1,
         "official": 1
     },
     "1410": {
         "school": "浙江交通职业技术学院",
-        "name": "流浪字节: 赵汪、沈辉、李应昊",
+        "name": "流浪字节",
+        "info": "赵汪、沈辉、李应昊",
         "junior": 1,
         "official": 1
     },
     "1411": {
         "school": "浙江商业职业技术学校",
-        "name": "浙江商职院: 饶丁豪、倪伟康、洪东俊",
+        "name": "浙江商职院",
+        "info": "饶丁豪、倪伟康、洪东俊",
         "junior": 1,
         "official": 1
     },
     "1412": {
         "school": "杭二中",
-        "name": "队友去找妹子了: 王蔚澄、吴与伦、修煜然",
+        "name": "队友去找妹子了",
+        "info": "王蔚澄、吴与伦、修煜然",
         "highschool": 1,
         "unofficial": 1
     },
     "1413": {
         "school": "杭二中",
-        "name": "队名这么短还想开军舰？: 马文浩、苏焜、胡杨",
+        "name": "队名这么短还想开军舰？",
+        "info": "马文浩、苏焜、胡杨",
         "highschool": 1,
         "unofficial": 1
     },
     "1414": {
         "school": "杭二中",
-        "name": "三个顶零: 徐世程、戴之恒、盛梓航",
+        "name": "三个顶零",
+        "info": "徐世程、戴之恒、盛梓航",
         "highschool": 1,
         "unofficial": 1
     },
     "1415": {
         "school": "杭二中",
-        "name": "这一切都要从一只蝙蝠说起: 王相文、徐安矣、周转",
+        "name": "这一切都要从一只蝙蝠说起",
+        "info": "王相文、徐安矣、周转",
         "highschool": 1,
         "unofficial": 1
     },
     "1416": {
         "school": "杭师大附中",
-        "name": "玩蛇: 杨云龙、李彦庆、林泓佺",
+        "name": "玩蛇",
+        "info": "杨云龙、李彦庆、林泓佺",
         "highschool": 1,
         "unofficial": 1
     },
     "1417": {
         "school": "杭师大附中",
-        "name": "小猫陆战队: 叶初航、杨帆、",
+        "name": "小猫陆战队",
+        "info": "叶初航、杨帆、",
         "highschool": 1,
         "unofficial": 1
     },
     "1418": {
         "school": "杭师大附中",
-        "name": "参赛者8: 张枨、陈柯涛、吴陈宇",
+        "name": "参赛者8",
+        "info": "张枨、陈柯涛、吴陈宇",
         "highschool": 1,
         "unofficial": 1
     },
     "1419": {
         "school": "杭师大附中",
-        "name": "洗洗睡了: 付俊、李骋、何陈聪",
+        "name": "洗洗睡了",
+        "info": "付俊、李骋、何陈聪",
         "highschool": 1,
         "unofficial": 1
     },
     "1420": {
         "school": "杭师大附中",
-        "name": "打完这场回家结婚: 邵铁夫、温声荣、苏桐渤",
+        "name": "打完这场回家结婚",
+        "info": "邵铁夫、温声荣、苏桐渤",
         "highschool": 1,
         "unofficial": 1
     },
     "1421": {
         "school": "乐成寄宿中学",
-        "name": "低频区: 傅景康、郑轶滔、李克成",
+        "name": "低频区",
+        "info": "傅景康、郑轶滔、李克成",
         "highschool": 1,
         "unofficial": 1
     },
     "1422": {
         "school": "乐成寄宿中学",
-        "name": "没名字的知临一队: 陈知轩、林帮才、金城根",
+        "name": "没名字的知临一队",
+        "info": "陈知轩、林帮才、金城根",
         "highschool": 1,
         "unofficial": 1
     },
     "1423": {
         "school": "绍兴鲁迅中学",
-        "name": "我喜欢烤鸭: 周扬帆、许志航、王垲达",
+        "name": "我喜欢烤鸭",
+        "info": "周扬帆、许志航、王垲达",
         "highschool": 1,
         "unofficial": 1
     },
     "1424": {
         "school": "学军中学",
-        "name": "杭州学军中学3队: 陈可汗、戚洋、张恒",
+        "name": "杭州学军中学3队",
+        "info": "陈可汗、戚洋、张恒",
         "highschool": 1,
         "unofficial": 1
     },
     "1425": {
         "school": "学军中学",
-        "name": "杭州学军中学2队: 黄晨衍、金云韬、陈泓睿",
+        "name": "杭州学军中学2队",
+        "info": "黄晨衍、金云韬、陈泓睿",
         "highschool": 1,
         "unofficial": 1
     },
     "1426": {
         "school": "学军中学",
-        "name": "杭州学军中学1队: 陈立言、周镇东、郑路明",
+        "name": "杭州学军中学1队",
+        "info": "陈立言、周镇东、郑路明",
         "highschool": 1,
         "unofficial": 1
     },
     "1427": {
         "school": "学军中学",
-        "name": "杭州学军中学4队: 马熠阳、徐韫、孔启皓",
+        "name": "杭州学军中学4队",
+        "info": "马熠阳、徐韫、孔启皓",
         "highschool": 1,
         "unofficial": 1
     },
     "1428": {
         "school": "学军中学",
-        "name": "杭州学军中学教育集团文渊中学: 王泽诚、郑兆成、冯阳阳",
+        "name": "杭州学军中学教育集团文渊中学",
+        "info": "王泽诚、郑兆成、冯阳阳",
         "highschool": 1,
         "unofficial": 1
     },
     "1429": {
         "school": "学军中学",
-        "name": "杭州学军中学5队: 王子涵、陈卓、陆衍辰",
+        "name": "杭州学军中学5队",
+        "info": "王子涵、陈卓、陆衍辰",
         "highschool": 1,
         "unofficial": 1
     },
     "1430": {
         "school": "学军中学",
-        "name": "杭州学军中学6队: 丁思源、金政羽、张扬",
+        "name": "杭州学军中学6队",
+        "info": "丁思源、金政羽、张扬",
         "highschool": 1,
         "unofficial": 1
     },
     "1431": {
         "school": "学军中学",
-        "name": "杭州学军中学教育集团文渊中学2队: 李其轩、陈诺、周康阳",
+        "name": "杭州学军中学教育集团文渊中学2队",
+        "info": "李其轩、陈诺、周康阳",
         "highschool": 1,
         "unofficial": 1
     },
     "1432": {
         "school": "镇海中学",
-        "name": "摸鱼: 虞皓翔、钱易、翁伟捷",
+        "name": "摸鱼",
+        "info": "虞皓翔、钱易、翁伟捷",
         "highschool": 1,
         "unofficial": 1
     },
     "1433": {
         "school": "镇海中学",
-        "name": "玩肚子: 宣毅鸣、孙睿泽、潘佳奇",
+        "name": "玩肚子",
+        "info": "宣毅鸣、孙睿泽、潘佳奇",
         "highschool": 1,
         "unofficial": 1
     },
     "1434": {
         "school": "镇海中学",
-        "name": "不会: 卢宇宸、周佳仪、徐敏睿",
+        "name": "不会",
+        "info": "卢宇宸、周佳仪、徐敏睿",
         "highschool": 1,
         "unofficial": 1
     },
     "1435": {
         "school": "镇海中学",
-        "name": "12345: 傅正航、茅植、邹瀚熠",
+        "name": "12345",
+        "info": "傅正航、茅植、邹瀚熠",
         "highschool": 1,
         "unofficial": 1
     },
     "1436": {
         "school": "镇海中学",
-        "name": "马上要中考: 周圣杰、施开成、柯怀俊",
+        "name": "马上要中考",
+        "info": "周圣杰、施开成、柯怀俊",
         "highschool": 1,
         "unofficial": 1
     }

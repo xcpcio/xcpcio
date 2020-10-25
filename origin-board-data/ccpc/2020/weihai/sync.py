@@ -136,7 +136,7 @@ def sync():
     while True:
         print("fetching...")
         res_list = fetch()
-        team_output(res_list)
+        # team_output(res_list)
         run_output(res_list)
         print("sleeping...")
         time.sleep(20)

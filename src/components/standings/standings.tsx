@@ -741,6 +741,17 @@ class Standings extends React.Component {
                                                                 </svg>
                                                                 Star
                                                             </div>
+
+                                                            {item.info && (
+                                                                <span
+                                                                    style={{
+                                                                        paddingLeft:
+                                                                            '10px',
+                                                                    }}
+                                                                >
+                                                                    {item.info}
+                                                                </span>
+                                                            )}
                                                         </div>
                                                     </div>
                                                     {this.state.vis[

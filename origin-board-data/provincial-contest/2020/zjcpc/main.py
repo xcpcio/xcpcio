@@ -84,7 +84,8 @@ def team_out():
         team[key] = {}
         new_item = team[key]
         new_item['school'] = item['school']
-        new_item['name'] = ''.join([item['team'], ": ", item['members']])
+        new_item['name'] = item['team']
+        new_item['info'] = item['members']
         type = item['type'].split(" ")
         for tp in type:
             if tp == 'type1':
