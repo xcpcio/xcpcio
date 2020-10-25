@@ -41,7 +41,7 @@ for i in range(((total + 49) // 50)):
         ('page', str(i)),
         ('limit', '50'),
     )
-    req_list.append(grequests.get('https://pintia.cn/api/problem-sets/1319876646838063104/rankings', headers=headers, params=params, cookies=cookies))
+    req_list.append(grequests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings', headers=headers, params=params, cookies=cookies))
 
 res_list = grequests.map(req_list)
 
@@ -72,11 +72,16 @@ def output(filename, data):
     with open(path.join(data_dir, filename), 'w') as f:
         f.write(json_output(data))
 
-def main():
+# def team_output():
+#     for item in res_list:
+        
+
+def run_output():
     oldData = getOldData()
     # print(oldData)
     for item in res_list:
         item = json.loads(item.text)
+        # print(item)
         problem_id = item['commonRankings']['labels']
         for team in item['commonRankings']['commonRankings']:
             if 'studentUser' in team['user'].keys():
@@ -86,10 +91,10 @@ def main():
                     _run = team['problemScores'][key]
                     timestamp = int(_run['acceptTime']) * 60
                     cnt = int(_run['submitCountSnapshot'])
-                    if team_id in oldData.keys():
-                        if p_id in oldData[team_id].keys():
-                            if oldData[team_id]['status'] == 'correct':
-                                cnt = min(cnt, oldData[team_id]['attempted_num'])
+                    # if team_id in oldData.keys():
+                    #     if p_id in oldData[team_id].keys():
+                    #         if oldData[team_id]['status'] == 'correct':
+                    #             cnt = min(cnt, oldData[team_id]['attempted_num'])
                     for i in range(1, cnt):
                         run_ = {
                             'team_id': team_id,
@@ -109,6 +114,7 @@ def main():
                     run.append(run_)
         output('run.json', run)
 
-main()
+# team_output()
+run_output()
 
 

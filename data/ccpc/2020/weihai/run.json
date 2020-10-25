@@ -1,1 +1,110 @@
-[]
+[
+    {
+        "team_id": "T185",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T391",
+        "timestamp": 600,
+        "problem_id": 7,
+        "status": "correct"
+    },
+    {
+        "team_id": "T371",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T103",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T008",
+        "timestamp": 780,
+        "problem_id": 7,
+        "status": "correct"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T305",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T212",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T349",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T283",
+        "timestamp": 720,
+        "problem_id": 11,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T283",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T153",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T153",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T254",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T254",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T254",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    }
+]

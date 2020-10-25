@@ -38,10 +38,9 @@ medal = {
 group = {
     'official': '正式队伍',
     'unofficial': '打星参赛',
-    'inside': '晋级参赛',
-    'outside': '外卡参赛',
+    # 'inside': '晋级参赛',
+    # 'outside': '外卡参赛',
     'girl': '女队',
-
 }
 school = {
     'name': 1,
@@ -126,7 +125,18 @@ def run_out():
 
     output("run.json", result)
 
+def team_refer():
+    data = xlrd.open_workbook(path.join(raw_dir, team_data_filename)) 
+    sheet = data.sheet_by_index(0)
+    nrows = sheet.nrows
+    team_refer = {}
+    for i in range(1, nrows):
+        row = sheet.row_values(i)
+        team_refer[row[2]] = row[1]
+    output("team_refer.json", team_refer)
+
 mkdir(data_dir)
 config_out()
-team_out()
+# team_out()
 # run_out()
+team_refer()
