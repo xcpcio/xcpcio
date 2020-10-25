@@ -131,10 +131,12 @@ function getTeamChart(contest_config: any, team: any, run: any) {
     }
     let dic: any = {};
     run.forEach((run: any) => {
-        const id = [run.team_id, run.problem_id].join('-');
-        if (!(dic[id] === 1)) {
-            dic[id] = 1;
-            team_list[run.team_id].solved += 1;
+        if (run.status === 'correct') {
+            const id = [run.team_id, run.problem_id].join('-');
+            if (!(dic[id] === 1)) {
+                dic[id] = 1;
+                team_list[run.team_id].solved += 1;
+            }
         }
     });
     let len = contest_config.problem_id.length;
