@@ -24,7 +24,12 @@ params = (
     ('limit', '50'),
 )
 
-response = requests.get('https://pintia.cn/api/problem-sets/1319876646838063104/rankings', headers=headers, params=params, cookies=cookies)
+response = requests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings', headers=headers, params=params, cookies=cookies)
+
+#NB. Original query string below. It seems impossible to parse and
+#reproduce query strings 100% accurately so the one below is given
+#in case the reproduced version is not "correct".
+# response = requests.get('https://pintia.cn/api/problem-sets/1320042663639977984/rankings?limit=50', headers=headers, cookies=cookies)
 
 total = json.loads(response.text)['total']
 print(total)
