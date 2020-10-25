@@ -27,9 +27,9 @@ function getWidth(start_time: number, end_time: number) {
     return Math.round(((now - start_time) / (end_time - start_time)) * 100);
 }
 
-let timer: any = null;
-
 class Progress_small extends React.Component {
+    timer: any = null;
+
     update(props: any) {
         this.setState({
             start_time: props.start_time,
@@ -43,8 +43,8 @@ class Progress_small extends React.Component {
             width: getWidth(props.start_time, props.end_time),
         });
 
-        timer && clearInterval(timer);
-        timer = setInterval(() => {
+        this.timer && clearInterval(this.timer);
+        this.timer = setInterval(() => {
             this.setState({
                 status: getStatus(
                     this.state.start_time,
@@ -53,7 +53,7 @@ class Progress_small extends React.Component {
                 ),
                 width: getWidth(this.state.start_time, this.state.end_time),
             });
-        }, 500);
+        }, 100);
     }
 
     //在组件已经被渲染到 DOM 中后运行
@@ -68,7 +68,7 @@ class Progress_small extends React.Component {
 
     //组件卸载前的操作
     componentWillUnmount() {
-        timer && clearInterval(timer);
+        this.timer && clearInterval(this.timer);
     }
 
     state = {

@@ -27,9 +27,9 @@ function getWidth(start_time: number, end_time: number) {
     return Math.round(((now - start_time) / (end_time - start_time)) * 100);
 }
 
-let timer: any = null;
-
 class Progress extends React.Component {
+    timer: any = null;
+
     update(props: any) {
         this.setState({
             head_item: props.head_item,
@@ -61,8 +61,8 @@ class Progress extends React.Component {
             ),
         });
 
-        timer && clearInterval(timer);
-        timer = setInterval(() => {
+        this.timer && clearInterval(this.timer);
+        this.timer = setInterval(() => {
             this.setState({
                 status: getStatus(
                     this.state.start_time,
@@ -103,7 +103,7 @@ class Progress extends React.Component {
 
     //组件卸载前的操作
     componentWillUnmount() {
-        timer && clearInterval(timer);
+        this.timer && clearInterval(this.timer);
     }
 
     state = {
