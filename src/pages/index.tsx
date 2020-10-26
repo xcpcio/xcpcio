@@ -31,7 +31,14 @@ let treeData: any = [];
         });
         return children;
     };
-    treeData = dfs(contest_list, '');
+    treeData = [
+        {
+            title: 'CONTEST',
+            value: '',
+            children: [],
+        },
+    ];
+    treeData[0]['children'] = dfs(contest_list, '');
 })();
 
 function getContest(path: string) {
@@ -71,7 +78,7 @@ function getContest(path: string) {
 
 class Index extends React.Component {
     getPath(props: any) {
-        return getQueryString('path', props.location.search) || '/';
+        return getQueryString('path', props.location.search) || '';
     }
 
     update(props: any) {
@@ -127,6 +134,7 @@ class Index extends React.Component {
                             key={this.state.defaultValue}
                             defaultValue={this.state.defaultValue}
                             showCheckedStrategy={TreeSelect.SHOW_PARENT}
+                            treeDefaultExpandAll
                             onChange={this.onChange.bind(this)}
                         />
                     </div>
