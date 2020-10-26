@@ -3,6 +3,10 @@ import os
 import json
 import time
 
+dist = "../contest_list.json"
+pathname = "../data"
+contest_list = {}
+
 def json_output(data):
     return json.dumps(data, sort_keys=True, indent=4, separators=(',', ':'), ensure_ascii=False)
 
@@ -24,10 +28,6 @@ def get_timestamp(dt):
 def output(filename, data):
     with open(filename, 'w') as f:
         f.write(json_output(data))
-
-dist = "../contest_list.json"
-pathname = "../data"
-contest_list = {}
 
 def dfs(contest_list, pathname, link):
     config_path = path.join(pathname, "config.json") 
