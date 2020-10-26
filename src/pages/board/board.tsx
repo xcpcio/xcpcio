@@ -65,7 +65,7 @@ function getGroup(search: any) {
     let group = 'all';
     const params = new URLSearchParams(search);
     if (params.get('group')) {
-        const index = menu_item.group.indexOf(params.get('group'));
+        const index = menu_item.group.indexOf(params.get('group') || '');
         if (index !== -1) {
             group = fgroup[index];
         }
@@ -144,7 +144,7 @@ function getSchool(team: any) {
 function getCurrentSchool(search: any) {
     let params = new URLSearchParams(search);
     if (params.get('school')) {
-        return JSON.parse(params.get('school'));
+        return JSON.parse(params.get('school') || '');
     }
     return [];
 }
