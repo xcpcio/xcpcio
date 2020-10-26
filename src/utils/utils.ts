@@ -198,3 +198,8 @@ export const formatDate = (
     } // 返回格式化的日期字符串
     return formatTime;
 };
+
+export const getQueryString = (queryName: any, search: any) => {
+    const params = new URLSearchParams(search);
+    return params.get(queryName);
+};

@@ -2,23 +2,65 @@ import React from 'react';
 import './index.css';
 import contest_list from '../../contest_list.json';
 import Progress_small from '@/components/progress/progress-small';
-import { deepCopy, getTimeDiff, timeFormat } from '@/utils/utils';
+import {
+    deepCopy,
+    getTimeDiff,
+    timeFormat,
+    getQueryString,
+} from '@/utils/utils';
+import { TreeSelect } from 'antd';
 
-function dfs(contest_list: any, contest: any) {
-    if (!contest_list['config']) {
+let treeData: any = [];
+
+(() => {
+    const dfs = (contest_list: any, path: any) => {
+        let children: any = [];
         for (let k in contest_list) {
-            dfs(contest_list[k], contest);
+            let item: any = {};
+            item['title'] = k;
+            item['value'] = [path, k].join('/');
+            if (!contest_list[k]['config']) {
+                children.push(item);
+            }
         }
-    } else {
-        let item = deepCopy(contest_list.config);
-        item['link'] = deepCopy(contest_list.link);
-        contest.push(item);
-    }
-}
+        children.forEach((children: any, index: number) => {
+            children['children'] = dfs(
+                contest_list[children.title],
+                children.value,
+            );
+        });
+        return children;
+    };
+    treeData = dfs(contest_list, '');
+})();
 
-function getContest() {
+function getContest(path: string) {
     let contest: any = [];
-    dfs(contest_list, contest);
+    const dfs = (contest_list: any, contest: any) => {
+        if (!contest_list['config']) {
+            for (let k in contest_list) {
+                dfs(contest_list[k], contest);
+            }
+        } else {
+            let item = deepCopy(contest_list.config);
+            item['link'] = deepCopy(contest_list.link);
+            contest.push(item);
+        }
+    };
+    let _path = path.split('/');
+    _path.splice(0, 1);
+    let _contest_list = deepCopy(contest_list);
+    _path.forEach((path: string) => {
+        if (_contest_list[path] != undefined) {
+            _contest_list = _contest_list[path];
+        } else {
+            _contest_list = null;
+        }
+    });
+    if (_contest_list == null) {
+        return contest;
+    }
+    dfs(_contest_list, contest);
     contest.sort((a: any, b: any) => {
         if (a.start_time < b.start_time) return 1;
         if (a.start_time > b.start_time) return -1;
@@ -28,13 +70,41 @@ function getContest() {
 }
 
 class Index extends React.Component {
-    componentDidMount() {}
+    getPath(props: any) {
+        return getQueryString('path', props.location.search) || '/';
+    }
+
+    update(props: any) {
+        this.setState({
+            contest: getContest(this.getPath(props)),
+            defaultValue: this.getPath(props),
+        });
+    }
+
+    componentDidMount() {
+        this.update(this.props);
+    }
 
     constructor(props: any) {
         super(props);
     }
 
-    state = {};
+    //props中的值发生改变时执行
+    async componentWillReceiveProps(nextProps: any) {
+        this.update(nextProps);
+    }
+
+    state = {
+        contest: [],
+        defaultValue: '',
+    };
+
+    onChange = (value: any) => {
+        const params = new URLSearchParams(this.props.location.search);
+        let query: any = { ...params };
+        query['path'] = value;
+        this.props.history.push({ query });
+    };
 
     render() {
         return (
@@ -43,8 +113,23 @@ class Index extends React.Component {
                     maxWidth: '880px',
                 }}
             >
-                <div className="border-bottom" style={{ display: 'flex' }}>
-                    <div style={{ float: 'left' }}></div>
+                <div
+                    className="border-bottom"
+                    style={{ display: 'flex', marginTop: '20px' }}
+                >
+                    <div style={{ float: 'left' }}>
+                        <TreeSelect
+                            style={{ width: '780px' }}
+                            value={this.state.value}
+                            dropdownStyle={{ maxHeight: 680, overflow: 'auto' }}
+                            treeData={treeData}
+                            placeholder="Please select"
+                            key={this.state.defaultValue}
+                            defaultValue={this.state.defaultValue}
+                            showCheckedStrategy={TreeSelect.SHOW_PARENT}
+                            onChange={this.onChange.bind(this)}
+                        />
+                    </div>
                     <div style={{ flex: '1' }}></div>
                     <div style={{ float: 'right' }}>
                         <a
@@ -72,7 +157,7 @@ class Index extends React.Component {
                     </div>
                 </div>
 
-                {getContest().map((contest: any) => {
+                {this.state.contest.map((contest: any) => {
                     return (
                         <div className="m-box">
                             <div className="m-title">
