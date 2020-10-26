@@ -12,7 +12,7 @@ import Progress from '@/components/progress/progress';
 import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
 import Standings from '@/components/standings/standings';
 import Statistics from '@/components/Statistics/statistics';
-import './board.css';
+import style from './board.less';
 import Selected from '@/components/Selected/selected';
 
 const INF = 0x3f3f3f3f;
@@ -249,23 +249,16 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div style={{ maxWidth: 1560 }}>
+            <div className={style.root}>
                 {this.state.loaded === false && (
-                    <div
-                        style={{
-                            height: 'calc(20vh)',
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
+                    <div className={style.loading}>
                         <Loading />
                     </div>
                 )}
 
                 {this.state.loaded === true && (
                     <>
-                        <div className="g-title">
+                        <div className={style.title}>
                             {this.state.contest_config.contest_name}
                         </div>
 
