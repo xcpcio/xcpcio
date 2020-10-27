@@ -13,7 +13,7 @@ import { TreeSelect } from 'antd';
 let treeData: any = [];
 
 (() => {
-    const dfs = (contest_list: any, path: any) => {
+    const dfs = (contest_list: any, path: string) => {
         let children: any = [];
         for (let k in contest_list) {
             let item: any = {};
@@ -106,7 +106,7 @@ class Index extends React.Component {
         defaultValue: '',
     };
 
-    onChange = (value: any) => {
+    onChange = (value: string) => {
         const params = new URLSearchParams(this.props.location.search);
         let query: any = { ...params };
         query['path'] = value;
