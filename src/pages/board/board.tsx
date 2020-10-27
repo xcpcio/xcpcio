@@ -292,7 +292,7 @@ class Board extends React.Component {
                             {this.state.contest_config.school && (
                                 <div style={{ flex: '1', maxWidth: '480px' }}>
                                     <Selected
-                                        placeholder={'Filter School'}
+                                        placeholder={'School Filter'}
                                         params={
                                             new URLSearchParams(
                                                 this.props.location.search,
