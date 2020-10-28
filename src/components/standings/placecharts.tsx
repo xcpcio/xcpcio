@@ -14,7 +14,6 @@ function getSolvedAndTime(problem: any) {
             time += problem.time;
         }
     });
-    // console.log(solved, time);
     return { solved: solved, time: time };
 }
 
@@ -150,17 +149,8 @@ class Placecharts extends React.Component {
 
     //props中的值发生改变时执行
     async componentWillReceiveProps(nextProps: any) {
-        if (
-            this.props.contest_config !== nextProps.contest_config ||
-            this.props.cur_team !== nextProps.cur_team ||
-            this.props.team !== nextProps.team ||
-            this.props.run !== nextProps.run
-        ) {
-            this.setState({
-                loaded: false,
-            });
-            this.update(nextProps);
-        }
+        this.setState({ loaded: false });
+        this.update(nextProps);
     }
 
     state = {

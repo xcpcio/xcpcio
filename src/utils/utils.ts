@@ -203,3 +203,9 @@ export const getQueryString = (queryName: any, search: any) => {
     const params = new URLSearchParams(search);
     return params.get(queryName);
 };
+
+export const entries = function* entries(obj: any) {
+    for (let key of Object.keys(obj)) {
+        yield [key, obj[key]];
+    }
+};

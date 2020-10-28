@@ -1,7 +1,7 @@
 import React from 'react';
-import './standings.css';
-import './star.css';
-import Placecharts from './placecharts';
+import './Standings.less';
+import starStyle from './Star.less';
+import Placecharts from './Placecharts';
 import Loading from '@/components/Loading/Loading';
 import { getStarKey } from '@/utils/utils';
 
@@ -620,7 +620,11 @@ class Standings extends React.Component {
                                                         >
                                                             <div
                                                                 id={`unstar-btn-${item.team_id}`}
-                                                                className="star-btn"
+                                                                className={
+                                                                    starStyle[
+                                                                        'star-btn'
+                                                                    ]
+                                                                }
                                                                 title={`Star ${item.name}`}
                                                                 style={{
                                                                     display:
@@ -665,7 +669,11 @@ class Standings extends React.Component {
                                                                 }}
                                                             >
                                                                 <svg
-                                                                    className="octicon octicon-star"
+                                                                    className={
+                                                                        starStyle[
+                                                                            'octicon-star'
+                                                                        ]
+                                                                    }
                                                                     height="16"
                                                                     viewBox="0 0 16 16"
                                                                     version="1.1"
@@ -681,7 +689,11 @@ class Standings extends React.Component {
                                                             </div>
                                                             <div
                                                                 id={`star-btn-${item.team_id}`}
-                                                                className="star-btn"
+                                                                className={
+                                                                    starStyle[
+                                                                        'star-btn'
+                                                                    ]
+                                                                }
                                                                 title={`Star ${item.name}`}
                                                                 style={{
                                                                     display:
@@ -727,7 +739,11 @@ class Standings extends React.Component {
                                                                 }}
                                                             >
                                                                 <svg
-                                                                    className="octicon octicon-star"
+                                                                    className={
+                                                                        starStyle[
+                                                                            'octicon-star'
+                                                                        ]
+                                                                    }
                                                                     height="16"
                                                                     viewBox="0 0 16 16"
                                                                     version="1.1"
@@ -876,4 +892,4 @@ class Standings extends React.Component {
     }
 }
 
-export default Standings;
+export { Standings };

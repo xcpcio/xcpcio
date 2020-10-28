@@ -1,5 +1,5 @@
 import React from 'react';
-import './second-level.menu.css';
+import style from './SecondLevelMenu.less';
 
 class SecondLevelMenu extends React.Component {
     update(props: any) {
@@ -16,7 +16,6 @@ class SecondLevelMenu extends React.Component {
         this.update(this.props);
     }
 
-    //props中的值发生改变时执行
     async componentWillReceiveProps(nextProps: any) {
         this.update(nextProps);
     }
@@ -33,30 +32,37 @@ class SecondLevelMenu extends React.Component {
         currentItem: '',
     };
 
+    changeTab = (tab: string, _this: any) => {
+        const pathname = window.location.pathname;
+        console.log(_this.state.params);
+        console.log({
+            ..._this.state.params,
+            ...{ [_this.state.queryName]: tab },
+        });
+        let query: any = {};
+        for (const [k, v] of _this.state.params) {
+            query[k] = v;
+        }
+        query[_this.state.queryName] = tab;
+        _this.state.history.push({
+            pathname: pathname,
+            query: query,
+        });
+    };
+
     render() {
         return (
-            <div className="g-second-level-menu-list">
+            <div className={style['second-level-menu-list']}>
                 {this.state.siderItem.map((item: any) => {
                     return (
                         <div
                             className={[
-                                'g-second-level-menu-item',
+                                style['second-level-menu-item'],
                                 item == this.state.currentItem
-                                    ? 'g-second-level-menu-item-current'
+                                    ? style['second-level-menu-item-current']
                                     : '',
                             ].join(' ')}
-                            onClick={() => {
-                                const pathname = window.location.pathname;
-                                let query: any = {};
-                                for (const [key, value] of this.state.params) {
-                                    query[key] = value;
-                                }
-                                query[this.state.queryName] = item;
-                                this.state.history.push({
-                                    pathname: pathname,
-                                    query: query,
-                                });
-                            }}
+                            onClick={() => this.changeTab(item, this)}
                         >
                             {item}
                         </div>
@@ -67,4 +73,4 @@ class SecondLevelMenu extends React.Component {
     }
 }
 
-export default SecondLevelMenu;
+export { SecondLevelMenu };

@@ -8,12 +8,12 @@ import {
     getStarKey,
     removeDuplicateItems,
 } from '@/utils/utils';
-import Progress from '@/components/progress/progress';
-import SecondLevelMenu from '@/components/second-level-menu/second-level-menu';
-import Standings from '@/components/standings/standings';
-import Statistics from '@/components/Statistics/statistics';
+import { ProgressBig } from '@/components/Progress';
+import { SecondLevelMenu } from '@/components/SecondLevelMenu';
+import { Standings } from '@/components/Standings';
+import { Statistics } from '@/components/Statistics';
 import style from './board.less';
-import Selected from '@/components/Selected/selected';
+import { Selected } from '@/components/Selected';
 
 const INF = 0x3f3f3f3f;
 let pathname = '';
@@ -262,7 +262,7 @@ class Board extends React.Component {
                             {this.state.contest_config.contest_name}
                         </div>
 
-                        <Progress
+                        <ProgressBig
                             head_item={head_item[this.state.menu_index.type]}
                             start_time={this.state.contest_config.start_time}
                             end_time={this.state.contest_config.end_time}

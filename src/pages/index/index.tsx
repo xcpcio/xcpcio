@@ -1,80 +1,11 @@
 import React from 'react';
 import style from './index.less';
-import contest_list from '../../contest_list.json';
-import Progress_small from '@/components/progress/progress-small';
-import {
-    deepCopy,
-    getTimeDiff,
-    timeFormat,
-    getQueryString,
-} from '@/utils/utils';
+import { ProgressSmall } from '@/components/Progress';
+import { timeFormat, getQueryString } from '@/utils';
 import { TreeSelect } from 'antd';
+import { getTreeData, getContest, getDuration } from './model';
 
-let treeData: any = [];
-
-(() => {
-    const dfs = (contest_list: any, path: string) => {
-        let children: any = [];
-        for (let k in contest_list) {
-            let item: any = {};
-            item['title'] = k;
-            item['value'] = [path, k].join('/');
-            if (!contest_list[k]['config']) {
-                children.push(item);
-            }
-        }
-        children.forEach((children: any, index: number) => {
-            children['children'] = dfs(
-                contest_list[children.title],
-                children.value,
-            );
-        });
-        return children;
-    };
-    treeData = [
-        {
-            title: 'CONTEST',
-            value: '',
-            children: [],
-        },
-    ];
-    treeData[0]['children'] = dfs(contest_list, '');
-})();
-
-function getContest(path: string) {
-    let contest: any = [];
-    const dfs = (contest_list: any, contest: any) => {
-        if (!contest_list['config']) {
-            for (let k in contest_list) {
-                dfs(contest_list[k], contest);
-            }
-        } else {
-            let item = deepCopy(contest_list.config);
-            item['link'] = deepCopy(contest_list.link);
-            contest.push(item);
-        }
-    };
-    let _path = path.split('/');
-    _path.splice(0, 1);
-    let _contest_list = deepCopy(contest_list);
-    _path.forEach((path: string) => {
-        if (_contest_list[path] != undefined) {
-            _contest_list = _contest_list[path];
-        } else {
-            _contest_list = null;
-        }
-    });
-    if (_contest_list == null) {
-        return contest;
-    }
-    dfs(_contest_list, contest);
-    contest.sort((a: any, b: any) => {
-        if (a.start_time < b.start_time) return 1;
-        if (a.start_time > b.start_time) return -1;
-        return 0;
-    });
-    return contest;
-}
+const treeData = getTreeData();
 
 class Index extends React.Component {
     getPath(props: any) {
@@ -96,8 +27,7 @@ class Index extends React.Component {
         super(props);
     }
 
-    //props中的值发生改变时执行
-    async componentWillReceiveProps(nextProps: any) {
+    componentWillReceiveProps(nextProps: any) {
         this.update(nextProps);
     }
 
@@ -167,9 +97,9 @@ class Index extends React.Component {
                     </div>
                 </div>
 
-                {this.state.contest.map((contest: any) => {
+                {this.state.contest.map((contest: any, index: number) => {
                     return (
-                        <div className={style['m-box']}>
+                        <div key={index} className={style['m-box']}>
                             <div className={style['m-title']}>
                                 {contest.contest_name}
                             </div>
@@ -188,14 +118,15 @@ class Index extends React.Component {
                                 >
                                     Start: {timeFormat(contest.start_time)}
                                     <br />
-                                    Duration:{' '}
-                                    {getTimeDiff(
-                                        contest.end_time - contest.start_time,
+                                    Duration:
+                                    {getDuration(
+                                        contest.start_time,
+                                        contest.end_time,
                                     )}
                                 </div>
                                 <div style={{ flex: '1' }}>
                                     <div style={{ width: '72%' }}>
-                                        <Progress_small
+                                        <ProgressSmall
                                             start_time={contest.start_time}
                                             end_time={contest.end_time}
                                             frozen_time={contest.frozen_time}
