@@ -273,11 +273,7 @@ class Board extends React.Component {
                         <div style={{ display: 'flex' }}>
                             <div style={{ float: 'left' }}>
                                 <SecondLevelMenu
-                                    params={
-                                        new URLSearchParams(
-                                            this.props.location.search,
-                                        )
-                                    }
+                                    search={this.props.location.search}
                                     history={this.props.history}
                                     queryName={'group'}
                                     siderItem={menu_item.group}
@@ -292,11 +288,7 @@ class Board extends React.Component {
                                 <div style={{ flex: '1', maxWidth: '480px' }}>
                                     <Selected
                                         placeholder={'School Filter'}
-                                        params={
-                                            new URLSearchParams(
-                                                this.props.location.search,
-                                            )
-                                        }
+                                        search={this.props.location.search}
                                         history={this.props.history}
                                         queryName={'school'}
                                         selectedItem={getSchool(
@@ -311,11 +303,7 @@ class Board extends React.Component {
                             <div style={{ flex: '1' }}></div>
                             <div style={{ float: 'right' }}>
                                 <SecondLevelMenu
-                                    params={
-                                        new URLSearchParams(
-                                            this.props.location.search,
-                                        )
-                                    }
+                                    search={this.props.location.search}
                                     history={this.props.history}
                                     queryName={'type'}
                                     siderItem={menu_item.type.slice().reverse()}

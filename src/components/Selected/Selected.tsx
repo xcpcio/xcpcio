@@ -1,12 +1,13 @@
 import React from 'react';
 import { Select } from 'antd';
 const { Option } = Select;
+import { getQueryParams } from '@/utils';
 
 class Selected extends React.Component {
     update(props: any) {
         this.setState({
             placeholder: props.placeholder || '',
-            params: props.params,
+            search: props.search,
             history: props.history,
             queryName: props.queryName || '',
             selectedItem: props.selectedItem || [],
@@ -28,7 +29,7 @@ class Selected extends React.Component {
 
     state = {
         placeholder: '',
-        params: {},
+        search: null,
         history: {},
         queryName: '',
         selectedItem: [],
@@ -36,12 +37,12 @@ class Selected extends React.Component {
     };
 
     onChange(values: any) {
+        const query = getQueryParams(
+            this.state.queryName,
+            JSON.stringify(values),
+            this.state.search,
+        );
         const pathname = window.location.pathname;
-        let query: any = {};
-        for (const [key, value] of this.state.params) {
-            query[key] = value;
-        }
-        query[this.state.queryName] = JSON.stringify(values);
         this.state.history.push({
             pathname: pathname,
             query: query,

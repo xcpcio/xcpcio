@@ -1,10 +1,11 @@
 import React from 'react';
 import style from './SecondLevelMenu.less';
+import { getQueryParams } from '@/utils';
 
 class SecondLevelMenu extends React.Component {
     update(props: any) {
         this.setState({
-            params: props.params,
+            search: props.search,
             history: props.history,
             queryName: props.queryName || '',
             siderItem: props.siderItem || [],
@@ -25,7 +26,7 @@ class SecondLevelMenu extends React.Component {
     }
 
     state = {
-        params: {},
+        search: null,
         history: {},
         queryName: '',
         siderItem: [],
@@ -33,17 +34,12 @@ class SecondLevelMenu extends React.Component {
     };
 
     changeTab = (tab: string, _this: any) => {
+        const query = getQueryParams(
+            _this.state.queryName,
+            tab,
+            _this.props.search,
+        );
         const pathname = window.location.pathname;
-        console.log(_this.state.params);
-        console.log({
-            ..._this.state.params,
-            ...{ [_this.state.queryName]: tab },
-        });
-        let query: any = {};
-        for (const [k, v] of _this.state.params) {
-            query[k] = v;
-        }
-        query[_this.state.queryName] = tab;
         _this.state.history.push({
             pathname: pathname,
             query: query,

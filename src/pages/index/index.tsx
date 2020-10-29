@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './index.less';
 import { ProgressSmall } from '@/components/Progress';
-import { timeFormat, getQueryString } from '@/utils';
+import { timeFormat, getQueryString, getQueryParams } from '@/utils';
 import { TreeSelect } from 'antd';
 import { getTreeData, getContest, getDuration } from './model';
 
@@ -37,10 +37,12 @@ class Index extends React.Component {
     };
 
     onChange = (value: string) => {
-        const params = new URLSearchParams(this.props.location.search);
-        let query: any = { ...params };
-        query['path'] = value;
-        this.props.history.push({ query });
+        const pathname = window.location.pathname;
+        const query = getQueryParams('path', value, this.props.location.search);
+        this.props.history.push({
+            pathname: pathname,
+            query: query,
+        });
     };
 
     render() {

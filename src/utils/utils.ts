@@ -209,3 +209,17 @@ export const entries = function* entries(obj: any) {
         yield [key, obj[key]];
     }
 };
+
+export function getQueryParams(
+    queryName: string,
+    queryValue: string,
+    search: any,
+) {
+    const params = new URLSearchParams(search);
+    let query: any = {};
+    for (const [k, v] of params) {
+        query[k] = v;
+    }
+    query[queryName] = queryValue;
+    return query;
+}
