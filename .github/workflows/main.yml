@@ -33,8 +33,8 @@ jobs:
           cd scripts
           python3 get_contest_list.py
           cd ..
-          yarn install
-          yarn build
+          npm install
+          npm build
           mkdir site
           mv dist/* site/
           mv data site/
