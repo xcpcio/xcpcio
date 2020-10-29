@@ -16,10 +16,10 @@ jobs:
         with:
           persist-credentials: false
       
-      - name: Set up Node.js 12.x
+      - name: Set up Node.js 15.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 15
           registry-url: https://registry.npmjs.org/
 
       - name: Set up Python 3.8
@@ -33,7 +33,6 @@ jobs:
           cd scripts
           python3 get_contest_list.py
           cd ..
-          npm install yarn -g
           yarn install
           yarn build
           mkdir site
