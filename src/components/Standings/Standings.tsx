@@ -2,7 +2,7 @@ import React from 'react';
 import './Standings.less';
 import starStyle from './Star.less';
 import Placecharts from './Placecharts';
-import Loading from '@/components/Loading/Loading';
+import { Loading } from '@/components/Loading';
 import { getStarKey } from '@/utils/utils';
 
 const INF = 0x3f3f3f3f;
@@ -892,4 +892,4 @@ class Standings extends React.Component {
     }
 }
 
-export default Standings;
+export { Standings };

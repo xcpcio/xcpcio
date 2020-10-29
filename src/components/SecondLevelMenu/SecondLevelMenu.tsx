@@ -73,4 +73,4 @@ class SecondLevelMenu extends React.Component {
     }
 }
 
-export default SecondLevelMenu;
+export { SecondLevelMenu };

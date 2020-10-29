@@ -4,9 +4,10 @@ import CaseSensitivePathsWabpackPlugin from 'case-sensitive-paths-webpack-plugin
 
 export default defineConfig({
     chainWebpack(config, { webpack }) {
+        // 检查路径大小写
         config
             .plugin('case-sensitive-paths-webpack-plugin')
-            .use(CaseSensitivePathsWabpackPlugin, [{ debug: true }]);
+            .use(CaseSensitivePathsWabpackPlugin, [{ debug: false }]);
     },
     title: CONFIG.title,
     nodeModulesTransform: {

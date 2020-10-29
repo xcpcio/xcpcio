@@ -129,4 +129,4 @@ class ProgressBig extends React.Component {
     }
 }
 
-export default ProgressBig;
+export { ProgressBig };

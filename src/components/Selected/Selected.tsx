@@ -69,4 +69,4 @@ class Selected extends React.Component {
     }
 }
 
-export default Selected;
+export { Selected };
