@@ -34,7 +34,7 @@ jobs:
           python3 get_contest_list.py
           cd ..
           npm install
-          npm run build
+          npm run start
           mkdir site
           mv dist/* site/
           mv data site/

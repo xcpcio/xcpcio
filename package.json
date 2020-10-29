@@ -33,5 +33,8 @@
     "react-dom": "^16.12.0",
     "umi": "^3.2.23",
     "yorkie": "^2.0.0"
+  },
+  "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.3.0"
   }
 }
