@@ -1,10 +1,10 @@
 import React from 'react';
 import Loading from '@/components/Loading/Loading';
-import ProgressBig from '@/components/Progress/ProgressBig';
-import SecondLevelMenu from '@/components/SecondLevelMenu/SecondLevelMenu';
-import Standings from '@/components/Standings/Standings';
-import Statistics from '@/components/Statistics/Statistics';
-import Selected from '@/components/Selected/Selected';
+import ProgressBig from '@/components/Progress/ProgressBig.tsx';
+import SecondLevelMenu from '@/components/SecondLevelMenu/SecondLevelMenu.tsx';
+import Standings from '@/components/Standings/Standings.tsx';
+import Statistics from '@/components/Statistics/Statistics.tsx';
+import Selected from '@/components/Selected/Selected.tsx';
 import {
     getJSON,
     getNowTimeStamp,
