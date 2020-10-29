@@ -10,7 +10,7 @@ export default defineConfig({
     routes: [
         {
             path: '/',
-            component: '@/pages/index/index',
+            component: '@/pages/index',
             exact: true,
         },
         {
