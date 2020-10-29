@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loading } from '@/components/Loading';
+import Loading from '@/components/Loading/Loading';
 import {
     getJSON,
     getTimeDiff,
@@ -8,12 +8,12 @@ import {
     getStarKey,
     removeDuplicateItems,
 } from '@/utils/utils';
-import { ProgressBig } from '@/components/Progress';
-import { SecondLevelMenu } from '@/components/SecondLevelMenu';
-import { Standings } from '@/components/Standings';
-import { Statistics } from '@/components/Statistics';
+import ProgressBig from '@/components/Progress/ProgressBig';
+import SecondLevelMenu from '@/components/SecondLevelMenu/SecondLevelMenu';
+import Standings from '@/components/Standings/Standings';
+import Statistics from '@/components/Statistics/Statistics';
 import style from './board.less';
-import { Selected } from '@/components/Selected';
+import Selected from '@/components/Selected/Selected';
 
 const INF = 0x3f3f3f3f;
 let pathname = '';

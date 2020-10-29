@@ -83,4 +83,4 @@ class ProgressSmall extends React.Component {
     }
 }
 
-export { ProgressSmall };
+export default ProgressSmall;

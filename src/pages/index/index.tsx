@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './index.less';
-import { ProgressSmall } from '@/components/Progress';
+import ProgressSmall from '@/components/Progress/ProgressSmall';
 import { timeFormat, getQueryString } from '@/utils';
 import { TreeSelect } from 'antd';
 import { getTreeData, getContest, getDuration } from './model';

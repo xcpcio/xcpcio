@@ -1,7 +1,7 @@
 import React from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import { Loading } from '@/components/Loading';
+import Loading from '@/components/Loading/Loading';
 
 function getChartObj(
     title: string,
@@ -301,4 +301,4 @@ class Statistics extends React.Component {
     }
 }
 
-export { Statistics };
+export default Statistics;
