@@ -1,7 +1,13 @@
 import { defineConfig } from 'umi';
 import CONFIG from '../config';
+import CaseSensitivePathsWabpackPlugin from 'case-sensitive-paths-webpack-plugin';
 
 export default defineConfig({
+    chainWebpack(config, { webpack }) {
+        config
+            .plugin('case-sensitive-paths-webpack-plugin')
+            .use(CaseSensitivePathsWabpackPlugin, [{ debug: true }]);
+    },
     title: CONFIG.title,
     nodeModulesTransform: {
         type: 'none',
