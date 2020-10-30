@@ -48,7 +48,7 @@ class Board extends React.Component {
     timer: any = null;
 
     async update(props: any) {
-        await (async () => {
+        let ok = await (async () => {
             let { contest_config, team, run } = await fetchData();
 
             if (contest_config === null || team === null || run === null) {
@@ -61,14 +61,17 @@ class Board extends React.Component {
                     this.timer = setTimeout(() => {
                         this.update(props);
                     }, 1000);
-                    return;
+                    return false;
                 }
             } else {
                 this.contest_config = contest_config;
                 this.team = team;
                 this.run = run;
             }
+            return true;
         })();
+
+        if (!ok) return;
 
         document.title = this.contest_config.contest_name;
 

@@ -23,9 +23,9 @@ def output(filename, data):
         f.write(json_output(data))
 
 raw_dir = "raw"
-data_dir = "../../../../data/ccpc/2020/weihai-warmup"
-team_data_filename = "2020CCPC威海站队伍信息.xlsx"
-qhd_data_filename = "CCPC2020-女生赛-正式参赛队榜单-原始.xlsx"
+data_dir = "../../../../data/ccpc/2020/mianyang-warmup"
+team_data_filename = ""
+my_data_filename = ""
 problem_num = 4
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
 group = {
@@ -37,9 +37,9 @@ status_time_display = {
     'correct': 1,
 }
 config = {
-    'contest_name': 'CCPC2020-第六届中国大学生程序设计竞赛（威海） 热身赛',
-    'start_time': get_timestamp("2020-10-24 15:00:00"),
-    'end_time': get_timestamp("2020-10-24 18:00:00"),
+    'contest_name': 'CCPC2020-第六届中国大学生程序设计竞赛（绵阳） 热身赛',
+    'start_time': get_timestamp("2020-10-31 15:00:00"),
+    'end_time': get_timestamp("2020-10-31 18:00:00"),
     'frozen_time' : 0,
     'problem_id': problem_id,
     'group': group,
