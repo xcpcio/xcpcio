@@ -93,13 +93,13 @@ class Board extends React.Component {
         })();
 
         const timeFlag = getTimeFlag(this.contest_config);
+        const currentGroup = getCurrentGroup(
+            props.location.search,
+            menu_item.group,
+            fgroup,
+        );
 
         const { current_contest_config, current_team, current_run } = (() => {
-            const currentGroup = getCurrentGroup(
-                props.location.search,
-                menu_item.group,
-                fgroup,
-            );
             const current_contest_config = getConfig(
                 this.contest_config,
                 currentGroup,
@@ -125,6 +125,7 @@ class Board extends React.Component {
             fgroup: fgroup,
             menu_index: menu_index,
             loaded: true,
+            Filter: currentGroup === 'filter' ? true : false,
         });
 
         this.timer && clearTimeout(this.timer);
@@ -255,6 +256,7 @@ class Board extends React.Component {
                                 }
                                 team={this.state.current_team}
                                 run={this.state.current_run}
+                                currentGroup={this.state.menu_index.group}
                                 Filter={this.state.Filter}
                             />
                         )}

@@ -1,7 +1,19 @@
-export const timerInterval = 600;
+export const timerInterval = 200;
 
-export function getAnalyzeTeamId(index: number) {
-    return ['analyze', 'team', index].join('-');
+export function getAnalyzeTeamId(index: number, Filter: number) {
+    return ['analyze', 'team', index, Filter].join('-');
+}
+
+export function getStarId(team_id: number | string) {
+    return ['star', team_id].join('-');
+}
+
+export function getStarBtnId(team_id: number | string) {
+    return ['star', 'btn', team_id].join('-');
+}
+
+export function getUnStarBtnId(team_id: number | string) {
+    return ['unstar', 'btn', team_id].join('-');
 }
 
 export const INF = 0x3f3f3f3f;
@@ -88,6 +100,18 @@ export function getProblemList(contest_config: any, run: any) {
     return problem_list;
 }
 
+export function compTeamList(a: any, b: any) {
+    if (a.solved != b.solved) {
+        if (a.solved > b.solved) return -1;
+        if (a.solved < b.solved) return 1;
+    }
+    if (a.time !== b.time) {
+        if (a.time < b.time) return -1;
+        if (a.time > b.time) return 1;
+    }
+    return 0;
+}
+
 export function getTeamList(
     contest_config: any,
     team: any,
@@ -130,17 +154,7 @@ export function getTeamList(
         team_list.push(team_dic[k]);
     }
 
-    team_list.sort((a: any, b: any) => {
-        if (a.solved != b.solved) {
-            if (a.solved > b.solved) return -1;
-            if (a.solved < b.solved) return 1;
-        }
-        if (a.time !== b.time) {
-            if (a.time < b.time) return -1;
-            if (a.time > b.time) return 1;
-        }
-        return 0;
-    });
+    team_list.sort(compTeamList);
 
     for (
         let i = 0,

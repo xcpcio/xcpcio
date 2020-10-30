@@ -111,6 +111,7 @@ export function getTeam(team: any, group: any, search: any) {
             item.filter = 1;
         }
         if (organization.has(team[team_id]?.['organization'])) {
+            item.organization_filter = 1;
             item.filter = 1;
         }
     }
