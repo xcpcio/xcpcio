@@ -109,13 +109,7 @@ class Board extends React.Component {
                 currentGroup,
                 props.location.search,
             );
-            const current_run = getRun(
-                this.run,
-                current_team,
-                timeFlag,
-                currentGroup,
-                props.location.search,
-            );
+            const current_run = getRun(this.run, current_team, timeFlag);
             return { current_contest_config, current_team, current_run };
         })();
 
