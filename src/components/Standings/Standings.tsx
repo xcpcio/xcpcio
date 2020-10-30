@@ -3,7 +3,7 @@ import style from './Standings.less';
 import starStyle from './Star.less';
 import { Placecharts } from './components';
 import { Loading } from '@/components/Loading';
-import { getStarKey } from '@/utils/utils';
+import { deepCopy, getStarKey, removeDuplicateItems } from '@/utils/utils';
 import {
     INF,
     timerInterval,
@@ -24,33 +24,30 @@ function onStarBtnClick(
     team: any,
     Filter: boolean,
 ) {
-    let unstar_btns = document.querySelectorAll(`.${getUnStarBtnId(team_id)}`);
-    let star_btns = document.querySelectorAll(`.${getStarBtnId(team_id)}`);
-    let stars = document.querySelectorAll(`.${getStarId(team_id)}`);
-    const changeDisplay = (item: any) => {
-        switch (item?.style?.display) {
-            case 'none':
-                item.style.display = '';
-                break;
-            case '':
-                item.style.display = 'none';
-                break;
-        }
-    };
-    unstar_btns.forEach((unstar_btn: any) => {
-        changeDisplay(unstar_btn);
-    });
-    star_btns.forEach((star_btn: any) => {
-        changeDisplay(star_btn);
-    });
-    stars.forEach((star: any) => {
-        changeDisplay(star);
-    });
     if (on) {
+        (() => {
+            let concerned = _this.state.concerned;
+            concerned.add(team_id);
+            _this.setState({
+                concerned: concerned,
+            });
+        })();
         if (team.organization_filter !== 1) {
             let team_list_filter = _this.state.team_list_filter;
-            team.concerned = 1;
-            team_list_filter.push(team);
+            let _team = deepCopy(team);
+            _team.concerned = 1;
+            team_list_filter.push(_team);
+            team_list_filter = (() => {
+                let set = new Set();
+                let res: any = [];
+                team_list_filter.forEach((item: any) => {
+                    if (!set.has(item.team_id)) {
+                        set.add(item.team_id);
+                        res.push(item);
+                    }
+                });
+                return res;
+            })();
             team_list_filter.sort(compTeamList);
             _this.setState({
                 team_list_filter: team_list_filter,
@@ -58,23 +55,38 @@ function onStarBtnClick(
         }
         window.localStorage.setItem(getStarKey(team_id), '1');
     } else {
-        if (team.organization_filter !== 1) {
-            let team_list_filter = _this.state.team_list_filter.filter(
-                (x: any) => x.team_id !== team_id,
-            );
+        (() => {
+            let concerned = _this.state.concerned;
+            concerned.delete(team_id);
             _this.setState({
-                team_list_filter: team_list_filter,
+                concerned: concerned,
             });
-        }
+        })();
         window.localStorage.removeItem(getStarKey(team_id));
         if (Filter) {
             _this.clearTeamDetailsDisplay();
+        }
+        if (team.organization_filter !== 1) {
+            let team_list_filter = _this.state.team_list_filter;
+            team_list_filter = (() => {
+                let res: any = [];
+                team_list_filter.forEach((item: any) => {
+                    if (item.team_id !== team_id) {
+                        let _item = deepCopy(item);
+                        res.push(_item);
+                    }
+                });
+                return res;
+            })();
+            _this.setState({
+                team_list_filter: team_list_filter,
+            });
         }
     }
 }
 
 function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
-    const analyzeTeamId = getAnalyzeTeamId(index + 1, Filter ? 2 : 1);
+    const analyzeTeamId = getAnalyzeTeamId(item.team_id, Filter ? 2 : 1);
     return (
         <>
             <tr
@@ -90,8 +102,10 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                         case 'none':
                             _this.clearTeamDetailsDisplay();
                             item.style.display = '';
+                            let vis: any = {};
+                            vis[analyzeTeamId] = 1;
                             _this.setState({
-                                vis: { [analyzeTeamId]: 1 },
+                                vis: vis,
                             });
                             break;
                         case '':
@@ -151,7 +165,9 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                     <span
                         className={getStarId(item.team_id)}
                         style={{
-                            display: item.concerned === 1 ? '' : 'none',
+                            display: _this.state.concerned.has(item.team_id)
+                                ? ''
+                                : 'none',
                         }}
                     >
                         <LikeIcon />
@@ -227,7 +243,11 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                                 ].join(' ')}
                                 title={`Star ${item.name}`}
                                 style={{
-                                    display: item.concerned === 1 ? '' : 'none',
+                                    display: _this.state.concerned.has(
+                                        item.team_id,
+                                    )
+                                        ? ''
+                                        : 'none',
                                 }}
                                 onClick={() => {
                                     onStarBtnClick(
@@ -261,7 +281,11 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                                 ].join(' ')}
                                 title={`Star ${item.name}`}
                                 style={{
-                                    display: item.concerned === 1 ? 'none' : '',
+                                    display: _this.state.concerned.has(
+                                        item.team_id,
+                                    )
+                                        ? 'none'
+                                        : '',
                                 }}
                                 onClick={() => {
                                     onStarBtnClick(
@@ -355,6 +379,16 @@ class Standings extends React.Component {
             problem_list,
         );
 
+        let concerned = (() => {
+            let concerned = new Set();
+            team_list.forEach((team: any) => {
+                if (team.concerned === 1) {
+                    concerned.add(team.team_id);
+                }
+            });
+            return concerned;
+        })();
+
         this.setState({
             problem_list: problem_list,
             team_list: team_list,
@@ -366,6 +400,7 @@ class Standings extends React.Component {
             badge: props.contest_config?.badge ? 1 : 0,
             loaded: true,
             Filter: props.Filter,
+            concerned: concerned,
         });
     }
 
@@ -421,6 +456,7 @@ class Standings extends React.Component {
         vis: {},
         loaded: false,
         Filter: true,
+        concerned: new Set(),
     };
 
     render() {

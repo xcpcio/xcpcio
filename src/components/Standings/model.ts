@@ -1,7 +1,7 @@
 export const timerInterval = 200;
 
-export function getAnalyzeTeamId(index: number, Filter: number) {
-    return ['analyze', 'team', index, Filter].join('-');
+export function getAnalyzeTeamId(team_id: number, Filter: number) {
+    return ['analyze', 'team', team_id, Filter].join('-');
 }
 
 export function getStarId(team_id: number | string) {
