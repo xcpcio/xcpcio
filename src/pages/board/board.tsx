@@ -6,12 +6,6 @@ import { Standings } from '@/components/Standings';
 import { Statistics } from '@/components/Statistics';
 import { Selected } from '@/components/Selected';
 import standingsStyle from '@/components/Standings/Standings.less';
-import {
-    getNowTimeStamp,
-    deepCopy,
-    getStarKey,
-    removeDuplicateItems,
-} from '@/utils';
 import style from './board.less';
 import {
     fetchData,
@@ -20,6 +14,9 @@ import {
     getTimeFlag,
     getOrganization,
     getCurrentOrganization,
+    getConfig,
+    getRun,
+    getTeam,
 } from './model';
 
 const head_item = [
@@ -44,95 +41,42 @@ const head_item = [
     <></>,
 ];
 
-const INF = 0x3f3f3f3f;
-
-function getRun(run: any, team: any, timeFlag: any, group: any, search: any) {
-    let new_run: any = [];
-    run.forEach((item: any) => {
-        if (item.timestamp <= timeFlag) {
-            new_run.push(item);
-        }
-    });
-    new_run.sort((a: any, b: any) => {
-        if (a.timestamp < b.timestamp) return -1;
-        if (a.timestamp > b.timestamp) return 1;
-        return 0;
-    });
-    let dic: any = {};
-    run = [];
-    let organization = getCurrentOrganization(search);
-    if (organization.length === 0) organization = getOrganization(team);
-    new_run.forEach((item: any) => {
-        if (
-            team[item.team_id][group] === 1 &&
-            (!team[item.team_id].organization ||
-                organization.indexOf(team[item.team_id].organization) !== -1)
-        ) {
-            const id = [item.team_id, item.problem_id].join('-');
-            if (!dic[id] || item.timestamp <= dic[id]) {
-                run.push(item);
-                if (item.status === 'correct') {
-                    dic[id] = item.timestamp;
-                } else {
-                    dic[id] = INF;
-                }
-            }
-        }
-    });
-    return run;
-}
-
-function getTeam(team: any, group: any, search: any) {
-    let organization = getCurrentOrganization(search);
-    if (organization.length === 0) organization = getOrganization(team);
-    let team_list: any = {};
-    for (let team_id in team) {
-        let item = team[team_id];
-        if (window.localStorage.getItem(getStarKey(team_id))) {
-            item.concerned = 1;
-        }
-        if (
-            item[group] === 1 &&
-            (!item.organization ||
-                organization.indexOf(item.organization) !== -1)
-        ) {
-            team_list[team_id] = item;
-        }
-    }
-    return team_list;
-}
-
-function getConfig(contest_config: any, group: any) {
-    let config = deepCopy(contest_config);
-    if (config.medal) {
-        delete config.medal;
-        if (contest_config.medal[group])
-            config.medal = deepCopy(contest_config.medal[group]);
-    }
-    return config;
-}
-
 class Board extends React.Component {
+    contest_config: any = null;
+    team: any = null;
+    run: any = null;
     timer: any = null;
 
     async update(props: any) {
-        let { contest_config, team, run } = await fetchData();
+        await (async () => {
+            let { contest_config, team, run } = await fetchData();
 
-        if (contest_config === null || team === null || run === null) {
-            this.timer && clearTimeout(this.timer);
-            this.timer = setTimeout(() => {
-                this.update(props);
-            }, 1000);
-            return;
+            if (contest_config === null || team === null || run === null) {
+                if (
+                    this.contest_config === null ||
+                    this.team === null ||
+                    this.run === null
+                ) {
+                    this.timer && clearTimeout(this.timer);
+                    this.timer = setTimeout(() => {
+                        this.update(props);
+                    }, 1000);
+                    return;
+                }
+            } else {
+                this.contest_config = contest_config;
+                this.team = team;
+                this.run = run;
+            }
+        })();
+
+        document.title = this.contest_config.contest_name;
+
+        for (let team_id in this.team) {
+            this.team[team_id]['all'] = 1;
         }
 
-        document.title = contest_config.contest_name;
-
-        for (let team_id in team) {
-            team[team_id]['all'] = 1;
-        }
-
-        let { menu_item, fgroup } = getMenu(contest_config);
+        const { menu_item, fgroup } = getMenu(this.contest_config);
 
         let menu_index = (() => {
             let menu_index: any = {};
@@ -148,11 +92,41 @@ class Board extends React.Component {
             return menu_index;
         })();
 
+        const timeFlag = getTimeFlag(this.contest_config);
+
+        const { current_contest_config, current_team, current_run } = (() => {
+            const currentGroup = getCurrentGroup(
+                props.location.search,
+                menu_item.group,
+                fgroup,
+            );
+            const current_contest_config = getConfig(
+                this.contest_config,
+                currentGroup,
+            );
+            const current_team = getTeam(
+                this.team,
+                currentGroup,
+                props.location.search,
+            );
+            const current_run = getRun(
+                this.run,
+                current_team,
+                timeFlag,
+                currentGroup,
+                props.location.search,
+            );
+            return { current_contest_config, current_team, current_run };
+        })();
+
         this.setState({
-            contest_config: contest_config,
-            team: team,
-            run: run,
-            timeFlag: getTimeFlag(contest_config),
+            contest_config: this.contest_config,
+            team: this.team,
+            run: this.run,
+            current_contest_config: current_contest_config,
+            current_team: current_team,
+            current_run: current_run,
+            timeFlag: timeFlag,
             menu_item: menu_item,
             fgroup: fgroup,
             menu_index: menu_index,
@@ -282,68 +256,22 @@ class Board extends React.Component {
 
                         {this.state.menu_index.type === 0 && (
                             <Standings
-                                contest_config={getConfig(
-                                    this.state.contest_config,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                )}
-                                team={getTeam(
-                                    this.state.team,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                    this.props.location.search,
-                                )}
-                                run={getRun(
-                                    this.state.run,
-                                    this.state.team,
-                                    this.state.timeFlag,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                    this.props.location.search,
-                                )}
+                                contest_config={
+                                    this.state.current_contest_config
+                                }
+                                team={this.state.current_team}
+                                run={this.state.current_run}
                                 Filter={this.state.Filter}
                             />
                         )}
 
                         {this.state.menu_index.type === 1 && (
                             <Statistics
-                                contest_config={getConfig(
-                                    this.state.contest_config,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                )}
-                                team={getTeam(
-                                    this.state.team,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                    this.props.location.search,
-                                )}
-                                run={getRun(
-                                    this.state.run,
-                                    this.state.team,
-                                    this.state.timeFlag,
-                                    getCurrentGroup(
-                                        this.props.location.search,
-                                        this.state.menu_item.group,
-                                        this.state.fgroup,
-                                    ),
-                                    this.props.location.search,
-                                )}
+                                contest_config={
+                                    this.state.current_contest_config
+                                }
+                                team={this.state.current_team}
+                                run={this.state.current_run}
                             />
                         )}
                     </>

@@ -3,7 +3,9 @@ import {
     getJSON,
     getNowTimeStamp,
     removeDuplicateItems,
+    getStarKey,
 } from '@/utils';
+import Item from 'antd/lib/list/Item';
 
 export async function fetchData() {
     const pathname = window.location.pathname;
@@ -30,7 +32,7 @@ export async function fetchData() {
 
 export function getMenu(contest_config: any) {
     const type_ = ['排行榜', '统计分析'];
-    const group_ = ['所有队伍', '筛选队伍'];
+    const group_ = ['所有队伍', '关注队伍'];
     const fgroup_ = ['all', 'filter'];
 
     let menu_item = {
@@ -85,4 +87,81 @@ export function getCurrentOrganization(search: any) {
         return JSON.parse(params.get('organization') || '');
     }
     return [];
+}
+
+const INF = 0x3f3f3f3f;
+
+export function getConfig(contest_config: any, group: any) {
+    let config = deepCopy(contest_config);
+    if (config.medal) {
+        delete config.medal;
+        if (contest_config.medal[group])
+            config.medal = deepCopy(contest_config.medal[group]);
+    }
+    return config;
+}
+
+export function getTeam(team: any, group: any, search: any) {
+    let organization = getCurrentOrganization(search);
+    organization = new Set(organization);
+    for (let team_id in team) {
+        let item = team[team_id];
+        if (window.localStorage.getItem(getStarKey(team_id))) {
+            item.concerned = 1;
+            item.filter = 1;
+        }
+        if (organization.has(team[team_id]?.['organization'])) {
+            item.filter = 1;
+        }
+    }
+    const team_list = (() => {
+        let team_list: any = {};
+        for (let team_id in team) {
+            let item = team[team_id];
+            if (item[group] === 1) {
+                team_list[team_id] = item;
+            }
+        }
+        return team_list;
+    })();
+    return team_list;
+}
+
+export function getRun(run: any, team: any, timeFlag: any) {
+    let _run = (() => {
+        let _run: any = [];
+        run.forEach((item: any) => {
+            if (item.timestamp <= timeFlag) {
+                _run.push(item);
+            }
+        });
+        _run.sort((a: any, b: any) => {
+            if (a.timestamp < b.timestamp) return -1;
+            if (a.timestamp > b.timestamp) return 1;
+            return 0;
+        });
+        return _run;
+    })();
+
+    let new_run = (() => {
+        let map = new Map();
+        let set = new Set(Object.keys(team));
+        let new_run: any = [];
+        _run.forEach((item: any) => {
+            if (set.has(item.team_id)) {
+                const id = [item.team_id, item.problem_id].join('-');
+                if (!map.has(id) || item.timestamp <= map.get(id)) {
+                    new_run.push(item);
+                    if (item.status === 'correct') {
+                        map.set(id, item.timestamp);
+                    } else {
+                        map.set(id, INF);
+                    }
+                }
+            }
+        });
+        return new_run;
+    })();
+
+    return new_run;
 }
