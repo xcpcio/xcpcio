@@ -38,8 +38,6 @@ medal = {
 group = {
     'official': '正式队伍',
     'unofficial': '打星参赛',
-    'inside': '晋级参赛',
-    'outside': '外卡参赛',
     'girl': '女队',
 }
 status_time_display = {
