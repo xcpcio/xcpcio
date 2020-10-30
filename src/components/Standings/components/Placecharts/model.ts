@@ -1,9 +1,5 @@
-import { Loading } from '@/components/Loading';
-import React from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-
-const height: number = 400;
+export const height = 400;
+export const timerInterval = 200;
 
 function getSolvedAndTime(problem: any) {
     let solved = 0,
@@ -80,7 +76,7 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
     return data;
 }
 
-function getHichartsOptions(
+export function getHichartsOptions(
     contest_config: any,
     cur_team: any,
     team: any,
@@ -120,79 +116,3 @@ function getHichartsOptions(
     };
     return options;
 }
-
-class Placecharts extends React.Component {
-    contest_config: any = {};
-    cur_team: any = {};
-    team: any = {};
-    run: any = [];
-
-    async update(props: any) {
-        this.contest_config = props.contest_config;
-        this.cur_team = props.cur_team;
-        this.team = props.team;
-        this.run = props.run;
-        const options = getHichartsOptions(
-            this.contest_config,
-            this.cur_team,
-            this.team,
-            this.run,
-        );
-        this.setState({
-            loaded: true,
-            options: options,
-        });
-    }
-
-    //在组件已经被渲染到 DOM 中后运行
-    async componentDidMount() {}
-
-    //props中的值发生改变时执行
-    async componentWillReceiveProps(nextProps: any) {
-        this.setState({ loaded: false });
-        this.update(nextProps);
-    }
-
-    state = {
-        loaded: false,
-        options: {},
-    };
-
-    constructor(props: any) {
-        super(props);
-        setTimeout(() => {
-            this.update(this.props);
-        }, 500);
-    }
-
-    render() {
-        return (
-            <>
-                {this.state.loaded === false && (
-                    <div
-                        style={{
-                            height: height,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <Loading />
-                    </div>
-                )}
-
-                {this.state.loaded === true && (
-                    <HighchartsReact
-                        style={{
-                            height: { height },
-                        }}
-                        highcharts={Highcharts}
-                        options={this.state.options}
-                    />
-                )}
-            </>
-        );
-    }
-}
-
-export default Placecharts;

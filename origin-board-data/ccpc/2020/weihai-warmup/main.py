@@ -41,12 +41,8 @@ group = {
     'inside': '晋级参赛',
     'outside': '外卡参赛',
     'girl': '女队',
-
 }
-school = {
-    'name': 1,
-}
-status_time = {
+status_time_display = {
     'correct': 1,
 }
 config = {
@@ -57,8 +53,8 @@ config = {
     'problem_id': problem_id,
     # 'medal': medal,
     'group': group,
-    'school': school,
-    'status_time': status_time,
+    'organization': 'School',
+    'status_time_display': status_time_display,
     'penalty': 20 * 60,
 }
 
@@ -128,5 +124,5 @@ def run_out():
 
 mkdir(data_dir)
 config_out()
-team_out()
+# team_out()
 # run_out()

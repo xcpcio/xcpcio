@@ -40,10 +40,7 @@ group = {
     'unofficial': '打星队伍',
     'girl': '女队',
 }
-school = {
-    'name': 1,
-}
-status_time = {
+status_time_display = {
     'correct': 1,
 }
 config = {
@@ -54,8 +51,8 @@ config = {
     'problem_id': problem_id,
     'medal': medal,
     # 'group': group,
-    'school': school,
-    'status_time': status_time,
+    'organization': 'School',
+    'status_time_display': status_time_display,
     'penalty': 20 * 60,
 }
 
@@ -63,7 +60,7 @@ def config_out():
     output("config.json", config)
     
 def team_out():
-    data = xlrd.open_workbook(path.join(raw_dir, team_data_filename)) 
+    data = xlrd.open_workbook(path.join(raw_dir, team_data_filename))
     sheet = data.sheet_by_index(0)
     nrows = sheet.nrows
     team = {}
@@ -72,7 +69,7 @@ def team_out():
         if row[0] == '女生赛' and row[4] == '女生赛队伍':
             team[row[1]] = {}
             team_now = team[row[1]]
-            team_now['school'] = row[2]
+            team_now['organization'] = row[2]
             team_now['name'] = row[3].split('_')[-1]
             if row[4] == "女生赛队伍":
                 team_now['official'] = 1

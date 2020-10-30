@@ -11,10 +11,8 @@
         "outside": "外卡参赛",
         "girl": "女队"
     },
-    "school": {
-        "name": 1
-    },
-    "status_time": {
+    "organization": "School",
+    "status_time_display": {
         "correct": 1
     },
     "penalty": 1200

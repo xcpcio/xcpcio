@@ -9,13 +9,11 @@
             "silver": 48
         }
     },
+    "organization": "School",
     "penalty": 1200,
     "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
-    "school": {
-        "name": 1
-    },
     "start_time": 1602982800,
-    "status_time": {
+    "status_time_display": {
         "correct": 1
     }
 }

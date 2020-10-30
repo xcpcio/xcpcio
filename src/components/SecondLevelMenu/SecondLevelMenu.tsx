@@ -49,9 +49,10 @@ class SecondLevelMenu extends React.Component {
     render() {
         return (
             <div className={style['second-level-menu-list']}>
-                {this.state.siderItem.map((item: any) => {
+                {this.state.siderItem.map((item: any, index: any) => {
                     return (
                         <div
+                            key={index}
                             className={[
                                 style['second-level-menu-item'],
                                 item == this.state.currentItem

@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
+    "@types/uuid": "^8.3.0",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.23",
     "antd": "^4.7.2",
@@ -31,6 +32,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "umi": "^3.2.23",
+    "uuid": "^8.3.1",
     "yorkie": "^2.0.0"
   },
   "devDependencies": {

@@ -40,7 +40,7 @@ def main():
         _item = {}
         _item['team_id'] = item['id']
         _item['name'] = item['name']
-        _item['school'] = item['organization']
+        _item['organization'] = item['organization']
         _item['info'] = "、".join([item['teamMembers'][i]['name'] for i in range(4)])
         if item['official'] == True:
             _item['official'] = 1

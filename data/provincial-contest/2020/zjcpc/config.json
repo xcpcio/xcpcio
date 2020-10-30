@@ -10,12 +10,10 @@
         "undergraduate": "本科组",
         "junior": "专科组",
         "highschool": "高中组",
-        "girls": "女队"
+        "girl": "女队"
     },
-    "school": {
-        "name": 1
-    },
-    "status_time": {
+    "organization": "School",
+    "status_time_display": {
         "correct": 1,
         "incorrect": 1,
         "pending": 1

@@ -5,11 +5,6 @@
     "frozen_time": 0,
     "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
     "medal": {
-        "all": {
-            "gold": 24,
-            "silver": 48,
-            "bronze": 72
-        },
         "official": {
             "gold": 24,
             "silver": 48,
@@ -21,10 +16,8 @@
         "unofficial": "打星队伍",
         "girl": "女队"
     },
-    "school": {
-        "name": 1
-    },
-    "status_time": {
+    "organization": "School",
+    "status_time_display": {
         "correct": 1
     },
     "penalty": 1200,

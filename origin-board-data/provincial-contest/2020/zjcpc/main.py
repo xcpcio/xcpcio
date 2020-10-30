@@ -38,12 +38,9 @@ group = {
     'undergraduate': '本科组',
     'junior': '专科组',
     'highschool': '高中组',
-    'girls': '女队',
+    'girl': '女队',
 }
-school = {
-    'name': 1,
-}
-status_time = {
+status_time_display = {
     'correct': 1,
     'incorrect': 1,
     'pending': 1,
@@ -67,8 +64,8 @@ config = {
     'frozen_time' : 60 * 60,
     'problem_id': problem_id,
     'group': group,
-    'school': school,
-    'status_time': status_time,
+    'organization': 'School',
+    'status_time_display': status_time_display,
     'penalty': 20 * 60,
     'medal': medal,
 }
@@ -83,7 +80,7 @@ def team_out():
         item = team_dic[key]
         team[key] = {}
         new_item = team[key]
-        new_item['school'] = item['school']
+        new_item['organization'] = item['school']
         new_item['name'] = item['team']
         new_item['info'] = item['members']
         type = item['type'].split(" ")
@@ -96,6 +93,8 @@ def team_out():
                 new_item['official'] = 1
             elif tp == 'type3':
                 new_item['highschool'] = 1
+            elif tp == 'girls':
+                new_item['girl'] = 1
             else:
                 new_item[tp] = 1
     output("team.json", team)

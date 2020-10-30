@@ -29,11 +29,6 @@ qhd_data_filename = "CCPC2020-女生赛-正式参赛队榜单-原始.xlsx"
 problem_num = 12
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
 medal = {
-    'all': {
-        'gold': 24,
-        'silver': 48,
-        "bronze": 72
-    },
     'official': {
         'gold': 24,
         'silver': 48,
@@ -43,14 +38,9 @@ medal = {
 group = {
     'official': '正式队伍',
     'unofficial': '打星队伍',
-    # 'inside': '晋级参赛',
-    # 'outside': '外卡参赛',
     'girl': '女队',
 }
-school = {
-    'name': 1,
-}
-status_time = {
+status_time_display = {
     'correct': 1,
 }
 balloon_color = [
@@ -75,8 +65,8 @@ config = {
     'problem_id': problem_id,
     'medal': medal,
     'group': group,
-    'school': school,
-    'status_time': status_time,
+    'organization': 'School',
+    'status_time_display': status_time_display,
     'penalty': 20 * 60,
     'balloon_color': balloon_color
 }

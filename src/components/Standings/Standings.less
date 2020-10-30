@@ -11,6 +11,13 @@ table.standings {
         'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
 }
 
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(80vh);
+}
+
 img {
     border: 0 !important;
 }
@@ -27,14 +34,17 @@ td {
 tr.head {
     background-color: #eee;
 }
+
 tr.team {
     height: 2.5em;
     cursor: pointer;
 }
+
 tr.team:hover {
     background-color: #eeeeff;
     opacity: 0.3;
 }
+
 td.stnd {
     font-size: 12px;
     border-width: 0px;
@@ -49,6 +59,7 @@ td.stndact {
     border-color: #000000;
     margin: 1px;
 }
+
 td.frost {
     background-color: #ffeeaa;
     font-size: 12px;
@@ -56,6 +67,7 @@ td.frost {
     border-color: #000000;
     margin: 1px;
 }
+
 td.gold {
     background-color: #fff566;
     font-size: 12px;
@@ -63,6 +75,7 @@ td.gold {
     border-color: #000000;
     margin: 1px;
 }
+
 td.goldact {
     color: #0000ff;
     background-color: #ffeeaa;
@@ -71,6 +84,7 @@ td.goldact {
     border-color: #000000;
     margin: 1px;
 }
+
 td.silver {
     background-color: #ffadd2;
     font-size: 12px;
@@ -78,6 +92,7 @@ td.silver {
     border-color: #000000;
     margin: 1px;
 }
+
 td.silveract {
     color: #0000ff;
     background-color: #aaaaaa;
@@ -86,6 +101,7 @@ td.silveract {
     border-color: #000000;
     margin: 1px;
 }
+
 td.bronze {
     background-color: #f0c0a0;
     font-size: 12px;
@@ -93,6 +109,7 @@ td.bronze {
     border-color: #000000;
     margin: 1px;
 }
+
 td.bronzeact {
     color: #0000ff;
     background-color: #f0c0a0;
@@ -101,6 +118,7 @@ td.bronzeact {
     border-color: #000000;
     margin: 1px;
 }
+
 td.unofficial {
     background-color: #fff;
     font-size: 12px;
@@ -108,6 +126,7 @@ td.unofficial {
     border-color: #000000;
     margin: 1px;
 }
+
 td.honorable {
     background-color: #e6f7ff;
     font-size: 12px;
@@ -115,6 +134,7 @@ td.honorable {
     border-color: #000000;
     margin: 1px;
 }
+
 td.firstsolve {
     background-color: #3db03d;
     font-size: 12px;
@@ -122,6 +142,7 @@ td.firstsolve {
     border-color: #000000;
     margin: 1px;
 }
+
 td.incorrect {
     background-color: #ffd0d0;
     font-size: 12px;
@@ -129,6 +150,7 @@ td.incorrect {
     border-color: #000000;
     margin: 1px;
 }
+
 td.correct {
     background-color: #e1ffb5;
     font-size: 12px;
@@ -136,6 +158,7 @@ td.correct {
     border-color: #000000;
     margin: 1px;
 }
+
 td.unattempted {
     background-color: #fff;
     font-size: 12px;
@@ -143,6 +166,7 @@ td.unattempted {
     border-color: #000000;
     margin: 1px;
 }
+
 th.success {
     background-color: #a0f0a0;
     font-size: 12px;
@@ -150,13 +174,16 @@ th.success {
     border-color: #000000;
     margin: 1px;
 }
+
 th.title {
+    // background-color: #fff;
     background-color: #f5f5d5;
     font-size: 12px;
     border-width: 0px;
     border-color: #000000;
     margin: 1px;
 }
+
 th.tried {
     background-color: #ffa0a0;
     font-size: 12px;
@@ -164,6 +191,7 @@ th.tried {
     border-color: #000000;
     margin: 1px;
 }
+
 td.pending {
     background-color: #c8d6fa;
     font-size: 12px;
@@ -171,6 +199,7 @@ td.pending {
     border-color: #000000;
     margin: 1px;
 }
+
 td.upsolved {
     font-size: 12px;
     border-width: 0px;
@@ -178,6 +207,7 @@ td.upsolved {
     margin: 1px;
     color: #ff0000;
 }
+
 td.virtual {
     color: #0000ff;
     font-size: 12px;
@@ -185,6 +215,7 @@ td.virtual {
     border-color: #000000;
     margin: 1px;
 }
+
 td.alive {
     color: #ff0000;
     font-size: 12px;
@@ -192,6 +223,7 @@ td.alive {
     border-color: #000000;
     margin: 1px;
 }
+
 td.empty {
     background-color: #fff;
     font-size: 12px;
@@ -199,38 +231,52 @@ td.empty {
     border-color: #000000;
     margin: 1px;
 }
+
 th.stnd {
     font-size: 12px;
     border-width: 0px;
     border-color: #000000;
     margin: 1px;
 }
+
 td.o01 {
     background-color: #004080;
 }
+
 tr.solver {
     background-color: #f0c0a0;
 }
+
 tr.statistics-0 {
     background-color: #95de64;
 }
+
 tr.statistics-1 {
     background-color: #b7eb8f;
 }
+
 td.o00 {
     background-color: #004080;
 }
+
 tr.stand0 {
     background-color: #e0e0ff;
 }
+
 tr.stand1 {
     background-color: #e8e8ff;
 }
+
 tr.stand10 {
     background-color: #f8f8f8;
 }
+
 tr.stand11 {
     background-color: #f2f2f2;
+}
+
+tr.filter {
+    background-color: lightyellow;
 }
 
 tr.cfres01 {
@@ -249,6 +295,7 @@ tr.cfres01 {
 table.matches {
     table-layout: fixed;
 }
+
 td.match {
     height: 6em;
     width: 2em;
@@ -258,195 +305,257 @@ td.match {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextYellow {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextViolet {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextBlue {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextGreen {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextGray {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextOrange {
     font-weight: bold;
     background-color: transparent;
 }
+
 .coderTextRed:link {
     text-decoration: none;
 }
+
 .coderTextYellow:link {
     text-decoration: none;
 }
+
 .coderTextViolet:link {
     text-decoration: none;
 }
+
 .coderTextBlue:link {
     text-decoration: none;
 }
+
 .coderTextGreen:link {
     text-decoration: none;
 }
+
 .coderTextGray:link {
     text-decoration: none;
 }
+
 .coderTextOrange:link {
     text-decoration: none;
 }
+
 .coderTextWhite:link {
     text-decoration: none;
 }
+
 .coderTextBlack:link {
     text-decoration: none;
 }
+
 .coderTextRed:visited {
     text-decoration: none;
 }
+
 .coderTextYellow:visited {
     text-decoration: none;
 }
+
 .coderTextViolet:visited {
     text-decoration: none;
 }
+
 .coderTextBlue:visited {
     text-decoration: none;
 }
+
 .coderTextGreen:visited {
     text-decoration: none;
 }
+
 .coderTextGray:visited {
     text-decoration: none;
 }
+
 .coderTextOrange:visited {
     text-decoration: none;
 }
+
 .coderTextWhite:visited {
     text-decoration: none;
 }
+
 .coderTextBlack:visited {
     text-decoration: none;
 }
+
 .coderTextRed:hover {
     text-decoration: underline;
 }
+
 .coderTextYellow:hover {
     text-decoration: underline;
 }
+
 .coderTextViolet:hover {
     text-decoration: underline;
 }
+
 .coderTextBlue:hover {
     text-decoration: underline;
 }
+
 .coderTextGreen:hover {
     text-decoration: underline;
 }
+
 .coderTextGray:hover {
     text-decoration: underline;
 }
+
 .coderTextOrange:hover {
     text-decoration: underline;
 }
+
 .coderTextWhite:hover {
     text-decoration: underline;
 }
+
 .coderTextBlack:hover {
     text-decoration: underline;
 }
+
 .coderTextRed:active {
     text-decoration: underline;
 }
+
 .coderTextYellow:active {
     text-decoration: underline;
 }
+
 .coderTextViolet:active {
     text-decoration: underline;
 }
+
 .coderTextBlue:active {
     text-decoration: underline;
 }
+
 .coderTextGreen:active {
     text-decoration: underline;
 }
+
 .coderTextGray:active {
     text-decoration: underline;
 }
+
 .coderTextOrange:active {
     text-decoration: underline;
 }
+
 .coderTextWhite:active {
     text-decoration: underline;
 }
+
 .coderTextBlack:active {
     text-decoration: underline;
 }
+
 .coderTextOrange {
     color: #ff9900;
 }
+
 .coderTextOrange:link {
     color: #ff9900;
 }
+
 .coderTextOrange:visited {
     color: #ff9900;
 }
+
 .coderTextOrange:hover {
     color: #ff9900;
 }
+
 .coderTextOrange:active {
     color: #ff9900;
 }
+
 .coderTextRed {
     color: #ee0000;
 }
+
 .coderTextRed:link {
     color: #ee0000;
 }
+
 .coderTextRed:visited {
     color: #ee0000;
 }
+
 .coderTextRed:hover {
     color: #ee0000;
 }
+
 .coderTextRed:active {
     color: #ee0000;
 }
+
 .coderTextYellow {
     color: #ddcc00;
 }
+
 .coderTextYellow:link {
     color: #ddcc00;
 }
+
 .coderTextYellow:visited {
     color: #ddcc00;
 }
+
 .coderTextYellow:hover {
     color: #ddcc00;
 }
+
 .coderTextYellow:active {
     color: #ddcc00;
 }
+
 .coderTextViolet {
     color: #a0a;
 }
+
 .coderTextViolet:link {
     color: #a0a;
 }
+
 .coderTextViolet:visited {
     color: #a0a;
 }
+
 .coderTextViolet:hover {
     color: #a0a;
 }
+
 .coderTextViolet:active {
     color: #a0a;
 }
@@ -454,78 +563,103 @@ td.match {
 .coderTextBlue {
     color: #6666ff;
 }
+
 .coderTextBlue:link {
     color: #6666ff;
 }
+
 .coderTextBlue:visited {
     color: #6666ff;
 }
+
 .coderTextBlue:hover {
     color: #6666ff;
 }
+
 .coderTextBlue:active {
     color: #6666ff;
 }
+
 .coderTextGreen {
     color: #00a900;
 }
+
 .coderTextGreen:link {
     color: #00a900;
 }
+
 .coderTextGreen:visited {
     color: #00a900;
 }
+
 .coderTextGreen:hover {
     color: #00a900;
 }
+
 .coderTextGreen:active {
     color: #00a900;
 }
+
 .coderTextGray {
     color: #999999;
 }
+
 .coderTextGray:link {
     color: #999999;
 }
+
 .coderTextGray:visited {
     color: #999999;
 }
+
 .coderTextGray:hover {
     color: #999999;
 }
+
 .coderTextGray:active {
     color: #999999;
 }
+
 .coderTextWhite {
     color: #ffffff;
 }
+
 .coderTextWhite:link {
     color: #ffffff;
 }
+
 .coderTextWhite:visited {
     color: #ffffff;
 }
+
 .coderTextWhite:hover {
     color: #ffffff;
 }
+
 .coderTextWhite:active {
     color: #ffffff;
 }
+
 .coderTextBlack {
     color: #000000;
 }
+
 .coderTextBlack:link {
     color: #000000;
 }
+
 .coderTextBlack:visited {
     color: #000000;
 }
+
 .coderTextBlack:hover {
     color: #000000;
 }
+
 .coderTextBlack:active {
     color: #000000;
 }
+
 s {
     font-size: 10px;
     font-style: normal;
@@ -548,19 +682,23 @@ p.nmessage {
 a {
     color: #004080;
 }
+
 td.topmenu a {
     color: #ffffff;
     text-decoration: none;
     cursor: hand;
 }
+
 td.topmenu a:hover {
     color: #c0c0c0;
 }
+
 td.topmenu {
     text-align: center;
     font-weight: bold;
     font-style: oblique;
 }
+
 td.topmenu div {
     background-color: #004080;
     height: 25px;
@@ -572,6 +710,7 @@ td.menuleft a {
     text-decoration: none;
     cursor: hand;
 }
+
 td.menuleft a:hover {
     color: #c0c0c0;
 }
@@ -598,9 +737,11 @@ td.newsselectcontainer {
     height: 25px;
     width: 190px;
 }
+
 td.newsselectcontainer form {
     margin: 0px;
 }
+
 td.newsselectcontainer select {
     background-color: #004080;
     color: #fff;
@@ -608,6 +749,7 @@ td.newsselectcontainer select {
     font-style: oblique;
     font-weight: bold;
 }
+
 .newsselectbtn {
     background-color: #004080;
     color: #fff;
@@ -619,6 +761,7 @@ td.newsselectcontainer select {
 .menuleftblock {
     border: 1px solid #004080;
 }
+
 .memorial {
     padding: 0px 8px;
     border: 2px solid #000000;
@@ -711,6 +854,7 @@ td.newsselectcontainer select {
 .menu ul ul table {
     left: -1px;
 }
+
 .menu ul ul table ul.left {
     margin-left: 2px;
 }
@@ -718,6 +862,7 @@ td.newsselectcontainer select {
 .menu li:hover {
     position: relative;
 }
+
 * html .menu a:hover {
     position: relative;
 }
@@ -727,15 +872,18 @@ td.newsselectcontainer select {
 .menu ul ul ul a:visited {
     background: #004080;
 }
+
 /* style the fourth level background */
 .menu ul ul ul ul a,
 .menu ul ul ul ul a:visited {
     background: #004080;
 }
+
 /* style the sub level 1 background */
 .menu ul :hover a.sub1 {
     background: #004080;
 }
+
 /* style the sub level 2 background */
 .menu ul ul :hover a.sub2 {
     background: #004080;
@@ -747,28 +895,34 @@ td.newsselectcontainer select {
     color: #c0c0c0;
     background: #014181;
 }
+
 .menu :hover > a {
     color: #c0c0c0;
     background: #014181;
 }
+
 /* second */
 .menu ul ul a:hover {
     color: #c0c0c0;
     background: #014181;
 }
+
 .menu ul ul :hover > a {
     color: #c0c0c0;
     background: #014181;
 }
+
 /* third */
 .menu ul ul ul a:hover {
     color: #c0c0c0;
     background: #014181;
 }
+
 .menu ul ul ul :hover > a {
     color: #c0c0c0;
     background: #014181;
 }
+
 /* fourth */
 .menu ul ul ul ul a:hover {
     color: #c0c0c0;
@@ -812,14 +966,17 @@ td.newsselectcontainer select {
 .menu ul :hover ul ul {
     visibility: hidden;
 }
+
 /* keep the fourth level hidden when you hover on second level list OR link */
 .menu ul :hover ul :hover ul ul {
     visibility: hidden;
 }
+
 /* make the third level visible when you hover over second level list OR link */
 .menu ul :hover ul :hover ul {
     visibility: visible;
 }
+
 /* make the fourth level visible when you hover over third level list OR link */
 .menu ul :hover ul :hover ul :hover ul {
     visibility: visible;
@@ -890,12 +1047,14 @@ td.newsselectcontainer select {
     text-indent: 0.5em;
     border: 1px solid #fff;
 }
+
 /* hack for IE5.5 */
 * html .lmenu a,
 * html .menu a:visited {
     width: 150em;
     width: 14.9em;
 }
+
 /* style the link hover */
 * html .lmenu a:hover {
     color: #c0c0c0;
@@ -944,10 +1103,12 @@ td.newsselectcontainer select {
 .lmenu ul a:hover ul ul {
     visibility: hidden;
 }
+
 /* keep the fourth level+ hidden when you hover on second level link */
 .lmenu ul a:hover ul a:hover ul ul {
     visibility: hidden;
 }
+
 /* keep the fifth level hidden when you hover on third level link */
 .lmenu ul a:hover ul a:hover ul a:hover ul ul {
     visibility: hidden;
@@ -957,14 +1118,17 @@ td.newsselectcontainer select {
 .lmenu ul a:hover ul {
     visibility: visible;
 }
+
 /* make the third level visible when you hover over second level link */
 .lmenu ul a:hover ul a:hover ul {
     visibility: visible;
 }
+
 /* make the fourth level visible when you hover over third level link */
 .lmenu ul a:hover ul a:hover ul a:hover ul {
     visibility: visible;
 }
+
 /* make the fifth level visible when you hover over fourth level link */
 .lmenu ul a:hover ul a:hover ul a:hover ul a:hover ul {
     visibility: visible;
