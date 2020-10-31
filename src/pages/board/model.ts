@@ -77,6 +77,8 @@ export function getTimeFlag(contest_config: any, search: any) {
     if (timeFlag > now) timeFlag = now;
     if (timeFlag < contest_config.start_time)
         timeFlag = contest_config.start_time;
+    console.log(timeFlag);
+    console.log(contest_config.start_time);
     return Math.ceil(timeFlag - contest_config.start_time);
 }
 
@@ -158,7 +160,7 @@ export function getRun(run: any, team: any, timeFlag: any) {
         let set = new Set(Object.keys(team));
         let new_run: any = [];
         _run.forEach((item: any) => {
-            if (set.has(item.team_id)) {
+            if (set.has(item.team_id.toString())) {
                 const id = [item.team_id, item.problem_id].join('-');
                 if (!map.has(id) || item.timestamp <= map.get(id)) {
                     new_run.push(item);
