@@ -1,1 +1,1349 @@
-{}
+{
+    "T007": {
+        "name": "逆十字",
+        "organization": "北京大学",
+        "team_id": "T007",
+        "official": 1
+    },
+    "T325": {
+        "name": "罚时要罚到无穷",
+        "organization": "中科大",
+        "team_id": "T325",
+        "official": 1
+    },
+    "T074": {
+        "name": "撒网摸鱼",
+        "organization": "哈尔滨工程大学",
+        "team_id": "T074",
+        "official": 1
+    },
+    "T301": {
+        "name": "学习使我快乐",
+        "organization": "浙江农林大学",
+        "team_id": "T301",
+        "official": 1
+    },
+    "T216": {
+        "name": "0ng",
+        "organization": "深圳大学",
+        "team_id": "T216",
+        "official": 1
+    },
+    "T009": {
+        "name": "将来我一定比你聪明比你强",
+        "organization": "北京航空航天大学",
+        "team_id": "T009",
+        "official": 1
+    },
+    "T006": {
+        "name": "你们这不是欺负人呢嘛",
+        "organization": "北京大学",
+        "team_id": "T006",
+        "official": 1
+    },
+    "T023": {
+        "name": "打代码",
+        "organization": "北京邮电大学",
+        "team_id": "T023",
+        "official": 1
+    },
+    "T191": {
+        "name": "三个顶俩",
+        "organization": "清华大学",
+        "team_id": "T191",
+        "official": 1
+    },
+    "T005": {
+        "name": "超长宕机",
+        "organization": "北京大学",
+        "team_id": "T005",
+        "official": 1
+    },
+    "T101": {
+        "name": "选对赛区少打两年",
+        "organization": "河南农业大学",
+        "team_id": "T101",
+        "official": 1
+    },
+    "T083": {
+        "name": "三鸽战队",
+        "organization": "哈尔滨工业大学（威海）",
+        "team_id": "T083",
+        "official": 1
+    },
+    "T133": {
+        "name": "能喝八吨奶茶",
+        "organization": "暨南大学",
+        "team_id": "T133",
+        "official": 1,
+        "girl": 1
+    },
+    "T025": {
+        "name": "康康康康",
+        "organization": "北京邮电大学",
+        "team_id": "T025",
+        "official": 1
+    },
+    "T245": {
+        "name": "先把夸父水娃踢出去",
+        "organization": "西北大学",
+        "team_id": "T245",
+        "official": 1
+    },
+    "T117": {
+        "name": "阿萨打发撒",
+        "organization": "华东师范大学",
+        "team_id": "T117",
+        "official": 1
+    },
+    "T257": {
+        "name": "队长你能教我写道DP吗",
+        "organization": "西南民族大学",
+        "team_id": "T257",
+        "official": 1
+    },
+    "T226": {
+        "name": "",
+        "organization": "天津大学",
+        "team_id": "T226",
+        "official": 1
+    },
+    "T280": {
+        "name": "灯火辛勤",
+        "organization": "浙大宁波理工学院",
+        "team_id": "T280",
+        "official": 1
+    },
+    "T044": {
+        "name": "不兼容",
+        "organization": "东北大学秦皇岛分校",
+        "team_id": "T044",
+        "official": 1
+    },
+    "T228": {
+        "name": "电脑一带三",
+        "organization": "同济大学",
+        "team_id": "T228",
+        "official": 1
+    },
+    "T234": {
+        "name": "憨包王",
+        "organization": "武汉科技大学",
+        "team_id": "T234",
+        "official": 1
+    },
+    "T230": {
+        "name": "温大二队",
+        "organization": "温州大学",
+        "team_id": "T230",
+        "official": 1
+    },
+    "T076": {
+        "name": "万符必应之破戒",
+        "organization": "哈尔滨工业大学",
+        "team_id": "T076",
+        "official": 1
+    },
+    "T016": {
+        "name": "打铁自身也不硬",
+        "organization": "北京林业大学",
+        "team_id": "T016",
+        "official": 1
+    },
+    "T001": {
+        "name": "看看这发对不队",
+        "organization": "安徽大学",
+        "team_id": "T001",
+        "official": 1
+    },
+    "T219": {
+        "name": "队长最爱女装",
+        "organization": "四川大学",
+        "team_id": "T219",
+        "official": 1
+    },
+    "T090": {
+        "name": "杭师观光团",
+        "organization": "杭州师范大学",
+        "team_id": "T090",
+        "official": 1
+    },
+    "T087": {
+        "name": "半人马座",
+        "organization": "杭州电子科技大学",
+        "team_id": "T087",
+        "official": 1
+    },
+    "T152": {
+        "name": "温特图尔",
+        "organization": "南方科技大学",
+        "team_id": "T152",
+        "official": 1
+    },
+    "T063": {
+        "name": "啦啦啦LaLaLa",
+        "organization": "广东工业大学",
+        "team_id": "T063",
+        "official": 1
+    },
+    "T066": {
+        "name": "纸上牧羊",
+        "organization": "广东外语外贸大学",
+        "team_id": "T066",
+        "official": 1
+    },
+    "T024": {
+        "name": "咕咕队",
+        "organization": "北京邮电大学",
+        "team_id": "T024",
+        "unofficial": 1
+    },
+    "T045": {
+        "name": "第五分块",
+        "organization": "东北电力",
+        "team_id": "T045",
+        "official": 1
+    },
+    "T316": {
+        "name": "不做选择我们都要",
+        "organization": "中北大学",
+        "team_id": "T316",
+        "official": 1
+    },
+    "T095": {
+        "name": "主办方我要吃辣条",
+        "organization": "河南大学",
+        "team_id": "T095",
+        "official": 1
+    },
+    "T196": {
+        "name": "GGjidi",
+        "organization": "山东大学",
+        "team_id": "T196",
+        "official": 1
+    },
+    "T249": {
+        "name": "风华正茂的妹妹们",
+        "organization": "西北农林",
+        "team_id": "T249",
+        "official": 1,
+        "girl": 1
+    },
+    "T203": {
+        "name": "lzz上分之旅",
+        "organization": "山东理工大学",
+        "team_id": "T203",
+        "official": 1
+    },
+    "T281": {
+        "name": "均衡存乎万物之间",
+        "organization": "浙大宁波理工学院",
+        "team_id": "T281",
+        "official": 1
+    },
+    "T295": {
+        "name": "机电8队",
+        "organization": "浙江机电",
+        "team_id": "T295",
+        "official": 1
+    },
+    "T055": {
+        "name": "骗个综测分",
+        "organization": "福工",
+        "team_id": "T055",
+        "official": 1
+    },
+    "T079": {
+        "name": "今天AC了吗",
+        "organization": "哈尔滨工业大学（深圳）",
+        "team_id": "T079",
+        "official": 1
+    },
+    "T265": {
+        "name": "打完比赛去吃黄焖鸡",
+        "organization": "长安大学",
+        "team_id": "T265",
+        "official": 1
+    },
+    "T184": {
+        "name": "本地过了就是过了",
+        "organization": "齐鲁工业大学",
+        "team_id": "T184",
+        "official": 1
+    },
+    "T306": {
+        "name": "育英五队",
+        "organization": "浙江育英职业技术学院",
+        "team_id": "T306",
+        "official": 1
+    },
+    "T210": {
+        "name": "欧文艾迪",
+        "organization": "上海交通大学",
+        "team_id": "T210",
+        "official": 1
+    },
+    "T259": {
+        "name": "咖喱鱼蛋",
+        "organization": "西南民族大学",
+        "team_id": "T259",
+        "official": 1,
+        "girl": 1
+    },
+    "T046": {
+        "name": "dlk失联了",
+        "organization": "东北农业大学",
+        "team_id": "T046",
+        "official": 1,
+        "girl": 1
+    },
+    "T322": {
+        "name": "不要一起撑死",
+        "organization": "中国海洋大学",
+        "team_id": "T322",
+        "official": 1
+    },
+    "T057": {
+        "name": "FZU旅行团",
+        "organization": "福州大学",
+        "team_id": "T057",
+        "official": 1
+    },
+    "T112": {
+        "name": "数论是我大哥",
+        "organization": "湖州师范",
+        "team_id": "T112",
+        "official": 1
+    },
+    "T012": {
+        "name": "天花板上的飞仙舞王",
+        "organization": "北京交通大学",
+        "team_id": "T012",
+        "official": 1
+    },
+    "T220": {
+        "name": "究极土块",
+        "organization": "四川大学",
+        "team_id": "T220",
+        "official": 1
+    },
+    "T319": {
+        "name": "三只小僧挑水喝",
+        "organization": "中国地质大学（北京）",
+        "team_id": "T319",
+        "official": 1
+    },
+    "T097": {
+        "name": "哥咱家AC了",
+        "organization": "河南理工大学",
+        "team_id": "T097",
+        "official": 1
+    },
+    "T084": {
+        "name": "三个拉跨",
+        "organization": "哈尔滨工业大学（威海）",
+        "team_id": "T084",
+        "official": 1
+    },
+    "T205": {
+        "name": "BreakFast",
+        "organization": "山东师范大学",
+        "team_id": "T205",
+        "official": 1
+    },
+    "T038": {
+        "name": "中山学院二队",
+        "organization": "电子科技大学中山学院",
+        "team_id": "T038",
+        "official": 1
+    },
+    "T176": {
+        "name": "大猪小猪落玉盘",
+        "organization": "南京邮电大学",
+        "team_id": "T176",
+        "official": 1
+    },
+    "T148": {
+        "name": "展望未来",
+        "organization": "南昌航空大学",
+        "team_id": "T148",
+        "official": 1
+    },
+    "T098": {
+        "name": "芜湖电台请求起飞",
+        "organization": "河南理工大学",
+        "team_id": "T098",
+        "unofficial": 1
+    },
+    "T279": {
+        "name": "让我来朵蜜你",
+        "organization": "浙大城市学院",
+        "team_id": "T279",
+        "unofficial": 1
+    },
+    "T320": {
+        "name": "MasterSpark",
+        "organization": "中国地质大学（武汉）",
+        "team_id": "T320",
+        "official": 1
+    },
+    "T047": {
+        "name": "数论只会gcd",
+        "organization": "东北农业大学",
+        "team_id": "T047",
+        "official": 1
+    },
+    "T273": {
+        "name": "你保底五星必出武器",
+        "organization": "长沙理工大学",
+        "team_id": "T273",
+        "official": 1
+    },
+    "T237": {
+        "name": "一蛙二兔三马零獒",
+        "organization": "武理",
+        "team_id": "T237",
+        "official": 1
+    },
+    "T086": {
+        "name": "哈理工9队",
+        "organization": "哈尔滨理工大学",
+        "team_id": "T086",
+        "unofficial": 1
+    },
+    "T208": {
+        "name": "起个名字真难",
+        "organization": "上海大学",
+        "team_id": "T208",
+        "official": 1
+    },
+    "T010": {
+        "name": "试炼者",
+        "organization": "北京航空航天大学",
+        "team_id": "T010",
+        "official": 1
+    },
+    "T309": {
+        "name": "ZZU",
+        "organization": "郑州大学",
+        "team_id": "T309",
+        "official": 1
+    },
+    "T231": {
+        "name": "啊啊啊啊唉",
+        "organization": "武汉大学",
+        "team_id": "T231",
+        "official": 1
+    },
+    "T258": {
+        "name": "队长我能去你寝室敲代码吗",
+        "organization": "西南民族大学",
+        "team_id": "T258",
+        "official": 1
+    },
+    "T061": {
+        "name": "黑色骑士团",
+        "organization": "复旦大学",
+        "team_id": "T061",
+        "official": 1
+    },
+    "T043": {
+        "name": "lucky crystal",
+        "organization": "东北大学秦皇岛分校",
+        "team_id": "T043",
+        "official": 1
+    },
+    "T206": {
+        "name": "北冥飞鱼",
+        "organization": "上海大学",
+        "team_id": "T206",
+        "official": 1,
+        "girl": 1
+    },
+    "T218": {
+        "name": "吾晓之以理",
+        "organization": "深圳大学",
+        "team_id": "T218",
+        "official": 1
+    },
+    "T131": {
+        "name": "累计铳满",
+        "organization": "吉林大学",
+        "team_id": "T131",
+        "official": 1
+    },
+    "T240": {
+        "name": "鑫森众焱垚",
+        "organization": "西安电子科技大学",
+        "team_id": "T240",
+        "official": 1
+    },
+    "T185": {
+        "name": "脆皮儿核桃",
+        "organization": "青岛大学",
+        "team_id": "T185",
+        "official": 1
+    },
+    "T018": {
+        "name": "人菜瘾大",
+        "organization": "北京师范大学",
+        "team_id": "T018",
+        "unofficial": 1
+    },
+    "T050": {
+        "name": "细胞色素",
+        "organization": "东北师范大学",
+        "team_id": "T050",
+        "official": 1
+    },
+    "T232": {
+        "name": "啊这",
+        "organization": "武汉大学",
+        "team_id": "T232",
+        "official": 1
+    },
+    "T081": {
+        "name": "galaxy-rising",
+        "organization": "哈尔滨工业大学（威海）",
+        "team_id": "T081",
+        "official": 1
+    },
+    "T085": {
+        "name": "哈理工7队",
+        "organization": "哈尔滨理工大学",
+        "team_id": "T085",
+        "official": 1,
+        "girl": 1
+    },
+    "T123": {
+        "name": "华工的小铁匠",
+        "organization": "华南理工大学",
+        "team_id": "T123",
+        "official": 1
+    },
+    "T125": {
+        "name": "Plane",
+        "organization": "华南农业大学",
+        "team_id": "T125",
+        "official": 1
+    },
+    "T294": {
+        "name": "别扒拉我",
+        "organization": "之江",
+        "team_id": "T294",
+        "official": 1
+    },
+    "T342": {
+        "name": "未名",
+        "organization": "重邮",
+        "team_id": "T342",
+        "official": 1
+    },
+    "T161": {
+        "name": "鸽屋咕",
+        "organization": "南京大学",
+        "team_id": "T161",
+        "official": 1
+    },
+    "T171": {
+        "name": "带带小学弟",
+        "organization": "南京理工大学",
+        "team_id": "T171",
+        "official": 1
+    },
+    "T069": {
+        "name": "这就是墙外的世界吗",
+        "organization": "广州大学",
+        "team_id": "T069",
+        "unofficial": 1
+    },
+    "T075": {
+        "name": "庆大包与摩托车维修艺术",
+        "organization": "哈尔滨工业大学",
+        "team_id": "T075",
+        "official": 1
+    },
+    "T080": {
+        "name": "无名",
+        "organization": "哈尔滨工业大学（深圳）",
+        "team_id": "T080",
+        "unofficial": 1
+    },
+    "T159": {
+        "name": "吊打yyb",
+        "organization": "南京大学",
+        "team_id": "T159",
+        "unofficial": 1
+    },
+    "T174": {
+        "name": "放码过来",
+        "organization": "南京信息工程大学",
+        "team_id": "T174",
+        "official": 1
+    },
+    "T305": {
+        "name": "迪士尼在逃程序媛",
+        "organization": "浙江万里学院",
+        "team_id": "T305",
+        "official": 1,
+        "girl": 1
+    },
+    "T126": {
+        "name": "AFOer",
+        "organization": "华南师范大学",
+        "team_id": "T126",
+        "official": 1
+    },
+    "T222": {
+        "name": "不取队名好嘛",
+        "organization": "苏州大学",
+        "team_id": "T222",
+        "official": 1,
+        "girl": 1
+    },
+    "T256": {
+        "name": "读写锁写线程饥饿",
+        "organization": "西南交通大学",
+        "team_id": "T256",
+        "official": 1
+    },
+    "T107": {
+        "name": "随便搞搞",
+        "organization": "湖南大学",
+        "team_id": "T107",
+        "official": 1
+    },
+    "T175": {
+        "name": "来生要不要做咸鱼女啊",
+        "organization": "南京信息工程大学",
+        "team_id": "T175",
+        "official": 1,
+        "girl": 1
+    },
+    "T108": {
+        "name": "酸味橘子",
+        "organization": "湖南工大",
+        "team_id": "T108",
+        "official": 1
+    },
+    "T150": {
+        "name": "最终一战",
+        "organization": "南昌理工",
+        "team_id": "T150",
+        "official": 1
+    },
+    "T021": {
+        "name": "祝楼下拿金牌",
+        "organization": "北师珠分校",
+        "team_id": "T021",
+        "official": 1
+    },
+    "T341": {
+        "name": "乐子",
+        "organization": "重邮",
+        "team_id": "T341",
+        "official": 1
+    },
+    "T102": {
+        "name": "从WA开始的打铁生涯",
+        "organization": "黑大",
+        "team_id": "T102",
+        "official": 1
+    },
+    "T128": {
+        "name": "绵阳扬了",
+        "organization": "华中科大",
+        "team_id": "T128",
+        "unofficial": 1
+    },
+    "T177": {
+        "name": "南邮黄焖鸡",
+        "organization": "南京邮电大学",
+        "team_id": "T177",
+        "official": 1
+    },
+    "T334": {
+        "name": "面向样例程序设计",
+        "organization": "中南民大",
+        "team_id": "T334",
+        "unofficial": 1
+    },
+    "T241": {
+        "name": "XXUUTT",
+        "organization": "西安理工大学",
+        "team_id": "T241",
+        "unofficial": 1
+    },
+    "T170": {
+        "name": "草莓广冻",
+        "organization": "南京理工大学",
+        "team_id": "T170",
+        "official": 1
+    },
+    "T213": {
+        "name": "这队名好难取",
+        "organization": "上海理工大学",
+        "team_id": "T213",
+        "official": 1
+    },
+    "T129": {
+        "name": "你在赣神魔",
+        "organization": "华中农大",
+        "team_id": "T129",
+        "official": 1
+    },
+    "T017": {
+        "name": "奥利奥利奥",
+        "organization": "北京师范大学",
+        "team_id": "T017",
+        "official": 1
+    },
+    "T331": {
+        "name": "ACM太难玩了",
+        "organization": "中南大学",
+        "team_id": "T331",
+        "official": 1
+    },
+    "T340": {
+        "name": "划啊划",
+        "organization": "重邮",
+        "team_id": "T340",
+        "unofficial": 1
+    },
+    "T339": {
+        "name": "我们想peach",
+        "organization": "重庆大学",
+        "team_id": "T339",
+        "official": 1
+    },
+    "T211": {
+        "name": "正道的光",
+        "organization": "上海交通大学",
+        "team_id": "T211",
+        "official": 1
+    },
+    "T037": {
+        "name": "优哉游哉",
+        "organization": "大连理工大学",
+        "team_id": "T037",
+        "official": 1
+    },
+    "T239": {
+        "name": "灵稽一动",
+        "organization": "西安电子科技大学",
+        "team_id": "T239",
+        "official": 1
+    },
+    "T042": {
+        "name": "Friday",
+        "organization": "东北大学秦皇岛分校",
+        "team_id": "T042",
+        "official": 1
+    },
+    "T015": {
+        "name": "马拉车拉马",
+        "organization": "北京理工大学",
+        "team_id": "T015",
+        "official": 1
+    },
+    "T127": {
+        "name": "紫荆路听蛙呱",
+        "organization": "华南师范大学",
+        "team_id": "T127",
+        "official": 1
+    },
+    "T179": {
+        "name": "为了新中国冲呀",
+        "organization": "南阳理工学院",
+        "team_id": "T179",
+        "official": 1
+    },
+    "T317": {
+        "name": "仨人俩演",
+        "organization": "中北大学",
+        "team_id": "T317",
+        "unofficial": 1
+    },
+    "T096": {
+        "name": "AWSL",
+        "organization": "河南理工大学",
+        "team_id": "T096",
+        "official": 1
+    },
+    "T073": {
+        "name": "你们队名就叫这个呀",
+        "organization": "哈尔滨工程大学",
+        "team_id": "T073",
+        "official": 1
+    },
+    "T186": {
+        "name": "签完到就去吃海底捞",
+        "organization": "青岛大学",
+        "team_id": "T186",
+        "official": 1
+    },
+    "T307": {
+        "name": "好！很有精神！",
+        "organization": "浙江中医药大学",
+        "team_id": "T307",
+        "official": 1
+    },
+    "T189": {
+        "name": "人下人下人下人",
+        "organization": "清华大学",
+        "team_id": "T189",
+        "official": 1
+    },
+    "T049": {
+        "name": "黎明初晓",
+        "organization": "东北师范大学",
+        "team_id": "T049",
+        "official": 1
+    },
+    "T014": {
+        "name": "阿咆变节biu",
+        "organization": "北京理工大学",
+        "team_id": "T014",
+        "official": 1
+    },
+    "T169": {
+        "name": "我全都要",
+        "organization": "南京航空航天大学",
+        "team_id": "T169",
+        "official": 1
+    },
+    "T233": {
+        "name": "可持续化TLE",
+        "organization": "武纺",
+        "team_id": "T233",
+        "official": 1
+    },
+    "T298": {
+        "name": "Kvara",
+        "organization": "浙江农林大学",
+        "team_id": "T298",
+        "unofficial": 1
+    },
+    "T227": {
+        "name": "qazxswedc0001",
+        "organization": "天津大学",
+        "team_id": "T227",
+        "official": 1
+    },
+    "T263": {
+        "name": "来自东方的神秘力量",
+        "organization": "燕大",
+        "team_id": "T263",
+        "official": 1
+    },
+    "T035": {
+        "name": "哇哈哈咔咔",
+        "organization": "大连海事大学",
+        "team_id": "T035",
+        "official": 1
+    },
+    "T027": {
+        "name": "你们这是什么队",
+        "organization": "北京邮电大学",
+        "team_id": "T027",
+        "official": 1
+    },
+    "T338": {
+        "name": "那咋办嘛",
+        "organization": "重庆大学",
+        "team_id": "T338",
+        "official": 1
+    },
+    "T093": {
+        "name": "几丁质",
+        "organization": "河海大学",
+        "team_id": "T093",
+        "official": 1
+    },
+    "T116": {
+        "name": "真有意思",
+        "organization": "华东理工大学",
+        "team_id": "T116",
+        "official": 1
+    },
+    "T039": {
+        "name": "火石桥村民",
+        "organization": "东北大学",
+        "team_id": "T039",
+        "official": 1
+    },
+    "T041": {
+        "name": "CFA-Y剑指",
+        "organization": "东北大学秦皇岛分校",
+        "team_id": "T041",
+        "official": 1
+    },
+    "T178": {
+        "name": "奇怪的队名",
+        "organization": "南阳理工学院",
+        "team_id": "T178",
+        "official": 1
+    },
+    "T326": {
+        "name": "按坦克进入f",
+        "organization": "中国矿业大学",
+        "team_id": "T326",
+        "official": 1
+    },
+    "T224": {
+        "name": "没有异议",
+        "organization": "台院",
+        "team_id": "T224",
+        "official": 1
+    },
+    "T310": {
+        "name": "ZZU",
+        "organization": "郑州大学",
+        "team_id": "T310",
+        "official": 1
+    },
+    "T276": {
+        "name": "北岭山二队",
+        "organization": "肇庆学院",
+        "team_id": "T276",
+        "official": 1
+    },
+    "T204": {
+        "name": "华灯初上",
+        "organization": "山东理工大学",
+        "team_id": "T204",
+        "unofficial": 1
+    },
+    "T187": {
+        "name": "IG",
+        "organization": "青岛工学院",
+        "team_id": "T187",
+        "official": 1
+    },
+    "T053": {
+        "name": "打铁成功就地复读",
+        "organization": "东南大学",
+        "team_id": "T053",
+        "official": 1
+    },
+    "T217": {
+        "name": "签到，摸鱼",
+        "organization": "深圳大学",
+        "team_id": "T217",
+        "unofficial": 1
+    },
+    "T120": {
+        "name": "下划线",
+        "organization": "华东师范大学",
+        "team_id": "T120",
+        "official": 1
+    },
+    "T247": {
+        "name": "启发式误导",
+        "organization": "西工大",
+        "team_id": "T247",
+        "official": 1
+    },
+    "T190": {
+        "name": "赛博朋克2277",
+        "organization": "清华大学",
+        "team_id": "T190",
+        "official": 1
+    },
+    "T059": {
+        "name": "日暮晨昏",
+        "organization": "福州大学",
+        "team_id": "T059",
+        "unofficial": 1
+    },
+    "T008": {
+        "name": "合法字符串",
+        "organization": "北京航空航天大学",
+        "team_id": "T008",
+        "official": 1
+    },
+    "T100": {
+        "name": "黄色闪光",
+        "organization": "河南农业大学",
+        "team_id": "T100",
+        "official": 1
+    },
+    "T124": {
+        "name": "换个队名转运",
+        "organization": "华南理工大学",
+        "team_id": "T124",
+        "official": 1
+    },
+    "T028": {
+        "name": "祝你3456没有7",
+        "organization": "北京邮电大学",
+        "team_id": "T028",
+        "unofficial": 1
+    },
+    "T335": {
+        "name": "FLL",
+        "organization": "中山大学",
+        "team_id": "T335",
+        "official": 1
+    },
+    "T244": {
+        "name": "半导银盒",
+        "organization": "西北大学",
+        "team_id": "T244",
+        "official": 1
+    },
+    "T064": {
+        "name": "平砍连击带顺劈",
+        "organization": "广东工业大学",
+        "team_id": "T064",
+        "official": 1
+    },
+    "T282": {
+        "name": "我很高贵wa没机会",
+        "organization": "浙大宁波理工学院",
+        "team_id": "T282",
+        "official": 1,
+        "girl": 1
+    },
+    "T223": {
+        "name": "想喝芋圆桂花乌龙奶茶",
+        "organization": "苏州大学",
+        "team_id": "T223",
+        "official": 1
+    },
+    "T327": {
+        "name": "码农五月哭",
+        "organization": "中国矿业大学",
+        "team_id": "T327",
+        "official": 1
+    },
+    "T058": {
+        "name": "Last Second",
+        "organization": "福州大学",
+        "team_id": "T058",
+        "unofficial": 1
+    },
+    "T215": {
+        "name": "抬头是云",
+        "organization": "绍元培",
+        "team_id": "T215",
+        "official": 1
+    },
+    "T236": {
+        "name": "TLEnoTLE",
+        "organization": "武理",
+        "team_id": "T236",
+        "official": 1
+    },
+    "T094": {
+        "name": "我也不知道该取什么名字",
+        "organization": "河海大学",
+        "team_id": "T094",
+        "official": 1
+    },
+    "T151": {
+        "name": "卢加诺",
+        "organization": "南方科技大学",
+        "team_id": "T151",
+        "official": 1
+    },
+    "T332": {
+        "name": "千万别报计算机",
+        "organization": "中南大学",
+        "team_id": "T332",
+        "official": 1
+    },
+    "T111": {
+        "name": "哥，咱们家有钱啦",
+        "organization": "湖南人文",
+        "team_id": "T111",
+        "official": 1
+    },
+    "T260": {
+        "name": "起飞~",
+        "organization": "西南石油大学",
+        "team_id": "T260",
+        "official": 1
+    },
+    "T078": {
+        "name": "爱吃希尔队",
+        "organization": "哈尔滨工业大学（深圳）",
+        "team_id": "T078",
+        "unofficial": 1
+    },
+    "T140": {
+        "name": "你一生的故事",
+        "organization": "江西财经大学",
+        "team_id": "T140",
+        "official": 1
+    },
+    "T060": {
+        "name": "阿凡提的小毛驴快跑",
+        "organization": "复旦大学",
+        "team_id": "T060",
+        "official": 1
+    },
+    "T048": {
+        "name": "无网络难办",
+        "organization": "东北农业大学",
+        "team_id": "T048",
+        "official": 1
+    },
+    "T207": {
+        "name": "泛函分析心犯寒",
+        "organization": "上海大学",
+        "team_id": "T207",
+        "official": 1
+    },
+    "T070": {
+        "name": "给周学姐上女装",
+        "organization": "桂林电子科技大学",
+        "team_id": "T070",
+        "official": 1
+    },
+    "T252": {
+        "name": "有希望",
+        "organization": "西南财大",
+        "team_id": "T252",
+        "official": 1,
+        "girl": 1
+    },
+    "T318": {
+        "name": "三缺一",
+        "organization": "中国传媒大学",
+        "team_id": "T318",
+        "official": 1
+    },
+    "T261": {
+        "name": "little busters",
+        "organization": "新疆大学",
+        "team_id": "T261",
+        "official": 1
+    },
+    "T188": {
+        "name": "她与WA皆是遗憾",
+        "organization": "青岛理工",
+        "team_id": "T188",
+        "official": 1
+    },
+    "T149": {
+        "name": "上帝的宠儿",
+        "organization": "南昌理工",
+        "team_id": "T149",
+        "official": 1,
+        "girl": 1
+    },
+    "T026": {
+        "name": "零叉八C",
+        "organization": "北京邮电大学",
+        "team_id": "T026",
+        "unofficial": 1
+    },
+    "T180": {
+        "name": "极夜之光",
+        "organization": "南阳师范学院",
+        "team_id": "T180",
+        "official": 1
+    },
+    "T114": {
+        "name": "曹妃甸里养小鸭",
+        "organization": "华北理工大学",
+        "team_id": "T114",
+        "unofficial": 1
+    },
+    "T110": {
+        "name": "三个打铁匠",
+        "organization": "湖南理工",
+        "team_id": "T110",
+        "official": 1
+    },
+    "T054": {
+        "name": "打完这场我就退役",
+        "organization": "东南大学",
+        "team_id": "T054",
+        "official": 1
+    },
+    "T091": {
+        "name": "练字小分队",
+        "organization": "合肥学院",
+        "team_id": "T091",
+        "official": 1,
+        "girl": 1
+    },
+    "T113": {
+        "name": "想队名",
+        "organization": "湖州师范",
+        "team_id": "T113",
+        "official": 1,
+        "girl": 1
+    },
+    "T082": {
+        "name": "放学后茶会",
+        "organization": "哈尔滨工业大学（威海）",
+        "team_id": "T082",
+        "official": 1
+    },
+    "T065": {
+        "name": "我们只写一题",
+        "organization": "广师大",
+        "team_id": "T065",
+        "official": 1
+    },
+    "T246": {
+        "name": "黑色切题者",
+        "organization": "西工大",
+        "team_id": "T246",
+        "official": 1
+    },
+    "T105": {
+        "name": "浣熊市阿尔法小队",
+        "organization": "湖北工业大学",
+        "team_id": "T105",
+        "official": 1
+    },
+    "T302": {
+        "name": "防WA题研究院",
+        "organization": "浙江师范大学",
+        "team_id": "T302",
+        "official": 1
+    },
+    "T274": {
+        "name": "T罗奥特曼",
+        "organization": "长沙学院",
+        "team_id": "T274",
+        "official": 1
+    },
+    "T153": {
+        "name": "快乐向前冲",
+        "organization": "南华大学",
+        "team_id": "T153",
+        "official": 1
+    },
+    "T002": {
+        "name": "淼天一色",
+        "organization": "安阳工学院",
+        "team_id": "T002",
+        "official": 1
+    },
+    "T238": {
+        "name": "fans of wang9897",
+        "organization": "西安电子科技大学",
+        "team_id": "T238",
+        "unofficial": 1
+    },
+    "T134": {
+        "name": "凤梨麻麻带两崽",
+        "organization": "嘉应学院",
+        "team_id": "T134",
+        "official": 1,
+        "girl": 1
+    },
+    "T264": {
+        "name": "打铁三人组",
+        "organization": "战略支援部队信息工程大学",
+        "team_id": "T264",
+        "unofficial": 1
+    },
+    "T248": {
+        "name": "潜伏小队",
+        "organization": "西工大",
+        "team_id": "T248",
+        "official": 1
+    },
+    "T040": {
+        "name": "三千",
+        "organization": "东北大学",
+        "team_id": "T040",
+        "official": 1
+    },
+    "T321": {
+        "name": "NZYM",
+        "organization": "中国地质大学（武汉）",
+        "team_id": "T321",
+        "unofficial": 1
+    },
+    "T330": {
+        "name": "WA题自动机",
+        "organization": "中国石油大学（华东）",
+        "team_id": "T330",
+        "official": 1
+    },
+    "T344": {
+        "name": "Eureka",
+        "organization": "福州大学",
+        "team_id": "T344",
+        "unofficial": 1
+    },
+    "T019": {
+        "name": "不会用雷的徐志鸟",
+        "organization": "北师大珠海",
+        "team_id": "T019",
+        "official": 1
+    },
+    "T255": {
+        "name": "ydd",
+        "organization": "西南交通大学",
+        "team_id": "T255",
+        "official": 1
+    },
+    "T115": {
+        "name": "就这个我喜欢这个",
+        "organization": "华东交大",
+        "team_id": "T115",
+        "unofficial": 1
+    },
+    "T275": {
+        "name": "迪迦长大分迦",
+        "organization": "长沙学院",
+        "team_id": "T275",
+        "unofficial": 1
+    },
+    "T288": {
+        "name": "哥斯拉面",
+        "organization": "浙江工商大学",
+        "team_id": "T288",
+        "official": 1
+    },
+    "T300": {
+        "name": "体验生活",
+        "organization": "浙江农林大学",
+        "team_id": "T300",
+        "unofficial": 1
+    },
+    "T225": {
+        "name": "鸣谦",
+        "organization": "太原理工大学",
+        "team_id": "T225",
+        "official": 1
+    },
+    "T056": {
+        "name": "样例过了就是过了",
+        "organization": "福建师范大学",
+        "team_id": "T056",
+        "official": 1
+    },
+    "T099": {
+        "name": "叮叮叮",
+        "organization": "河南农业大学",
+        "team_id": "T099",
+        "official": 1
+    },
+    "T328": {
+        "name": "航大919",
+        "organization": "中航大",
+        "team_id": "T328",
+        "official": 1
+    },
+    "T013": {
+        "name": "max25仔",
+        "organization": "北京理工大学",
+        "team_id": "T013",
+        "official": 1
+    },
+    "T109": {
+        "name": "AChappy",
+        "organization": "湖南科技大学",
+        "team_id": "T109",
+        "official": 1
+    }
+}

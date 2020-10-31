@@ -425,7 +425,6 @@ class Standings extends React.Component {
             this.setState({
                 loaded: false,
             });
-            this.clearTeamDetailsDisplay();
             this.clearTimer();
             this.timer = setTimeout(() => {
                 this.update(nextProps);

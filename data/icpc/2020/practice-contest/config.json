@@ -1,0 +1,18 @@
+{
+    "contest_name": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲网上区域赛模拟赛",
+    "start_time": 1604124000,
+    "end_time": 1604134800,
+    "frozen_time": 0,
+    "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+    "group": {
+        "official": "正式队伍"
+    },
+    "organization": "School",
+    "status_time_display": {
+        "correct": 1,
+        "incorrect": 1,
+        "pending": 1
+    },
+    "penalty": 1200,
+    "medal": {}
+}

@@ -1,1 +1,1868 @@
-[]
+[
+    {
+        "team_id": "T007",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T007",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T007",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T007",
+        "timestamp": 1080,
+        "problem_id": 2,
+        "status": "correct"
+    },
+    {
+        "team_id": "T007",
+        "timestamp": 1560,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T325",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T325",
+        "timestamp": 1860,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T074",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T074",
+        "timestamp": 2280,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T301",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T301",
+        "timestamp": 2400,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T216",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T216",
+        "timestamp": 2340,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T009",
+        "timestamp": 300,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T009",
+        "timestamp": 2340,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T009",
+        "timestamp": 2340,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T006",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T006",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T006",
+        "timestamp": 1860,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T023",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T023",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T023",
+        "timestamp": 2280,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T191",
+        "timestamp": 360,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T191",
+        "timestamp": 2220,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T191",
+        "timestamp": 2220,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T191",
+        "timestamp": 2220,
+        "problem_id": 2,
+        "status": "correct"
+    },
+    {
+        "team_id": "T005",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T005",
+        "timestamp": 2040,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T005",
+        "timestamp": 2040,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T005",
+        "timestamp": 2040,
+        "problem_id": 1,
+        "status": "correct"
+    },
+    {
+        "team_id": "T101",
+        "timestamp": 360,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T083",
+        "timestamp": 420,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T133",
+        "timestamp": 420,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T025",
+        "timestamp": 480,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T245",
+        "timestamp": 480,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T117",
+        "timestamp": 480,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T257",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T226",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T280",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T044",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T228",
+        "timestamp": 540,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T234",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T230",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T076",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T016",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T001",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T219",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T090",
+        "timestamp": 720,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T087",
+        "timestamp": 720,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T152",
+        "timestamp": 720,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T063",
+        "timestamp": 720,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T066",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T024",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T045",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T316",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T095",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T196",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T249",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T203",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T281",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T281",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T281",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T281",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T281",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T295",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T055",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T079",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T265",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T184",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T306",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T210",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T259",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T046",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T322",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T057",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T112",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T012",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T220",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T319",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T097",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T084",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T205",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T038",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T176",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T148",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T098",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T279",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T320",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T047",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T273",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T273",
+        "timestamp": 2340,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T237",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T086",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T208",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T010",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T309",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T309",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T231",
+        "timestamp": 720,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T231",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T258",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T061",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T043",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T206",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T218",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T131",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T240",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T185",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T018",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T018",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T050",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T232",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T081",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T085",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T123",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T125",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T294",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T342",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T161",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T171",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T069",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T075",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T080",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T159",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T174",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T305",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T126",
+        "timestamp": 1440,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T222",
+        "timestamp": 1440,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T256",
+        "timestamp": 1440,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T107",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T175",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T108",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T150",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T021",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T341",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T102",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T128",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T177",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T334",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T241",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T170",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T213",
+        "timestamp": 420,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T213",
+        "timestamp": 420,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T129",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T017",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T331",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T331",
+        "timestamp": 600,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T340",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T339",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T339",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T211",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T211",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T037",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T037",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T239",
+        "timestamp": 1380,
+        "problem_id": 3,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T239",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T042",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T042",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T015",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T015",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T015",
+        "timestamp": 1200,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T127",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T127",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T179",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T179",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T179",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T317",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T317",
+        "timestamp": 840,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T317",
+        "timestamp": 2160,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T096",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T096",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T073",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T073",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T186",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T186",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T307",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T307",
+        "timestamp": 900,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T189",
+        "timestamp": 2160,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T049",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T049",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T014",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T014",
+        "timestamp": 1020,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T169",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T169",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T233",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T233",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T298",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T227",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T227",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T263",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T263",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T035",
+        "timestamp": 2400,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T027",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T027",
+        "timestamp": 1200,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T338",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T338",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T093",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T093",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T116",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T116",
+        "timestamp": 1260,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T039",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T039",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T041",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T041",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T178",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T178",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T326",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T224",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T224",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T310",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T310",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T276",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T276",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T204",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T204",
+        "timestamp": 1560,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T187",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T187",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T053",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T053",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T217",
+        "timestamp": 1860,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T217",
+        "timestamp": 1860,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T120",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T120",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T120",
+        "timestamp": 660,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T120",
+        "timestamp": 2040,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T247",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T247",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T190",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T190",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T059",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T059",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T059",
+        "timestamp": 780,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T008",
+        "timestamp": 2100,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T008",
+        "timestamp": 2100,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T100",
+        "timestamp": 2160,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T100",
+        "timestamp": 2160,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T124",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T124",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T124",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T028",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T028",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T028",
+        "timestamp": 1080,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T028",
+        "timestamp": 2040,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T028",
+        "timestamp": 2040,
+        "problem_id": 2,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T335",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T335",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T244",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T244",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T244",
+        "timestamp": 1140,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T064",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T064",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T064",
+        "timestamp": 1320,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T282",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T282",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T282",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T223",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T223",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T223",
+        "timestamp": 1380,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T327",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T327",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T327",
+        "timestamp": 1500,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T058",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T058",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T058",
+        "timestamp": 1620,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T215",
+        "timestamp": 1740,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T215",
+        "timestamp": 1740,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T215",
+        "timestamp": 1740,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T236",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T236",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T236",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T094",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T094",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T094",
+        "timestamp": 1980,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T151",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T151",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T151",
+        "timestamp": 2040,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T332",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T332",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T332",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T332",
+        "timestamp": 960,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T111",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T111",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T111",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T111",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T260",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T260",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T260",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T260",
+        "timestamp": 1800,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T078",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T078",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T078",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T078",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T140",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T140",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T140",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T140",
+        "timestamp": 1920,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 2280,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 2280,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 2280,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 2280,
+        "problem_id": 0,
+        "status": "correct"
+    },
+    {
+        "team_id": "T060",
+        "timestamp": 2400,
+        "problem_id": 1,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "incorrect"
+    },
+    {
+        "team_id": "T048",
+        "timestamp": 2340,
+        "problem_id": 0,
+        "status": "correct"
+    }
+]
