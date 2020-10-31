@@ -41,7 +41,7 @@ medal = {
     
 }
 config = {
-    'contest_name': 'ICPC2020-ICPC x 小米 网络选拔赛第二场',
+    'contest_name': 'ICPC2020-ICPC·小米 网络选拔赛第二场',
     'start_time': get_timestamp("2020-10-31 12:00:00"),
     'end_time': get_timestamp("2020-10-31 17:00:00"),
     'frozen_time' : 0,
