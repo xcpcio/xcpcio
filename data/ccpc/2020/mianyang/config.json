@@ -4,6 +4,13 @@
     "end_time": 1604210400,
     "frozen_time": 0,
     "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
+    "medal": {
+        "official": {
+            "gold": 24,
+            "silver": 48,
+            "bronze": 72
+        }
+    },
     "group": {
         "official": "正式队伍",
         "unofficial": "打星队伍",

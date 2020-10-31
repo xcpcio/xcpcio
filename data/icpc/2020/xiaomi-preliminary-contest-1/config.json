@@ -1,9 +1,9 @@
 {
-    "contest_name": "ICPC2020-第 45 届国际大学生程序设计竞赛亚洲网上区域赛模拟赛",
-    "start_time": 1604124000,
-    "end_time": 1604134800,
+    "contest_name": "ICPC2020-ICPC·小米 网络选拔赛第一场",
+    "start_time": 1603598400,
+    "end_time": 1603616400,
     "frozen_time": 0,
-    "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+    "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
     "group": {
         "official": "正式队伍"
     },

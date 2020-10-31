@@ -11,7 +11,8 @@
     },
     "organization": "School",
     "status_time_display": {
-        "correct": 1
+        "correct": 1,
+        "incorrect": 1
     },
     "penalty": 1200
 }

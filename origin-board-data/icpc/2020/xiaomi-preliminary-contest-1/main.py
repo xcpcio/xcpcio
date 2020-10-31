@@ -1,4 +1,3 @@
-import xlrd
 from os import path
 import os
 import json
@@ -6,6 +5,10 @@ import time
 
 def json_output(data):
     return json.dumps(data, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
+
+def json_input(path):
+    with open(path, 'r') as f:
+        return json.load(f)
 
 def mkdir(_path):
     if not path.exists(_path):
@@ -22,22 +25,22 @@ def output(filename, data):
     with open(path.join(data_dir, filename), 'w') as f:
         f.write(json_output(data))
 
-data_dir = "../../../../data/ccpc/2020/weihai-warmup"
-problem_num = 4
+raw_dir = "raw"
+data_dir = "../../../../data/icpc/2020/xiaomi-preliminary-contest-1"
+problem_num = 11
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
 group = {
     'official': '正式队伍',
-    'unofficial': '打星队伍',
-    'girl': '女队',
 }
 status_time_display = {
     'correct': 1,
     'incorrect': 1,
+    'pending': 1,
 }
 config = {
-    'contest_name': 'CCPC2020-第六届中国大学生程序设计竞赛（威海） 热身赛',
-    'start_time': get_timestamp("2020-10-24 15:00:00"),
-    'end_time': get_timestamp("2020-10-24 18:00:00"),
+    'contest_name': 'ICPC2020-ICPC·小米 网络选拔赛第一场',
+    'start_time': get_timestamp("2020-10-25 12:00:00"),
+    'end_time': get_timestamp("2020-10-25 17:00:00"),
     'frozen_time' : 0,
     'problem_id': problem_id,
     'group': group,
@@ -48,6 +51,7 @@ config = {
 
 def config_out():
     output("config.json", config)
+
 
 mkdir(data_dir)
 config_out()

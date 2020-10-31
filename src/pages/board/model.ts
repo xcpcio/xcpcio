@@ -66,7 +66,6 @@ export function getCurrentGroup(search: any, group: any, fgroup: any) {
 
 export function getTimeFlag(contest_config: any, search: any) {
     let timeFlag: any = getQueryString('timeflag', search);
-    console.log(timeFlag);
     let now = getNowTimeStamp();
     if (timeFlag == null) {
         timeFlag = now.toString();
@@ -77,8 +76,6 @@ export function getTimeFlag(contest_config: any, search: any) {
     if (timeFlag > now) timeFlag = now;
     if (timeFlag < contest_config.start_time)
         timeFlag = contest_config.start_time;
-    console.log(timeFlag);
-    console.log(contest_config.start_time);
     return Math.ceil(timeFlag - contest_config.start_time);
 }
 
@@ -150,6 +147,8 @@ export function getRun(run: any, team: any, timeFlag: any) {
         _run.sort((a: any, b: any) => {
             if (a.timestamp < b.timestamp) return -1;
             if (a.timestamp > b.timestamp) return 1;
+            if (b.status === 'correct' && a.status !== 'correct') return -1;
+            if (a.status === 'correct' && b.status !== 'correct') return 1;
             return 0;
         });
         return _run;

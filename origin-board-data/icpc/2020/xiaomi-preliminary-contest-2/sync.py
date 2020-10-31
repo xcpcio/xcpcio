@@ -3,6 +3,7 @@ import json
 import grequests
 from os import path
 import time
+
 def json_output(data):
     return json.dumps(data, sort_keys=False, indent=4, separators=(',', ':'), ensure_ascii=False)
 
@@ -31,25 +32,23 @@ _params = json_input('params.json')
 
 headers = _params['headers']
 data_dir = _params['data_dir']
-start_time = get_timestamp('2020-10-31 14:00:00')
-
+board_url = _params['board_url']
+start_time = get_timestamp(_params['start_time'])
+end_time = get_timestamp(_params['end_time'])
+contest_id = _params['contest_id']
 print(start_time)
-
-#NB. Original query string below. It seems impossible to parse and
-#reproduce query strings 100% accurately so the one below is given
-#in case the reproduced version is not "correct".
-# response = requests.get('https://ac.nowcoder.com/acm-heavy/acm/contest/real-time-rank-data?token=&id=7502&limit=0&_=1604129160308', headers=headers)
+print(end_time)
 
 def fetch():
     total = 0
     while True:
         params = (
             ('token', ''),
-            ('id', '7502'),
+            ('id', contest_id),
             ('limit', '0'),
             ('_', get_now()),
         )
-        response = requests.get('https://ac.nowcoder.com/acm-heavy/acm/contest/real-time-rank-data', headers=headers, params=params)
+        response = requests.get(board_url, headers=headers, params=params)
         res = json.loads(response.text)
         if res['code'] == 0:
             total = res['data']['basicInfo']['pageCount']
@@ -61,18 +60,15 @@ def fetch():
     for i in range(1, total + 1):
         params = (
             ('token', ''),
-            ('id', '7502'),
+            ('id', contest_id),
             ('limit', '0'),
             ('_', get_now()),
             ('page', str(i)),
         )
-        req_list.append(grequests.get('https://ac.nowcoder.com/acm-heavy/acm/contest/real-time-rank-data', headers=headers, params=params))
+        req_list.append(grequests.get(board_url, headers=headers, params=params))
 
     res_list = grequests.map(req_list)
-    # for item in res_list:
-        # print(item.text)
     return res_list
-
 
 def team_output(res_list):
     teams = {}
@@ -90,6 +86,7 @@ def team_output(res_list):
             _team['organization'] = team_organization
             _team['official'] = 1
             teams[team_id] = _team
+    if len(teams.keys()) > 0:
         output("team.json", teams)
                     
 def run_output(res_list):
@@ -101,7 +98,7 @@ def run_output(res_list):
             team_id = team['uid']
             i = -1
             for problem in team['scoreList']:
-                timestamp = get_time_diff(start_time, get_now())
+                timestamp = get_time_diff(start_time, min(end_time, get_now()))
                 i += 1
                 status = 'incorrect'
                 if problem['accepted']:
@@ -124,19 +121,24 @@ def run_output(res_list):
                         'status': 'correct'
                     }
                     run.append(run_)
+    if len(run) > 0:
         output('run.json', run)
 
 def sync():
     while True:
         print("fetching...")
-        res_list = fetch()
-        team_output(res_list)
-        run_output(res_list)
+        try:
+            res_list = fetch()
+            team_output(res_list)
+            run_output(res_list)
+            print("fetch successfully")
+        except Exception as e:
+            print("fetch failed...")
+            print(e)
         print("sleeping...")
         time.sleep(20)
 
 sync()
-
 
 
 

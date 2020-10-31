@@ -11,7 +11,26 @@
     },
     "organization": "School",
     "status_time_display": {
-        "correct": 1
+        "correct": 1,
+        "incorrect": 1
     },
-    "penalty": 1200
+    "penalty": 1200,
+    "balloon_color": [
+        {
+            "background_color": "#bd0e0e",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#ff90e4",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#ffffff",
+            "color": "#000"
+        },
+        {
+            "background_color": "#26b93c",
+            "color": "#fff"
+        }
+    ]
 }

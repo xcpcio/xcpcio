@@ -1,4 +1,9 @@
 {
+    "766018579": {
+        "name": "校门外歪脖树上的鸽子",
+        "organization": "北京大学",
+        "official": 1
+    },
     "996249748": {
         "name": "队名这么短还想开军舰？",
         "organization": "杭州第二中学",
@@ -19,9 +24,19 @@
         "organization": "北京大学",
         "official": 1
     },
-    "766018579": {
-        "name": "校门外歪脖树上的鸽子",
-        "organization": "北京大学",
+    "310971196": {
+        "name": "zxnb",
+        "organization": "浙江大学",
+        "official": 1
+    },
+    "981425612": {
+        "name": "队友真的去找妹子了",
+        "organization": "杭州第二中学",
+        "official": 1
+    },
+    "839720246": {
+        "name": "偷吃你家大米",
+        "organization": "北京航空航天大学",
         "official": 1
     },
     "676040515": {
@@ -34,24 +49,14 @@
         "organization": "南京大学",
         "official": 1
     },
-    "442332982": {
-        "name": "temp_team",
-        "organization": "BJTU",
-        "official": 1
-    },
     "303207440": {
         "name": "见见雷军",
         "organization": "清华大学",
         "official": 1
     },
-    "720777518": {
-        "name": "你好犇犇啊！",
-        "organization": "浙江理工大学",
-        "official": 1
-    },
-    "813486895": {
-        "name": "世界冠军杰瑞",
-        "organization": "哈尔滨工业大学",
+    "442332982": {
+        "name": "temp_team",
+        "organization": "BJTU",
         "official": 1
     },
     "651960668": {
@@ -59,39 +64,9 @@
         "organization": "北京理工大学",
         "official": 1
     },
-    "347975030": {
-        "name": "TToughy",
-        "organization": "大连理工大学",
-        "official": 1
-    },
-    "783632167": {
-        "name": "がよしなあ",
-        "organization": "上海交通大学",
-        "official": 1
-    },
-    "839720246": {
-        "name": "偷吃你家大米",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
-    "691232837": {
-        "name": "撒网摸鱼",
-        "organization": "哈尔滨工程大学",
-        "official": 1
-    },
-    "310971196": {
-        "name": "zxnb",
-        "organization": "浙江大学",
-        "official": 1
-    },
-    "981425612": {
-        "name": "队友真的去找妹子了",
-        "organization": "杭州第二中学",
-        "official": 1
-    },
-    "595182095": {
-        "name": "1.11e12",
-        "organization": "北京交通大学",
+    "720777518": {
+        "name": "你好犇犇啊！",
+        "organization": "浙江理工大学",
         "official": 1
     },
     "51796987": {
@@ -102,6 +77,126 @@
     "295542499": {
         "name": "zjut2",
         "organization": "浙江工业大学",
+        "official": 1
+    },
+    "228671670": {
+        "name": "GDUT_PiggyGogogo",
+        "organization": "广东工业大学",
+        "official": 1
+    },
+    "783632167": {
+        "name": "がよしなあ",
+        "organization": "上海交通大学",
+        "official": 1
+    },
+    "206641980": {
+        "name": "微风少女",
+        "organization": "邦邦大学",
+        "official": 1
+    },
+    "605064595": {
+        "name": "BonVoyage",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "205434048": {
+        "name": "芜湖摸鱼",
+        "organization": "哈尔滨工业大学（威海）",
+        "official": 1
+    },
+    "398369437": {
+        "name": "不敢说话",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "66339323": {
+        "name": "三团和一二打起来了",
+        "organization": "南京大学",
+        "official": 1
+    },
+    "133044624": {
+        "name": "Oierrenew",
+        "organization": "电子科技大学",
+        "official": 1
+    },
+    "879005903": {
+        "name": "NEU_helix",
+        "organization": "东北大学",
+        "official": 1
+    },
+    "56078462": {
+        "name": "BUPT_Harmony",
+        "organization": "北京邮电大学",
+        "official": 1
+    },
+    "449286948": {
+        "name": "米拉波雷亚斯",
+        "organization": "上海交通大学",
+        "official": 1
+    },
+    "108752308": {
+        "name": "MustPass",
+        "organization": "",
+        "official": 1
+    },
+    "798776363": {
+        "name": "玉米炒葡萄",
+        "organization": "华东师范大学",
+        "official": 1
+    },
+    "168364251": {
+        "name": "starLight",
+        "organization": "深圳大学",
+        "official": 1
+    },
+    "273896219": {
+        "name": "多人运动来不来",
+        "organization": "郑州大学",
+        "official": 1
+    },
+    "944919122": {
+        "name": "签到全挂，问题不大",
+        "organization": "快乐大山中学",
+        "official": 1
+    },
+    "994383664": {
+        "name": "师傅被妖怪抓走了",
+        "organization": "浙江师范大学",
+        "official": 1
+    },
+    "498331169": {
+        "name": "HuangduCodingClub",
+        "organization": "同济大学",
+        "official": 1
+    },
+    "366629257": {
+        "name": "一袋米要扛几楼",
+        "organization": "西安交通大学",
+        "official": 1
+    },
+    "155256914": {
+        "name": "速七大师",
+        "organization": "北京大学",
+        "official": 1
+    },
+    "813486895": {
+        "name": "世界冠军杰瑞",
+        "organization": "哈尔滨工业大学",
+        "official": 1
+    },
+    "347975030": {
+        "name": "TToughy",
+        "organization": "大连理工大学",
+        "official": 1
+    },
+    "691232837": {
+        "name": "撒网摸鱼",
+        "organization": "哈尔滨工程大学",
+        "official": 1
+    },
+    "595182095": {
+        "name": "1.11e12",
+        "organization": "北京交通大学",
         "official": 1
     },
     "867582774": {
@@ -119,29 +214,14 @@
         "organization": "浙江工业大学",
         "official": 1
     },
-    "206641980": {
-        "name": "微风少女",
-        "organization": "邦邦大学",
-        "official": 1
-    },
     "293209809": {
         "name": "我不知道.png",
         "organization": "北京航空航天大学",
         "official": 1
     },
-    "605064595": {
-        "name": "BonVoyage",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
     "97113971": {
         "name": "您看，我还有机会吗？",
         "organization": "湘潭大学",
-        "official": 1
-    },
-    "133044624": {
-        "name": "Oierrenew",
-        "organization": "电子科技大学",
         "official": 1
     },
     "567610993": {
@@ -174,14 +254,19 @@
         "organization": "浙江工业大学",
         "official": 1
     },
+    "56142437": {
+        "name": "ACM太难玩了",
+        "organization": "中南大学",
+        "official": 1
+    },
     "242325424": {
         "name": "背着队友偷偷WA",
         "organization": "天津大学",
         "official": 1
     },
-    "398369437": {
-        "name": "不敢说话",
-        "organization": "杭州电子科技大学",
+    "918307084": {
+        "name": "zyb说的都队",
+        "organization": "台风幼儿园",
         "official": 1
     },
     "141101880": {
@@ -189,18 +274,18 @@
         "organization": "中山大学",
         "official": 1
     },
-    "205434048": {
-        "name": "芜湖摸鱼",
-        "organization": "哈尔滨工业大学（威海）",
-        "official": 1
-    },
     "981243227": {
         "name": "Nobody114514",
         "organization": "杭州电子科技大学信息工程学院",
         "official": 1
     },
-    "66339323": {
-        "name": "三团和一二打起来了",
+    "752067603": {
+        "name": "辉夜大小姐想让我AC",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "737798842": {
+        "name": "冰冰三元一个十元三个",
         "organization": "南京大学",
         "official": 1
     },
@@ -214,34 +299,54 @@
         "organization": "北京交通大学",
         "official": 1
     },
+    "101612018": {
+        "name": "奥利奥利奥",
+        "organization": "苏州大学",
+        "official": 1
+    },
+    "496925258": {
+        "name": "HokagoTeaTime",
+        "organization": "石家庄二中实验学校",
+        "official": 1
+    },
+    "667155427": {
+        "name": "ZJUT5队",
+        "organization": "浙江工业大学",
+        "official": 1
+    },
     "115242942": {
         "name": "七海千秋",
         "organization": "湘潭大学",
         "official": 1
     },
-    "879005903": {
-        "name": "NEU_helix",
-        "organization": "东北大学",
+    "770421911": {
+        "name": "几何冲刺",
+        "organization": "重庆大学",
         "official": 1
     },
-    "798776363": {
-        "name": "玉米炒葡萄",
-        "organization": "华东师范大学",
+    "265210069": {
+        "name": "你又会了？",
+        "organization": "厦门大学",
         "official": 1
     },
-    "56078462": {
-        "name": "BUPT_Harmony",
-        "organization": "北京邮电大学",
+    "53566793": {
+        "name": "一横一竖",
+        "organization": "北京大学",
         "official": 1
     },
-    "168364251": {
-        "name": "starLight",
-        "organization": "北京航空航天大学",
+    "81599229": {
+        "name": "春田花花幼稚园",
+        "organization": "华中科技大学",
         "official": 1
     },
-    "994383664": {
-        "name": "师傅被妖怪抓走了",
-        "organization": "浙江师范大学",
+    "341658557": {
+        "name": "跃迁引擎",
+        "organization": "CiRCLE",
+        "official": 1
+    },
+    "327339737": {
+        "name": "下把一定紫",
+        "organization": "中国石油大学（华东）",
         "official": 1
     },
     "363040567": {
@@ -249,29 +354,139 @@
         "organization": "厦门大学",
         "official": 1
     },
-    "228671670": {
-        "name": "GDUT_PiggyGogogo",
-        "organization": "广东工业大学",
+    "130516351": {
+        "name": "一斤甲鱼",
+        "organization": "重庆大学",
         "official": 1
     },
-    "498331169": {
-        "name": "HuangduCodingClub",
-        "organization": "同济大学",
+    "255071255": {
+        "name": "二环己基碳二亚胺",
+        "organization": "华东师范大学",
+        "official": 1
+    },
+    "375408933": {
+        "name": "末日时在做什么?有没有空?可以来WA一发吗?",
+        "organization": "武汉大学",
+        "official": 1
+    },
+    "87337201": {
+        "name": "黄金矿工",
+        "organization": "中国矿业大学",
+        "official": 1
+    },
+    "954931876": {
+        "name": "zjut4",
+        "organization": "浙江工业大学",
+        "official": 1
+    },
+    "691010473": {
+        "name": "definewaac",
+        "organization": "中国石油大学（华东）",
+        "official": 1
+    },
+    "909401785": {
+        "name": "海底捞被骗60",
+        "organization": "福州大学",
+        "official": 1
+    },
+    "471731339": {
+        "name": "Alchemist",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "161903346": {
+        "name": "sinsincos",
+        "organization": "山东大学",
+        "official": 1
+    },
+    "290401321": {
+        "name": "AC钙奶",
+        "organization": "青岛大学附属小学",
+        "official": 1
+    },
+    "95160813": {
+        "name": "Pikachu",
+        "organization": "山东大学",
+        "official": 1
+    },
+    "618152654": {
+        "name": "我先放一盒卫生纸在这",
+        "organization": "浙江理工大学",
+        "official": 1
+    },
+    "32545032": {
+        "name": "我要挂那棵树",
+        "organization": "南方科技大学",
+        "official": 1
+    },
+    "830172684": {
+        "name": "快去看春物",
+        "organization": "大连理工大学",
+        "official": 1
+    },
+    "534271864": {
+        "name": "SKD1031Discovery",
+        "organization": "山东科技大学",
+        "official": 1
+    },
+    "258029062": {
+        "name": "大白兔奶糖",
+        "organization": "山东大学",
+        "official": 1
+    },
+    "380886197": {
+        "name": "背着队友偷偷wa题",
+        "organization": "中国地质大学（武汉）",
+        "official": 1
+    },
+    "583197657": {
+        "name": "我不是说了码力要平均值吗？",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "653570893": {
+        "name": "00ffcc",
+        "organization": "浙江华维外国语学校",
+        "official": 1
+    },
+    "751432313": {
+        "name": "ZJUT3",
+        "organization": "浙江工业大学",
+        "official": 1
+    },
+    "221063397": {
+        "name": "辉夜大小姐想要我打小米邀请赛",
+        "organization": "华侨大学",
+        "official": 1
+    },
+    "600794403": {
+        "name": "四面杵鸽",
+        "organization": "杭州师范大学",
+        "official": 1
+    },
+    "586961544": {
+        "name": "雨过天晴二重虹",
+        "organization": "厦门大学",
+        "official": 1
+    },
+    "587772884": {
+        "name": "FST自动机",
+        "organization": "山东省青岛第二中学",
+        "official": 1
+    },
+    "537195214": {
+        "name": "按需取余",
+        "organization": "中国石油大学（华东）",
+        "official": 1
+    },
+    "379673668": {
+        "name": "旭旭洋洋俐俐",
+        "organization": "武汉大学",
         "official": 1
     },
     "240203928": {
         "name": "五可奉告",
         "organization": "南京大学",
-        "official": 1
-    },
-    "101612018": {
-        "name": "奥利奥利奥",
-        "organization": "苏州大学",
-        "official": 1
-    },
-    "53566793": {
-        "name": "一横一竖",
-        "organization": "北京大学",
         "official": 1
     },
     "848338794": {
@@ -289,19 +504,14 @@
         "organization": "哈尔滨理工大学",
         "official": 1
     },
-    "918307084": {
-        "name": "zyb说的都队",
-        "organization": "台风幼儿园",
+    "488303887": {
+        "name": "人与人的悲喜并不相通，我只觉得外接圆要AK",
+        "organization": "广大附中",
         "official": 1
     },
-    "496925258": {
-        "name": "HokagoTeaTime",
-        "organization": "石家庄二中实验学校",
-        "official": 1
-    },
-    "56142437": {
-        "name": "ACM太难玩了",
-        "organization": "中南大学",
+    "560007612": {
+        "name": "SevenSheep",
+        "organization": "浙江省杭州学军中学",
         "official": 1
     },
     "166804197": {
@@ -309,34 +519,14 @@
         "organization": "北京师范大学",
         "official": 1
     },
-    "265210069": {
-        "name": "你又会了？",
-        "organization": "厦门大学",
+    "371963608": {
+        "name": "The.Black.Knights",
+        "organization": "张江大学",
         "official": 1
     },
-    "737798842": {
-        "name": "冰冰三元一个十元三个",
-        "organization": "南京大学",
-        "official": 1
-    },
-    "449286948": {
-        "name": "米拉波雷亚斯",
+    "937890479": {
+        "name": "洒满黄浦江",
         "organization": "上海交通大学",
-        "official": 1
-    },
-    "81599229": {
-        "name": "春田花花幼稚园",
-        "organization": "华中科技大学",
-        "official": 1
-    },
-    "770421911": {
-        "name": "几何冲刺",
-        "organization": "重庆大学",
-        "official": 1
-    },
-    "108752308": {
-        "name": "MustPass",
-        "organization": "",
         "official": 1
     },
     "188261963": {
@@ -344,24 +534,9 @@
         "organization": "江苏省常州高级中学",
         "official": 1
     },
-    "366629257": {
-        "name": "一袋米要扛几楼",
-        "organization": "西安交通大学",
-        "official": 1
-    },
     "439909080": {
         "name": "卡布奇诺",
         "organization": "中山大学",
-        "official": 1
-    },
-    "534271864": {
-        "name": "SKD1031Discovery",
-        "organization": "山东科技大学",
-        "official": 1
-    },
-    "667155427": {
-        "name": "ZJUT5队",
-        "organization": "浙江工业大学",
         "official": 1
     },
     "881216491": {
@@ -372,21 +547,6 @@
     "767026957": {
         "name": "摇头熊猫",
         "organization": "合肥工业大学",
-        "official": 1
-    },
-    "341658557": {
-        "name": "跃迁引擎",
-        "organization": "CiRCLE",
-        "official": 1
-    },
-    "954931876": {
-        "name": "zjut4",
-        "organization": "浙江工业大学",
-        "official": 1
-    },
-    "273896219": {
-        "name": "多人运动来不来",
-        "organization": "郑州大学",
         "official": 1
     },
     "885717743": {
@@ -404,89 +564,24 @@
         "organization": "山东大学",
         "official": 1
     },
-    "255071255": {
-        "name": "二环己基碳二亚胺",
-        "organization": "华东师范大学",
+    "499305798": {
+        "name": "闪电风暴",
+        "organization": "北京邮电大学",
         "official": 1
     },
-    "155256914": {
-        "name": "速七大师",
-        "organization": "北京大学",
-        "official": 1
-    },
-    "691010473": {
-        "name": "definewaac",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
-    "618152654": {
-        "name": "我先放一盒卫生纸在这",
-        "organization": "浙江理工大学",
-        "official": 1
-    },
-    "909401785": {
-        "name": "海底捞被骗60",
-        "organization": "福州大学",
-        "official": 1
-    },
-    "380886197": {
-        "name": "背着队友偷偷wa题",
+    "469925519": {
+        "name": "CUG_ACM_ResuscitatedHope",
         "organization": "中国地质大学（武汉）",
         "official": 1
     },
-    "830172684": {
-        "name": "快去看春物",
-        "organization": "大连理工大学",
+    "811683033": {
+        "name": "锅锅锅",
+        "organization": "华中师范大学",
         "official": 1
     },
-    "290401321": {
-        "name": "AC钙奶",
-        "organization": "青岛大学附属小学",
-        "official": 1
-    },
-    "161903346": {
-        "name": "sinsincos",
-        "organization": "山东大学",
-        "official": 1
-    },
-    "368955819": {
-        "name": "acmOrzOrzOrz",
-        "organization": "新疆大学",
-        "official": 1
-    },
-    "752067603": {
-        "name": "辉夜大小姐想让我AC",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
-    "488303887": {
-        "name": "人与人的悲喜并不相通，我只觉得外接圆要AK",
-        "organization": "广大附中",
-        "official": 1
-    },
-    "371963608": {
-        "name": "The.Black.Knights",
-        "organization": "张江大学",
-        "official": 1
-    },
-    "937890479": {
-        "name": "洒满黄浦江",
-        "organization": "上海交通大学",
-        "official": 1
-    },
-    "32545032": {
-        "name": "我要挂那棵树",
-        "organization": "南方科技大学",
-        "official": 1
-    },
-    "653570893": {
-        "name": "00ffcc",
-        "organization": "浙江华维外国语学校",
-        "official": 1
-    },
-    "560007612": {
-        "name": "SevenSheep",
-        "organization": "浙江省杭州学军中学",
+    "915087792": {
+        "name": "遇到困难睡大觉",
+        "organization": "南京大学",
         "official": 1
     },
     "582143707": {
@@ -494,14 +589,194 @@
         "organization": "华南理工大学",
         "official": 1
     },
-    "84231263": {
-        "name": "魔菜队",
+    "971028208": {
+        "name": "Tarjkstra",
+        "organization": "北京理工大学",
+        "official": 1
+    },
+    "982178374": {
+        "name": "幸福安心养老所",
+        "organization": "北京邮电大学",
+        "official": 1
+    },
+    "61226475": {
+        "name": "FZU-Phoenix",
+        "organization": "福州大学",
+        "official": 1
+    },
+    "472784347": {
+        "name": "我们在秦皇岛打了个银",
+        "organization": "东华大学",
+        "official": 1
+    },
+    "221121513": {
+        "name": "俺也不知道改叫啥，总之先取上吧",
+        "organization": "苏州大学",
+        "official": 1
+    },
+    "777910663": {
+        "name": "三个中二",
+        "organization": "湖南大学",
+        "official": 1
+    },
+    "219061686": {
+        "name": "FlaMinG0",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "356480370": {
+        "name": "树分高代做不队",
+        "organization": "清华大学",
+        "official": 1
+    },
+    "647689710": {
+        "name": "朱张弛",
+        "organization": "华东师范大学",
+        "official": 1
+    },
+    "80096203": {
+        "name": "教练，咱学校有牌啦",
+        "organization": "西北工业大学",
+        "official": 1
+    },
+    "897537142": {
+        "name": "校强我弱",
+        "organization": "清华大学",
+        "official": 1
+    },
+    "540194990": {
+        "name": "GZHUWAWAWA",
+        "organization": "广州大学",
+        "official": 1
+    },
+    "932854692": {
+        "name": "我们队长脱单了",
+        "organization": "哈尔滨工业大学(威海)",
+        "official": 1
+    },
+    "614187381": {
+        "name": "#undefined",
+        "organization": "南昌大学",
+        "official": 1
+    },
+    "71169440": {
+        "name": "UnnaturalAC",
+        "organization": "西安交通大学",
+        "official": 1
+    },
+    "452920268": {
+        "name": "3kIQ",
+        "organization": "湖南师范大学",
+        "official": 1
+    },
+    "530427785": {
+        "name": "alpc__斤兄旨军",
+        "organization": "中国人民解放军国防科技大学",
+        "official": 1
+    },
+    "880724182": {
+        "name": "白板面包",
+        "organization": "西安交通大学",
+        "official": 1
+    },
+    "846211836": {
+        "name": "婺城区老年人复建中心",
+        "organization": "浙江师范大学",
+        "official": 1
+    },
+    "102266673": {
+        "name": "嗷森粉丝队",
+        "organization": "华中科技大学",
+        "official": 1
+    },
+    "673437582": {
+        "name": "CE：从爆零开始的ACM生活",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "368955819": {
+        "name": "acmOrzOrzOrz",
+        "organization": "新疆大学",
+        "official": 1
+    },
+    "471256314": {
+        "name": "队长说ghs不能太明显",
+        "organization": "武汉大学",
+        "official": 1
+    },
+    "626548857": {
+        "name": "为什么你们这么熟练啊",
+        "organization": "北京理工大学",
+        "official": 1
+    },
+    "546017901": {
+        "name": "watchdog",
+        "organization": "同济大学",
+        "official": 1
+    },
+    "969188915": {
+        "name": "魔魔蔡队",
         "organization": "上海大学",
         "official": 1
     },
-    "87337201": {
-        "name": "黄金矿工",
-        "organization": "中国矿业大学",
+    "565027723": {
+        "name": "zyjyzxy",
+        "organization": "西安电子科技大学",
+        "official": 1
+    },
+    "637647876": {
+        "name": "华师懿天空洞",
+        "organization": "华中师范大学第一附属中学",
+        "official": 1
+    },
+    "286979223": {
+        "name": "三只蒟蒻_threekonjaks",
+        "organization": "1",
+        "official": 1
+    },
+    "687825134": {
+        "name": "明天又有早八",
+        "organization": "武汉大学",
+        "official": 1
+    },
+    "238419892": {
+        "name": "肘，跟我进吴",
+        "organization": "湖南大学",
+        "official": 1
+    },
+    "631031422": {
+        "name": "HRBUST-NK09",
+        "organization": "哈尔滨理工大学",
+        "official": 1
+    },
+    "113229054": {
+        "name": "三个愿望，一次满足",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "63156831": {
+        "name": "队长是投骰子投出来的",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "322019140": {
+        "name": "五岁来打acm",
+        "organization": "同济大学",
+        "official": 1
+    },
+    "105483340": {
+        "name": "庞然琐事",
+        "organization": "浙江大学宁波理工学院",
+        "official": 1
+    },
+    "259004927": {
+        "name": "荠鸽",
+        "organization": "同济大学",
+        "official": 1
+    },
+    "84231263": {
+        "name": "魔菜队",
+        "organization": "上海大学",
         "official": 1
     },
     "781408813": {
@@ -514,24 +789,9 @@
         "organization": "电子科技大学",
         "official": 1
     },
-    "499305798": {
-        "name": "闪电风暴",
-        "organization": "北京邮电大学",
-        "official": 1
-    },
     "722880990": {
         "name": "we_are_ok",
         "organization": "北京理工大学",
-        "official": 1
-    },
-    "219061686": {
-        "name": "FlaMinG0",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
-    "61226475": {
-        "name": "FZU-Phoenix",
-        "organization": "福州大学",
         "official": 1
     },
     "910373336": {
@@ -539,44 +799,14 @@
         "organization": "武汉大学",
         "official": 1
     },
-    "811683033": {
-        "name": "锅锅锅",
-        "organization": "华中师范大学",
-        "official": 1
-    },
     "35701620": {
         "name": "南阳理工在线混子",
         "organization": "南阳理工学院",
         "official": 1
     },
-    "472784347": {
-        "name": "我们在秦皇岛打了个银",
-        "organization": "东华大学",
-        "official": 1
-    },
-    "971028208": {
-        "name": "Tarjkstra",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "944919122": {
-        "name": "签到全挂，问题不大",
-        "organization": "快乐大山中学",
-        "official": 1
-    },
-    "469925519": {
-        "name": "CUG_ACM_ResuscitatedHope",
-        "organization": "中国地质大学（武汉）",
-        "official": 1
-    },
-    "95160813": {
-        "name": "Pikachu",
-        "organization": "山东大学",
-        "official": 1
-    },
-    "915087792": {
-        "name": "遇到困难睡大觉",
-        "organization": "南京大学",
+    "503115926": {
+        "name": "井底之wa(nowa)",
+        "organization": "杭州电子科技大学",
         "official": 1
     },
     "405943414": {
@@ -589,59 +819,19 @@
         "organization": "浙江师范大学",
         "official": 1
     },
-    "356480370": {
-        "name": "树分高代做不队",
-        "organization": "雅礼中学",
-        "official": 1
-    },
     "805261921": {
         "name": "卧龙三诸葛",
         "organization": "山东师范大学",
         "official": 1
     },
-    "777910663": {
-        "name": "三个中二",
-        "organization": "湖南大学",
+    "865118913": {
+        "name": "DreamSun",
+        "organization": "东北大学",
         "official": 1
     },
-    "327339737": {
-        "name": "下把一定紫",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
-    "982178374": {
-        "name": "幸福安心养老所",
-        "organization": "北京邮电大学",
-        "official": 1
-    },
-    "637647876": {
-        "name": "华师懿天空洞",
-        "organization": "华中师范大学第一附属中学",
-        "official": 1
-    },
-    "647689710": {
-        "name": "朱张弛",
-        "organization": "华东师范大学",
-        "official": 1
-    },
-    "932854692": {
-        "name": "我们队长脱单了",
-        "organization": "哈尔滨工业大学(威海)",
-        "official": 1
-    },
-    "80096203": {
-        "name": "教练，咱学校有牌啦",
-        "organization": "西北工业大学",
-        "official": 1
-    },
-    "375408933": {
-        "name": "末日时在做什么?有没有空?可以来WA一发吗?",
-        "organization": "武汉大学",
-        "official": 1
-    },
-    "130516351": {
-        "name": "一斤甲鱼",
-        "organization": "重庆大学",
+    "61719752": {
+        "name": "SCUT_Megumi",
+        "organization": "华南理工大学",
         "official": 1
     },
     "260824101": {
@@ -649,14 +839,9 @@
         "organization": "浙江大学",
         "official": 1
     },
-    "540194990": {
-        "name": "GZHUWAWAWA",
-        "organization": "广州大学",
-        "official": 1
-    },
-    "600794403": {
-        "name": "四面杵鸽",
-        "organization": "杭州师范大学",
+    "820976999": {
+        "name": "没有大佬愿意带的俩菜鸡",
+        "organization": "福州大学",
         "official": 1
     },
     "701424318": {
@@ -669,9 +854,9 @@
         "organization": "哈尔滨工业大学（深圳）",
         "official": 1
     },
-    "897537142": {
-        "name": "校强我弱",
-        "organization": "清华大学",
+    "891900308": {
+        "name": "总之就是非常菜逼",
+        "organization": "上海大学",
         "official": 1
     },
     "77328797": {
@@ -679,44 +864,19 @@
         "organization": "南渝幼儿园小1班",
         "official": 1
     },
-    "471731339": {
-        "name": "Alchemist",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
-    "530427785": {
-        "name": "alpc__斤兄旨军",
-        "organization": "中国人民解放军国防科技大学",
-        "official": 1
-    },
-    "221121513": {
-        "name": "俺也不知道改叫啥，总之先取上吧",
-        "organization": "苏州大学",
-        "official": 1
-    },
-    "614187381": {
-        "name": "#undefined",
-        "organization": "南昌大学",
-        "official": 1
-    },
-    "751432313": {
-        "name": "ZJUT3",
-        "organization": "浙江工业大学",
-        "official": 1
-    },
-    "673437582": {
-        "name": "CE：从爆零开始的ACM生活",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
     "601875513": {
         "name": "A不出题，我很抱歉",
         "organization": "浙江农林大学",
         "official": 1
     },
-    "586961544": {
-        "name": "雨过天晴二重虹",
-        "organization": "厦门大学",
+    "412440352": {
+        "name": "路人ACMer的养成方法",
+        "organization": "华中科技大学",
+        "official": 1
+    },
+    "151859186": {
+        "name": "CrossthePearlRiver",
+        "organization": "华南理工大学",
         "official": 1
     },
     "377807597": {
@@ -724,14 +884,39 @@
         "organization": "江苏省苏州中学校",
         "official": 1
     },
-    "969188915": {
-        "name": "魔魔蔡队",
-        "organization": "上海大学",
+    "470584230": {
+        "name": "GDUT_晨曦的光",
+        "organization": "广东工业大学",
         "official": 1
     },
-    "102266673": {
-        "name": "嗷森粉丝队",
-        "organization": "华中科技大学",
+    "813299083": {
+        "name": "狗蛋无敌",
+        "organization": "中国石油大学（华东）",
+        "official": 1
+    },
+    "176596101": {
+        "name": "三只蒟蒻",
+        "organization": "山东大学",
+        "official": 1
+    },
+    "471690078": {
+        "name": "三好鸽子_SCUT",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "104421704": {
+        "name": "X****",
+        "organization": "西南大学",
+        "official": 1
+    },
+    "799217818": {
+        "name": "金猫非猫",
+        "organization": "长春理工大学",
+        "official": 1
+    },
+    "193687725": {
+        "name": "时代的鼻涕",
+        "organization": "宁波市镇海蛟川书院",
         "official": 1
     },
     "411461471": {
@@ -739,24 +924,109 @@
         "organization": "南昌大学",
         "official": 1
     },
+    "36105486": {
+        "name": "龙卷风摧毁垃圾场",
+        "organization": "长沙理工大学",
+        "official": 1
+    },
+    "731682684": {
+        "name": "hzh爸爸",
+        "organization": "中国人民大学",
+        "official": 1
+    },
+    "275888752": {
+        "name": "Accept",
+        "organization": "福州大学",
+        "official": 1
+    },
+    "919100545": {
+        "name": "QAQAQ",
+        "organization": "东北大学",
+        "official": 1
+    },
+    "679935100": {
+        "name": "CSU菜鸡队",
+        "organization": "中南大学",
+        "official": 1
+    },
+    "139011493": {
+        "name": "半人马座",
+        "organization": "杭州电子科技大学",
+        "official": 1
+    },
+    "797655891": {
+        "name": "小米fans",
+        "organization": "北京工业大学",
+        "official": 1
+    },
+    "556564214": {
+        "name": "今天天气不错~",
+        "organization": "福建师范大学",
+        "official": 1
+    },
+    "507671963": {
+        "name": "胖头鱼的小迷妹",
+        "organization": "中山纪念中学",
+        "official": 1
+    },
+    "663400452": {
+        "name": "UESTC_我们仍未知道那天WA的原因",
+        "organization": "电子科技大学",
+        "official": 1
+    },
+    "164548090": {
+        "name": "愿望落空的烟火",
+        "organization": "东北农业大学",
+        "official": 1
+    },
+    "260387438": {
+        "name": "中南1024队",
+        "organization": "中南大学",
+        "official": 1
+    },
+    "443436155": {
+        "name": "消除恐惧的最好办法就是面对恐惧",
+        "organization": "山东师范大学",
+        "official": 1
+    },
     "299833819": {
         "name": "从零开始的ACM生活",
         "organization": "江西师范大学",
         "official": 1
     },
-    "587772884": {
-        "name": "FST自动机",
-        "organization": "山东省青岛第二中学",
+    "537123638": {
+        "name": "A89E757",
+        "organization": "福州大学",
         "official": 1
     },
-    "546017901": {
-        "name": "watchdog",
-        "organization": "同济大学",
+    "677167387": {
+        "name": "我才是长理九队",
+        "organization": "长春理工大学",
         "official": 1
     },
-    "258029062": {
-        "name": "大白兔奶糖",
-        "organization": "山东大学",
+    "84862686": {
+        "name": "清炖鸽子汤",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "945503322": {
+        "name": "魔法魔法小天",
+        "organization": "暨南大学",
+        "official": 1
+    },
+    "137857887": {
+        "name": "那没办法嘛",
+        "organization": "中国石油大学（华东）",
+        "official": 1
+    },
+    "173308087": {
+        "name": "互三-智能助理",
+        "organization": "西安电子科技大学",
+        "official": 1
+    },
+    "465858857": {
+        "name": "hsp不争气的小弟们想ak",
+        "organization": "暨南大学",
         "official": 1
     },
     "544972156": {
@@ -794,39 +1064,9 @@
         "organization": "东北师范大学",
         "official": 1
     },
-    "452920268": {
-        "name": "3kIQ",
-        "organization": "湖南师范大学",
-        "official": 1
-    },
-    "113229054": {
-        "name": "三个愿望，一次满足",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
-    "238419892": {
-        "name": "肘，跟我进吴",
-        "organization": "湖南大学",
-        "official": 1
-    },
-    "503115926": {
-        "name": "井底之wa(nowa)",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
-    "61719752": {
-        "name": "SCUT_Megumi",
-        "organization": "华南理工大学",
-        "official": 1
-    },
     "479481452": {
         "name": "桃乃木香奈",
         "organization": "西安交通大学",
-        "official": 1
-    },
-    "731682684": {
-        "name": "hzh爸爸",
-        "organization": "北京大学",
         "official": 1
     },
     "533168307": {
@@ -834,19 +1074,9 @@
         "organization": "北京理工大学",
         "official": 1
     },
-    "891900308": {
-        "name": "总之就是非常菜逼",
-        "organization": "上海大学",
-        "official": 1
-    },
     "209200954": {
         "name": "GDUT_Artificial Fool",
         "organization": "广东工业大学",
-        "official": 1
-    },
-    "820976999": {
-        "name": "没有大佬愿意带的俩菜鸡",
-        "organization": "福州大学",
         "official": 1
     },
     "234922828": {
@@ -869,49 +1099,9 @@
         "organization": "青岛大学",
         "official": 1
     },
-    "71169440": {
-        "name": "UnnaturalAC",
-        "organization": "西安交通大学",
-        "official": 1
-    },
-    "865118913": {
-        "name": "DreamSun",
-        "organization": "东北大学",
-        "official": 1
-    },
-    "412440352": {
-        "name": "路人ACMer的养成方法",
-        "organization": "华中科技大学",
-        "official": 1
-    },
     "473592827": {
         "name": "konodioda",
         "organization": "南开大学",
-        "official": 1
-    },
-    "631031422": {
-        "name": "HRBUST-NK09",
-        "organization": "哈尔滨理工大学",
-        "official": 1
-    },
-    "799217818": {
-        "name": "金猫非猫",
-        "organization": "长春理工大学",
-        "official": 1
-    },
-    "797655891": {
-        "name": "小米fans",
-        "organization": "北京工业大学",
-        "official": 1
-    },
-    "139011493": {
-        "name": "半人马座",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
-    "919100545": {
-        "name": "QAQAQ",
-        "organization": "东北大学",
         "official": 1
     },
     "251651957": {
@@ -919,34 +1109,14 @@
         "organization": "商丘学院应用科技学院",
         "official": 1
     },
-    "813299083": {
-        "name": "狗蛋无敌",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
-    "880724182": {
-        "name": "白板面包",
+    "682643954": {
+        "name": "对对队",
         "organization": "西安交通大学",
-        "official": 1
-    },
-    "151859186": {
-        "name": "CrossthePearlRiver",
-        "organization": "华南理工大学",
-        "official": 1
-    },
-    "583197657": {
-        "name": "我不是说了码力要平均值吗？",
-        "organization": "华南理工大学",
         "official": 1
     },
     "923601196": {
         "name": "UCAS-Prelude",
         "organization": "中国科学院大学",
-        "official": 1
-    },
-    "846211836": {
-        "name": "婺城区老年人复建中心",
-        "organization": "浙江师范大学",
         "official": 1
     },
     "420975160": {
@@ -957,11 +1127,6 @@
     "476195286": {
         "name": "队名叫乜好?",
         "organization": "湖南大学",
-        "official": 1
-    },
-    "36105486": {
-        "name": "龙卷风摧毁垃圾场",
-        "organization": "长沙理工大学",
         "official": 1
     },
     "481998800": {
@@ -979,24 +1144,9 @@
         "organization": "长春理工大学",
         "official": 1
     },
-    "104421704": {
-        "name": "X****",
-        "organization": "西南大学",
-        "official": 1
-    },
-    "679935100": {
-        "name": "CSU菜鸡队",
-        "organization": "中南大学",
-        "official": 1
-    },
     "524168165": {
         "name": "UESTC_waterer",
         "organization": "电子科技大学",
-        "official": 1
-    },
-    "260387438": {
-        "name": "中南1024队",
-        "organization": "中南大学",
         "official": 1
     },
     "990234940": {
@@ -1004,19 +1154,9 @@
         "organization": "西北工业大学",
         "official": 1
     },
-    "626548857": {
-        "name": "为什么你们这么熟练啊",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "193687725": {
-        "name": "时代的鼻涕",
-        "organization": "宁波市镇海蛟川书院",
-        "official": 1
-    },
-    "471690078": {
-        "name": "三好鸽子_SCUT",
-        "organization": "华南理工大学",
+    "756974430": {
+        "name": "rmss",
+        "organization": "西北工业大学",
         "official": 1
     },
     "784315931": {
@@ -1024,44 +1164,24 @@
         "organization": "西安电子科技大学",
         "official": 1
     },
-    "322019140": {
-        "name": "五岁来打acm",
-        "organization": "同济大学",
-        "official": 1
-    },
-    "677167387": {
-        "name": "我才是长理九队",
-        "organization": "长春理工大学",
-        "official": 1
-    },
     "32438757": {
         "name": "姬丝秀忒&middot;雅赛劳拉莉昂&middot;刃下心",
         "organization": "长沙理工大学",
         "official": 1
     },
-    "687825134": {
-        "name": "明天又有早八",
-        "organization": "武汉大学",
+    "468005762": {
+        "name": "ob自动机",
+        "organization": "华南理工大学",
         "official": 1
     },
-    "471256314": {
-        "name": "队长说ghs不能太明显",
-        "organization": "武汉大学",
+    "124097413": {
+        "name": "鸽王世家",
+        "organization": "合肥工业大学",
         "official": 1
     },
-    "443436155": {
-        "name": "消除恐惧的最好办法就是面对恐惧",
-        "organization": "山东师范大学",
-        "official": 1
-    },
-    "556564214": {
-        "name": "今天天气不错~",
-        "organization": "福建师范大学",
-        "official": 1
-    },
-    "470584230": {
-        "name": "GDUT_晨曦的光",
-        "organization": "广东工业大学",
+    "301528716": {
+        "name": "我哭了，怎么取个名字这么难",
+        "organization": "南京师范大学",
         "official": 1
     },
     "761846055": {
@@ -1089,9 +1209,9 @@
         "organization": "长沙学院",
         "official": 1
     },
-    "221063397": {
-        "name": "辉夜大小姐想要我打小米邀请赛",
-        "organization": "华侨大学",
+    "546853585": {
+        "name": "三只兔兔",
+        "organization": "南方科技大学",
         "official": 1
     },
     "975318443": {
@@ -1104,9 +1224,14 @@
         "organization": "南京邮电大学",
         "official": 1
     },
-    "565027723": {
-        "name": "zyjyzxy",
-        "organization": "西安电子科技大学",
+    "487735710": {
+        "name": "别卷了别卷了",
+        "organization": "南京大学",
+        "official": 1
+    },
+    "444736747": {
+        "name": "你一定要喊吗",
+        "organization": "北京理工大学",
         "official": 1
     },
     "941831343": {
@@ -1114,19 +1239,14 @@
         "organization": "武汉科技大学",
         "official": 1
     },
-    "63156831": {
-        "name": "队长是投骰子投出来的",
-        "organization": "杭州电子科技大学",
+    "46056915": {
+        "name": "GDUT_夜之荒芜",
+        "organization": "广东工业大学",
         "official": 1
     },
-    "537195214": {
-        "name": "按需取余",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
-    "507671963": {
-        "name": "胖头鱼的小迷妹",
-        "organization": "中山纪念中学",
+    "788900451": {
+        "name": "AWWZ",
+        "organization": "北京交通大学",
         "official": 1
     },
     "878557269": {
@@ -1134,9 +1254,39 @@
         "organization": "重庆大学",
         "official": 1
     },
+    "401664822": {
+        "name": "一起debug",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "935909718": {
+        "name": "2020USTCACM",
+        "organization": "中国科学技术大学",
+        "official": 1
+    },
+    "439680740": {
+        "name": "我没意见",
+        "organization": "南开大学",
+        "official": 1
+    },
+    "698970003": {
+        "name": "麦肯当德劳基",
+        "organization": "上海大学",
+        "official": 1
+    },
     "876332067": {
         "name": "May4th",
         "organization": "北京大学",
+        "official": 1
+    },
+    "491257924": {
+        "name": "嘤雄联盟",
+        "organization": "湘潭大学",
+        "official": 1
+    },
+    "592134806": {
+        "name": "这样太难了",
+        "organization": "北京邮电大学",
         "official": 1
     },
     "879139132": {
@@ -1149,9 +1299,24 @@
         "organization": "浙江大学宁波理工学院",
         "official": 1
     },
+    "413202903": {
+        "name": "Triy",
+        "organization": "西安电子科技大学",
+        "official": 1
+    },
+    "662354474": {
+        "name": "UESTC_GUGUGU",
+        "organization": "电子科技大学",
+        "official": 1
+    },
     "153906370": {
         "name": "取名字是个好问题",
         "organization": "重庆大学",
+        "official": 1
+    },
+    "485523061": {
+        "name": "老八秘制小汉堡",
+        "organization": "重庆邮电大学",
         "official": 1
     },
     "227429655": {
@@ -1159,9 +1324,94 @@
         "organization": "重庆大学",
         "official": 1
     },
-    "164548090": {
-        "name": "愿望落空的烟火",
-        "organization": "东北农业大学",
+    "204337370": {
+        "name": "又拿铁首了",
+        "organization": "河海大学",
+        "official": 1
+    },
+    "380723489": {
+        "name": "单皮奶",
+        "organization": "青岛大学",
+        "official": 1
+    },
+    "231579522": {
+        "name": "Fake-A",
+        "organization": "国家检察官学院",
+        "official": 1
+    },
+    "145450752": {
+        "name": "队里就我最菜",
+        "organization": "湖南师范大学",
+        "official": 1
+    },
+    "74002609": {
+        "name": "烂飞机",
+        "organization": "南京大学",
+        "official": 1
+    },
+    "323914266": {
+        "name": "茅台一瓶不够还想喝",
+        "organization": "山东省实验中学",
+        "official": 1
+    },
+    "584784766": {
+        "name": "来点作用啊",
+        "organization": "武汉大学",
+        "official": 1
+    },
+    "578444029": {
+        "name": "打码太难了那咋办嘛",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "487214550": {
+        "name": "名字短一点的",
+        "organization": "南京大学",
+        "official": 1
+    },
+    "398521158": {
+        "name": "迫真ACM部&middot;WA的里技",
+        "organization": "哈尔滨工程大学",
+        "official": 1
+    },
+    "569715722": {
+        "name": "coca粉丝团",
+        "organization": "大连理工大学",
+        "official": 1
+    },
+    "748666341": {
+        "name": "Arrow",
+        "organization": "电子科技大学",
+        "official": 1
+    },
+    "473055784": {
+        "name": "可不敢胡交",
+        "organization": "厦门大学",
+        "official": 1
+    },
+    "590621159": {
+        "name": "Getup!WrongAnswer!",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "262142121": {
+        "name": "选择困难",
+        "organization": "武汉大学",
+        "official": 1
+    },
+    "162688250": {
+        "name": "伍贰零",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "394827062": {
+        "name": "北湖施工队",
+        "organization": "北京理工大学",
+        "official": 1
+    },
+    "635383612": {
+        "name": "暴搜流派掌门人",
+        "organization": "北京理工大学",
         "official": 1
     },
     "805753602": {
@@ -1169,14 +1419,64 @@
         "organization": "青岛大学",
         "official": 1
     },
-    "379673668": {
-        "name": "旭旭洋洋俐俐",
-        "organization": "武汉大学",
+    "45142256": {
+        "name": "三尺",
+        "organization": "苏州大学",
+        "official": 1
+    },
+    "593408038": {
+        "name": "yhw",
+        "organization": "中南大学",
+        "official": 1
+    },
+    "919750349": {
+        "name": "《关于我们挂着轻小说一样的名字打铁这件事》",
+        "organization": "大连理工大学",
+        "official": 1
+    },
+    "848403625": {
+        "name": "快乐划水队",
+        "organization": "重庆邮电大学",
+        "official": 1
+    },
+    "560210677": {
+        "name": "格物致知",
+        "organization": "上海大学",
+        "official": 1
+    },
+    "466855607": {
+        "name": "lower_bound",
+        "organization": "西南科技大学",
+        "official": 1
+    },
+    "377075713": {
+        "name": "果断白给队",
+        "organization": "南京理工大学",
+        "official": 1
+    },
+    "444105755": {
+        "name": "asdfadf",
+        "organization": "华东师范大学",
         "official": 1
     },
     "163758263": {
         "name": "XTU_队名随便取的",
         "organization": "湘潭大学",
+        "official": 1
+    },
+    "795260651": {
+        "name": "绯红之王消去了时间",
+        "organization": "---",
+        "official": 1
+    },
+    "80733258": {
+        "name": "树上停滞机",
+        "organization": "北京电影学院",
+        "official": 1
+    },
+    "855533077": {
+        "name": "有一说三",
+        "organization": "厦门大学",
         "official": 1
     },
     "492031514": {
@@ -1199,24 +1499,9 @@
         "organization": "广州大学",
         "official": 1
     },
-    "286979223": {
-        "name": "三只蒟蒻_threekonjaks",
-        "organization": "1",
-        "official": 1
-    },
     "541699676": {
         "name": "WAWA叫的鸽子",
         "organization": "四川大学",
-        "official": 1
-    },
-    "682643954": {
-        "name": "对对队",
-        "organization": "西安交通大学",
-        "official": 1
-    },
-    "935909718": {
-        "name": "2020USTCACM",
-        "organization": "中国科学技术大学",
         "official": 1
     },
     "805345820": {
@@ -1229,54 +1514,14 @@
         "organization": "山东大学",
         "official": 1
     },
-    "487735710": {
-        "name": "别卷了别卷了",
-        "organization": "南京大学",
-        "official": 1
-    },
     "237039642": {
         "name": "老鼠爱大米",
         "organization": "西南科技大学",
         "official": 1
     },
-    "444736747": {
-        "name": "你一定要喊吗",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "413202903": {
-        "name": "Triy",
-        "organization": "西安电子科技大学",
-        "official": 1
-    },
-    "176596101": {
-        "name": "三只蒟蒻",
-        "organization": "山东大学",
-        "official": 1
-    },
-    "398521158": {
-        "name": "迫真ACM部&middot;WA的里技",
-        "organization": "哈尔滨工程大学",
-        "official": 1
-    },
     "231052734": {
         "name": "时来运转SLYZ",
         "organization": "东营市胜利第一中学",
-        "official": 1
-    },
-    "468005762": {
-        "name": "ob自动机",
-        "organization": "华南理工大学",
-        "official": 1
-    },
-    "592134806": {
-        "name": "这样太难了",
-        "organization": "北京邮电大学",
-        "official": 1
-    },
-    "275888752": {
-        "name": "Accept",
-        "organization": "福州大学",
         "official": 1
     },
     "182975608": {
@@ -1294,19 +1539,9 @@
         "organization": "东北师范大学",
         "official": 1
     },
-    "756974430": {
-        "name": "rmss",
-        "organization": "西北工业大学",
-        "official": 1
-    },
     "895299884": {
         "name": "cabbageBird",
         "organization": "西北大学",
-        "official": 1
-    },
-    "124097413": {
-        "name": "鸽王世家",
-        "organization": "合肥工业大学",
         "official": 1
     },
     "446139997": {
@@ -1322,61 +1557,6 @@
     "712085097": {
         "name": "鱼儿水中游",
         "organization": "天津大学",
-        "official": 1
-    },
-    "259004927": {
-        "name": "荠鸽",
-        "organization": "同济大学",
-        "official": 1
-    },
-    "919750349": {
-        "name": "《关于我们挂着轻小说一样的名字打铁这件事》",
-        "organization": "大连理工大学",
-        "official": 1
-    },
-    "439680740": {
-        "name": "我没意见",
-        "organization": "南开大学",
-        "official": 1
-    },
-    "105483340": {
-        "name": "庞然琐事",
-        "organization": "浙江大学宁波理工学院",
-        "official": 1
-    },
-    "84862686": {
-        "name": "清炖鸽子汤",
-        "organization": "华南理工大学",
-        "official": 1
-    },
-    "590621159": {
-        "name": "Getup!WrongAnswer!",
-        "organization": "华南理工大学",
-        "official": 1
-    },
-    "546853585": {
-        "name": "三只兔兔",
-        "organization": "南方科技大学",
-        "official": 1
-    },
-    "301528716": {
-        "name": "我哭了，怎么取个名字这么难",
-        "organization": "南京师范大学",
-        "official": 1
-    },
-    "231579522": {
-        "name": "Fake-A",
-        "organization": "国家检察官学院",
-        "official": 1
-    },
-    "162688250": {
-        "name": "伍贰零",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
-    "145450752": {
-        "name": "队里就我最菜",
-        "organization": "湖南师范大学",
         "official": 1
     },
     "637715068": {
@@ -1404,39 +1584,9 @@
         "organization": "华南理工大学",
         "official": 1
     },
-    "698970003": {
-        "name": "麦肯当德劳基",
-        "organization": "上海大学",
-        "official": 1
-    },
-    "46056915": {
-        "name": "GDUT_夜之荒芜",
-        "organization": "广东工业大学",
-        "official": 1
-    },
-    "401664822": {
-        "name": "一起debug",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
-    "584784766": {
-        "name": "来点作用啊",
-        "organization": "武汉大学",
-        "official": 1
-    },
     "332190111": {
         "name": "三条可怜",
         "organization": "北京交通大学",
-        "official": 1
-    },
-    "663400452": {
-        "name": "UESTC_我们仍未知道那天WA的原因",
-        "organization": "电子科技大学",
-        "official": 1
-    },
-    "323914266": {
-        "name": "茅台一瓶不够还想喝",
-        "organization": "山东省实验中学",
         "official": 1
     },
     "594399256": {
@@ -1459,19 +1609,9 @@
         "organization": "北京信息科技大学",
         "official": 1
     },
-    "491257924": {
-        "name": "嘤雄联盟",
-        "organization": "湘潭大学",
-        "official": 1
-    },
     "877458838": {
         "name": "赛艇大队",
         "organization": "上海交通大学",
-        "official": 1
-    },
-    "173308087": {
-        "name": "互三-智能助理",
-        "organization": "西安电子科技大学",
         "official": 1
     },
     "593594397": {
@@ -1484,11 +1624,6 @@
         "organization": "南京理工大学",
         "official": 1
     },
-    "788900451": {
-        "name": "AWWZ",
-        "organization": "北京交通大学",
-        "official": 1
-    },
     "341363001": {
         "name": "cshwang",
         "organization": "加里敦",
@@ -1497,6 +1632,11 @@
     "543142075": {
         "name": "我想要吃饭",
         "organization": "长沙学院",
+        "official": 1
+    },
+    "79378964": {
+        "name": "BCABC",
+        "organization": "湖南大学",
         "official": 1
     },
     "183587272": {
@@ -1514,19 +1654,9 @@
         "organization": "北京师范大学附属实验中学",
         "official": 1
     },
-    "569715722": {
-        "name": "coca粉丝团",
-        "organization": "大连理工大学",
-        "official": 1
-    },
     "338180317": {
         "name": "为什么还要起队名我还没想好改啥名称所有该咋取名好呢",
         "organization": "南方科技大学",
-        "official": 1
-    },
-    "204337370": {
-        "name": "又拿铁首了",
-        "organization": "河海大学",
         "official": 1
     },
     "718051478": {
@@ -1549,44 +1679,14 @@
         "organization": "三峡大学",
         "official": 1
     },
-    "487214550": {
-        "name": "名字短一点的",
-        "organization": "南京大学",
-        "official": 1
-    },
-    "485523061": {
-        "name": "老八秘制小汉堡",
-        "organization": "重庆邮电大学",
-        "official": 1
-    },
-    "262142121": {
-        "name": "选择困难",
-        "organization": "武汉大学",
-        "official": 1
-    },
-    "137857887": {
-        "name": "那没办法嘛",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
     "257941899": {
         "name": "冲就完事了",
         "organization": "华南理工大学",
         "official": 1
     },
-    "578444029": {
-        "name": "打码太难了那咋办嘛",
-        "organization": "华南理工大学",
-        "official": 1
-    },
-    "473055784": {
-        "name": "可不敢胡交",
-        "organization": "厦门大学",
-        "official": 1
-    },
-    "662354474": {
-        "name": "UESTC_GUGUGU",
-        "organization": "电子科技大学",
+    "264126164": {
+        "name": "这场又打铁了",
+        "organization": "湖南师范大学",
         "official": 1
     },
     "468540254": {
@@ -1599,24 +1699,19 @@
         "organization": "浙江大学",
         "official": 1
     },
-    "380723489": {
-        "name": "单皮奶",
-        "organization": "青岛大学",
-        "official": 1
-    },
-    "74002609": {
-        "name": "烂飞机",
-        "organization": "南京大学",
-        "official": 1
-    },
     "366818378": {
         "name": "为什么180天内只可修改1次",
         "organization": "山东科技大学",
         "official": 1
     },
-    "748666341": {
-        "name": "Arrow",
-        "organization": "电子科技大学",
+    "351597071": {
+        "name": "巧克力螺螺蛳粉",
+        "organization": "厦门大学",
+        "official": 1
+    },
+    "577918521": {
+        "name": "凤箫玉壶",
+        "organization": "南京理工大学",
         "official": 1
     },
     "140903035": {
@@ -1624,29 +1719,19 @@
         "organization": "浙江工业大学",
         "official": 1
     },
+    "70896424": {
+        "name": "干啥啥不行，吃饭第一名",
+        "organization": "上海大学",
+        "official": 1
+    },
     "218469611": {
         "name": "随机队",
         "organization": "四川大学",
         "official": 1
     },
-    "394827062": {
-        "name": "北湖施工队",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "537123638": {
-        "name": "A89E757",
-        "organization": "福州大学",
-        "official": 1
-    },
-    "635383612": {
-        "name": "暴搜流派掌门人",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "45142256": {
-        "name": "三尺",
-        "organization": "苏州大学",
+    "987180907": {
+        "name": "装甲车",
+        "organization": "南京理工大学",
         "official": 1
     },
     "952577794": {
@@ -1659,9 +1744,29 @@
         "organization": "清华大学",
         "official": 1
     },
+    "561696628": {
+        "name": "鹅克赛普特",
+        "organization": "中国石油大学（华东）",
+        "official": 1
+    },
     "735927295": {
         "name": "Dongxihu&lt;-&gt;Hongshan",
         "organization": "华中科技大学",
+        "official": 1
+    },
+    "224884920": {
+        "name": "队友让我随便起",
+        "organization": "大连海事大学",
+        "official": 1
+    },
+    "724845009": {
+        "name": "TeamofGB",
+        "organization": "深圳大学",
+        "official": 1
+    },
+    "376731843": {
+        "name": "SeniorTypists",
+        "organization": "西安电子科技大学",
         "official": 1
     },
     "34299317": {
@@ -1674,29 +1779,109 @@
         "organization": "山东科技大学",
         "official": 1
     },
-    "848403625": {
-        "name": "快乐划水队",
-        "organization": "重庆邮电大学",
+    "570148554": {
+        "name": "UESTC_crimson",
+        "organization": "电子科技大学",
         "official": 1
     },
-    "466855607": {
-        "name": "lower_bound",
-        "organization": "西南科技大学",
+    "764788345": {
+        "name": "Re:不从零开始的竞赛生活",
+        "organization": "山东大学",
         "official": 1
     },
-    "465858857": {
-        "name": "hsp不争气的小弟们想ak",
-        "organization": "暨南大学",
+    "748315237": {
+        "name": "嗯么么么",
+        "organization": "中央民族大学",
         "official": 1
     },
-    "444105755": {
-        "name": "asdfadf",
-        "organization": "华东师范大学",
+    "194970408": {
+        "name": "WA的那么多",
+        "organization": "福州大学",
+        "official": 1
+    },
+    "968973155": {
+        "name": "喜欢吃苹果的皮卡丘",
+        "organization": "北京航空航天大学",
+        "official": 1
+    },
+    "910885707": {
+        "name": "Thinktank",
+        "organization": "山东理工大学",
+        "official": 1
+    },
+    "332674039": {
+        "name": "NJUPT20TEAM04",
+        "organization": "南京邮电大学",
+        "official": 1
+    },
+    "302713285": {
+        "name": "yyc粉丝团",
+        "organization": "佛山市南海区石门中学",
+        "official": 1
+    },
+    "32143530": {
+        "name": "小鸟伏特加",
+        "organization": "中北大学",
+        "official": 1
+    },
+    "565973040": {
+        "name": "三根麻花",
+        "organization": "南京理工大学",
+        "official": 1
+    },
+    "461468151": {
+        "name": "ThunderChildren",
+        "organization": "山东科技大学",
         "official": 1
     },
     "463451728": {
         "name": "OverGlory",
         "organization": "宁波大学",
+        "official": 1
+    },
+    "245466051": {
+        "name": "蒟蒻观光",
+        "organization": "北京理工大学",
+        "official": 1
+    },
+    "227876937": {
+        "name": "菜鸡三剑客",
+        "organization": "宁波大学",
+        "official": 1
+    },
+    "241381494": {
+        "name": "零号行星群",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "698581025": {
+        "name": "江湖夜雨十年WA",
+        "organization": "武汉工程大学",
+        "official": 1
+    },
+    "125933352": {
+        "name": "队名未定",
+        "organization": "广东工业大学",
+        "official": 1
+    },
+    "158470729": {
+        "name": "天上的星星不说话",
+        "organization": "中国科学院大学",
+        "official": 1
+    },
+    "828955580": {
+        "name": "球球你了，别演我了",
+        "organization": "鲁东大学",
+        "official": 1
+    },
+    "150051143": {
+        "name": "队友在洗衣服",
+        "organization": "陡岗小学",
+        "official": 1
+    },
+    "906143909": {
+        "name": "LuOH3の队",
+        "organization": "南京大学",
         "official": 1
     },
     "742493725": {
@@ -1707,11 +1892,6 @@
     "246216882": {
         "name": "ianahao",
         "organization": "西北大学",
-        "official": 1
-    },
-    "577918521": {
-        "name": "凤箫玉壶",
-        "organization": "南京理工大学",
         "official": 1
     },
     "77067698": {
@@ -1739,24 +1919,9 @@
         "organization": "四川大学",
         "official": 1
     },
-    "332674039": {
-        "name": "NJUPT20TEAM04",
-        "organization": "南京邮电大学",
-        "official": 1
-    },
     "850763045": {
         "name": "渣女三人组",
         "organization": "中山大学",
-        "official": 1
-    },
-    "79378964": {
-        "name": "BCABC",
-        "organization": "湖南大学",
-        "official": 1
-    },
-    "987180907": {
-        "name": "装甲车",
-        "organization": "南京理工大学",
         "official": 1
     },
     "764659106": {
@@ -1829,11 +1994,6 @@
         "organization": "江西师范大学",
         "official": 1
     },
-    "264126164": {
-        "name": "这场又打铁了",
-        "organization": "湖南师范大学",
-        "official": 1
-    },
     "142675882": {
         "name": "存真楼专业修电脑团队",
         "organization": "石家庄二中实验学校",
@@ -1854,19 +2014,9 @@
         "organization": "东北林业大学",
         "official": 1
     },
-    "561696628": {
-        "name": "鹅克赛普特",
-        "organization": "中国石油大学（华东）",
-        "official": 1
-    },
     "745326944": {
         "name": "硬梆梆帮",
         "organization": "西安交通大学",
-        "official": 1
-    },
-    "855533077": {
-        "name": "有一说三",
-        "organization": "厦门大学",
         "official": 1
     },
     "160602880": {
@@ -1912,11 +2062,6 @@
     "739937948": {
         "name": "蓝色空间",
         "organization": "华中科技大学",
-        "official": 1
-    },
-    "565973040": {
-        "name": "三根麻花",
-        "organization": "南京理工大学",
         "official": 1
     },
     "622655683": {
@@ -1984,11 +2129,6 @@
         "organization": "西南交通大学",
         "official": 1
     },
-    "377075713": {
-        "name": "果断白给队",
-        "organization": "南京理工大学",
-        "official": 1
-    },
     "880809357": {
         "name": "FateStaysFrog",
         "organization": "华南理工大学",
@@ -2004,11 +2144,6 @@
         "organization": "北京大学",
         "official": 1
     },
-    "351597071": {
-        "name": "巧克力螺螺蛳粉",
-        "organization": "厦门大学",
-        "official": 1
-    },
     "927702783": {
         "name": "我们会嘤嘤嘤",
         "organization": "华南理工大学",
@@ -2022,11 +2157,6 @@
     "371572620": {
         "name": "周日时在做什么？有没有空？可以来比赛吗？",
         "organization": "中国科学技术大学",
-        "official": 1
-    },
-    "32143530": {
-        "name": "小鸟伏特加",
-        "organization": "中北大学",
         "official": 1
     },
     "949147973": {
@@ -2129,11 +2259,6 @@
         "organization": "北京理工大学",
         "official": 1
     },
-    "560210677": {
-        "name": "格物致知",
-        "organization": "上海大学",
-        "official": 1
-    },
     "278179215": {
         "name": "换个题继续wa",
         "organization": "武汉科技大学",
@@ -2179,11 +2304,6 @@
         "organization": "东北林业大学",
         "official": 1
     },
-    "570148554": {
-        "name": "UESTC_crimson",
-        "organization": "电子科技大学",
-        "official": 1
-    },
     "547795913": {
         "name": "IdealRainbow",
         "organization": "华中科技大学",
@@ -2194,16 +2314,6 @@
         "organization": "绍兴文理学院元培学院",
         "official": 1
     },
-    "593408038": {
-        "name": "yhw",
-        "organization": "中南大学",
-        "official": 1
-    },
-    "70896424": {
-        "name": "干啥啥不行，吃饭第一名",
-        "organization": "上海大学",
-        "official": 1
-    },
     "222945002": {
         "name": "HRBUST-NK05",
         "organization": "哈尔滨理工大学",
@@ -2212,11 +2322,6 @@
     "937178414": {
         "name": "防WA题研究院",
         "organization": "浙江师范大学",
-        "official": 1
-    },
-    "80733258": {
-        "name": "树上停滞机",
-        "organization": "北京电影学院",
         "official": 1
     },
     "866357281": {
@@ -2334,11 +2439,6 @@
         "organization": "太原理工大学",
         "official": 1
     },
-    "194970408": {
-        "name": "WA的那么多",
-        "organization": "福州大学",
-        "official": 1
-    },
     "355832594": {
         "name": "请输入队名",
         "organization": "西安交通大学",
@@ -2362,11 +2462,6 @@
     "718725364": {
         "name": "呱呱呱",
         "organization": "中国人民解放军信息工程大学",
-        "official": 1
-    },
-    "906143909": {
-        "name": "LuOH3の队",
-        "organization": "南京大学",
         "official": 1
     },
     "406875925": {
@@ -2419,11 +2514,6 @@
         "organization": "武汉大学",
         "official": 1
     },
-    "724845009": {
-        "name": "TeamofGB",
-        "organization": "深圳大学",
-        "official": 1
-    },
     "736053629": {
         "name": "当粉丝就能暴打偶像",
         "organization": "山东理工大学",
@@ -2449,11 +2539,6 @@
         "organization": "江西理工大学",
         "official": 1
     },
-    "376731843": {
-        "name": "SeniorTypists",
-        "organization": "西安电子科技大学",
-        "official": 1
-    },
     "615493916": {
         "name": "岂有梦魇敢染指幽夜净土所祝圣之人",
         "organization": "福州大学",
@@ -2474,11 +2559,6 @@
         "organization": "烟台大学",
         "official": 1
     },
-    "224884920": {
-        "name": "队友让我随便起",
-        "organization": "大连海事大学",
-        "official": 1
-    },
     "99909290": {
         "name": "宇哥带飞",
         "organization": "广东东软学院",
@@ -2494,11 +2574,6 @@
         "organization": "北京工业大学",
         "official": 1
     },
-    "302713285": {
-        "name": "yyc粉丝团",
-        "organization": "佛山市南海区石门中学",
-        "official": 1
-    },
     "488154469": {
         "name": "我曾经也是个魔法师",
         "organization": "成都理工大学",
@@ -2507,11 +2582,6 @@
     "202494452": {
         "name": "那就先开J吧",
         "organization": "石家庄学院",
-        "official": 1
-    },
-    "748315237": {
-        "name": "嗯么么么",
-        "organization": "中央民族大学",
         "official": 1
     },
     "717875880": {
@@ -2534,21 +2604,6 @@
         "organization": "湖南农业大学",
         "official": 1
     },
-    "245466051": {
-        "name": "蒟蒻观光",
-        "organization": "北京理工大学",
-        "official": 1
-    },
-    "698581025": {
-        "name": "江湖夜雨十年WA",
-        "organization": "武汉工程大学",
-        "official": 1
-    },
-    "968973155": {
-        "name": "喜欢吃苹果的皮卡丘",
-        "organization": "北京航空航天大学",
-        "official": 1
-    },
     "901828112": {
         "name": "翻车鱼",
         "organization": "浙江万里学院",
@@ -2569,19 +2624,9 @@
         "organization": "绍兴文理学院元培学院",
         "official": 1
     },
-    "764788345": {
-        "name": "Re:不从零开始的竞赛生活",
-        "organization": "山东大学",
-        "official": 1
-    },
     "114574598": {
         "name": "不仅菜还划水",
         "organization": "中南大学",
-        "official": 1
-    },
-    "910885707": {
-        "name": "Thinktank",
-        "organization": "山东理工大学",
         "official": 1
     },
     "706944417": {
@@ -2599,19 +2644,14 @@
         "organization": "香港城市大学",
         "official": 1
     },
-    "795260651": {
-        "name": "绯红之王消去了时间",
-        "organization": "---",
-        "official": 1
-    },
-    "125933352": {
-        "name": "队名未定",
-        "organization": "广东工业大学",
-        "official": 1
-    },
     "921384819": {
         "name": "WonderfulAnswer",
         "organization": "北京理工大学",
+        "official": 1
+    },
+    "390535296": {
+        "name": "幺鸡小分队",
+        "organization": "南京航空航天大学",
         "official": 1
     },
     "916581123": {
@@ -2619,14 +2659,19 @@
         "organization": "大连海事大学",
         "official": 1
     },
+    "940437292": {
+        "name": "年纪大反应慢",
+        "organization": "南方科技大学",
+        "official": 1
+    },
     "684520658": {
         "name": "国家级划水大队",
         "organization": "湖北第二师范学院",
         "official": 1
     },
-    "945503322": {
-        "name": "魔法魔法小天",
-        "organization": "暨南大学",
+    "912994963": {
+        "name": "顶不住也给我顶",
+        "organization": "华南理工大学",
         "official": 1
     },
     "205836472": {
@@ -2639,14 +2684,14 @@
         "organization": "中国地质大学（武汉）",
         "official": 1
     },
-    "150051143": {
-        "name": "队友在洗衣服",
-        "organization": "陡岗小学",
-        "official": 1
-    },
     "258251401": {
         "name": "您说的队",
         "organization": "哈尔滨工业大学（威海）",
+        "official": 1
+    },
+    "882619237": {
+        "name": "O泡果奶,我还要!^v^",
+        "organization": "武汉大学",
         "official": 1
     },
     "542584792": {
@@ -2664,14 +2709,39 @@
         "organization": "西南科技大学",
         "official": 1
     },
+    "121531313": {
+        "name": "你的燚龘",
+        "organization": "广东外语外贸大学",
+        "official": 1
+    },
     "728942845": {
         "name": "图基",
         "organization": "湖南科技大学",
         "official": 1
     },
-    "158470729": {
-        "name": "天上的星星不说话",
-        "organization": "中国科学院大学",
+    "502709467": {
+        "name": "发际线总想和我做队",
+        "organization": "福州大学",
+        "official": 1
+    },
+    "649123610": {
+        "name": "神仙发量惊人",
+        "organization": "宁波大学",
+        "official": 1
+    },
+    "104690116": {
+        "name": "打完这把去喝奶茶",
+        "organization": "福建农林大学",
+        "official": 1
+    },
+    "376879025": {
+        "name": "HNUST022",
+        "organization": "湖南科技大学",
+        "official": 1
+    },
+    "129758627": {
+        "name": "米队",
+        "organization": "杭州电子科技大学",
         "official": 1
     },
     "331310288": {
@@ -2684,9 +2754,19 @@
         "organization": "湖南科技大学",
         "official": 1
     },
+    "356781908": {
+        "name": "noobnoob",
+        "organization": "吉林大学",
+        "official": 1
+    },
     "953825321": {
         "name": "按F5查看题解",
         "organization": "山东理工大学",
+        "official": 1
+    },
+    "119658710": {
+        "name": "。。。。。。。。",
+        "organization": "233",
         "official": 1
     },
     "562442537": {
@@ -2699,9 +2779,24 @@
         "organization": "华南师范大学中山附属中学",
         "official": 1
     },
-    "828955580": {
-        "name": "球球你了，别演我了",
-        "organization": "鲁东大学",
+    "71317719": {
+        "name": "摸鱼是生活的真谛",
+        "organization": "中北大学",
+        "official": 1
+    },
+    "492062723": {
+        "name": "秋天的第1024杯奶茶",
+        "organization": "南京师范大学",
+        "official": 1
+    },
+    "989076128": {
+        "name": "181天内只可修改2次",
+        "organization": "---",
+        "official": 1
+    },
+    "715222838": {
+        "name": "俺也想拿金牌",
+        "organization": "行知小学",
         "official": 1
     },
     "358678773": {
@@ -2712,6 +2807,16 @@
     "830480488": {
         "name": "qaz",
         "organization": "西南财经大学",
+        "official": 1
+    },
+    "658946843": {
+        "name": "Zombieseatmybrain",
+        "organization": "华南理工大学",
+        "official": 1
+    },
+    "678574590": {
+        "name": "llm",
+        "organization": "山东理工大学",
         "official": 1
     },
     "713484932": {
@@ -2759,6 +2864,11 @@
         "organization": "东北林业大学",
         "official": 1
     },
+    "514358941": {
+        "name": "北理844",
+        "organization": "北京理工大学",
+        "official": 1
+    },
     "698341795": {
         "name": "DestinyPlan",
         "organization": "盐城工学院",
@@ -2794,11 +2904,6 @@
         "organization": "石家庄铁道大学",
         "official": 1
     },
-    "989076128": {
-        "name": "181天内只可修改2次",
-        "organization": "---",
-        "official": 1
-    },
     "851817105": {
         "name": "我永远喜欢时北北",
         "organization": "天津工业大学",
@@ -2807,6 +2912,11 @@
     "294937036": {
         "name": "混子King",
         "organization": "东北大学",
+        "official": 1
+    },
+    "54688538": {
+        "name": "原码补码反码",
+        "organization": "Queen's University",
         "official": 1
     },
     "276414496": {
@@ -2849,6 +2959,11 @@
         "organization": "北京理工大学",
         "official": 1
     },
+    "498001199": {
+        "name": "艰苦奋斗",
+        "organization": "华南师范大学",
+        "official": 1
+    },
     "229397806": {
         "name": "对称加密",
         "organization": "山东科技大学",
@@ -2887,6 +3002,11 @@
     "81906758": {
         "name": "管他对不队",
         "organization": "山东大学",
+        "official": 1
+    },
+    "211070014": {
+        "name": "观赛团",
+        "organization": "？",
         "official": 1
     },
     "659673084": {
@@ -2929,6 +3049,11 @@
         "organization": "合肥工业大学",
         "official": 1
     },
+    "93515117": {
+        "name": "玩那边了",
+        "organization": "吉林大学",
+        "official": 1
+    },
     "749667755": {
         "name": "小菜鸡出征",
         "organization": "中南民族大学",
@@ -2967,11 +3092,6 @@
     "457101848": {
         "name": "20级江西师范大学ACM小分队",
         "organization": "江西师范大学",
-        "official": 1
-    },
-    "502709467": {
-        "name": "发际线总想和我做队",
-        "organization": "福州大学",
         "official": 1
     },
     "168450875": {
@@ -3039,6 +3159,11 @@
         "organization": "郑州大学",
         "official": 1
     },
+    "367295646": {
+        "name": "一个人当分母",
+        "organization": "石家庄铁道大学",
+        "official": 1
+    },
     "969859251": {
         "name": "自动化头秃小队",
         "organization": "北京理工大学",
@@ -3062,11 +3187,6 @@
     "403429760": {
         "name": "秦城数箱子俱乐部",
         "organization": "金华市丽泽书院",
-        "official": 1
-    },
-    "678574590": {
-        "name": "llm",
-        "organization": "山东理工大学",
         "official": 1
     },
     "837060713": {
@@ -3097,11 +3217,6 @@
     "336307630": {
         "name": "AlanSune",
         "organization": "大连理工大学",
-        "official": 1
-    },
-    "649123610": {
-        "name": "神仙发量惊人",
-        "organization": "宁波大学",
         "official": 1
     },
     "178868995": {
@@ -3142,11 +3257,6 @@
     "792663800": {
         "name": "to_xf",
         "organization": "山东理工大学",
-        "official": 1
-    },
-    "376879025": {
-        "name": "HNUST022",
-        "organization": "湖南科技大学",
         "official": 1
     },
     "244326236": {
@@ -3219,16 +3329,6 @@
         "organization": "北京邮电大学",
         "official": 1
     },
-    "356781908": {
-        "name": "noobnoob",
-        "organization": "吉林大学",
-        "official": 1
-    },
-    "129758627": {
-        "name": "米队",
-        "organization": "杭州电子科技大学",
-        "official": 1
-    },
     "890783491": {
         "name": "Hunau",
         "organization": "湖南农业大学",
@@ -3272,6 +3372,16 @@
     "829895485": {
         "name": "还缺个队友",
         "organization": "山东理工大学",
+        "official": 1
+    },
+    "332249489": {
+        "name": "勇往直前队",
+        "organization": "华中科技大学",
+        "official": 1
+    },
+    "934499823": {
+        "name": "带你去爬山",
+        "organization": "重庆邮电大学",
         "official": 1
     },
     "777622585": {
@@ -3319,9 +3429,9 @@
         "organization": "浙江师范大学",
         "official": 1
     },
-    "461468151": {
-        "name": "ThunderChildren",
-        "organization": "山东科技大学",
+    "831869928": {
+        "name": "zxy表白欣茹宝宝",
+        "organization": "中国地质大学（武汉）",
         "official": 1
     },
     "56955163": {
@@ -3574,6 +3684,11 @@
         "organization": "惠州学院",
         "official": 1
     },
+    "950293294": {
+        "name": "114514运算都队",
+        "organization": "重庆师范大学",
+        "official": 1
+    },
     "772109710": {
         "name": "吃饭队",
         "organization": "中国矿业大学徐海学院",
@@ -3669,6 +3784,11 @@
         "organization": "上海大学",
         "official": 1
     },
+    "433115662": {
+        "name": "tobenamed",
+        "organization": "武汉大学",
+        "official": 1
+    },
     "196196437": {
         "name": "菜，但名字牛逼",
         "organization": "中国海洋大学",
@@ -3694,6 +3814,11 @@
         "organization": "攀枝花学院",
         "official": 1
     },
+    "326529156": {
+        "name": "要什么队名难搞",
+        "organization": "重庆师范大学",
+        "official": 1
+    },
     "965069427": {
         "name": "芜湖起飞队",
         "organization": "华中科技大学",
@@ -3702,6 +3827,11 @@
     "202807264": {
         "name": "1517",
         "organization": "枣庄学院",
+        "official": 1
+    },
+    "671101946": {
+        "name": "图灵小分队",
+        "organization": "西南大学",
         "official": 1
     },
     "835772971": {
@@ -3774,6 +3904,16 @@
         "organization": "---",
         "official": 1
     },
+    "332244960": {
+        "name": "老油条666",
+        "organization": "贵州大学",
+        "official": 1
+    },
+    "801801191": {
+        "name": "AreyouOK???",
+        "organization": "北京理工大学",
+        "official": 1
+    },
     "470044723": {
         "name": "Cloud9",
         "organization": "华南理工大学",
@@ -3799,9 +3939,9 @@
         "organization": "合肥一六八玫瑰园学校",
         "official": 1
     },
-    "658946843": {
-        "name": "Zombieseatmybrain",
-        "organization": "华南理工大学",
+    "447938297": {
+        "name": "rabbitcoder",
+        "organization": "北京邮电大学",
         "official": 1
     },
     "809253985": {
@@ -3844,11 +3984,6 @@
         "organization": "---",
         "official": 1
     },
-    "121531313": {
-        "name": "你的燚龘",
-        "organization": "广东外语外贸大学",
-        "official": 1
-    },
     "102509199": {
         "name": "红烧狮子头",
         "organization": "北京航空航天大学",
@@ -3862,11 +3997,6 @@
     "883046453": {
         "name": "1103最强",
         "organization": "华中科技大学",
-        "official": 1
-    },
-    "71317719": {
-        "name": "摸鱼是生活的真谛",
-        "organization": "中北大学",
         "official": 1
     },
     "352901551": {
@@ -3949,11 +4079,6 @@
         "organization": "北京大学",
         "official": 1
     },
-    "912994963": {
-        "name": "顶不住也给我顶",
-        "organization": "华南理工大学",
-        "official": 1
-    },
     "673240284": {
         "name": "就这？？",
         "organization": "福建工程学院",
@@ -3976,7 +4101,7 @@
     },
     "525271645": {
         "name": "一个BUG滴一天",
-        "organization": "重庆邮电大学",
+        "organization": "北京大学",
         "official": 1
     },
     "767805652": {
@@ -4009,6 +4134,16 @@
         "organization": "郑州大学",
         "official": 1
     },
+    "721985083": {
+        "name": "冲向前",
+        "organization": "西安邮电大学",
+        "official": 1
+    },
+    "748478936": {
+        "name": "测试1队",
+        "organization": "暨南大学",
+        "official": 1
+    },
     "813538618": {
         "name": "争取刷2题",
         "organization": "华中科技大学",
@@ -4039,11 +4174,6 @@
         "organization": "长春工业大学",
         "official": 1
     },
-    "492062723": {
-        "name": "秋天的第1024杯奶茶",
-        "organization": "南京师范大学",
-        "official": 1
-    },
     "904145044": {
         "name": "吃饭睡觉敲代码",
         "organization": "浙江大学",
@@ -4062,11 +4192,6 @@
     "324386524": {
         "name": "签完到就走",
         "organization": "北京理工大学",
-        "official": 1
-    },
-    "715222838": {
-        "name": "俺也想拿金牌",
-        "organization": "行知小学",
         "official": 1
     },
     "578103253": {
@@ -4129,11 +4254,6 @@
         "organization": "华南理工大学",
         "official": 1
     },
-    "227876937": {
-        "name": "菜鸡三剑客",
-        "organization": "宁波大学",
-        "official": 1
-    },
     "195376760": {
         "name": "Havaatry",
         "organization": "安庆师范大学",
@@ -4179,9 +4299,9 @@
         "organization": "did小学",
         "official": 1
     },
-    "241381494": {
-        "name": "零号行星群",
-        "organization": "华南理工大学",
+    "813268596": {
+        "name": "任意",
+        "organization": "重庆邮电大学",
         "official": 1
     },
     "508541016": {
@@ -4334,6 +4454,11 @@
         "organization": "河北科技大学",
         "official": 1
     },
+    "413113945": {
+        "name": "TeamPost",
+        "organization": "南京邮电大学",
+        "official": 1
+    },
     "271736565": {
         "name": "qzxjz",
         "organization": "---",
@@ -4352,6 +4477,11 @@
     "87933932": {
         "name": "汤姆利卜",
         "organization": "Université du Québec : Télé-université",
+        "official": 1
+    },
+    "955321894": {
+        "name": "永世幻想乡",
+        "organization": "武汉大学",
         "official": 1
     },
     "276104861": {
@@ -4404,11 +4534,6 @@
         "organization": "浙江大学宁波理工学院",
         "official": 1
     },
-    "940437292": {
-        "name": "年纪大反应慢",
-        "organization": "南方科技大学",
-        "official": 1
-    },
     "337300281": {
         "name": "划水&mdash;&mdash;抽奖",
         "organization": "湖南工程学院",
@@ -4432,6 +4557,11 @@
     "199818415": {
         "name": "brevity",
         "organization": "",
+        "official": 1
+    },
+    "723317832": {
+        "name": "三只小白牛",
+        "organization": "西安交通大学",
         "official": 1
     },
     "92072480": {
@@ -4477,6 +4607,11 @@
     "252522628": {
         "name": "顺水推舟",
         "organization": "重庆邮电大学",
+        "official": 1
+    },
+    "558620352": {
+        "name": "zhb",
+        "organization": "北京理工大学",
         "official": 1
     },
     "954179408": {
@@ -4544,11 +4679,6 @@
         "organization": "西安邮电大学",
         "official": 1
     },
-    "390535296": {
-        "name": "幺鸡小分队",
-        "organization": "南京航空航天大学",
-        "official": 1
-    },
     "652706094": {
         "name": "我才是蒟蒻",
         "organization": "云南大学",
@@ -4579,14 +4709,9 @@
         "organization": "南京理工大学",
         "official": 1
     },
-    "119658710": {
-        "name": "。。。。。。。。",
-        "organization": "杭州市学军中学",
-        "official": 1
-    },
-    "882619237": {
-        "name": "O泡果奶,我还要!^v^",
-        "organization": "武汉大学",
+    "87345871": {
+        "name": "小小小小小鶸",
+        "organization": "重庆邮电大学",
         "official": 1
     }
 }

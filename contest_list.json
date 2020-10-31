@@ -11,6 +11,13 @@
                         "official": "正式队伍",
                         "unofficial": "打星队伍"
                     },
+                    "medal": {
+                        "official": {
+                            "bronze": 72,
+                            "gold": 24,
+                            "silver": 48
+                        }
+                    },
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
@@ -36,6 +43,24 @@
             },
             "mianyang-warmup": {
                 "config": {
+                    "balloon_color": [
+                        {
+                            "background_color": "#bd0e0e",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#ff90e4",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#ffffff",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "#26b93c",
+                            "color": "#fff"
+                        }
+                    ],
                     "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛（绵阳） 热身赛",
                     "end_time": 1604138400,
                     "frozen_time": 0,
@@ -49,7 +74,8 @@
                     "problem_id": ["A", "B", "C", "D"],
                     "start_time": 1604127600,
                     "status_time_display": {
-                        "correct": 1
+                        "correct": 1,
+                        "incorrect": 1
                     }
                 },
                 "link": "/ccpc/2020/mianyang-warmup"
@@ -174,7 +200,8 @@
                     ],
                     "start_time": 1603587600,
                     "status_time_display": {
-                        "correct": 1
+                        "correct": 1,
+                        "incorrect": 1
                     }
                 },
                 "link": "/ccpc/2020/weihai"
@@ -194,7 +221,8 @@
                     "problem_id": ["A", "B", "C", "D"],
                     "start_time": 1603522800,
                     "status_time_display": {
-                        "correct": 1
+                        "correct": 1,
+                        "incorrect": 1
                     }
                 },
                 "link": "/ccpc/2020/weihai-warmup"
@@ -246,7 +274,6 @@
                     "group": {
                         "official": "正式队伍"
                     },
-                    "medal": {},
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
@@ -270,6 +297,38 @@
                 },
                 "link": "/icpc/2020/practice-contest"
             },
+            "xiaomi-preliminary-contest-1": {
+                "config": {
+                    "contest_name": "ICPC2020-ICPC·小米 网络选拔赛第一场",
+                    "end_time": 1603616400,
+                    "frozen_time": 0,
+                    "group": {
+                        "official": "正式队伍"
+                    },
+                    "organization": "School",
+                    "penalty": 1200,
+                    "problem_id": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K"
+                    ],
+                    "start_time": 1603598400,
+                    "status_time_display": {
+                        "correct": 1,
+                        "incorrect": 1,
+                        "pending": 1
+                    }
+                },
+                "link": "/icpc/2020/xiaomi-preliminary-contest-1"
+            },
             "xiaomi-preliminary-contest-2": {
                 "config": {
                     "contest_name": "ICPC2020-ICPC·小米 网络选拔赛第二场",
@@ -278,7 +337,6 @@
                     "group": {
                         "official": "正式队伍"
                     },
-                    "medal": {},
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
