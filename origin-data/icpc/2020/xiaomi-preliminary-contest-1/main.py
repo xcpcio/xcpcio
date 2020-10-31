@@ -34,8 +34,6 @@ group = {
 }
 status_time_display = {
     'correct': 1,
-    'incorrect': 1,
-    'pending': 1,
 }
 config = {
     'contest_name': 'ICPC2020-ICPC·小米 网络选拔赛第一场',
