@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './Progress.less';
 import { timeFormat } from '@/utils/utils';
-import Progress from './Progress';
+import ProgressWithScroll from './ProgressWithScroll';
 import {
     getStatus,
     status_type,
@@ -20,6 +20,8 @@ class ProgressBig extends React.Component {
             start_time: props.start_time,
             end_time: props.end_time,
             frozen_time: props.frozen_time,
+            search: props.search,
+            history: props.history,
         });
         const setDynamicParams = () => {
             this.setState({
@@ -67,6 +69,8 @@ class ProgressBig extends React.Component {
         time_elapsed: 0,
         time_remaining: 0,
         time_pending: 0,
+        search: null,
+        history: null,
     };
 
     constructor(props: any) {
@@ -103,10 +107,12 @@ class ProgressBig extends React.Component {
                     </div>
                 </div>
 
-                <Progress
+                <ProgressWithScroll
                     start_time={this.state.start_time}
                     end_time={this.state.end_time}
                     frozen_time={this.state.frozen_time}
+                    search={this.state.search}
+                    history={this.state.history}
                 />
 
                 <div

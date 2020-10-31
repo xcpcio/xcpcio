@@ -4,8 +4,8 @@ import {
     getNowTimeStamp,
     removeDuplicateItems,
     getStarKey,
+    getQueryString,
 } from '@/utils';
-import Item from 'antd/lib/list/Item';
 
 export async function fetchData() {
     const pathname = window.location.pathname;
@@ -64,10 +64,19 @@ export function getCurrentGroup(search: any, group: any, fgroup: any) {
     return currentGroup;
 }
 
-export function getTimeFlag(contest_config: any) {
-    let timeFlag = getNowTimeStamp();
-    timeFlag = Math.max(timeFlag, contest_config.start_time);
-    timeFlag = Math.min(timeFlag, contest_config.end_time);
+export function getTimeFlag(contest_config: any, search: any) {
+    let timeFlag: any = getQueryString('timeflag', search);
+    console.log(timeFlag);
+    let now = getNowTimeStamp();
+    if (timeFlag == null) {
+        timeFlag = now.toString();
+    }
+    timeFlag = parseInt(timeFlag || '');
+    if (now > contest_config.end_time) now = contest_config.end_time;
+    if (now < contest_config.start_time) now = contest_config.start_time;
+    if (timeFlag > now) timeFlag = now;
+    if (timeFlag < contest_config.start_time)
+        timeFlag = contest_config.start_time;
     return Math.ceil(timeFlag - contest_config.start_time);
 }
 

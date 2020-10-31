@@ -95,7 +95,10 @@ class Board extends React.Component {
             return menu_index;
         })();
 
-        const timeFlag = getTimeFlag(this.contest_config);
+        const timeFlag = getTimeFlag(
+            this.contest_config,
+            props.location.search,
+        );
         const currentGroup = getCurrentGroup(
             props.location.search,
             menu_item.group,
@@ -194,6 +197,8 @@ class Board extends React.Component {
                             start_time={this.state.contest_config?.start_time}
                             end_time={this.state.contest_config?.end_time}
                             frozen_time={this.state.contest_config?.frozen_time}
+                            search={this.props.location.search}
+                            history={this.props.history}
                         />
 
                         <br />
