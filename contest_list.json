@@ -240,7 +240,7 @@
         "2020": {
             "practice-contest": {
                 "config": {
-                    "contest_name": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲网上区域赛模拟赛",
+                    "contest_name": "ICPC2020-第 45 届国际大学生程序设计竞赛亚洲网上区域赛模拟赛",
                     "end_time": 1604134800,
                     "frozen_time": 0,
                     "group": {
@@ -272,7 +272,7 @@
             },
             "xiaomi-preliminary-contest-2": {
                 "config": {
-                    "contest_name": "2020ICPC·小米 网络选拔赛第二场",
+                    "contest_name": "ICPC2020-ICPC x 小米 网络选拔赛第二场",
                     "end_time": 1604134800,
                     "frozen_time": 0,
                     "group": {

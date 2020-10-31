@@ -43,7 +43,7 @@ medal = {
     
 }
 config = {
-    'contest_name': '第 45 届国际大学生程序设计竞赛（ICPC）亚洲网上区域赛模拟赛',
+    'contest_name': 'ICPC2020-第 45 届国际大学生程序设计竞赛亚洲网上区域赛模拟赛',
     'start_time': get_timestamp("2020-10-31 14:00:00"),
     'end_time': get_timestamp("2020-10-31 17:00:00"),
     'frozen_time' : 0,
