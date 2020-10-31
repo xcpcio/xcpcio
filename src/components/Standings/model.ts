@@ -1,3 +1,4 @@
+import { deepCopy } from '@/utils';
 export const timerInterval = 600;
 
 export function getAnalyzeTeamId(team_id: number, Filter: number) {
@@ -69,6 +70,10 @@ function getTeamAndProblemId(
     return [team_id, problem_id].join('-');
 }
 
+function getDisplayTime(time: number) {
+    return Math.floor(time / 60);
+}
+
 export function getProblemList(contest_config: any, run: any) {
     let problem_list = getInitProblem(contest_config);
     (() => {
@@ -85,11 +90,11 @@ export function getProblemList(contest_config: any, run: any) {
                 problem.solved += 1;
                 problem.first_solve_time = Math.min(
                     problem.first_solve_time,
-                    Math.floor(run.timestamp / 60),
+                    getDisplayTime(run.timestamp),
                 );
                 problem.last_solve_time = Math.max(
                     problem.last_solve_time,
-                    Math.floor(run.timestamp / 60),
+                    getDisplayTime(run.timestamp),
                 );
             }
             if (set.has(getTeamAndProblemId(run.team_id, run.problem_id))) {
@@ -127,14 +132,13 @@ export function getTeamList(
         let team = team_dic[team_id];
         let problem = team.problem[problem_id];
         problem.attempt_num += 1;
-        problem.time = Math.floor(run.timestamp / 60);
+        problem.time = run.timestamp;
         if (run.status === 'correct') {
             problem.status = 'correct';
             team.solved += 1;
             team.time +=
                 problem.time +
-                (problem.attempt_num - 1) *
-                    Math.floor(contest_config.penalty / 60);
+                (problem.attempt_num - 1) * contest_config.penalty;
         } else if (run.status === 'pending') {
             problem.status = 'pending';
         } else if (run.status === 'incorrect') {
@@ -144,14 +148,21 @@ export function getTeamList(
 
     run.forEach((run: any) => {
         let team = team_dic[run.team_id];
-        if (team.problem[run.problem_id].status === 'correct') {
-            team_dic[run.team_id].attempted += 1;
+        let problem = team.problem[run.problem_id];
+        if (problem.status === 'correct') {
+            team.attempted += 1;
         }
     });
 
     for (let k in team_dic) {
-        team_dic[k]['team_id'] = k;
-        team_list.push(team_dic[k]);
+        let team = team_dic[k];
+        let problem = team.problem;
+        team['team_id'] = k;
+        team['time'] = getDisplayTime(team['time']);
+        for (let p_id in problem) {
+            problem[p_id].time = getDisplayTime(problem[p_id].time);
+        }
+        team_list.push(team);
     }
 
     team_list.sort(compTeamList);
