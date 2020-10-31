@@ -30,7 +30,6 @@ data_dir = "../../../../data/icpc/2020/xiaomi-preliminary-contest-1"
 problem_num = 11
 problem_id = [chr(ord('A') + i) for i in range(problem_num)] 
 group = {
-    'official': '正式队伍',
 }
 status_time_display = {
     'correct': 1,

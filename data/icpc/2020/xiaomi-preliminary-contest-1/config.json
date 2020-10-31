@@ -4,9 +4,7 @@
     "end_time": 1603616400,
     "frozen_time": 0,
     "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
-    "group": {
-        "official": "正式队伍"
-    },
+    "group": {},
     "organization": "School",
     "status_time_display": {
         "correct": 1
