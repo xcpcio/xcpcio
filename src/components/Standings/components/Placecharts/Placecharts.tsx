@@ -36,10 +36,7 @@ class Placecharts extends React.Component {
     //props中的值发生改变时执行
     async componentWillReceiveProps(nextProps: any) {
         this.clearTimer();
-        this.setState({ loaded: false });
-        this.timer = setTimeout(() => {
-            this.update(nextProps);
-        });
+        this.update(nextProps);
     }
 
     //组件卸载前的操作
