@@ -1,1 +1,2405 @@
-{}
+{
+    "T007": {
+        "team_id": "T007",
+        "name": "逆十字",
+        "organization": "北京大学",
+        "info": "罗国杰(教练)、孔朝哲、周雨扬、潘骏跃",
+        "official": 1
+    },
+    "T192": {
+        "team_id": "T192",
+        "name": "小万邦",
+        "organization": "清华大学",
+        "info": "邬晓钧(教练)、王思齐、袁方舟、房励行",
+        "official": 1
+    },
+    "T285": {
+        "team_id": "T285",
+        "name": "Phantom Ensemble",
+        "organization": "浙江大学",
+        "info": "王灿(教练)、唐嘉辰、李昌栋、黎伟诺",
+        "official": 1
+    },
+    "T191": {
+        "team_id": "T191",
+        "name": "三个顶俩",
+        "organization": "清华大学",
+        "info": "邬晓钧(教练)、朱震霆、闫书弈、王修涵",
+        "official": 1
+    },
+    "T335": {
+        "team_id": "T335",
+        "name": "FLL",
+        "organization": "中山大学",
+        "info": "郭嵩山(教练)、傅畅、刘瀚之、刘宇轩",
+        "official": 1
+    },
+    "T089": {
+        "team_id": "T089",
+        "name": "五点共圆",
+        "organization": "杭州电子科技大学",
+        "info": "刘春英(教练)、祝之禺、陈惇显、顾奕臻",
+        "official": 1
+    },
+    "T061": {
+        "team_id": "T061",
+        "name": "黑色骑士团",
+        "organization": "复旦大学",
+        "info": "孙未未(教练)、高庆麾、温昕岳、刘嘉辰",
+        "official": 1
+    },
+    "T158": {
+        "team_id": "T158",
+        "name": "戳戳让戳戳别戳戳戳",
+        "organization": "南京大学",
+        "info": "马骏(教练)、单启程、丁天行、张扬播",
+        "unofficial": 1
+    },
+    "T286": {
+        "team_id": "T286",
+        "name": "Refrain",
+        "organization": "浙江大学",
+        "info": "王灿(教练)、卢旻昊、褚朱钇恒、冯骁",
+        "official": 1
+    },
+    "T052": {
+        "team_id": "T052",
+        "name": "艾斯易悠都行",
+        "organization": "东南大学",
+        "info": "倪庆剑(教练)、陈曦、陈启航、韩数",
+        "official": 1
+    },
+    "T026": {
+        "team_id": "T026",
+        "name": "零叉八C",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、梁昊骞、孙明志、林麒",
+        "unofficial": 1
+    },
+    "T303": {
+        "team_id": "T303",
+        "name": "师傅把妖怪抓走了",
+        "organization": "浙江师范大学",
+        "info": "韩建民(教练)、周天辰、陈卓丞、余知航",
+        "official": 1
+    },
+    "T005": {
+        "team_id": "T005",
+        "name": "超长宕机",
+        "organization": "北京大学",
+        "info": "罗国杰(教练)、周易、王泽州、王颖",
+        "official": 1
+    },
+    "T122": {
+        "team_id": "T122",
+        "name": "Soha",
+        "organization": "华南理工大学",
+        "info": "杜广龙(教练)、陈烔晖、丁琪、周瑞东",
+        "official": 1
+    },
+    "T287": {
+        "team_id": "T287",
+        "name": "大英帝星林加德",
+        "organization": "浙江大学",
+        "info": "王灿(教练)、詹哲远、黄文翀、陈逸",
+        "official": 1
+    },
+    "T120": {
+        "team_id": "T120",
+        "name": "下划线",
+        "organization": "华东师范大学",
+        "info": "肖春芸(教练)、谢嘉东、赵云翔、朱桐",
+        "official": 1
+    },
+    "T006": {
+        "team_id": "T006",
+        "name": "你们这不是欺负人呢嘛",
+        "organization": "北京大学",
+        "info": "罗国杰(教练)、汤云开、赵春源、苏博文",
+        "official": 1
+    },
+    "T211": {
+        "team_id": "T211",
+        "name": "正道的光",
+        "organization": "上海交通大学",
+        "info": "俞勇(教练)、王硕、洪熠佳、赵启元",
+        "official": 1
+    },
+    "T119": {
+        "team_id": "T119",
+        "name": "二环己基碳二亚胺",
+        "organization": "华东师范大学",
+        "info": "肖春芸(教练)、王子涵、毛博超、杨弘",
+        "unofficial": 1
+    },
+    "T331": {
+        "team_id": "T331",
+        "name": "ACM太难玩了",
+        "organization": "中南大学",
+        "info": "陈再良(教练)、刘峰玮、罗泰帅、黄文豪",
+        "official": 1
+    },
+    "T156": {
+        "team_id": "T156",
+        "name": "别卷了别卷了",
+        "organization": "南京大学",
+        "info": "马骏(教练)、陈政弛、黄铮、刘响",
+        "official": 1
+    },
+    "T015": {
+        "team_id": "T015",
+        "name": "马拉车拉马",
+        "organization": "北京理工大学",
+        "info": "林永钢(教练)、杨予宸、焦鹏屹、刘志丹",
+        "official": 1
+    },
+    "T210": {
+        "team_id": "T210",
+        "name": "欧文艾迪",
+        "organization": "上海交通大学",
+        "info": "俞勇(教练)、董易昕、杨烨程、金凌啸",
+        "official": 1
+    },
+    "T118": {
+        "team_id": "T118",
+        "name": "队友看我wa签到",
+        "organization": "华东师范大学",
+        "info": "肖春芸(教练)、朱张弛、汪杰、汪子凡",
+        "unofficial": 1
+    },
+    "T189": {
+        "team_id": "T189",
+        "name": "人下人下人下人",
+        "organization": "清华大学",
+        "info": "邬晓钧(教练)、曾致远、袁桢淏、姜迅驰",
+        "official": 1
+    },
+    "T155": {
+        "team_id": "T155",
+        "name": "Icdereap",
+        "organization": "南京大学",
+        "info": "马骏(教练)、姚嘉和、林荣恩、张浩宇",
+        "unofficial": 1
+    },
+    "T101": {
+        "team_id": "T101",
+        "name": "选对赛区少打两年",
+        "organization": "河南农业大学",
+        "info": "尚俊平(教练)、温春阳、金志礼、徐本奇",
+        "official": 1
+    },
+    "T010": {
+        "team_id": "T010",
+        "name": "试炼者",
+        "organization": "北京航空航天大学",
+        "info": "宋友(教练)、陈铭煊、肖思炀、龙鹏宇",
+        "official": 1
+    },
+    "T075": {
+        "team_id": "T075",
+        "name": "庆大包与摩托车维修艺术",
+        "organization": "哈尔滨工业大学",
+        "info": "孙大烈(教练)、李成蹊、徐放、王晓亮",
+        "official": 1
+    },
+    "T060": {
+        "team_id": "T060",
+        "name": "阿凡提的小毛驴快跑",
+        "organization": "复旦大学",
+        "info": "孙未未(教练)、王韵哲、陆佳艺、聂绍珩",
+        "official": 1
+    },
+    "T293": {
+        "team_id": "T293",
+        "name": "耶梦加得",
+        "organization": "浙江工业大学",
+        "info": "侯向辉(教练)、戚梦赞、张祎龙、周阳",
+        "official": 1
+    },
+    "T066": {
+        "team_id": "T066",
+        "name": "纸上牧羊",
+        "organization": "广东外语外贸大学",
+        "info": "郑琪(教练)、林冠权、曾迪鸿、汪鹏飞",
+        "official": 1
+    },
+    "T074": {
+        "team_id": "T074",
+        "name": "撒网摸鱼",
+        "organization": "哈尔滨工程大学",
+        "info": "国林(教练)、赵子琦、李健楠、赵熠扬",
+        "official": 1
+    },
+    "T299": {
+        "team_id": "T299",
+        "name": "三只小老鼠",
+        "organization": "浙江农林大学",
+        "info": "童孟军(教练)、王子超、黄磊、顾博盛",
+        "official": 1
+    },
+    "T337": {
+        "team_id": "T337",
+        "name": "YXN",
+        "organization": "中山大学",
+        "info": "张子臻(教练)、叶汇亘、谢岳良、牛彦栋",
+        "official": 1
+    },
+    "T169": {
+        "team_id": "T169",
+        "name": "我全都要",
+        "organization": "南京航空航天大学",
+        "info": "邹春然(教练)、沈凌翔、晏开文、吴家庆",
+        "official": 1
+    },
+    "T220": {
+        "team_id": "T220",
+        "name": "究极土块",
+        "organization": "四川大学",
+        "info": "左劼(教练)、刘知源、夏文羿、廖浩深",
+        "official": 1
+    },
+    "T135": {
+        "team_id": "T135",
+        "name": "你是学生吧",
+        "organization": "江南大学",
+        "info": "蒋敏(教练)、许轲、杜昊、徐润天",
+        "official": 1
+    },
+    "T083": {
+        "team_id": "T083",
+        "name": "三鸽战队",
+        "organization": "哈尔滨工业大学（威海）",
+        "info": "韩希先(教练)、陈靖昌、吴家铭、唐泓煊",
+        "official": 1
+    },
+    "T130": {
+        "team_id": "T130",
+        "name": "不能旅游的旅游队",
+        "organization": "华中师范大学",
+        "info": "叶俊民(教练)、王毅、刘一泓、周于嵛",
+        "official": 1
+    },
+    "T072": {
+        "team_id": "T072",
+        "name": "作风优良",
+        "organization": "国防科技大学",
+        "info": "尹良泽(教练)、邱纯硕、张珂豪、陈斯隆",
+        "official": 1
+    },
+    "T088": {
+        "team_id": "T088",
+        "name": "我们都有光明的前途",
+        "organization": "杭州电子科技大学",
+        "info": "刘春英(教练)、郑伊杰、刘铭洁、万仞峰",
+        "official": 1
+    },
+    "T168": {
+        "team_id": "T168",
+        "name": "想吃派蒙的旅行者",
+        "organization": "南京大学",
+        "info": "马骏(教练)、朱宇博、林海波、史丰萁",
+        "unofficial": 1
+    },
+    "T291": {
+        "team_id": "T291",
+        "name": "ZJUT3 ",
+        "organization": "浙江工业大学",
+        "info": "王春平(教练)、方泽雨、杨存远、陈志强",
+        "official": 1
+    },
+    "T011": {
+        "team_id": "T011",
+        "name": "啊这",
+        "organization": "北京化工大学",
+        "info": "周晓琳(教练)、庄禹、王诗海、花犇",
+        "official": 1
+    },
+    "T157": {
+        "team_id": "T157",
+        "name": "冰冰三元一个十元三个",
+        "organization": "南京大学",
+        "info": "马骏(教练)、朱景舟、柴致远、王宇峣",
+        "unofficial": 1
+    },
+    "T159": {
+        "team_id": "T159",
+        "name": "吊打yyb",
+        "organization": "南京大学",
+        "info": "马骏(教练)、欧丰宁、邹忠奇、陈晓",
+        "unofficial": 1
+    },
+    "T008": {
+        "team_id": "T008",
+        "name": "合法字符串",
+        "organization": "北京航空航天大学",
+        "info": "宋友(教练)、姜一凡、王赵安、蒋贤蒙",
+        "official": 1
+    },
+    "T037": {
+        "team_id": "T037",
+        "name": "优哉游哉",
+        "organization": "大连理工大学",
+        "info": "梁冰(教练)、卢品仁、杨朗、余澍莘",
+        "official": 1
+    },
+    "T213": {
+        "team_id": "T213",
+        "name": "这队名好难取",
+        "organization": "上海理工大学",
+        "info": "周春樵(教练)、王必成、李明懿、任灏贇",
+        "official": 1
+    },
+    "T235": {
+        "team_id": "T235",
+        "name": "咩吖",
+        "organization": "武汉科技大学",
+        "info": "王晓峰(教练)、孟钦宇、余凌紫、吴远坪",
+        "unofficial": 1
+    },
+    "T280": {
+        "team_id": "T280",
+        "name": "灯火辛勤",
+        "organization": "浙大宁波理工学院",
+        "info": "郭新友(教练)、刘东昕、吴亦初、余建赛",
+        "official": 1
+    },
+    "T239": {
+        "team_id": "T239",
+        "name": "灵稽一动",
+        "organization": "西安电子科技大学",
+        "info": "万波(教练)、张帆、买志斌、柴东辰",
+        "official": 1
+    },
+    "T254": {
+        "team_id": "T254",
+        "name": "SWU_new",
+        "organization": "西南大学",
+        "info": "王智(教练)、秦凯鑫、陈雯丽、余少尉",
+        "official": 1
+    },
+    "T344": {
+        "team_id": "T344",
+        "name": "Eureka",
+        "organization": "福州大学",
+        "info": "傅仰耿(教练)、ygfu@qq.com、吴少冰、罗继鸿",
+        "unofficial": 1
+    },
+    "T117": {
+        "team_id": "T117",
+        "name": "阿萨打发撒",
+        "organization": "华东师范大学",
+        "info": "肖春芸(教练)、王鼎、李云帆、朱睿诚",
+        "official": 1
+    },
+    "T193": {
+        "team_id": "T193",
+        "name": "泰深",
+        "organization": "厦门大学",
+        "info": "林文水(教练)、王炳森、刘久一、赖睿朗",
+        "unofficial": 1
+    },
+    "T197": {
+        "team_id": "T197",
+        "name": "大白兔奶糖",
+        "organization": "山东大学",
+        "info": "鹿旭东(教练)、卢子辰、蔡汶澄、侯冠立",
+        "official": 1
+    },
+    "T229": {
+        "team_id": "T229",
+        "name": "机械化就输不了",
+        "organization": "同济大学",
+        "info": "叶晨(教练)、姜梓恒、赵屹雄、王宇其",
+        "official": 1
+    },
+    "T308": {
+        "team_id": "T308",
+        "name": "ZZU_0x00",
+        "organization": "郑州大学",
+        "info": "吴云鹏(教练)、陈洋、苏同、蔡文川",
+        "unofficial": 1
+    },
+    "T087": {
+        "team_id": "T087",
+        "name": "半人马座",
+        "organization": "杭州电子科技大学",
+        "info": "刘春英(教练)、蔡思林、阮宇宁、俞天瑞",
+        "official": 1
+    },
+    "T212": {
+        "team_id": "T212",
+        "name": "好很有精神",
+        "organization": "上海科技大学",
+        "info": "屠可伟(教练)、张龙文、刘梓萱、逄白",
+        "official": 1
+    },
+    "T073": {
+        "team_id": "T073",
+        "name": "你们队名就叫这个呀",
+        "organization": "哈尔滨工程大学",
+        "info": "国林(教练)、罗先镇、彭金浩、唐益",
+        "official": 1
+    },
+    "T315": {
+        "team_id": "T315",
+        "name": "心意相通",
+        "organization": "郑州轻工业大学",
+        "info": "李晔(教练)、庞浩天、徐昌鹏、高启",
+        "unofficial": 1
+    },
+    "T054": {
+        "team_id": "T054",
+        "name": "打完这场我就退役",
+        "organization": "东南大学",
+        "info": "倪庆剑(教练)、唐宁远、宋一凡、陈哲斯",
+        "official": 1
+    },
+    "T184": {
+        "team_id": "T184",
+        "name": "本地过了就是过了",
+        "organization": "齐鲁工业大学",
+        "info": "鹿文鹏(教练)、马鸿儒、杨熠辰、孙晨曦",
+        "official": 1
+    },
+    "T325": {
+        "team_id": "T325",
+        "name": "罚时要罚到无穷",
+        "organization": "中国科学技术大学",
+        "info": "孙广中(教练)、吕泽龙、曾相如、周南翔",
+        "official": 1
+    },
+    "T296": {
+        "team_id": "T296",
+        "name": "你好骚啊",
+        "organization": "浙江理工大学",
+        "info": "叶海荣(教练)、蔡乐圆、林苗镔、汤丰炜",
+        "official": 1
+    },
+    "T247": {
+        "team_id": "T247",
+        "name": "启发式误导",
+        "organization": "西北工业大学",
+        "info": "刘君瑞(教练)、刘成文、张浩、黄凯勋",
+        "official": 1
+    },
+    "T245": {
+        "team_id": "T245",
+        "name": "先把夸父水娃踢出去",
+        "organization": "西北大学",
+        "info": "王小凤(教练)、王丙伦、姬煜翔、申屠源昊",
+        "official": 1
+    },
+    "T301": {
+        "team_id": "T301",
+        "name": "学习使我快乐",
+        "organization": "浙江农林大学",
+        "info": "童孟军(教练)、张烨浩、薛卫东、陈志伟",
+        "official": 1
+    },
+    "T304": {
+        "team_id": "T304",
+        "name": "汤马丁",
+        "organization": "浙江师范大学",
+        "info": "孙广华(教练)、丁宇洋、马嘉斌、叶佳伟",
+        "official": 1
+    },
+    "T140": {
+        "team_id": "T140",
+        "name": "你一生的故事",
+        "organization": "江西财经大学",
+        "info": "尹爱华(教练)、刘力溯、黄友民、王安",
+        "official": 1
+    },
+    "T012": {
+        "team_id": "T012",
+        "name": "天花板上的飞仙舞王",
+        "organization": "北京交通大学",
+        "info": "黄华(教练)、姜家豪、章轩韬、文楷昂",
+        "official": 1
+    },
+    "T226": {
+        "team_id": "T226",
+        "name": "_Tourist",
+        "organization": "天津大学",
+        "info": "喻梅(教练)、李雨寒、杨鸣宇、焦晓宇",
+        "official": 1
+    },
+    "T040": {
+        "team_id": "T040",
+        "name": "三千",
+        "organization": "东北大学",
+        "info": "刘小锋(教练)、李泽仁、邱而沐、张晋恺",
+        "official": 1
+    },
+    "T027": {
+        "team_id": "T027",
+        "name": "你们这是什么队",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、兴淑鹏、许哲诚、陈建帅",
+        "official": 1
+    },
+    "T238": {
+        "team_id": "T238",
+        "name": "fans of wang9897",
+        "organization": "西安电子科技大学",
+        "info": "张淑平(教练)、席若尧、李世冬、冯雪晴",
+        "unofficial": 1
+    },
+    "T016": {
+        "team_id": "T016",
+        "name": "打铁自身也不硬",
+        "organization": "北京林业大学",
+        "info": "徐艳艳(教练)、李雨萱、贺渝、陈浩翔",
+        "official": 1
+    },
+    "T036": {
+        "team_id": "T036",
+        "name": "惜年",
+        "organization": "大连理工大学",
+        "info": "陆坤(教练)、衣泽民、夏鸿康、李冠霖",
+        "official": 1
+    },
+    "T223": {
+        "team_id": "T223",
+        "name": "想喝芋圆桂花乌龙奶茶",
+        "organization": "苏州大学",
+        "info": "赵雷(教练)、罗峰、乔丹、丁誉洋",
+        "official": 1
+    },
+    "T232": {
+        "team_id": "T232",
+        "name": "啊这",
+        "organization": "武汉大学",
+        "info": "董文永(教练)、向雅欣、林蒙、杨之典",
+        "official": 1
+    },
+    "T059": {
+        "team_id": "T059",
+        "name": "日暮晨昏",
+        "organization": "福州大学",
+        "info": "傅仰耿(教练)、赵镇、孔铖晗、廖智炫",
+        "unofficial": 1
+    },
+    "T284": {
+        "team_id": "T284",
+        "name": "渣男天团",
+        "organization": "浙江财经大学",
+        "info": "陈琰宏(教练)、周人豪、刘洁英、童沈阳",
+        "official": 1
+    },
+    "T208": {
+        "team_id": "T208",
+        "name": "起个名字真难",
+        "organization": "上海大学",
+        "info": "沈俊(教练)、施焱、周晓凡、邱凯",
+        "official": 1
+    },
+    "T014": {
+        "team_id": "T014",
+        "name": "阿咆变节biu",
+        "organization": "北京理工大学",
+        "info": "史继筠(教练)、阳攀、邱昌卿、范士琦",
+        "official": 1
+    },
+    "T151": {
+        "team_id": "T151",
+        "name": "卢加诺",
+        "organization": "南方科技大学",
+        "info": "唐博(教练)、蔡于飞、许天淇、何宗翰",
+        "official": 1
+    },
+    "T167": {
+        "team_id": "T167",
+        "name": "名字短一点的筛凝艾慕",
+        "organization": "南京大学",
+        "info": "马骏(教练)、周子杰、陈思睿、黄新炜",
+        "unofficial": 1,
+        "girl": 1
+    },
+    "T233": {
+        "team_id": "T233",
+        "name": "可持续化TLE",
+        "organization": "武汉纺织大学",
+        "info": "彭涛(教练)、阮志鹏、伍新琛、曾路",
+        "official": 1
+    },
+    "T314": {
+        "team_id": "T314",
+        "name": "轻大幼儿园",
+        "organization": "郑州轻工业大学",
+        "info": "李晔(教练)、黄瑞士、温锦鹏、刘龙辉",
+        "unofficial": 1
+    },
+    "T231": {
+        "team_id": "T231",
+        "name": "啊啊啊啊唉",
+        "organization": "武汉大学",
+        "info": "董文永(教练)、岳志澄、蔡旭昀、王忠涛",
+        "official": 1
+    },
+    "T339": {
+        "team_id": "T339",
+        "name": "我们想peach",
+        "organization": "重庆大学",
+        "info": "兰鑫(教练)、张翀、李放、罗晶",
+        "official": 1
+    },
+    "T302": {
+        "team_id": "T302",
+        "name": "防WA题研究院",
+        "organization": "浙江师范大学",
+        "info": "彭浩(教练)、陈泓江、秦致玮、杨晨",
+        "official": 1
+    },
+    "T146": {
+        "team_id": "T146",
+        "name": "#undefine",
+        "organization": "南昌大学",
+        "info": "于海雯(教练)、吴菲祺、赖澄宇、陈雨菲",
+        "official": 1
+    },
+    "T307": {
+        "team_id": "T307",
+        "name": "好！很有精神！",
+        "organization": "浙江中医药大学",
+        "info": "罗杰(教练)、张润涛、李弘辰、朱家伟",
+        "official": 1
+    },
+    "T136": {
+        "team_id": "T136",
+        "name": "一个顶仨",
+        "organization": "江南大学",
+        "info": "蒋敏(教练)、许扬、朱文涛、孙安",
+        "official": 1
+    },
+    "T324": {
+        "team_id": "T324",
+        "name": "一趴一躺一吃瓜",
+        "organization": "中国计量大学",
+        "info": "闻育(教练)、罗中天、余鸿皓、张家豪",
+        "official": 1
+    },
+    "T023": {
+        "team_id": "T023",
+        "name": "打代码",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、马玉龙、代皓燃、佘俊达",
+        "official": 1
+    },
+    "T203": {
+        "team_id": "T203",
+        "name": "lzz上分之旅",
+        "organization": "山东理工大学",
+        "info": "曲志坚(教练)、林瑞泽、张林、周煜浩",
+        "official": 1
+    },
+    "T057": {
+        "team_id": "T057",
+        "name": "FZU旅行团",
+        "organization": "福州大学",
+        "info": "傅仰耿(教练)、陈昊旸、李鸿宇、邓宇凡",
+        "official": 1
+    },
+    "T138": {
+        "team_id": "T138",
+        "name": "拿金就女装",
+        "organization": "江苏科技大学",
+        "info": "景国良(教练)、袁耀、王家豪、夏易辰",
+        "official": 1
+    },
+    "T265": {
+        "team_id": "T265",
+        "name": "打完比赛去吃黄焖鸡",
+        "organization": "长安大学",
+        "info": "荆树旭(教练)、袁铭蔚、王尉桦、朱子怡",
+        "official": 1
+    },
+    "T125": {
+        "team_id": "T125",
+        "name": "Plane_Plus",
+        "organization": "华南农业大学",
+        "info": "张义青(教练)、傅传蓁、许一凡、古镇豪",
+        "official": 1
+    },
+    "T013": {
+        "team_id": "T013",
+        "name": "max25仔",
+        "organization": "北京理工大学",
+        "info": "史继筠(教练)、赵予唯、张翼飞、邓飞",
+        "official": 1
+    },
+    "T095": {
+        "team_id": "T095",
+        "name": "主办方我要吃辣条",
+        "organization": "河南大学",
+        "info": "王建林(教练)、徐孝康、晁佳豪、杜开浩",
+        "official": 1
+    },
+    "T109": {
+        "team_id": "T109",
+        "name": "AChappy",
+        "organization": "湖南科技大学",
+        "info": "向德生(教练)、张鹏、王金龙、陈介东",
+        "official": 1
+    },
+    "T196": {
+        "team_id": "T196",
+        "name": "GGjidi",
+        "organization": "山东大学",
+        "info": "汪云海(教练)、郑得贤、马一凌、周若淼",
+        "official": 1
+    },
+    "T306": {
+        "team_id": "T306",
+        "name": "育英五队",
+        "organization": "浙江育英职业技术学院",
+        "info": "张驰(教练)、叶铸远、冯浚豪、郑浩宇",
+        "official": 1
+    },
+    "T025": {
+        "team_id": "T025",
+        "name": "康康康康",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、许子康、吕锐、杨竹芩",
+        "official": 1
+    },
+    "T332": {
+        "team_id": "T332",
+        "name": "千万别报计算机",
+        "organization": "中南大学",
+        "info": "余腊生(教练)、姜业鑫、郭浩博、连士熙",
+        "official": 1
+    },
+    "T329": {
+        "team_id": "T329",
+        "name": "英雄扬鞭催战马",
+        "organization": "中国石油大学（北京）",
+        "info": "范江波(教练)、陈若朋、夏方略、许思睿",
+        "official": 1
+    },
+    "T281": {
+        "team_id": "T281",
+        "name": "均衡存乎万物之间",
+        "organization": "浙大宁波理工学院",
+        "info": "蔡明伦(教练)、王麒笙、谢宇翔、陈炯烈",
+        "official": 1
+    },
+    "T320": {
+        "team_id": "T320",
+        "name": "MasterSpark",
+        "organization": "中国地质大学（武汉）",
+        "info": "张锋(教练)、雷宇辰、蒋博韬、李光哲",
+        "official": 1
+    },
+    "T123": {
+        "team_id": "T123",
+        "name": "华工的小铁匠",
+        "organization": "华南理工大学",
+        "info": "刘捷(教练)、刘泽森、王宸玺、许一多",
+        "official": 1
+    },
+    "T148": {
+        "team_id": "T148",
+        "name": "展望未来",
+        "organization": "南昌航空大学",
+        "info": "陈英(教练)、江智康、杜辉、杨攀",
+        "official": 1
+    },
+    "T221": {
+        "team_id": "T221",
+        "name": "懂的都懂",
+        "organization": "四川农业大学",
+        "info": "潘勇浩(教练)、何雨航、李昆鸿、李豪",
+        "official": 1
+    },
+    "T121": {
+        "team_id": "T121",
+        "name": "玉米炒葡萄",
+        "organization": "华东师范大学",
+        "info": "杜育根(教练)、包梁、邱存远、郭晓博",
+        "unofficial": 1
+    },
+    "T182": {
+        "team_id": "T182",
+        "name": "YZNB",
+        "organization": "宁波大学",
+        "info": "陈叶芳(教练)、曾佳敏、余嘉瑜、俞智超",
+        "official": 1
+    },
+    "T131": {
+        "team_id": "T131",
+        "name": "累计铳满",
+        "organization": "吉林大学",
+        "info": "郭东伟(教练)、郑熠焓、雷育琦、冯振杰",
+        "official": 1
+    },
+    "T076": {
+        "team_id": "T076",
+        "name": "万符必应之破戒",
+        "organization": "哈尔滨工业大学",
+        "info": "孙大烈(教练)、李东洋、魏福煊、安泊宁",
+        "official": 1
+    },
+    "T039": {
+        "team_id": "T039",
+        "name": "火石桥村民",
+        "organization": "东北大学",
+        "info": "李晓华(教练)、袁乾宸、杨博、徐士惠",
+        "official": 1
+    },
+    "T161": {
+        "team_id": "T161",
+        "name": "鸽屋咕",
+        "organization": "南京大学",
+        "info": "马骏(教练)、李博颖、蔡之恒、熊丘桓",
+        "official": 1
+    },
+    "T227": {
+        "team_id": "T227",
+        "name": "qazxswedc0001",
+        "organization": "天津大学",
+        "info": "喻梅(教练)、王彦淞、付瑞丰、刘睿",
+        "official": 1
+    },
+    "T163": {
+        "team_id": "T163",
+        "name": "杰尼龟红烧针不戳",
+        "organization": "南京大学",
+        "info": "马骏(教练)、宋子辰、曹逸中、陈弘毅",
+        "unofficial": 1
+    },
+    "T292": {
+        "team_id": "T292",
+        "name": "ZJUT4",
+        "organization": "浙江工业大学",
+        "info": "楼柯辰(教练)、叶璇、石煌宽、黄嘉宜",
+        "official": 1
+    },
+    "T084": {
+        "team_id": "T084",
+        "name": "三个拉跨",
+        "organization": "哈尔滨工业大学（威海）",
+        "info": "董开坤(教练)、和树繁、刘新一、苑世豪",
+        "official": 1
+    },
+    "T172": {
+        "team_id": "T172",
+        "name": "跃迁引擎",
+        "organization": "南京理工大学",
+        "info": "余立功(教练)、颜俊梁、王兵、徐杨世杰",
+        "official": 1
+    },
+    "T323": {
+        "team_id": "T323",
+        "name": "线上旅游真好玩",
+        "organization": "中国计量大学",
+        "info": "闻育(教练)、蔡佳伦、张霄、王龙欢",
+        "official": 1
+    },
+    "T257": {
+        "team_id": "T257",
+        "name": "队长你能教我写道DP吗",
+        "organization": "西南民族大学",
+        "info": "周绪川(教练)、蒋弦峰、丁浩楠、韦磊",
+        "official": 1
+    },
+    "T147": {
+        "team_id": "T147",
+        "name": "supernova",
+        "organization": "南昌大学",
+        "info": "于海雯(教练)、徐梓豪、汪建勋、张看起",
+        "official": 1
+    },
+    "T219": {
+        "team_id": "T219",
+        "name": "队长最爱女装",
+        "organization": "四川大学",
+        "info": "左劼(教练)、申城铭、向宇、张新",
+        "official": 1
+    },
+    "T062": {
+        "team_id": "T062",
+        "name": "瓜皮瓜皮瓜",
+        "organization": "广东财经大学",
+        "info": "高文宇(教练)、林梓康、李丽嘉、马佳伟",
+        "unofficial": 1
+    },
+    "T132": {
+        "team_id": "T132",
+        "name": "男朋友说的都队",
+        "organization": "吉首大学",
+        "info": "黄伟(教练)、阳汝昭、李宇杰、曾灿斌",
+        "official": 1
+    },
+    "T268": {
+        "team_id": "T268",
+        "name": "金猫非猫",
+        "organization": "长春理工大学",
+        "info": "李华(教练)、李龙、谭睿翔、林永琪",
+        "official": 1
+    },
+    "T267": {
+        "team_id": "T267",
+        "name": "1是素数",
+        "organization": "长春理工大学",
+        "info": "王睿(教练)、楼昌焘、邓谯阳、周泊宇",
+        "official": 1
+    },
+    "T044": {
+        "team_id": "T044",
+        "name": "不兼容",
+        "organization": "东北大学秦皇岛分校",
+        "info": "王和兴(教练)、刘泽铭、喻军宇、项溢馨",
+        "official": 1
+    },
+    "T317": {
+        "team_id": "T317",
+        "name": "仨人俩演",
+        "organization": "中北大学",
+        "info": "张静(教练)、李跃龙、郭晓莉、李东昆",
+        "unofficial": 1
+    },
+    "T171": {
+        "team_id": "T171",
+        "name": "带带小学弟",
+        "organization": "南京理工大学",
+        "info": "余立功(教练)、贾持恒、赵震、陶俊天",
+        "official": 1
+    },
+    "T204": {
+        "team_id": "T204",
+        "name": "华灯初上",
+        "organization": "山东理工大学",
+        "info": "张立红(教练)、彭子涵、闫帅先、王显超",
+        "unofficial": 1
+    },
+    "T186": {
+        "team_id": "T186",
+        "name": "签完到就去吃海底捞",
+        "organization": "青岛大学",
+        "info": "杜祥军(教练)、李斌、毛聿麒、姬忠鲁",
+        "official": 1
+    },
+    "T081": {
+        "team_id": "T081",
+        "name": "galaxy-rising",
+        "organization": "哈尔滨工业大学（威海）",
+        "info": "郭栗(教练)、陈柏羽、陈嘉睿、阮文哲",
+        "official": 1
+    },
+    "T190": {
+        "team_id": "T190",
+        "name": "赛博朋克2277",
+        "organization": "清华大学",
+        "info": "邬晓钧(教练)、谢兴宇、杨耀良、谭竣文",
+        "official": 1
+    },
+    "T327": {
+        "team_id": "T327",
+        "name": "码农五月哭",
+        "organization": "中国矿业大学",
+        "info": "毕方明(教练)、王孙逸融、周昀淳、李明阳",
+        "official": 1
+    },
+    "T270": {
+        "team_id": "T270",
+        "name": "我才是长理九队",
+        "organization": "长春理工大学",
+        "info": "李华(教练)、张和阳、段韬、张晓成",
+        "official": 1
+    },
+    "T343": {
+        "team_id": "T343",
+        "name": "求求了给萌新一个牌吧",
+        "organization": "江西师范大学",
+        "info": "吴水秀(教练)、王慷、余业鹏、邱熠",
+        "unofficial": 1
+    },
+    "T295": {
+        "team_id": "T295",
+        "name": "机电8队",
+        "organization": "浙江机电职业技术学院",
+        "info": "邹会来(教练)、杨世纪、柳徐吉、周伟剑",
+        "official": 1
+    },
+    "T047": {
+        "team_id": "T047",
+        "name": "数论只会gcd",
+        "organization": "东北农业大学",
+        "info": "李晓明(教练)、肖天顺、李泽林、张国梁",
+        "official": 1
+    },
+    "T112": {
+        "team_id": "T112",
+        "name": "数论是我大哥",
+        "organization": "湖州师范学院",
+        "info": "计培良(教练)、谢宇成、董剑锋、黄冲",
+        "official": 1
+    },
+    "T160": {
+        "team_id": "T160",
+        "name": "伽马猪",
+        "organization": "南京大学",
+        "info": "马骏(教练)、郑翰、回溯、曹云帆",
+        "unofficial": 1
+    },
+    "T311": {
+        "team_id": "T311",
+        "name": "ZZU_0xAA",
+        "organization": "郑州大学",
+        "info": "吴云鹏(教练)、刘世纪、李智宇、黄笑凡",
+        "unofficial": 1
+    },
+    "T258": {
+        "team_id": "T258",
+        "name": "队长我能去你寝室敲代码吗",
+        "organization": "西南民族大学",
+        "info": "周绪川(教练)、何佳文、夏启弘、张洋",
+        "official": 1
+    },
+    "T049": {
+        "team_id": "T049",
+        "name": "黎明初晓",
+        "organization": "东北师范大学",
+        "info": "罗娜(教练)、童浩龙、李嘉琦、徐文浩",
+        "official": 1
+    },
+    "T064": {
+        "team_id": "T064",
+        "name": "平砍连击带顺劈",
+        "organization": "广东工业大学",
+        "info": "孙宣东(教练)、潘敏忠、李晓成、钟智锋",
+        "official": 1
+    },
+    "T144": {
+        "team_id": "T144",
+        "name": "MNNU_19",
+        "organization": "闽南师范大学",
+        "info": "童先群(教练)、郑咏津、傅俊斌、李亚楠",
+        "unofficial": 1
+    },
+    "T256": {
+        "team_id": "T256",
+        "name": "读写锁写线程饥饿",
+        "organization": "西南交通大学",
+        "info": "喻琇瑛(教练)、江胤佐、应豪、宋毅飞",
+        "official": 1
+    },
+    "T143": {
+        "team_id": "T143",
+        "name": "那可以浪起来",
+        "organization": "辽宁大学",
+        "info": "曲大鹏(教练)、阎坷凡、余玥良、雷震宇",
+        "unofficial": 1
+    },
+    "T183": {
+        "team_id": "T183",
+        "name": "这不是人均算法吗",
+        "organization": "宁波大学",
+        "info": "陈叶芳(教练)、赵文泽、陈挺扬、陈宇杰",
+        "official": 1
+    },
+    "T194": {
+        "team_id": "T194",
+        "name": "有一说三",
+        "organization": "厦门大学",
+        "info": "林文水(教练)、颜集源、李嘉龙、高言峰",
+        "official": 1
+    },
+    "T009": {
+        "team_id": "T009",
+        "name": "将来我一定比你聪明比你强",
+        "organization": "北京航空航天大学",
+        "info": "宋友(教练)、常容熇、黄云依、王梓浔",
+        "official": 1
+    },
+    "T342": {
+        "team_id": "T342",
+        "name": "未名",
+        "organization": "重庆邮电大学",
+        "info": "甘玲(教练)、盖中会、黄晨峰、娄奚文炀",
+        "official": 1
+    },
+    "T274": {
+        "team_id": "T274",
+        "name": "T罗奥特曼",
+        "organization": "长沙学院",
+        "info": "黄娟(教练)、刘洋、赵波、龚朝瑞",
+        "official": 1
+    },
+    "T218": {
+        "team_id": "T218",
+        "name": "吾晓之以理",
+        "organization": "深圳大学",
+        "info": "张小健(教练)、许伟鑫、潘志豪、李宇良",
+        "official": 1
+    },
+    "T152": {
+        "team_id": "T152",
+        "name": "温特图尔",
+        "organization": "南方科技大学",
+        "info": "唐博(教练)、李昀镀、黎原朝、刘旭坤",
+        "official": 1
+    },
+    "T093": {
+        "team_id": "T093",
+        "name": "几丁质",
+        "organization": "河海大学",
+        "info": "张雪洁(教练)、蒋子俊、占羽淳、邓伦",
+        "official": 1
+    },
+    "T045": {
+        "team_id": "T045",
+        "name": "第五分块",
+        "organization": "东北电力大学",
+        "info": "王敬东(教练)、徐浩东、关凯铭、翁子晗",
+        "official": 1
+    },
+    "T067": {
+        "team_id": "T067",
+        "name": "我永远喜欢Antinomy.jpg",
+        "organization": "广西大学",
+        "info": "詹锋(教练)、王利明、蓝秋雨、陈治成",
+        "official": 1
+    },
+    "T079": {
+        "team_id": "T079",
+        "name": "今天AC了吗",
+        "organization": "哈尔滨工业大学（深圳）",
+        "info": "唐琳琳(教练)、杨博康、尤加成、廖蕴杰",
+        "official": 1
+    },
+    "T127": {
+        "team_id": "T127",
+        "name": "紫荆路听蛙呱",
+        "organization": "华南师范大学",
+        "info": "曹霑懋(教练)、陈德捷、宋金龙、王斯东",
+        "official": 1
+    },
+    "T297": {
+        "team_id": "T297",
+        "name": "AC不如跳舞",
+        "organization": "浙江农林大学",
+        "info": "童孟军(教练)、戴振龙、韩文康、盛洪涛",
+        "official": 1
+    },
+    "T341": {
+        "team_id": "T341",
+        "name": "乐子",
+        "organization": "重庆邮电大学",
+        "info": "甘玲(教练)、何杨、罗元凯、荀泽梁",
+        "official": 1
+    },
+    "T174": {
+        "team_id": "T174",
+        "name": "放码过来",
+        "organization": "南京信息工程大学",
+        "info": "郑关胜(教练)、胡广、王徐旸、张兴洋",
+        "official": 1
+    },
+    "T264": {
+        "team_id": "T264",
+        "name": "打铁三人组",
+        "organization": "战略支援部队信息工程大学",
+        "info": "周刚(教练)、兰天宇、刘子扬、林泽昊",
+        "unofficial": 1
+    },
+    "T195": {
+        "team_id": "T195",
+        "name": "雨过天晴二重虹",
+        "organization": "厦门大学",
+        "info": "林文水(教练)、陈潇、邱宇航、赖彦丞",
+        "official": 1
+    },
+    "T098": {
+        "team_id": "T098",
+        "name": "芜湖电台请求起飞",
+        "organization": "河南理工大学",
+        "info": "陈艳丽(教练)、张乔然、何厚蒙、胡定宇",
+        "unofficial": 1
+    },
+    "T070": {
+        "team_id": "T070",
+        "name": "给周学姐上女装",
+        "organization": "桂林电子科技大学",
+        "info": "王子民(教练)、李龙飞、周博睿、王选文",
+        "official": 1
+    },
+    "T290": {
+        "team_id": "T290",
+        "name": "ZJUT11",
+        "organization": "浙江工业大学",
+        "info": "韩姗姗(教练)、张宇翔、李亚伦、陈洁怡",
+        "unofficial": 1
+    },
+    "T128": {
+        "team_id": "T128",
+        "name": "绵阳扬了",
+        "organization": "华中科技大学",
+        "info": "何琨(教练)、原圣聚、李仕奇、彭力",
+        "unofficial": 1
+    },
+    "T273": {
+        "team_id": "T273",
+        "name": "你保底五星必出武器",
+        "organization": "长沙理工大学",
+        "info": "邓广慧(教练)、易斯龙、陈彬彬、刘帅",
+        "official": 1
+    },
+    "T107": {
+        "team_id": "T107",
+        "name": "随便搞搞",
+        "organization": "湖南大学",
+        "info": "吴昊(教练)、欧阳建鸿、蔡文铠、吴阶成",
+        "official": 1
+    },
+    "T228": {
+        "team_id": "T228",
+        "name": "电脑一带三",
+        "organization": "同济大学",
+        "info": "叶晨(教练)、张迪、高天宸、庞鹏瞩",
+        "official": 1
+    },
+    "T205": {
+        "team_id": "T205",
+        "name": "BreakFast",
+        "organization": "山东师范大学",
+        "info": "李圣涛(教练)、李浩然、蓝宗慰、王欣",
+        "official": 1
+    },
+    "T322": {
+        "team_id": "T322",
+        "name": "不要一起撑死",
+        "organization": "中国海洋大学",
+        "info": "刘培顺(教练)、郑玉龙、李新哲、于昊",
+        "official": 1
+    },
+    "T097": {
+        "team_id": "T097",
+        "name": "哥咱家AC了",
+        "organization": "河南理工大学",
+        "info": "王建芳(教练)、吴怡龙、张海洋、马晓文",
+        "official": 1
+    },
+    "T240": {
+        "team_id": "T240",
+        "name": "鑫森众焱垚",
+        "organization": "西安电子科技大学",
+        "info": "孟广兰(教练)、王文煜、谭升阳、郭浩杰",
+        "official": 1
+    },
+    "T234": {
+        "team_id": "T234",
+        "name": "憨包王",
+        "organization": "武汉科技大学",
+        "info": "李顺新(教练)、韩承志、刘雄、蒋士鹏",
+        "official": 1
+    },
+    "T046": {
+        "team_id": "T046",
+        "name": "dlk失联了",
+        "organization": "东北农业大学",
+        "info": "李晓明(教练)、杨坤、唐瑀佳、赵晨",
+        "official": 1,
+        "girl": 1
+    },
+    "T255": {
+        "team_id": "T255",
+        "name": "ydd",
+        "organization": "西南交通大学",
+        "info": "廖革元(教练)、肖浩科、张未希、李远杰",
+        "official": 1
+    },
+    "T261": {
+        "team_id": "T261",
+        "name": "little busters",
+        "organization": "新疆大学",
+        "info": "安海兵(教练)、王嘉琪、宋雨轩、吕昂",
+        "official": 1
+    },
+    "T100": {
+        "team_id": "T100",
+        "name": "黄色闪光",
+        "organization": "河南农业大学",
+        "info": "尚俊平(教练)、巩皓昕、吴建新、熊梦轩",
+        "official": 1
+    },
+    "T129": {
+        "team_id": "T129",
+        "name": "你在赣神魔",
+        "organization": "华中农业大学",
+        "info": "章英(教练)、胡海川、詹晔康、赵钰",
+        "official": 1
+    },
+    "T063": {
+        "team_id": "T063",
+        "name": "啦啦啦LaLaLa",
+        "organization": "广东工业大学",
+        "info": "孙宣东(教练)、李东明、罗增沛、李坤清",
+        "official": 1
+    },
+    "T111": {
+        "team_id": "T111",
+        "name": "哥，咱们家有钱啦",
+        "organization": "湖南人文科技学院",
+        "info": "肖敏雷(教练)、吕翱、张嘉鑫、彭方正",
+        "official": 1
+    },
+    "T154": {
+        "team_id": "T154",
+        "name": "AquaNeko",
+        "organization": "南京大学",
+        "info": "马骏(教练)、黄铭昊、陈劲鸿、何宇杭",
+        "unofficial": 1
+    },
+    "T278": {
+        "team_id": "T278",
+        "name": "100iq+100iq+100iq",
+        "organization": "浙大城市学院",
+        "info": "柯海丰(教练)、颜智瑶、章立晨、何勇杰",
+        "official": 1
+    },
+    "T080": {
+        "team_id": "T080",
+        "name": "无名",
+        "organization": "哈尔滨工业大学（深圳）",
+        "info": "唐琳琳(教练)、方邱旸、王冬阳、唐隆斌",
+        "unofficial": 1
+    },
+    "T216": {
+        "team_id": "T216",
+        "name": "0ng",
+        "organization": "深圳大学",
+        "info": "张小健(教练)、丁优龙、梁泽荣、齐宇轩",
+        "official": 1
+    },
+    "T090": {
+        "team_id": "T090",
+        "name": "杭师观光团",
+        "organization": "杭州师范大学",
+        "info": "单振宇(教练)、邱龙风、张凯莉、张传",
+        "official": 1
+    },
+    "T164": {
+        "team_id": "T164",
+        "name": "卷翻天",
+        "organization": "南京大学",
+        "info": "马骏(教练)、张天陵、王予曦、倪锦涵",
+        "official": 1
+    },
+    "T024": {
+        "team_id": "T024",
+        "name": "咕咕队",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、汤子唯、黄思喆、石映奇",
+        "unofficial": 1
+    },
+    "T141": {
+        "team_id": "T141",
+        "name": "比赛看运气",
+        "organization": "乐山师范学院",
+        "info": "杨骏(教练)、蔡悦益、游印辉、杨国庆",
+        "official": 1
+    },
+    "T230": {
+        "team_id": "T230",
+        "name": "温大二队",
+        "organization": "温州大学",
+        "info": "胡明晓(教练)、程煜、朱林博、郑文尧",
+        "official": 1
+    },
+    "T266": {
+        "team_id": "T266",
+        "name": "有神出没",
+        "organization": "长春工业大学",
+        "info": "潘超(教练)、于政文、黄志鹏、李昊霖",
+        "official": 1
+    },
+    "T018": {
+        "team_id": "T018",
+        "name": "人菜瘾大",
+        "organization": "北京师范大学",
+        "info": "徐鹏飞(教练)、高艺炜、李邦祺、彭泊词",
+        "unofficial": 1
+    },
+    "T330": {
+        "team_id": "T330",
+        "name": "WA题自动机",
+        "organization": "中国石油大学（华东）",
+        "info": "张学辉(教练)、徐乐、林晨、郭楠",
+        "official": 1
+    },
+    "T276": {
+        "team_id": "T276",
+        "name": "北岭山二队",
+        "organization": "肇庆学院",
+        "info": "钟鏸(教练)、马増鑫、黄恒锌、李俊辉",
+        "official": 1
+    },
+    "T050": {
+        "team_id": "T050",
+        "name": "细胞色素",
+        "organization": "东北师范大学",
+        "info": "李宏博(教练)、程磊、万锴迪、韩巍",
+        "official": 1
+    },
+    "T316": {
+        "team_id": "T316",
+        "name": "不做选择我们都要",
+        "organization": "中北大学",
+        "info": "潘广贞(教练)、孙琪、李文深、裴端",
+        "official": 1
+    },
+    "T058": {
+        "team_id": "T058",
+        "name": "Last Second",
+        "organization": "福州大学",
+        "info": "傅仰耿(教练)、汪辉阳、张妍、蔡少杰",
+        "unofficial": 1
+    },
+    "T313": {
+        "team_id": "T313",
+        "name": "明早启城",
+        "organization": "郑州轻工业大学",
+        "info": "常化文(教练)、许启明、张迎早、刘广城",
+        "official": 1
+    },
+    "T207": {
+        "team_id": "T207",
+        "name": "泛函分析心犯寒",
+        "organization": "上海大学",
+        "info": "沈云付(教练)、李肖帆、朱剑翔、许天励",
+        "official": 1
+    },
+    "T043": {
+        "team_id": "T043",
+        "name": "lucky crystal",
+        "organization": "东北大学秦皇岛分校",
+        "info": "王和兴(教练)、张烨槟、张逸凡、沈晓汐",
+        "official": 1
+    },
+    "T055": {
+        "team_id": "T055",
+        "name": "骗个综测分",
+        "organization": "福建工程学院",
+        "info": "陈义(教练)、黄森源、黄斌、吴锐滨",
+        "official": 1
+    },
+    "T319": {
+        "team_id": "T319",
+        "name": "三只小僧挑水喝",
+        "organization": "中国地质大学（北京）",
+        "info": "张玉清(教练)、任星韬、樊昱坤、曹佳宁",
+        "official": 1
+    },
+    "T150": {
+        "team_id": "T150",
+        "name": "最终一战",
+        "organization": "南昌理工学院",
+        "info": "胡荣群(教练)、胡志宇、李俊、杨意飞",
+        "official": 1
+    },
+    "T178": {
+        "team_id": "T178",
+        "name": "奇怪的队名",
+        "organization": "南阳理工学院",
+        "info": "靳冰(教练)、胡英豪、李佳男、徐斌磊",
+        "official": 1
+    },
+    "T222": {
+        "team_id": "T222",
+        "name": "不取队名好嘛",
+        "organization": "苏州大学",
+        "info": "赵雷(教练)、郑悦薇、赵若愚、李舒淇",
+        "official": 1,
+        "girl": 1
+    },
+    "T032": {
+        "team_id": "T032",
+        "name": "老中医",
+        "organization": "成都东软学院",
+        "info": "田霖(教练)、李亚、朱子良、杨海东",
+        "official": 1
+    },
+    "T042": {
+        "team_id": "T042",
+        "name": "Friday",
+        "organization": "东北大学秦皇岛分校",
+        "info": "王和兴(教练)、刘婉乔、冯世龙、邓楠",
+        "official": 1
+    },
+    "T175": {
+        "team_id": "T175",
+        "name": "来生要不要做咸鱼女啊",
+        "organization": "南京信息工程大学",
+        "info": "郑关胜(教练)、邹佳云、王艺、金舒文",
+        "official": 1,
+        "girl": 1
+    },
+    "T176": {
+        "team_id": "T176",
+        "name": "大猪小猪落玉盘",
+        "organization": "南京邮电大学",
+        "info": "陈志(教练)、金益凡、许轩诚、王奕乾",
+        "official": 1
+    },
+    "T108": {
+        "team_id": "T108",
+        "name": "酸味橘子",
+        "organization": "湖南工业大学",
+        "info": "邓晓军(教练)、王俊、王帆、刘平涛",
+        "official": 1
+    },
+    "T145": {
+        "team_id": "T145",
+        "name": "听风",
+        "organization": "闽南师范大学",
+        "info": "童先群(教练)、林黎辉、杨嘉诚、杨成汉",
+        "unofficial": 1
+    },
+    "T048": {
+        "team_id": "T048",
+        "name": "无网络难办",
+        "organization": "东北农业大学",
+        "info": "李晓明(教练)、王鹂晴、王齐、王伟林",
+        "official": 1
+    },
+    "T030": {
+        "team_id": "T030",
+        "name": "我又双叒叕A了一道题",
+        "organization": "常熟理工学院",
+        "info": "聂盼红(教练)、咸翔、齐文韬、蔡德佳",
+        "unofficial": 1
+    },
+    "T166": {
+        "team_id": "T166",
+        "name": "烂飞机",
+        "organization": "南京大学",
+        "info": "马骏(教练)、水兵、陈元旻、蒋潇鹏",
+        "unofficial": 1
+    },
+    "T017": {
+        "team_id": "T017",
+        "name": "奥利奥利奥",
+        "organization": "北京师范大学",
+        "info": "徐鹏飞(教练)、王亚菁、卢致远、郭轩宇",
+        "official": 1
+    },
+    "T124": {
+        "team_id": "T124",
+        "name": "换个队名转运",
+        "organization": "华南理工大学",
+        "info": "陈俊颖(教练)、吴梓柯、黄佳俊、张逸松",
+        "official": 1
+    },
+    "T038": {
+        "team_id": "T038",
+        "name": "中山学院二队",
+        "organization": "电子科技大学中山学院",
+        "info": "李瑞芳(教练)、金志康、陈棉豪、李旨轩",
+        "official": 1
+    },
+    "T035": {
+        "team_id": "T035",
+        "name": "哇哈哈咔咔",
+        "organization": "大连海事大学",
+        "info": "谢益武(教练)、孟浩然、李长雅、郑宇濠",
+        "official": 1
+    },
+    "T056": {
+        "team_id": "T056",
+        "name": "样例过了就是过了",
+        "organization": "福建师范大学",
+        "info": "吴闻(教练)、胡天为、林嘉妮、陈政霖",
+        "official": 1
+    },
+    "T279": {
+        "team_id": "T279",
+        "name": "让我来朵蜜你",
+        "organization": "浙大城市学院",
+        "info": "柯海丰(教练)、金方永、徐浩达、潘岩",
+        "unofficial": 1
+    },
+    "T246": {
+        "team_id": "T246",
+        "name": "黑色切题者",
+        "organization": "西北工业大学",
+        "info": "刘君瑞(教练)、李奕言、徐天翼、郭笑嫣",
+        "official": 1
+    },
+    "T001": {
+        "team_id": "T001",
+        "name": "看看这发对不队",
+        "organization": "安徽大学",
+        "info": "周健(教练)、王瀚平、郭星凯、杨晨静",
+        "official": 1
+    },
+    "T065": {
+        "team_id": "T065",
+        "name": "我们只写一题",
+        "organization": "广东技术师范大学",
+        "info": "刘兰(教练)、罗伟健、陈岱杰、张杰",
+        "official": 1
+    },
+    "T269": {
+        "team_id": "T269",
+        "name": "听取蛙声一片",
+        "organization": "长春理工大学",
+        "info": "赵建平(教练)、黄宏进、杜雨轩、张佳浩",
+        "unofficial": 1
+    },
+    "T094": {
+        "team_id": "T094",
+        "name": "我也不知道该取什么名字",
+        "organization": "河海大学",
+        "info": "朱云(教练)、钱霖奕、王毓珣、戴宇晗",
+        "official": 1
+    },
+    "T263": {
+        "team_id": "T263",
+        "name": "来自东方的神秘力量",
+        "organization": "燕山大学",
+        "info": "穆运峰(教练)、戴昊、陈一铭、李曲铭",
+        "official": 1
+    },
+    "T201": {
+        "team_id": "T201",
+        "name": "石室诗士施氏誓食十狮",
+        "organization": "山东大学（威海）",
+        "info": "金长龙(教练)、李济帆、施钧瀚、王筱童",
+        "unofficial": 1
+    },
+    "T334": {
+        "team_id": "T334",
+        "name": "面向样例程序设计",
+        "organization": "中南民族大学",
+        "info": "刘卫平(教练)、陆尹凯、郑秋雨、程家威",
+        "unofficial": 1
+    },
+    "T126": {
+        "team_id": "T126",
+        "name": "AFOer",
+        "organization": "华南师范大学",
+        "info": "梁军(教练)、容加林、何智聪、罗志豪",
+        "official": 1
+    },
+    "T225": {
+        "team_id": "T225",
+        "name": "鸣谦",
+        "organization": "太原理工大学",
+        "info": "林福平(教练)、孟子杰、王琳雅、赵云霄",
+        "official": 1
+    },
+    "T021": {
+        "team_id": "T021",
+        "name": "祝楼下拿金牌",
+        "organization": "北京师范大学珠海分校",
+        "info": "叶梦杰(教练)、郑皓洲、陈建邦、袁希岚",
+        "official": 1
+    },
+    "T096": {
+        "team_id": "T096",
+        "name": "AWSL",
+        "organization": "河南理工大学",
+        "info": "王建芳(教练)、李强、尹亚雨、杨鹏伟",
+        "official": 1
+    },
+    "T199": {
+        "team_id": "T199",
+        "name": "快乐自动机",
+        "organization": "山东大学（威海）",
+        "info": "袁灏(教练)、刘文涵、庄昊霖、付同有",
+        "unofficial": 1
+    },
+    "T200": {
+        "team_id": "T200",
+        "name": "蓝到紫",
+        "organization": "山东大学（威海）",
+        "info": "袁灏(教练)、于帅聪、宣启楠、周鑫",
+        "official": 1
+    },
+    "T188": {
+        "team_id": "T188",
+        "name": "她与WA皆是遗憾",
+        "organization": "青岛理工大学",
+        "info": "吴万春(教练)、耿家浩、郑振松、杨晓岐",
+        "official": 1
+    },
+    "T115": {
+        "team_id": "T115",
+        "name": "就这个我喜欢这个",
+        "organization": "华东交通大学",
+        "info": "李雄(教练)、刘作霖、黄宇廷、谭威",
+        "unofficial": 1
+    },
+    "T275": {
+        "team_id": "T275",
+        "name": "迪迦长大分迦",
+        "organization": "长沙学院",
+        "info": "魏歌(教练)、曾宪根、刘杰、谢涛",
+        "unofficial": 1
+    },
+    "T069": {
+        "team_id": "T069",
+        "name": "这就是墙外的世界吗",
+        "organization": "广州大学",
+        "info": "丘凯伦(教练)、杨栋材、卢飞龙、赵端浩",
+        "unofficial": 1
+    },
+    "T262": {
+        "team_id": "T262",
+        "name": "第七班",
+        "organization": "新疆大学",
+        "info": "安海兵(教练)、杜衡、郭一贤、项涵之",
+        "official": 1
+    },
+    "T310": {
+        "team_id": "T310",
+        "name": "ZZU_0x66",
+        "organization": "郑州大学",
+        "info": "吴云鹏(教练)、李玺、朱凯乐、葛厚钰",
+        "official": 1
+    },
+    "T185": {
+        "team_id": "T185",
+        "name": "脆皮儿核桃",
+        "organization": "青岛大学",
+        "info": "杜祥军(教练)、曹阳、崔浩、牛平宪",
+        "official": 1
+    },
+    "T028": {
+        "team_id": "T028",
+        "name": "祝你3456没有7",
+        "organization": "北京邮电大学",
+        "info": "杨亚(教练)、王晓晖、何祯涛、王淇森",
+        "unofficial": 1
+    },
+    "T260": {
+        "team_id": "T260",
+        "name": "起飞~",
+        "organization": "西南石油大学",
+        "info": "谢季峰(教练)、万燚炜、蒋俊、邱海洋",
+        "official": 1
+    },
+    "T277": {
+        "team_id": "T277",
+        "name": "北岭山一队",
+        "organization": "肇庆学院",
+        "info": "钟鏸(教练)、黄立权、魏立城、杨志杰",
+        "unofficial": 1
+    },
+    "T082": {
+        "team_id": "T082",
+        "name": "放学后茶会",
+        "organization": "哈尔滨工业大学（威海）",
+        "info": "刘杨(教练)、苏世睿、赵禹博、王佩佩",
+        "official": 1
+    },
+    "T283": {
+        "team_id": "T283",
+        "name": "虹光",
+        "organization": "浙江财经大学",
+        "info": "陈琰宏(教练)、王靖淇、陈自然、陈嘉俊",
+        "official": 1
+    },
+    "T237": {
+        "team_id": "T237",
+        "name": "一蛙二兔三马零獒",
+        "organization": "武汉理工大学",
+        "info": "赵冬冬(教练)、王昱豪、杨志刚、吴宇航",
+        "official": 1
+    },
+    "T041": {
+        "team_id": "T041",
+        "name": "CFA-Y剑指",
+        "organization": "东北大学秦皇岛分校",
+        "info": "王和兴(教练)、张紫闻、冯绪杰、吴羿霖",
+        "official": 1
+    },
+    "T236": {
+        "team_id": "T236",
+        "name": "TLEnoTLE",
+        "organization": "武汉理工大学",
+        "info": "赵广辉(教练)、楼旭辉、田平安、刘柏墉",
+        "official": 1
+    },
+    "T202": {
+        "team_id": "T202",
+        "name": "徐巨女装哪有这么可爱",
+        "organization": "山东大学（威海）",
+        "info": "金长龙(教练)、陈龙泽、孙天琦、徐晏辰",
+        "unofficial": 1
+    },
+    "T214": {
+        "team_id": "T214",
+        "name": "我想睡午觉",
+        "organization": "绍兴文理学院",
+        "info": "黄龙军(教练)、周建伟、孙叶峰、江啸鹏",
+        "official": 1
+    },
+    "T165": {
+        "team_id": "T165",
+        "name": "看看队名到底能起多长",
+        "organization": "南京大学",
+        "info": "马骏(教练)、单博、张玄逸、刘子扬",
+        "unofficial": 1
+    },
+    "T068": {
+        "team_id": "T068",
+        "name": "差不多得了",
+        "organization": "广西师范大学",
+        "info": "王金艳(教练)、黎启宇、李鑫、谭宙",
+        "official": 1
+    },
+    "T305": {
+        "team_id": "T305",
+        "name": "迪士尼在逃程序媛",
+        "organization": "浙江万里学院",
+        "info": "柴本成(教练)、朱梦涵、李妍薇、南柳茹",
+        "official": 1,
+        "girl": 1
+    },
+    "T102": {
+        "team_id": "T102",
+        "name": "从WA开始的打铁生涯",
+        "organization": "黑龙江大学",
+        "info": "徐辉(教练)、许健炜、彭泶淞、陆鹏艺",
+        "official": 1
+    },
+    "T077": {
+        "team_id": "T077",
+        "name": "我不知道啊",
+        "organization": "哈尔滨工业大学",
+        "info": "孙大烈(教练)、庄舒漫、姚澜、赖思颖",
+        "unofficial": 1,
+        "girl": 1
+    },
+    "T134": {
+        "team_id": "T134",
+        "name": "凤梨麻麻带两崽",
+        "organization": "嘉应学院",
+        "info": "陈广明(教练)、曾明霞、张丽、周凤宜",
+        "official": 1,
+        "girl": 1
+    },
+    "T224": {
+        "team_id": "T224",
+        "name": "没有异议",
+        "organization": "台州学院",
+        "info": "陈荣钦(教练)、王非凡、丁涵炜、张嘉铭",
+        "official": 1
+    },
+    "T180": {
+        "team_id": "T180",
+        "name": "极夜之光",
+        "organization": "南阳师范学院",
+        "info": "刘向娇(教练)、李国帅、杜汪洋、范龙龙",
+        "official": 1
+    },
+    "T309": {
+        "team_id": "T309",
+        "name": "ZZU_0x33",
+        "organization": "郑州大学",
+        "info": "吴云鹏(教练)、郭晓龙、王鹏、李浩",
+        "official": 1
+    },
+    "T078": {
+        "team_id": "T078",
+        "name": "爱吃希尔队",
+        "organization": "哈尔滨工业大学（深圳）",
+        "info": "唐琳琳(教练)、董泽余、赵和杰、叶椅琦",
+        "unofficial": 1
+    },
+    "T340": {
+        "team_id": "T340",
+        "name": "划啊划",
+        "organization": "重庆邮电大学",
+        "info": "甘玲(教练)、赖晓云、郭怡然、田哲宇",
+        "unofficial": 1
+    },
+    "T133": {
+        "team_id": "T133",
+        "name": "能喝八吨奶茶",
+        "organization": "暨南大学",
+        "info": "王传胜(教练)、张羡凡、李煌、蔡洁萍",
+        "official": 1,
+        "girl": 1
+    },
+    "T170": {
+        "team_id": "T170",
+        "name": "草莓广冻",
+        "organization": "南京理工大学",
+        "info": "余立功(教练)、陆宗泽、潘玉栋、李广泽",
+        "official": 1
+    },
+    "T051": {
+        "team_id": "T051",
+        "name": "再过十年",
+        "organization": "东华理工大学",
+        "info": "李祥(教练)、王奕涵、蓝旺、潘孙发",
+        "official": 1
+    },
+    "T162": {
+        "team_id": "T162",
+        "name": "还没想好叫什么",
+        "organization": "南京大学",
+        "info": "马骏(教练)、王恺予、王锦朋、张乃仁",
+        "official": 1
+    },
+    "T215": {
+        "team_id": "T215",
+        "name": "抬头是云",
+        "organization": "绍兴文理学院元培学院",
+        "info": "蔡尚真(教练)、张云、郑旭辉、孙质方",
+        "official": 1
+    },
+    "T282": {
+        "team_id": "T282",
+        "name": "我很高贵wa没机会",
+        "organization": "浙大宁波理工学院",
+        "info": "郭新友(教练)、罗吟吟、马宗荣、林晶晶",
+        "official": 1,
+        "girl": 1
+    },
+    "T071": {
+        "team_id": "T071",
+        "name": "不懂就问",
+        "organization": "国防科技大学",
+        "info": "尹良泽(教练)、胡一帆、孙启尧、刘明宇",
+        "official": 1
+    },
+    "T271": {
+        "team_id": "T271",
+        "name": "我真是长理9队",
+        "organization": "长春理工大学",
+        "info": "王睿(教练)、王宁、商怀朋、唐依凡",
+        "official": 1
+    },
+    "T312": {
+        "team_id": "T312",
+        "name": "ZZU_0xBB",
+        "organization": "郑州大学",
+        "info": "吴云鹏(教练)、刘泽、张正威、马少杰",
+        "unofficial": 1
+    },
+    "T241": {
+        "team_id": "T241",
+        "name": "XXUUTT",
+        "organization": "西安理工大学",
+        "info": "赵金伟(教练)、徐诚、郭双龙、赵佳俊",
+        "unofficial": 1
+    },
+    "T003": {
+        "team_id": "T003",
+        "name": "Astra",
+        "organization": "北方工业大学",
+        "info": "郭峰(教练)、乔铭宇、徐绍峰、陈旻杰",
+        "unofficial": 1
+    },
+    "T034": {
+        "team_id": "T034",
+        "name": "守护全世界最好的徐顺",
+        "organization": "成都理工大学",
+        "info": "李军(教练)、邓雲中、常颖、徐顺",
+        "official": 1
+    },
+    "T110": {
+        "team_id": "T110",
+        "name": "三个打铁匠",
+        "organization": "湖南理工学院",
+        "info": "李文彬(教练)、彭浜、钟志锴、雷小东",
+        "official": 1
+    },
+    "T294": {
+        "team_id": "T294",
+        "name": "别扒拉我",
+        "organization": "浙江工业大学之江学院",
+        "info": "郭伟青(教练)、季俊乐、徐佳聪、毛泽峰",
+        "official": 1
+    },
+    "T338": {
+        "team_id": "T338",
+        "name": "那咋办嘛",
+        "organization": "重庆大学",
+        "info": "李佳(教练)、金凝、陈冠廷、黄琦",
+        "official": 1
+    },
+    "T206": {
+        "team_id": "T206",
+        "name": "北冥飞鱼",
+        "organization": "上海大学",
+        "info": "李卫民(教练)、于舒阳 、陈彦、陈紫怡",
+        "official": 1,
+        "girl": 1
+    },
+    "T113": {
+        "team_id": "T113",
+        "name": "想队名",
+        "organization": "湖州师范学院",
+        "info": "计培良(教练)、刘江玲、叶泽支、陶谦文",
+        "official": 1,
+        "girl": 1
+    },
+    "T242": {
+        "team_id": "T242",
+        "name": "拿牌就给队友表白",
+        "organization": "西安理工大学",
+        "info": "蔡欣华(教练)、雷唐龙、沈超宇、钱坤",
+        "official": 1
+    },
+    "T243": {
+        "team_id": "T243",
+        "name": "求求你们别a了",
+        "organization": "西安理工大学",
+        "info": "柳宇(教练)、李雄雄、李正曦、周亚丹",
+        "unofficial": 1
+    },
+    "T187": {
+        "team_id": "T187",
+        "name": "IG",
+        "organization": "青岛工学院",
+        "info": "房正华(教练)、蔡林辉阳、郑宇超、孙金平",
+        "official": 1
+    },
+    "T217": {
+        "team_id": "T217",
+        "name": "签到，摸鱼",
+        "organization": "深圳大学",
+        "info": "张小健(教练)、尹玮璐、费楚雯、陈希哲",
+        "unofficial": 1
+    },
+    "T116": {
+        "team_id": "T116",
+        "name": "真有意思",
+        "organization": "华东理工大学",
+        "info": "罗勇军(教练)、韩祎、刘天宇、郦文俊",
+        "official": 1
+    },
+    "T019": {
+        "team_id": "T019",
+        "name": "不会用雷的徐志鸟",
+        "organization": "北京师范大学(珠海校区)",
+        "info": "冯速(教练)、刘雨杭、夏梁敏、陈天润",
+        "official": 1
+    },
+    "T053": {
+        "team_id": "T053",
+        "name": "打铁成功就地复读",
+        "organization": "东南大学",
+        "info": "倪庆剑(教练)、潘景瑞、刘幽远、李明洋",
+        "official": 1
+    },
+    "T085": {
+        "team_id": "T085",
+        "name": "哈理工7队",
+        "organization": "哈尔滨理工大学",
+        "info": "金恩海(教练)、黎晓蓓、刘宏昕、贺思语",
+        "official": 1,
+        "girl": 1
+    },
+    "T106": {
+        "team_id": "T106",
+        "name": "人均身高180",
+        "organization": "湖北中医药大学",
+        "info": "肖瑞(教练)、涂诺辛格、熊黎、吴徵靖",
+        "official": 1
+    },
+    "T298": {
+        "team_id": "T298",
+        "name": "Kvara",
+        "organization": "浙江农林大学",
+        "info": "童孟军(教练)、夏周全、张久祎、高俊",
+        "unofficial": 1
+    },
+    "T004": {
+        "team_id": "T004",
+        "name": "邪王真眼是最强",
+        "organization": "北方工业大学",
+        "info": "孙晶(教练)、张荔姗、郭君怡、秦玮婧",
+        "official": 1,
+        "girl": 1
+    },
+    "T244": {
+        "team_id": "T244",
+        "name": "半导银盒",
+        "organization": "西北大学",
+        "info": "张雨禾(教练)、龚涵涛、郑益、燕彤",
+        "official": 1
+    },
+    "T259": {
+        "team_id": "T259",
+        "name": "咖喱鱼蛋",
+        "organization": "西南民族大学",
+        "info": "周绪川(教练)、康彤鹤、陆茜、郑楠",
+        "official": 1,
+        "girl": 1
+    },
+    "T029": {
+        "team_id": "T029",
+        "name": "AC拖拉机",
+        "organization": "常熟理工学院",
+        "info": "聂盼红(教练)、詹智航、张雷、杨吉",
+        "unofficial": 1
+    },
+    "T137": {
+        "team_id": "T137",
+        "name": "妙wa种子",
+        "organization": "江苏科技大学",
+        "info": "景国良(教练)、马肖岩、刘兴源、张宇飞",
+        "official": 1
+    },
+    "T248": {
+        "team_id": "T248",
+        "name": "潜伏小队",
+        "organization": "西北工业大学",
+        "info": "刘君瑞(教练)、黄意雯、陈诺、王士宁",
+        "official": 1
+    },
+    "T326": {
+        "team_id": "T326",
+        "name": "按坦克进入f",
+        "organization": "中国矿业大学",
+        "info": "杨文嘉(教练)、刘文涛、李佳泽、黄志伟",
+        "official": 1
+    },
+    "T153": {
+        "team_id": "T153",
+        "name": "快乐向前冲",
+        "organization": "南华大学",
+        "info": "刘杰(教练)、李益行、郭嘉涛、李柏松",
+        "official": 1
+    },
+    "T289": {
+        "team_id": "T289",
+        "name": "好想出去玩但又懒得动",
+        "organization": "浙江工商大学杭州商学院",
+        "info": "李浩腾(教练)、陈婕、丁叶贝、董琳燕",
+        "official": 1,
+        "girl": 1
+    },
+    "T173": {
+        "team_id": "T173",
+        "name": "凉队早点睡",
+        "organization": "南京晓庄学院",
+        "info": "周恺(教练)、郑雅玲、顾维、袁楚怡",
+        "official": 1,
+        "girl": 1
+    },
+    "T033": {
+        "team_id": "T033",
+        "name": "精神小火发量多",
+        "organization": "成都理工大学",
+        "info": "李军(教练)、税正菲、刘磊、涂春雨",
+        "official": 1,
+        "girl": 1
+    },
+    "T250": {
+        "team_id": "T250",
+        "name": "秦汉1",
+        "organization": "西藏民族大学",
+        "info": "张晓煜(教练)、赵庆、梁金硕、刘璐",
+        "official": 1
+    },
+    "T181": {
+        "team_id": "T181",
+        "name": "舒克贝塔和AC",
+        "organization": "内蒙古师范大学",
+        "info": "孟繁军(教练)、张泽兴、高耀伟、薛振宇",
+        "official": 1
+    },
+    "T198": {
+        "team_id": "T198",
+        "name": "三只菜鸟",
+        "organization": "山东大学",
+        "info": "鹿旭东(教练)、陈舜与、韩雨辰、郭子健",
+        "unofficial": 1
+    },
+    "T020": {
+        "team_id": "T020",
+        "name": "我与我的金牌队友",
+        "organization": "北京师范大学(珠海校区)",
+        "info": "孙科(教练)、罗欣冉、陈凯翼、孙宇祥",
+        "unofficial": 1
+    },
+    "T149": {
+        "team_id": "T149",
+        "name": "上帝的宠儿",
+        "organization": "南昌理工学院",
+        "info": "赵欢(教练)、帅懿佳、李菁、陈佳妮",
+        "official": 1,
+        "girl": 1
+    },
+    "T086": {
+        "team_id": "T086",
+        "name": "哈理工9队",
+        "organization": "哈尔滨理工大学",
+        "info": "于波(教练)、张皓淞、洪铭、吴昊",
+        "unofficial": 1
+    },
+    "T099": {
+        "team_id": "T099",
+        "name": "叮叮叮",
+        "organization": "河南农业大学",
+        "info": "尚俊平(教练)、刘泽钰、郑勇飞、宋勇胜",
+        "official": 1
+    },
+    "T321": {
+        "team_id": "T321",
+        "name": "NZYM",
+        "organization": "中国地质大学（武汉）",
+        "info": "张锋(教练)、其木格、方知雨、吴皓楠",
+        "unofficial": 1
+    },
+    "T328": {
+        "team_id": "T328",
+        "name": "航大919",
+        "organization": "中国民航大学",
+        "info": "张智(教练)、杨镇、曾颖超、曹宇",
+        "official": 1
+    },
+    "T142": {
+        "team_id": "T142",
+        "name": "我们萌新哪懂这些",
+        "organization": "乐山师范学院",
+        "info": "孙锐(教练)、赵泽柱、熊四莘、梁根银",
+        "unofficial": 1
+    },
+    "T031": {
+        "team_id": "T031",
+        "name": "八个八哥儿飞上了八颗白果树",
+        "organization": "成都东软学院",
+        "info": "田霖(教练)、邹松宏、雷光银、樊程",
+        "official": 1
+    },
+    "T288": {
+        "team_id": "T288",
+        "name": "哥斯拉面",
+        "organization": "浙江工商大学",
+        "info": "孟实(教练)、陈旭东、杨恩泽、王哲楠",
+        "official": 1
+    },
+    "T272": {
+        "team_id": "T272",
+        "name": "长理-1队",
+        "organization": "长春理工大学",
+        "info": "赵建平(教练)、薛端威、孟怡飞、郝良友",
+        "unofficial": 1
+    },
+    "T092": {
+        "team_id": "T092",
+        "name": "退役前给我们摸摸奖牌",
+        "organization": "河北师范大学",
+        "info": "丁盟(教练)、毛俊杰、徐悦然、刘金帅",
+        "official": 1
+    },
+    "T177": {
+        "team_id": "T177",
+        "name": "南邮黄焖鸡",
+        "organization": "南京邮电大学",
+        "info": "陈志(教练)、马文浩、李念哲、潘飞宇",
+        "official": 1
+    },
+    "T333": {
+        "team_id": "T333",
+        "name": "SCUEC女队",
+        "organization": "中南民族大学",
+        "info": "刘卫平(教练)、李斌、张雪萍、汪余意",
+        "official": 1,
+        "girl": 1
+    },
+    "T114": {
+        "team_id": "T114",
+        "name": "曹妃甸里养小鸭",
+        "organization": "华北理工大学",
+        "info": "谷建涛(教练)、郭晨、刘文彬、牛嘉洋",
+        "unofficial": 1
+    },
+    "T103": {
+        "team_id": "T103",
+        "name": "Ycdahell",
+        "organization": "湖北第二师范学院",
+        "info": "王海军(教练)、余佳豪、但博、陈路迪",
+        "unofficial": 1
+    },
+    "T002": {
+        "team_id": "T002",
+        "name": "淼天一色",
+        "organization": "安阳工学院",
+        "info": "孙高飞(教练)、李平、郭漫、高意哲",
+        "official": 1
+    },
+    "T091": {
+        "team_id": "T091",
+        "name": "练字小分队",
+        "organization": "合肥学院",
+        "info": "胡春玲(教练)、赵慧林、刘韩紫、叶萍",
+        "official": 1,
+        "girl": 1
+    },
+    "T105": {
+        "team_id": "T105",
+        "name": "浣熊市阿尔法小队",
+        "organization": "湖北工业大学",
+        "info": "徐承志(教练)、曹瑞辰、黄宗敖、石奕轲",
+        "official": 1
+    },
+    "T251": {
+        "team_id": "T251",
+        "name": "秦汉2",
+        "organization": "西藏民族大学",
+        "info": "张晓煜(教练)、李莹莹、杨涵今、王康",
+        "unofficial": 1
+    },
+    "T179": {
+        "team_id": "T179",
+        "name": "为了新中国冲呀",
+        "organization": "南阳理工学院",
+        "info": "靳冰(教练)、岑国玉、傅江鹏、杜襄珑",
+        "official": 1
+    },
+    "T209": {
+        "team_id": "T209",
+        "name": "我们想拿奖",
+        "organization": "上海电机学院",
+        "info": "吉顺如(教练)、白苗渊、李泳慧、尹佳怡",
+        "official": 1,
+        "girl": 1
+    },
+    "T252": {
+        "team_id": "T252",
+        "name": "有希望",
+        "organization": "西南财经大学",
+        "info": "陈智(教练)、杨蕴琛、王潇潇、徐嘉璐",
+        "official": 1,
+        "girl": 1
+    },
+    "T104": {
+        "team_id": "T104",
+        "name": "我又觉得我们行了",
+        "organization": "湖北第二师范学院",
+        "info": "王海军(教练)、柯志超、黄湲、夏心哲",
+        "unofficial": 1
+    },
+    "T318": {
+        "team_id": "T318",
+        "name": "三缺一",
+        "organization": "中国传媒大学",
+        "info": "陈小森(教练)、亓泽鲁、张华睿、赵润泽",
+        "official": 1
+    },
+    "T300": {
+        "team_id": "T300",
+        "name": "体验生活",
+        "organization": "浙江农林大学",
+        "info": "童孟军(教练)、周凌杰、朱俊伟、夏佳斌",
+        "unofficial": 1
+    },
+    "T249": {
+        "team_id": "T249",
+        "name": "风华正茂的妹妹们",
+        "organization": "西北农林科技大学",
+        "info": "耿耀君(教练)、何宜家、申文静、史颖涵",
+        "official": 1,
+        "girl": 1
+    }
+}
