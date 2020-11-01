@@ -608,7 +608,7 @@ class Standings extends React.Component {
                                                     {Math.round(
                                                         ((item.attempted -
                                                             item.solved) /
-                                                            item.total) *
+                                                            item.attempted) *
                                                             100,
                                                     )}
                                                     {item.total === 0
