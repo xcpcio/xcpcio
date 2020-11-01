@@ -59,7 +59,10 @@ def team_output(res):
         team[_item['team_id']] = _item
     if len(team.keys()) > 0:
         output("team.json", team)
-                    
+
+def Accepted(result):
+    return result == 'AC' or result == 'FB'
+
 def run_output(res):
     run = []
     for item in res['rows']:
@@ -68,9 +71,8 @@ def run_output(res):
         total_time = item['score']['time'][0]
         penalty_num = 0
         for problem in item['statuses']:
-            if problem['result'] == 'AC':
+            if Accepted(problem['result']):
                 total_time -= int(problem['time'][0])
-
         penalty_num = total_time // penalty
 
         problem_id = -1
@@ -78,7 +80,7 @@ def run_output(res):
             problem_id += 1
 
             status = 'incorrect'
-            if problem['result'] == 'AC' or problem['result'] == 'FB':
+            if Accepted(problem['result']):
                 status = 'correct'
             
             timestamp = int(problem['time'][0]) * 60
