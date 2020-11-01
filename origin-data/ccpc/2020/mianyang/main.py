@@ -39,6 +39,8 @@ group = {
 }
 status_time_display = {
     'correct': 1,
+    'incorrect': 1,
+    'pending': 1,
 }
 balloon_color = [
     {'background_color': 'rgba(189, 14, 14, 0.7)', 'color': '#fff' },
