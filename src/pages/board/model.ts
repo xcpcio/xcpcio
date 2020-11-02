@@ -161,7 +161,7 @@ export function getRun(run: any, team: any, timeFlag: any) {
         _run.forEach((item: any) => {
             if (set.has(item.team_id.toString())) {
                 const id = [item.team_id, item.problem_id].join('-');
-                if (!map.has(id) || item.timestamp <= map.get(id)) {
+                if (!map.has(id) || map.get(id) == INF) {
                     new_run.push(item);
                     if (item.status === 'correct') {
                         map.set(id, item.timestamp);
