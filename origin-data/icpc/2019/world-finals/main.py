@@ -52,7 +52,7 @@ balloon_color = [
     {'background_color': '#009AE2', 'color': '#fff' },
 ]
 config = {
-    'contest_name': 'ICPC2019- 43rd World Finals',
+    'contest_name': 'ICPC2019-43rd World Finals',
     'start_time': get_timestamp("2019-4-4 09:00:00"),
     'end_time': get_timestamp("2019-4-4 14:00:00"),
     'frozen_time' : 60 * 60,

@@ -1,7 +1,14 @@
-import contest_list from '@/../contest_list.json';
-import { deepCopy, getTimeDiff } from '@/utils';
+import { deepCopy, getTimeDiff, getJSON, getNowTimeStamp } from '@/utils';
 
-export function getTreeData() {
+export async function fetchData() {
+    const contest_list: any = await getJSON(
+        `contest_list.json?t=${getNowTimeStamp()}`,
+    );
+    if (contest_list.status === 404) return null;
+    return contest_list;
+}
+
+export function getTreeData(contest_list: any) {
     let treeData: any;
     const dfs = (contest_list: any, path: string) => {
         let children: any = [];
@@ -32,7 +39,7 @@ export function getTreeData() {
     return treeData;
 }
 
-export function getContest(path: string) {
+export function getContest(path: string, contest_list: any) {
     let contest: any = [];
     const dfs = (contest_list: any, contest: any) => {
         if (!contest_list['config']) {
