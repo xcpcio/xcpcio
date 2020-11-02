@@ -1,0 +1,9 @@
+{
+    "data_dir": "../../../../data/icpc/2019/world-finals",
+    "board_file": "index.html",
+    "image_download_host": "https://icpc.global/scoreboard/",
+    "image_dir": "../../../../data/icpc/2019/world-finals",
+    "charset": "utf8",
+    "end_time": "2019-04-04 14:00:00",
+    "start_time": "2019-04-04 09:00:00"
+}

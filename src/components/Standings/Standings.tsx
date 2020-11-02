@@ -16,6 +16,7 @@ import {
     compTeamList,
 } from './model';
 import { GirlIcon, LikeIcon, StarIcon } from '@/icons';
+import CONFIG from '@/../config.ts';
 
 function onStarBtnClick(
     team_id: number | string,
@@ -119,9 +120,13 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
             >
                 <td className={style[item.place_className]}>{item.place}</td>
                 {_this.state.badge === 1 && (
-                    <td className={style.empty}>
+                    <td className={style.stnd}>
                         <img
-                            src={item.badge?.src}
+                            src={[
+                                CONFIG.data_host,
+                                window.location.pathname,
+                                item.badge?.src,
+                            ].join('/')}
                             width={32}
                             height={32}
                             alt=""
@@ -351,6 +356,7 @@ function getTeamRowAll(item: any, index: number) {
 
 class Standings extends React.Component {
     timer: any = null;
+    pathname: any = '';
 
     clearTimer() {
         this.timer && clearTimeout(this.timer);

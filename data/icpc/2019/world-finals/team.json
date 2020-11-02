@@ -1,0 +1,947 @@
+{
+    "team:60": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1237.png"
+        },
+        "name": "Moscow State University"
+    },
+    "team:57": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1145.png"
+        },
+        "name": "Massachusetts Institute of Technology"
+    },
+    "team:123": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1987.png"
+        },
+        "name": "The University of Tokyo"
+    },
+    "team:125": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2673.png"
+        },
+        "name": "University of Warsaw"
+    },
+    "team:65": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1303.png"
+        },
+        "name": "National Taiwan University"
+    },
+    "team:129": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2589.png"
+        },
+        "name": "University of Wroclaw"
+    },
+    "team:74": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1636.png"
+        },
+        "name": "Seoul National University"
+    },
+    "team:53": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/7385.png"
+        },
+        "name": "KimChaek University of Technology"
+    },
+    "team:78": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1677.png"
+        },
+        "name": "Sharif University of Technology"
+    },
+    "team:59": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1220.png"
+        },
+        "name": "Moscow Institute of Physics & Technology"
+    },
+    "team:64": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3534.png"
+        },
+        "name": "National Research University Higher School of Economics"
+    },
+    "team:17": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1942.png"
+        },
+        "name": "The Chinese University of Hong Kong"
+    },
+    "team:70": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1438.png"
+        },
+        "name": "Peking University"
+    },
+    "team:30": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0574.png"
+        },
+        "name": "Fudan University"
+    },
+    "team:61": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1268.png"
+        },
+        "name": "Nanjing University"
+    },
+    "team:119": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3620.png"
+        },
+        "name": "University of Oxford"
+    },
+    "team:84": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3295.png"
+        },
+        "name": "St. Petersburg ITMO University"
+    },
+    "team:109": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2343.png"
+        },
+        "name": "University of Cambridge"
+    },
+    "team:77": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1663.png"
+        },
+        "name": "Shanghai Jiao Tong University"
+    },
+    "team:90": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2039.png"
+        },
+        "name": "Tsinghua University"
+    },
+    "team:105": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2273.png"
+        },
+        "name": "Universitat Politècnica de Catalunya"
+    },
+    "team:11": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0144.png"
+        },
+        "name": "Belarusian State University"
+    },
+    "team:104": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2390.png"
+        },
+        "name": "Universitas Indonesia"
+    },
+    "team:51": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1025.png"
+        },
+        "name": "KAIST"
+    },
+    "team:88": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1917.png"
+        },
+        "name": "Technische Universität München"
+    },
+    "team:35": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0642.png"
+        },
+        "name": "Harvard University"
+    },
+    "team:63": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0275.png"
+        },
+        "name": "National Chiao Tung University"
+    },
+    "team:122": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2537.png"
+        },
+        "name": "The University of Texas at Austin"
+    },
+    "team:135": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2755.png"
+        },
+        "name": "Zhongshan (Sun Yat-sen) University"
+    },
+    "team:86": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1822.png"
+        },
+        "name": "Stanford University"
+    },
+    "team:72": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1623.png"
+        },
+        "name": "Saratov State University"
+    },
+    "team:134": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2751.png"
+        },
+        "name": "Zhejiang University"
+    },
+    "team:124": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2558.png"
+        },
+        "name": "University of Tsukuba"
+    },
+    "team:131": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5316.png"
+        },
+        "name": "Ural Federal University"
+    },
+    "team:9": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3120.png"
+        },
+        "name": "Beihang University"
+    },
+    "team:130": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2762.png"
+        },
+        "name": "University of Zagreb"
+    },
+    "team:12": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0140.png"
+        },
+        "name": "Belarusian State University of Informatics and Radioelectronics"
+    },
+    "team:49": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/4330.png"
+        },
+        "name": "International IT University"
+    },
+    "team:73": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/8818.png"
+        },
+        "name": "Scuola Normale Superiore"
+    },
+    "team:87": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/8162.png"
+        },
+        "name": "Syrian Virtual University"
+    },
+    "team:126": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2566.png"
+        },
+        "name": "University of Waterloo"
+    },
+    "team:118": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/4234.png"
+        },
+        "name": "University of Niš - Faculty of Sciences and Mathematics"
+    },
+    "team:26": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0451.png"
+        },
+        "name": "ETH Zürich"
+    },
+    "team:96": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0492.png"
+        },
+        "name": "Universidad Nacional de Córdoba - FaMAF"
+    },
+    "team:108": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2324.png"
+        },
+        "name": "University of British Columbia"
+    },
+    "team:54": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1058.png"
+        },
+        "name": "Kyoto University"
+    },
+    "team:115": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2400.png"
+        },
+        "name": "University of Latvia"
+    },
+    "team:41": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0723.png"
+        },
+        "name": "Indian Institute of Technology - Madras"
+    },
+    "team:43": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0722.png"
+        },
+        "name": "Indian Institute of Technology - Roorkee"
+    },
+    "team:133": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2720.png"
+        },
+        "name": "Xi'an Jiaotong University"
+    },
+    "team:33": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3717.png"
+        },
+        "name": "Hanoi University of Science and Technology"
+    },
+    "team:103": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2232.png"
+        },
+        "name": "Universidade Federal de Pernambuco"
+    },
+    "team:101": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0478.png"
+        },
+        "name": "Universidade do Porto"
+    },
+    "team:85": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1802.png"
+        },
+        "name": "St. Petersburg State University"
+    },
+    "team:24": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3436.png"
+        },
+        "name": "École Normale Supérieure de Paris"
+    },
+    "team:80": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1740.png"
+        },
+        "name": "South China University of Technology"
+    },
+    "team:107": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2322.png"
+        },
+        "name": "University of Brasilia"
+    },
+    "team:100": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0695.png"
+        },
+        "name": "Universidade de São Paulo - Campus de São Carlos"
+    },
+    "team:71": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/4307.png"
+        },
+        "name": "Princeton University"
+    },
+    "team:23": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3108.png"
+        },
+        "name": "East China Normal University"
+    },
+    "team:132": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2675.png"
+        },
+        "name": "Waseda University"
+    },
+    "team:15": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0232.png"
+        },
+        "name": "Carnegie Mellon University"
+    },
+    "team:121": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2526.png"
+        },
+        "name": "University of Tartu"
+    },
+    "team:68": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2825.png"
+        },
+        "name": "Northeastern University (China)"
+    },
+    "team:120": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2519.png"
+        },
+        "name": "University of Southern California"
+    },
+    "team:92": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2112.png"
+        },
+        "name": "Universidad de La Habana"
+    },
+    "team:32": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0624.png"
+        },
+        "name": "Guangdong University of Technology"
+    },
+    "team:83": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/9606.png"
+        },
+        "name": "St. Petersburg Campus of Higher School of Economics"
+    },
+    "team:98": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2154.png"
+        },
+        "name": "Universidad Nacional de Rosario"
+    },
+    "team:10": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0134.png"
+        },
+        "name": "Beijing Normal University"
+    },
+    "team:66": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1307.png"
+        },
+        "name": "National Technical University \"Kharkiv Polytechnic Institute\""
+    },
+    "team:6": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5768.png"
+        },
+        "name": "American University of Beirut, Faculty of Arts and Science"
+    },
+    "team:4": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0002.png"
+        },
+        "name": "Alexandru Ioan Cuza University of Iași"
+    },
+    "team:52": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0989.png"
+        },
+        "name": "Kazakh-British Technical University"
+    },
+    "team:46": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0793.png"
+        },
+        "name": "Instituto Tecnológico de Aeronautica"
+    },
+    "team:7": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0068.png"
+        },
+        "name": "Amirkabir University of Technology"
+    },
+    "team:82": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/4112.png"
+        },
+        "name": "Southeast University, China"
+    },
+    "team:67": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1316.png"
+        },
+        "name": "National University of Singapore"
+    },
+    "team:91": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3683.png"
+        },
+        "name": "Universidad de Buenos Aires - FCEN"
+    },
+    "team:8": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0114.png"
+        },
+        "name": "Bangladesh University of Engineering and Technology"
+    },
+    "team:27": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3664.png"
+        },
+        "name": "Faculty of Computer and Information Sciences, Ain Shams University"
+    },
+    "team:48": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3617.png"
+        },
+        "name": "International Black Sea University"
+    },
+    "team:19": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0332.png"
+        },
+        "name": "Columbia University"
+    },
+    "team:114": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2387.png"
+        },
+        "name": "University of Illinois at Urbana-Champaign"
+    },
+    "team:38": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0724.png"
+        },
+        "name": "Indian Institute of Technology - Bombay"
+    },
+    "team:34": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0639.png"
+        },
+        "name": "Harbin Institute of Technology"
+    },
+    "team:106": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2313.png"
+        },
+        "name": "The University of Auckland"
+    },
+    "team:39": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0727.png"
+        },
+        "name": "Indian Institute of Technology - Kanpur"
+    },
+    "team:56": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1088.png"
+        },
+        "name": "Leiden University"
+    },
+    "team:62": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1271.png"
+        },
+        "name": "Nanjing University of Science and Technology"
+    },
+    "team:117": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2449.png"
+        },
+        "name": "The University of New South Wales"
+    },
+    "team:102": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2227.png"
+        },
+        "name": "Universidade Federal de Campina Grande"
+    },
+    "team:44": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2951.png"
+        },
+        "name": "Instituto Militar de Engenharia"
+    },
+    "team:112": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1967.png"
+        },
+        "name": "University of Chicago"
+    },
+    "team:16": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0273.png"
+        },
+        "name": "Chennai Mathematical Institute"
+    },
+    "team:97": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/7064.png"
+        },
+        "name": "Universidad Nacional de Ingeniería - FC"
+    },
+    "team:31": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3519.png"
+        },
+        "name": "German University in Cairo"
+    },
+    "team:14": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3348.png"
+        },
+        "name": "Cairo University - Faculty of Computers and Information"
+    },
+    "team:113": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3663.png"
+        },
+        "name": "University of Engineering and Technology - VNU"
+    },
+    "team:110": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2346.png"
+        },
+        "name": "University of Cape Town"
+    },
+    "team:22": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0413.png"
+        },
+        "name": "Duke University"
+    },
+    "team:69": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5731.png"
+        },
+        "name": "Northern (Arctic) Federal University"
+    },
+    "team:81": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1741.png"
+        },
+        "name": "South Dakota School of Mines and Technology"
+    },
+    "team:29": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0208.png"
+        },
+        "name": "Faculty of Engineering, Cairo University"
+    },
+    "team:79": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1725.png"
+        },
+        "name": "Sofia University"
+    },
+    "team:95": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3272.png"
+        },
+        "name": "Universidad Nacional de Colombia - Bogotá"
+    },
+    "team:13": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0161.png"
+        },
+        "name": "Bina Nusantara University"
+    },
+    "team:37": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5235.png"
+        },
+        "name": "IIIT-Delhi"
+    },
+    "team:1": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/9358.png"
+        },
+        "name": "Damascus University - Y!"
+    },
+    "team:42": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/6908.png"
+        },
+        "name": "Indian Institute of Technology - Patna"
+    },
+    "team:25": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0467.png"
+        },
+        "name": "Escuela Superior De Computo Instituto Politecnico Nacional"
+    },
+    "team:28": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/7850.png"
+        },
+        "name": "Faculty of Engineering- Mansoura University"
+    },
+    "team:21": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0411.png"
+        },
+        "name": "Drexel University"
+    },
+    "team:99": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2181.png"
+        },
+        "name": "Universidad Tecnológica Nacional - Facultad Regional Santa Fe"
+    },
+    "team:55": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3677.png"
+        },
+        "name": "Lebanese American University"
+    },
+    "team:127": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2570.png"
+        },
+        "name": "The University of Western Australia"
+    },
+    "team:111": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2349.png"
+        },
+        "name": "University of Central Florida"
+    },
+    "team:2": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/7113.png"
+        },
+        "name": "Al-Baath University"
+    },
+    "team:18": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0330.png"
+        },
+        "name": "Colorado School of Mines"
+    },
+    "team:94": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/4193.png"
+        },
+        "name": "Universidad de Oriente - Sede Antonio Maceo"
+    },
+    "team:76": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1654.png"
+        },
+        "name": "Shahjalal University of Science and Technology"
+    },
+    "team:58": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1214.png"
+        },
+        "name": "Moscow Aviation Institute"
+    },
+    "team:45": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0791.png"
+        },
+        "name": "Instituto Tecnológico Autónomo de México"
+    },
+    "team:93": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0015.png"
+        },
+        "name": "Universidad de los Andes, Colombia"
+    },
+    "team:50": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0910.png"
+        },
+        "name": "ITESM Campus Monterrey"
+    },
+    "team:36": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/6581.png"
+        },
+        "name": "Higher Institute for Applied Sciences and Technology"
+    },
+    "team:3": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5627.png"
+        },
+        "name": "Aleppo University"
+    },
+    "team:128": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2574.png"
+        },
+        "name": "University of Wisconsin - Madison"
+    },
+    "team:40": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0728.png"
+        },
+        "name": "Indian Institute of Technology - Kharagpur"
+    },
+    "team:47": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/5227.png"
+        },
+        "name": "Instituto Tecnológico Superior del Sur de Guanajuato"
+    },
+    "team:20": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/0358.png"
+        },
+        "name": "Damascus University - Daddy's Home"
+    },
+    "team:116": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/2438.png"
+        },
+        "name": "University of Nebraska - Lincoln"
+    },
+    "team:5": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1936.png"
+        },
+        "name": "The American University in Cairo"
+    },
+    "team:75": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/1647.png"
+        },
+        "name": "Shahid Beheshti University"
+    },
+    "team:89": {
+        "official": 1,
+        "badge": {
+            "src": "images/logos.2019/3413.png"
+        },
+        "name": "Tecnológico de Costa Rica"
+    }
+}

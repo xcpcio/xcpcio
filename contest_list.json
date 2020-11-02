@@ -3,6 +3,56 @@
         "2020": {
             "mianyang": {
                 "config": {
+                    "balloon_color": [
+                        {
+                            "background_color": "rgba(189, 14, 14, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(255, 144, 228, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(255, 255, 255, 0.7)",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "rgba(38, 185, 60, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(239, 217, 9, 0.7)",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "rgba(243, 88, 20, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(12, 76, 138, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(156, 155, 155, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(4, 154, 115, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(159, 19, 236, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(42, 197, 202, 0.7)",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "rgba(142, 56, 54, 0.7)",
+                            "color": "#fff"
+                        }
+                    ],
                     "contest_name": "CCPC2020-第六届中国大学生程序设计竞赛（绵阳） 正式赛",
                     "end_time": 1604210400,
                     "frozen_time": 0,
@@ -36,7 +86,9 @@
                     ],
                     "start_time": 1604192400,
                     "status_time_display": {
-                        "correct": 1
+                        "correct": 1,
+                        "incorrect": 1,
+                        "pending": 1
                     }
                 },
                 "link": "/ccpc/2020/mianyang"
@@ -265,15 +317,96 @@
         }
     },
     "icpc": {
+        "2019": {
+            "world-finals": {
+                "config": {
+                    "badge": "Badge",
+                    "balloon_color": [
+                        {
+                            "background_color": "#040000",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#E5B9BC",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "#92DAEF",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "#E92F24",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#B45700",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#8A48BD",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#fae61b",
+                            "color": "#000"
+                        },
+                        {
+                            "background_color": "#ED4086",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#15BF8F",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#FD7C16",
+                            "color": "#fff"
+                        },
+                        {
+                            "background_color": "#009AE2",
+                            "color": "#fff"
+                        }
+                    ],
+                    "banner": "images/logos.2019/banner.png",
+                    "contest_name": "ICPC2019- 43rd World Finals",
+                    "end_time": 1554357600,
+                    "frozen_time": 3600,
+                    "medal": {
+                        "all": {
+                            "bronze": 4,
+                            "gold": 4,
+                            "silver": 4
+                        }
+                    },
+                    "penalty": 1200,
+                    "problem_id": [
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K"
+                    ],
+                    "start_time": 1554339600,
+                    "status_time_display": {
+                        "correct": 1
+                    }
+                },
+                "link": "/icpc/2019/world-finals"
+            }
+        },
         "2020": {
             "practice-contest": {
                 "config": {
                     "contest_name": "ICPC2020-第 45 届国际大学生程序设计竞赛亚洲网上区域赛模拟赛",
                     "end_time": 1604134800,
                     "frozen_time": 0,
-                    "group": {
-                        "official": "正式队伍"
-                    },
+                    "group": {},
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
@@ -290,9 +423,7 @@
                     ],
                     "start_time": 1604124000,
                     "status_time_display": {
-                        "correct": 1,
-                        "incorrect": 1,
-                        "pending": 1
+                        "correct": 1
                     }
                 },
                 "link": "/icpc/2020/practice-contest"
@@ -302,9 +433,7 @@
                     "contest_name": "ICPC2020-ICPC·小米 网络选拔赛第一场",
                     "end_time": 1603616400,
                     "frozen_time": 0,
-                    "group": {
-                        "official": "正式队伍"
-                    },
+                    "group": {},
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
@@ -322,9 +451,7 @@
                     ],
                     "start_time": 1603598400,
                     "status_time_display": {
-                        "correct": 1,
-                        "incorrect": 1,
-                        "pending": 1
+                        "correct": 1
                     }
                 },
                 "link": "/icpc/2020/xiaomi-preliminary-contest-1"
@@ -334,9 +461,7 @@
                     "contest_name": "ICPC2020-ICPC·小米 网络选拔赛第二场",
                     "end_time": 1604134800,
                     "frozen_time": 0,
-                    "group": {
-                        "official": "正式队伍"
-                    },
+                    "group": {},
                     "organization": "School",
                     "penalty": 1200,
                     "problem_id": [
@@ -354,9 +479,7 @@
                     ],
                     "start_time": 1604116800,
                     "status_time_display": {
-                        "correct": 1,
-                        "incorrect": 1,
-                        "pending": 1
+                        "correct": 1
                     }
                 },
                 "link": "/icpc/2020/xiaomi-preliminary-contest-2"

@@ -1,0 +1,66 @@
+{
+    "contest_name": "ICPC2019- 43rd World Finals",
+    "start_time": 1554339600,
+    "end_time": 1554357600,
+    "frozen_time": 3600,
+    "problem_id": ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"],
+    "medal": {
+        "all": {
+            "gold": 4,
+            "silver": 4,
+            "bronze": 4
+        }
+    },
+    "status_time_display": {
+        "correct": 1
+    },
+    "penalty": 1200,
+    "banner": "images/logos.2019/banner.png",
+    "balloon_color": [
+        {
+            "background_color": "#040000",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#E5B9BC",
+            "color": "#000"
+        },
+        {
+            "background_color": "#92DAEF",
+            "color": "#000"
+        },
+        {
+            "background_color": "#E92F24",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#B45700",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#8A48BD",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#fae61b",
+            "color": "#000"
+        },
+        {
+            "background_color": "#ED4086",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#15BF8F",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#FD7C16",
+            "color": "#fff"
+        },
+        {
+            "background_color": "#009AE2",
+            "color": "#fff"
+        }
+    ],
+    "badge": "Badge"
+}

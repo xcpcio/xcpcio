@@ -18,6 +18,7 @@ import {
     getRun,
     getTeam,
 } from './model';
+import CONFIG from '@/../config.ts';
 
 const head_item = [
     <table>
@@ -46,6 +47,7 @@ class Board extends React.Component {
     team: any = null;
     run: any = null;
     timer: any = null;
+    pathname: any = null;
 
     async update(props: any) {
         let ok = await (async () => {
@@ -141,11 +143,13 @@ class Board extends React.Component {
     }
 
     componentDidMount() {
+        this.pathname = window.location.pathname;
         this.update(this.props);
     }
 
     //props中的值发生改变时执行
     componentWillReceiveProps(nextProps: any) {
+        this.pathname = window.location.pathname;
         this.update(nextProps);
     }
 
@@ -188,9 +192,25 @@ class Board extends React.Component {
 
                 {this.state.loaded === true && (
                     <>
-                        <div className={style.title}>
-                            {this.state.contest_config?.contest_name}
-                        </div>
+                        {this.state.contest_config?.banner !== null && (
+                            <div className={style.banner}>
+                                <img
+                                    className={style['banner-img']}
+                                    src={[
+                                        CONFIG.data_host,
+                                        this.pathname,
+                                        this.state.contest_config.banner,
+                                    ].join('/')}
+                                    alt="banner"
+                                ></img>
+                            </div>
+                        )}
+
+                        {this.state.contest_config?.banner == null && (
+                            <div className={style.title}>
+                                {this.state.contest_config?.contest_name}
+                            </div>
+                        )}
 
                         <ProgressBig
                             head_item={head_item[this.state.menu_index.type]}
