@@ -192,7 +192,7 @@ class Board extends React.Component {
 
                 {this.state.loaded === true && (
                     <>
-                        {this.state.contest_config?.banner !== null && (
+                        {this.state.contest_config?.banner !== undefined && (
                             <div className={style.banner}>
                                 <img
                                     className={style['banner-img']}
@@ -206,7 +206,7 @@ class Board extends React.Component {
                             </div>
                         )}
 
-                        {this.state.contest_config?.banner == null && (
+                        {this.state.contest_config?.banner === undefined && (
                             <div className={style.title}>
                                 {this.state.contest_config?.contest_name}
                             </div>
