@@ -5,6 +5,10 @@ import { getStatus, getWidth, progress_active, progress_status } from './model';
 class Progress extends React.Component {
     timer: any = null;
 
+    clearTimer() {
+        this.timer && clearInterval(this.timer);
+    }
+
     update(props: any) {
         this.setState({
             start_time: props.start_time,
@@ -12,20 +16,24 @@ class Progress extends React.Component {
             frozen_time: props.frozen_time,
         });
         const setStatusAndWIdth = () => {
+            const width = getWidth(props.start_time, props.end_time);
             this.setState({
                 status: getStatus(
                     props.start_time,
                     props.end_time,
                     props.frozen_time,
                 ),
-                width: getWidth(props.start_time, props.end_time),
+                width: width,
             });
+            if (width >= 100) {
+                this.clearTimer();
+            }
         };
         setStatusAndWIdth();
-        this.timer && clearInterval(this.timer);
+        this.clearTimer();
         this.timer = setInterval(() => {
             setStatusAndWIdth();
-        }, 100);
+        }, 500);
     }
 
     componentDidMount() {
@@ -37,7 +45,7 @@ class Progress extends React.Component {
     }
 
     componentWillUnmount() {
-        this.timer && clearInterval(this.timer);
+        this.clearTimer();
     }
 
     state = {

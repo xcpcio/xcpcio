@@ -85,7 +85,7 @@ class Index extends React.Component {
                         >
                             <div style={{ float: 'left' }}>
                                 <TreeSelect
-                                    style={{ width: '780px' }}
+                                    style={{ width: '740px' }}
                                     value={this.state.value}
                                     dropdownStyle={{
                                         maxHeight: 680,
