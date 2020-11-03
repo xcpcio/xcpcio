@@ -10,6 +10,7 @@ export default defineConfig({
             .use(CaseSensitivePathsWabpackPlugin, [{ debug: false }]);
     },
     title: CONFIG.title,
+    metas: CONFIG.metas,
     nodeModulesTransform: {
         type: 'none',
     },
