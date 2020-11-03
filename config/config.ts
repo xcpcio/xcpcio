@@ -26,12 +26,6 @@ export default defineConfig({
             exact: false,
         },
     ],
-    proxy: {
-        '/data': {
-            // target: 'https://board.xcpcio.com',
-            target: 'http://data.top',
-            changeOrigin: true,
-        },
-    },
+    proxy: CONFIG.proxy,
     publicPath: CONFIG.publicPath,
 });
