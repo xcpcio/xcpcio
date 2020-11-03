@@ -28,7 +28,6 @@ const head_item = [
                 <td className={standingsStyle.silver}>Silver</td>
                 <td className={standingsStyle.bronze}>Bronze</td>
                 <td className={standingsStyle.honorable}>Honorable</td>
-                <td className={standingsStyle.unofficial}>Unofficial</td>
                 <td className={standingsStyle.firstsolve}>
                     First to solve problem
                 </td>
