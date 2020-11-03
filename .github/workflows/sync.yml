@@ -15,14 +15,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: | 
-            cd /var/sync
-            git clone https://github.com/XCPCIO/XCPCIO-board.git
-            cd XCPCIO-board/origin-board-data/ccpc/2020/weihai-warmup
-            echo '${{ secrets.COKIE }}' > params.json
-            python3 sync.py
-            cd ../../../../
-            git add .
-            git commit -m "sync weihei-warmup"
-            git push
-            cd ..
-            rm -rf XCPCIO-board
+            ${{ secrets.SYNC_SCRIPT }}
