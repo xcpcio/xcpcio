@@ -123,10 +123,9 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                     <td className={style.stnd}>
                         <img
                             src={[
-                                CONFIG.data_host,
-                                window.location.pathname,
-                                item.badge?.src,
-                            ].join('/')}
+                                'data:image/png;base64,',
+                                item.badge.base64,
+                            ].join('')}
                             width={32}
                             height={32}
                             alt=""

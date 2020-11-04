@@ -196,10 +196,9 @@ class Board extends React.Component {
                                 <img
                                     className={style['banner-img']}
                                     src={[
-                                        CONFIG.data_host,
-                                        this.pathname,
-                                        this.state.contest_config.banner,
-                                    ].join('/')}
+                                        'data:image/png;base64,',
+                                        this.state.contest_config.banner.base64,
+                                    ].join('')}
                                     alt="banner"
                                 ></img>
                             </div>
