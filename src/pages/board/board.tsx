@@ -18,7 +18,6 @@ import {
     getRun,
     getTeam,
 } from './model';
-import CONFIG from '@/../config.ts';
 
 const head_item = [
     <table>

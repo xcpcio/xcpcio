@@ -16,7 +16,6 @@ import {
     compTeamList,
 } from './model';
 import { GirlIcon, LikeIcon, StarIcon } from '@/icons';
-import CONFIG from '@/../config.ts';
 
 function onStarBtnClick(
     team_id: number | string,
@@ -228,7 +227,13 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
             </tr>
 
             <tr style={{ display: 'none' }} id={analyzeTeamId}>
-                <td colSpan={_this.getInfoCol() + _this.getProblemCol()}>
+                <td
+                    colSpan={
+                        _this.getInfoCol() +
+                        _this.getProblemCol() +
+                        _this.getStatisticsCol()
+                    }
+                >
                     <div
                         style={{
                             display: 'flex',
@@ -415,6 +420,10 @@ class Standings extends React.Component {
 
     getProblemCol() {
         return this.state.contest_config?.problem_id?.length;
+    }
+
+    getStatisticsCol() {
+        return 1;
     }
 
     componentDidMount() {
