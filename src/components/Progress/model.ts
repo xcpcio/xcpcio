@@ -17,7 +17,7 @@ export const progress_active = [
     'am-active',
 ];
 
-export const status_type = ['PENDING', 'RUNNING', 'FROZEND', 'FINISHED'];
+export const status_type = ['PENDING', 'RUNNING', 'FROZEN', 'FINISHED'];
 
 export function getStatus(
     start_time: number,
