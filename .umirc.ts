@@ -1,5 +1,5 @@
 import { defineConfig } from 'umi';
-import CONFIG from '../config';
+import CONFIG from './config';
 import CaseSensitivePathsWabpackPlugin from 'case-sensitive-paths-webpack-plugin';
 
 export default defineConfig({
