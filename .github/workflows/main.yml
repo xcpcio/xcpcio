@@ -39,11 +39,11 @@ jobs:
         run: |
           sed -i "s|publicPath: '/'|publicPath: '//cdn.jsdelivr.net/gh/XCPCIO/XCPCIO-board@${{ env.VERSION_ID }}/'|" config.ts
           cat config.ts
-          echo "${{ secrets.ANALYTICS }}" >> ./src/pages/document.ejs
           npm install
           npm run build
           mkdir site
           mv dist/* site/
+          echo "${{ secrets.ANALYTICS }}" >> ./site/index.html
           
       - name: Release
         uses: JamesIves/github-pages-deploy-action@3.6.2
