@@ -158,7 +158,6 @@ export function getTeamList(
         let team = team_dic[k];
         let problem = team.problem;
         team['team_id'] = k;
-        team['time'] = getDisplayTime(team['time']);
         for (let p_id in problem) {
             problem[p_id].time = getDisplayTime(problem[p_id].time);
         }
@@ -248,6 +247,10 @@ export function getTeamList(
             team.organization_place = [...set].length + 1;
             set.add(team.organization);
         }
+    }
+
+    for (let i = 0; i < team_list.length; ++i) {
+        team_list[i]['time'] = getDisplayTime(team_list[i]['time']);
     }
 
     return team_list;

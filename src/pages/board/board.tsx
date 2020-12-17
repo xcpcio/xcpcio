@@ -8,6 +8,7 @@ import { Selected } from '@/components/Selected';
 import standingsStyle from '@/components/Standings/Standings.less';
 import style from './board.less';
 import {
+    fetchIntervalTime,
     fetchData,
     getMenu,
     getCurrentGroup,
@@ -18,6 +19,7 @@ import {
     getRun,
     getTeam,
 } from './model';
+import { throttle } from 'lodash';
 
 const head_item = [
     <table>
@@ -45,35 +47,42 @@ class Board extends React.Component {
     team: any = null;
     run: any = null;
     timer: any = null;
-    pathname: any = null;
+    fetchThrottled: any = null;
+
+    clearTimer() {
+        this.timer && clearTimeout(this.timer);
+    }
+
+    async fetch() {
+        let { contest_config, team, run } = await fetchData();
+        if (contest_config !== null && team !== null && run !== null) {
+            this.contest_config = contest_config;
+            this.team = team;
+            this.run = run;
+        }
+    }
 
     async update(props: any) {
-        let ok = await (async () => {
-            let { contest_config, team, run } = await fetchData();
+        await this.fetch();
+        // if (this.state.loaded) {
+        //     await this.fetchThrottled();
+        // } else {
+        //     await this.fetch();
+        // }
 
-            if (contest_config === null || team === null || run === null) {
-                if (
-                    this.contest_config === null ||
-                    this.team === null ||
-                    this.run === null
-                ) {
-                    this.timer && clearTimeout(this.timer);
-                    this.timer = setTimeout(() => {
-                        this.update(props);
-                    }, 1000);
-                    return false;
-                }
-            } else {
-                this.contest_config = contest_config;
-                this.team = team;
-                this.run = run;
-            }
-            return true;
-        })();
+        if (
+            this.contest_config === null ||
+            this.team === null ||
+            this.run === null
+        ) {
+            this.clearTimer();
+            this.timer = setTimeout(() => {
+                this.update(props);
+            }, 1000);
+            return;
+        }
 
-        if (!ok) return;
-
-        document.title = this.contest_config.contest_name;
+        document.title = this.contest_config?.contest_name;
 
         for (let team_id in this.team) {
             this.team[team_id]['all'] = 1;
@@ -99,6 +108,7 @@ class Board extends React.Component {
             this.contest_config,
             props.location.search,
         );
+
         const currentGroup = getCurrentGroup(
             props.location.search,
             menu_item.group,
@@ -134,30 +144,35 @@ class Board extends React.Component {
             Filter: currentGroup === 'filter' ? true : false,
         });
 
-        this.timer && clearTimeout(this.timer);
+        this.clearTimer();
         this.timer = setTimeout(() => {
             this.update(props);
-        }, 30000);
+        }, fetchIntervalTime);
     }
 
-    componentDidMount() {
-        this.pathname = window.location.pathname;
-        this.update(this.props);
+    async componentWillMount() {
+        await this.update(this.props);
     }
+
+    async componentDidMount() {}
 
     //props中的值发生改变时执行
-    componentWillReceiveProps(nextProps: any) {
-        this.pathname = window.location.pathname;
-        this.update(nextProps);
+    async componentWillReceiveProps(nextProps: any) {
+        await this.update(nextProps);
+    }
+
+    shouldComponentUpdate(nextProps: any, nextState: any) {
+        return true;
     }
 
     //组件卸载前的操作
     componentWillUnmount() {
-        this.timer && clearTimeout(this.timer);
+        this.clearTimer();
     }
 
     constructor(props: any) {
         super(props);
+        this.fetchThrottled = throttle(this.fetch, fetchIntervalTime);
     }
 
     state = {

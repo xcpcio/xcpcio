@@ -7,6 +7,8 @@ import {
     getQueryString,
 } from '@/utils';
 
+export const fetchIntervalTime = 30 * 1000;
+
 export async function fetchData() {
     const pathname = window.location.pathname;
     let contest_config: any = await getJSON(
@@ -18,15 +20,9 @@ export async function fetchData() {
     let run: any = await getJSON(
         [pathname, `run.json?t=${getNowTimeStamp()}`].join('/'),
     );
-    if (
-        contest_config.status === 404 ||
-        team.status === 404 ||
-        run.status === 404
-    ) {
-        contest_config = null;
-        team = null;
-        run = null;
-    }
+    if (contest_config?.status === 404) contest_config = null;
+    if (team?.status === 404) team = null;
+    if (run?.status === 404) run = null;
     return { contest_config, team, run };
 }
 
