@@ -1,5 +1,6 @@
 export const config = {
     title: 'Board - XCPCIO',
+    favicon: '/favicon.ico',
     publicPath: '/',
     data_host: '/data/',
     metas: [
