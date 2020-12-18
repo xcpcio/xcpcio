@@ -120,7 +120,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
             >
                 <td className={style[item.place_className]}>{item.place}</td>
                 {_this.state.badge === 1 && (
-                    <td className={style.stnd}>
+                    <td className={style.empty}>
                         <img
                             src={[
                                 'data:image/png;base64,',
