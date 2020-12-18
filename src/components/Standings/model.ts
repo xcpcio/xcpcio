@@ -1,5 +1,5 @@
 import { deepCopy } from '@/utils';
-export const timerInterval = 600;
+export const timerInterval = 500;
 
 export function getAnalyzeTeamId(team_id: number, Filter: number) {
     return ['analyze', 'team', team_id, Filter].join('-');

@@ -16,6 +16,7 @@ import {
     compTeamList,
 } from './model';
 import { GirlIcon, LikeIcon, StarIcon } from '@/icons';
+import { debounce } from 'lodash';
 
 function onStarBtnClick(
     team_id: number | string,
@@ -360,7 +361,6 @@ function getTeamRowAll(item: any, index: number) {
 
 class Standings extends React.Component {
     timer: any = null;
-    pathname: any = '';
 
     clearTimer() {
         this.timer && clearTimeout(this.timer);
@@ -382,6 +382,7 @@ class Standings extends React.Component {
 
     update(props: any) {
         let problem_list = getProblemList(props.contest_config, props.run);
+
         let team_list = getTeamList(
             props.contest_config,
             props.team,
@@ -409,7 +410,7 @@ class Standings extends React.Component {
             organization: props.contest_config?.organization ? 1 : 0,
             badge: props.contest_config?.badge ? 1 : 0,
             loaded: true,
-            Filter: props.Filter,
+            filter: props.filter,
             concerned: concerned,
         });
     }
@@ -426,23 +427,17 @@ class Standings extends React.Component {
         return 1;
     }
 
-    componentDidMount() {
-        this.clearTimer();
-        this.timer = setTimeout(() => {
-            this.update(this.props);
-        }, timerInterval);
+    componentWillMount() {
+        debounce(this.update, timerInterval).bind(this)(this.props);
     }
+
+    componentDidMount() {}
 
     //props中的值发生改变时执行
     componentWillReceiveProps(nextProps: any) {
-        if (this.props.currentGroup !== nextProps.currentGroup) {
-            this.setState({
-                loaded: false,
-            });
-            this.clearTimer();
-            this.timer = setTimeout(() => {
-                this.update(nextProps);
-            }, timerInterval);
+        if (this.props?.currentGroup !== nextProps?.currentGroup) {
+            this.setState({ loaded: false });
+            debounce(this.update, timerInterval).bind(this)(nextProps);
         } else {
             this.update(nextProps);
         }
@@ -468,7 +463,7 @@ class Standings extends React.Component {
         badge: 0,
         vis: {},
         loaded: false,
-        Filter: true,
+        filter: true,
         concerned: new Set(),
     };
 
@@ -566,7 +561,7 @@ class Standings extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.Filter === false &&
+                            {this.state.filter === false &&
                                 this.state.team_list_filter.map(
                                     getTeamRowFilter.bind(this),
                                 )}

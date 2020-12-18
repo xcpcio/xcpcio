@@ -68,7 +68,7 @@ class Board extends React.Component {
         if (this.state.loaded) {
             await this.fetchThrottled();
         } else {
-            if (this.timer !== null) {
+            if (this.timer == null) {
                 await this.fetch();
             } else {
                 await this.fetchThrottled();
@@ -146,7 +146,7 @@ class Board extends React.Component {
             fgroup: fgroup,
             menu_index: menu_index,
             loaded: true,
-            Filter: currentGroup === 'filter' ? true : false,
+            filter: currentGroup === 'filter' ? true : false,
         });
 
         this.clearTimer();
@@ -201,7 +201,7 @@ class Board extends React.Component {
             group: 0,
         },
         tab: 0,
-        Filter: false,
+        filter: false,
         title: CONFIG.title,
     };
 
@@ -308,7 +308,7 @@ class Board extends React.Component {
                                 team={this.state.current_team}
                                 run={this.state.current_run}
                                 currentGroup={this.state.menu_index.group}
-                                Filter={this.state.Filter}
+                                filter={this.state.filter}
                             />
                         )}
 

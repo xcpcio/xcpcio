@@ -110,6 +110,8 @@ export function getTeam(team: any, group: any, search: any) {
     organization = new Set(organization);
     for (let team_id in team) {
         let item = team[team_id];
+        item.filter = 0;
+        item.organization_filter = 0;
         if (window.localStorage.getItem(getStarKey(team_id))) {
             item.concerned = 1;
             item.filter = 1;
