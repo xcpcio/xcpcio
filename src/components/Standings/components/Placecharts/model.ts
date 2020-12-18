@@ -1,5 +1,5 @@
 export const height = 400;
-export const timerInterval = 200;
+export const timerInterval = 250;
 
 function getSolvedAndTime(problem: any) {
     let solved = 0,
@@ -19,8 +19,14 @@ function comp(a: any, b: any) {
     return 0;
 }
 
+interface PlaceChartsItem {
+    x: number;
+    y: number;
+    last_solved: string;
+}
+
 function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
-    let data = [];
+    let data: PlaceChartsItem[] = [];
     run.sort((a: any, b: any) => {
         if (a.timestamp < b.timestamp) return -1;
         if (a.timestamp > b.timestamp) return 1;
@@ -43,6 +49,7 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
     }
     const run_len = run.length;
     let pos = 0;
+    let last_solved = '';
     for (let i = 0; i <= duration; ++i) {
         while (pos < run_len && run[pos].timestamp <= i * 60) {
             let run_item = run[pos];
@@ -52,13 +59,12 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
             let time = run_item.timestamp;
             if (status === 'correct') {
                 teams[team_id].problem[problem_id].solved = 1;
-                teams[team_id].problem[problem_id].time += Math.floor(
-                    time / 60,
-                );
+                teams[team_id].problem[problem_id].time += time;
+                if (team_id == cur_team.team_id) {
+                    last_solved = `Last Solved Problem ${contest_config.problem_id[problem_id]}.`;
+                }
             } else {
-                teams[team_id].problem[problem_id].time += Math.floor(
-                    contest_config.penalty / 60,
-                );
+                teams[team_id].problem[problem_id].time += time;
             }
             ++pos;
         }
@@ -71,10 +77,24 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
                 place += comp(team_data, cur_team_data);
             }
         }
-        data.push({ x: i, y: place });
+        data.push({ x: i, y: place, last_solved: last_solved });
     }
-    return data;
+    //平滑处理
+    let _data: PlaceChartsItem[] = [];
+    _data.push(data[0]);
+    for (let i = 1; i < data.length - 1; ++i) {
+        if (
+            data[i].y !== _data[_data.length - 1].y ||
+            data[i].last_solved !== _data[_data.length - 1].last_solved
+        ) {
+            _data.push(data[i]);
+        }
+    }
+    _data.push(data[data.length - 1]);
+    return _data;
 }
+
+const INF = 0x3f3f3f3f;
 
 export function getHichartsOptions(
     contest_config: any,
@@ -83,13 +103,18 @@ export function getHichartsOptions(
     run: any,
 ) {
     const options: Highcharts.Options = {
+        chart: {
+            type: 'spline',
+        },
         title: {
-            text: '排名变化趋势',
+            text: '排名变化趋势图',
         },
         series: [
             {
+                showInLegend: false,
+                allowPointSelect: false,
                 name: '排名',
-                type: 'line',
+                type: 'spline',
                 data: getTeamPlace(contest_config, cur_team, team, run),
             },
         ],
@@ -108,10 +133,38 @@ export function getHichartsOptions(
                 title: {
                     text: '排名',
                 },
+                gridLineWidth: 1,
             },
         ],
+        plotOptions: {
+            line: {
+                color: '#efbc47',
+                dataLabels: {
+                    enabled: false,
+                },
+                enableMouseTracking: true,
+                marker: {
+                    enabled: true,
+                    fillColor: '#fff566',
+                },
+            },
+        },
+        tooltip: {
+            enabled: true,
+            headerFormat: '',
+            pointFormat:
+                'Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}',
+        },
         credits: {
             enabled: false,
+        },
+        exporting: {
+            enabled: true,
+        },
+        navigation: {
+            menuItemStyle: {
+                fontSize: '10px',
+            },
         },
     };
     return options;
