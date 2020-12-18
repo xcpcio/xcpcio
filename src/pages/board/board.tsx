@@ -19,7 +19,8 @@ import {
     getRun,
     getTeam,
 } from './model';
-import { throttle } from 'lodash';
+import { throttle, debounce } from 'lodash';
+import CONFIG from '../../../config';
 
 const head_item = [
     <table>
@@ -47,6 +48,7 @@ class Board extends React.Component {
     team: any = null;
     run: any = null;
     timer: any = null;
+
     fetchThrottled: any = null;
 
     clearTimer() {
@@ -63,12 +65,15 @@ class Board extends React.Component {
     }
 
     async update(props: any) {
-        await this.fetch();
-        // if (this.state.loaded) {
-        //     await this.fetchThrottled();
-        // } else {
-        //     await this.fetch();
-        // }
+        if (this.state.loaded) {
+            await this.fetchThrottled();
+        } else {
+            if (this.timer !== null) {
+                await this.fetch();
+            } else {
+                await this.fetchThrottled();
+            }
+        }
 
         if (
             this.contest_config === null ||
@@ -158,7 +163,12 @@ class Board extends React.Component {
 
     //props中的值发生改变时执行
     async componentWillReceiveProps(nextProps: any) {
-        await this.update(nextProps);
+        if (
+            this.props.location?.pathname !== nextProps.location?.pathname ||
+            this.props.location?.search !== nextProps.location?.search
+        ) {
+            await this.update(nextProps);
+        }
     }
 
     shouldComponentUpdate(nextProps: any, nextState: any) {
@@ -192,6 +202,7 @@ class Board extends React.Component {
         },
         tab: 0,
         Filter: false,
+        title: CONFIG.title,
     };
 
     render() {

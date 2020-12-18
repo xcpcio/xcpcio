@@ -9,7 +9,7 @@ export default defineConfig({
             .plugin('case-sensitive-paths-webpack-plugin')
             .use(CaseSensitivePathsWabpackPlugin, [{ debug: false }]);
     },
-    title: CONFIG.title,
+    title: false,
     metas: CONFIG.metas,
     favicon: CONFIG.favicon,
     nodeModulesTransform: {
