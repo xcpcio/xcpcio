@@ -21,7 +21,7 @@ class Placecharts extends React.Component {
     }
 
     //在组件已经被渲染到 DOM 中后运行
-    async componentDidMount() {
+    async componentWillMount() {
         debounce(this.update, timerInterval).bind(this)(this.props);
     }
 

@@ -27,7 +27,7 @@ export async function fetchData() {
 }
 
 export function getMenu(contest_config: any) {
-    const type_ = ['排行榜', '发气球', '统计分析'];
+    const type_ = ['排行榜', '发气球', '统计分析', '导出榜单'];
     const group_ = ['所有队伍', '关注队伍'];
     const fgroup_ = ['all', 'filter'];
 

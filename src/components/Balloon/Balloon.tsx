@@ -385,7 +385,7 @@ class Balloon extends React.Component {
     }
 
     async componentWillMount() {
-        this.update(this.props);
+        debounce(this.update, 100).bind(this)(this.props);
     }
 
     //在组件已经被渲染到 DOM 中后运行

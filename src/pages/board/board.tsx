@@ -22,6 +22,7 @@ import {
 import { throttle, debounce } from 'lodash';
 import CONFIG from '../../../config';
 import { Balloon } from '@/components/Balloon';
+import { Export } from '@/components/Export';
 
 const head_item = [
     <table>
@@ -325,6 +326,16 @@ class Board extends React.Component {
 
                         {this.state.menu_index.type === 2 && (
                             <Statistics
+                                contest_config={
+                                    this.state.current_contest_config
+                                }
+                                team={this.state.current_team}
+                                run={this.state.current_run}
+                            />
+                        )}
+
+                        {this.state.menu_index.type === 3 && (
+                            <Export
                                 contest_config={
                                     this.state.current_contest_config
                                 }
