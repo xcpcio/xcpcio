@@ -614,15 +614,17 @@ class Standings extends React.Component {
                                                 <br />
                                                 <b>
                                                     (
-                                                    {Math.round(
-                                                        ((item.attempted -
-                                                            item.solved) /
-                                                            item.attempted) *
-                                                            100,
-                                                    )}
-                                                    {item.total === 0
-                                                        ? ''
-                                                        : '%'}
+                                                    {item.attempted === 0
+                                                        ? '0%'
+                                                        : [
+                                                              Math.round(
+                                                                  ((item.attempted -
+                                                                      item.solved) /
+                                                                      item.attempted) *
+                                                                      100,
+                                                              ),
+                                                              '%',
+                                                          ].join('')}
                                                     )
                                                 </b>
                                             </td>
