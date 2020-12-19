@@ -133,7 +133,7 @@ class Export extends React.Component {
                     <>
                         <TextArea
                             allowClear={true}
-                            style={{ width: 680 }}
+                            style={{ width: 680, maxWidth: 680 }}
                             rows={15}
                             defaultValue={this.state.datFileValue}
                             key={this.state.datFileValue}
