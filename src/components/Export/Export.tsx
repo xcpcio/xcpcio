@@ -131,14 +131,15 @@ class Export extends React.Component {
 
                 {this.state.type === 'dat-file' && (
                     <>
-                        <TextArea
-                            allowClear={true}
-                            style={{ width: 680, maxWidth: 680 }}
-                            rows={15}
-                            defaultValue={this.state.datFileValue}
-                            key={this.state.datFileValue}
-                            disabled={this.state.datFileGenerateLoading}
-                        />
+                        <div style={{ width: 680 }}>
+                            <TextArea
+                                allowClear={true}
+                                rows={15}
+                                defaultValue={this.state.datFileValue}
+                                key={this.state.datFileValue}
+                                disabled={this.state.datFileGenerateLoading}
+                            />
+                        </div>
                         <br />
                         <br />
                         <Button
