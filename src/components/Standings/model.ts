@@ -1,4 +1,4 @@
-import { deepCopy } from '@/utils';
+import { deepCopy, getDisplayTime } from '@/utils';
 export const timerInterval = 500;
 
 export function getAnalyzeTeamId(team_id: number, Filter: number) {
@@ -68,10 +68,6 @@ function getTeamAndProblemId(
     problem_id: number | string,
 ) {
     return [team_id, problem_id].join('-');
-}
-
-function getDisplayTime(time: number) {
-    return Math.floor(time / 60);
 }
 
 export function getProblemList(contest_config: any, run: any) {

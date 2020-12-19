@@ -30,6 +30,10 @@ export const getNowTimeStamp = () => {
     return Math.round(new Date().getTime() / 1000);
 };
 
+export function getDisplayTime(time: number) {
+    return Math.floor(time / 60);
+}
+
 export const getStarKey = (team_id: any) => {
     return `${window.location.pathname}-star-${team_id}`;
 };

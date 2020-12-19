@@ -1,5 +1,5 @@
 {
-  "version": "v0.0.10",
+  "version": "v0.0.11",
   "private": true,
   "scripts": {
     "start": "umi dev",
@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@ant-design/pro-layout": "^5.0.12",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "@types/uuid": "^8.3.0",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.23",
@@ -33,6 +36,7 @@
     "prettier": "^1.19.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-highlight-words": "^0.16.0",
     "umi": "^3.2.23",
     "uuid": "^8.3.1",
     "yorkie": "^2.0.0"
