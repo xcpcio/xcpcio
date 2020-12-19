@@ -314,7 +314,7 @@ class Board extends React.Component {
                         )}
 
                         {this.state.menu_index.type === 1 && (
-                            <Statistics
+                            <Balloon
                                 contest_config={
                                     this.state.current_contest_config
                                 }
@@ -324,7 +324,7 @@ class Board extends React.Component {
                         )}
 
                         {this.state.menu_index.type === 2 && (
-                            <Balloon
+                            <Statistics
                                 contest_config={
                                     this.state.current_contest_config
                                 }

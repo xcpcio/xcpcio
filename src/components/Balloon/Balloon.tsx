@@ -237,7 +237,7 @@ class Balloon extends React.Component {
                     dataIndex: 'action',
                     key: 'action',
                     width: '5%',
-                    align: 'left',
+                    align: 'center',
                     render: (action: ActionItem) => {
                         if (action.status) {
                             return (
