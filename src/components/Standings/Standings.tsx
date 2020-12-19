@@ -201,6 +201,8 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                     return (
                         <td className={style[item.status_className]}>
                             {ch_status}
+                            {item.status === 'pending' &&
+                                [' ', item['pending_num']].join('')}
                             <br />
                             {item.attempt_num ? parseInt(item.attempt_num) : ''}
                             {_this.state.contest_config?.status_time_display[

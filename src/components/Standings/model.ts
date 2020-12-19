@@ -55,6 +55,7 @@ function getInitTeam(contest_config: any, team: any) {
                 problem['time'] = 0;
                 problem['status'] = 'unattempted';
                 problem['attempt_num'] = 0;
+                problem['pending_num'] = 0;
                 new_item.problem.push(problem);
             },
         );
@@ -137,6 +138,7 @@ export function getTeamList(
                 (problem.attempt_num - 1) * contest_config.penalty;
         } else if (run.status === 'pending') {
             problem.status = 'pending';
+            problem['pending_num'] += 1;
         } else if (run.status === 'incorrect') {
             problem.status = 'incorrect';
         }
