@@ -3,6 +3,10 @@ export const config = {
     favicon: '/favicon.ico',
     publicPath: '/',
     data_host: '/data/',
+    analytics: {
+        ga: '',
+        baidu: '',
+    },
     metas: [
         {
             name: 'keywords',

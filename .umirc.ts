@@ -12,6 +12,7 @@ export default defineConfig({
     title: false,
     metas: CONFIG.metas,
     favicon: CONFIG.favicon,
+    analytics: CONFIG.analytics,
     nodeModulesTransform: {
         type: 'none',
     },
