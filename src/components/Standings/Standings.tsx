@@ -18,6 +18,15 @@ import {
 import { GirlIcon, LikeIcon, StarIcon } from '@/icons';
 import { debounce } from 'lodash';
 
+function getInfo(coach: string | undefined, members: string[] | undefined) {
+    let splitch = '、';
+    let res = '';
+    if (coach) res += `${coach}(教练)`;
+    if (coach && members) res += splitch;
+    if (members) res += members.join(splitch);
+    return res;
+}
+
 function onStarBtnClick(
     team_id: number | string,
     on: boolean,
@@ -325,13 +334,13 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                                 Star
                             </div>
 
-                            {item.info && (
+                            {(item.coach || item.members) && (
                                 <span
                                     style={{
                                         paddingLeft: '10px',
                                     }}
                                 >
-                                    {item.info}
+                                    {getInfo(item.coach, item.members)}
                                 </span>
                             )}
                         </div>
