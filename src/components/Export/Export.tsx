@@ -1,11 +1,16 @@
-import { Loading } from '@/components/Loading';
 import React from 'react';
-import { debounce } from 'lodash';
 import { Select, Button, Input } from 'antd';
 import style from './Export.less';
 const { Option } = Select;
 const { TextArea } = Input;
-import { getDisplayTime } from '@/utils';
+import { deepCopy, getDisplayTime } from '@/utils';
+
+interface RankTeam {
+    members?: string;
+    organization?: string;
+    name?: string;
+    place?: any;
+}
 
 class Export extends React.Component {
     contest_config: any = null;
@@ -35,6 +40,8 @@ class Export extends React.Component {
         type: '',
         datFileValue: '',
         datFileGenerateLoading: false,
+        rankJsonValue: '',
+        rankJsonGenerateLoading: false,
     };
 
     constructor(props: any) {
@@ -106,6 +113,53 @@ class Export extends React.Component {
         });
     }
 
+    getRankJson() {
+        let rankJson: RankTeam[] = [];
+        let _team = deepCopy(this.team);
+        const penalty = this.contest_config.penalty;
+        for (let k in _team) {
+            _team[k]['problem'] = this.contest_config.problem_id.map(() => 0);
+            _team[k]['solved'] = 0;
+            _team[k]['time'] = 0;
+        }
+        this.run.forEach((run: any) => {
+            if (run.status === 'correct') {
+                _team[run.team_id].solved += 1;
+                _team[run.team_id].time +=
+                    run.timestamp +
+                    penalty * _team[run.team_id].problem[run.problem_id];
+            } else {
+                _team[run.team_id].problem[run.problem_id] += 1;
+            }
+        });
+        let teamList = [];
+        for (let k in _team) {
+            teamList.push(_team[k]);
+        }
+        teamList.sort((a: any, b: any) => {
+            if (a.solved > b.solved) return -1;
+            if (a.solved < b.solved) return 1;
+            if (a.time < b.time) return -1;
+            if (a.time > b.time) return 1;
+            if (a.name < b.name) return -1;
+            if (a.name > b.name) return 1;
+            return 0;
+        });
+        teamList.forEach((team: any, index: number) => {
+            let item: RankTeam = {};
+            item.members = team.members || [];
+            item.organization = team.organization || '';
+            item.name = team.name || '';
+            item.place = {};
+            item.place['all'] = index + 1;
+            rankJson.push(item);
+        });
+        this.setState({
+            rankJsonGenerateLoading: false,
+            rankJsonValue: JSON.stringify(rankJson),
+        });
+    }
+
     render() {
         return (
             <>
@@ -124,6 +178,7 @@ class Export extends React.Component {
                     <Option value="dat-file">
                         Codeforces Gym Ghosts DAT File
                     </Option>
+                    <Option value="rank-json">Rank JSON</Option>
                 </Select>
 
                 <br />
@@ -148,6 +203,31 @@ class Export extends React.Component {
                             type="primary"
                             size="small"
                             onClick={this.getDatFile.bind(this)}
+                        >
+                            Generate
+                        </Button>
+                    </>
+                )}
+
+                {this.state.type === 'rank-json' && (
+                    <>
+                        <div style={{ width: 680 }}>
+                            <TextArea
+                                allowClear={true}
+                                rows={15}
+                                defaultValue={this.state.rankJsonValue}
+                                key={this.state.rankJsonValue}
+                                disabled={this.state.rankJsonGenerateLoading}
+                            />
+                        </div>
+                        <br />
+                        <br />
+                        <Button
+                            loading={this.state.rankJsonGenerateLoading}
+                            className={style.btn}
+                            type="primary"
+                            size="small"
+                            onClick={this.getRankJson.bind(this)}
                         >
                             Generate
                         </Button>
