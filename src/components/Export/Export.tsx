@@ -114,7 +114,7 @@ class Export extends React.Component {
     }
 
     getRankJson() {
-        let rankJson: RankTeam[] = [];
+        let teamJson: RankTeam[] = [];
         let _team = deepCopy(this.team);
         const penalty = this.contest_config.penalty;
         for (let k in _team) {
@@ -152,8 +152,11 @@ class Export extends React.Component {
             item.name = team.name || '';
             item.place = {};
             item.place['all'] = index + 1;
-            rankJson.push(item);
+            teamJson.push(item);
         });
+        let rankJson: any = {};
+        rankJson['contestName'] = this.contest_config['contest_name'];
+        rankJson['teams'] = teamJson;
         this.setState({
             rankJsonGenerateLoading: false,
             rankJsonValue: JSON.stringify(rankJson),
