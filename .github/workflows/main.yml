@@ -43,15 +43,22 @@ jobs:
           cat config.ts
           npm install
           npm run build
-          mkdir site
-          mv dist/* site/
+
+      - name: Minify HTML Index
+        uses: Dup4/minify-html-action@v7
+        with:
+          src: './dist/index.html'
+
+      - name: Enable 404.html
+        run: |
+          cp ./dist/index.html ./dist/404.html
           
       - name: Release
         uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: site # The folder the action should deploy.
+          FOLDER: dist # The folder the action should deploy.
           CLEAN: true # Automatically remove deleted files from the deploy branch
 
       - name: Create Release # 创建Release，可以在仓库看到一个个版本
