@@ -1,26 +1,26 @@
 {
-    "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
-        "moduleResolution": "node",
-        "importHelpers": true,
-        "allowJs": true,
-        "jsx": "react",
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "baseUrl": "./",
-        "strict": true,
-        "paths": {
-            "@/*": ["src/*"],
-            "@@/*": ["src/.umi/*"]
-        },
-        "allowSyntheticDefaultImports": true
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "allowJs": true,
+    "jsx": "react",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "strict": true,
+    "paths": {
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"]
     },
-    "include": [
-        "mock/**/*",
-        "src/**/*",
-        "config/**/*",
-        ".umirc.ts",
-        "typings.d.ts"
-    ]
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "mock/**/*",
+    "src/**/*",
+    "config/**/*",
+    ".umirc.ts",
+    "typings.d.ts"
+  ]
 }

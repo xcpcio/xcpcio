@@ -3,322 +3,322 @@
  ============================================================================ */
 /* Progress bar animation */
 @-webkit-keyframes progress-bar-stripes {
-    from {
-        background-position: 36px 0;
-    }
+  from {
+    background-position: 36px 0;
+  }
 
-    to {
-        background-position: 0 0;
-    }
+  to {
+    background-position: 0 0;
+  }
 }
 
 @keyframes progress-bar-stripes {
-    from {
-        background-position: 36px 0;
-    }
+  from {
+    background-position: 36px 0;
+  }
 
-    to {
-        background-position: 0 0;
-    }
+  to {
+    background-position: 0 0;
+  }
 }
 
 /*  Progress container */
 .am-progress {
-    // overflow: hidden;
-    height: 1rem;
-    margin-bottom: 2rem;
-    background-color: #f5f5f5;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  // overflow: hidden;
+  height: 1rem;
+  margin-bottom: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* Progress bar */
 .am-progress-bar {
-    float: left;
-    width: 0;
-    height: 100%;
-    font-size: 1.2rem;
-    line-height: 2rem;
-    color: #fff;
-    text-align: center;
-    background-color: #0e90d2;
-    -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-    -webkit-transition: width 0.6s ease;
-    transition: width 0.6s ease;
+  float: left;
+  width: 0;
+  height: 100%;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: #fff;
+  text-align: center;
+  background-color: #0e90d2;
+  -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  -webkit-transition: width 0.6s ease;
+  transition: width 0.6s ease;
 }
 
 .am-progress-striped .am-progress-bar {
-    background-image: -webkit-gradient(
-        linear,
-        0 100%,
-        100% 0,
-        color-stop(0.25, rgba(255, 255, 255, 0.15)),
-        color-stop(0.25, transparent),
-        color-stop(0.5, transparent),
-        color-stop(0.5, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, transparent),
-        to(transparent)
-    );
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    -webkit-background-size: 36px 36px;
-    background-size: 36px 36px;
+  background-image: -webkit-gradient(
+    linear,
+    0 100%,
+    100% 0,
+    color-stop(0.25, rgba(255, 255, 255, 0.15)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  -webkit-background-size: 36px 36px;
+  background-size: 36px 36px;
 }
 
 .am-progress.am-active .am-progress-bar {
-    -webkit-animation: progress-bar-stripes 2s linear infinite;
-    animation: progress-bar-stripes 2s linear infinite;
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
+  animation: progress-bar-stripes 2s linear infinite;
 }
 
 .am-progress-bar[aria-valuenow='1'],
 .am-progress-bar[aria-valuenow='2'] {
-    min-width: 30px;
+  min-width: 30px;
 }
 
 .am-progress-bar[aria-valuenow='0'] {
-    color: #999999;
-    min-width: 30px;
-    background: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+  color: #999999;
+  min-width: 30px;
+  background: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 .am-progress-bar-secondary {
-    background-color: #3bb4f2;
+  background-color: #3bb4f2;
 }
 
 .am-progress-striped .am-progress-bar-secondary {
-    background-image: -webkit-gradient(
-        linear,
-        0 100%,
-        100% 0,
-        color-stop(0.25, rgba(255, 255, 255, 0.15)),
-        color-stop(0.25, transparent),
-        color-stop(0.5, transparent),
-        color-stop(0.5, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, transparent),
-        to(transparent)
-    );
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
+  background-image: -webkit-gradient(
+    linear,
+    0 100%,
+    100% 0,
+    color-stop(0.25, rgba(255, 255, 255, 0.15)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 .am-progress-bar-success {
-    background-color: #5eb95e;
+  background-color: #5eb95e;
 }
 
 .am-progress-striped .am-progress-bar-success {
-    background-image: -webkit-gradient(
-        linear,
-        0 100%,
-        100% 0,
-        color-stop(0.25, rgba(255, 255, 255, 0.15)),
-        color-stop(0.25, transparent),
-        color-stop(0.5, transparent),
-        color-stop(0.5, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, transparent),
-        to(transparent)
-    );
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
+  background-image: -webkit-gradient(
+    linear,
+    0 100%,
+    100% 0,
+    color-stop(0.25, rgba(255, 255, 255, 0.15)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 .am-progress-bar-warning {
-    background-color: #f37b1d;
+  background-color: #f37b1d;
 }
 
 .am-progress-striped .am-progress-bar-warning {
-    background-image: -webkit-gradient(
-        linear,
-        0 100%,
-        100% 0,
-        color-stop(0.25, rgba(255, 255, 255, 0.15)),
-        color-stop(0.25, transparent),
-        color-stop(0.5, transparent),
-        color-stop(0.5, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, transparent),
-        to(transparent)
-    );
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
+  background-image: -webkit-gradient(
+    linear,
+    0 100%,
+    100% 0,
+    color-stop(0.25, rgba(255, 255, 255, 0.15)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 .am-progress-bar-danger {
-    background-color: #dd514c;
+  background-color: #dd514c;
 }
 
 .am-progress-striped .am-progress-bar-danger {
-    background-image: -webkit-gradient(
-        linear,
-        0 100%,
-        100% 0,
-        color-stop(0.25, rgba(255, 255, 255, 0.15)),
-        color-stop(0.25, transparent),
-        color-stop(0.5, transparent),
-        color-stop(0.5, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, rgba(255, 255, 255, 0.15)),
-        color-stop(0.75, transparent),
-        to(transparent)
-    );
-    background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
-    background-image: linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.15) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.15) 50%,
-        rgba(255, 255, 255, 0.15) 75%,
-        transparent 75%,
-        transparent
-    );
+  background-image: -webkit-gradient(
+    linear,
+    0 100%,
+    100% 0,
+    color-stop(0.25, rgba(255, 255, 255, 0.15)),
+    color-stop(0.25, transparent),
+    color-stop(0.5, transparent),
+    color-stop(0.5, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, rgba(255, 255, 255, 0.15)),
+    color-stop(0.75, transparent),
+    to(transparent)
+  );
+  background-image: -webkit-linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
 }
 
 .am-progress-xs {
-    height: 0.6rem;
+  height: 0.6rem;
 }
 
 .am-progress-sm {
-    height: 1.2rem;
+  height: 1.2rem;
 }
 
 .am-progress-cursor {
-    width: 10px;
-    height: 25px;
-    position: absolute;
-    left: 50%;
-    bottom: -4px;
-    cursor: pointer;
+  width: 10px;
+  height: 25px;
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  cursor: pointer;
 }
 
 /* ==========================================================================
    Component: Label
  ============================================================================ */
 .label {
-    box-sizing: inherit;
-    display: inline-block;
-    background-image: none;
-    text-transform: none;
-    font-weight: bold;
-    border: 0 solid transparent;
-    transition: background 0.1s ease;
-    margin-right: 5px;
-    padding: 0.4em !important;
-    line-height: 1em;
-    text-align: center;
-    border-radius: 500rem;
-    font-size: 0.78571429rem;
-    min-width: 0;
-    min-height: 0;
-    overflow: hidden;
-    width: 1px;
-    height: 1px;
-    vertical-align: baseline;
-    color: #ffffff;
+  box-sizing: inherit;
+  display: inline-block;
+  background-image: none;
+  text-transform: none;
+  font-weight: bold;
+  border: 0 solid transparent;
+  transition: background 0.1s ease;
+  margin-right: 5px;
+  padding: 0.4em !important;
+  line-height: 1em;
+  text-align: center;
+  border-radius: 500rem;
+  font-size: 0.78571429rem;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  vertical-align: baseline;
+  color: #ffffff;
 }
 
 .PENDING {
-    background-color: #3bb4f2;
-    border-color: #3bb4f2;
+  background-color: #3bb4f2;
+  border-color: #3bb4f2;
 }
 
 .RUNNING {
-    background-color: rgb(94, 185, 94);
-    border-color: rgb(94, 185, 94);
+  background-color: rgb(94, 185, 94);
+  border-color: rgb(94, 185, 94);
 }
 
 .FROZEN {
-    background-color: #dd514c;
-    border-color: #dd514c;
+  background-color: #dd514c;
+  border-color: #dd514c;
 }
 
 .FINISHED {
-    background-color: #0e90d2;
-    border-color: #0e90d2;
+  background-color: #0e90d2;
+  border-color: #0e90d2;
 }
