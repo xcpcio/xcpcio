@@ -9,6 +9,84 @@ import {
 
 export const fetchIntervalTime = 30 * 1000;
 
+interface ContestConfig {
+  contest_name: string;
+  start_time: string | number | Date;
+  end_time: string | number | Date;
+  frozen_time: number;
+  penalty: number;
+  problem_id: string[];
+  group?: Record<string, string>;
+  organization?: string;
+  status_time_display?: Record<string, string>;
+  medal?: Record<string, Record<string, string>>;
+}
+
+interface Team {
+  name: string;
+  organization?: string;
+  official?: 1 | 0;
+  [key: string]: any;
+}
+
+export enum SubmissionStatus {
+  Accepted = 'Accepted',
+  Correct = 'Correct',
+
+  Pending = 'Pending',
+
+  ConfigurationError = 'ConfigurationError',
+  SystemError = 'SystemError',
+  Canceled = 'Canceled',
+
+  CompilationError = 'CompilationError',
+
+  FileError = 'FileError',
+  RuntimeError = 'RuntimeError',
+  TimeLimitExceeded = 'TimeLimitExceeded',
+  MemoryLimitExceeded = 'MemoryLimitExceeded',
+  OutputLimitExceeded = 'OutputLimitExceeded',
+
+  PartiallyCorrect = 'PartiallyCorrect',
+  WrongAnswer = 'WrongAnswer',
+  Reject = 'Reject',
+  InCorrect = 'InCorrect',
+
+  JudgementFailed = 'JudgementFailed',
+
+  Frozen = 'Frozen',
+}
+
+type RunStatus =
+  | 'Accepted'
+  | 'Correct'
+  | 'correct'
+  | 'Pending'
+  | 'pending'
+  | 'ConfigurationError'
+  | 'SystemError'
+  | 'Canceled'
+  | 'CompilationError'
+  | 'FileError'
+  | 'RuntimeError'
+  | 'TimeLimitExceeded'
+  | 'MemoryLimitExceeded'
+  | 'OutputLimitExceeded'
+  | 'PartiallyCorrect'
+  | 'WrongAnswer'
+  | 'Reject'
+  | 'InCorrect'
+  | 'incorrect'
+  | 'JudgementFailed'
+  | 'Frozen';
+
+interface Run {
+  team_id: number | string;
+  timestamp: number;
+  problem_id: number;
+  status: RunStatus;
+}
+
 export async function fetchData() {
   const pathname = window.location.pathname;
   let contest_config: any = await getJSON(
