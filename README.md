@@ -1,6 +1,6 @@
 # XCPCIO-board
 
-![Build and Deploy](https://github.com/XCPCIO/XCPCIO-board/workflows/Build%20and%20Deploy/badge.svg)
+[![Build](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/main.yml/badge.svg)](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/main.yml)
 [![License][license-image-mit]](https://mit-license.org/)
 [![GitHub stars](https://img.shields.io/github/stars/XCPCIO/XCPCIO-board.svg?style=social&label=Stars)](https://github.com/XCPCIO/XCPCIO-board)
 
