@@ -1,5 +1,5 @@
 import { defineConfig } from 'umi';
-import CONFIG from './config';
+import __CONFIG__ from './config';
 // import CaseSensitivePathsWabpackPlugin from 'case-sensitive-paths-webpack-plugin';
 
 export default defineConfig({
@@ -10,9 +10,9 @@ export default defineConfig({
   //     .use(CaseSensitivePathsWabpackPlugin, [{ debug: false }]);
   // },
   title: false,
-  metas: CONFIG.metas,
-  favicon: CONFIG.favicon,
-  analytics: CONFIG.analytics,
+  metas: __CONFIG__.metas,
+  favicon: __CONFIG__.favicon,
+  analytics: __CONFIG__.analytics,
   nodeModulesTransform: {
     type: 'none',
   },
@@ -29,6 +29,6 @@ export default defineConfig({
       exact: false,
     },
   ],
-  proxy: CONFIG.proxy,
-  publicPath: CONFIG.publicPath,
+  proxy: __CONFIG__.proxy,
+  publicPath: __CONFIG__.publicPath,
 });
