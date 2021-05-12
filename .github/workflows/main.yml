@@ -6,7 +6,17 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke workflow in another repo with inputs
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Sync
+          repo: XCPCIO/XCPCIO-Board-Preview
+          token: ${{ secrets.GH_TOKEN }}
+
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
