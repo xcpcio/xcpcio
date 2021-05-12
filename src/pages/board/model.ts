@@ -9,6 +9,10 @@ import {
 
 export const fetchIntervalTime = 30 * 1000;
 
+interface BalloonColor {
+  background_color: string;
+  color: string;
+}
 interface ContestConfig {
   contest_name: string;
   start_time: string | number | Date;
@@ -20,6 +24,7 @@ interface ContestConfig {
   organization?: string;
   status_time_display?: Record<string, string>;
   medal?: Record<string, Record<string, string>>;
+  balloon_color?: BalloonColor;
 }
 
 interface Team {
