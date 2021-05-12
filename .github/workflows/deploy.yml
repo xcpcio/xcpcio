@@ -11,10 +11,10 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Set up Node.js 12.x
+      - name: Set up Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
           registry-url: https://registry.npmjs.org/
 
       - name: Set up Python 3.8
