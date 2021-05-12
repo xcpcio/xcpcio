@@ -116,11 +116,11 @@ class ProgressBig extends React.Component {
           }}
         >
           <div style={{ float: 'left' }}>
-            <b>Time Elapsed: {this.state.time_elapsed}</b>
+            <b>Elapsed: {this.state.time_elapsed}</b>
           </div>
           <div style={{ flex: '1' }}>{this.state.head_item}</div>
           <div style={{ float: 'right' }}>
-            <b>Time Remaining: {this.state.time_remaining}</b>
+            <b>Remaining: {this.state.time_remaining}</b>
           </div>
         </div>
       </>
