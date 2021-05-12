@@ -32,29 +32,39 @@ interface Team {
 export enum SubmissionStatus {
   Accepted = 'Accepted',
   Correct = 'Correct',
+  correct = 'Correct',
 
   Pending = 'Pending',
 
-  ConfigurationError = 'ConfigurationError',
-  SystemError = 'SystemError',
+  ConfigurationError = 'Configuration Error',
+  SystemError = 'System Error',
   Canceled = 'Canceled',
 
-  CompilationError = 'CompilationError',
+  CompilationError = 'Compilation Error',
 
-  FileError = 'FileError',
-  RuntimeError = 'RuntimeError',
-  TimeLimitExceeded = 'TimeLimitExceeded',
-  MemoryLimitExceeded = 'MemoryLimitExceeded',
-  OutputLimitExceeded = 'OutputLimitExceeded',
+  FileError = 'File Error',
+  RuntimeError = 'Runtime Error',
+  TimeLimitExceeded = 'Time Limit Exceeded',
+  MemoryLimitExceeded = 'Memory Limit Exceeded',
+  OutputLimitExceeded = 'Output Limit Exceeded',
 
-  PartiallyCorrect = 'PartiallyCorrect',
-  WrongAnswer = 'WrongAnswer',
+  PartiallyCorrect = 'Partially Correct',
+  WrongAnswer = 'Wrong Answer',
   Reject = 'Reject',
   InCorrect = 'InCorrect',
+  incorrect = 'Incorrect',
 
-  JudgementFailed = 'JudgementFailed',
+  JudgementFailed = 'Judgement Failed',
 
   Frozen = 'Frozen',
+  Hacked = ' Hacked',
+
+  Skipped = 'Skipped',
+  PresentationError = 'Presentation Error',
+
+  SecurityViolated = 'Security Violated',
+  DenialOfJudgement = 'Denial Of Judgement',
+  IdlenessLimitExceeded = 'Idleness LimitExceeded',
 }
 
 type RunStatus =
@@ -78,7 +88,13 @@ type RunStatus =
   | 'InCorrect'
   | 'incorrect'
   | 'JudgementFailed'
-  | 'Frozen';
+  | 'Frozen'
+  | 'Hacked'
+  | 'Skipped'
+  | 'PresentationError'
+  | 'SecurityViolated'
+  | 'DenialOfJudgement'
+  | 'IdlenessLimitExceeded';
 
 interface Run {
   team_id: number | string;
