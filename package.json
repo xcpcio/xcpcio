@@ -1,9 +1,13 @@
 {
+  "name": "xcpcio-board",
   "version": "v0.0.24",
-  "private": true,
+  "description": "XCPCIO Board",
+  "repository": "https://github.com/XCPCIO/XCPCIO-Board",
+  "author": "Dup4",
+  "license": "MIT",
   "scripts": {
     "start": "umi dev",
-    "build": "umi build",
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 umi build",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
@@ -42,6 +46,10 @@
     "yorkie": "^2.0.0"
   },
   "devDependencies": {
-    "case-sensitive-paths-webpack-plugin": "^2.3.0"
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "cross-env": "^7.0.3"
+  },
+  "engines": {
+    "node": ">=14.15.5"
   }
 }
