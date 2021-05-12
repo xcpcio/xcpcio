@@ -110,7 +110,7 @@ class Index extends React.Component {
                   ].join(' ')}
                   target="_blank"
                   rel="noreferrer"
-                  href="https://github.com/XCPCIO/XCPCIO-board"
+                  href="https://github.com/XCPCIO/XCPCIO-Board"
                   title="Github"
                 >
                   <span className={style['MuiIconButton-label']}>
