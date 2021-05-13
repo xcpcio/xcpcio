@@ -8,109 +8,7 @@ import {
 } from '@/utils';
 
 export const fetchIntervalTime = 30 * 1000;
-
-interface BalloonColor {
-  background_color: string;
-  color: string;
-}
-interface ContestConfig {
-  contest_name: string;
-  start_time: string | number | Date;
-  end_time: string | number | Date;
-  frozen_time: number;
-  penalty: number;
-  problem_id: string[];
-  group?: Record<string, string>;
-  organization?: string;
-  status_time_display?: Record<string, string>;
-  medal?: Record<string, Record<string, string>>;
-  balloon_color?: BalloonColor;
-}
-
-interface Team {
-  name: string;
-  organization?: string;
-  official?: 1 | 0;
-  [key: string]: any;
-}
-
-export enum SubmissionStatus {
-  Accepted = 'Accepted',
-  Correct = 'Correct',
-  correct = 'Correct',
-
-  Pending = 'Pending',
-
-  ConfigurationError = 'Configuration Error',
-  SystemError = 'System Error',
-  Canceled = 'Canceled',
-
-  CompilationError = 'Compilation Error',
-
-  FileError = 'File Error',
-  RuntimeError = 'Runtime Error',
-  TimeLimitExceeded = 'Time Limit Exceeded',
-  MemoryLimitExceeded = 'Memory Limit Exceeded',
-  OutputLimitExceeded = 'Output Limit Exceeded',
-
-  PartiallyCorrect = 'Partially Correct',
-  WrongAnswer = 'Wrong Answer',
-  Reject = 'Reject',
-  InCorrect = 'InCorrect',
-  incorrect = 'Incorrect',
-
-  JudgementFailed = 'Judgement Failed',
-
-  Frozen = 'Frozen',
-  Hacked = ' Hacked',
-
-  Skipped = 'Skipped',
-  PresentationError = 'Presentation Error',
-
-  SecurityViolated = 'Security Violated',
-  DenialOfJudgement = 'Denial Of Judgement',
-  IdlenessLimitExceeded = 'Idleness LimitExceeded',
-}
-
-type RunStatus =
-  | 'Accepted'
-  | 'Correct'
-  | 'correct'
-  | 'Pending'
-  | 'pending'
-  | 'ConfigurationError'
-  | 'SystemError'
-  | 'Canceled'
-  | 'CompilationError'
-  | 'FileError'
-  | 'RuntimeError'
-  | 'TimeLimitExceeded'
-  | 'MemoryLimitExceeded'
-  | 'OutputLimitExceeded'
-  | 'PartiallyCorrect'
-  | 'WrongAnswer'
-  | 'Reject'
-  | 'InCorrect'
-  | 'incorrect'
-  | 'JudgementFailed'
-  | 'Frozen'
-  | 'Hacked'
-  | 'Skipped'
-  | 'PresentationError'
-  | 'SecurityViolated'
-  | 'DenialOfJudgement'
-  | 'IdlenessLimitExceeded';
-
-interface Run {
-  team_id: number | string;
-  timestamp: number;
-  problem_id: number;
-  status: RunStatus;
-}
-
-interface Image {
-  [key: string]: string;
-}
+export const INF = 0x3f3f3f3f;
 
 export async function fetchData() {
   const pathname = window.location.pathname;
@@ -166,10 +64,13 @@ export function getCurrentGroup(search: any, group: any, fgroup: any) {
 export function getTimeFlag(contest_config: any, search: any) {
   let timeFlag: any = getQueryString('timeflag', search);
   let now = getNowTimeStamp();
+
   if (timeFlag == null) {
     timeFlag = now.toString();
   }
+
   timeFlag = parseInt(timeFlag || '');
+
   if (now > contest_config.end_time) now = contest_config.end_time;
   if (now < contest_config.start_time) now = contest_config.start_time;
   if (timeFlag > now) timeFlag = now;
@@ -195,8 +96,6 @@ export function getCurrentOrganization(search: any) {
   }
   return [];
 }
-
-const INF = 0x3f3f3f3f;
 
 export function getConfig(contest_config: any, group: any) {
   let config = deepCopy(contest_config);
