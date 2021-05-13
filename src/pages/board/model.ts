@@ -108,6 +108,10 @@ interface Run {
   status: RunStatus;
 }
 
+interface Image {
+  [key: string]: string;
+}
+
 export async function fetchData() {
   const pathname = window.location.pathname;
   let contest_config: any = await getJSON(
