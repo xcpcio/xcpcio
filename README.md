@@ -1,9 +1,10 @@
-# XCPCIO-board
+# XCPCIO-Board
 
 [![Build](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/main.yml/badge.svg)](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/main.yml)
 [![License][license-image-mit]](https://mit-license.org/)
 [![GitHub stars](https://img.shields.io/github/stars/XCPCIO/XCPCIO-board.svg?style=social&label=Stars)](https://github.com/XCPCIO/XCPCIO-board)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/XCPCIO/XCPCIO-Board-Deploy/badge)](https://www.jsdelivr.com/package/gh/XCPCIO/XCPCIO-Board-Deploy)
+
 ## Deploying
 
 ```bash
