@@ -1,11 +1,16 @@
-import React from 'react';
-import style from './index.less';
-import { ProgressSmall } from '@/components/Progress';
-import { timeFormat, getQueryString, getQueryParams } from '@/utils';
-import { TreeSelect } from 'antd';
-import { getTreeData, getContest, getDuration, fetchData } from './model';
-import { GithubIcon, RightArrowIcon } from '@/icons';
-import { Loading } from '@/components/Loading';
+import React from "react";
+import style from "./index.less";
+import { ProgressSmall } from "@/components/Progress";
+import { timeFormat, getQueryString, getQueryParams } from "@/utils";
+import { TreeSelect } from "antd";
+import {
+  getTreeData,
+  getContest,
+  getDuration,
+  fetchData,
+} from "./index.services";
+import { GithubIcon, RightArrowIcon } from "@/icons";
+import { Loading } from "@/components/Loading";
 
 class Index extends React.Component {
   contest_list: any = null;
@@ -16,7 +21,7 @@ class Index extends React.Component {
   }
 
   getPath(props: any) {
-    return getQueryString('path', props.location.search) || '';
+    return getQueryString("path", props.location.search) || "";
   }
 
   async fetchData() {
@@ -54,14 +59,14 @@ class Index extends React.Component {
 
   state = {
     contest: [],
-    defaultValue: '',
+    defaultValue: "",
     loaded: false,
     treeData: null,
   };
 
   onChange = (value: string) => {
     const pathname = window.location.pathname;
-    const query = getQueryParams('path', value, this.props.location.search);
+    const query = getQueryParams("path", value, this.props.location.search);
     this.props.history.push({
       pathname: pathname,
       query: query,
@@ -80,16 +85,16 @@ class Index extends React.Component {
         {this.state.loaded === true && (
           <>
             <div
-              className={style['border-bottom']}
-              style={{ display: 'flex', marginTop: '20px' }}
+              className={style["border-bottom"]}
+              style={{ display: "flex", marginTop: "20px" }}
             >
-              <div style={{ float: 'left' }}>
+              <div style={{ float: "left" }}>
                 <TreeSelect
-                  style={{ width: '740px' }}
+                  style={{ width: "740px" }}
                   value={this.state.value}
                   dropdownStyle={{
                     maxHeight: 680,
-                    overflow: 'auto',
+                    overflow: "auto",
                   }}
                   treeData={this.state.treeData}
                   placeholder="Please select"
@@ -100,42 +105,42 @@ class Index extends React.Component {
                   onChange={this.onChange.bind(this)}
                 />
               </div>
-              <div style={{ flex: '1' }}></div>
-              <div style={{ float: 'right' }}>
+              <div style={{ flex: "1" }}></div>
+              <div style={{ float: "right" }}>
                 <a
                   className={[
                     style.go,
-                    style['MuiButtonBase-root'],
-                    style['MuiIconButton-root'],
-                  ].join(' ')}
+                    style["MuiButtonBase-root"],
+                    style["MuiIconButton-root"],
+                  ].join(" ")}
                   target="_blank"
                   rel="noreferrer"
                   href="https://github.com/XCPCIO/XCPCIO-Board"
                   title="Github"
                 >
-                  <span className={style['MuiIconButton-label']}>
+                  <span className={style["MuiIconButton-label"]}>
                     <GithubIcon />
                   </span>
-                  <span className={style['MuiTouchRipple-root']}></span>
+                  <span className={style["MuiTouchRipple-root"]}></span>
                 </a>
               </div>
             </div>
 
             {this.state.contest.map((contest: any, index: number) => {
               return (
-                <div key={index} className={style['m-box']}>
-                  <div className={style['m-title']}>{contest.contest_name}</div>
+                <div key={index} className={style["m-box"]}>
+                  <div className={style["m-title"]}>{contest.contest_name}</div>
                   <div
                     style={{
-                      display: 'flex',
-                      paddingBottom: '0px',
+                      display: "flex",
+                      paddingBottom: "0px",
                     }}
                   >
                     <div
                       style={{
-                        float: 'left',
-                        textAlign: 'left',
-                        fontSize: '16px',
+                        float: "left",
+                        textAlign: "left",
+                        fontSize: "16px",
                       }}
                     >
                       Start: {timeFormat(contest.start_time)}
@@ -143,8 +148,8 @@ class Index extends React.Component {
                       Duration:
                       {getDuration(contest.start_time, contest.end_time)}
                     </div>
-                    <div style={{ flex: '1' }}>
-                      <div style={{ width: '72%' }}>
+                    <div style={{ flex: "1" }}>
+                      <div style={{ width: "72%" }}>
                         <ProgressSmall
                           start_time={contest.start_time}
                           end_time={contest.end_time}
@@ -152,22 +157,22 @@ class Index extends React.Component {
                         />
                       </div>
                     </div>
-                    <div style={{ float: 'right' }}>
+                    <div style={{ float: "right" }}>
                       <a
                         className={[
                           style.go,
-                          style['MuiButtonBase-root'],
-                          style['MuiIconButton-root'],
-                        ].join(' ')}
+                          style["MuiButtonBase-root"],
+                          style["MuiIconButton-root"],
+                        ].join(" ")}
                         target="_blank"
                         rel="noreferrer"
                         href={contest.link}
                         style={{}}
                       >
-                        <span className={style['MuiIconButton-label']}>
+                        <span className={style["MuiIconButton-label"]}>
                           <RightArrowIcon />
                         </span>
-                        <span className={style['MuiTouchRipple-root']}></span>
+                        <span className={style["MuiTouchRipple-root"]}></span>
                       </a>
                     </div>
                   </div>
