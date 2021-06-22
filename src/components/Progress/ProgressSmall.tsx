@@ -1,7 +1,7 @@
-import React from 'react';
-import { getStatus, status_type, timerInterval, getTimePending } from './model';
-import Progress from './Progress';
-import style from './Progress.less';
+import React from "react";
+import { getStatus, status_type, timerInterval, getTimePending } from "./model";
+import Progress from "./Progress";
+import style from "./Progress.module.less";
 
 class ProgressSmall extends React.Component {
   timer: any = null;
@@ -52,21 +52,21 @@ class ProgressSmall extends React.Component {
   render() {
     return (
       <>
-        <div style={{ marginBottom: '2px', display: 'flex' }}>
-          <div style={{ float: 'left' }}></div>
-          <div style={{ flex: '1' }}>
+        <div style={{ marginBottom: "2px", display: "flex" }}>
+          <div style={{ float: "left" }}></div>
+          <div style={{ flex: "1" }}>
             <div
               className={[
-                style['label'],
+                style["label"],
                 style[status_type[this.state.status]],
-              ].join(' ')}
+              ].join(" ")}
             ></div>
             <b>
               {status_type[this.state.status]}&nbsp;
               {this.state.status === 0 && this.state.time_pending}
             </b>
           </div>
-          <div style={{ float: 'right' }}></div>
+          <div style={{ float: "right" }}></div>
         </div>
 
         <Progress

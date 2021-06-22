@@ -1,15 +1,15 @@
-import React from 'react';
-import style from './SecondLevelMenu.less';
-import { getQueryParams } from '@/utils';
+import React from "react";
+import style from "./SecondLevelMenu.module.less";
+import { getQueryParams } from "@/utils";
 
 class SecondLevelMenu extends React.Component {
   update(props: any) {
     this.setState({
       search: props.search,
       history: props.history,
-      queryName: props.queryName || '',
+      queryName: props.queryName || "",
       siderItem: props.siderItem || [],
-      currentItem: props.currentItem || '',
+      currentItem: props.currentItem || "",
     });
   }
 
@@ -28,9 +28,9 @@ class SecondLevelMenu extends React.Component {
   state = {
     search: null,
     history: {},
-    queryName: '',
+    queryName: "",
     siderItem: [],
-    currentItem: '',
+    currentItem: "",
   };
 
   changeTab = (tab: string, _this: any) => {
@@ -48,17 +48,17 @@ class SecondLevelMenu extends React.Component {
 
   render() {
     return (
-      <div className={style['second-level-menu-list']}>
+      <div className={style["second-level-menu-list"]}>
         {this.state.siderItem.map((item: any, index: any) => {
           return (
             <div
               key={index}
               className={[
-                style['second-level-menu-item'],
+                style["second-level-menu-item"],
                 item == this.state.currentItem
-                  ? style['second-level-menu-item-current']
-                  : '',
-              ].join(' ')}
+                  ? style["second-level-menu-item-current"]
+                  : "",
+              ].join(" ")}
               onClick={() => this.changeTab(item, this)}
             >
               {item}

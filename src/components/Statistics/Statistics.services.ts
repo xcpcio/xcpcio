@@ -13,13 +13,13 @@ function getChartObj(
     chart:
       window.innerWidth < 992
         ? {
-            type: 'bar',
-            backgroundColor: 'transparent',
+            type: "bar",
+            backgroundColor: "transparent",
           }
         : {
-            type: 'column',
-            backgroundColor: 'transparent',
-            height: '420px',
+            type: "column",
+            backgroundColor: "transparent",
+            height: "420px",
           },
     title: {
       text: title,
@@ -28,13 +28,13 @@ function getChartObj(
       categories: cat,
       labels: {
         style: {
-          fontSize: '16px',
+          fontSize: "16px",
         },
       },
       title: {
         text: xText,
         style: {
-          fontSize: '16px',
+          fontSize: "16px",
         },
       },
     },
@@ -43,28 +43,28 @@ function getChartObj(
       title: {
         text: yText,
         style: {
-          fontSize: '16px',
-          height: '320px',
+          fontSize: "16px",
+          height: "320px",
         },
       },
       stackLabels: {
         enabled: true,
         style: {
-          fontSize: '16px',
+          fontSize: "16px",
         },
       },
     },
     tooltip: {
       enabled: true,
-      headerFormat: '',
-      pointFormat: '{series.name}：{point.y}',
+      headerFormat: "",
+      pointFormat: "{series.name}：{point.y}",
     },
     plotOptions: {
       bar: {
-        stacking: 'normal',
+        stacking: "normal",
       },
       column: {
-        stacking: 'normal',
+        stacking: "normal",
       },
     },
     credits: {
@@ -78,7 +78,7 @@ function getTeamAndProblemId(
   team_id: number | string,
   problem_id: number | string,
 ): string {
-  return [team_id, problem_id].join('-#@!-');
+  return [team_id, problem_id].join("-#@!-");
 }
 
 export function getProblemChart(contest_config: any, team: any, run: any) {
@@ -95,7 +95,7 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
   (() => {
     let set = new Set();
     run.forEach((run: any) => {
-      if (run.status === 'correct') {
+      if (run.status === "correct") {
         const id = getTeamAndProblemId(run.team_id, run.problem_id);
         if (!set.has(id)) {
           set.add(id);
@@ -122,19 +122,19 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
     });
     const series = [
       {
-        name: '队伍数',
+        name: "队伍数",
         showInLegend: false,
         data: data,
       },
     ];
-    const colors = ['rgb(124, 181, 236)'];
+    const colors = ["rgb(124, 181, 236)"];
     return { cat, series, colors };
   })();
 
   return getChartObj(
-    '题目通过数统计',
-    '题目编号',
-    '通过数',
+    "题目通过数统计",
+    "题目编号",
+    "通过数",
     cat,
     series,
     colors,
@@ -153,7 +153,7 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
   (() => {
     let set = new Set();
     run.forEach((run: any) => {
-      if (run.status === 'correct') {
+      if (run.status === "correct") {
         const id = getTeamAndProblemId(run.team_id, run.problem_id);
         if (!set.has(id)) {
           set.add(id);
@@ -187,16 +187,16 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
     });
     const series = [
       {
-        name: '队伍数',
+        name: "队伍数",
         showInLegend: false,
         data: data,
       },
     ];
-    const colors = ['rgb(124, 181, 236)'];
+    const colors = ["rgb(124, 181, 236)"];
     return { cat, series, colors };
   })();
 
-  return getChartObj('队伍过题数统计', '过题数', '队伍数', cat, series, colors);
+  return getChartObj("队伍过题数统计", "过题数", "队伍数", cat, series, colors);
 }
 
 export function getSubmitChart(contest_config: any, team: any, run: any) {
@@ -213,36 +213,36 @@ export function getSubmitChart(contest_config: any, team: any, run: any) {
     });
     run.forEach((run: any) => {
       switch (run.status) {
-        case 'correct':
+        case "correct":
           Accepted[run.problem_id] += 1;
           break;
-        case 'incorrect':
+        case "incorrect":
           Rejected[run.problem_id] += 1;
           break;
-        case 'pending':
+        case "pending":
           Pending[run.problem_id] += 1;
           break;
       }
     });
     const series = [
       {
-        name: 'Accepted',
+        name: "Accepted",
         showInLegend: false,
         data: Accepted,
       },
       {
-        name: 'Rejected',
+        name: "Rejected",
         showInLegend: false,
         data: Rejected,
       },
       {
-        name: 'Pending',
+        name: "Pending",
         showInLegend: false,
         data: Pending,
       },
     ];
-    const colors = ['#E1FFB5', '#FFD0D0', '#C8D6FA'];
+    const colors = ["#E1FFB5", "#FFD0D0", "#C8D6FA"];
     return { cat, series, colors };
   })();
-  return getChartObj('提交分类统计', '题目编号', '提交数', cat, series, colors);
+  return getChartObj("提交分类统计", "题目编号", "提交数", cat, series, colors);
 }

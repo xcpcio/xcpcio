@@ -1,9 +1,9 @@
-import React from 'react';
-import { Select, Button, Input } from 'antd';
-import style from './Export.less';
+import React from "react";
+import { Select, Button, Input } from "antd";
+import style from "./Export.module.less";
 const { Option } = Select;
 const { TextArea } = Input;
-import { deepCopy, getDisplayTime } from '@/utils';
+import { deepCopy, getDisplayTime } from "@/utils";
 
 interface RankTeam {
   members?: string;
@@ -37,10 +37,10 @@ class Export extends React.Component {
   componentWillUnmount() {}
 
   state = {
-    type: '',
-    datFileValue: '',
+    type: "",
+    datFileValue: "",
     datFileGenerateLoading: false,
-    rankJsonValue: '',
+    rankJsonValue: "",
     rankJsonGenerateLoading: false,
   };
 
@@ -58,7 +58,7 @@ class Export extends React.Component {
     this.setState({
       datFileGenerateLoading: true,
     });
-    let datFile = '';
+    let datFile = "";
     datFile += `@contest "${this.contest_config.contest_name}"
 @contlen ${getDisplayTime(
       this.contest_config.end_time - this.contest_config.start_time,
@@ -95,10 +95,10 @@ class Export extends React.Component {
     }
 
     this.run.forEach((run: any) => {
-      let status = '';
-      if (run.status === 'correct') status = 'OK';
-      if (run.status === 'incorrect') status = 'WA';
-      if (run.status === 'pending') status = 'PD';
+      let status = "";
+      if (run.status === "correct") status = "OK";
+      if (run.status === "incorrect") status = "WA";
+      if (run.status === "pending") status = "PD";
       ++team_problem_submit_index[run.team_id][run.problem_id];
       datFile += `@s ${team_new_id[run.team_id]},${
         this.contest_config.problem_id[run.problem_id]
@@ -118,12 +118,12 @@ class Export extends React.Component {
     let _team = deepCopy(this.team);
     const penalty = this.contest_config.penalty;
     for (let k in _team) {
-      _team[k]['problem'] = this.contest_config.problem_id.map(() => 0);
-      _team[k]['solved'] = 0;
-      _team[k]['time'] = 0;
+      _team[k]["problem"] = this.contest_config.problem_id.map(() => 0);
+      _team[k]["solved"] = 0;
+      _team[k]["time"] = 0;
     }
     this.run.forEach((run: any) => {
-      if (run.status === 'correct') {
+      if (run.status === "correct") {
         _team[run.team_id].solved += 1;
         _team[run.team_id].time +=
           run.timestamp + penalty * _team[run.team_id].problem[run.problem_id];
@@ -147,15 +147,15 @@ class Export extends React.Component {
     teamList.forEach((team: any, index: number) => {
       let item: RankTeam = {};
       item.members = team.members || [];
-      item.organization = team.organization || '';
-      item.name = team.name || '';
+      item.organization = team.organization || "";
+      item.name = team.name || "";
       item.place = {};
-      item.place['all'] = index + 1;
+      item.place["all"] = index + 1;
       teamJson.push(item);
     });
     let rankJson: any = {};
-    rankJson['contestName'] = this.contest_config['contest_name'];
-    rankJson['teams'] = teamJson;
+    rankJson["contestName"] = this.contest_config["contest_name"];
+    rankJson["teams"] = teamJson;
     this.setState({
       rankJsonGenerateLoading: false,
       rankJsonValue: JSON.stringify(rankJson),
@@ -182,7 +182,7 @@ class Export extends React.Component {
         <br />
         <br />
 
-        {this.state.type === 'dat-file' && (
+        {this.state.type === "dat-file" && (
           <>
             <div style={{ width: 680 }}>
               <TextArea
@@ -207,7 +207,7 @@ class Export extends React.Component {
           </>
         )}
 
-        {this.state.type === 'rank-json' && (
+        {this.state.type === "rank-json" && (
           <>
             <div style={{ width: 680 }}>
               <TextArea

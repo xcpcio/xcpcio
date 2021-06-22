@@ -1,7 +1,7 @@
-import React from 'react';
-import style from './Progress.less';
-import { timeFormat } from '@/utils/utils';
-import ProgressWithScroll from './ProgressWithScroll';
+import React from "react";
+import style from "./Progress.module.less";
+import { timeFormat } from "@/utils/utils";
+import ProgressWithScroll from "./ProgressWithScroll";
 import {
   getStatus,
   status_type,
@@ -9,7 +9,7 @@ import {
   getTimeElapsed,
   getTimePending,
   getTimeRemaining,
-} from './model';
+} from "./model";
 
 class ProgressBig extends React.Component {
   timer: any = null;
@@ -75,27 +75,27 @@ class ProgressBig extends React.Component {
       <>
         <div
           style={{
-            marginBottom: '2px',
-            display: 'flex',
-            fontSize: '16px',
+            marginBottom: "2px",
+            display: "flex",
+            fontSize: "16px",
           }}
         >
-          <div style={{ float: 'left' }}>
+          <div style={{ float: "left" }}>
             <b>Start: {timeFormat(this.state.start_time)}</b>
           </div>
-          <div style={{ flex: '1' }}>
+          <div style={{ flex: "1" }}>
             <div
               className={[
-                style['label'],
+                style["label"],
                 style[status_type[this.state.status]],
-              ].join(' ')}
+              ].join(" ")}
             ></div>
             <b>
               {status_type[this.state.status]}&nbsp;
               {this.state.status === 0 && this.state.time_pending}
             </b>
           </div>
-          <div style={{ float: 'right' }}>
+          <div style={{ float: "right" }}>
             <b>End: {timeFormat(this.state.end_time)}</b>
           </div>
         </div>
@@ -110,16 +110,16 @@ class ProgressBig extends React.Component {
 
         <div
           style={{
-            marginTop: '2px',
-            display: 'flex',
-            fontSize: '16px',
+            marginTop: "2px",
+            display: "flex",
+            fontSize: "16px",
           }}
         >
-          <div style={{ float: 'left' }}>
+          <div style={{ float: "left" }}>
             <b>Elapsed: {this.state.time_elapsed}</b>
           </div>
-          <div style={{ flex: '1' }}>{this.state.head_item}</div>
-          <div style={{ float: 'right' }}>
+          <div style={{ flex: "1" }}>{this.state.head_item}</div>
+          <div style={{ float: "right" }}>
             <b>Remaining: {this.state.time_remaining}</b>
           </div>
         </div>

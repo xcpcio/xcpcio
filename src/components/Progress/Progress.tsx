@@ -1,6 +1,6 @@
-import React from 'react';
-import style from './Progress.less';
-import { getStatus, getWidth, progress_active, progress_status } from './model';
+import React from "react";
+import style from "./Progress.module.less";
+import { getStatus, getWidth, progress_active, progress_status } from "./model";
 
 class Progress extends React.Component {
   timer: any = null;
@@ -61,18 +61,18 @@ class Progress extends React.Component {
       <>
         <div
           className={[
-            style['am-progress'],
-            style['am-progress-striped'],
+            style["am-progress"],
+            style["am-progress-striped"],
             style[progress_active[this.state.status]],
-          ].join(' ')}
+          ].join(" ")}
           style={{ marginBottom: 0 }}
         >
           <div
             className={[
-              style['am-progress-bar'],
+              style["am-progress-bar"],
               style[progress_status[this.state.status]],
-            ].join(' ')}
-            style={{ width: [this.state.width, '%'].join('') }}
+            ].join(" ")}
+            style={{ width: [this.state.width, "%"].join("") }}
           ></div>
         </div>
       </>
