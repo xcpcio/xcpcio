@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
 import { Select, Button, Input } from "antd";
-import style from "./Export.module.less";
 const { Option } = Select;
 const { TextArea } = Input;
+
 import { deepCopy, getDisplayTime } from "@/utils";
+import style from "./Export.module.less";
 
 interface RankTeam {
   members?: string;
@@ -12,62 +14,48 @@ interface RankTeam {
   place?: any;
 }
 
-class Export extends React.Component {
-  contest_config: any = null;
-  team: any = null;
-  run: any = null;
+interface ExportProps {
+  contest_config: any;
+  team: any;
+  run: any;
+}
 
-  update(props: any) {
-    this.contest_config = props.contest_config;
-    this.team = props.team;
-    this.run = props.run;
+const Export: React.FC<ExportProps> = (props) => {
+  const [type, setType] = useState("");
+
+  const [datFileValue, setDatFileValue] = useState("");
+  const [datFileGenerateLoading, setDatFileGenerateLoading] = useState(false);
+
+  const [rankJsonValue, setRankJsonValue] = useState("");
+  const [rankJsonGenerateLoading, setRankJsonGenerateLoading] = useState(false);
+
+  const [contestConfig, setContestConfig] = useState({} as any);
+  const [team, setTeam] = useState({} as any);
+  const [run, setRun] = useState([] as any);
+
+  async function onSelectChange(value: string) {
+    setType(value);
   }
 
-  //在组件已经被渲染到 DOM 中后运行
-  async componentWillMount() {
-    this.update(this.props);
-  }
+  useEffect(() => {
+    setContestConfig(props.contest_config);
+    setTeam(props.team);
+    setRun(props.run);
+  }, [props.contest_config, props.team, props.run]);
 
-  //props中的值发生改变时执行
-  async componentWillReceiveProps(nextProps: any) {
-    this.update(nextProps);
-  }
+  async function getDatFile() {
+    setDatFileGenerateLoading(true);
 
-  //组件卸载前的操作
-  componentWillUnmount() {}
-
-  state = {
-    type: "",
-    datFileValue: "",
-    datFileGenerateLoading: false,
-    rankJsonValue: "",
-    rankJsonGenerateLoading: false,
-  };
-
-  constructor(props: any) {
-    super(props);
-  }
-
-  onChange(value: string) {
-    this.setState({
-      type: value,
-    });
-  }
-
-  getDatFile() {
-    this.setState({
-      datFileGenerateLoading: true,
-    });
     let datFile = "";
-    datFile += `@contest "${this.contest_config.contest_name}"
-@contlen ${getDisplayTime(
-      this.contest_config.end_time - this.contest_config.start_time,
-    )}
-@problems ${this.contest_config.problem_id.length}
-@teams ${Object.keys(this.team).length}
-@submissions ${this.run.length}
+
+    datFile += `@contest "${contestConfig.contest_name}"
+@contlen ${getDisplayTime(contestConfig.end_time - contestConfig.start_time)}
+@problems ${contestConfig.problem_id.length}
+@teams ${Object.keys(team).length}
+@submissions ${run.length}
 `;
-    this.contest_config.problem_id.forEach((pid: string) => {
+
+    contestConfig.problem_id.forEach((pid: string) => {
       datFile += `@p ${pid},${pid},20,0\n`;
     });
 
@@ -76,13 +64,11 @@ class Export extends React.Component {
       let team_problem_submit_index: any = {};
       let pos = 1;
       const initP = () => {
-        return this.contest_config.problem_id.map(
-          (name: string, index: number) => {
-            return 0;
-          },
-        );
+        return contestConfig.problem_id.map((name: string, index: number) => {
+          return 0;
+        });
       };
-      for (let tid in this.team) {
+      for (let tid in team) {
         team_new_id[tid] = pos;
         ++pos;
         team_problem_submit_index[tid] = initP();
@@ -90,39 +76,42 @@ class Export extends React.Component {
       return { team_new_id, team_problem_submit_index };
     })();
 
-    for (let tid in this.team) {
-      datFile += `@t ${team_new_id[tid]},0,1,${this.team[tid].name}\n`;
+    for (let tid in team) {
+      datFile += `@t ${team_new_id[tid]},0,1,${team[tid].name}\n`;
     }
 
-    this.run.forEach((run: any) => {
+    run.forEach((run: any) => {
       let status = "";
       if (run.status === "correct") status = "OK";
       if (run.status === "incorrect") status = "WA";
       if (run.status === "pending") status = "PD";
       ++team_problem_submit_index[run.team_id][run.problem_id];
       datFile += `@s ${team_new_id[run.team_id]},${
-        this.contest_config.problem_id[run.problem_id]
+        contestConfig.problem_id[run.problem_id]
       },${team_problem_submit_index[run.team_id][run.problem_id]},${
         run.timestamp
       },${status}\n`;
     });
 
-    this.setState({
-      datFileGenerateLoading: false,
-      datFileValue: datFile,
-    });
+    setDatFileValue(datFile);
+    setDatFileGenerateLoading(false);
   }
 
-  getRankJson() {
+  async function getRankJson() {
+    setRankJsonGenerateLoading(true);
+
     let teamJson: RankTeam[] = [];
-    let _team = deepCopy(this.team);
-    const penalty = this.contest_config.penalty;
+    let _team = deepCopy(team);
+
+    const penalty = contestConfig.penalty;
+
     for (let k in _team) {
-      _team[k]["problem"] = this.contest_config.problem_id.map(() => 0);
+      _team[k]["problem"] = contestConfig.problem_id.map(() => 0);
       _team[k]["solved"] = 0;
       _team[k]["time"] = 0;
     }
-    this.run.forEach((run: any) => {
+
+    run.forEach((run: any) => {
       if (run.status === "correct") {
         _team[run.team_id].solved += 1;
         _team[run.team_id].time +=
@@ -131,10 +120,12 @@ class Export extends React.Component {
         _team[run.team_id].problem[run.problem_id] += 1;
       }
     });
+
     let teamList = [];
     for (let k in _team) {
       teamList.push(_team[k]);
     }
+
     teamList.sort((a: any, b: any) => {
       if (a.solved > b.solved) return -1;
       if (a.solved < b.solved) return 1;
@@ -144,6 +135,7 @@ class Export extends React.Component {
       if (a.name > b.name) return 1;
       return 0;
     });
+
     teamList.forEach((team: any, index: number) => {
       let item: RankTeam = {};
       item.members = team.members || [];
@@ -154,86 +146,81 @@ class Export extends React.Component {
       teamJson.push(item);
     });
     let rankJson: any = {};
-    rankJson["contestName"] = this.contest_config["contest_name"];
+    rankJson["contestName"] = contestConfig["contest_name"];
     rankJson["teams"] = teamJson;
-    this.setState({
-      rankJsonGenerateLoading: false,
-      rankJsonValue: JSON.stringify(rankJson),
-    });
+
+    setRankJsonValue(JSON.stringify(rankJson));
+    setRankJsonGenerateLoading(false);
   }
 
-  render() {
-    return (
-      <>
-        <Select
-          showSearch
-          style={{ width: 680, marginTop: 30 }}
-          placeholder="Select a type"
-          optionFilterProp="children"
-          onChange={this.onChange.bind(this)}
-          filterOption={(input, option) =>
-            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          <Option value="dat-file">Codeforces Gym Ghosts DAT File</Option>
-          <Option value="rank-json">Rank JSON</Option>
-        </Select>
+  return (
+    <>
+      <Select
+        showSearch
+        style={{ width: 680, marginTop: 30 }}
+        placeholder="Select a type"
+        optionFilterProp="children"
+        onChange={onSelectChange}
+        filterOption={(input, option) =>
+          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
+        <Option value="dat-file">Codeforces Gym Ghosts DAT File</Option>
+        <Option value="rank-json">Rank JSON</Option>
+      </Select>
 
-        <br />
-        <br />
+      <br />
+      <br />
 
-        {this.state.type === "dat-file" && (
-          <>
-            <div style={{ width: 680 }}>
-              <TextArea
-                allowClear={true}
-                rows={15}
-                defaultValue={this.state.datFileValue}
-                key={this.state.datFileValue}
-                disabled={this.state.datFileGenerateLoading}
-              />
-            </div>
-            <br />
-            <br />
-            <Button
-              loading={this.state.datFileGenerateLoading}
-              className={style.btn}
-              type="primary"
-              size="small"
-              onClick={this.getDatFile.bind(this)}
-            >
-              Generate
-            </Button>
-          </>
-        )}
+      {type === "dat-file" && (
+        <>
+          <div style={{ width: 680 }}>
+            <TextArea
+              allowClear={true}
+              rows={15}
+              defaultValue={datFileValue}
+              key={datFileValue}
+              disabled={datFileGenerateLoading}
+            />
+          </div>
+          <br />
+          <Button
+            loading={datFileGenerateLoading}
+            className={style.btn}
+            type="primary"
+            size="small"
+            onClick={getDatFile}
+          >
+            Generate
+          </Button>
+        </>
+      )}
 
-        {this.state.type === "rank-json" && (
-          <>
-            <div style={{ width: 680 }}>
-              <TextArea
-                allowClear={true}
-                rows={15}
-                defaultValue={this.state.rankJsonValue}
-                key={this.state.rankJsonValue}
-                disabled={this.state.rankJsonGenerateLoading}
-              />
-            </div>
-            <br />
-            <br />
-            <Button
-              loading={this.state.rankJsonGenerateLoading}
-              className={style.btn}
-              type="primary"
-              size="small"
-              onClick={this.getRankJson.bind(this)}
-            >
-              Generate
-            </Button>
-          </>
-        )}
-      </>
-    );
-  }
-}
+      {type === "rank-json" && (
+        <>
+          <div style={{ width: 680 }}>
+            <TextArea
+              allowClear={true}
+              rows={15}
+              defaultValue={rankJsonValue}
+              key={rankJsonValue}
+              disabled={rankJsonGenerateLoading}
+            />
+          </div>
+          <br />
+          <Button
+            loading={rankJsonGenerateLoading}
+            className={style.btn}
+            type="primary"
+            size="small"
+            onClick={getRankJson}
+          >
+            Generate
+          </Button>
+        </>
+      )}
+    </>
+  );
+};
 
 export { Export };
