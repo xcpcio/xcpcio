@@ -34,11 +34,11 @@ const Index: React.FC<{}> = (props) => {
     setContest(getContest(urlQuery.path, contestList));
     setDefaultValue(urlQuery.path);
     setTreeData(getTreeData(contestList));
-    setLoading(false);
   }
 
   async function initData() {
     setContestList(await fetchData());
+    setLoading(false);
   }
 
   useEffect(() => {
