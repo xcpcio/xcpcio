@@ -1,3 +1,6 @@
+import { Run } from "@/interface/submission";
+import { isAccepted, isWrongAnswer, isPending } from "@/utils/submission";
+
 export const timerInterval = 200;
 
 function getChartObj(
@@ -81,7 +84,7 @@ function getTeamAndProblemId(
   return [team_id, problem_id].join("-#@!-");
 }
 
-export function getProblemChart(contest_config: any, team: any, run: any) {
+export function getProblemChart(contest_config: any, team: any, run: Run[]) {
   let problem_list: any = [];
 
   contest_config.problem_id.forEach((problem_id: any, index: number) => {
@@ -94,12 +97,14 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
 
   (() => {
     let set = new Set();
-    run.forEach((run: any) => {
-      if (run.status === "correct") {
-        const id = getTeamAndProblemId(run.team_id, run.problem_id);
+
+    run.forEach((run: Run) => {
+      if (isAccepted(run.status)) {
+        const id = getTeamAndProblemId(run.teamId, run.problemId);
+
         if (!set.has(id)) {
           set.add(id);
-          problem_list[run.problem_id].solved += 1;
+          problem_list[run.problemId].solved += 1;
         }
       }
     });
@@ -116,10 +121,12 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
   let { cat, series, colors } = (() => {
     let cat: any = [];
     let data: any = [];
+
     problem_list.forEach((problem: any) => {
       cat.push(problem.problem_id);
       data.push(problem.solved);
     });
+
     const series = [
       {
         name: "队伍数",
@@ -127,6 +134,7 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
         data: data,
       },
     ];
+
     const colors = ["rgb(124, 181, 236)"];
     return { cat, series, colors };
   })();
@@ -141,7 +149,7 @@ export function getProblemChart(contest_config: any, team: any, run: any) {
   );
 }
 
-export function getTeamChart(contest_config: any, team: any, run: any) {
+export function getTeamChart(contest_config: any, team: any, run: Run[]) {
   let team_list: any = {};
 
   for (let team_id in team) {
@@ -152,12 +160,13 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
 
   (() => {
     let set = new Set();
-    run.forEach((run: any) => {
-      if (run.status === "correct") {
-        const id = getTeamAndProblemId(run.team_id, run.problem_id);
+
+    run.forEach((run: Run) => {
+      if (isAccepted(run.status)) {
+        const id = getTeamAndProblemId(run.teamId, run.problemId);
         if (!set.has(id)) {
           set.add(id);
-          team_list[run.team_id].solved += 1;
+          team_list[run.teamId].solved += 1;
         }
       }
     });
@@ -166,25 +175,30 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
   let num = (() => {
     const len = contest_config?.problem_id?.length;
     let num: any = [];
+
     for (let i = 0; i <= len; ++i) {
       num[i] = {
         index: i,
         cnt: 0,
       };
     }
+
     for (let team_id in team_list) {
       num[team_list[team_id].solved].cnt += 1;
     }
+
     return num;
   })();
 
   let { cat, series, colors } = (() => {
     let cat: any = [];
     let data: any = [];
+
     num.forEach((num: any) => {
       cat.push(num.index);
       data.push(num.cnt);
     });
+
     const series = [
       {
         name: "队伍数",
@@ -192,6 +206,7 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
         data: data,
       },
     ];
+
     const colors = ["rgb(124, 181, 236)"];
     return { cat, series, colors };
   })();
@@ -199,31 +214,34 @@ export function getTeamChart(contest_config: any, team: any, run: any) {
   return getChartObj("队伍过题数统计", "过题数", "队伍数", cat, series, colors);
 }
 
-export function getSubmitChart(contest_config: any, team: any, run: any) {
+export function getSubmitChart(contest_config: any, team: any, run: Run[]) {
   let { cat, series, colors } = (() => {
     let cat: any = [];
     let Accepted: any = [];
     let Rejected: any = [];
     let Pending: any = [];
+
     contest_config.problem_id.forEach((problem_id: any, index: number) => {
       Accepted.push(0);
       Rejected.push(0);
       Pending.push(0);
       cat.push(problem_id);
     });
-    run.forEach((run: any) => {
-      switch (run.status) {
-        case "correct":
-          Accepted[run.problem_id] += 1;
-          break;
-        case "incorrect":
-          Rejected[run.problem_id] += 1;
-          break;
-        case "pending":
-          Pending[run.problem_id] += 1;
-          break;
+
+    run.forEach((run: Run) => {
+      if (isAccepted(run.status)) {
+        Accepted[run.problemId] += 1;
+      }
+
+      if (isWrongAnswer(run.status)) {
+        Rejected[run.problemId] += 1;
+      }
+
+      if (isPending(run.status)) {
+        Pending[run.problemId] += 1;
       }
     });
+
     const series = [
       {
         name: "Accepted",
@@ -241,8 +259,10 @@ export function getSubmitChart(contest_config: any, team: any, run: any) {
         data: Pending,
       },
     ];
+
     const colors = ["#E1FFB5", "#FFD0D0", "#C8D6FA"];
     return { cat, series, colors };
   })();
+
   return getChartObj("提交分类统计", "题目编号", "提交数", cat, series, colors);
 }

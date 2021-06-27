@@ -23,16 +23,19 @@ class Statistics extends React.Component {
       props.team,
       props.run,
     );
+
     const teamChartOptions = getTeamChart(
       props.contest_config,
       props.team,
       props.run,
     );
+
     const submitChartOptions = getSubmitChart(
       props.contest_config,
       props.team,
       props.run,
     );
+
     this.setState({
       problemChartOptions: problemChartOptions,
       teamChartOptions: teamChartOptions,
