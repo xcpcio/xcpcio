@@ -1,5 +1,7 @@
 export enum SubmissionStatus {
   Pending = "Pending",
+  Waiting = "Waiting",
+  Judging = "Judging",
   Frozen = "Frozen",
 
   Accepted = "Accepted",
@@ -31,6 +33,9 @@ export enum SubmissionStatus {
   DenialOfJudgement = "Denial Of Judgement",
 
   PartiallyCorrect = "Partially Correct",
+
+  Unknown = "Unknown",
+  Undefined = "Undefined",
 }
 
 export type RunStatus =
@@ -58,8 +63,8 @@ export type RunStatus =
   | "IdlenessLimitExceeded";
 
 export interface Run {
-  team_id: number | string;
+  teamId: string;
   timestamp: number;
-  problem_id: number;
+  problemId: number;
   status: SubmissionStatus;
 }

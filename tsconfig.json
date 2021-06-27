@@ -14,7 +14,8 @@
       "@/*": ["src/*"],
       "@@/*": ["src/.umi/*"]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "suppressImplicitAnyIndexErrors": true
   },
   "include": [
     "mock/**/*",

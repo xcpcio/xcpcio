@@ -20,9 +20,10 @@ import {
   getTeam,
 } from "./board.services";
 import { throttle, debounce } from "lodash";
-import CONFIG from "../../../config";
+import __CONFIG__ from "@/../config";
 import { Balloon } from "@/components/Balloon";
 import { Export } from "@/components/Export";
+import { Run } from "@/interface/submission";
 
 const head_item = [
   <table>
@@ -57,7 +58,7 @@ class Board extends React.Component {
 
   async fetch() {
     let { contest_config, team, run } = await fetchData();
-    if (contest_config !== null && team !== null && run !== null) {
+    if (contest_config !== null && team !== null) {
       this.contest_config = contest_config;
       this.team = team;
       this.run = run;
@@ -75,11 +76,7 @@ class Board extends React.Component {
       }
     }
 
-    if (
-      this.contest_config === null ||
-      this.team === null ||
-      this.run === null
-    ) {
+    if (this.contest_config === null || this.team === null) {
       this.clearTimer();
       this.timer = setTimeout(() => {
         this.update(props);
@@ -172,7 +169,6 @@ class Board extends React.Component {
     return true;
   }
 
-  //组件卸载前的操作
   componentWillUnmount() {
     this.clearTimer();
   }
@@ -199,7 +195,7 @@ class Board extends React.Component {
     },
     tab: 0,
     filter: false,
-    title: CONFIG.title,
+    title: __CONFIG__.title,
   };
 
   render() {

@@ -10,6 +10,7 @@ export async function fetchData() {
 
 export function getTreeData(contest_list: any) {
   let treeData: any;
+
   const dfs = (contest_list: any, path: string) => {
     let children: any = [];
     for (let k in contest_list) {
@@ -25,6 +26,7 @@ export function getTreeData(contest_list: any) {
     });
     return children;
   };
+
   treeData = [
     {
       title: "CONTEST",
@@ -38,6 +40,7 @@ export function getTreeData(contest_list: any) {
 
 export function getContest(path: string, contest_list: any) {
   let contest: any = [];
+
   const dfs = (contest_list: any, contest: any) => {
     if (!contest_list["config"]) {
       for (let k in contest_list) {
@@ -49,9 +52,11 @@ export function getContest(path: string, contest_list: any) {
       contest.push(item);
     }
   };
+
   let _path = path.split("/");
   _path.splice(0, 1);
   let _contest_list = deepCopy(contest_list);
+
   _path.forEach((path: string) => {
     if (_contest_list[path] != undefined) {
       _contest_list = _contest_list[path];
@@ -59,10 +64,13 @@ export function getContest(path: string, contest_list: any) {
       _contest_list = null;
     }
   });
+
   if (_contest_list == null) {
     return contest;
   }
+
   dfs(_contest_list, contest);
+
   contest.sort((a: any, b: any) => {
     if (a.start_time < b.start_time) return 1;
     if (a.start_time > b.start_time) return -1;

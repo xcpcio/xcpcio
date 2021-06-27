@@ -7,23 +7,62 @@ import {
   getQueryString,
 } from "@/utils";
 
+import { Run } from "@/interface";
+import {
+  stringToSubmissionStatus,
+  isAccepted,
+  isWrongAnswer,
+} from "@/utils/submission";
+
 export const fetchIntervalTime = 30 * 1000;
 export const INF = 0x3f3f3f3f;
 
 export async function fetchData() {
   const pathname = window.location.pathname;
+
   let contest_config: any = await getJSON(
     [pathname, `config.json?t=${getNowTimeStamp()}`].join("/"),
   );
+
   let team: any = await getJSON(
     [pathname, `team.json?t=${getNowTimeStamp()}`].join("/"),
   );
-  let run: any = await getJSON(
+
+  let _run: any = await getJSON(
     [pathname, `run.json?t=${getNowTimeStamp()}`].join("/"),
   );
+
+  let run: Run[] = [];
+
   if (contest_config?.status === 404) contest_config = null;
   if (team?.status === 404) team = null;
-  if (run?.status === 404) run = null;
+
+  if (_run?.status === 404) {
+    run = [];
+  } else {
+    const propsMap = {
+      teamId: ["team_id", "teamId"],
+      problemId: ["problem_id", "problemId"],
+      timestamp: ["timestamp"],
+    };
+
+    _run.forEach((nowItem: any) => {
+      let newItem: Run = {} as Run;
+
+      for (let key in propsMap) {
+        propsMap[key].forEach((oldKey: string) => {
+          if (nowItem[oldKey] != undefined) {
+            newItem[key] = nowItem[oldKey];
+          }
+        });
+      }
+
+      newItem.status = stringToSubmissionStatus(nowItem["status"]);
+
+      run.push(newItem);
+    });
+  }
+
   return { contest_config, team, run };
 }
 
@@ -74,8 +113,9 @@ export function getTimeFlag(contest_config: any, search: any) {
   if (now > contest_config.end_time) now = contest_config.end_time;
   if (now < contest_config.start_time) now = contest_config.start_time;
   if (timeFlag > now) timeFlag = now;
-  if (timeFlag < contest_config.start_time)
+  if (timeFlag < contest_config.start_time) {
     timeFlag = contest_config.start_time;
+  }
   return Math.ceil(timeFlag - contest_config.start_time);
 }
 
@@ -136,43 +176,23 @@ export function getTeam(team: any, group: any, search: any) {
   return team_list;
 }
 
-export function getRun(run: any, team: any, timeFlag: any) {
-  let _run = (() => {
-    let _run: any = [];
-    run.forEach((item: any) => {
-      if (item.timestamp <= timeFlag) {
-        _run.push(item);
-      }
-    });
-    _run.sort((a: any, b: any) => {
-      if (a.timestamp < b.timestamp) return -1;
-      if (a.timestamp > b.timestamp) return 1;
-      if (b.status === "correct" && a.status !== "correct") return -1;
-      if (a.status === "correct" && b.status !== "correct") return 1;
-      return 0;
-    });
-    return _run;
-  })();
+export function getRun(run: Run[], team: any, timeFlag: number) {
+  let resRun = run.filter((x) => x.timestamp <= timeFlag);
 
-  let new_run = (() => {
-    let map = new Map();
-    let set = new Set(Object.keys(team));
-    let new_run: any = [];
-    _run.forEach((item: any) => {
-      if (set.has(item.team_id.toString())) {
-        const id = [item.team_id, item.problem_id].join("-");
-        if (!map.has(id) || map.get(id) == INF) {
-          new_run.push(item);
-          if (item.status === "correct") {
-            map.set(id, item.timestamp);
-          } else {
-            map.set(id, INF);
-          }
-        }
-      }
-    });
-    return new_run;
-  })();
+  // Priority sorting by time from smallest to largest.
+  // Secondly, according to whether it is AC, behind the row of AC.
+  resRun.sort((a: Run, b: Run) => {
+    if (a.timestamp < b.timestamp) return -1;
+    if (a.timestamp > b.timestamp) return 1;
+    if (isAccepted(b.status) && !isAccepted(a.status)) return -1;
+    if (isAccepted(a.status) && !isAccepted(b.status)) return 1;
+    return 0;
+  });
 
-  return new_run;
+  const teamSet = new Set(Object.keys(team));
+
+  // Remove runs that teamId in that run does not exist in the team list.
+  resRun = resRun.filter((x) => teamSet.has(x.teamId));
+
+  return resRun;
 }
