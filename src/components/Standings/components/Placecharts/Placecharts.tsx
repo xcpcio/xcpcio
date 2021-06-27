@@ -34,7 +34,6 @@ class Placecharts extends React.Component {
     debounce(this.update, timerInterval).bind(this)(nextProps);
   }
 
-  //组件卸载前的操作
   componentWillUnmount() {}
 
   state = {

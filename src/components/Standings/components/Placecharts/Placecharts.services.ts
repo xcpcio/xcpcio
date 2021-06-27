@@ -1,3 +1,6 @@
+import { Run } from "@/interface/submission";
+import { isAccepted } from "@/utils/submission";
+
 export const height = 400;
 export const timerInterval = 250;
 
@@ -25,17 +28,26 @@ interface PlaceChartsItem {
   last_solved: string;
 }
 
-function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
+function getTeamPlace(
+  contest_config: any,
+  cur_team: any,
+  team: any,
+  run: Run[],
+) {
   let data: PlaceChartsItem[] = [];
-  run.sort((a: any, b: any) => {
+
+  run.sort((a: Run, b: Run) => {
     if (a.timestamp < b.timestamp) return -1;
     if (a.timestamp > b.timestamp) return 1;
     return 0;
   });
+
   const duration = Math.floor(
     (contest_config.end_time - contest_config.start_time) / 60,
   );
+
   let teams: any = {};
+
   for (let k in team) {
     teams[k] = {};
     teams[k]["problem"] = [];
@@ -47,17 +59,20 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
       teams[k].problem.push(problem);
     });
   }
+
   const run_len = run.length;
   let pos = 0;
   let last_solved = "";
+
   for (let i = 0; i <= duration; ++i) {
     while (pos < run_len && run[pos].timestamp <= i * 60) {
       let run_item = run[pos];
-      let team_id = run_item.team_id;
+      let team_id = run_item.teamId;
       let status = run_item.status;
-      let problem_id = run_item.problem_id;
+      let problem_id = run_item.problemId;
       let time = run_item.timestamp;
-      if (status === "correct") {
+
+      if (isAccepted(status)) {
         teams[team_id].problem[problem_id].solved = 1;
         teams[team_id].problem[problem_id].time += time;
         if (team_id == cur_team.team_id) {
@@ -68,8 +83,10 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
       }
       ++pos;
     }
+
     let cur_team_data = getSolvedAndTime(teams[cur_team.team_id].problem);
     let place = 1;
+
     for (let k in teams) {
       if (k !== cur_team.team_id) {
         let team = teams[k];
@@ -77,8 +94,10 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
         place += comp(team_data, cur_team_data);
       }
     }
+
     data.push({ x: i, y: place, last_solved: last_solved });
   }
+
   //平滑处理
   let _data: PlaceChartsItem[] = [];
   _data.push(data[0]);

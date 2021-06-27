@@ -1,4 +1,7 @@
 import { getDisplayTime } from "@/utils";
+import { Run } from "@/interface/submission";
+import { isAccepted, isWrongAnswer, isPending } from "@/utils/submission";
+
 export const timerInterval = 500;
 export const INF = 0x3f3f3f3f;
 
@@ -23,6 +26,7 @@ function getInitProblem(contest_config: any) {
 
   contest_config.problem_id.forEach((id: CharacterData, index: number) => {
     let item: any = {};
+
     item["problem_id"] = index;
     item["solved"] = 0;
     item["total"] = 0;
@@ -78,32 +82,36 @@ function getTeamAndProblemId(
   return [team_id, problem_id].join("-");
 }
 
-export function getProblemList(contest_config: any, run: any) {
+export function getProblemList(contest_config: any, run: Run[]) {
   let problem_list = getInitProblem(contest_config);
   (() => {
     let set = new Set();
 
-    run.forEach((run: any) => {
-      if (run.status === "correct") {
-        set.add(getTeamAndProblemId(run.team_id, run.problem_id));
+    run.forEach((run: Run) => {
+      if (isAccepted(run.status)) {
+        set.add(getTeamAndProblemId(run.teamId, run.problemId));
       }
     });
 
-    run.forEach((run: any) => {
-      let problem = problem_list[run.problem_id];
+    run.forEach((run: Run) => {
+      let problem = problem_list[run.problemId];
       problem.total += 1;
-      if (run.status === "correct") {
+
+      if (isAccepted(run.status)) {
         problem.solved += 1;
+
         problem.first_solve_time = Math.min(
           problem.first_solve_time,
           getDisplayTime(run.timestamp),
         );
+
         problem.last_solve_time = Math.max(
           problem.last_solve_time,
           getDisplayTime(run.timestamp),
         );
       }
-      if (set.has(getTeamAndProblemId(run.team_id, run.problem_id))) {
+
+      if (set.has(getTeamAndProblemId(run.teamId, run.problemId))) {
         problem.attempted += 1;
       }
     });
@@ -128,35 +136,37 @@ export function compTeamList(a: any, b: any) {
 export function getTeamList(
   contest_config: any,
   team: any,
-  run: any,
+  run: Run[],
   problem_list: any,
 ) {
   let team_dic: any = getInitTeam(contest_config, team);
   let team_list: any = [];
 
-  run.forEach((run: any) => {
-    let team_id = run.team_id;
-    let problem_id = run.problem_id;
+  run.forEach((run: Run) => {
+    let team_id = run.teamId;
+    let problem_id = run.problemId;
     let team = team_dic[team_id];
     let problem = team.problem[problem_id];
     problem.attempt_num += 1;
     problem.time = run.timestamp;
-    if (run.status === "correct") {
+
+    if (isAccepted(run.status)) {
       problem.status = "correct";
       team.solved += 1;
       team.time +=
         problem.time + (problem.attempt_num - 1) * contest_config.penalty;
-    } else if (run.status === "pending") {
+    } else if (isPending(run.status)) {
       problem.status = "pending";
       problem["pending_num"] += 1;
-    } else if (run.status === "incorrect") {
+    } else if (isWrongAnswer(run.status)) {
       problem.status = "incorrect";
     }
   });
 
-  run.forEach((run: any) => {
-    let team = team_dic[run.team_id];
-    let problem = team.problem[run.problem_id];
+  run.forEach((run: Run) => {
+    let team = team_dic[run.teamId];
+    let problem = team.problem[run.problemId];
+
     if (problem.status === "correct") {
       team.attempted += 1;
     }
@@ -184,12 +194,14 @@ export function getTeamList(
     ++i
   ) {
     let item = team_list[i];
+
     // if (item.unofficial) {
     //     item.place = '*';
     //     unofficial += 1;
     //     item.place_className = contest_config.medal ? 'unofficial' : 'stnd';
     //     continue;
     // }
+
     if (item.solved == pre_solved && item.time == pre_time) {
       item.place = pre_place;
     } else {
@@ -198,10 +210,12 @@ export function getTeamList(
       pre_time = item.time;
       pre_solved = item.solved;
     }
+
     if (contest_config.medal) {
       let tot = 0;
       let ok = false;
       const medal = contest_config.medal;
+
       [
         { gold: medal.gold },
         { silver: medal.silver },
