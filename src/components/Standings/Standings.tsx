@@ -1,9 +1,9 @@
-import React from 'react';
-import style from './Standings.less';
-import starStyle from './Star.less';
-import { Placecharts } from './components';
-import { Loading } from '@/components/Loading';
-import { deepCopy, getStarKey, removeDuplicateItems } from '@/utils/utils';
+import React from "react";
+import style from "./Standings.module.less";
+import starStyle from "./Star.module.less";
+import { Placecharts } from "./components";
+import { Loading } from "@/components/Loading";
+import { deepCopy, getStarKey, removeDuplicateItems } from "@/utils/utils";
 import {
   INF,
   timerInterval,
@@ -14,13 +14,13 @@ import {
   getStarBtnId,
   getUnStarBtnId,
   compTeamList,
-} from './model';
-import { GirlIcon, LikeIcon, StarIcon } from '@/icons';
-import { debounce } from 'lodash';
+} from "./Standings.services";
+import { GirlIcon, LikeIcon, StarIcon } from "@/icons";
+import { debounce } from "lodash";
 
 function getInfo(coach: string | undefined, members: string[] | undefined) {
-  let splitch = '、';
-  let res = '';
+  let splitch = "、";
+  let res = "";
   if (coach) res += `${coach}(教练)`;
   if (coach && members) res += splitch;
   if (members) res += members.join(splitch);
@@ -63,7 +63,7 @@ function onStarBtnClick(
         team_list_filter: team_list_filter,
       });
     }
-    window.localStorage.setItem(getStarKey(team_id), '1');
+    window.localStorage.setItem(getStarKey(team_id), "1");
   } else {
     (() => {
       let concerned = _this.state.concerned;
@@ -103,23 +103,23 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
         className={[
           Filter
             ? style.filter
-            : style[['stand', item.stand_className_id].join('')],
+            : style[["stand", item.stand_className_id].join("")],
           style.team,
-        ].join(' ')}
+        ].join(" ")}
         onClick={() => {
           let item = document.getElementById(analyzeTeamId);
           switch (item?.style?.display) {
-            case 'none':
+            case "none":
               _this.clearTeamDetailsDisplay();
-              item.style.display = '';
+              item.style.display = "";
               let vis: any = {};
               vis[analyzeTeamId] = 1;
               _this.setState({
                 vis: vis,
               });
               break;
-            case '':
-              item.style.display = 'none';
+            case "":
+              item.style.display = "none";
               _this.setState({
                 vis: {},
               });
@@ -131,7 +131,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
         {_this.state.badge === 1 && (
           <td className={style.empty}>
             <img
-              src={['data:image/png;base64,', item.badge.base64].join('')}
+              src={["data:image/png;base64,", item.badge.base64].join("")}
               width={32}
               height={32}
               alt=""
@@ -142,13 +142,13 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
           <td className={style.stnd}>
             <div
               style={{
-                display: 'flex',
+                display: "flex",
               }}
             >
               <div
                 style={{
-                  float: 'left',
-                  fontFamily: 'Georgia',
+                  float: "left",
+                  fontFamily: "Georgia",
                   paddingLeft: 5,
                 }}
               >
@@ -156,14 +156,14 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
               </div>
               <div
                 style={{
-                  flex: '1',
+                  flex: "1",
                 }}
               >
                 {item.organization}
               </div>
               <div
                 style={{
-                  float: 'right',
+                  float: "right",
                 }}
               ></div>
             </div>
@@ -175,7 +175,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
           <span
             className={getStarId(item.team_id)}
             style={{
-              display: _this.state.concerned.has(item.team_id) ? '' : 'none',
+              display: _this.state.concerned.has(item.team_id) ? "" : "none",
             }}
           >
             <LikeIcon />
@@ -190,29 +190,29 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
         {item.problem.map((item: any, index: number) => {
           let ch_status = (() => {
             switch (item.status) {
-              case 'correct':
-                return '+';
-              case 'incorrect':
-                return '-';
-              case 'pending':
-                return '?';
-              case 'unattempted':
-                return '.';
+              case "correct":
+                return "+";
+              case "incorrect":
+                return "-";
+              case "pending":
+                return "?";
+              case "unattempted":
+                return ".";
               default:
-                return '.';
+                return ".";
             }
           })();
           return (
             <td className={style[item.status_className]}>
               {ch_status}
-              {item.status === 'pending' && [' ', item['pending_num']].join('')}
+              {item.status === "pending" && [" ", item["pending_num"]].join("")}
               <br />
-              {item.attempt_num ? parseInt(item.attempt_num) : ''}
+              {item.attempt_num ? parseInt(item.attempt_num) : ""}
               {_this.state.contest_config?.status_time_display[item.status] ===
                 1 &&
               (item.time || item.time === 0)
-                ? '/' + parseInt(item.time)
-                : ''}
+                ? "/" + parseInt(item.time)
+                : ""}
             </td>
           );
         })}
@@ -224,12 +224,12 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                   ((item.attempted - item.solved) / item.attempted) * 100,
                 )
               : 0,
-            '%',
-          ].join('')}
+            "%",
+          ].join("")}
         </td>
       </tr>
 
-      <tr style={{ display: 'none' }} id={analyzeTeamId}>
+      <tr style={{ display: "none" }} id={analyzeTeamId}>
         <td
           colSpan={
             _this.getInfoCol() +
@@ -239,32 +239,32 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
         >
           <div
             style={{
-              display: 'flex',
+              display: "flex",
             }}
           >
             <div
               style={{
-                float: 'left',
+                float: "left",
                 marginTop: 2,
               }}
             >
               <div
                 className={[
                   getUnStarBtnId(item.team_id),
-                  starStyle['star-btn'],
-                ].join(' ')}
+                  starStyle["star-btn"],
+                ].join(" ")}
                 title={`Star ${item.name}`}
                 style={{
                   display: _this.state.concerned.has(item.team_id)
-                    ? ''
-                    : 'none',
+                    ? ""
+                    : "none",
                 }}
                 onClick={() => {
                   onStarBtnClick(item.team_id, false, _this, item, Filter);
                 }}
               >
                 <svg
-                  className={starStyle['octicon-star']}
+                  className={starStyle["octicon-star"]}
                   height="16"
                   viewBox="0 0 16 16"
                   version="1.1"
@@ -281,20 +281,20 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
               <div
                 className={[
                   getStarBtnId(item.team_id),
-                  starStyle['star-btn'],
-                ].join(' ')}
+                  starStyle["star-btn"],
+                ].join(" ")}
                 title={`Star ${item.name}`}
                 style={{
                   display: _this.state.concerned.has(item.team_id)
-                    ? 'none'
-                    : '',
+                    ? "none"
+                    : "",
                 }}
                 onClick={() => {
                   onStarBtnClick(item.team_id, true, _this, item, Filter);
                 }}
               >
                 <svg
-                  className={starStyle['octicon-star']}
+                  className={starStyle["octicon-star"]}
                   height="16"
                   viewBox="0 0 16 16"
                   version="1.1"
@@ -312,7 +312,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
               {(item.coach || item.members) && (
                 <span
                   style={{
-                    paddingLeft: '10px',
+                    paddingLeft: "10px",
                   }}
                 >
                   {getInfo(item.coach, item.members)}
@@ -356,8 +356,8 @@ class Standings extends React.Component {
     for (let key in this.state.vis) {
       let item = document.getElementById(key);
       switch (item?.style?.display) {
-        case '':
-          item.style.display = 'none';
+        case "":
+          item.style.display = "none";
           break;
       }
     }
@@ -390,7 +390,7 @@ class Standings extends React.Component {
       problem_list: problem_list,
       team_list: team_list,
       contest_config: props.contest_config,
-      team_list_filter: team_list.filter(x => x.filter === 1),
+      team_list_filter: team_list.filter((x) => x.filter === 1),
       team: props.team,
       run: props.run,
       organization: props.contest_config?.organization ? 1 : 0,
@@ -463,29 +463,29 @@ class Standings extends React.Component {
         )}
 
         {this.state.loaded === true && (
-          <table style={{ marginTop: '5px' }} className={style.standings}>
+          <table style={{ marginTop: "5px" }} className={style.standings}>
             <thead>
               <tr>
-                <th className={style.title} style={{ width: '3em' }}>
+                <th className={style.title} style={{ width: "3em" }}>
                   Place
                 </th>
                 {this.state.badge === 1 && (
-                  <th className={style.title} style={{ width: '3em' }}>
+                  <th className={style.title} style={{ width: "3em" }}>
                     {this.state.contest_config.badge}
                   </th>
                 )}
                 {this.state.organization === 1 && (
-                  <th className={style.title} style={{ minWidth: '12em' }}>
+                  <th className={style.title} style={{ minWidth: "12em" }}>
                     {this.state.contest_config.organization}
                   </th>
                 )}
-                <th className={style.title} style={{ minWidth: '12em' }}>
+                <th className={style.title} style={{ minWidth: "12em" }}>
                   Team
                 </th>
-                <th className={style.title} style={{ width: '3em' }}>
+                <th className={style.title} style={{ width: "3em" }}>
                   Solved
                 </th>
-                <th className={style.title} style={{ width: '3em' }}>
+                <th className={style.title} style={{ width: "3em" }}>
                   Time
                 </th>
                 {this.state.problem_list.map((item: any, index: number) => {
@@ -493,10 +493,10 @@ class Standings extends React.Component {
                     <th
                       className={style.success}
                       style={{
-                        width: '4em',
+                        width: "4em",
                         backgroundColor:
-                          item.balloon_color?.background_color || '',
-                        color: item.balloon_color?.color || '',
+                          item.balloon_color?.background_color || "",
+                        color: item.balloon_color?.color || "",
                       }}
                     >
                       {[this.state.contest_config.problem_id[item.problem_id]]}
@@ -506,7 +506,7 @@ class Standings extends React.Component {
                   );
                 })}
 
-                <th className={style.title} style={{ width: '3em' }}>
+                <th className={style.title} style={{ width: "3em" }}>
                   Dirt
                 </th>
               </tr>
@@ -519,7 +519,7 @@ class Standings extends React.Component {
 
               {[
                 {
-                  title: 'Attempted',
+                  title: "Attempted",
                   calc: (item: any, index: number) => {
                     return (
                       <td className={style.stnd}>
@@ -529,7 +529,7 @@ class Standings extends React.Component {
                   },
                 },
                 {
-                  title: 'Accepted',
+                  title: "Accepted",
                   calc: (item: any, index: number) => {
                     return (
                       <td className={style.stnd}>
@@ -537,14 +537,14 @@ class Standings extends React.Component {
                         <br />
                         <b>
                           ({Math.round((item.solved / item.total) * 100)}
-                          {item.total === 0 ? '' : '%'})
+                          {item.total === 0 ? "" : "%"})
                         </b>
                       </td>
                     );
                   },
                 },
                 {
-                  title: 'Dirt',
+                  title: "Dirt",
                   calc: (item: any, index: number) => {
                     return (
                       <td className={style.stnd}>
@@ -553,15 +553,15 @@ class Standings extends React.Component {
                         <b>
                           (
                           {item.attempted === 0
-                            ? '0%'
+                            ? "0%"
                             : [
                                 Math.round(
                                   ((item.attempted - item.solved) /
                                     item.attempted) *
                                     100,
                                 ),
-                                '%',
-                              ].join('')}
+                                "%",
+                              ].join("")}
                           )
                         </b>
                       </td>
@@ -569,13 +569,13 @@ class Standings extends React.Component {
                   },
                 },
                 {
-                  title: 'First Solved',
+                  title: "First Solved",
                   calc: (item: any, index: number) => {
                     return (
                       <td className={style.stnd}>
                         <b>
                           {item.first_solve_time === INF
-                            ? 'N/A'
+                            ? "N/A"
                             : item.first_solve_time}
                         </b>
                       </td>
@@ -583,13 +583,13 @@ class Standings extends React.Component {
                   },
                 },
                 {
-                  title: 'Last Solved',
+                  title: "Last Solved",
                   calc: (item: any, index: number) => {
                     return (
                       <td className={style.stnd}>
                         <b>
                           {item.last_solve_time === 0
-                            ? 'N/A'
+                            ? "N/A"
                             : item.last_solve_time}
                         </b>
                       </td>
@@ -598,7 +598,7 @@ class Standings extends React.Component {
                 },
               ].map((item: any, index: number) => {
                 return (
-                  <tr className={style[['statistics', index % 2].join('-')]}>
+                  <tr className={style[["statistics", index % 2].join("-")]}>
                     <td
                       className={style.empty}
                       colSpan={this.getInfoCol() - 1}

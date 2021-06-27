@@ -5,8 +5,8 @@ import { SecondLevelMenu } from "@/components/SecondLevelMenu";
 import { Standings } from "@/components/Standings";
 import { Statistics } from "@/components/Statistics";
 import { Selected } from "@/components/Selected";
-import standingsStyle from "@/components/Standings/Standings.less";
-import style from "./board.less";
+import standingsStyle from "@/components/Standings/Standings.module.less";
+import style from "./board.module.less";
 import {
   fetchIntervalTime,
   fetchData,

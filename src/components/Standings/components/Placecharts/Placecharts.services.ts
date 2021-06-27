@@ -38,18 +38,18 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
   let teams: any = {};
   for (let k in team) {
     teams[k] = {};
-    teams[k]['problem'] = [];
+    teams[k]["problem"] = [];
     contest_config.problem_id.forEach((problem_id: any) => {
       let problem: any = {};
-      problem['problem_id'] = problem_id;
-      problem['solved'] = 0;
-      problem['time'] = 0;
+      problem["problem_id"] = problem_id;
+      problem["solved"] = 0;
+      problem["time"] = 0;
       teams[k].problem.push(problem);
     });
   }
   const run_len = run.length;
   let pos = 0;
-  let last_solved = '';
+  let last_solved = "";
   for (let i = 0; i <= duration; ++i) {
     while (pos < run_len && run[pos].timestamp <= i * 60) {
       let run_item = run[pos];
@@ -57,7 +57,7 @@ function getTeamPlace(contest_config: any, cur_team: any, team: any, run: any) {
       let status = run_item.status;
       let problem_id = run_item.problem_id;
       let time = run_item.timestamp;
-      if (status === 'correct') {
+      if (status === "correct") {
         teams[team_id].problem[problem_id].solved = 1;
         teams[team_id].problem[problem_id].time += time;
         if (team_id == cur_team.team_id) {
@@ -104,17 +104,17 @@ export function getHichartsOptions(
 ) {
   const options: Highcharts.Options = {
     chart: {
-      type: 'spline',
+      type: "spline",
     },
     title: {
-      text: '排名变化趋势图',
+      text: "排名变化趋势图",
     },
     series: [
       {
         showInLegend: false,
         allowPointSelect: false,
-        name: '排名',
-        type: 'spline',
+        name: "排名",
+        type: "spline",
         data: getTeamPlace(contest_config, cur_team, team, run),
       },
     ],
@@ -122,7 +122,7 @@ export function getHichartsOptions(
       {
         allowDecimals: false,
         title: {
-          text: '时间',
+          text: "时间",
         },
       },
     ],
@@ -131,29 +131,29 @@ export function getHichartsOptions(
         allowDecimals: false,
         reversed: true,
         title: {
-          text: '排名',
+          text: "排名",
         },
         gridLineWidth: 1,
       },
     ],
     plotOptions: {
       line: {
-        color: '#efbc47',
+        color: "#efbc47",
         dataLabels: {
           enabled: false,
         },
         enableMouseTracking: true,
         marker: {
           enabled: true,
-          fillColor: '#fff566',
+          fillColor: "#fff566",
         },
       },
     },
     tooltip: {
       enabled: true,
-      headerFormat: '',
+      headerFormat: "",
       pointFormat:
-        'Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}',
+        "Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}",
     },
     credits: {
       enabled: false,
@@ -163,7 +163,7 @@ export function getHichartsOptions(
     },
     navigation: {
       menuItemStyle: {
-        fontSize: '10px',
+        fontSize: "10px",
       },
     },
   };

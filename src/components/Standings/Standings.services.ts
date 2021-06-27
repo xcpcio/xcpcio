@@ -1,20 +1,20 @@
-import { deepCopy, getDisplayTime } from '@/utils';
+import { deepCopy, getDisplayTime } from "@/utils";
 export const timerInterval = 500;
 
 export function getAnalyzeTeamId(team_id: number, Filter: number) {
-  return ['analyze', 'team', team_id, Filter].join('-');
+  return ["analyze", "team", team_id, Filter].join("-");
 }
 
 export function getStarId(team_id: number | string) {
-  return ['star', team_id].join('-');
+  return ["star", team_id].join("-");
 }
 
 export function getStarBtnId(team_id: number | string) {
-  return ['star', 'btn', team_id].join('-');
+  return ["star", "btn", team_id].join("-");
 }
 
 export function getUnStarBtnId(team_id: number | string) {
-  return ['unstar', 'btn', team_id].join('-');
+  return ["unstar", "btn", team_id].join("-");
 }
 
 export const INF = 0x3f3f3f3f;
@@ -23,14 +23,14 @@ function getInitProblem(contest_config: any) {
   let problem_list: any = [];
   contest_config.problem_id.forEach((id: CharacterData, index: number) => {
     let item: any = {};
-    item['problem_id'] = index;
-    item['solved'] = 0;
-    item['total'] = 0;
-    item['attempted'] = 0;
-    item['first_solve_time'] = INF;
-    item['last_solve_time'] = 0;
+    item["problem_id"] = index;
+    item["solved"] = 0;
+    item["total"] = 0;
+    item["attempted"] = 0;
+    item["first_solve_time"] = INF;
+    item["last_solve_time"] = 0;
     if (contest_config.balloon_color) {
-      item['balloon_color'] = contest_config.balloon_color[index];
+      item["balloon_color"] = contest_config.balloon_color[index];
     }
     problem_list.push(item);
   });
@@ -45,16 +45,16 @@ function getInitTeam(contest_config: any, team: any) {
     for (let k in item) {
       new_item[k] = item[k];
     }
-    new_item['solved'] = 0;
-    new_item['attempted'] = 0;
-    new_item['time'] = 0;
-    new_item['problem'] = [];
+    new_item["solved"] = 0;
+    new_item["attempted"] = 0;
+    new_item["time"] = 0;
+    new_item["problem"] = [];
     contest_config.problem_id.forEach((id: CharacterData, index: number) => {
       let problem: any = {};
-      problem['time'] = 0;
-      problem['status'] = 'unattempted';
-      problem['attempt_num'] = 0;
-      problem['pending_num'] = 0;
+      problem["time"] = 0;
+      problem["status"] = "unattempted";
+      problem["attempt_num"] = 0;
+      problem["pending_num"] = 0;
       new_item.problem.push(problem);
     });
     team_dic[key] = new_item;
@@ -66,7 +66,7 @@ function getTeamAndProblemId(
   team_id: number | string,
   problem_id: number | string,
 ) {
-  return [team_id, problem_id].join('-');
+  return [team_id, problem_id].join("-");
 }
 
 export function getProblemList(contest_config: any, run: any) {
@@ -74,14 +74,14 @@ export function getProblemList(contest_config: any, run: any) {
   (() => {
     let set = new Set();
     run.forEach((run: any) => {
-      if (run.status === 'correct') {
+      if (run.status === "correct") {
         set.add(getTeamAndProblemId(run.team_id, run.problem_id));
       }
     });
     run.forEach((run: any) => {
       let problem = problem_list[run.problem_id];
       problem.total += 1;
-      if (run.status === 'correct') {
+      if (run.status === "correct") {
         problem.solved += 1;
         problem.first_solve_time = Math.min(
           problem.first_solve_time,
@@ -128,23 +128,23 @@ export function getTeamList(
     let problem = team.problem[problem_id];
     problem.attempt_num += 1;
     problem.time = run.timestamp;
-    if (run.status === 'correct') {
-      problem.status = 'correct';
+    if (run.status === "correct") {
+      problem.status = "correct";
       team.solved += 1;
       team.time +=
         problem.time + (problem.attempt_num - 1) * contest_config.penalty;
-    } else if (run.status === 'pending') {
-      problem.status = 'pending';
-      problem['pending_num'] += 1;
-    } else if (run.status === 'incorrect') {
-      problem.status = 'incorrect';
+    } else if (run.status === "pending") {
+      problem.status = "pending";
+      problem["pending_num"] += 1;
+    } else if (run.status === "incorrect") {
+      problem.status = "incorrect";
     }
   });
 
   run.forEach((run: any) => {
     let team = team_dic[run.team_id];
     let problem = team.problem[run.problem_id];
-    if (problem.status === 'correct') {
+    if (problem.status === "correct") {
       team.attempted += 1;
     }
   });
@@ -152,7 +152,7 @@ export function getTeamList(
   for (let k in team_dic) {
     let team = team_dic[k];
     let problem = team.problem;
-    team['team_id'] = k;
+    team["team_id"] = k;
     for (let p_id in problem) {
       problem[p_id].time = getDisplayTime(problem[p_id].time);
     }
@@ -204,7 +204,7 @@ export function getTeamList(
         }
       });
     } else {
-      item.place_className = 'stnd';
+      item.place_className = "stnd";
     }
   }
 
@@ -225,10 +225,10 @@ export function getTeamList(
       let problem = item.problem[j];
       problem.status_className = problem.status;
       if (
-        problem.status === 'correct' &&
+        problem.status === "correct" &&
         problem.time === problem_list[j].first_solve_time
       ) {
-        problem.status_className = 'firstsolve';
+        problem.status_className = "firstsolve";
       }
     }
   }
@@ -244,7 +244,7 @@ export function getTeamList(
   }
 
   for (let i = 0; i < team_list.length; ++i) {
-    team_list[i]['time'] = getDisplayTime(team_list[i]['time']);
+    team_list[i]["time"] = getDisplayTime(team_list[i]["time"]);
   }
 
   return team_list;

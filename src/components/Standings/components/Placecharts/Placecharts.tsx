@@ -1,10 +1,14 @@
-import { Loading } from '@/components/Loading';
-import React from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import style from './Placecharts.less';
-import { height, timerInterval, getHichartsOptions } from './model';
-import { debounce } from 'lodash';
+import { Loading } from "@/components/Loading";
+import React from "react";
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import style from "./Placecharts.module.less";
+import {
+  height,
+  timerInterval,
+  getHichartsOptions,
+} from "./Placecharts.services";
+import { debounce } from "lodash";
 
 class Placecharts extends React.Component {
   async update(props: any) {
