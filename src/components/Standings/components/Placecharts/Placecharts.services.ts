@@ -3,6 +3,7 @@ import { isAccepted } from "@/utils/submission";
 
 export const height = 400;
 export const timerInterval = 250;
+const INF = 0x3f3f3f3f;
 
 function getSolvedAndTime(problem: any) {
   let solved = 0,
@@ -112,8 +113,6 @@ function getTeamPlace(
   _data.push(data[data.length - 1]);
   return _data;
 }
-
-const INF = 0x3f3f3f3f;
 
 export function getHichartsOptions(
   contest_config: any,
