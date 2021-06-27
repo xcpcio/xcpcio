@@ -1,5 +1,6 @@
-import { deepCopy, getDisplayTime } from "@/utils";
+import { getDisplayTime } from "@/utils";
 export const timerInterval = 500;
+export const INF = 0x3f3f3f3f;
 
 export function getAnalyzeTeamId(team_id: number, Filter: number) {
   return ["analyze", "team", team_id, Filter].join("-");
@@ -17,10 +18,9 @@ export function getUnStarBtnId(team_id: number | string) {
   return ["unstar", "btn", team_id].join("-");
 }
 
-export const INF = 0x3f3f3f3f;
-
 function getInitProblem(contest_config: any) {
   let problem_list: any = [];
+
   contest_config.problem_id.forEach((id: CharacterData, index: number) => {
     let item: any = {};
     item["problem_id"] = index;
@@ -29,26 +29,33 @@ function getInitProblem(contest_config: any) {
     item["attempted"] = 0;
     item["first_solve_time"] = INF;
     item["last_solve_time"] = 0;
+
     if (contest_config.balloon_color) {
       item["balloon_color"] = contest_config.balloon_color[index];
     }
+
     problem_list.push(item);
   });
+
   return problem_list;
 }
 
 function getInitTeam(contest_config: any, team: any) {
   let team_dic: any = {};
+
   for (let key in team) {
     let item = team[key];
     let new_item: any = {};
+
     for (let k in item) {
       new_item[k] = item[k];
     }
+
     new_item["solved"] = 0;
     new_item["attempted"] = 0;
     new_item["time"] = 0;
     new_item["problem"] = [];
+
     contest_config.problem_id.forEach((id: CharacterData, index: number) => {
       let problem: any = {};
       problem["time"] = 0;
@@ -57,8 +64,10 @@ function getInitTeam(contest_config: any, team: any) {
       problem["pending_num"] = 0;
       new_item.problem.push(problem);
     });
+
     team_dic[key] = new_item;
   }
+
   return team_dic;
 }
 
@@ -73,11 +82,13 @@ export function getProblemList(contest_config: any, run: any) {
   let problem_list = getInitProblem(contest_config);
   (() => {
     let set = new Set();
+
     run.forEach((run: any) => {
       if (run.status === "correct") {
         set.add(getTeamAndProblemId(run.team_id, run.problem_id));
       }
     });
+
     run.forEach((run: any) => {
       let problem = problem_list[run.problem_id];
       problem.total += 1;
@@ -97,6 +108,7 @@ export function getProblemList(contest_config: any, run: any) {
       }
     });
   })();
+
   return problem_list;
 }
 
@@ -105,6 +117,7 @@ export function compTeamList(a: any, b: any) {
     if (a.solved > b.solved) return -1;
     if (a.solved < b.solved) return 1;
   }
+
   if (a.time !== b.time) {
     if (a.time < b.time) return -1;
     if (a.time > b.time) return 1;

@@ -3,7 +3,7 @@ import style from "./Standings.module.less";
 import starStyle from "./Star.module.less";
 import { Placecharts } from "./components";
 import { Loading } from "@/components/Loading";
-import { deepCopy, getStarKey, removeDuplicateItems } from "@/utils/utils";
+import { deepCopy, getStarKey } from "@/utils/utils";
 import {
   INF,
   timerInterval,
@@ -42,6 +42,7 @@ function onStarBtnClick(
         concerned: concerned,
       });
     })();
+
     if (team.organization_filter !== 1) {
       let team_list_filter = _this.state.team_list_filter;
       let _team = deepCopy(team);
@@ -72,6 +73,7 @@ function onStarBtnClick(
         concerned: concerned,
       });
     })();
+
     window.localStorage.removeItem(getStarKey(team_id));
     if (Filter) {
       _this.clearTeamDetailsDisplay();
@@ -97,37 +99,20 @@ function onStarBtnClick(
 
 function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
   const analyzeTeamId = getAnalyzeTeamId(item.team_id, Filter ? 2 : 1);
+
   return (
     <>
       <tr
+        key={item.team_id}
         className={[
           Filter
             ? style.filter
             : style[["stand", item.stand_className_id].join("")],
           style.team,
         ].join(" ")}
-        onClick={() => {
-          let item = document.getElementById(analyzeTeamId);
-          switch (item?.style?.display) {
-            case "none":
-              _this.clearTeamDetailsDisplay();
-              item.style.display = "";
-              let vis: any = {};
-              vis[analyzeTeamId] = 1;
-              _this.setState({
-                vis: vis,
-              });
-              break;
-            case "":
-              item.style.display = "none";
-              _this.setState({
-                vis: {},
-              });
-              break;
-          }
-        }}
       >
         <td className={style[item.place_className]}>{item.place}</td>
+
         {_this.state.badge === 1 && (
           <td className={style.empty}>
             <img
@@ -138,6 +123,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
             />
           </td>
         )}
+
         {_this.state.organization === 1 && (
           <td className={style.stnd}>
             <div
@@ -169,7 +155,30 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
             </div>
           </td>
         )}
-        <td className={style.stnd}>
+
+        <td
+          className={`${style.stnd} ${style.hover}`}
+          onClick={() => {
+            let item = document.getElementById(analyzeTeamId);
+            switch (item?.style?.display) {
+              case "none":
+                _this.clearTeamDetailsDisplay();
+                item.style.display = "";
+                let vis: any = {};
+                vis[analyzeTeamId] = 1;
+                _this.setState({
+                  vis: vis,
+                });
+                break;
+              case "":
+                item.style.display = "none";
+                _this.setState({
+                  vis: {},
+                });
+                break;
+            }
+          }}
+        >
           {item.name}
           {item.unofficial === 1 && <StarIcon />}
           <span
@@ -202,6 +211,7 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
                 return ".";
             }
           })();
+
           return (
             <td className={style[item.status_className]}>
               {ch_status}
@@ -429,7 +439,6 @@ class Standings extends React.Component {
     }
   }
 
-  //组件卸载前的操作
   componentWillUnmount() {
     this.clearTimer();
   }
@@ -618,4 +627,5 @@ class Standings extends React.Component {
   }
 }
 
+export default Standings;
 export { Standings };
