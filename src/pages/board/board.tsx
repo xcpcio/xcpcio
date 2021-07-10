@@ -23,7 +23,6 @@ import { throttle, debounce } from "lodash";
 import __CONFIG__ from "@/../config";
 import { Balloon } from "@/components/Balloon";
 import { Export } from "@/components/Export";
-import { Run } from "@/interface/submission";
 
 const head_item = [
   <table>

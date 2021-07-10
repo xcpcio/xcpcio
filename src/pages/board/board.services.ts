@@ -59,6 +59,9 @@ export async function fetchData() {
 
       newItem.status = stringToSubmissionStatus(nowItem["status"]);
 
+      // Prevent the transmitted teamId from being a number.
+      newItem.teamId = String(newItem.teamId);
+
       run.push(newItem);
     });
   }
