@@ -153,6 +153,7 @@ export function getConfig(contest_config: any, group: any) {
 export function getTeam(team: any, group: any, search: any) {
   let organization = getCurrentOrganization(search);
   organization = new Set(organization);
+
   for (let team_id in team) {
     let item = team[team_id];
     item.filter = 0;
@@ -166,6 +167,7 @@ export function getTeam(team: any, group: any, search: any) {
       item.filter = 1;
     }
   }
+
   const team_list = (() => {
     let team_list: any = {};
     for (let team_id in team) {
@@ -197,5 +199,19 @@ export function getRun(run: Run[], team: any, timeFlag: number) {
   // Remove runs that teamId in that run does not exist in the team list.
   resRun = resRun.filter((x) => teamSet.has(x.teamId));
 
-  return resRun;
+  // Remove submissions which after first accepted for specific team and problem.
+  let filterSet = new Set();
+  let _resRun = [] as Run[];
+  resRun.forEach((x) => {
+    const id = `${x.teamId}-${x.problemId}`;
+    if (filterSet.has(id)) {
+      return;
+    }
+    if (isAccepted(x.status)) {
+      filterSet.add(id);
+    }
+    _resRun.push(x);
+  });
+
+  return _resRun;
 }
