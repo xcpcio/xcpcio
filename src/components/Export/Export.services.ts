@@ -23,26 +23,31 @@ export function toDatFile(contestConfig: any, team: any, run: Run[]) {
     let team_new_id: any = {};
     let team_problem_submit_index: any = {};
     let pos = 1;
-    const initP = () => {
+
+    const initProblemSubmitIndex = () => {
       return contestConfig.problem_id.map((name: string, index: number) => {
         return 0;
       });
     };
-    for (let tid in team) {
-      team_new_id[tid] = pos;
-      ++pos;
-      team_problem_submit_index[tid] = initP();
+
+    let team_index = 1;
+    for (const tid in team) {
+      team_new_id[tid] = team_index;
+      team_problem_submit_index[tid] = initProblemSubmitIndex();
+      team_index++;
     }
+
     return { team_new_id, team_problem_submit_index };
   })();
 
-  for (let tid in team) {
+  for (const tid in team) {
     datFile += `@t ${team_new_id[tid]},0,1,${team[tid].name}\n`;
   }
 
   run.forEach((run: Run) => {
-    status = submissionStatusToCodeforcesDatFile(run.status);
+    const status = submissionStatusToCodeforcesDatFile(run.status);
     ++team_problem_submit_index[run.teamId][run.problemId];
+
     datFile += `@s ${team_new_id[run.teamId]},${
       contestConfig.problem_id[run.problemId]
     },${team_problem_submit_index[run.teamId][run.problemId]},${
@@ -60,7 +65,7 @@ interface RankTeam {
   place?: any;
 }
 
-export function toRankJson(contestConfig: any, team: any, run: Run[]) {
+export function toJSON(contestConfig: any, team: any, run: Run[]) {
   let teamJson: RankTeam[] = [];
   let _team = deepCopy(team);
 

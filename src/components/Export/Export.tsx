@@ -6,7 +6,12 @@ const { TextArea } = Input;
 
 import style from "./Export.module.less";
 import { Run } from "@/interface/submission";
-import { toDatFile, toRankJson } from "./Export.services";
+import { toDatFile, toJSON } from "./Export.services";
+
+export enum ExportType {
+  DAT_FILE = "dat_file",
+  JSON = "json",
+}
 
 interface ExportProps {
   contest_config: any;
@@ -45,7 +50,7 @@ const Export: React.FC<ExportProps> = (props) => {
 
   async function onSelectRankJson() {
     setRankJsonGenerateLoading(true);
-    setRankJsonValue(JSON.stringify(toRankJson(contestConfig, team, run)));
+    setRankJsonValue(JSON.stringify(toJSON(contestConfig, team, run)));
     setRankJsonGenerateLoading(false);
   }
 
@@ -61,16 +66,15 @@ const Export: React.FC<ExportProps> = (props) => {
           option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
-        <Option value="dat-file">Codeforces Gym Ghosts DAT File</Option>
-        <Option value="rank-json">Rank JSON</Option>
+        <Option value={ExportType.DAT_FILE}>
+          Codeforces Gym Ghosts DAT File
+        </Option>
+        <Option value={ExportType.JSON}>Rank JSON</Option>
       </Select>
 
-      <br />
-      <br />
-
-      {type === "dat-file" && (
+      {type === ExportType.DAT_FILE && (
         <>
-          <div style={{ width: 680 }}>
+          <div style={{ width: 680, marginTop: 30 }}>
             <TextArea
               allowClear={true}
               rows={15}
@@ -92,9 +96,9 @@ const Export: React.FC<ExportProps> = (props) => {
         </>
       )}
 
-      {type === "rank-json" && (
+      {type === ExportType.JSON && (
         <>
-          <div style={{ width: 680 }}>
+          <div style={{ width: 680, marginTop: 30 }}>
             <TextArea
               allowClear={true}
               rows={15}

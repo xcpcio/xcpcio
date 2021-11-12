@@ -4,6 +4,7 @@ export function isAccepted(status: SubmissionStatus): boolean {
   if (status === SubmissionStatus.Accepted) {
     return true;
   }
+
   return false;
 }
 
@@ -31,6 +32,7 @@ export function isPending(status: SubmissionStatus): boolean {
   ) {
     return true;
   }
+
   return false;
 }
 
@@ -47,6 +49,7 @@ export function isNotCalculatedPenaltyStatus(
   ) {
     return true;
   }
+
   return false;
 }
 
