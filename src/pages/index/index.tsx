@@ -110,7 +110,48 @@ const Index: React.FC<{}> = (props) => {
           {contest.map((contest: any, index: number) => {
             return (
               <div key={index} className={style["m-box"]}>
-                <div className={style["m-title"]}>{contest.contest_name}</div>
+                <div
+                  style={{
+                    display: "flex",
+                  }}
+                >
+                  {contest?.logo?.base64 != null && (
+                    <div
+                      style={{
+                        float: "left",
+                        textAlign: "left",
+                        fontSize: "16px",
+                        paddingTop: 12,
+                        paddingRight: 8,
+                      }}
+                    >
+                      <img
+                        width="40"
+                        height="40"
+                        src={[
+                          "data:image/png;base64,",
+                          contest?.logo?.base64,
+                        ].join("")}
+                        alt=""
+                      />
+                    </div>
+                  )}
+
+                  {contest.register_link != null && (
+                    <div className={`${style["m-title"]}`}>
+                      <a href={contest.register_link} target="_blank">
+                        {contest.contest_name}
+                      </a>
+                    </div>
+                  )}
+
+                  {contest.register_link == null && (
+                    <div className={style["m-title"]}>
+                      {contest.contest_name}
+                    </div>
+                  )}
+                </div>
+
                 <div
                   style={{
                     display: "flex",

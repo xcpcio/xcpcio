@@ -14,5 +14,5 @@ export interface ContestConfig {
   organization?: string;
   status_time_display?: Record<string, string>;
   medal?: Record<string, Record<string, string>>;
-  balloon_color?: BalloonColor;
+  balloon_color?: BalloonColor[];
 }

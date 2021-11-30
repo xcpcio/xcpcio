@@ -84,6 +84,7 @@ function getTeamAndProblemId(
 
 export function getProblemList(contest_config: any, run: Run[]) {
   let problem_list = getInitProblem(contest_config);
+
   (() => {
     let set = new Set();
 
@@ -95,10 +96,10 @@ export function getProblemList(contest_config: any, run: Run[]) {
 
     run.forEach((run: Run) => {
       let problem = problem_list[run.problemId];
-      problem.total += 1;
+      ++problem.total;
 
       if (isAccepted(run.status)) {
-        problem.solved += 1;
+        ++problem.solved;
 
         problem.first_solve_time = Math.min(
           problem.first_solve_time,
@@ -121,7 +122,7 @@ export function getProblemList(contest_config: any, run: Run[]) {
 }
 
 export function compTeamList(a: any, b: any) {
-  if (a.solved != b.solved) {
+  if (a.solved !== b.solved) {
     if (a.solved > b.solved) return -1;
     if (a.solved < b.solved) return 1;
   }
@@ -130,6 +131,7 @@ export function compTeamList(a: any, b: any) {
     if (a.time < b.time) return -1;
     if (a.time > b.time) return 1;
   }
+
   return 0;
 }
 
@@ -237,6 +239,7 @@ export function getTeamList(
 
   for (let i = 0; i < team_list.length; ++i) {
     let item = team_list[i];
+
     if (i == 0) {
       item.stand_className_id = 0;
     } else {
@@ -248,6 +251,7 @@ export function getTeamList(
         item.stand_className_id = (Math.floor(id / 10) ^ 1) * 10 + (id % 10);
       }
     }
+
     for (let j = 0; j < contest_config.problem_id.length; ++j) {
       let problem = item.problem[j];
       problem.status_className = problem.status;

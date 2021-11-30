@@ -21,9 +21,19 @@ import { debounce } from "lodash";
 function getInfo(coach: string | undefined, members: string[] | undefined) {
   let splitch = "、";
   let res = "";
-  if (coach) res += `${coach}(教练)`;
-  if (coach && members) res += splitch;
-  if (members) res += members.join(splitch);
+
+  if (coach) {
+    res += `${coach}(教练)`;
+  }
+
+  if (coach && members) {
+    res += splitch;
+  }
+
+  if (members) {
+    res += members.join(splitch);
+  }
+
   return res;
 }
 
@@ -64,6 +74,7 @@ function onStarBtnClick(
         team_list_filter: team_list_filter,
       });
     }
+
     window.localStorage.setItem(getStarKey(team_id), "1");
   } else {
     (() => {
@@ -78,6 +89,7 @@ function onStarBtnClick(
     if (Filter) {
       _this.clearTeamDetailsDisplay();
     }
+
     if (team.organization_filter !== 1) {
       let team_list_filter = _this.state.team_list_filter;
       team_list_filter = (() => {
@@ -90,6 +102,7 @@ function onStarBtnClick(
         });
         return res;
       })();
+
       _this.setState({
         team_list_filter: team_list_filter,
       });
@@ -193,7 +206,6 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
         </td>
 
         <td className={style.stnd}>{item.solved}</td>
-
         <td className={style.stnd}>{item.time}</td>
 
         {item.problem.map((item: any, index: number) => {
