@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import style from "./index.module.less";
 import { TreeSelect } from "antd";
 import { useHistory } from "umi";
+
 import { ProgressSmall } from "@/components/Progress";
-import { GithubIcon, RightArrowIcon } from "@/icons";
 import { Loading } from "@/components/Loading";
+
+import { GithubIcon, RightArrowIcon } from "@/icons";
+
+import style from "./index.module.less";
 
 import {
   getTreeData,

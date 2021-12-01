@@ -1,3 +1,5 @@
 export interface Image {
-  [key: string]: string;
+  url?: string;
+  base64?: string;
+  [key: string]: string | undefined;
 }

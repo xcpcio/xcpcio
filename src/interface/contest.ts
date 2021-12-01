@@ -3,6 +3,11 @@ export interface BalloonColor {
   color: string;
 }
 
+export interface LinkItem {
+  homepage?: string;
+  registration?: string;
+}
+
 export interface ContestConfig {
   contest_name: string;
   start_time: string | number | Date;
@@ -15,4 +20,6 @@ export interface ContestConfig {
   status_time_display?: Record<string, string>;
   medal?: Record<string, Record<string, string>>;
   balloon_color?: BalloonColor[];
+  link: LinkItem;
+  board_link: string;
 }
