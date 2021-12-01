@@ -20,21 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
-        with:
-          persist-credentials: false
+        uses: actions/checkout@v2
 
-      - name: Set up Node.js 14.x
+      - name: Set up Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: 16
           registry-url: https://registry.npmjs.org/
-
-      - name: Set up Python 3.8
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.8
-          architecture: 'x64' # (x64 or x86)
 
       - name: Get Version ID
         id: get-version-id
@@ -43,7 +35,7 @@ jobs:
           echo "::set-output name=version-id::$(echo $VERSION_ID)"
           echo $VERSION_ID
 
-      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+      - name: Install and Build 🔧
         env:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         run: |
@@ -53,11 +45,10 @@ jobs:
           yarn build
 
       - name: Minify HTML Index
-        uses: Dup4/minify-html-action@v7
+        uses: Dup4/minify-html-action@v9
         with:
           src: './dist/index.html'
 
       - name: Enable 404.html
         run: |
           cp ./dist/index.html ./dist/404.html
-
