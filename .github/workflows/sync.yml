@@ -8,11 +8,11 @@ jobs:
     steps:
 
       - name: Sync
-        uses: appleboy/ssh-action@master # 使用ssh链接服务器
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: | 
+          script: |
             ${{ secrets.SYNC_SCRIPT }}
