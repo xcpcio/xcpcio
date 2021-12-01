@@ -1,4 +1,4 @@
-import { Run } from "@/interface/submission";
+import { Run } from "@/types/submission";
 import { isAccepted } from "@/utils/submission";
 
 export const height = 400;

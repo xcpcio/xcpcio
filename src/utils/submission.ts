@@ -1,4 +1,4 @@
-import { SubmissionStatus } from "@/interface/submission";
+import { SubmissionStatus } from "@/types/submission";
 
 export function isAccepted(status: SubmissionStatus): boolean {
   if (status === SubmissionStatus.Accepted) {

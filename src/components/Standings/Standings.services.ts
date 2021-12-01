@@ -1,5 +1,5 @@
 import { getDisplayTime } from "@/utils";
-import { Run } from "@/interface/submission";
+import { Run } from "@/types/submission";
 import { isAccepted, isWrongAnswer, isPending } from "@/utils/submission";
 
 export const timerInterval = 500;

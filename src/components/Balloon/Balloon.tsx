@@ -14,7 +14,7 @@ import {
   faUndoAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { debounce, throttle } from "lodash";
-import { Run } from "@/interface/submission";
+import { Run } from "@/types/submission";
 import { isAccepted } from "@/utils/submission";
 
 interface ActionItem {

@@ -7,7 +7,7 @@ import {
   getQueryString,
 } from "@/utils";
 
-import { Run } from "@/interface";
+import { Run } from "@/types";
 import {
   stringToSubmissionStatus,
   isAccepted,

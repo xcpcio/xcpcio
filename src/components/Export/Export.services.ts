@@ -1,4 +1,4 @@
-import { Run } from "@/interface/submission";
+import { Run } from "@/types/submission";
 import {
   submissionStatusToCodeforcesDatFile,
   isAccepted,

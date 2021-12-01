@@ -5,7 +5,7 @@ const { Option } = Select;
 const { TextArea } = Input;
 
 import style from "./Export.module.less";
-import { Run } from "@/interface/submission";
+import { Run } from "@/types/submission";
 import { toDatFile, toJSON } from "./Export.services";
 
 export enum ExportType {
