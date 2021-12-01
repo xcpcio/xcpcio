@@ -137,15 +137,15 @@ const Index: React.FC<{}> = (props) => {
                     </div>
                   )}
 
-                  {contest.register_link != null && (
+                  {contest?.link?.homepage != null && (
                     <div className={`${style["m-title"]}`}>
-                      <a href={contest.register_link} target="_blank">
+                      <a href={contest.link.homepage} target="_blank">
                         {contest.contest_name}
                       </a>
                     </div>
                   )}
 
-                  {contest.register_link == null && (
+                  {contest?.link?.homepage == null && (
                     <div className={style["m-title"]}>
                       {contest.contest_name}
                     </div>
@@ -188,7 +188,7 @@ const Index: React.FC<{}> = (props) => {
                       ].join(" ")}
                       target="_blank"
                       rel="noreferrer"
-                      href={contest.link}
+                      href={contest?.board_link}
                       style={{}}
                     >
                       <span className={style["MuiIconButton-label"]}>

@@ -4,7 +4,11 @@ export async function fetchData() {
   const contest_list: any = await getJSON(
     `contest_list.json?t=${getNowTimeStamp()}`,
   );
-  if (contest_list.status === 404) return null;
+
+  if (contest_list.status === 404) {
+    return null;
+  }
+
   return contest_list;
 }
 
@@ -48,7 +52,7 @@ export function getContest(path: string, contest_list: any) {
       }
     } else {
       let item = deepCopy(contest_list.config);
-      item["link"] = deepCopy(contest_list.link);
+      item["board_link"] = deepCopy(contest_list.board_link);
       contest.push(item);
     }
   };
