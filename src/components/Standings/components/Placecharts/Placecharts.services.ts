@@ -1,5 +1,5 @@
-import { Run } from "@/types/submission";
-import { isAccepted } from "@/utils/submission";
+import { Run } from '@/types/submission';
+import { isAccepted } from '@/adapter/submission';
 
 export const height = 400;
 export const timerInterval = 250;
@@ -51,19 +51,19 @@ function getTeamPlace(
 
   for (let k in team) {
     teams[k] = {};
-    teams[k]["problem"] = [];
+    teams[k]['problem'] = [];
     contest_config.problem_id.forEach((problem_id: any) => {
       let problem: any = {};
-      problem["problem_id"] = problem_id;
-      problem["solved"] = 0;
-      problem["time"] = 0;
+      problem['problem_id'] = problem_id;
+      problem['solved'] = 0;
+      problem['time'] = 0;
       teams[k].problem.push(problem);
     });
   }
 
   const run_len = run.length;
   let pos = 0;
-  let last_solved = "";
+  let last_solved = '';
 
   for (let i = 0; i <= duration; ++i) {
     while (pos < run_len && run[pos].timestamp <= i * 60) {
@@ -122,17 +122,17 @@ export function getHichartsOptions(
 ) {
   const options: Highcharts.Options = {
     chart: {
-      type: "spline",
+      type: 'spline',
     },
     title: {
-      text: "排名变化趋势图",
+      text: '排名变化趋势图',
     },
     series: [
       {
         showInLegend: false,
         allowPointSelect: false,
-        name: "排名",
-        type: "spline",
+        name: '排名',
+        type: 'spline',
         data: getTeamPlace(contest_config, cur_team, team, run),
       },
     ],
@@ -140,7 +140,7 @@ export function getHichartsOptions(
       {
         allowDecimals: false,
         title: {
-          text: "时间",
+          text: '时间',
         },
       },
     ],
@@ -149,29 +149,29 @@ export function getHichartsOptions(
         allowDecimals: false,
         reversed: true,
         title: {
-          text: "排名",
+          text: '排名',
         },
         gridLineWidth: 1,
       },
     ],
     plotOptions: {
       line: {
-        color: "#efbc47",
+        color: '#efbc47',
         dataLabels: {
           enabled: false,
         },
         enableMouseTracking: true,
         marker: {
           enabled: true,
-          fillColor: "#fff566",
+          fillColor: '#fff566',
         },
       },
     },
     tooltip: {
       enabled: true,
-      headerFormat: "",
+      headerFormat: '',
       pointFormat:
-        "Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}",
+        'Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}',
     },
     credits: {
       enabled: false,
@@ -181,7 +181,7 @@ export function getHichartsOptions(
     },
     navigation: {
       menuItemStyle: {
-        fontSize: "10px",
+        fontSize: '10px',
       },
     },
   };

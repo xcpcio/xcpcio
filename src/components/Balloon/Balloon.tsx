@@ -1,21 +1,21 @@
-import { Loading } from "@/components/Loading";
-import style from "./Balloon.module.less";
-import Highlighter from "react-highlight-words";
-import React from "react";
-import { SearchOutlined } from "@ant-design/icons";
-import { Table, Input, Space, Button } from "antd";
-import { deepCopy } from "@/utils";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Loading } from '@/components/Loading';
+import style from './Balloon.module.less';
+import Highlighter from 'react-highlight-words';
+import React from 'react';
+import { SearchOutlined } from '@ant-design/icons';
+import { Table, Input, Space, Button } from 'antd';
+import { deepCopy } from '@/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGolfBall,
   faHourglassStart,
   faCheckCircle,
   faPaperPlane,
   faUndoAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { debounce, throttle } from "lodash";
-import { Run } from "@/types/submission";
-import { isAccepted } from "@/utils/submission";
+} from '@fortawesome/free-solid-svg-icons';
+import { debounce, throttle } from 'lodash';
+import { Run } from '@/types/submission';
+import { isAccepted } from '@/adapter/submission';
 
 interface ActionItem {
   status: boolean;
@@ -35,11 +35,11 @@ interface BalloonTableItem {
 }
 
 function getSolvedId(team_id: string, problem_id: number) {
-  return [team_id, problem_id].join("#$#");
+  return [team_id, problem_id].join('#$#');
 }
 
 function formatTimeNumber(time: number) {
-  if (time < 9) return ["0", time].join("");
+  if (time < 9) return ['0', time].join('');
   return time;
 }
 
@@ -48,11 +48,11 @@ function getDisplayTime(time: number) {
     formatTimeNumber(Math.floor(time / 60 / 60)),
     formatTimeNumber(Math.floor((time / 60) % 60)),
     formatTimeNumber(Math.floor(time % 60)),
-  ].join(":");
+  ].join(':');
 }
 
 function getBalloonDispatchedListKey() {
-  return [window.location.pathname, "balloon", "dispatched", "list"].join("_");
+  return [window.location.pathname, 'balloon', 'dispatched', 'list'].join('_');
 }
 
 class Balloon extends React.Component {
@@ -63,18 +63,18 @@ class Balloon extends React.Component {
       ...columns,
       ...[
         {
-          title: "Status",
-          dataIndex: "status",
-          key: "status",
-          width: "2%",
-          align: "center",
+          title: 'Status',
+          dataIndex: 'status',
+          key: 'status',
+          width: '2%',
+          align: 'center',
           filters: [
             {
-              text: "已派送",
+              text: '已派送',
               value: true,
             },
             {
-              text: "未派送",
+              text: '未派送',
               value: false,
             },
           ],
@@ -88,20 +88,20 @@ class Balloon extends React.Component {
           },
         },
         {
-          title: "Time",
-          dataIndex: "time",
-          key: "time",
-          width: "5%",
-          align: "10%",
+          title: 'Time',
+          dataIndex: 'time',
+          key: 'time',
+          width: '5%',
+          align: '10%',
           sorter: (a: any, b: any) => a.time - b.time,
           render: (time: number) => getDisplayTime(time),
         },
         {
-          title: "Solved",
-          dataIndex: "solved",
-          key: "solved",
-          width: "2%",
-          align: "center",
+          title: 'Solved',
+          dataIndex: 'solved',
+          key: 'solved',
+          width: '2%',
+          align: 'center',
           filters: contest_config.problem_id.map(
             (name: string, index: number) => {
               return {
@@ -118,7 +118,7 @@ class Balloon extends React.Component {
                   size="lg"
                   style={{
                     color:
-                      contest_config.balloon_color[solved]["background_color"],
+                      contest_config.balloon_color[solved]['background_color'],
                   }}
                   icon={faGolfBall}
                 />
@@ -135,16 +135,16 @@ class Balloon extends React.Component {
         ...[
           {
             title: contest_config.badge,
-            dataIndex: "badge",
-            key: "badge",
-            width: "5%",
-            align: "left",
+            dataIndex: 'badge',
+            key: 'badge',
+            width: '5%',
+            align: 'left',
             render: (base64: string) => {
               return (
                 <img
                   width="32"
                   height="32"
-                  src={["data:image/png;base64,", base64].join("")}
+                  src={['data:image/png;base64,', base64].join('')}
                 />
               );
             },
@@ -158,11 +158,11 @@ class Balloon extends React.Component {
         ...[
           {
             title: contest_config.organization,
-            dataIndex: "organization",
-            key: "organization",
-            width: "20%",
-            align: "left",
-            ...this.getColumnSearchProps("organization"),
+            dataIndex: 'organization',
+            key: 'organization',
+            width: '20%',
+            align: 'left',
+            ...this.getColumnSearchProps('organization'),
           },
         ],
       ];
@@ -171,19 +171,19 @@ class Balloon extends React.Component {
       ...columns,
       ...[
         {
-          title: "Team",
-          dataIndex: "team",
-          key: "team",
-          width: "20%",
-          align: "left",
-          ...this.getColumnSearchProps("team"),
+          title: 'Team',
+          dataIndex: 'team',
+          key: 'team',
+          width: '20%',
+          align: 'left',
+          ...this.getColumnSearchProps('team'),
         },
         {
-          title: "Total",
-          dataIndex: "total",
-          key: "total",
-          width: "15%",
-          align: "left",
+          title: 'Total',
+          dataIndex: 'total',
+          key: 'total',
+          width: '15%',
+          align: 'left',
           render: (solved_list: number[]) => {
             return solved_list.map((solved) => {
               return (
@@ -191,7 +191,7 @@ class Balloon extends React.Component {
                   size="lg"
                   style={{
                     color:
-                      contest_config.balloon_color[solved]["background_color"],
+                      contest_config.balloon_color[solved]['background_color'],
                   }}
                   icon={faGolfBall}
                 />
@@ -200,18 +200,18 @@ class Balloon extends React.Component {
           },
         },
         {
-          title: "Awards",
-          dataIndex: "awards",
-          key: "awards",
-          width: "10%",
-          align: "left",
+          title: 'Awards',
+          dataIndex: 'awards',
+          key: 'awards',
+          width: '10%',
+          align: 'left',
         },
         {
-          title: "Action",
-          dataIndex: "action",
-          key: "action",
-          width: "5%",
-          align: "center",
+          title: 'Action',
+          dataIndex: 'action',
+          key: 'action',
+          width: '5%',
+          align: 'center',
           render: (action: ActionItem) => {
             if (action.status) {
               return (
@@ -221,7 +221,7 @@ class Balloon extends React.Component {
                     let balloon_dispatched_list: string[] = JSON.parse(
                       window.localStorage.getItem(
                         getBalloonDispatchedListKey(),
-                      ) || "[]",
+                      ) || '[]',
                     );
                     balloon_dispatched_list = balloon_dispatched_list.filter(
                       (x) => x !== action.solvedId,
@@ -247,7 +247,7 @@ class Balloon extends React.Component {
                     let balloon_dispatched_list: string[] = JSON.parse(
                       window.localStorage.getItem(
                         getBalloonDispatchedListKey(),
-                      ) || "[]",
+                      ) || '[]',
                     );
                     balloon_dispatched_list.push(action.solvedId);
                     balloon_dispatched_list = Array.from(
@@ -276,12 +276,12 @@ class Balloon extends React.Component {
     let tableData: BalloonTableItem[] = [];
 
     for (let k in team) {
-      team[k]["total"] = [];
+      team[k]['total'] = [];
     }
 
     const balloon_dispatched_set = new Set(
       JSON.parse(
-        window.localStorage.getItem(getBalloonDispatchedListKey()) || "[]",
+        window.localStorage.getItem(getBalloonDispatchedListKey()) || '[]',
       ),
     );
 
@@ -303,11 +303,11 @@ class Balloon extends React.Component {
         team[run.teamId].total.push(run.problemId);
         team[run.teamId].total.sort((a: number, b: number) => a - b);
 
-        let awards = "";
+        let awards = '';
 
         if (!first_solved.has(run.problemId)) {
           awards = `First to solved problem ${
-            contest_config["problem_id"][run.problemId]
+            contest_config['problem_id'][run.problemId]
           }`;
           first_solved.add(run.problemId);
         }
@@ -385,8 +385,8 @@ class Balloon extends React.Component {
   state = {
     loaded: false,
     on: false,
-    searchText: "",
-    searchedColumn: "",
+    searchText: '',
+    searchedColumn: '',
     tableData: [],
     columns: [],
   };
@@ -411,7 +411,7 @@ class Balloon extends React.Component {
           onPressEnter={() =>
             this.handleSearch(selectedKeys, confirm, dataIndex)
           }
-          style={{ width: 188, marginBottom: 8, display: "block" }}
+          style={{ width: 188, marginBottom: 8, display: 'block' }}
         />
         <Space>
           <Button
@@ -434,7 +434,7 @@ class Balloon extends React.Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex].toString().toLowerCase().includes(value.toLowerCase()),
@@ -446,7 +446,7 @@ class Balloon extends React.Component {
     render: (text) =>
       this.state.searchedColumn === dataIndex ? (
         <Highlighter
-          highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
+          highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
           searchWords={[this.state.searchText]}
           autoEscape
           textToHighlight={text.toString()}
@@ -466,7 +466,7 @@ class Balloon extends React.Component {
 
   handleReset = (clearFilters) => {
     clearFilters();
-    this.setState({ searchText: "" });
+    this.setState({ searchText: '' });
   };
 
   constructor(props: any) {
@@ -503,7 +503,7 @@ class Balloon extends React.Component {
                 showQuickJumper: true,
                 showSizeChanger: true,
                 defaultPageSize: 15,
-                pageSizeOptions: ["10", "15", "30", "50", "100"],
+                pageSizeOptions: ['10', '15', '30', '50', '100'],
               }}
             />
           </>

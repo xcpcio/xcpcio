@@ -3,7 +3,7 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend } from 'umi-request';
-import CONFIG from '../../config';
+import CONFIG from '@/../config';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',

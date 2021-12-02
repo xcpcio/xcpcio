@@ -1,12 +1,12 @@
-import { Run } from "@/types/submission";
+import { Run } from '@/types/submission';
 import {
   submissionStatusToCodeforcesDatFile,
   isAccepted,
-} from "@/utils/submission";
-import { getDisplayTime, deepCopy } from "@/utils";
+} from '@/adapter/submission';
+import { getDisplayTime, deepCopy } from '@/utils';
 
 export function toDatFile(contestConfig: any, team: any, run: Run[]) {
-  let datFile = "";
+  let datFile = '';
 
   datFile += `@contest "${contestConfig.contest_name}"
 @contlen ${getDisplayTime(contestConfig.end_time - contestConfig.start_time)}
@@ -72,9 +72,9 @@ export function toJSON(contestConfig: any, team: any, run: Run[]) {
   const penalty = contestConfig.penalty;
 
   for (let k in _team) {
-    _team[k]["problem"] = contestConfig.problem_id.map(() => 0);
-    _team[k]["solved"] = 0;
-    _team[k]["time"] = 0;
+    _team[k]['problem'] = contestConfig.problem_id.map(() => 0);
+    _team[k]['solved'] = 0;
+    _team[k]['time'] = 0;
   }
 
   run.forEach((run: Run) => {
@@ -105,16 +105,16 @@ export function toJSON(contestConfig: any, team: any, run: Run[]) {
   teamList.forEach((team: any, index: number) => {
     let item: RankTeam = {};
     item.members = team.members || [];
-    item.organization = team.organization || "";
-    item.name = team.name || "";
+    item.organization = team.organization || '';
+    item.name = team.name || '';
     item.place = {};
-    item.place["all"] = index + 1;
+    item.place['all'] = index + 1;
     teamJson.push(item);
   });
 
   let rankJson: any = {};
-  rankJson["contestName"] = contestConfig["contest_name"];
-  rankJson["teams"] = teamJson;
+  rankJson['contestName'] = contestConfig['contest_name'];
+  rankJson['teams'] = teamJson;
 
   return rankJson;
 }

@@ -17,7 +17,7 @@ export interface ContestConfig {
   problem_id: string[];
   group?: Record<string, string>;
   organization?: string;
-  status_time_display?: Record<string, string>;
+  status_time_display?: Record<string, boolean>;
   medal?: Record<string, Record<string, string>>;
   balloon_color?: BalloonColor[];
   link: LinkItem;
