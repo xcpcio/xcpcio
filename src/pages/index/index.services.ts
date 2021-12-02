@@ -1,8 +1,11 @@
-import { deepCopy, getTimeDiff, getJSON, getNowTimeStamp } from '@/utils';
+import { ContestInstance, createContestInstance } from '@/core/contest';
+import { deepCopy, getJSON } from '@/utils';
+
+import dayjs from '@/utils/dayjs';
 
 export async function fetchData(): Promise<any> {
   const contest_list = await getJSON(
-    `contest_list.json?t=${getNowTimeStamp()}`,
+    `contest_list.json?t=${dayjs().valueOf()}`,
   );
 
   return contest_list;
@@ -43,8 +46,11 @@ export function getTreeData(contest_list: any) {
   return treeData;
 }
 
-export function getContest(path: string, contest_list: any) {
-  let contest: any = [];
+export function getContestInstanceList(
+  path: string,
+  contest_list: any,
+): ContestInstance[] {
+  let contest: ContestInstance[] = [];
 
   const dfs = (contest_list: any, contest: any) => {
     if (!contest_list['config']) {
@@ -53,8 +59,9 @@ export function getContest(path: string, contest_list: any) {
       }
     } else {
       let item = deepCopy(contest_list.config);
-      item['board_link'] = deepCopy(contest_list.board_link);
-      contest.push(item);
+      item.board_link = contest_list.board_link;
+
+      contest.push(createContestInstance(item));
     }
   };
 
@@ -76,15 +83,18 @@ export function getContest(path: string, contest_list: any) {
 
   dfs(_contest_list, contest);
 
-  contest.sort((a: any, b: any) => {
-    if (a.start_time < b.start_time) return 1;
-    if (a.start_time > b.start_time) return -1;
+  contest.sort((a: ContestInstance, b: ContestInstance) => {
+    if (a.startTime.isBefore(b.startTime)) return 1;
+    if (a.startTime.isAfter(b.startTime)) return -1;
+
+    if (a.endTime.isBefore(b.endTime)) return 1;
+    if (a.endTime.isAfter(b.endTime)) return -1;
+
+    if (a.contest_name < b.contest_name) return 1;
+    if (a.contest_name > b.contest_name) return -1;
+
     return 0;
   });
 
   return contest;
-}
-
-export function getDuration(start_time: number, end_time: number) {
-  return getTimeDiff(end_time - start_time);
 }

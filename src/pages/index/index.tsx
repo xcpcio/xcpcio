@@ -6,16 +6,18 @@ import { Loading } from '@/components/Loading';
 
 import { GithubIcon, RightArrowIcon } from '@/icons';
 
-import style from './index.module.less';
+import { GITHUB_URL } from '@/core/constant';
+import { ContestInstance } from '@/core/contest';
+import { getImageSource } from '@/core/image';
 
 import {
   getTreeData,
-  getContest,
-  getDuration,
+  getContestInstanceList,
   fetchData,
 } from './index.services';
 
-import { timeFormat } from '@/utils';
+import style from './index.module.less';
+
 import { useUrlQuery } from '@/utils/hooks';
 
 const Index: React.FC<{}> = (props) => {
@@ -25,15 +27,17 @@ const Index: React.FC<{}> = (props) => {
 
   const [loading, setLoading] = useState(true);
 
-  const [contestList, setContestList] = useState(null as any);
+  const [rawContestList, setRawContestList] = useState(null as any);
 
-  const [contest, setContest] = useState([] as any);
+  const [contestInstanceList, setContestInstanceList] = useState(
+    [] as ContestInstance[],
+  );
 
-  const [defaultValue, setDefaultValue] = useState('' as any);
+  const [defaultValue, setDefaultValue] = useState('' as string);
   const [treeData, setTreeData] = useState(null as any);
 
   async function initData() {
-    setContestList(await fetchData());
+    setRawContestList(await fetchData());
     setLoading(false);
   }
 
@@ -42,15 +46,17 @@ const Index: React.FC<{}> = (props) => {
   }, []);
 
   async function updateData() {
-    setContest(getContest(urlQuery.path, contestList));
+    setContestInstanceList(
+      getContestInstanceList(urlQuery.path, rawContestList),
+    );
 
     setDefaultValue(urlQuery.path);
-    setTreeData(getTreeData(contestList));
+    setTreeData(getTreeData(rawContestList));
   }
 
   useEffect(() => {
     updateData();
-  }, [urlQuery.path, contestList]);
+  }, [urlQuery.path, rawContestList]);
 
   async function onSelectChange(value: string) {
     setUrlQuery({
@@ -99,7 +105,7 @@ const Index: React.FC<{}> = (props) => {
                 ].join(' ')}
                 target="_blank"
                 rel="noreferrer"
-                href="https://github.com/XCPCIO/XCPCIO-Board"
+                href={GITHUB_URL}
                 title="Github"
               >
                 <span className={style['MuiIconButton-label']}>
@@ -110,100 +116,106 @@ const Index: React.FC<{}> = (props) => {
             </div>
           </div>
 
-          {contest.map((contest: any, index: number) => {
-            return (
-              <div key={contest?.board_link} className={style['m-box']}>
-                <div
-                  style={{
-                    display: 'flex',
-                  }}
-                >
-                  {contest?.logo?.base64 != null && (
+          {contestInstanceList.map(
+            (contest: ContestInstance, index: number) => {
+              return (
+                <div key={contest?.board_link} className={style['m-box']}>
+                  <div
+                    style={{
+                      display: 'flex',
+                    }}
+                  >
+                    {contest?.logo != null && (
+                      <div
+                        style={{
+                          float: 'left',
+                          textAlign: 'left',
+                          fontSize: '16px',
+                          paddingTop: 12,
+                          paddingRight: 8,
+                        }}
+                      >
+                        <img
+                          width="40"
+                          height="40"
+                          src={getImageSource(contest.logo)}
+                          alt="logo"
+                        />
+                      </div>
+                    )}
+
+                    <div className={`${style['m-title']}`}>
+                      <>
+                        {contest?.link?.homepage == null &&
+                          contest.contest_name}
+
+                        {contest?.link?.homepage != null && (
+                          <a href={contest.link.homepage} target="_blank">
+                            {contest.contest_name}
+                          </a>
+                        )}
+
+                        {contest?.link?.registration != null && (
+                          <sup>
+                            <a href={contest.link.registration} target="_blank">
+                              Register
+                            </a>
+                          </sup>
+                        )}
+                      </>
+                    </div>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'flex',
+                      paddingBottom: '0px',
+                    }}
+                  >
                     <div
                       style={{
                         float: 'left',
                         textAlign: 'left',
                         fontSize: '16px',
-                        paddingTop: 12,
-                        paddingRight: 8,
                       }}
                     >
-                      <img
-                        width="40"
-                        height="40"
-                        src={[
-                          'data:image/png;base64,',
-                          contest?.logo?.base64,
-                        ].join('')}
-                        alt=""
-                      />
+                      Start: {contest.startTime.format('YYYY-MM-DD HH:mm:ss')}
+                      <sup>{contest.startTime.format('z')}</sup>
+                      <br />
+                      Duration:
+                      {contest.getContestDuration()}
                     </div>
-                  )}
-
-                  {contest?.link?.homepage != null && (
-                    <div className={`${style['m-title']}`}>
-                      <a href={contest.link.homepage} target="_blank">
-                        {contest.contest_name}
+                    <div style={{ flex: '1' }}>
+                      <div style={{ width: '72%' }}>
+                        <ProgressSmall
+                          start_time={contest.start_time}
+                          end_time={contest.end_time}
+                          frozen_time={contest.frozen_time}
+                        />
+                      </div>
+                    </div>
+                    <div style={{ float: 'right' }}>
+                      <a
+                        className={[
+                          style.go,
+                          style['MuiButtonBase-root'],
+                          style['MuiIconButton-root'],
+                        ].join(' ')}
+                        target="_blank"
+                        href={contest?.board_link}
+                        style={{}}
+                      >
+                        <span className={style['MuiIconButton-label']}>
+                          <RightArrowIcon />
+                        </span>
+                        <span className={style['MuiTouchRipple-root']}></span>
                       </a>
                     </div>
-                  )}
-
-                  {contest?.link?.homepage == null && (
-                    <div className={style['m-title']}>
-                      {contest.contest_name}
-                    </div>
-                  )}
-                </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    paddingBottom: '0px',
-                  }}
-                >
-                  <div
-                    style={{
-                      float: 'left',
-                      textAlign: 'left',
-                      fontSize: '16px',
-                    }}
-                  >
-                    Start: {timeFormat(contest.start_time)}
-                    <br />
-                    Duration:
-                    {getDuration(contest.start_time, contest.end_time)}
-                  </div>
-                  <div style={{ flex: '1' }}>
-                    <div style={{ width: '72%' }}>
-                      <ProgressSmall
-                        start_time={contest.start_time}
-                        end_time={contest.end_time}
-                        frozen_time={contest.frozen_time}
-                      />
-                    </div>
-                  </div>
-                  <div style={{ float: 'right' }}>
-                    <a
-                      className={[
-                        style.go,
-                        style['MuiButtonBase-root'],
-                        style['MuiIconButton-root'],
-                      ].join(' ')}
-                      target="_blank"
-                      rel="noreferrer"
-                      href={contest?.board_link}
-                      style={{}}
-                    >
-                      <span className={style['MuiIconButton-label']}>
-                        <RightArrowIcon />
-                      </span>
-                      <span className={style['MuiTouchRipple-root']}></span>
-                    </a>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            },
+          )}
         </>
       )}
     </div>
