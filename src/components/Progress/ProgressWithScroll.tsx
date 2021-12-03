@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   getStatus,
   getWidth,
@@ -9,11 +9,11 @@ import {
   getTimeFlag,
   getWidthByTimeFlag,
   getTimeElapsedByTimeFLag,
-} from "./model";
-import { getQueryParams, getQueryString } from "@/utils";
+} from './model';
 
-import style from "./Progress.module.less";
-import tooltipStyle from "./tooltip.module.less";
+import { getQueryParams, getQueryString } from '@/utils';
+
+import style from './Progress.module.less';
 
 class ProgressWithScroll extends React.Component {
   timer: any = null;
@@ -22,10 +22,10 @@ class ProgressWithScroll extends React.Component {
   init: boolean = false;
 
   update(props: any) {
-    let bar: any = document.getElementById("am-progress-bar");
-    let tooltip: any = document.getElementById("am-progress-tooltip");
+    let bar: any = document.getElementById('am-progress-bar');
+    let tooltip: any = document.getElementById('am-progress-tooltip');
     let tooltip_inner: any = document.getElementById(
-      "am-progress-tooltip-inner",
+      'am-progress-tooltip-inner',
     );
 
     // (() => {
@@ -50,8 +50,8 @@ class ProgressWithScroll extends React.Component {
         width: width,
       });
       if (!this.pauseUpdate) {
-        bar.style.left = [width, "%"].join("");
-        tooltip.style.left = [width, "%"].join("");
+        bar.style.left = [width, '%'].join('');
+        tooltip.style.left = [width, '%'].join('');
         tooltip_inner.innerHTML = getTimeElapsed(
           props.start_time,
           props.end_time,
@@ -74,21 +74,23 @@ class ProgressWithScroll extends React.Component {
     this.update(this.props);
 
     (() => {
-      let scroll: any = document.getElementById("am-progress-scroll");
-      let mask: any = document.getElementById("am-progress-mask");
-      let bar: any = document.getElementById("am-progress-bar");
-      let tooltip: any = document.getElementById("am-progress-tooltip");
+      let scroll: any = document.getElementById('am-progress-scroll');
+      let mask: any = document.getElementById('am-progress-mask');
+      let bar: any = document.getElementById('am-progress-bar');
+      let tooltip: any = document.getElementById('am-progress-tooltip');
       let tooltip_inner: any = document.getElementById(
-        "am-progress-tooltip-inner",
+        'am-progress-tooltip-inner',
       );
       let barleft = 0;
       var _this = this;
+
       scroll.onmouseenter = function (event: any) {
-        tooltip.classList.add(tooltipStyle["in"]);
+        tooltip.classList.add(style['in']);
       };
       scroll.onmouseleave = function (event: any) {
-        tooltip.classList.remove(tooltipStyle["in"]);
+        tooltip.classList.remove(style['in']);
       };
+
       bar.onmousedown = function (event: any) {
         var event = event || window.event;
         var leftVal = event.clientX - this.offsetLeft;
@@ -98,7 +100,7 @@ class ProgressWithScroll extends React.Component {
         document.onmousemove = function (event) {
           _this.pauseUpdate = true;
 
-          tooltip.classList.add(tooltipStyle["in"]);
+          tooltip.classList.add(style['in']);
           var event = event || window.event;
           barleft = event.clientX - leftVal;
 
@@ -116,8 +118,8 @@ class ProgressWithScroll extends React.Component {
             _this.pauseUpdate = false;
           }
 
-          that.style.left = barleft + "px";
-          tooltip.style.left = barleft + "px";
+          that.style.left = barleft + 'px';
+          tooltip.style.left = barleft + 'px';
           const width =
             barleft == 0
               ? 0
@@ -139,12 +141,13 @@ class ProgressWithScroll extends React.Component {
             : document.selection.empty();
         };
       };
+
       document.onmouseup = function () {
         //弹起鼠标不做任何操作
         document.onmousemove = null;
-        tooltip.classList.remove(tooltipStyle["in"]);
+        tooltip.classList.remove(style['in']);
         let queryParams = getQueryParams(
-          "timeflag",
+          'timeflag',
           _this.timeFlag.toString(),
           _this.state.search,
         );
@@ -187,51 +190,48 @@ class ProgressWithScroll extends React.Component {
       <>
         <div
           className={[
-            style["am-progress"],
-            style["am-progress-striped"],
+            style['am-progress'],
+            style['am-progress-striped'],
             style[progress_active[this.state.status]],
-          ].join(" ")}
-          style={{ marginBottom: 0, position: "relative" }}
-          id={"am-progress-scroll"}
+          ].join(' ')}
+          style={{ marginBottom: 0, position: 'relative' }}
+          id={'am-progress-scroll'}
         >
           <div
             className={[
-              style["am-progress-bar"],
+              style['am-progress-bar'],
               style[progress_status[this.state.status]],
-            ].join(" ")}
-            style={{ width: [this.state.width, "%"].join("") }}
-            id={"am-progress-mask"}
+            ].join(' ')}
+            style={{ width: [this.state.width, '%'].join('') }}
+            id={'am-progress-mask'}
           >
             <div
-              className={[
-                tooltipStyle["tooltip"],
-                tooltipStyle["tooltip-top"],
-              ].join(" ")}
+              className={[style['tooltip'], style['tooltip-top']].join(' ')}
               style={{
                 marginLeft: -34,
                 bottom: 22,
                 left: 0,
               }}
-              id={"am-progress-tooltip"}
+              id={'am-progress-tooltip'}
             >
               <div
-                className={[tooltipStyle["tooltip-inner"]].join(" ")}
-                id={"am-progress-tooltip-inner"}
+                className={[style['tooltip-inner']].join(' ')}
+                id={'am-progress-tooltip-inner'}
               >
-                {"00:00:00"}
+                {'00:00:00'}
               </div>
             </div>
 
             <div
               className={[
-                style["am-progress-bar"],
+                style['am-progress-bar'],
                 style[progress_status[this.state.status]],
-                style["am-progress-cursor"],
-              ].join(" ")}
+                style['am-progress-cursor'],
+              ].join(' ')}
               style={{
                 left: 0,
               }}
-              id={"am-progress-bar"}
+              id={'am-progress-bar'}
             ></div>
           </div>
         </div>

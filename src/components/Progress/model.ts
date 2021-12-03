@@ -1,6 +1,5 @@
 import { getNowTimeStamp, getTimeDiff } from '@/utils';
 
-// 定时器执行间隔
 export const timerInterval = 500;
 
 export const progress_status = [
