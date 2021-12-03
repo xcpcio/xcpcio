@@ -1,5 +1,5 @@
 import { Run } from '@/types/submission';
-import { isAccepted } from '@/adapter/submission';
+import { isAccepted } from '@/core/submission';
 
 export const height = 400;
 export const timerInterval = 250;

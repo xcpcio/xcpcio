@@ -1,5 +1,5 @@
 import { Run } from '@/types/submission';
-import { isAccepted, isWrongAnswer, isPending } from '@/adapter/submission';
+import { isAccepted, isWrongAnswer, isPending } from '@/core/submission';
 
 export const timerInterval = 200;
 

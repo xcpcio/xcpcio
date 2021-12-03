@@ -12,7 +12,7 @@ import {
   stringToSubmissionStatus,
   isAccepted,
   isWrongAnswer,
-} from '@/adapter/submission';
+} from '@/core/submission';
 
 export const fetchIntervalTime = 30 * 1000;
 export const INF = 0x3f3f3f3f;

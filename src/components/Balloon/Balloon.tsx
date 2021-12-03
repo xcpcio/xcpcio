@@ -15,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { debounce, throttle } from 'lodash';
 import { Run } from '@/types/submission';
-import { isAccepted } from '@/adapter/submission';
+import { isAccepted } from '@/core/submission';
 
 interface ActionItem {
   status: boolean;

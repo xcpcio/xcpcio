@@ -2,7 +2,7 @@ import { Run } from '@/types/submission';
 import {
   submissionStatusToCodeforcesDatFile,
   isAccepted,
-} from '@/adapter/submission';
+} from '@/core/submission';
 import { getDisplayTime, deepCopy } from '@/utils';
 
 export function toDatFile(contestConfig: any, team: any, run: Run[]) {

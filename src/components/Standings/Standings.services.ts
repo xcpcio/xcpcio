@@ -1,6 +1,6 @@
 import { getDisplayTime } from '@/utils';
 import { Run } from '@/types/submission';
-import { isAccepted, isWrongAnswer, isPending } from '@/adapter/submission';
+import { isAccepted, isWrongAnswer, isPending } from '@/core/submission';
 
 export const timerInterval = 500;
 export const INF = 0x3f3f3f3f;
