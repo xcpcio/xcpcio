@@ -18,6 +18,22 @@ export const progress_active = [
 
 export const status_type = ['PENDING', 'RUNNING', 'FROZEN', 'FINISHED'];
 
+export const ProgressStateStyle = [
+  'am-progress-bar-secondary',
+  'am-progress-bar-success',
+  'am-progress-bar-danger',
+  'am-progress-bar-primary',
+];
+
+export const ProgressStateActiveStyle = [
+  'am-active',
+  'am-active',
+  'am-active',
+  'am-active',
+];
+
+export const ProgressStateText = ['PENDING', 'RUNNING', 'FROZEN', 'FINISHED'];
+
 export function getStatus(
   start_time: number,
   end_time: number,

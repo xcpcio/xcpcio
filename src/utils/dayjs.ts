@@ -12,7 +12,25 @@ dayjs.extend(timezone);
 import advancedFormat from 'dayjs/plugin/advancedFormat';
 dayjs.extend(advancedFormat);
 
-export function createDayJS(time: number | Date | string) {
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+dayjs.extend(isSameOrBefore);
+
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+dayjs.extend(isSameOrAfter);
+
+import minMax from 'dayjs/plugin/minMax';
+dayjs.extend(minMax);
+
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
+
+export function createDayJS(
+  time: number | Date | string | undefined = undefined,
+) {
+  if (typeof time === 'undefined') {
+    return dayjs();
+  }
+
   if (typeof time == 'number' && String(time).length === 10) {
     return dayjs.unix(time);
   }

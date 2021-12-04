@@ -1,25 +1,44 @@
-import React from "react";
-import { getStatus, status_type, timerInterval, getTimePending } from "./model";
-import Progress from "./Progress";
-import style from "./Progress.module.less";
+import React from 'react';
 
-class ProgressSmall extends React.Component {
-  timer: any = null;
+import Progress from './Progress';
+import style from './Progress.module.less';
+import { ProgressProps, ProgressState } from './Progress.type';
+import { ProgressStateText, status_type, timerInterval } from './Progress.core';
 
-  update(props: any) {
+import {
+  getContestState,
+  getContestPendingTime,
+  ContestStateType,
+} from '@/core/contest';
+
+class ProgressSmall extends React.Component<ProgressProps, ProgressState> {
+  timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
+
+  clearTimer() {
+    this.timer && clearInterval(this.timer);
+  }
+
+  update(props: ProgressProps) {
     this.setState({
-      start_time: props.start_time,
-      end_time: props.end_time,
-      frozen_time: props.frozen_time,
+      startTime: props.startTime,
+      endTime: props.endTime,
+      frozenStartTime: props.frozenStartTime,
     });
+
     const setDynamicParams = () => {
       this.setState({
-        status: getStatus(props.start_time, props.end_time, props.frozen_time),
-        time_pending: getTimePending(props.start_time),
+        state: getContestState(
+          props.startTime,
+          props.endTime,
+          props.frozenStartTime,
+        ),
+        pendingTime: getContestPendingTime(props.startTime, props.endTime),
       });
     };
+
     setDynamicParams();
-    this.timer && clearInterval(this.timer);
+
+    this.clearTimer();
     this.timer = setInterval(() => {
       setDynamicParams();
     }, timerInterval);
@@ -29,50 +48,51 @@ class ProgressSmall extends React.Component {
     this.update(this.props);
   }
 
-  componentWillReceiveProps(nextProps: any) {
+  UNSAVE_componentWillReceiveProps(nextProps: ProgressProps) {
     this.update(nextProps);
   }
 
   componentWillUnmount() {
-    this.timer && clearInterval(this.timer);
+    this.clearTimer();
+  }
+
+  constructor(props: ProgressProps) {
+    super(props);
   }
 
   state = {
-    start_time: 0,
-    end_time: 0,
-    frozen_time: 0,
-    status: 0,
-    time_pending: 0,
+    startTime: this.props.startTime,
+    endTime: this.props.endTime,
+    frozenStartTime: this.props.frozenStartTime,
+    pendingTime: '',
+    state: ContestStateType.PENDING,
   };
-
-  constructor(props: any) {
-    super(props);
-  }
 
   render() {
     return (
       <>
-        <div style={{ marginBottom: "2px", display: "flex" }}>
-          <div style={{ float: "left" }}></div>
-          <div style={{ flex: "1" }}>
+        <div style={{ marginBottom: '2px', display: 'flex' }}>
+          <div style={{ float: 'left' }}></div>
+          <div style={{ flex: '1' }}>
             <div
               className={[
-                style["label"],
-                style[status_type[this.state.status]],
-              ].join(" ")}
+                style['label'],
+                style[ProgressStateText[this.state.state]],
+              ].join(' ')}
             ></div>
             <b>
-              {status_type[this.state.status]}&nbsp;
-              {this.state.status === 0 && this.state.time_pending}
+              {ProgressStateText[this.state.state]}&nbsp;
+              {this.state.state === ContestStateType.PENDING &&
+                this.state.pendingTime}
             </b>
           </div>
-          <div style={{ float: "right" }}></div>
+          <div style={{ float: 'right' }}></div>
         </div>
 
         <Progress
-          start_time={this.state.start_time}
-          end_time={this.state.end_time}
-          frozen_time={this.state.frozen_time}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
+          frozenStartTime={this.state.frozenStartTime}
         />
       </>
     );

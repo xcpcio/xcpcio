@@ -7,7 +7,16 @@ export interface ContestInstance extends ContestConfig {
   startTime: dayjs.Dayjs;
   endTime: dayjs.Dayjs;
 
+  frozenStartTime: dayjs.Dayjs;
+
   getContestDuration: () => string;
+}
+
+export enum ContestStateType {
+  PENDING = 0,
+  RUNNING = 1,
+  FROZEN = 2,
+  FINISHED = 3,
 }
 
 export function createContestInstance(
@@ -34,6 +43,7 @@ export function createContestInstance(
 
   const startTime = createDayJS(start_time);
   const endTime = createDayJS(end_time);
+  const frozenStartTime = endTime.subtract(frozen_time, 's');
 
   const getContestDuration = (timeFormat: string = 'HH:mm:ss'): string => {
     return dayjs.duration(endTime.diff(startTime)).format(timeFormat);
@@ -56,6 +66,45 @@ export function createContestInstance(
     board_link,
     startTime,
     endTime,
+    frozenStartTime,
     getContestDuration,
   };
+}
+
+export function getContestState(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+  frozenStartTime: dayjs.Dayjs,
+): ContestStateType {
+  const now = dayjs();
+  if (now.isBefore(startTime)) return ContestStateType.PENDING;
+  if (now.isSameOrAfter(endTime)) return ContestStateType.FINISHED;
+  if (now.isSameOrAfter(frozenStartTime)) return ContestStateType.FROZEN;
+
+  return ContestStateType.RUNNING;
+}
+
+export function getContestPendingTime(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+): string {
+  let now = dayjs();
+  if (now.isBefore(startTime)) {
+    return startTime.from(now);
+  }
+
+  return '00:00:00';
+}
+
+export function getContestProgressRatio(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+): number {
+  const now = dayjs();
+  if (startTime.isSameOrAfter(now)) return 0;
+  if (endTime.isSameOrBefore(now)) return 100;
+
+  const total = endTime.diff(startTime, 's');
+  const pass = now.diff(startTime, 's');
+  return Math.round((pass * 100) / total);
 }

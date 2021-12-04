@@ -10,11 +10,7 @@ import { GITHUB_URL } from '@/core/constant';
 import { ContestInstance } from '@/core/contest';
 import { getImageSource } from '@/core/image';
 
-import {
-  getTreeData,
-  getContestInstanceList,
-  fetchData,
-} from './index.services';
+import { getTreeData, getContestInstanceList, fetchData } from './index.core';
 
 import style from './index.module.less';
 
@@ -188,9 +184,9 @@ const Index: React.FC<{}> = (props) => {
                     <div style={{ flex: '1' }}>
                       <div style={{ width: '72%' }}>
                         <ProgressSmall
-                          start_time={contest.start_time}
-                          end_time={contest.end_time}
-                          frozen_time={contest.frozen_time}
+                          startTime={contest.startTime}
+                          endTime={contest.endTime}
+                          frozenStartTime={contest.frozenStartTime}
                         />
                       </div>
                     </div>

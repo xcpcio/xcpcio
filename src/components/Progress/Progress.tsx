@@ -1,42 +1,63 @@
-import React from "react";
-import style from "./Progress.module.less";
-import { getStatus, getWidth, progress_active, progress_status } from "./model";
+import React from 'react';
+import style from './Progress.module.less';
 
-class Progress extends React.Component {
-  timer: any = null;
+import {
+  ProgressStateActiveStyle,
+  ProgressStateStyle,
+  timerInterval,
+} from './Progress.core';
+import { ProgressProps, ProgressState } from './Progress.type';
+
+import {
+  ContestStateType,
+  getContestProgressRatio,
+  getContestState,
+} from '@/core/contest';
+
+class Progress extends React.Component<ProgressProps, ProgressState> {
+  timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
 
   clearTimer() {
     this.timer && clearInterval(this.timer);
   }
 
-  update(props: any) {
+  update(props: ProgressProps) {
     this.setState({
-      start_time: props.start_time,
-      end_time: props.end_time,
-      frozen_time: props.frozen_time,
+      startTime: props.startTime,
+      endTime: props.endTime,
+      frozenStartTime: props.frozenStartTime,
     });
-    const setStatusAndWIdth = () => {
-      const width = getWidth(props.start_time, props.end_time);
+
+    const setStatusAndWidth = () => {
+      const width = getContestProgressRatio(props.startTime, props.endTime);
+
       this.setState({
-        status: getStatus(props.start_time, props.end_time, props.frozen_time),
+        state: getContestState(
+          props.startTime,
+          props.endTime,
+          props.frozenStartTime,
+        ),
         width: width,
       });
+
       if (width >= 100) {
         this.clearTimer();
       }
     };
-    setStatusAndWIdth();
+
+    setStatusAndWidth();
+
     this.clearTimer();
     this.timer = setInterval(() => {
-      setStatusAndWIdth();
-    }, 500);
+      setStatusAndWidth();
+    }, timerInterval);
   }
 
   componentDidMount() {
     this.update(this.props);
   }
 
-  componentWillReceiveProps(nextProps: any) {
+  UNSAFE_componentWillReceiveProps(nextProps: ProgressProps) {
     this.update(nextProps);
   }
 
@@ -44,35 +65,35 @@ class Progress extends React.Component {
     this.clearTimer();
   }
 
-  state = {
-    start_time: 0,
-    end_time: 0,
-    frozen_time: 0,
-    status: 0,
-    width: 0,
-  };
-
-  constructor(props: any) {
+  constructor(props: ProgressProps) {
     super(props);
   }
+
+  state = {
+    startTime: this.props.startTime,
+    endTime: this.props.endTime,
+    frozenStartTime: this.props.frozenStartTime,
+    width: 0,
+    state: ContestStateType.PENDING,
+  };
 
   render() {
     return (
       <>
         <div
           className={[
-            style["am-progress"],
-            style["am-progress-striped"],
-            style[progress_active[this.state.status]],
-          ].join(" ")}
+            style['am-progress'],
+            style['am-progress-striped'],
+            style[ProgressStateActiveStyle[this.state.state]],
+          ].join(' ')}
           style={{ marginBottom: 0 }}
         >
           <div
             className={[
-              style["am-progress-bar"],
-              style[progress_status[this.state.status]],
-            ].join(" ")}
-            style={{ width: [this.state.width, "%"].join("") }}
+              style['am-progress-bar'],
+              style[ProgressStateStyle[this.state.state]],
+            ].join(' ')}
+            style={{ width: [this.state.width, '%'].join('') }}
           ></div>
         </div>
       </>

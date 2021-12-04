@@ -9,19 +9,21 @@ import {
   getTimeFlag,
   getWidthByTimeFlag,
   getTimeElapsedByTimeFLag,
-} from './model';
+} from './Progress.core';
 
 import { getQueryParams, getQueryString } from '@/utils';
 
 import style from './Progress.module.less';
 
-class ProgressWithScroll extends React.Component {
-  timer: any = null;
+import { ProgressBigProps } from './Progress.type';
+
+class ProgressWithScroll extends React.Component<ProgressBigProps> {
+  timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
   pauseUpdate: boolean = false;
   timeFlag: number = 0;
   init: boolean = false;
 
-  update(props: any) {
+  update(props: ProgressBigProps) {
     let bar: any = document.getElementById('am-progress-bar');
     let tooltip: any = document.getElementById('am-progress-tooltip');
     let tooltip_inner: any = document.getElementById(
@@ -49,6 +51,7 @@ class ProgressWithScroll extends React.Component {
         status: getStatus(props.start_time, props.end_time, props.frozen_time),
         width: width,
       });
+
       if (!this.pauseUpdate) {
         bar.style.left = [width, '%'].join('');
         tooltip.style.left = [width, '%'].join('');
@@ -82,7 +85,7 @@ class ProgressWithScroll extends React.Component {
         'am-progress-tooltip-inner',
       );
       let barleft = 0;
-      var _this = this;
+      let _this = this;
 
       scroll.onmouseenter = function (event: any) {
         tooltip.classList.add(style['in']);
@@ -129,6 +132,7 @@ class ProgressWithScroll extends React.Component {
             _this.state.end_time,
             width,
           );
+
           tooltip_inner.innerHTML = getTimeScroll(
             _this.state.start_time,
             _this.state.end_time,
@@ -151,9 +155,11 @@ class ProgressWithScroll extends React.Component {
           _this.timeFlag.toString(),
           _this.state.search,
         );
+
         if (!_this.pauseUpdate) {
           delete queryParams.timeflag;
         }
+
         const pathname = window.location.pathname;
         _this.state.history.push({
           pathname: pathname,
@@ -163,7 +169,7 @@ class ProgressWithScroll extends React.Component {
     })();
   }
 
-  componentWillReceiveProps(nextProps: any) {
+  componentWillReceiveProps(nextProps: ProgressBigProps) {
     this.update(nextProps);
   }
 
@@ -181,7 +187,7 @@ class ProgressWithScroll extends React.Component {
     search: null,
   };
 
-  constructor(props: any) {
+  constructor(props: ProgressBigProps) {
     super(props);
   }
 
