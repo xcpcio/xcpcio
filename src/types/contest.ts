@@ -24,6 +24,9 @@ export interface ContestConfig {
   medal?: Record<string, Record<string, string>>;
   balloon_color?: BalloonColor[];
 
+  badge?: string;
+  banner?: Image;
+
   logo?: Image;
   link?: Link;
   board_link?: string;

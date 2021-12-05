@@ -1,7 +1,76 @@
 import { ContestConfig } from '@/types/contest';
 import { Image } from '@/types/image';
 
-import dayjs, { createDayJS } from '@/utils/dayjs';
+import { dayjs, createDayJS, getTimeDiff } from '@/utils/dayjs';
+
+export enum ContestStateType {
+  PENDING = 0,
+  RUNNING = 1,
+  FROZEN = 2,
+  FINISHED = 3,
+}
+
+export function getContestDuration(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+  timeFormat: string = 'HH:mm:ss',
+): string {
+  return dayjs.duration(endTime.diff(startTime)).format(timeFormat);
+}
+
+export function getContestState(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+  frozenStartTime: dayjs.Dayjs,
+): ContestStateType {
+  const now = dayjs();
+  if (now.isBefore(startTime)) return ContestStateType.PENDING;
+  if (now.isSameOrAfter(endTime)) return ContestStateType.FINISHED;
+  if (now.isSameOrAfter(frozenStartTime)) return ContestStateType.FROZEN;
+
+  return ContestStateType.RUNNING;
+}
+
+export function getContestPendingTime(startTime: dayjs.Dayjs): string {
+  let now = dayjs();
+  if (now.isAfter(startTime)) now = startTime;
+
+  return getTimeDiff(
+    Math.floor(dayjs.duration(startTime.diff(now)).asSeconds()),
+  );
+}
+
+export function getContestRemainingTime(endTime: dayjs.Dayjs): string {
+  let now = dayjs();
+  if (now.isAfter(endTime)) now = endTime;
+
+  return getTimeDiff(Math.floor(dayjs.duration(endTime.diff(now)).asSeconds()));
+}
+
+export function getContestElapsedTime(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+): string {
+  let now = dayjs();
+  if (now.isAfter(endTime)) now = endTime;
+
+  return getTimeDiff(
+    Math.floor(dayjs.duration(now.diff(startTime)).asSeconds()),
+  );
+}
+
+export function getContestProgressRatio(
+  startTime: dayjs.Dayjs,
+  endTime: dayjs.Dayjs,
+): number {
+  const now = dayjs();
+  if (startTime.isSameOrAfter(now)) return 0;
+  if (endTime.isSameOrBefore(now)) return 100;
+
+  const total = endTime.diff(startTime, 's');
+  const pass = now.diff(startTime, 's');
+  return Math.round((pass * 100) / total);
+}
 
 export interface ContestInstance extends ContestConfig {
   startTime: dayjs.Dayjs;
@@ -10,13 +79,11 @@ export interface ContestInstance extends ContestConfig {
   frozenStartTime: dayjs.Dayjs;
 
   getContestDuration: () => string;
-}
-
-export enum ContestStateType {
-  PENDING = 0,
-  RUNNING = 1,
-  FROZEN = 2,
-  FINISHED = 3,
+  getContestState: () => ContestStateType;
+  getContestPendingTime: () => string;
+  getContestRemainingTime: () => string;
+  getContestElapsedTime: () => string;
+  getContestProgressRatio: () => number;
 }
 
 export function createContestInstance(
@@ -35,6 +102,9 @@ export function createContestInstance(
   const medal = raw_contest_config_json?.medal;
   const balloon_color = raw_contest_config_json?.balloon_color;
 
+  const badge = raw_contest_config_json?.badge;
+  const banner = raw_contest_config_json?.banner;
+
   const logo: Image = raw_contest_config_json?.logo;
   if (logo?.type) logo.type = 'png';
 
@@ -45,8 +115,28 @@ export function createContestInstance(
   const endTime = createDayJS(end_time);
   const frozenStartTime = endTime.subtract(frozen_time, 's');
 
-  const getContestDuration = (timeFormat: string = 'HH:mm:ss'): string => {
-    return dayjs.duration(endTime.diff(startTime)).format(timeFormat);
+  const getContestDuration_ = (timeFormat: string = 'HH:mm:ss'): string => {
+    return getContestDuration(startTime, endTime, timeFormat);
+  };
+
+  const getContestState_ = (): ContestStateType => {
+    return getContestState(startTime, endTime, frozenStartTime);
+  };
+
+  const getContestPendingTime_ = (): string => {
+    return getContestPendingTime(startTime);
+  };
+
+  const getContestRemainingTime_ = (): string => {
+    return getContestRemainingTime(endTime);
+  };
+
+  const getContestElapsedTime_ = (): string => {
+    return getContestElapsedTime(startTime, endTime);
+  };
+
+  const getContestProgressRatio_ = (): number => {
+    return getContestProgressRatio(startTime, endTime);
   };
 
   return {
@@ -61,50 +151,19 @@ export function createContestInstance(
     status_time_display,
     medal,
     balloon_color,
+    badge,
+    banner,
     logo,
     link,
     board_link,
     startTime,
     endTime,
     frozenStartTime,
-    getContestDuration,
+    getContestDuration: getContestDuration_,
+    getContestState: getContestState_,
+    getContestPendingTime: getContestPendingTime_,
+    getContestRemainingTime: getContestRemainingTime_,
+    getContestElapsedTime: getContestElapsedTime_,
+    getContestProgressRatio: getContestProgressRatio_,
   };
-}
-
-export function getContestState(
-  startTime: dayjs.Dayjs,
-  endTime: dayjs.Dayjs,
-  frozenStartTime: dayjs.Dayjs,
-): ContestStateType {
-  const now = dayjs();
-  if (now.isBefore(startTime)) return ContestStateType.PENDING;
-  if (now.isSameOrAfter(endTime)) return ContestStateType.FINISHED;
-  if (now.isSameOrAfter(frozenStartTime)) return ContestStateType.FROZEN;
-
-  return ContestStateType.RUNNING;
-}
-
-export function getContestPendingTime(
-  startTime: dayjs.Dayjs,
-  endTime: dayjs.Dayjs,
-): string {
-  let now = dayjs();
-  if (now.isBefore(startTime)) {
-    return startTime.from(now);
-  }
-
-  return '00:00:00';
-}
-
-export function getContestProgressRatio(
-  startTime: dayjs.Dayjs,
-  endTime: dayjs.Dayjs,
-): number {
-  const now = dayjs();
-  if (startTime.isSameOrAfter(now)) return 0;
-  if (endTime.isSameOrBefore(now)) return 100;
-
-  const total = endTime.diff(startTime, 's');
-  const pass = now.diff(startTime, 's');
-  return Math.round((pass * 100) / total);
 }

@@ -1,76 +1,83 @@
 import React from 'react';
-import style from './Progress.module.less';
-
-import { timeFormat } from '@/utils/utils';
 
 import ProgressWithScroll from './ProgressWithScroll';
+import style from './Progress.module.less';
+
+import { ProgressStateText, timerInterval } from './Progress.core';
+import { ProgressBigProps, ProgressBigState } from './Progress.type';
 
 import {
-  getStatus,
-  status_type,
-  timerInterval,
-  getTimeElapsed,
-  getTimePending,
-  getTimeRemaining,
-} from './Progress.core';
+  ContestStateType,
+  getContestElapsedTime,
+  getContestPendingTime,
+  getContestRemainingTime,
+  getContestState,
+} from '@/core';
 
-import { ProgressBigProps } from './Progress.type';
-
-class ProgressBig extends React.Component<ProgressBigProps> {
+class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
   timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
+
+  clearTimer() {
+    this.timer && clearInterval(this.timer);
+  }
 
   update(props: ProgressBigProps) {
     this.setState({
       head_item: props.head_item,
-      start_time: props.start_time,
-      end_time: props.end_time,
-      frozen_time: props.frozen_time,
+      startTime: props.startTime,
+      endTime: props.endTime,
+      frozenStartTime: props.frozenStartTime,
       search: props.search,
       history: props.history,
     });
 
     const setDynamicParams = () => {
       this.setState({
-        status: getStatus(props.start_time, props.end_time, props.frozen_time),
-        time_elapsed: getTimeElapsed(props.start_time, props.end_time),
-        time_remaining: getTimeRemaining(props.start_time, props.end_time),
-        time_pending: getTimePending(props.start_time),
+        state: getContestState(
+          props.startTime,
+          props.endTime,
+          props.frozenStartTime,
+        ),
+        pendingTime: getContestPendingTime(props.startTime),
+        remainingTime: getContestRemainingTime(props.endTime),
+        elapsedTime: getContestElapsedTime(props.startTime, props.endTime),
       });
     };
 
     setDynamicParams();
-    this.timer && clearInterval(this.timer);
+
+    this.clearTimer();
     this.timer = setInterval(() => {
       setDynamicParams();
     }, timerInterval);
   }
 
-  //在组件已经被渲染到 DOM 中后运行
+  // 在组件已经被渲染到 DOM 中后运行
   componentDidMount() {
     this.update(this.props);
   }
 
-  //props中的值发生改变时执行
+  // props中的值发生改变时执行
   componentWillReceiveProps(nextProps: ProgressBigProps) {
     this.update(nextProps);
   }
 
-  //组件卸载前的操作
+  // 组件卸载前的操作
   componentWillUnmount() {
     this.timer && clearInterval(this.timer);
   }
 
   state = {
     head_item: null,
-    start_time: 0,
-    end_time: 0,
-    frozen_time: 0,
-    status: 0,
-    time_elapsed: 0,
-    time_remaining: 0,
-    time_pending: 0,
-    search: null,
-    history: null,
+    startTime: this.props.startTime,
+    endTime: this.props.endTime,
+    frozenStartTime: this.props.frozenStartTime,
+    state: ContestStateType.PENDING,
+    search: this.props.search,
+    history: this.props.history,
+    pendingTime: '',
+    remainingTime: '',
+    elapsedTime: '',
   };
 
   constructor(props: ProgressBigProps) {
@@ -88,33 +95,38 @@ class ProgressBig extends React.Component<ProgressBigProps> {
           }}
         >
           <div style={{ float: 'left' }}>
-            <b>Start: {timeFormat(this.state.start_time)}</b>
+            <b>
+              Start: {this.state.startTime.format('YYYY-MM-DD HH:mm:ss')}
+              <sup>{this.state.startTime.format('z')}</sup>
+            </b>
           </div>
           <div style={{ flex: '1' }}>
             <div
               className={[
                 style['label'],
-                style[status_type[this.state.status]],
+                style[ProgressStateText[this.state.state]],
               ].join(' ')}
             ></div>
             <b>
-              {status_type[this.state.status]}&nbsp;
-              {this.state.status === 0 && this.state.time_pending}
+              {ProgressStateText[this.state.state]}&nbsp;
+              {this.state.state === ContestStateType.PENDING &&
+                this.state.pendingTime}
             </b>
           </div>
           <div style={{ float: 'right' }}>
-            <b>End: {timeFormat(this.state.end_time)}</b>
+            <b>
+              End: {this.state.endTime.format('YYYY-MM-DD HH:mm:ss')}
+              <sup>{this.state.endTime.format('z')}</sup>
+            </b>
           </div>
         </div>
-
         <ProgressWithScroll
-          start_time={this.state.start_time}
-          end_time={this.state.end_time}
-          frozen_time={this.state.frozen_time}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
+          frozenStartTime={this.state.frozenStartTime}
           search={this.state.search}
           history={this.state.history}
         />
-
         <div
           style={{
             marginTop: '2px',
@@ -123,11 +135,11 @@ class ProgressBig extends React.Component<ProgressBigProps> {
           }}
         >
           <div style={{ float: 'left' }}>
-            <b>Elapsed: {this.state.time_elapsed}</b>
+            <b>Elapsed: {this.state.elapsedTime}</b>
           </div>
           <div style={{ flex: '1' }}>{this.state.head_item}</div>
           <div style={{ float: 'right' }}>
-            <b>Remaining: {this.state.time_remaining}</b>
+            <b>Remaining: {this.state.remainingTime}</b>
           </div>
         </div>
       </>

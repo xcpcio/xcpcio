@@ -1,22 +1,8 @@
 import { getNowTimeStamp, getTimeDiff } from '@/utils';
 
+import { dayjs, getTimeStamp } from '@/utils/dayjs';
+
 export const timerInterval = 500;
-
-export const progress_status = [
-  'am-progress-bar-secondary',
-  'am-progress-bar-success',
-  'am-progress-bar-danger',
-  'am-progress-bar-primary',
-];
-
-export const progress_active = [
-  'am-active',
-  'am-active',
-  'am-active',
-  'am-active',
-];
-
-export const status_type = ['PENDING', 'RUNNING', 'FROZEN', 'FINISHED'];
 
 export const ProgressStateStyle = [
   'am-progress-bar-secondary',
@@ -99,25 +85,14 @@ export function getTimePending(start_time: number) {
   return getTimeDiff(Math.max(0, start_time - getNowTimeStamp()));
 }
 
-export function getTimeScroll(
-  start_time: number,
-  end_time: number,
-  width: number,
-) {
-  const gap = end_time - start_time;
-  return getTimeDiff(
-    Math.min(
-      Math.floor(Math.min(gap * width)),
-      Math.max(0, Math.min(getNowTimeStamp(), end_time) - start_time),
-    ),
-  );
-}
-
 export function getTimeFlag(
-  start_time: number,
-  end_time: number,
+  startTime: number | dayjs.Dayjs,
+  endTime: number | dayjs.Dayjs,
   width: number,
 ) {
+  let start_time = getTimeStamp(startTime);
+  let end_time = getTimeStamp(endTime);
+
   const gap = end_time - start_time;
   return (
     start_time +
@@ -125,5 +100,22 @@ export function getTimeFlag(
       Math.floor(Math.min(gap * width)),
       Math.max(0, Math.min(getNowTimeStamp(), end_time) - start_time),
     )
+  );
+}
+
+export function getTimeScroll(
+  startTime: number | dayjs.Dayjs,
+  endTime: number | dayjs.Dayjs,
+  width: number,
+) {
+  let start_time = getTimeStamp(startTime);
+  let end_time = getTimeStamp(endTime);
+
+  const gap = end_time - start_time;
+  return getTimeDiff(
+    Math.min(
+      Math.floor(Math.min(gap * width)),
+      Math.max(0, Math.min(getNowTimeStamp(), end_time) - start_time),
+    ),
   );
 }

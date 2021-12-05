@@ -1,6 +1,7 @@
 import dayjs from '@/utils/dayjs';
 
 import { ContestStateType } from '@/core/contest';
+import ProgressWithScroll from './ProgressWithScroll';
 
 export interface ProgressProps {
   start_time?: number;
@@ -19,6 +20,7 @@ export interface ProgressState {
   status?: number;
 
   width?: number;
+
   time_pending?: string | number;
 
   startTime: dayjs.Dayjs;
@@ -29,8 +31,26 @@ export interface ProgressState {
   pendingTime?: string;
 }
 
-export interface ProgressBigProps extends ProgressProps {
+export interface ProgressWithScrollProps extends ProgressProps {
+  search: any;
+  history: any;
+}
+
+export interface ProgressWithScrollState extends ProgressState {
+  scrollWidth?: number;
+
+  search: any;
+  history: any;
+}
+
+export interface ProgressBigProps extends ProgressWithScrollProps {
   head_item?: JSX.Element;
-  search?: any;
-  history?: any;
+}
+
+export interface ProgressBigState extends ProgressWithScrollState {
+  head_item?: JSX.Element | null;
+
+  pendingTime: string;
+  remainingTime: string;
+  elapsedTime: string;
 }

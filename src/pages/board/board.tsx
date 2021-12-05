@@ -1,12 +1,8 @@
 import React from 'react';
-import { Loading } from '@/components/Loading';
-import { ProgressBig } from '@/components/Progress';
-import { SecondLevelMenu } from '@/components/SecondLevelMenu';
-import { Standings } from '@/components/Standings';
-import { Statistics } from '@/components/Statistics';
-import { Selected } from '@/components/Selected';
-import standingsStyle from '@/components/Standings/Standings.module.less';
+
 import style from './board.module.less';
+import standingsStyle from '@/components/Standings/Standings.module.less';
+
 import {
   fetchIntervalTime,
   fetchData,
@@ -19,10 +15,21 @@ import {
   getRun,
   getTeam,
 } from './board.core';
-import { throttle, debounce } from 'lodash';
-import __CONFIG__ from '@/../config';
+
+import { Loading } from '@/components/Loading';
+import { ProgressBig } from '@/components/Progress';
+import { SecondLevelMenu } from '@/components/SecondLevelMenu';
+import { Standings } from '@/components/Standings';
+import { Statistics } from '@/components/Statistics';
+import { Selected } from '@/components/Selected';
 import { Balloon } from '@/components/Balloon';
 import { Export } from '@/components/Export';
+
+import { throttle, debounce } from 'lodash';
+import __CONFIG__ from '@/../config';
+
+import { ContestInstance, createContestInstance } from '@/core/contest';
+import { BoardProps, BoardState } from './board.type';
 
 const head_item = [
   <table>
@@ -43,13 +50,14 @@ const head_item = [
   <></>,
 ];
 
-class Board extends React.Component {
-  contest_config: any = null;
+class Board extends React.Component<BoardProps, BoardState> {
+  contest_config: ContestInstance | null = null;
   team: any = null;
   run: any = null;
-  timer: any = null;
 
   fetchThrottled: any = null;
+
+  timer: any = null;
 
   clearTimer() {
     this.timer && clearTimeout(this.timer);
@@ -57,14 +65,15 @@ class Board extends React.Component {
 
   async fetch() {
     let { contest_config, team, run } = await fetchData();
+
     if (contest_config !== null && team !== null) {
-      this.contest_config = contest_config;
+      this.contest_config = createContestInstance(contest_config);
       this.team = team;
       this.run = run;
     }
   }
 
-  async update(props: any) {
+  async update(props: BoardProps) {
     if (this.state.loaded) {
       await this.fetchThrottled();
     } else {
@@ -155,7 +164,7 @@ class Board extends React.Component {
   async componentDidMount() {}
 
   //props中的值发生改变时执行
-  async componentWillReceiveProps(nextProps: any) {
+  async componentWillReceiveProps(nextProps: BoardProps) {
     if (
       this.props.location?.pathname !== nextProps.location?.pathname ||
       this.props.location?.search !== nextProps.location?.search
@@ -164,7 +173,7 @@ class Board extends React.Component {
     }
   }
 
-  shouldComponentUpdate(nextProps: any, nextState: any) {
+  shouldComponentUpdate(nextProps: BoardProps, nextState: BoardState) {
     return true;
   }
 
@@ -172,13 +181,13 @@ class Board extends React.Component {
     this.clearTimer();
   }
 
-  constructor(props: any) {
+  constructor(props: BoardProps) {
     super(props);
     this.fetchThrottled = throttle(this.fetch, fetchIntervalTime);
   }
 
   state = {
-    contest_config: {},
+    contest_config: null as unknown as ContestInstance,
     team: {},
     run: [],
     current_contest_config: {},
@@ -229,9 +238,9 @@ class Board extends React.Component {
 
             <ProgressBig
               head_item={head_item[this.state.menu_index.type]}
-              start_time={this.state.contest_config?.start_time}
-              end_time={this.state.contest_config?.end_time}
-              frozen_time={this.state.contest_config?.frozen_time}
+              startTime={this.state?.contest_config?.startTime}
+              endTime={this.state?.contest_config?.endTime}
+              frozenStartTime={this.state?.contest_config?.frozenStartTime}
               search={this.props.location.search}
               history={this.props.history}
             />

@@ -2,8 +2,9 @@ import React from 'react';
 
 import Progress from './Progress';
 import style from './Progress.module.less';
+
 import { ProgressProps, ProgressState } from './Progress.type';
-import { ProgressStateText, status_type, timerInterval } from './Progress.core';
+import { ProgressStateText, timerInterval } from './Progress.core';
 
 import {
   getContestState,
@@ -32,7 +33,7 @@ class ProgressSmall extends React.Component<ProgressProps, ProgressState> {
           props.endTime,
           props.frozenStartTime,
         ),
-        pendingTime: getContestPendingTime(props.startTime, props.endTime),
+        pendingTime: getContestPendingTime(props.startTime),
       });
     };
 

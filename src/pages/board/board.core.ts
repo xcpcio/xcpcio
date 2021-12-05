@@ -142,11 +142,14 @@ export function getCurrentOrganization(search: any) {
 
 export function getConfig(contest_config: any, group: any) {
   let config = deepCopy(contest_config);
+
   if (config.medal) {
     delete config.medal;
-    if (contest_config.medal[group])
+    if (contest_config.medal[group]) {
       config.medal = deepCopy(contest_config.medal[group]);
+    }
   }
+
   return config;
 }
 

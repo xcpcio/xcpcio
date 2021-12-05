@@ -1,34 +1,48 @@
 import React from 'react';
+
 import {
-  getStatus,
-  getWidth,
-  progress_active,
-  progress_status,
   getTimeScroll,
-  getTimeElapsed,
   getTimeFlag,
-  getWidthByTimeFlag,
-  getTimeElapsedByTimeFLag,
+  timerInterval,
+  ProgressStateActiveStyle,
+  ProgressStateStyle,
 } from './Progress.core';
 
 import { getQueryParams, getQueryString } from '@/utils';
 
 import style from './Progress.module.less';
 
-import { ProgressBigProps } from './Progress.type';
+import {
+  ProgressWithScrollProps,
+  ProgressWithScrollState,
+} from './Progress.type';
 
-class ProgressWithScroll extends React.Component<ProgressBigProps> {
+import {
+  ContestStateType,
+  getContestProgressRatio,
+  getContestState,
+  getContestElapsedTime,
+} from '@/core/contest';
+
+class ProgressWithScroll extends React.Component<
+  ProgressWithScrollProps,
+  ProgressWithScrollState
+> {
   timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
   pauseUpdate: boolean = false;
   timeFlag: number = 0;
   init: boolean = false;
 
-  update(props: ProgressBigProps) {
-    let bar: any = document.getElementById('am-progress-bar');
-    let tooltip: any = document.getElementById('am-progress-tooltip');
-    let tooltip_inner: any = document.getElementById(
+  clearTimer() {
+    this.timer && clearInterval(this.timer);
+  }
+
+  update(props: ProgressWithScrollProps) {
+    let bar = document.getElementById('am-progress-bar') as HTMLElement;
+    let tooltip = document.getElementById('am-progress-tooltip') as HTMLElement;
+    let tooltip_inner = document.getElementById(
       'am-progress-tooltip-inner',
-    );
+    ) as HTMLElement;
 
     // (() => {
     //     const timeFlag = getQueryString('timeflag', this.state.search);
@@ -38,26 +52,31 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
     // })();
 
     this.setState({
-      start_time: props.start_time,
-      end_time: props.end_time,
-      frozen_time: props.frozen_time,
+      startTime: props.startTime,
+      endTime: props.endTime,
+      frozenStartTime: props.frozenStartTime,
       search: props.search,
       history: props.history,
     });
 
-    const setStatusAndWIdth = () => {
-      const width = getWidth(props.start_time, props.end_time);
+    const setStatusAndWidth = () => {
+      const width = getContestProgressRatio(props.startTime, props.endTime);
+
       this.setState({
-        status: getStatus(props.start_time, props.end_time, props.frozen_time),
+        state: getContestState(
+          props.startTime,
+          props.endTime,
+          props.frozenStartTime,
+        ),
         width: width,
       });
 
       if (!this.pauseUpdate) {
         bar.style.left = [width, '%'].join('');
         tooltip.style.left = [width, '%'].join('');
-        tooltip_inner.innerHTML = getTimeElapsed(
-          props.start_time,
-          props.end_time,
+        tooltip_inner.innerHTML = getContestElapsedTime(
+          props.startTime,
+          props.endTime,
         );
       } else {
         // const width = getWidthByTimeFlag(props.start_time, props.end_time, this.timeFlag);
@@ -66,24 +85,29 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
         // tooltip_inner.innerHTML = getTimeElapsedByTimeFLag(props.start_time, props.end_time, this.timeFlag);
       }
     };
-    setStatusAndWIdth();
-    this.timer && clearInterval(this.timer);
+
+    setStatusAndWidth();
+
+    this.clearTimer();
     this.timer = setInterval(() => {
-      setStatusAndWIdth();
-    }, 800);
+      setStatusAndWidth();
+    }, timerInterval);
   }
 
   componentDidMount() {
     this.update(this.props);
 
     (() => {
-      let scroll: any = document.getElementById('am-progress-scroll');
-      let mask: any = document.getElementById('am-progress-mask');
-      let bar: any = document.getElementById('am-progress-bar');
-      let tooltip: any = document.getElementById('am-progress-tooltip');
-      let tooltip_inner: any = document.getElementById(
+      let scroll = document.getElementById('am-progress-scroll') as HTMLElement;
+      let mask = document.getElementById('am-progress-mask') as HTMLElement;
+      let bar = document.getElementById('am-progress-bar') as HTMLElement;
+      let tooltip = document.getElementById(
+        'am-progress-tooltip',
+      ) as HTMLElement;
+      let tooltip_inner = document.getElementById(
         'am-progress-tooltip-inner',
-      );
+      ) as HTMLElement;
+
       let barleft = 0;
       let _this = this;
 
@@ -127,15 +151,16 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
             barleft == 0
               ? 0
               : (barleft + bar.offsetWidth) / parseInt(scroll.offsetWidth);
+
           _this.timeFlag = getTimeFlag(
-            _this.state.start_time,
-            _this.state.end_time,
+            _this.state.startTime,
+            _this.state.endTime,
             width,
           );
 
           tooltip_inner.innerHTML = getTimeScroll(
-            _this.state.start_time,
-            _this.state.end_time,
+            _this.state.startTime,
+            _this.state.endTime,
             width,
           );
 
@@ -150,6 +175,7 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
         //弹起鼠标不做任何操作
         document.onmousemove = null;
         tooltip.classList.remove(style['in']);
+
         let queryParams = getQueryParams(
           'timeflag',
           _this.timeFlag.toString(),
@@ -169,7 +195,7 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
     })();
   }
 
-  componentWillReceiveProps(nextProps: ProgressBigProps) {
+  componentWillReceiveProps(nextProps: ProgressWithScrollProps) {
     this.update(nextProps);
   }
 
@@ -178,16 +204,17 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
   }
 
   state = {
-    start_time: 0,
-    end_time: 0,
-    frozen_time: 0,
-    status: 0,
+    startTime: this.props.startTime,
+    endTime: this.props.endTime,
+    frozenStartTime: this.props.frozenStartTime,
     width: 0,
-    scroll_width: 0,
-    search: null,
+    scrollWidth: 0,
+    state: ContestStateType.PENDING,
+    search: this.props.search,
+    history: this.props.history,
   };
 
-  constructor(props: ProgressBigProps) {
+  constructor(props: ProgressWithScrollProps) {
     super(props);
   }
 
@@ -198,7 +225,7 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
           className={[
             style['am-progress'],
             style['am-progress-striped'],
-            style[progress_active[this.state.status]],
+            style[ProgressStateActiveStyle[this.state.state]],
           ].join(' ')}
           style={{ marginBottom: 0, position: 'relative' }}
           id={'am-progress-scroll'}
@@ -206,7 +233,7 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
           <div
             className={[
               style['am-progress-bar'],
-              style[progress_status[this.state.status]],
+              style[ProgressStateStyle[this.state.state]],
             ].join(' ')}
             style={{ width: [this.state.width, '%'].join('') }}
             id={'am-progress-mask'}
@@ -227,11 +254,10 @@ class ProgressWithScroll extends React.Component<ProgressBigProps> {
                 {'00:00:00'}
               </div>
             </div>
-
             <div
               className={[
                 style['am-progress-bar'],
-                style[progress_status[this.state.status]],
+                style[ProgressStateStyle[this.state.state]],
                 style['am-progress-cursor'],
               ].join(' ')}
               style={{
