@@ -1,14 +1,14 @@
-import React from "react";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts-react-official";
-import { Loading } from "@/components/Loading";
+import React from 'react';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
+import { Loading } from '@/components/Loading';
 import {
   getProblemChart,
   getTeamChart,
   getSubmitChart,
   timerInterval,
-} from "./Statistics.services";
-import style from "./Statistics.module.less";
+} from './Statistics.core';
+import style from './Statistics.module.less';
 
 class Statistics extends React.Component {
   timer: any = null;

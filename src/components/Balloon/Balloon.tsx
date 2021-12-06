@@ -1,11 +1,17 @@
-import { Loading } from '@/components/Loading';
-import style from './Balloon.module.less';
-import Highlighter from 'react-highlight-words';
 import React from 'react';
-import { SearchOutlined } from '@ant-design/icons';
+import style from './Balloon.module.less';
+
 import { Table, Input, Space, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+
+import { Loading } from '@/components/Loading';
+
+import Highlighter from 'react-highlight-words';
+
 import { deepCopy } from '@/utils';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   faGolfBall,
   faHourglassStart,
@@ -13,9 +19,17 @@ import {
   faPaperPlane,
   faUndoAlt,
 } from '@fortawesome/free-solid-svg-icons';
+
 import { debounce, throttle } from 'lodash';
+
 import { Run } from '@/types/submission';
 import { isAccepted } from '@/core/submission';
+
+import {
+  getBalloonDispatchedListKey,
+  getDisplayTime,
+  getSolvedId,
+} from './Balloon.core';
 
 interface ActionItem {
   status: boolean;
@@ -32,27 +46,6 @@ interface BalloonTableItem {
   total: number[];
   action: ActionItem;
   awards: string;
-}
-
-function getSolvedId(team_id: string, problem_id: number) {
-  return [team_id, problem_id].join('#$#');
-}
-
-function formatTimeNumber(time: number) {
-  if (time < 9) return ['0', time].join('');
-  return time;
-}
-
-function getDisplayTime(time: number) {
-  return [
-    formatTimeNumber(Math.floor(time / 60 / 60)),
-    formatTimeNumber(Math.floor((time / 60) % 60)),
-    formatTimeNumber(Math.floor(time % 60)),
-  ].join(':');
-}
-
-function getBalloonDispatchedListKey() {
-  return [window.location.pathname, 'balloon', 'dispatched', 'list'].join('_');
 }
 
 class Balloon extends React.Component {

@@ -7,7 +7,7 @@ const { TextArea } = Input;
 import style from './Export.module.less';
 
 import { Run } from '@/types/submission';
-import { toDatFile, toJSON } from './Export.services';
+import { toDatFile, toJSON } from './Export.core';
 
 export enum ExportType {
   DAT_FILE = 'dat_file',
