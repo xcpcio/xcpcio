@@ -1,4 +1,4 @@
-export const config = {
+export const Config = {
   title: 'Board - XCPCIO',
   favicon: '/favicon.ico',
   publicPath: '/',
@@ -25,4 +25,4 @@ export const config = {
   },
 };
 
-export default config;
+export default Config;
