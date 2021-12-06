@@ -8,10 +8,11 @@ export default defineConfig({
   analytics: __CONFIG__.analytics,
   proxy: __CONFIG__.proxy,
   publicPath: __CONFIG__.publicPath,
+  hash: true,
+  cssModulesTypescriptLoader: {},
   nodeModulesTransform: {
     type: 'none',
   },
-  hash: true,
   routes: [
     {
       path: '/',
