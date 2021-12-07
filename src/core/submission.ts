@@ -1,33 +1,39 @@
-import { SubmissionStatus } from '@/types/submission';
+import { Submission, SubmissionStatus } from '@/types/submission';
 
 export function isAccepted(status: SubmissionStatus): boolean {
-  if (status === SubmissionStatus.Accepted) {
+  if (
+    status === SubmissionStatus.Accepted ||
+    status === SubmissionStatus.Correct
+  ) {
     return true;
   }
 
   return false;
 }
 
-export function isWrongAnswer(status: SubmissionStatus): boolean {
+export function isRejected(status: SubmissionStatus): boolean {
   if (
-    status === SubmissionStatus.WrongAnswer ||
     status === SubmissionStatus.RuntimeError ||
     status === SubmissionStatus.TimeLimitExceeded ||
     status === SubmissionStatus.MemoryLimitExceeded ||
     status === SubmissionStatus.OutputLimitExceeded ||
     status === SubmissionStatus.IdlenessLimitExceeded ||
+    status === SubmissionStatus.WrongAnswer ||
     status === SubmissionStatus.Reject ||
     status === SubmissionStatus.JudgementFailed ||
     status === SubmissionStatus.Hacked
   ) {
     return true;
   }
+
   return false;
 }
 
 export function isPending(status: SubmissionStatus): boolean {
   if (
     status === SubmissionStatus.Pending ||
+    status === SubmissionStatus.Waiting ||
+    status === SubmissionStatus.Judging ||
     status === SubmissionStatus.Frozen
   ) {
     return true;
@@ -56,8 +62,12 @@ export function isNotCalculatedPenaltyStatus(
 export function stringToSubmissionStatus(status: string): SubmissionStatus {
   status = status.toUpperCase().replace(' ', '');
 
-  if (['OK', 'AC', 'CORRECT', 'ACCEPTED'].includes(status)) {
+  if (['OK', 'AC', 'ACCEPTED'].includes(status)) {
     return SubmissionStatus.Accepted;
+  }
+
+  if (['CORRECT'].includes(status)) {
+    return SubmissionStatus.Correct;
   }
 
   if (['WA', 'WRONGANSWER'].includes(status)) {
@@ -155,47 +165,37 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
   return SubmissionStatus.Undefined;
 }
 
-export function submissionStatusToCodeforcesDatFile(
-  status: SubmissionStatus,
-): string {
-  if (isAccepted(status)) {
-    return 'OK';
+export interface SubmissionInstance {
+  teamId: string;
+  problemId: string;
+  timestamp: number;
+  status: SubmissionStatus;
+}
+
+export function createSubmissionInstance(
+  raw_submission_json: any,
+): SubmissionInstance {
+  const teamId = raw_submission_json?.team_id ?? '';
+  const problemId = raw_submission_json?.problem_id ?? '';
+  const timestamp = raw_submission_json?.timestamp ?? 0;
+  const status = stringToSubmissionStatus(raw_submission_json?.status ?? '');
+
+  return {
+    teamId,
+    problemId,
+    timestamp,
+    status,
+  };
+}
+
+export function createSubmissionInstanceList(
+  raw_submissions_json: any,
+): SubmissionInstance[] {
+  const submissionInstanceList: SubmissionInstance[] = [];
+
+  for (const raw_submission of raw_submissions_json) {
+    submissionInstanceList.push(createSubmissionInstance(raw_submission));
   }
 
-  if (status === SubmissionStatus.WrongAnswer) {
-    return 'WA';
-  }
-
-  if (status === SubmissionStatus.TimeLimitExceeded) {
-    return 'TL';
-  }
-
-  if (status === SubmissionStatus.MemoryLimitExceeded) {
-    return 'ML';
-  }
-
-  if (status === SubmissionStatus.OutputLimitExceeded) {
-    return 'IL';
-  }
-
-  if (status === SubmissionStatus.PresentationError) {
-    return 'PE';
-  }
-
-  if (status === SubmissionStatus.RuntimeError) {
-    return 'RT';
-  }
-
-  if (
-    status === SubmissionStatus.CompilationError ||
-    isNotCalculatedPenaltyStatus(status)
-  ) {
-    return 'CE';
-  }
-
-  if (isPending(status)) {
-    return 'PD';
-  }
-
-  return 'RJ';
+  return [];
 }

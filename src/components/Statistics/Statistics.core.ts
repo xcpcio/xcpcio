@@ -1,5 +1,5 @@
 import { Run } from '@/types/submission';
-import { isAccepted, isWrongAnswer, isPending } from '@/core/submission';
+import { isAccepted, isRejected, isPending } from '@/core/submission';
 
 export const timerInterval = 200;
 
@@ -233,7 +233,7 @@ export function getSubmitChart(contest_config: any, team: any, run: Run[]) {
         Accepted[run.problemId] += 1;
       }
 
-      if (isWrongAnswer(run.status)) {
+      if (isRejected(run.status)) {
         Rejected[run.problemId] += 1;
       }
 

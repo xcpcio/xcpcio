@@ -7,7 +7,7 @@ const { TextArea } = Input;
 import style from './Export.module.less';
 
 import { Run } from '@/types/submission';
-import { toDatFile, toJSON } from './Export.core';
+import { boardToDatFile, boardToJSON } from './Export.core';
 
 export enum ExportType {
   DAT_FILE = 'dat_file',
@@ -45,13 +45,13 @@ const Export: React.FC<ExportProps> = (props) => {
 
   async function onSelectDatFile() {
     setDatFileGenerateLoading(true);
-    setDatFileValue(toDatFile(contestConfig, team, run));
+    setDatFileValue(boardToDatFile(contestConfig, team, run));
     setDatFileGenerateLoading(false);
   }
 
   async function onSelectRankJson() {
     setRankJsonGenerateLoading(true);
-    setRankJsonValue(JSON.stringify(toJSON(contestConfig, team, run)));
+    setRankJsonValue(JSON.stringify(boardToJSON(contestConfig, team, run)));
     setRankJsonGenerateLoading(false);
   }
 
@@ -60,11 +60,11 @@ const Export: React.FC<ExportProps> = (props) => {
       <Select
         showSearch
         style={{ width: 680, marginTop: 30 }}
-        placeholder="Select a type"
+        placeholder="Choose export type"
         optionFilterProp="children"
         onChange={onSelectChange}
         filterOption={(input, option) =>
-          option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          option?.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
         }
       >
         <Option value={ExportType.DAT_FILE}>

@@ -8,11 +8,7 @@ import {
 } from '@/utils';
 
 import { Run } from '@/types';
-import {
-  stringToSubmissionStatus,
-  isAccepted,
-  isWrongAnswer,
-} from '@/core/submission';
+import { stringToSubmissionStatus, isAccepted } from '@/core/submission';
 
 export const fetchIntervalTime = 30 * 1000;
 export const INF = 0x3f3f3f3f;

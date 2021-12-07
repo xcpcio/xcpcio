@@ -1,66 +1,84 @@
 export enum SubmissionStatus {
-  Pending = 'Pending',
-  Waiting = 'Waiting',
-  Judging = 'Judging',
-  Frozen = 'Frozen',
+  Pending,
+  Waiting,
+  Judging,
+  Frozen,
 
-  Accepted = 'Accepted',
+  Accepted,
+  Correct,
 
-  CompilationError = 'Compilation Error',
-  PresentationError = 'Presentation Error',
+  CompilationError,
+  PresentationError,
 
-  FileError = 'File Error',
-  RuntimeError = 'Runtime Error',
+  FileError,
+  RuntimeError,
 
-  TimeLimitExceeded = 'Time Limit Exceeded',
-  MemoryLimitExceeded = 'Memory Limit Exceeded',
-  OutputLimitExceeded = 'Output Limit Exceeded',
-  IdlenessLimitExceeded = 'Idleness LimitExceeded',
+  TimeLimitExceeded,
+  MemoryLimitExceeded,
+  OutputLimitExceeded,
+  IdlenessLimitExceeded,
 
-  WrongAnswer = 'Wrong Answer',
-  Reject = 'Reject',
+  WrongAnswer,
+  Reject,
 
-  JudgementFailed = 'Judgement Failed',
+  JudgementFailed,
 
-  Hacked = 'Hacked',
+  Hacked,
 
-  ConfigurationError = 'Configuration Error',
-  SystemError = 'System Error',
-  Canceled = 'Canceled',
-  Skipped = 'Skipped',
+  ConfigurationError,
+  SystemError,
+  Canceled,
+  Skipped,
 
-  SecurityViolated = 'Security Violated',
-  DenialOfJudgement = 'Denial Of Judgement',
+  SecurityViolated,
+  DenialOfJudgement,
 
-  PartiallyCorrect = 'Partially Correct',
+  PartiallyCorrect,
 
-  Unknown = 'Unknown',
-  Undefined = 'Undefined',
+  Unknown,
+  Undefined,
 }
 
-export type RunStatus =
-  | 'Accepted'
-  | 'Pending'
-  | 'ConfigurationError'
-  | 'SystemError'
-  | 'Canceled'
-  | 'CompilationError'
-  | 'FileError'
-  | 'RuntimeError'
-  | 'TimeLimitExceeded'
-  | 'MemoryLimitExceeded'
-  | 'OutputLimitExceeded'
-  | 'PartiallyCorrect'
-  | 'WrongAnswer'
-  | 'Reject'
-  | 'JudgementFailed'
-  | 'Frozen'
-  | 'Hacked'
-  | 'Skipped'
-  | 'PresentationError'
-  | 'SecurityViolated'
-  | 'DenialOfJudgement'
-  | 'IdlenessLimitExceeded';
+export const SubmissionStatusText = [
+  'Pending',
+  'Waiting',
+  'Judging',
+  'Frozen',
+
+  'Accepted',
+  'Correct',
+
+  'Compilation Error',
+  'Presentation Error',
+
+  'File Error',
+  'Runtime Error',
+
+  'Time Limit Exceeded',
+  'Memory Limit Exceeded',
+  'Output Limit Exceeded',
+  'Idleness LimitExceeded',
+
+  'Wrong Answer',
+  'Reject',
+
+  'Judgement Failed',
+
+  'Hacked',
+
+  'Configuration Error',
+  'System Error',
+  'Canceled',
+  'Skipped',
+
+  'Security Violated',
+  'Denial Of Judgement',
+
+  'Partially Correct',
+
+  'Unknown',
+  'Undefined',
+];
 
 export interface Run {
   teamId: string;
@@ -70,8 +88,8 @@ export interface Run {
 }
 
 export interface Submission {
-  teamId: string;
+  team_id: string;
+  problem_id: string;
   timestamp: number;
-  problemId: number;
-  status: SubmissionStatus;
+  status: string;
 }

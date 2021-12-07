@@ -1,6 +1,6 @@
 import { getDisplayTime } from '@/utils';
 import { Run } from '@/types/submission';
-import { isAccepted, isWrongAnswer, isPending } from '@/core/submission';
+import { isAccepted, isRejected, isPending } from '@/core/submission';
 
 export const timerInterval = 500;
 export const INF = 0x3f3f3f3f;
@@ -160,7 +160,7 @@ export function getTeamList(
     } else if (isPending(run.status)) {
       problem.status = 'pending';
       problem['pending_num'] += 1;
-    } else if (isWrongAnswer(run.status)) {
+    } else if (isRejected(run.status)) {
       problem.status = 'incorrect';
     }
   });

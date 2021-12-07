@@ -1,18 +1,71 @@
-import { Run } from '@/types/submission';
-import {
-  submissionStatusToCodeforcesDatFile,
-  isAccepted,
-} from '@/core/submission';
-import { getDisplayTime, deepCopy } from '@/utils';
+import { Run, SubmissionStatus } from '@/types/submission';
 
-export function toDatFile(contestConfig: any, team: any, run: Run[]) {
+import {
+  isAccepted,
+  isPending,
+  isNotCalculatedPenaltyStatus,
+} from '@/core/submission';
+
+import { getDisplayTime, deepCopy } from '@/utils';
+import { JsonRankTeam } from './Export.type';
+
+export function submissionStatusToCodeforcesDatFile(
+  status: SubmissionStatus,
+): string {
+  if (isAccepted(status)) {
+    return 'OK';
+  }
+
+  if (status === SubmissionStatus.WrongAnswer) {
+    return 'WA';
+  }
+
+  if (status === SubmissionStatus.TimeLimitExceeded) {
+    return 'TL';
+  }
+
+  if (status === SubmissionStatus.MemoryLimitExceeded) {
+    return 'ML';
+  }
+
+  if (status === SubmissionStatus.OutputLimitExceeded) {
+    return 'IL';
+  }
+
+  if (status === SubmissionStatus.PresentationError) {
+    return 'PE';
+  }
+
+  if (status === SubmissionStatus.RuntimeError) {
+    return 'RT';
+  }
+
+  if (
+    status === SubmissionStatus.CompilationError ||
+    isNotCalculatedPenaltyStatus(status)
+  ) {
+    return 'CE';
+  }
+
+  if (isPending(status)) {
+    return 'PD';
+  }
+
+  return 'RJ';
+}
+
+export function boardToDatFile(
+  contestConfig: any,
+  teams: any,
+  submissions: Run[],
+) {
   let datFile = '';
 
   datFile += `@contest "${contestConfig.contest_name}"
 @contlen ${getDisplayTime(contestConfig.end_time - contestConfig.start_time)}
 @problems ${contestConfig.problem_id.length}
-@teams ${Object.keys(team).length}
-@submissions ${run.length}
+@teams ${Object.keys(teams).length}
+@submissions ${submissions.length}
 `;
 
   contestConfig.problem_id.forEach((pid: string) => {
@@ -31,7 +84,7 @@ export function toDatFile(contestConfig: any, team: any, run: Run[]) {
     };
 
     let team_index = 1;
-    for (const tid in team) {
+    for (const tid in teams) {
       team_new_id[tid] = team_index;
       team_problem_submit_index[tid] = initProblemSubmitIndex();
       team_index++;
@@ -40,33 +93,36 @@ export function toDatFile(contestConfig: any, team: any, run: Run[]) {
     return { team_new_id, team_problem_submit_index };
   })();
 
-  for (const tid in team) {
-    datFile += `@t ${team_new_id[tid]},0,1,${team[tid].name}\n`;
+  for (const tid in teams) {
+    let name = teams[tid].name;
+
+    if (teams[tid]?.organization) {
+      name = teams[tid].organization + '-' + name;
+    }
+
+    if (teams[tid]?.members) {
+      name = name + ' ' + `(${teams[tid].members.join(', ')})`;
+    }
+
+    datFile += `@t ${team_new_id[tid]},0,1,${name}\n`;
   }
 
-  run.forEach((run: Run) => {
-    const status = submissionStatusToCodeforcesDatFile(run.status);
-    ++team_problem_submit_index[run.teamId][run.problemId];
+  submissions.forEach((submission: Run) => {
+    const status = submissionStatusToCodeforcesDatFile(submission.status);
+    ++team_problem_submit_index[submission.teamId][submission.problemId];
 
-    datFile += `@s ${team_new_id[run.teamId]},${
-      contestConfig.problem_id[run.problemId]
-    },${team_problem_submit_index[run.teamId][run.problemId]},${
-      run.timestamp
+    datFile += `@s ${team_new_id[submission.teamId]},${
+      contestConfig.problem_id[submission.problemId]
+    },${team_problem_submit_index[submission.teamId][submission.problemId]},${
+      submission.timestamp
     },${status}\n`;
   });
 
   return datFile;
 }
 
-interface RankTeam {
-  members?: string;
-  organization?: string;
-  name?: string;
-  place?: any;
-}
-
-export function toJSON(contestConfig: any, team: any, run: Run[]) {
-  let teamJson: RankTeam[] = [];
+export function boardToJSON(contestConfig: any, team: any, run: Run[]) {
+  let teamJson: JsonRankTeam[] = [];
   let _team = deepCopy(team);
 
   const penalty = contestConfig.penalty;
@@ -103,7 +159,7 @@ export function toJSON(contestConfig: any, team: any, run: Run[]) {
   });
 
   teamList.forEach((team: any, index: number) => {
-    let item: RankTeam = {};
+    let item: JsonRankTeam = {};
     item.members = team.members || [];
     item.organization = team.organization || '';
     item.name = team.name || '';
