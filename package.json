@@ -9,6 +9,11 @@
     "engines": {
         "node": ">=16.11.0"
     },
+    "files": [
+        "src",
+        "dist"
+    ],
+    "sideEffects": false,
     "scripts": {
         "postinstall": "umi generate tmp",
         "dev": "cross-env UMI_UI=none umi dev",
