@@ -1,5 +1,5 @@
-import { defineConfig } from 'umi';
-import __CONFIG__ from './config';
+import { defineConfig } from "umi";
+import __CONFIG__ from "./config";
 
 export default defineConfig({
   title: false,
@@ -11,17 +11,17 @@ export default defineConfig({
   hash: true,
   cssModulesTypescriptLoader: {},
   nodeModulesTransform: {
-    type: 'none',
+    type: "none",
   },
   routes: [
     {
-      path: '/',
-      component: '@/pages/index',
+      path: "/",
+      component: "@/pages/index",
       exact: true,
     },
     {
-      path: '/',
-      component: '@/pages/board/board',
+      path: "/",
+      component: "@/pages/board/board",
       exact: false,
     },
   ],

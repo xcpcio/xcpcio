@@ -10,6 +10,8 @@
         "fortawesome",
         "highcharts",
         "icpc",
+        "pnpm",
+        "prettierrc",
         "umijs",
         "XCPCIO"
     ]

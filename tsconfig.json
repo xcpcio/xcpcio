@@ -1,38 +1,42 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "allowJs": true,
-    "jsx": "react-jsx",
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "baseUrl": "./",
-    "strict": true,
-    "paths": {
-      "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"]
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "allowJs": true,
+        "jsx": "react-jsx",
+        "esModuleInterop": true,
+        "sourceMap": true,
+        "baseUrl": "./",
+        "strict": true,
+        "paths": {
+            "@/*": [
+                "src/*"
+            ],
+            "@@/*": [
+                "src/.umi/*"
+            ]
+        },
+        "allowSyntheticDefaultImports": true,
+        "suppressImplicitAnyIndexErrors": true
     },
-    "allowSyntheticDefaultImports": true,
-    "suppressImplicitAnyIndexErrors": true
-  },
-  "include": [
-    "mock/**/*",
-    "src/**/*",
-    "config/**/*",
-    ".umirc.ts",
-    "typings.d.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    "lib",
-    "es",
-    "dist",
-    "typings",
-    "**/__test__",
-    "test",
-    "docs",
-    "tests"
-  ]
+    "include": [
+        "mock/**/*",
+        "src/**/*",
+        "config/**/*",
+        ".umirc.ts",
+        "typings.d.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "lib",
+        "es",
+        "dist",
+        "typings",
+        "**/__test__",
+        "test",
+        "docs",
+        "tests"
+    ]
 }

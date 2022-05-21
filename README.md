@@ -11,13 +11,13 @@
 git clone https://github.com/XCPCIO/XCPCIO-board.git
 
 # Installation dependencies
-yarn install
+pnpm install
 
 # start http server
-yarn start
+pnpm start
 
 # build the project
-yarn build
+pnpm build
 ```
 
 ## Configuration
@@ -61,6 +61,6 @@ MIT.
 ### &#8627; Stargazers
 [![Stargazers repo roster for @XCPCIO/XCPCIO-Board](https://reporoster.com/stars/XCPCIO/XCPCIO-Board)](https://github.com/XCPCIO/XCPCIO-Board/stargazers)
 
-<br/>  
-<br/>  
+<br/>
+<br/>
 <p align="center"><a href="https://github.com/XCPCIO/XCPCIO-Board#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
