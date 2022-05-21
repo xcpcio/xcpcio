@@ -6,6 +6,8 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "cSpell.words": [
+        "ccpc",
+        "icpc",
         "XCPCIO"
     ]
 }
