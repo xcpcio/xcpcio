@@ -21,7 +21,10 @@
         "start:no-mock": "cross-env MOCK=none umi dev",
         "start:no-ui": "cross-env UMI_UI=none umi dev",
         "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 umi build",
-        "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+        "lint": "run-p lint:*",
+        "lint:style": "prettier --check src/",
+        "format": "run-p format:*",
+        "format:style": "prettier --write src/",
         "test": "umi-test",
         "test:coverage": "umi-test --coverage"
     },
@@ -36,12 +39,15 @@
         "browserslist": "^4.18.1",
         "caniuse-lite": "^1.0.30001283",
         "dayjs": "^1.10.7",
+        "dva-core": "^1.1.0",
         "highcharts": "^8.2.0",
         "highcharts-react-official": "^3.0.0",
         "lodash": "^4.17.20",
         "react": "17.x",
         "react-dom": "17.x",
         "react-highlight-words": "^0.16.0",
+        "react-router": "5.0.0",
+        "redbox-react": "1.x",
         "umi": "^3.5.20",
         "umi-request": "^1.4.0",
         "uuid": "^8.3.2"
@@ -56,6 +62,7 @@
         "@umijs/test": "^3.5.20",
         "case-sensitive-paths-webpack-plugin": "^2.3.0",
         "cross-env": "^7.0.3",
+        "npm-run-all": "^4.1.5",
         "prettier": "^2.2.0",
         "typescript": "^4.1.2"
     }
