@@ -1,20 +1,23 @@
+# yaml-language-server: $schema=https://json-schema.org/draft-07/schema#
 name: Build
 on:
-  workflow_dispatch:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Invoke workflow in another repo with inputs
-        uses: benc-uk/workflow-dispatch@v1
-        with:
-          workflow: Sync
-          repo: XCPCIO/XCPCIO-Board-Preview
-          token: ${{ secrets.GH_TOKEN }}
+#   sync:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Invoke workflow in another repo with inputs
+#         uses: benc-uk/workflow-dispatch@v1
+#         with:
+#           workflow: Sync
+#           repo: XCPCIO/XCPCIO-Board-Preview
+#           token: ${{ secrets.GH_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
@@ -22,11 +25,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+
+      - name: Set node
+        uses: actions/setup-node@v2
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+          node-version: 16.x
+          cache: pnpm
 
       - name: Get Version ID
         id: get-version-id
@@ -41,8 +47,8 @@ jobs:
         run: |
           sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts
           cat config.ts
-          yarn
-          yarn build
+          pnpm
+          pnpm build
 
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v9
