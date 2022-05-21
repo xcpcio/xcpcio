@@ -51,7 +51,8 @@ export function isNotCalculatedPenaltyStatus(
     status === SubmissionStatus.ConfigurationError ||
     status === SubmissionStatus.SystemError ||
     status === SubmissionStatus.Canceled ||
-    status === SubmissionStatus.Skipped
+    status === SubmissionStatus.Skipped ||
+    status === SubmissionStatus.Unknown
   ) {
     return true;
   }
@@ -166,36 +167,37 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
 }
 
 export interface SubmissionInstance {
-  teamId: string;
-  problemId: string;
+  submissionID: string;
+  teamID: string;
+  problemID: string;
   timestamp: number;
   status: SubmissionStatus;
 }
 
 export function createSubmissionInstance(
-  raw_submission_json: any,
+  raw_submission_json: Submission,
+  index: number,
 ): SubmissionInstance {
-  const teamId = raw_submission_json?.team_id ?? '';
-  const problemId = raw_submission_json?.problem_id ?? '';
+  const submissionID = raw_submission_json?.id ?? String(index);
+
+  const teamID = raw_submission_json?.team_id ?? '';
+  const problemID = raw_submission_json?.problem_id ?? '';
   const timestamp = raw_submission_json?.timestamp ?? 0;
   const status = stringToSubmissionStatus(raw_submission_json?.status ?? '');
 
   return {
-    teamId,
-    problemId,
+    submissionID,
+    teamID,
+    problemID,
     timestamp,
     status,
   };
 }
 
 export function createSubmissionInstanceList(
-  raw_submissions_json: any,
+  rawSubmissionListJSON: Submission[],
 ): SubmissionInstance[] {
-  const submissionInstanceList: SubmissionInstance[] = [];
-
-  for (const raw_submission of raw_submissions_json) {
-    submissionInstanceList.push(createSubmissionInstance(raw_submission));
-  }
-
-  return [];
+  return rawSubmissionListJSON.map((submission, index) =>
+    createSubmissionInstance(submission, index),
+  );
 }

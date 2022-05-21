@@ -19,6 +19,7 @@ export interface ContestConfig {
   problem_id: string[];
 
   group?: Record<string, string>;
+  tag?: Record<string, string>;
   organization?: string;
   status_time_display?: Record<string, boolean>;
   medal?: Record<string, Record<string, string>>;

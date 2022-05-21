@@ -88,8 +88,9 @@ export interface Run {
 }
 
 export interface Submission {
-  team_id: string;
-  problem_id: string;
-  timestamp: number;
-  status: string;
+  id?: string;
+  team_id?: string;
+  problem_id?: string;
+  timestamp?: number;
+  status?: string;
 }
