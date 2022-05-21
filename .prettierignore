@@ -4,7 +4,6 @@
 **/*.html
 
 .umi
-.umi-production
 .umi-test
 
 .vscode
@@ -13,3 +12,7 @@
 *.json
 *.yaml
 *.yml
+*.less.d.ts
+
+Progress.module.less
+global.css

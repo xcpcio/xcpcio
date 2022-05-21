@@ -1,57 +1,57 @@
-import { Run, SubmissionStatus } from '@/types/submission';
+import { Run, SubmissionStatus } from "@/types/submission";
 
 import {
   isAccepted,
   isPending,
   isNotCalculatedPenaltyStatus,
-} from '@/core/submission';
+} from "@/core/submission";
 
-import { getDisplayTime, deepCopy } from '@/utils';
-import { JsonRankTeam } from './Export.type';
+import { getDisplayTime, deepCopy } from "@/utils";
+import { JsonRankTeam } from "./Export.type";
 
 export function submissionStatusToCodeforcesDatFile(
   status: SubmissionStatus,
 ): string {
   if (isAccepted(status)) {
-    return 'OK';
+    return "OK";
   }
 
   if (status === SubmissionStatus.WrongAnswer) {
-    return 'WA';
+    return "WA";
   }
 
   if (status === SubmissionStatus.TimeLimitExceeded) {
-    return 'TL';
+    return "TL";
   }
 
   if (status === SubmissionStatus.MemoryLimitExceeded) {
-    return 'ML';
+    return "ML";
   }
 
   if (status === SubmissionStatus.OutputLimitExceeded) {
-    return 'IL';
+    return "IL";
   }
 
   if (status === SubmissionStatus.PresentationError) {
-    return 'PE';
+    return "PE";
   }
 
   if (status === SubmissionStatus.RuntimeError) {
-    return 'RT';
+    return "RT";
   }
 
   if (
     status === SubmissionStatus.CompilationError ||
     isNotCalculatedPenaltyStatus(status)
   ) {
-    return 'CE';
+    return "CE";
   }
 
   if (isPending(status)) {
-    return 'PD';
+    return "PD";
   }
 
-  return 'RJ';
+  return "RJ";
 }
 
 export function boardToDatFile(
@@ -59,7 +59,7 @@ export function boardToDatFile(
   teams: any,
   submissions: Run[],
 ) {
-  let datFile = '';
+  let datFile = "";
 
   datFile += `@contest "${contestConfig.contest_name}"
 @contlen ${getDisplayTime(contestConfig.end_time - contestConfig.start_time)}
@@ -97,11 +97,11 @@ export function boardToDatFile(
     let name = teams[tid].name;
 
     if (teams[tid]?.organization) {
-      name = teams[tid].organization + '-' + name;
+      name = teams[tid].organization + "-" + name;
     }
 
     if (teams[tid]?.members) {
-      name = name + ' ' + `(${teams[tid].members.join(', ')})`;
+      name = name + " " + `(${teams[tid].members.join(", ")})`;
     }
 
     datFile += `@t ${team_new_id[tid]},0,1,${name}\n`;
@@ -128,9 +128,9 @@ export function boardToJSON(contestConfig: any, team: any, run: Run[]) {
   const penalty = contestConfig.penalty;
 
   for (let k in _team) {
-    _team[k]['problem'] = contestConfig.problem_id.map(() => 0);
-    _team[k]['solved'] = 0;
-    _team[k]['time'] = 0;
+    _team[k]["problem"] = contestConfig.problem_id.map(() => 0);
+    _team[k]["solved"] = 0;
+    _team[k]["time"] = 0;
   }
 
   run.forEach((run: Run) => {
@@ -161,16 +161,16 @@ export function boardToJSON(contestConfig: any, team: any, run: Run[]) {
   teamList.forEach((team: any, index: number) => {
     let item: JsonRankTeam = {};
     item.members = team.members || [];
-    item.organization = team.organization || '';
-    item.name = team.name || '';
+    item.organization = team.organization || "";
+    item.name = team.name || "";
     item.place = {};
-    item.place['all'] = index + 1;
+    item.place["all"] = index + 1;
     teamJson.push(item);
   });
 
   let rankJson: any = {};
-  rankJson['contestName'] = contestConfig['contest_name'];
-  rankJson['teams'] = teamJson;
+  rankJson["contestName"] = contestConfig["contest_name"];
+  rankJson["teams"] = teamJson;
 
   return rankJson;
 }

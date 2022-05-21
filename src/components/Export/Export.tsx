@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-import { Select, Button, Input } from 'antd';
+import { Select, Button, Input } from "antd";
 const { Option } = Select;
 const { TextArea } = Input;
 
-import style from './Export.module.less';
+import style from "./Export.module.less";
 
-import { Run } from '@/types/submission';
-import { boardToDatFile, boardToJSON } from './Export.core';
+import { Run } from "@/types/submission";
+import { boardToDatFile, boardToJSON } from "./Export.core";
 
 export enum ExportType {
-  DAT_FILE = 'dat_file',
-  JSON = 'json',
+  DAT_FILE = "dat_file",
+  JSON = "json",
 }
 
 interface ExportProps {
@@ -21,12 +21,12 @@ interface ExportProps {
 }
 
 const Export: React.FC<ExportProps> = (props) => {
-  const [type, setType] = useState('');
+  const [type, setType] = useState("");
 
-  const [datFileValue, setDatFileValue] = useState('');
+  const [datFileValue, setDatFileValue] = useState("");
   const [datFileGenerateLoading, setDatFileGenerateLoading] = useState(false);
 
-  const [rankJsonValue, setRankJsonValue] = useState('');
+  const [rankJsonValue, setRankJsonValue] = useState("");
   const [rankJsonGenerateLoading, setRankJsonGenerateLoading] = useState(false);
 
   const [contestConfig, setContestConfig] = useState({} as any);

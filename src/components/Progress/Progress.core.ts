@@ -1,24 +1,24 @@
-import { getNowTimeStamp, getTimeDiff } from '@/utils';
+import { getNowTimeStamp, getTimeDiff } from "@/utils";
 
-import { dayjs, getTimeStamp } from '@/utils/dayjs';
+import { dayjs, getTimeStamp } from "@/utils/dayjs";
 
 export const timerInterval = 500;
 
 export const ProgressStateStyle = [
-  'am-progress-bar-secondary',
-  'am-progress-bar-success',
-  'am-progress-bar-danger',
-  'am-progress-bar-primary',
+  "am-progress-bar-secondary",
+  "am-progress-bar-success",
+  "am-progress-bar-danger",
+  "am-progress-bar-primary",
 ];
 
 export const ProgressStateActiveStyle = [
-  'am-active',
-  'am-active',
-  'am-active',
-  'am-active',
+  "am-active",
+  "am-active",
+  "am-active",
+  "am-active",
 ];
 
-export const ProgressStateText = ['PENDING', 'RUNNING', 'FROZEN', 'FINISHED'];
+export const ProgressStateText = ["PENDING", "RUNNING", "FROZEN", "FINISHED"];
 
 export function getStatus(
   start_time: number,

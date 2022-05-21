@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Use if the screen width is in [`l`, `r`)
@@ -25,9 +25,9 @@ export function useScreenWidthWithin(l: number, r: number): boolean {
     }
 
     if (refMediaQueryList.current.addEventListener) {
-      refMediaQueryList.current.addEventListener('change', onChange);
+      refMediaQueryList.current.addEventListener("change", onChange);
       return () =>
-        refMediaQueryList.current.removeEventListener('change', onChange);
+        refMediaQueryList.current.removeEventListener("change", onChange);
     } else {
       refMediaQueryList.current.addListener(onChange);
       return () => refMediaQueryList.current.removeListener(onChange);

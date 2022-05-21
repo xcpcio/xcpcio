@@ -1,4 +1,4 @@
-import { Submission, SubmissionStatus } from '@/types/submission';
+import { Submission, SubmissionStatus } from "@/types/submission";
 
 export function isAccepted(status: SubmissionStatus): boolean {
   if (
@@ -61,105 +61,105 @@ export function isNotCalculatedPenaltyStatus(
 }
 
 export function stringToSubmissionStatus(status: string): SubmissionStatus {
-  status = status.toUpperCase().replace(' ', '');
+  status = status.toUpperCase().replace(" ", "");
 
-  if (['OK', 'AC', 'ACCEPTED'].includes(status)) {
+  if (["OK", "AC", "ACCEPTED"].includes(status)) {
     return SubmissionStatus.Accepted;
   }
 
-  if (['CORRECT'].includes(status)) {
+  if (["CORRECT"].includes(status)) {
     return SubmissionStatus.Correct;
   }
 
-  if (['WA', 'WRONGANSWER'].includes(status)) {
+  if (["WA", "WRONGANSWER"].includes(status)) {
     return SubmissionStatus.WrongAnswer;
   }
 
-  if (['RJ', 'INCORRECT', 'REJECT'].includes(status)) {
+  if (["RJ", "INCORRECT", "REJECT"].includes(status)) {
     return SubmissionStatus.Reject;
   }
 
-  if (['PD', 'PENDING'].includes(status)) {
+  if (["PD", "PENDING"].includes(status)) {
     return SubmissionStatus.Pending;
   }
 
-  if (['WAITING'].includes(status)) {
+  if (["WAITING"].includes(status)) {
     return SubmissionStatus.Waiting;
   }
 
-  if (['Judging'].includes(status)) {
+  if (["Judging"].includes(status)) {
     return SubmissionStatus.Judging;
   }
 
-  if (['FROZEN'].includes(status)) {
+  if (["FROZEN"].includes(status)) {
     return SubmissionStatus.Frozen;
   }
 
-  if (['CE', 'COMPILATIONERROR'].includes(status)) {
+  if (["CE", "COMPILATIONERROR"].includes(status)) {
     return SubmissionStatus.CompilationError;
   }
 
-  if (['PE', 'PRESENTATIONERROR'].includes(status)) {
+  if (["PE", "PRESENTATIONERROR"].includes(status)) {
     return SubmissionStatus.PresentationError;
   }
 
-  if (['TL', 'TLE', 'TIMELIMITEXCEEDED'].includes(status)) {
+  if (["TL", "TLE", "TIMELIMITEXCEEDED"].includes(status)) {
     return SubmissionStatus.TimeLimitExceeded;
   }
 
-  if (['ML', 'MLE', 'MEMORYLIMITEXCEEDED'].includes(status)) {
+  if (["ML", "MLE", "MEMORYLIMITEXCEEDED"].includes(status)) {
     return SubmissionStatus.MemoryLimitExceeded;
   }
 
-  if (['OL', 'OLE', 'OUTPUTLIMITEXCEEDED'].includes(status)) {
+  if (["OL", "OLE", "OUTPUTLIMITEXCEEDED"].includes(status)) {
     return SubmissionStatus.OutputLimitExceeded;
   }
 
-  if (['IL', 'ILE', 'IDLENESSLIMITEXCEEDED'].includes(status)) {
+  if (["IL", "ILE", "IDLENESSLIMITEXCEEDED"].includes(status)) {
     return SubmissionStatus.IdlenessLimitExceeded;
   }
 
-  if (['RT', 'RE', 'RTE', 'RUNTIMEERROR'].includes(status)) {
+  if (["RT", "RE", "RTE", "RUNTIMEERROR"].includes(status)) {
     return SubmissionStatus.RuntimeError;
   }
 
-  if (['JF', 'JE', 'JUDGEERROR', 'JUDGEMENTFAILED'].includes(status)) {
+  if (["JF", "JE", "JUDGEERROR", "JUDGEMENTFAILED"].includes(status)) {
     return SubmissionStatus.JudgementFailed;
   }
 
-  if (['HACKED'].includes(status)) {
+  if (["HACKED"].includes(status)) {
     return SubmissionStatus.Hacked;
   }
 
-  if (['CONFIGURATIONERROR'].includes(status)) {
+  if (["CONFIGURATIONERROR"].includes(status)) {
     return SubmissionStatus.ConfigurationError;
   }
 
-  if (['SE', 'SYSTEMERROR'].includes(status)) {
+  if (["SE", "SYSTEMERROR"].includes(status)) {
     return SubmissionStatus.SystemError;
   }
 
-  if (['CANCELED'].includes(status)) {
+  if (["CANCELED"].includes(status)) {
     return SubmissionStatus.Canceled;
   }
 
-  if (['SKIPPED'].includes(status)) {
+  if (["SKIPPED"].includes(status)) {
     return SubmissionStatus.Skipped;
   }
 
-  if (['SECURITYVIOLATED'].includes(status)) {
+  if (["SECURITYVIOLATED"].includes(status)) {
     return SubmissionStatus.SecurityViolated;
   }
 
-  if (['DENIALOFJUDGEMENT'].includes(status)) {
+  if (["DENIALOFJUDGEMENT"].includes(status)) {
     return SubmissionStatus.DenialOfJudgement;
   }
 
-  if (['PARTIALLYCORRECT'].includes(status)) {
+  if (["PARTIALLYCORRECT"].includes(status)) {
     return SubmissionStatus.PartiallyCorrect;
   }
 
-  if (['UNKNOWN'].includes(status)) {
+  if (["UNKNOWN"].includes(status)) {
     return SubmissionStatus.Unknown;
   }
 
@@ -180,10 +180,10 @@ export function createSubmissionInstance(
 ): SubmissionInstance {
   const submissionID = raw_submission_json?.id ?? String(index);
 
-  const teamID = raw_submission_json?.team_id ?? '';
-  const problemID = raw_submission_json?.problem_id ?? '';
+  const teamID = raw_submission_json?.team_id ?? "";
+  const problemID = raw_submission_json?.problem_id ?? "";
   const timestamp = raw_submission_json?.timestamp ?? 0;
-  const status = stringToSubmissionStatus(raw_submission_json?.status ?? '');
+  const status = stringToSubmissionStatus(raw_submission_json?.status ?? "");
 
   return {
     submissionID,

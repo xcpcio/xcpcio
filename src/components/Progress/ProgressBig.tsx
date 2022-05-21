@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import ProgressWithScroll from './ProgressWithScroll';
-import style from './Progress.module.less';
+import ProgressWithScroll from "./ProgressWithScroll";
+import style from "./Progress.module.less";
 
-import { ProgressStateText, timerInterval } from './Progress.core';
-import { ProgressBigProps, ProgressBigState } from './Progress.type';
+import { ProgressStateText, timerInterval } from "./Progress.core";
+import { ProgressBigProps, ProgressBigState } from "./Progress.type";
 
 import {
   ContestStateType,
@@ -12,7 +12,7 @@ import {
   getContestPendingTime,
   getContestRemainingTime,
   getContestState,
-} from '@/core';
+} from "@/core";
 
 class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
   timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
@@ -75,9 +75,9 @@ class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
     state: ContestStateType.PENDING,
     search: this.props.search,
     history: this.props.history,
-    pendingTime: '',
-    remainingTime: '',
-    elapsedTime: '',
+    pendingTime: "",
+    remainingTime: "",
+    elapsedTime: "",
   };
 
   constructor(props: ProgressBigProps) {
@@ -89,23 +89,23 @@ class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
       <>
         <div
           style={{
-            marginBottom: '2px',
-            display: 'flex',
-            fontSize: '16px',
+            marginBottom: "2px",
+            display: "flex",
+            fontSize: "16px",
           }}
         >
-          <div style={{ float: 'left' }}>
+          <div style={{ float: "left" }}>
             <b>
-              Start: {this.state.startTime.format('YYYY-MM-DD HH:mm:ss')}
-              <sup>{this.state.startTime.format('z')}</sup>
+              Start: {this.state.startTime.format("YYYY-MM-DD HH:mm:ss")}
+              <sup>{this.state.startTime.format("z")}</sup>
             </b>
           </div>
-          <div style={{ flex: '1' }}>
+          <div style={{ flex: "1" }}>
             <div
               className={[
-                style['label'],
+                style["label"],
                 style[ProgressStateText[this.state.state]],
-              ].join(' ')}
+              ].join(" ")}
             ></div>
             <b>
               {ProgressStateText[this.state.state]}&nbsp;
@@ -113,10 +113,10 @@ class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
                 this.state.pendingTime}
             </b>
           </div>
-          <div style={{ float: 'right' }}>
+          <div style={{ float: "right" }}>
             <b>
-              End: {this.state.endTime.format('YYYY-MM-DD HH:mm:ss')}
-              <sup>{this.state.endTime.format('z')}</sup>
+              End: {this.state.endTime.format("YYYY-MM-DD HH:mm:ss")}
+              <sup>{this.state.endTime.format("z")}</sup>
             </b>
           </div>
         </div>
@@ -129,16 +129,16 @@ class ProgressBig extends React.Component<ProgressBigProps, ProgressBigState> {
         />
         <div
           style={{
-            marginTop: '2px',
-            display: 'flex',
-            fontSize: '16px',
+            marginTop: "2px",
+            display: "flex",
+            fontSize: "16px",
           }}
         >
-          <div style={{ float: 'left' }}>
+          <div style={{ float: "left" }}>
             <b>Elapsed: {this.state.elapsedTime}</b>
           </div>
-          <div style={{ flex: '1' }}>{this.state.head_item}</div>
-          <div style={{ float: 'right' }}>
+          <div style={{ flex: "1" }}>{this.state.head_item}</div>
+          <div style={{ float: "right" }}>
             <b>Remaining: {this.state.remainingTime}</b>
           </div>
         </div>

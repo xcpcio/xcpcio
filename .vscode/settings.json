@@ -6,7 +6,10 @@
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
     "cSpell.words": [
+        "antd",
         "ccpc",
+        "codeforces",
+        "fontawesome",
         "fortawesome",
         "highcharts",
         "icpc",

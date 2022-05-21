@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import Progress from './Progress';
-import style from './Progress.module.less';
+import Progress from "./Progress";
+import style from "./Progress.module.less";
 
-import { ProgressProps, ProgressState } from './Progress.type';
-import { ProgressStateText, timerInterval } from './Progress.core';
+import { ProgressProps, ProgressState } from "./Progress.type";
+import { ProgressStateText, timerInterval } from "./Progress.core";
 
 import {
   getContestState,
   getContestPendingTime,
   ContestStateType,
-} from '@/core/contest';
+} from "@/core/contest";
 
 class ProgressSmall extends React.Component<ProgressProps, ProgressState> {
   timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
@@ -65,21 +65,21 @@ class ProgressSmall extends React.Component<ProgressProps, ProgressState> {
     startTime: this.props.startTime,
     endTime: this.props.endTime,
     frozenStartTime: this.props.frozenStartTime,
-    pendingTime: '',
+    pendingTime: "",
     state: ContestStateType.PENDING,
   };
 
   render() {
     return (
       <>
-        <div style={{ marginBottom: '2px', display: 'flex' }}>
-          <div style={{ float: 'left' }}></div>
-          <div style={{ flex: '1' }}>
+        <div style={{ marginBottom: "2px", display: "flex" }}>
+          <div style={{ float: "left" }}></div>
+          <div style={{ flex: "1" }}>
             <div
               className={[
-                style['label'],
+                style["label"],
                 style[ProgressStateText[this.state.state]],
-              ].join(' ')}
+              ].join(" ")}
             ></div>
             <b>
               {ProgressStateText[this.state.state]}&nbsp;
@@ -87,7 +87,7 @@ class ProgressSmall extends React.Component<ProgressProps, ProgressState> {
                 this.state.pendingTime}
             </b>
           </div>
-          <div style={{ float: 'right' }}></div>
+          <div style={{ float: "right" }}></div>
         </div>
 
         <Progress

@@ -40,44 +40,44 @@ export enum SubmissionStatus {
 }
 
 export const SubmissionStatusText = [
-  'Pending',
-  'Waiting',
-  'Judging',
-  'Frozen',
+  "Pending",
+  "Waiting",
+  "Judging",
+  "Frozen",
 
-  'Accepted',
-  'Correct',
+  "Accepted",
+  "Correct",
 
-  'Compilation Error',
-  'Presentation Error',
+  "Compilation Error",
+  "Presentation Error",
 
-  'File Error',
-  'Runtime Error',
+  "File Error",
+  "Runtime Error",
 
-  'Time Limit Exceeded',
-  'Memory Limit Exceeded',
-  'Output Limit Exceeded',
-  'Idleness LimitExceeded',
+  "Time Limit Exceeded",
+  "Memory Limit Exceeded",
+  "Output Limit Exceeded",
+  "Idleness LimitExceeded",
 
-  'Wrong Answer',
-  'Reject',
+  "Wrong Answer",
+  "Reject",
 
-  'Judgement Failed',
+  "Judgement Failed",
 
-  'Hacked',
+  "Hacked",
 
-  'Configuration Error',
-  'System Error',
-  'Canceled',
-  'Skipped',
+  "Configuration Error",
+  "System Error",
+  "Canceled",
+  "Skipped",
 
-  'Security Violated',
-  'Denial Of Judgement',
+  "Security Violated",
+  "Denial Of Judgement",
 
-  'Partially Correct',
+  "Partially Correct",
 
-  'Unknown',
-  'Undefined',
+  "Unknown",
+  "Undefined",
 ];
 
 export interface Run {

@@ -1,1 +1,1 @@
-export * from './Placecharts/Placecharts';
+export * from "./Placecharts/Placecharts";

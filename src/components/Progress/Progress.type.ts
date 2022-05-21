@@ -1,7 +1,7 @@
-import dayjs from '@/utils/dayjs';
+import dayjs from "@/utils/dayjs";
 
-import { ContestStateType } from '@/core/contest';
-import ProgressWithScroll from './ProgressWithScroll';
+import { ContestStateType } from "@/core/contest";
+import ProgressWithScroll from "./ProgressWithScroll";
 
 export interface ProgressProps {
   start_time?: number;

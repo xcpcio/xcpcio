@@ -1,4 +1,4 @@
-import { Team, Person } from '@/types/team';
+import { Team, Person } from "@/types/team";
 
 export interface TeamInstance {
   id: string;

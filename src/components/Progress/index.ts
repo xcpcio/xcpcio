@@ -1,2 +1,2 @@
-export * from './ProgressBig';
-export * from './ProgressSmall';
+export * from "./ProgressBig";
+export * from "./ProgressSmall";

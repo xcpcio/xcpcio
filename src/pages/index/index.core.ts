@@ -1,7 +1,7 @@
-import { ContestInstance, createContestInstance } from '@/core/contest';
-import { deepCopy, getJSON } from '@/utils';
+import { ContestInstance, createContestInstance } from "@/core/contest";
+import { deepCopy, getJSON } from "@/utils";
 
-import dayjs from '@/utils/dayjs';
+import dayjs from "@/utils/dayjs";
 
 export async function fetchData(): Promise<any> {
   const contest_list = await getJSON(
@@ -19,15 +19,15 @@ export function getTreeData(contest_list: any) {
 
     for (let k in contest_list) {
       let item: any = {};
-      item['title'] = k;
-      item['value'] = [path, k].join('/');
-      if (!contest_list[k]['config']) {
+      item["title"] = k;
+      item["value"] = [path, k].join("/");
+      if (!contest_list[k]["config"]) {
         children.push(item);
       }
     }
 
     children.forEach((children: any, index: number) => {
-      children['children'] = dfs(contest_list[children.title], children.value);
+      children["children"] = dfs(contest_list[children.title], children.value);
     });
 
     return children;
@@ -35,13 +35,13 @@ export function getTreeData(contest_list: any) {
 
   treeData = [
     {
-      title: 'All',
-      value: '',
+      title: "All",
+      value: "",
       children: [],
     },
   ];
 
-  treeData[0]['children'] = dfs(contest_list, '');
+  treeData[0]["children"] = dfs(contest_list, "");
 
   return treeData;
 }
@@ -53,7 +53,7 @@ export function getContestInstanceList(
   let contest: ContestInstance[] = [];
 
   const dfs = (contest_list: any, contest: any) => {
-    if (!contest_list['config']) {
+    if (!contest_list["config"]) {
       for (let k in contest_list) {
         dfs(contest_list[k], contest);
       }
@@ -65,7 +65,7 @@ export function getContestInstanceList(
     }
   };
 
-  let _path = path.split('/');
+  let _path = path.split("/");
   _path.splice(0, 1);
   let _contest_list = deepCopy(contest_list);
 

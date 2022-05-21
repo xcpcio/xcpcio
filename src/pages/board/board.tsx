@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import style from './board.module.less';
-import standingsStyle from '@/components/Standings/Standings.module.less';
+import style from "./board.module.less";
+import standingsStyle from "@/components/Standings/Standings.module.less";
 
 import {
   fetchIntervalTime,
@@ -14,22 +14,22 @@ import {
   getConfig,
   getRun,
   getTeam,
-} from './board.core';
+} from "./board.core";
 
-import { Loading } from '@/components/Loading';
-import { ProgressBig } from '@/components/Progress';
-import { SecondLevelMenu } from '@/components/SecondLevelMenu';
-import { Standings } from '@/components/Standings';
-import { Statistics } from '@/components/Statistics';
-import { Selected } from '@/components/Selected';
-import { Balloon } from '@/components/Balloon';
-import { Export } from '@/components/Export';
+import { Loading } from "@/components/Loading";
+import { ProgressBig } from "@/components/Progress";
+import { SecondLevelMenu } from "@/components/SecondLevelMenu";
+import { Standings } from "@/components/Standings";
+import { Statistics } from "@/components/Statistics";
+import { Selected } from "@/components/Selected";
+import { Balloon } from "@/components/Balloon";
+import { Export } from "@/components/Export";
 
-import { throttle, debounce } from 'lodash';
-import __CONFIG__ from '@/../config';
+import { throttle, debounce } from "lodash";
+import __CONFIG__ from "@/../config";
 
-import { ContestInstance, createContestInstance } from '@/core/contest';
-import { BoardProps, BoardState } from './board.type';
+import { ContestInstance, createContestInstance } from "@/core/contest";
+import { BoardProps, BoardState } from "./board.type";
 
 const head_item = [
   <table>
@@ -95,7 +95,7 @@ class Board extends React.Component<BoardProps, BoardState> {
     document.title = this.contest_config?.contest_name;
 
     for (let team_id in this.team) {
-      this.team[team_id]['all'] = 1;
+      this.team[team_id]["all"] = 1;
     }
 
     const { menu_item, fgroup } = getMenu(this.contest_config);
@@ -148,7 +148,7 @@ class Board extends React.Component<BoardProps, BoardState> {
       fgroup: fgroup,
       menu_index: menu_index,
       loaded: true,
-      filter: currentGroup === 'filter' ? true : false,
+      filter: currentGroup === "filter" ? true : false,
     });
 
     this.clearTimer();
@@ -220,11 +220,11 @@ class Board extends React.Component<BoardProps, BoardState> {
             {this.state.contest_config?.banner !== undefined && (
               <div className={style.banner}>
                 <img
-                  className={style['banner-img']}
+                  className={style["banner-img"]}
                   src={[
-                    'data:image/png;base64,',
+                    "data:image/png;base64,",
                     this.state.contest_config.banner.base64,
-                  ].join('')}
+                  ].join("")}
                   alt="banner"
                 ></img>
               </div>
@@ -247,12 +247,12 @@ class Board extends React.Component<BoardProps, BoardState> {
 
             <br />
 
-            <div style={{ display: 'flex' }}>
-              <div style={{ float: 'left' }}>
+            <div style={{ display: "flex" }}>
+              <div style={{ float: "left" }}>
                 <SecondLevelMenu
                   search={this.props.location.search}
                   history={this.props.history}
-                  queryName={'group'}
+                  queryName={"group"}
                   siderItem={this.state.menu_item.group}
                   currentItem={
                     this.state.menu_item.group[this.state.menu_index.group]
@@ -261,15 +261,15 @@ class Board extends React.Component<BoardProps, BoardState> {
               </div>
 
               {this.state.contest_config?.organization && (
-                <div style={{ flex: '1', maxWidth: '480px' }}>
+                <div style={{ flex: "1", maxWidth: "480px" }}>
                   <Selected
                     placeholder={[
                       this.state.contest_config.organization,
-                      'Filter',
-                    ].join(' ')}
+                      "Filter",
+                    ].join(" ")}
                     search={this.props.location.search}
                     history={this.props.history}
-                    queryName={'organization'}
+                    queryName={"organization"}
                     selectedItem={getOrganization(this.state.team)}
                     currentSelected={getCurrentOrganization(
                       this.props.location.search,
@@ -278,12 +278,12 @@ class Board extends React.Component<BoardProps, BoardState> {
                 </div>
               )}
 
-              <div style={{ flex: '1' }}></div>
-              <div style={{ float: 'right' }}>
+              <div style={{ flex: "1" }}></div>
+              <div style={{ float: "right" }}>
                 <SecondLevelMenu
                   search={this.props.location.search}
                   history={this.props.history}
-                  queryName={'type'}
+                  queryName={"type"}
                   siderItem={this.state.menu_item.type.slice().reverse()}
                   currentItem={
                     this.state.menu_item.type[this.state.menu_index.type]

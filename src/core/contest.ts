@@ -1,7 +1,7 @@
-import { ContestConfig } from '@/types/contest';
-import { Image } from '@/types/image';
+import { ContestConfig } from "@/types/contest";
+import { Image } from "@/types/image";
 
-import { dayjs, createDayJS, getTimeDiff } from '@/utils/dayjs';
+import { dayjs, createDayJS, getTimeDiff } from "@/utils/dayjs";
 
 export enum ContestStateType {
   PENDING = 0,
@@ -13,7 +13,7 @@ export enum ContestStateType {
 export function getContestDuration(
   startTime: dayjs.Dayjs,
   endTime: dayjs.Dayjs,
-  timeFormat: string = 'HH:mm:ss',
+  timeFormat: string = "HH:mm:ss",
 ): string {
   return dayjs.duration(endTime.diff(startTime)).format(timeFormat);
 }
@@ -67,8 +67,8 @@ export function getContestProgressRatio(
   if (startTime.isSameOrAfter(now)) return 0;
   if (endTime.isSameOrBefore(now)) return 100;
 
-  const total = endTime.diff(startTime, 's');
-  const pass = now.diff(startTime, 's');
+  const total = endTime.diff(startTime, "s");
+  const pass = now.diff(startTime, "s");
   return Math.round((pass * 100) / total);
 }
 
@@ -89,7 +89,7 @@ export interface ContestInstance extends ContestConfig {
 export function createContestInstance(
   raw_contest_config_json: any,
 ): ContestInstance {
-  const contest_name = raw_contest_config_json?.contest_name ?? '';
+  const contest_name = raw_contest_config_json?.contest_name ?? "";
   const start_time = raw_contest_config_json?.start_time ?? 0;
   const end_time = raw_contest_config_json?.end_time ?? 0;
   const frozen_time = raw_contest_config_json?.frozen_time ?? 0;
@@ -106,16 +106,16 @@ export function createContestInstance(
   const banner = raw_contest_config_json?.banner;
 
   const logo: Image = raw_contest_config_json?.logo;
-  if (logo?.type) logo.type = 'png';
+  if (logo?.type) logo.type = "png";
 
   const link = raw_contest_config_json?.link;
   const board_link = raw_contest_config_json?.board_link;
 
   const startTime = createDayJS(start_time);
   const endTime = createDayJS(end_time);
-  const frozenStartTime = endTime.subtract(frozen_time, 's');
+  const frozenStartTime = endTime.subtract(frozen_time, "s");
 
-  const getContestDuration_ = (timeFormat: string = 'HH:mm:ss'): string => {
+  const getContestDuration_ = (timeFormat: string = "HH:mm:ss"): string => {
     return getContestDuration(startTime, endTime, timeFormat);
   };
 

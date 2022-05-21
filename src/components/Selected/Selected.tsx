@@ -1,15 +1,15 @@
-import React from 'react';
-import { Select } from 'antd';
+import React from "react";
+import { Select } from "antd";
 const { Option } = Select;
-import { getQueryParams } from '@/utils';
+import { getQueryParams } from "@/utils";
 
 class Selected extends React.Component {
   update(props: any) {
     this.setState({
-      placeholder: props.placeholder || '',
+      placeholder: props.placeholder || "",
       search: props.search,
       history: props.history,
-      queryName: props.queryName || '',
+      queryName: props.queryName || "",
       selectedItem: props.selectedItem || [],
       currentSelected: props.currentSelected || [],
     });
@@ -28,10 +28,10 @@ class Selected extends React.Component {
   }
 
   state = {
-    placeholder: '',
+    placeholder: "",
     search: null,
     history: {},
-    queryName: '',
+    queryName: "",
     selectedItem: [],
     currentSelected: [],
   };
@@ -55,7 +55,7 @@ class Selected extends React.Component {
         <Select
           mode="multiple"
           allowClear
-          style={{ width: '100%' }}
+          style={{ width: "100%" }}
           placeholder={this.state.placeholder}
           key={this.state.currentSelected}
           defaultValue={this.state.currentSelected}

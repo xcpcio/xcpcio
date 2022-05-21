@@ -1,4 +1,4 @@
-import { Image } from '@/types/image';
+import { Image } from "@/types/image";
 
 export function getImageSource(image: Image): string {
   if (image?.url) return image.url;
@@ -6,5 +6,5 @@ export function getImageSource(image: Image): string {
     return `data:image/${image.type};base64,${image.base64}`;
   }
 
-  return '';
+  return "";
 }

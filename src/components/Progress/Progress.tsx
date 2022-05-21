@@ -1,18 +1,18 @@
-import React from 'react';
-import style from './Progress.module.less';
+import React from "react";
+import style from "./Progress.module.less";
 
 import {
   ProgressStateActiveStyle,
   ProgressStateStyle,
   timerInterval,
-} from './Progress.core';
-import { ProgressProps, ProgressState } from './Progress.type';
+} from "./Progress.core";
+import { ProgressProps, ProgressState } from "./Progress.type";
 
 import {
   ContestStateType,
   getContestProgressRatio,
   getContestState,
-} from '@/core/contest';
+} from "@/core/contest";
 
 class Progress extends React.Component<ProgressProps, ProgressState> {
   timer: NodeJS.Timer = null as unknown as NodeJS.Timer;
@@ -82,18 +82,18 @@ class Progress extends React.Component<ProgressProps, ProgressState> {
       <>
         <div
           className={[
-            style['am-progress'],
-            style['am-progress-striped'],
+            style["am-progress"],
+            style["am-progress-striped"],
             style[ProgressStateActiveStyle[this.state.state]],
-          ].join(' ')}
+          ].join(" ")}
           style={{ marginBottom: 0 }}
         >
           <div
             className={[
-              style['am-progress-bar'],
+              style["am-progress-bar"],
               style[ProgressStateStyle[this.state.state]],
-            ].join(' ')}
-            style={{ width: [this.state.width, '%'].join('') }}
+            ].join(" ")}
+            style={{ width: [this.state.width, "%"].join("") }}
           ></div>
         </div>
       </>

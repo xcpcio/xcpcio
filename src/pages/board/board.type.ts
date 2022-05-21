@@ -1,4 +1,4 @@
-import { ContestInstance } from '@/core';
+import { ContestInstance } from "@/core";
 
 export interface BoardProps {
   history?: any;
