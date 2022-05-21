@@ -47,7 +47,7 @@ jobs:
         run: |
           sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts
           cat config.ts
-          pnpm
+          pnpm i
           pnpm build
 
       - name: Minify HTML Index
