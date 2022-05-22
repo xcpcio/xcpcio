@@ -5,7 +5,7 @@ set -e -x
 BOARD_PATH="/app/board/dist"
 EXPORT_PATH="/app/export"
 EXPORT_BOARD_PATH="${EXPORT_PATH}/board"
-INDEX_HTML_PATH="../dist/index.html"
+INDEX_HTML_PATH="/app/board/dist/index.html"
 
 if [ -z "${PUBLIC_PATH}" ]; then
     PUBLIC_PATH=""
@@ -34,7 +34,7 @@ if [ -d "${EXPORT_BOARD_PATH}" ]; then
 fi
 
 if [ X"${1}" = X"primary" ]; then
-    cd board
+    cd /app/board
     exec npm run start
 else
     exec "${@}"
