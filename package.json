@@ -3,7 +3,7 @@
     "version": "v0.0.30.4",
     "packageManager": "pnpm@7.1.2",
     "description": "XCPCIO Board",
-    "repository": "https://github.com/XCPCIO/XCPCIO-Board",
+    "repository": "https://github.com/XCPCIO/board",
     "author": "Dup4 <lyuzhi.pan@gmail.com>",
     "license": "MIT",
     "engines": {
