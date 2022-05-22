@@ -26,7 +26,6 @@ import { Balloon } from "@/components/Balloon";
 import { Export } from "@/components/Export";
 
 import { throttle, debounce } from "lodash";
-import __CONFIG__ from "@/../config";
 
 import { ContestInstance, createContestInstance } from "@/core/contest";
 import { BoardProps, BoardState } from "./board.type";
@@ -203,7 +202,7 @@ class Board extends React.Component<BoardProps, BoardState> {
     },
     tab: 0,
     filter: false,
-    title: __CONFIG__.title,
+    title: window.title,
   };
 
   render() {
