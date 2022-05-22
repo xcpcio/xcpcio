@@ -45,6 +45,15 @@ jobs:
         run: |
           pnpm build
 
+      - name: Minify HTML Index
+        uses: Dup4/minify-html-action@v9
+        with:
+          src: './dist/index.html'
+
+      - name: Enable 404.html
+        run: |
+          cp ./dist/index.html ./dist/404.html
+
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
