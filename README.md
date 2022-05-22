@@ -1,14 +1,14 @@
 # XCPCIO-Board
 
-[![Build](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/build.yml/badge.svg)](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/build.yml)
-[![Lint](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/lint.yml/badge.svg)](https://github.com/XCPCIO/XCPCIO-Board/actions/workflows/lint.yml)
+[![Build](https://github.com/XCPCIO/board/actions/workflows/build.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/build.yml)
+[![Lint](https://github.com/XCPCIO/board/actions/workflows/lint.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/lint.yml)
 [![License][license-image-mit]](https://mit-license.org/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/XCPCIO/XCPCIO-Board-Deploy/badge)](https://www.jsdelivr.com/package/gh/XCPCIO/XCPCIO-Board-Deploy)
 
 ## Deploying
 
 ```bash
-git clone https://github.com/XCPCIO/XCPCIO-board.git
+git clone https://github.com/XCPCIO/board.git
 
 # Installation dependencies
 pnpm install
@@ -59,8 +59,8 @@ MIT.
 ## :clap:  Our Supporters
 
 ### &#8627; Stargazers
-[![Stargazers repo roster for @XCPCIO/XCPCIO-Board](https://reporoster.com/stars/XCPCIO/XCPCIO-Board)](https://github.com/XCPCIO/XCPCIO-Board/stargazers)
+[![Stargazers repo roster for @XCPCIO/board](https://reporoster.com/stars/XCPCIO/board)](https://github.com/XCPCIO/XCPCIO-Board/stargazers)
 
 <br/>
 <br/>
-<p align="center"><a href="https://github.com/XCPCIO/XCPCIO-Board#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+<p align="center"><a href="https://github.com/XCPCIO/board#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
