@@ -1,0 +1,14 @@
+FROM node:16-alpine
+
+USER root
+WORKDIR /app
+COPY ./ ./board
+
+RUN apk add tzdata \
+    && apk add sed
+
+EXPOSE 8000
+
+ENTRYPOINT ["/app/board/docker_entry.sh"]
+
+CMD ["primary"]

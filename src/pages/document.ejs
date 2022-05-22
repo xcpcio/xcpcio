@@ -11,7 +11,7 @@
 
     var dataHost;
     try {
-        dataHost = __data_host__;
+        dataHost = __DATA_HOST__;
     } catch (e) {
         dataHost = "/data/";
     }
@@ -20,7 +20,7 @@
 
     var title;
     try {
-        title = __default_title__;
+        title = __DEFAULT_TITLE__;
     } catch (e) {
         title = "Board - XCPCIO";
     }
@@ -28,7 +28,7 @@
     document.title = title;
 
     try {
-        var baiduAnalyticsId = __baidu_analytics_id__;
+        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -39,7 +39,7 @@
     } catch (e) {}
 
     try {
-        var googleAnalyticsId = __google_analytics_id__;
+        var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
         (function () {
             if (!location.port) {
                 (function (i, s, o, g, r, a, m) {
