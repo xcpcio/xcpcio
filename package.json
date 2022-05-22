@@ -17,9 +17,7 @@
     "scripts": {
         "postinstall": "umi generate tmp",
         "dev": "cross-env UMI_UI=none umi dev",
-        "start": "umi dev",
-        "start:no-mock": "cross-env MOCK=none umi dev",
-        "start:no-ui": "cross-env UMI_UI=none umi dev",
+        "start": "cross-env MOCK=none UMI_UI=none umi dev",
         "build": "cross-env NODE_OPTIONS=--max-old-space-size=4096 UMI_ENV=build umi build",
         "lint": "run-p lint:*",
         "lint:style": "prettier --check src/",
