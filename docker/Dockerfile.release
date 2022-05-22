@@ -9,6 +9,6 @@ RUN apk add tzdata \
 
 EXPOSE 8000
 
-ENTRYPOINT ["/app/board/docker_entry.sh"]
+ENTRYPOINT ["/app/board/docker/docker_entry.sh"]
 
 CMD ["primary"]
