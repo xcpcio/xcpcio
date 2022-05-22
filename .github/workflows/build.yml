@@ -45,8 +45,7 @@ jobs:
         env:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         run: |
-          sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts
-          cat config.ts
+          # sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts
           pnpm i
           pnpm build
 
