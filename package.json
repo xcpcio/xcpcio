@@ -13,7 +13,6 @@
         "src",
         "dist"
     ],
-    "sideEffects": false,
     "scripts": {
         "postinstall": "umi generate tmp",
         "dev": "umi dev",
