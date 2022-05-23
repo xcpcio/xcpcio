@@ -11,7 +11,7 @@
 
     var dataHost;
     try {
-        dataHost = __DATA_HOST__;
+        dataHost = "__DATA_HOST__";
     } catch (e) {
         dataHost = "/data/";
     }
@@ -20,7 +20,7 @@
 
     var title;
     try {
-        title = __DEFAULT_TITLE__;
+        title = "__DEFAULT_TITLE__";
     } catch (e) {
         title = "Board - XCPCIO";
     }
@@ -38,7 +38,7 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <script>
     try {
-        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
+        var baiduAnalyticsId = "__BAIDU_ANALYTICS_ID__";
         var _hmt = _hmt || [];
         (function () {
             var hm = document.createElement("script");
@@ -49,7 +49,7 @@
     } catch (e) {}
 
     try {
-        var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
+        var googleAnalyticsId = "__GOOGLE_ANALYTICS_ID__";
         (function () {
             if (!location.port) {
                 (function (i, s, o, g, r, a, m) {
