@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@ahooksjs/use-url-state': ^2.5.7
+  '@ahooksjs/use-url-state': ^2.5.12
   '@ant-design/icons': ^4.7.0
   '@ant-design/pro-layout': ^6.5.0
   '@fortawesome/fontawesome-svg-core': ^1.2.32
