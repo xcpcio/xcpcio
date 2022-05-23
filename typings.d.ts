@@ -8,3 +8,10 @@ declare module "*.svg" {
   const url: string;
   export default url;
 }
+
+// Extending Window object
+interface Window {
+  title: string;
+  dataHost: string;
+  publicPath: string;
+}
