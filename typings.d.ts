@@ -10,7 +10,7 @@ declare module "*.svg" {
 }
 
 // Extending Window object
-interface Window {
+declare interface Window {
   title: string;
   dataHost: string;
   publicPath: string;
