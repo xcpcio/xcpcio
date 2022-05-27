@@ -5,13 +5,5 @@
     "singleQuote": false,
     "trailingComma": "all",
     "bracketSpacing": true,
-    "printWidth": 80,
-    "overrides": [
-        {
-            "files": ".prettierrc",
-            "options": {
-                "parser": "json"
-            }
-        }
-    ]
+    "printWidth": 80
 }
