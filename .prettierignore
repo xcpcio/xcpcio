@@ -12,7 +12,5 @@
 *.json
 *.yaml
 *.yml
-*.less.d.ts
 
 Progress.module.less
-global.css
