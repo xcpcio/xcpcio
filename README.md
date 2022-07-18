@@ -59,7 +59,7 @@ MIT.
 ## :clap:  Our Supporters
 
 ### &#8627; Stargazers
-[![Stargazers repo roster for @XCPCIO/board](https://reporoster.com/stars/XCPCIO/board)](https://github.com/XCPCIO/XCPCIO-Board/stargazers)
+[![Stargazers repo roster for @XCPCIO/board](https://reporoster.com/stars/XCPCIO/board)](https://github.com/XCPCIO/board/stargazers)
 
 <br/>
 <br/>
