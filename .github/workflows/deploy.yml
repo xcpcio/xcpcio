@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema#
 name: Deploy
+
 on:
   workflow_dispatch:
 
@@ -7,7 +8,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-
       - name: Sync
         uses: appleboy/ssh-action@master
         with:

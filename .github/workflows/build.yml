@@ -1,5 +1,6 @@
 # yaml-language-server: $schema=https://json-schema.org/draft-07/schema#
 name: Build
+
 on:
   push:
     branches:
@@ -9,26 +10,16 @@ on:
       - main
 
 jobs:
-#   sync:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Invoke workflow in another repo with inputs
-#         uses: benc-uk/workflow-dispatch@v1
-#         with:
-#           workflow: Sync
-#           repo: XCPCIO/XCPCIO-Board-Preview
-#           token: ${{ secrets.GH_TOKEN }}
-
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Install pnpm
+      - name: Setup pnpm
         uses: pnpm/action-setup@v2
 
-      - name: Set node
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
