@@ -230,8 +230,9 @@ function getTeamRow(item: any, index: number, Filter: boolean, _this: any) {
               {item.status === "pending" && [" ", item["pending_num"]].join("")}
               <br />
               {item.attempt_num ? parseInt(item.attempt_num) : ""}
-              {_this.state.contest_config?.status_time_display[item.status] ===
-                1 &&
+              {Boolean(
+                _this.state.contest_config?.status_time_display[item.status],
+              ) === true &&
               (item.time || item.time === 0)
                 ? "/" + parseInt(item.time)
                 : ""}
