@@ -1,7 +1,7 @@
 # XCPCIO-Board
 
-[![Build](https://github.com/XCPCIO/board/actions/workflows/build.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/build.yml)
-[![Lint](https://github.com/XCPCIO/board/actions/workflows/lint.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/lint.yml)
+[![Test](https://github.com/XCPCIO/board/actions/workflows/test.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/test.yml)
+[![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]](https://mit-license.org/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/gh/XCPCIO/XCPCIO-Board-Deploy/badge)](https://www.jsdelivr.com/package/gh/XCPCIO/XCPCIO-Board-Deploy)
 
@@ -54,13 +54,16 @@ pnpm build
 
 MIT.
 
-[license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
-
 ## :clap:  Our Supporters
 
 ### &#8627; Stargazers
+
 [![Stargazers repo roster for @XCPCIO/board](https://reporoster.com/stars/XCPCIO/board)](https://github.com/XCPCIO/board/stargazers)
 
 <br/>
 <br/>
 <p align="center"><a href="https://github.com/XCPCIO/board#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+
+[gh-release-badge]: https://img.shields.io/github/release/XCPCIO/board.svg
+[gh-release]: https://GitHub.com/XCPCIO/board/releases/
+[license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
