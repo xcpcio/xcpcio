@@ -10,7 +10,6 @@
         "node": "^16.16.0"
     },
     "files": [
-        "src",
         "dist"
     ],
     "scripts": {
@@ -24,6 +23,7 @@
         "format:style": "prettier --write src/",
         "test": "umi-test",
         "test:coverage": "umi-test --coverage",
+        "prepublishOnly": "npm run build",
         "release": "bumpp --commit --push --tag && npm publish"
     },
     "dependencies": {
