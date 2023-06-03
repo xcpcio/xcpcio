@@ -4,7 +4,7 @@ name: Release
 on:
   push:
     tags:
-      - "*"
+      - "v*"
 
 jobs:
   release-github-packages:
@@ -34,6 +34,14 @@ jobs:
         with:
           node-version: 16.x
           cache: pnpm
+
+      - name: Set Tag
+        run: |
+          tag="${{ github.ref_name }}"
+          echo "${tag}"
+          prefix="v"
+          tag=${tag#"${prefix}"}
+          echo "DOCKER_TAG=${tag}" >> $GITHUB_ENV
 
       - name: Install Node dependencies
         run: |
@@ -89,4 +97,4 @@ jobs:
           push: true
           tags: |
             xcpcio/board:latest
-            xcpcio/board:${{ github.ref_name }}
+            xcpcio/board:${{ env.DOCKER_TAG }}
