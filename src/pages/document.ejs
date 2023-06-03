@@ -44,6 +44,19 @@
     } catch (e) {}
 
     try {
+        var plausibleJSUrl = __PLAUSIBLE_JS_URL__;
+        var plausibleDataDomain = __PLAUSIBLE_DATA_DOMAIN__;
+        (function () {
+            var script = document.createElement("script");
+            script.src = plausibleJSUrl;
+            script.defer = true;
+            script.setAttribute("data-domain", plausibleDataDomain);
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    } catch (e) {}
+
+    try {
         var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
         (function () {
             if (!location.port) {
