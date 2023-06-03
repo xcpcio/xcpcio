@@ -1,14 +1,12 @@
-FROM node:16-alpine
+FROM node:18
 
 USER root
 WORKDIR /app
 COPY ./ ./board
 
-RUN apk add tzdata \
-    && apk add sed
+ENV DEBIAN_FRONTEND=noninteractive
 
 EXPOSE 8000
 
 ENTRYPOINT ["/app/board/docker/docker_entry.sh"]
-
 CMD ["primary"]
