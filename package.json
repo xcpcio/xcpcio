@@ -1,6 +1,6 @@
 {
     "name": "@xcpcio/board",
-    "version": "0.1.15",
+    "version": "0.1.16",
     "packageManager": "pnpm@7.32.4",
     "description": "XCPCIO Board",
     "repository": "https://github.com/XCPCIO/board",
