@@ -5,7 +5,7 @@ import dayjs from "@/utils/dayjs";
 
 export async function fetchData(): Promise<any> {
   const contest_list = await getJSON(
-    `contest_list.json?t=${dayjs().valueOf()}`,
+    `index/contest_list.json?t=${dayjs().valueOf()}`,
   );
 
   return contest_list;
