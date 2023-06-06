@@ -18,30 +18,29 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - name: Release
         run: npx changelogithub
         env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-docker-image:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: pnpm
 
-      - name: Set Tag
+      - name: Get Version ID
+        id: get-version-id
         run: |
-          tag="${{ github.ref_name }}"
-          echo "${tag}"
-          prefix="v"
-          tag=${tag#"${prefix}"}
-          echo "DOCKER_TAG=${tag}" >> $GITHUB_ENV
+          VERSION_ID=$(cat package.json | grep version | sed 's|  \"version\": \"||g' | sed 's|\",||g')
+          echo "::set-output name=version-id::$(echo $VERSION_ID)"
+          echo $VERSION_ID
 
       - name: Install Node dependencies
         run: |
@@ -54,11 +53,11 @@ jobs:
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v1
         with:
-          src: './dist/index.html'
+          src: "./packages/app/dist/index.html"
 
       - name: Enable 404.html
         run: |
-          cp ./dist/index.html ./dist/404.html
+          cp ./packages/app/dist/index.html ./packages/app/dist/404.html
 
       - name: Set up QEMU
         id: qemu
@@ -95,15 +94,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and Push
+      - name: Build and Push packages/app
         uses: docker/build-push-action@v4
+        env:
+          image_name: "board-app"
+          tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
-          context: ./
-          file: ./docker/Dockerfile.release
+          context: ./packages/app/
+          file: ./packages/app/docker/Dockerfile.release
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
-            xcpcio/board:latest
-            xcpcio/board:${{ env.DOCKER_TAG }}
-            ghcr.io/xcpcio/board:latest
-            ghcr.io/xcpcio/board:${{ env.DOCKER_TAG }}
+            xcpcio/${{ env.image_name }}:latest
+            xcpcio/${{ env.image_name }}:${{ env.tag }}
+            ghcr.io/xcpcio/${{ env.image_name }}:latest
+            ghcr.io/xcpcio/${{ env.image_name }}:${{ env.tag }}

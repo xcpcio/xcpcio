@@ -6,7 +6,7 @@ BOARD_PATH="/app/board/dist"
 EXPORT_PATH="/app/export"
 EXPORT_BOARD_PATH="${EXPORT_PATH}/board"
 
-bash "${CUR_DIR}/../scripts/inject_vars.sh" "${BOARD_PATH}/index.html"
+bash "${CUR_DIR}/../scripts/inject_vars.sh" ${BOARD_PATH}/*.html
 
 if [[ -d "${EXPORT_BOARD_PATH}" ]]; then
     cp -a "${BOARD_PATH}"/* "${EXPORT_BOARD_PATH}"/
