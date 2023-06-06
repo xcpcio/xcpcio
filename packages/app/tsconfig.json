@@ -19,7 +19,6 @@
             ]
         },
         "allowSyntheticDefaultImports": true,
-        "suppressImplicitAnyIndexErrors": true
     },
     "include": [
         "mock/**/*",

@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
           node-version: 16.x
           cache: pnpm
@@ -31,18 +31,17 @@ jobs:
         env:
           VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
         run: |
-          # sed -i "s|baidu: ''|baidu: '${{ secrets.BAIDU_ANALYTICS_ID }}'|" config.ts
           pnpm i
           pnpm build
 
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v1
         with:
-          src: './dist/index.html'
+          src: "./packages/app/dist/index.html"
 
       - name: Enable 404.html
         run: |
-          cp ./dist/index.html ./dist/404.html
+          cp ./packages/app/dist/index.html ./packages/app/dist/404.html
 
   lint:
     runs-on: ubuntu-latest
@@ -54,12 +53,10 @@ jobs:
           node-version: 16.x
           cache: pnpm
 
-      - name: Setup ni
-        run: npm i -g @antfu/ni
-
       - name: Install
-        run: nci
+        run: |
+          pnpm i
 
       - name: Lint
         run: |
-          nr lint
+          pnpm run lint
