@@ -1,13 +1,23 @@
 # misc
+.cache
 .DS_Store
 
 node_modules/
 dist/
+coverage/
+lib-cov/
+logs/
+temp/
+
+__snapshots__
+
+*.less.d.ts
+
+*.log
+*.tgz
 
 # umi
 .umi
 .umi-production
 .umi-test
 .env.local
-
-*.less.d.ts
