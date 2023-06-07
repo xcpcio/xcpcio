@@ -53,11 +53,11 @@ jobs:
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v1
         with:
-          src: "./packages/app/dist/index.html"
+          src: "./packages/apps/board/dist/index.html"
 
       - name: Enable 404.html
         run: |
-          cp ./packages/app/dist/index.html ./packages/app/dist/404.html
+          cp ./packages/apps/board/dist/index.html ./packages/apps/board/dist/404.html
 
       - name: Set up QEMU
         id: qemu
@@ -100,8 +100,8 @@ jobs:
           image_name: "board-app"
           tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
-          context: ./packages/app/
-          file: ./packages/app/docker/Dockerfile.release
+          context: ./packages/apps/board/
+          file: ./packages/apps/board/docker/Dockerfile.release
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

@@ -37,11 +37,11 @@ jobs:
       - name: Minify HTML Index
         uses: Dup4/minify-html-action@v1
         with:
-          src: "./packages/app/dist/index.html"
+          src: "./packages/apps/board/dist/index.html"
 
       - name: Enable 404.html
         run: |
-          cp ./packages/app/dist/index.html ./packages/app/dist/404.html
+          cp ./packages/apps/board/dist/index.html ./packages/apps/board/dist/404.html
 
   lint:
     runs-on: ubuntu-latest
