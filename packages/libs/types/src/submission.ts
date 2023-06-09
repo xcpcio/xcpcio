@@ -37,7 +37,7 @@ export enum SubmissionStatus {
 
 export type CustomSubmissionStatus = string;
 
-export interface ISubmission {
+export interface Submission {
   submission_id: string;
   team_id: string;
   problem_id: number | string;
@@ -47,4 +47,4 @@ export interface ISubmission {
   isIgnore?: boolean;
 }
 
-export type ISubmissions = Array<ISubmission>;
+export type Submissions = Array<Submission>;
