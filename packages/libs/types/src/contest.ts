@@ -1,6 +1,6 @@
 import { BalloonColor, Image, DateTimeISO8601String } from "./basicTypes";
 
-export interface IContest {
+export interface Contest {
   contest_name: string;
   start_time: number | DateTimeISO8601String;
   end_time: number | DateTimeISO8601String;

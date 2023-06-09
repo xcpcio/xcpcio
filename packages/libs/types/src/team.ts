@@ -1,4 +1,4 @@
-export interface ITeam {
+export interface Team {
   team_id: string;
   name: string;
 
@@ -14,4 +14,4 @@ export interface ITeam {
   girl?: boolean;
 }
 
-export type ITeams = Array<ITeam>;
+export type Teams = Array<Team>;
