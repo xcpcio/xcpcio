@@ -35,19 +35,26 @@ export class Submission {
 
 export type Submissions = Array<Submission>;
 
-export function createSubmission(submission_json: ISubmission): Submission {
+export function createSubmission(submissionJSON: ISubmission): Submission {
   const s = new Submission();
 
-  s.submissionId = submission_json.submission_id;
-  s.teamId = submission_json.team_id;
-  s.problemId = String(submission_json.problem_id);
-  s.timestamp = submission_json.timestamp;
-  s.status = stringToSubmissionStatus(submission_json.status);
-  s.isIgnore = submission_json.is_ignore ?? false;
+  s.submissionId = submissionJSON.submission_id ?? "";
+  s.teamId = submissionJSON.team_id;
+  s.problemId = String(submissionJSON.problem_id);
+  s.timestamp = submissionJSON.timestamp;
+  s.status = stringToSubmissionStatus(submissionJSON.status);
+  s.isIgnore = submissionJSON.is_ignore ?? false;
 
   return s;
 }
 
-export function createSubmissions(submissions_json: ISubmissions) {
-  return submissions_json.map((s) => createSubmission(s));
+export function createSubmissions(submissionsJSON: ISubmissions): Submissions {
+  if (Array.isArray(submissionsJSON)) {
+    return submissionsJSON.map((s) => createSubmission(s));
+  } else {
+    const submissions = Object.entries(submissionsJSON).map(([submissionId, s]) =>
+      createSubmission({ ...s, submission_id: s.submission_id ?? submissionId }),
+    );
+    return submissions;
+  }
 }
