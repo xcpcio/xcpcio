@@ -182,6 +182,10 @@ importers:
         version: 4.9.5
 
   packages/libs/core:
+    dependencies:
+      '@xcpcio/types':
+        specifier: workspace:^
+        version: link:../types
     devDependencies:
       '@babel/types':
         specifier: ^7.22.4
