@@ -44,7 +44,7 @@ export interface Submission {
   timestamp: number; // unit: seconds
   status: SubmissionStatus | CustomSubmissionStatus;
 
-  isIgnore?: boolean;
+  is_ignore?: boolean;
 }
 
 export type Submissions = Array<Submission>;

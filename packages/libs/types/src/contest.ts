@@ -1,4 +1,4 @@
-import { BalloonColor, Image, DateTimeISO8601String } from "./basicTypes";
+import { BalloonColor, Image, DateTimeISO8601String } from "./basic-types";
 
 export interface Contest {
   contest_name: string;
