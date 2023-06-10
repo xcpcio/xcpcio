@@ -6,7 +6,7 @@ import {
   isPending,
   isNotCalculatedPenaltyStatus,
   stringToSubmissionStatus,
-} from "@/submission-status";
+} from "./submission-status";
 
 export class Submission {
   submissionId = "";
