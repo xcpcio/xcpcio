@@ -35,9 +35,7 @@ export function getContestPendingTime(startTime: dayjs.Dayjs): string {
   let now = dayjs();
   if (now.isAfter(startTime)) now = startTime;
 
-  return getTimeDiff(
-    Math.floor(dayjs.duration(startTime.diff(now)).asSeconds()),
-  );
+  return getTimeDiff(Math.floor(dayjs.duration(startTime.diff(now)).asSeconds()));
 }
 
 export function getContestRemainingTime(endTime: dayjs.Dayjs): string {
@@ -47,22 +45,14 @@ export function getContestRemainingTime(endTime: dayjs.Dayjs): string {
   return getTimeDiff(Math.floor(dayjs.duration(endTime.diff(now)).asSeconds()));
 }
 
-export function getContestElapsedTime(
-  startTime: dayjs.Dayjs,
-  endTime: dayjs.Dayjs,
-): string {
+export function getContestElapsedTime(startTime: dayjs.Dayjs, endTime: dayjs.Dayjs): string {
   let now = dayjs();
   if (now.isAfter(endTime)) now = endTime;
 
-  return getTimeDiff(
-    Math.floor(dayjs.duration(now.diff(startTime)).asSeconds()),
-  );
+  return getTimeDiff(Math.floor(dayjs.duration(now.diff(startTime)).asSeconds()));
 }
 
-export function getContestProgressRatio(
-  startTime: dayjs.Dayjs,
-  endTime: dayjs.Dayjs,
-): number {
+export function getContestProgressRatio(startTime: dayjs.Dayjs, endTime: dayjs.Dayjs): number {
   const now = dayjs();
   if (startTime.isSameOrAfter(now)) return 0;
   if (endTime.isSameOrBefore(now)) return 100;
@@ -86,9 +76,7 @@ export interface ContestInstance extends ContestConfig {
   getContestProgressRatio: () => number;
 }
 
-export function createContestInstance(
-  raw_contest_config_json: any,
-): ContestInstance {
+export function createContestInstance(raw_contest_config_json: any): ContestInstance {
   const contest_name = raw_contest_config_json?.contest_name ?? "";
   const start_time = raw_contest_config_json?.start_time ?? 0;
   const end_time = raw_contest_config_json?.end_time ?? 0;

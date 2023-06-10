@@ -75,10 +75,7 @@ function getInitTeam(contest_config: any, team: any) {
   return team_dic;
 }
 
-function getTeamAndProblemId(
-  team_id: number | string,
-  problem_id: number | string,
-) {
+function getTeamAndProblemId(team_id: number | string, problem_id: number | string) {
   return [team_id, problem_id].join("-");
 }
 
@@ -101,15 +98,9 @@ export function getProblemList(contest_config: any, run: Run[]) {
       if (isAccepted(run.status)) {
         ++problem.solved;
 
-        problem.first_solve_time = Math.min(
-          problem.first_solve_time,
-          getDisplayTime(run.timestamp),
-        );
+        problem.first_solve_time = Math.min(problem.first_solve_time, getDisplayTime(run.timestamp));
 
-        problem.last_solve_time = Math.max(
-          problem.last_solve_time,
-          getDisplayTime(run.timestamp),
-        );
+        problem.last_solve_time = Math.max(problem.last_solve_time, getDisplayTime(run.timestamp));
       }
 
       if (set.has(getTeamAndProblemId(run.teamId, run.problemId))) {
@@ -135,12 +126,7 @@ export function compTeamList(a: any, b: any) {
   return 0;
 }
 
-export function getTeamList(
-  contest_config: any,
-  team: any,
-  run: Run[],
-  problem_list: any,
-) {
+export function getTeamList(contest_config: any, team: any, run: Run[], problem_list: any) {
   let team_dic: any = getInitTeam(contest_config, team);
   let team_list: any = [];
 
@@ -155,8 +141,7 @@ export function getTeamList(
     if (isAccepted(run.status)) {
       problem.status = "correct";
       team.solved += 1;
-      team.time +=
-        problem.time + (problem.attempt_num - 1) * contest_config.penalty;
+      team.time += problem.time + (problem.attempt_num - 1) * contest_config.penalty;
     } else if (isPending(run.status)) {
       problem.status = "pending";
       problem["pending_num"] += 1;
@@ -187,11 +172,7 @@ export function getTeamList(
   team_list.sort(compTeamList);
 
   for (
-    let i = 0,
-      unofficial = 0,
-      pre_place = 0,
-      pre_time = -1,
-      pre_solved = contest_config.problem_id.length + 1;
+    let i = 0, unofficial = 0, pre_place = 0, pre_time = -1, pre_solved = contest_config.problem_id.length + 1;
     i < team_list.length;
     ++i
   ) {
@@ -218,20 +199,17 @@ export function getTeamList(
       let ok = false;
       const medal = contest_config.medal;
 
-      [
-        { gold: medal.gold },
-        { silver: medal.silver },
-        { bronze: medal.bronze },
-        { honorable: INF },
-      ].forEach((medal: any) => {
-        for (let key in medal) {
-          tot += medal[key];
-          if (item.place <= tot && !ok) {
-            item.place_className = key;
-            ok = true;
+      [{ gold: medal.gold }, { silver: medal.silver }, { bronze: medal.bronze }, { honorable: INF }].forEach(
+        (medal: any) => {
+          for (let key in medal) {
+            tot += medal[key];
+            if (item.place <= tot && !ok) {
+              item.place_className = key;
+              ok = true;
+            }
           }
-        }
-      });
+        },
+      );
     } else {
       item.place_className = "stnd";
     }
@@ -255,10 +233,7 @@ export function getTeamList(
     for (let j = 0; j < contest_config.problem_id.length; ++j) {
       let problem = item.problem[j];
       problem.status_className = problem.status;
-      if (
-        problem.status === "correct" &&
-        problem.time === problem_list[j].first_solve_time
-      ) {
+      if (problem.status === "correct" && problem.time === problem_list[j].first_solve_time) {
         problem.status_className = "firstsolve";
       }
     }

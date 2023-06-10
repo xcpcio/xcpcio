@@ -4,9 +4,7 @@ import { deepCopy, getJSON } from "@/utils";
 import dayjs from "@/utils/dayjs";
 
 export async function fetchData(): Promise<any> {
-  const contest_list = await getJSON(
-    `index/contest_list.json?t=${dayjs().valueOf()}`,
-  );
+  const contest_list = await getJSON(`index/contest_list.json?t=${dayjs().valueOf()}`);
 
   return contest_list;
 }
@@ -46,10 +44,7 @@ export function getTreeData(contest_list: any) {
   return treeData;
 }
 
-export function getContestInstanceList(
-  path: string,
-  contest_list: any,
-): ContestInstance[] {
+export function getContestInstanceList(path: string, contest_list: any): ContestInstance[] {
   let contest: ContestInstance[] = [];
 
   const dfs = (contest_list: any, contest: any) => {

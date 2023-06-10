@@ -14,9 +14,7 @@ export function createTeam(rawTeamJSON: Team): TeamInstance {
   return rawTeamJSON;
 }
 
-export function createTeams(
-  rawTeamsJSON: Record<string, Team>,
-): Record<string, TeamInstance> {
+export function createTeams(rawTeamsJSON: Record<string, Team>): Record<string, TeamInstance> {
   let teams: Record<string, TeamInstance> = {};
 
   for (const teamID in rawTeamsJSON) {

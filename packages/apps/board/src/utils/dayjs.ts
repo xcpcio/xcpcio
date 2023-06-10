@@ -24,9 +24,7 @@ dayjs.extend(minMax);
 import relativeTime from "dayjs/plugin/relativeTime";
 dayjs.extend(relativeTime);
 
-export function createDayJS(
-  time: number | Date | string | undefined = undefined,
-): dayjs.Dayjs {
+export function createDayJS(time: number | Date | string | undefined = undefined): dayjs.Dayjs {
   if (typeof time === "undefined") {
     return dayjs();
   }

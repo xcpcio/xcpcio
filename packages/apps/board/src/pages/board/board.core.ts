@@ -1,11 +1,4 @@
-import {
-  deepCopy,
-  getJSON,
-  getNowTimeStamp,
-  removeDuplicateItems,
-  getStarKey,
-  getQueryString,
-} from "@/utils";
+import { deepCopy, getJSON, getNowTimeStamp, removeDuplicateItems, getStarKey, getQueryString } from "@/utils";
 
 import { Run } from "@/types";
 import { stringToSubmissionStatus, isAccepted } from "@/core/submission";
@@ -16,17 +9,11 @@ export const INF = 0x3f3f3f3f;
 export async function fetchData() {
   const pathname = window.location.pathname;
 
-  let contest_config: any = await getJSON(
-    [pathname, `config.json?t=${getNowTimeStamp()}`].join("/"),
-  );
+  let contest_config: any = await getJSON([pathname, `config.json?t=${getNowTimeStamp()}`].join("/"));
 
-  let team: any = await getJSON(
-    [pathname, `team.json?t=${getNowTimeStamp()}`].join("/"),
-  );
+  let team: any = await getJSON([pathname, `team.json?t=${getNowTimeStamp()}`].join("/"));
 
-  let _run: any = await getJSON(
-    [pathname, `run.json?t=${getNowTimeStamp()}`].join("/"),
-  );
+  let _run: any = await getJSON([pathname, `run.json?t=${getNowTimeStamp()}`].join("/"));
 
   let run: Run[] = [];
 
