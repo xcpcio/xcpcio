@@ -1,4 +1,4 @@
-export type Version = "v2";
+export type Version = "import.meta.package.version";
 
 /**
  * ISO8601 String.
