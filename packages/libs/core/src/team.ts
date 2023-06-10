@@ -1,15 +1,24 @@
 import { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
 export class Team {
-  teamId!: string;
-  teamName!: string;
+  teamId: string;
+  teamName: string;
+  organization: string;
 
-  organization?: string;
-  group!: Array<string>;
-  tag!: Array<string>;
+  group: Array<string>;
+  tag: Array<string>;
 
   coach?: string | Array<string>;
   members?: string | Array<string>;
+
+  constructor() {
+    this.teamId = "";
+    this.teamName = "";
+    this.organization = "";
+
+    this.group = [];
+    this.tag = [];
+  }
 }
 
 export type Teams = Array<Team>;
@@ -20,7 +29,7 @@ export function createTeam(teamJSON: ITeam): Team {
   t.teamId = teamJSON.team_id ?? "";
   t.teamName = teamJSON.name ?? teamJSON.team_name ?? "";
 
-  t.organization = teamJSON.organization;
+  t.organization = teamJSON.organization ?? "";
   t.group = teamJSON.group ?? [];
   t.tag = teamJSON.group ?? [];
 

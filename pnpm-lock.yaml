@@ -184,7 +184,7 @@ importers:
   packages/libs/core:
     dependencies:
       '@xcpcio/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
     devDependencies:
       '@babel/types':

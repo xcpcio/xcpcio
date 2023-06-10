@@ -9,12 +9,20 @@ import {
 } from "./submission-status";
 
 export class Submission {
-  submissionId = "";
-  teamId = "";
-  problemId = "";
-  timestamp = 0;
+  submissionId: string;
+  teamId: string;
+  problemId: string;
+  timestamp: number;
+
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
+
+  constructor() {
+    this.submissionId = "";
+    this.teamId = "";
+    this.problemId = "";
+    this.timestamp = 0;
+  }
 
   isAccepted() {
     return isAccepted(this.status);
