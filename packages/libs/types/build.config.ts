@@ -1,4 +1,5 @@
 import { defineBuildConfig } from "unbuild";
+import packageJson from "./package.json";
 
 export default defineBuildConfig({
   entries: ["src/index"],
@@ -6,5 +7,9 @@ export default defineBuildConfig({
   clean: true,
   rollup: {
     emitCJS: true,
+  },
+  replace: {
+    "import.meta.vitest": "undefined",
+    "import.meta.package.version": packageJson.version,
   },
 });
