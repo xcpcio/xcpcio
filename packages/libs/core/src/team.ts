@@ -11,6 +11,10 @@ export class Team {
   coach?: string | Array<string>;
   members?: string | Array<string>;
 
+  rank: number;
+  numberOfProblemSolved: number;
+  penalty: number;
+
   constructor() {
     this.id = "";
     this.name = "";
@@ -18,6 +22,10 @@ export class Team {
 
     this.group = [];
     this.tag = [];
+
+    this.rank = 0;
+    this.numberOfProblemSolved = 0;
+    this.penalty = 0;
   }
 }
 

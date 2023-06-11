@@ -20,6 +20,26 @@ describe("submission", () => {
         "timestamp": 240,
       }
     `);
+    expect(submissions[1]).toMatchInlineSnapshot(`
+      Submission {
+        "id": "1",
+        "isIgnore": false,
+        "problemId": "4",
+        "status": "CORRECT",
+        "teamId": "3000202305140003",
+        "timestamp": 300,
+      }
+    `);
+    expect(submissions[submissions.length - 1]).toMatchInlineSnapshot(`
+      Submission {
+        "id": "1899",
+        "isIgnore": false,
+        "problemId": "0",
+        "status": "REJECT",
+        "teamId": "3000202305140116",
+        "timestamp": 17940,
+      }
+    `);
     expect(submissions.length).toMatchInlineSnapshot("1900");
     expect(JSON.stringify(submissions)).toMatchSnapshot();
   });
