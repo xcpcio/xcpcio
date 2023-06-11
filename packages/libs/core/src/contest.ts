@@ -1,5 +1,6 @@
-import { Contest as IContest, Problem, ContestState, Image, VERSION, StatusTimeDisplay } from "@xcpcio/types";
+import { Contest as IContest, ContestState, Image, VERSION, StatusTimeDisplay } from "@xcpcio/types";
 
+import { Problems, createProblems, createProblemsByProblemIds } from "./problem";
 import { dayjs, createDayJS, getTimeDiff } from "./utils";
 
 export class Contest {
@@ -11,7 +12,7 @@ export class Contest {
 
   penalty: number;
 
-  problems: Array<Problem>;
+  problems: Problems;
   statusTimeDisplay: StatusTimeDisplay;
 
   badge?: string;
@@ -23,7 +24,7 @@ export class Contest {
 
   logo?: Image;
   banner?: Image;
-  board_link?: string;
+  boardLink?: string;
 
   version = VERSION;
 
@@ -131,22 +132,11 @@ export function createContest(contestJSON: IContest): Contest {
 
   {
     if (contestJSON.problem_id !== undefined && contestJSON.problem_id !== null) {
-      c.problems = contestJSON.problem_id.map((label: string, index: number) => {
-        return {
-          id: String(index),
-          label: label,
-        };
-      });
+      c.problems = createProblemsByProblemIds(contestJSON.problem_id, contestJSON.balloon_color);
     }
 
     if (contestJSON.problems !== undefined && contestJSON.problems !== null) {
-      c.problems = contestJSON.problems;
-    }
-
-    if (contestJSON.balloon_color !== undefined && contestJSON.balloon_color !== null) {
-      for (const index in contestJSON.balloon_color) {
-        c.problems[index].balloon_color = contestJSON.balloon_color[index];
-      }
+      c.problems = createProblems(contestJSON.problems);
     }
   }
 
@@ -168,7 +158,7 @@ export function createContest(contestJSON: IContest): Contest {
   c.banner = contestJSON.banner;
 
   c.logo = contestJSON.logo;
-  c.board_link = contestJSON.board_link;
+  c.boardLink = contestJSON.board_link;
 
   return c;
 }

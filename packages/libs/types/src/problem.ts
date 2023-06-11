@@ -7,9 +7,9 @@ export interface ProblemStatistics {
 
 export interface Problem {
   id: string;
+  label: string;
 
   name?: string;
-  label?: string;
 
   time_limit?: string;
   memory_limit?: string;
@@ -18,3 +18,5 @@ export interface Problem {
 
   statistics?: ProblemStatistics;
 }
+
+export type Problems = Array<Problem>;
