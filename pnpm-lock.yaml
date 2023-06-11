@@ -186,6 +186,9 @@ importers:
       '@xcpcio/types':
         specifier: workspace:*
         version: link:../types
+      dayjs:
+        specifier: ^1.11.8
+        version: 1.11.8
     devDependencies:
       '@babel/types':
         specifier: ^7.22.4

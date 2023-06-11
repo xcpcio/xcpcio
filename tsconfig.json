@@ -16,5 +16,20 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "outDir": "dist",
+    "paths": {
+      "@xcpcio/types": [
+        "./packages/libs/types/src/index.ts",
+      ],
+      "@xcpcio/core": [
+        "./packages/libs/core/src/index.ts",
+      ],
+    }
   },
+  "include": [
+    "./packages/**/*.ts",
+  ],
+  "exclude": [
+    "**/dist/**",
+    "node_modules",
+  ],
 }

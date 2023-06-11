@@ -1,27 +1,38 @@
 import { BalloonColor, Image, DateTimeISO8601String } from "./basic-types";
+import { Problem } from "./problem";
+
+export enum ContestState {
+  PENDING = "PENDING",
+  RUNNING = "RUNNING",
+  FROZEN = "FROZEN",
+  FINISHED = "FINISHED",
+}
 
 export interface Contest {
   contest_name: string;
+
   start_time: number | DateTimeISO8601String;
   end_time: number | DateTimeISO8601String;
+  freeze_time?: number | DateTimeISO8601String;
 
-  frozen_time: number; // unit: seconds
+  frozen_time?: number; // unit: seconds
   penalty: number; // unit: seconds
 
-  problem_id: Array<string>;
+  problems?: Array<Problem>;
+  problem_id?: Array<string>;
 
   organization?: string;
   status_time_display?: Record<string, boolean>;
+
+  badge?: string;
   medal?: Record<string, Record<string, number>>;
   balloon_color?: Array<BalloonColor>;
 
   group?: Record<string, string>;
   tag?: Record<string, string>;
 
-  badge?: string;
-  banner?: Image;
-
   logo?: Image;
+  banner?: Image;
   board_link?: string;
 
   version?: string;

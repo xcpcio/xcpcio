@@ -53,8 +53,8 @@ export interface Style {
 }
 
 export interface BalloonColor {
-  background_color: ThemeColor;
   color: ThemeColor;
+  background_color: ThemeColor;
 }
 
 /**
@@ -95,4 +95,10 @@ export interface Image {
   base64?: Base64;
   type?: "png" | "svg" | "jpg" | "jpeg";
   [key: string]: string | undefined;
+}
+
+export interface StatusTimeDisplay {
+  correct: boolean;
+  incorrect: boolean;
+  pending: boolean;
 }

@@ -9,7 +9,7 @@ import {
 } from "./submission-status";
 
 export class Submission {
-  submissionId: string;
+  id: string;
   teamId: string;
   problemId: string;
   timestamp: number;
@@ -18,7 +18,7 @@ export class Submission {
   isIgnore = false;
 
   constructor() {
-    this.submissionId = "";
+    this.id = "";
     this.teamId = "";
     this.problemId = "";
     this.timestamp = 0;
@@ -46,7 +46,7 @@ export type Submissions = Array<Submission>;
 export function createSubmission(submissionJSON: ISubmission): Submission {
   const s = new Submission();
 
-  s.submissionId = submissionJSON.submission_id ?? "";
+  s.id = submissionJSON.id ?? submissionJSON.submission_id ?? "";
   s.teamId = submissionJSON.team_id;
   s.problemId = String(submissionJSON.problem_id);
   s.timestamp = submissionJSON.timestamp;

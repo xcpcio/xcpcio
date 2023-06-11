@@ -1,7 +1,9 @@
 import { SubmissionStatus } from "./submission-status";
 
 export interface Submission {
+  id?: string;
   submission_id?: string;
+
   team_id: string;
   problem_id: number | string;
   timestamp: number; // unit: seconds

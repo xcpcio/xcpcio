@@ -65,6 +65,7 @@
     "vitest": "^0.32.0"
   },
   "dependencies": {
-    "@xcpcio/types": "workspace:*"
+    "@xcpcio/types": "workspace:*",
+    "dayjs": "^1.11.8"
   }
 }
