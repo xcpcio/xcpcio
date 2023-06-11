@@ -29,7 +29,7 @@
     "lint": "run-p lint:*",
     "lint:build": "pnpm -r --parallel --filter=./packages/**/* run lint:build",
     "lint:eslint": "eslint .",
-    "lint:style": "prettier --check ./packages/**/*.ts",
+    "lint:style": "prettier --check ./packages/**/src/**/*.ts",
     "format": "run-p format:*",
     "format:eslint": "eslint --fix .",
     "format:style": "prettier --write ./packages/**/*.ts",

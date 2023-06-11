@@ -25,7 +25,7 @@ describe("team", () => {
         "tag": [],
       }
     `);
-    expect(teams.length).toMatchInlineSnapshot('132');
+    expect(teams.length).toMatchInlineSnapshot("132");
     expect(JSON.stringify(teams)).toMatchSnapshot();
   });
 });

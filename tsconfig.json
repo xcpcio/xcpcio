@@ -31,5 +31,7 @@
   "exclude": [
     "**/dist/**",
     "node_modules",
+    "./packages/**/*.test.ts",
+    "./packages/apps/board",
   ],
 }

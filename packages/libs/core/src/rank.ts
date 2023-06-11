@@ -7,9 +7,9 @@ export class Rank {
   teams: Teams;
   submissions: Submissions;
 
-  constructor() {
-    this.contest = new Contest();
-    this.teams = [];
-    this.submissions = [];
+  constructor(contest: Contest, teams: Teams, submissions: Submissions) {
+    this.contest = contest;
+    this.teams = teams;
+    this.submissions = submissions;
   }
 }

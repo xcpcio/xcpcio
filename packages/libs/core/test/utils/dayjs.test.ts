@@ -17,6 +17,6 @@ describe("dayjs", () => {
 
   it("parse", () => {
     const d = createDayJS("2019-01-01T08:00:00+08:00");
-    expect(d.unix()).toMatchInlineSnapshot('1546300800');
+    expect(d.unix()).toMatchInlineSnapshot("1546300800");
   });
 });
