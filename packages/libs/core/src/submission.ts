@@ -46,8 +46,8 @@ export type Submissions = Array<Submission>;
 export function createSubmission(submissionJSON: ISubmission): Submission {
   const s = new Submission();
 
-  s.id = submissionJSON.id ?? submissionJSON.submission_id ?? "";
-  s.teamId = submissionJSON.team_id;
+  s.id = String(submissionJSON.id ?? submissionJSON.submission_id ?? "");
+  s.teamId = String(submissionJSON.team_id);
   s.problemId = String(submissionJSON.problem_id);
   s.timestamp = submissionJSON.timestamp;
   s.status = stringToSubmissionStatus(submissionJSON.status);
@@ -58,10 +58,10 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
 
 export function createSubmissions(submissionsJSON: ISubmissions): Submissions {
   if (Array.isArray(submissionsJSON)) {
-    return submissionsJSON.map((s) => createSubmission(s));
+    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }));
   } else {
     const submissions = Object.entries(submissionsJSON).map(([submissionId, s]) =>
-      createSubmission({ ...s, submission_id: s.submission_id ?? submissionId }),
+      createSubmission({ ...s, id: s.submission_id ?? submissionId }),
     );
     return submissions;
   }

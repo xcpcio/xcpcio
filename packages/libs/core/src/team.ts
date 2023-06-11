@@ -2,7 +2,7 @@ import { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
 export class Team {
   id: string;
-  teamName: string;
+  name: string;
   organization: string;
 
   group: Array<string>;
@@ -13,7 +13,7 @@ export class Team {
 
   constructor() {
     this.id = "";
-    this.teamName = "";
+    this.name = "";
     this.organization = "";
 
     this.group = [];
@@ -27,7 +27,7 @@ export function createTeam(teamJSON: ITeam): Team {
   const t = new Team();
 
   t.id = teamJSON.id ?? teamJSON.team_id ?? "";
-  t.teamName = teamJSON.name ?? teamJSON.team_name ?? "";
+  t.name = teamJSON.name ?? teamJSON.team_name ?? "";
 
   t.organization = teamJSON.organization ?? "";
   t.group = teamJSON.group ?? [];

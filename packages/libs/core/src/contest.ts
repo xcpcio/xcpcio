@@ -119,7 +119,7 @@ export function createContest(contestJSON: IContest): Contest {
 
   {
     if (contestJSON.frozen_time !== undefined && contestJSON.frozen_time != null) {
-      c.freezeTime = createDayJS(c.startTime.unix() + Number(contestJSON.frozen_time));
+      c.freezeTime = createDayJS(c.endTime.unix() - Number(contestJSON.frozen_time));
     }
 
     if (contestJSON.freeze_time !== undefined && contestJSON.freeze_time !== null) {
@@ -141,6 +141,12 @@ export function createContest(contestJSON: IContest): Contest {
 
     if (contestJSON.problems !== undefined && contestJSON.problems !== null) {
       c.problems = contestJSON.problems;
+    }
+
+    if (contestJSON.balloon_color !== undefined && contestJSON.balloon_color !== null) {
+      for (const index in contestJSON.balloon_color) {
+        c.problems[index].balloon_color = contestJSON.balloon_color[index];
+      }
     }
   }
 
