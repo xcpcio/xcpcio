@@ -1,6 +1,9 @@
 export interface Team {
-  team_id: string;
-  name: string;
+  id?: string;
+  team_id?: string;
+
+  name?: string;
+  team_name?: string;
 
   organization?: string;
   group?: Array<string>;
@@ -14,4 +17,4 @@ export interface Team {
   girl?: boolean;
 }
 
-export type Teams = Array<Team>;
+export type Teams = Array<Team> | Record<string, Team>;

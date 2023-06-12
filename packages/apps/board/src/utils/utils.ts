@@ -40,11 +40,7 @@ export const getQueryString = (queryName: any, search: any) => {
   return params.get(queryName);
 };
 
-export function getQueryParams(
-  queryName: string,
-  queryValue: string,
-  search: any,
-) {
+export function getQueryParams(queryName: string, queryValue: string, search: any) {
   const params = new URLSearchParams(search);
   let query: any = {};
   for (const [k, v] of params) {
@@ -101,24 +97,15 @@ export const getTimeDiff = (timeStamp: number) => {
   return [two(h), two(m), two(s)].join(":");
 };
 
-export const formatDate = (
-  timeStamp: number,
-  type = "Y-M-D H:I:S",
-  auto = true,
-) => {
+export const formatDate = (timeStamp: number, type = "Y-M-D H:I:S", auto = true) => {
   timeStamp = changeTimeStamp(timeStamp);
   let time = new Date(timeStamp);
   let _year = time.getFullYear();
-  let _month =
-    time.getMonth() + 1 < 10
-      ? "0" + (time.getMonth() + 1)
-      : time.getMonth() + 1;
+  let _month = time.getMonth() + 1 < 10 ? "0" + (time.getMonth() + 1) : time.getMonth() + 1;
   let _date = time.getDate() < 10 ? "0" + time.getDate() : time.getDate();
   let _hours = time.getHours() < 10 ? "0" + time.getHours() : time.getHours();
-  let _minutes =
-    time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
-  let _secconds =
-    time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
+  let _minutes = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+  let _secconds = time.getSeconds() < 10 ? "0" + time.getSeconds() : time.getSeconds();
   let formatTime: number | string = "";
   let distinctTime = new Date().getTime() - time.getTime();
 
@@ -146,36 +133,13 @@ export const formatDate = (
   } else {
     switch (type) {
       case "Y-M-D H:I:S":
-        formatTime =
-          _year +
-          "-" +
-          _month +
-          "-" +
-          _date +
-          " " +
-          _hours +
-          ":" +
-          _minutes +
-          ":" +
-          _secconds;
+        formatTime = _year + "-" + _month + "-" + _date + " " + _hours + ":" + _minutes + ":" + _secconds;
         break;
       case "Y-M-D H:I:S zh":
-        formatTime =
-          _year +
-          "年" +
-          _month +
-          "月" +
-          _date +
-          "日  " +
-          _hours +
-          ":" +
-          _minutes +
-          ":" +
-          _secconds;
+        formatTime = _year + "年" + _month + "月" + _date + "日  " + _hours + ":" + _minutes + ":" + _secconds;
         break;
       case "Y-M-D H:I":
-        formatTime =
-          _year + "-" + _month + "-" + _date + " " + _hours + ":" + _minutes;
+        formatTime = _year + "-" + _month + "-" + _date + " " + _hours + ":" + _minutes;
         break;
       case "Y-M-D H":
         formatTime = _year + "-" + _month + "-" + _date + " " + _hours;
@@ -208,18 +172,7 @@ export const formatDate = (
         formatTime = _secconds;
         break;
       default:
-        formatTime =
-          _year +
-          "-" +
-          _month +
-          "-" +
-          _date +
-          " " +
-          _hours +
-          ":" +
-          _minutes +
-          ":" +
-          _secconds;
+        formatTime = _year + "-" + _month + "-" + _date + " " + _hours + ":" + _minutes + ":" + _secconds;
         break;
     }
   } // 返回格式化的日期字符串

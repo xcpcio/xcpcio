@@ -29,12 +29,7 @@ interface PlaceChartsItem {
   last_solved: string;
 }
 
-function getTeamPlace(
-  contest_config: any,
-  cur_team: any,
-  team: any,
-  run: Run[],
-) {
+function getTeamPlace(contest_config: any, cur_team: any, team: any, run: Run[]) {
   let data: PlaceChartsItem[] = [];
 
   run.sort((a: Run, b: Run) => {
@@ -43,9 +38,7 @@ function getTeamPlace(
     return 0;
   });
 
-  const duration = Math.floor(
-    (contest_config.end_time - contest_config.start_time) / 60,
-  );
+  const duration = Math.floor((contest_config.end_time - contest_config.start_time) / 60);
 
   let teams: any = {};
 
@@ -103,10 +96,7 @@ function getTeamPlace(
   let _data: PlaceChartsItem[] = [];
   _data.push(data[0]);
   for (let i = 1; i < data.length - 1; ++i) {
-    if (
-      data[i].y !== _data[_data.length - 1].y ||
-      data[i].last_solved !== _data[_data.length - 1].last_solved
-    ) {
+    if (data[i].y !== _data[_data.length - 1].y || data[i].last_solved !== _data[_data.length - 1].last_solved) {
       _data.push(data[i]);
     }
   }
@@ -114,12 +104,7 @@ function getTeamPlace(
   return _data;
 }
 
-export function getHichartsOptions(
-  contest_config: any,
-  cur_team: any,
-  team: any,
-  run: any,
-) {
+export function getHichartsOptions(contest_config: any, cur_team: any, team: any, run: any) {
   const options: Highcharts.Options = {
     chart: {
       type: "spline",
@@ -170,8 +155,7 @@ export function getHichartsOptions(
     tooltip: {
       enabled: true,
       headerFormat: "",
-      pointFormat:
-        "Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}",
+      pointFormat: "Time：{point.x} <br/> Place：{point.y} <br/> {point.last_solved}",
     },
     credits: {
       enabled: false,

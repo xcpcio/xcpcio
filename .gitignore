@@ -9,8 +9,6 @@ lib-cov/
 logs/
 temp/
 
-__snapshots__
-
 *.less.d.ts
 
 *.log

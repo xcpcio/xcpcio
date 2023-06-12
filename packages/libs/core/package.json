@@ -1,6 +1,6 @@
 {
-  "name": "@xcpcio/types",
-  "description": "XCPCIO Types",
+  "name": "@xcpcio/core",
+  "description": "XCPCIO Core",
   "version": "0.1.8",
   "license": "MIT",
   "author": "Dup4 <lyuzhi.pan@gmail.com>",
@@ -63,5 +63,9 @@
     "unbuild": "^0.7.6",
     "vite": "^4.3.9",
     "vitest": "^0.32.0"
+  },
+  "dependencies": {
+    "@xcpcio/types": "workspace:*",
+    "dayjs": "^1.11.8"
   }
 }

@@ -1,10 +1,7 @@
 import { Submission, SubmissionStatus } from "@/types/submission";
 
 export function isAccepted(status: SubmissionStatus): boolean {
-  if (
-    status === SubmissionStatus.Accepted ||
-    status === SubmissionStatus.Correct
-  ) {
+  if (status === SubmissionStatus.Accepted || status === SubmissionStatus.Correct) {
     return true;
   }
 
@@ -42,9 +39,7 @@ export function isPending(status: SubmissionStatus): boolean {
   return false;
 }
 
-export function isNotCalculatedPenaltyStatus(
-  status: SubmissionStatus,
-): boolean {
+export function isNotCalculatedPenaltyStatus(status: SubmissionStatus): boolean {
   if (
     status === SubmissionStatus.CompilationError ||
     status === SubmissionStatus.PresentationError ||
@@ -174,10 +169,7 @@ export interface SubmissionInstance {
   status: SubmissionStatus;
 }
 
-export function createSubmissionInstance(
-  raw_submission_json: Submission,
-  index: number,
-): SubmissionInstance {
+export function createSubmissionInstance(raw_submission_json: Submission, index: number): SubmissionInstance {
   const submissionID = raw_submission_json?.id ?? String(index);
 
   const teamID = raw_submission_json?.team_id ?? "";
@@ -194,10 +186,6 @@ export function createSubmissionInstance(
   };
 }
 
-export function createSubmissionInstanceList(
-  rawSubmissionListJSON: Submission[],
-): SubmissionInstance[] {
-  return rawSubmissionListJSON.map((submission, index) =>
-    createSubmissionInstance(submission, index),
-  );
+export function createSubmissionInstanceList(rawSubmissionListJSON: Submission[]): SubmissionInstance[] {
+  return rawSubmissionListJSON.map((submission, index) => createSubmissionInstance(submission, index));
 }

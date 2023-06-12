@@ -3,14 +3,7 @@ import { isAccepted, isRejected, isPending } from "@/core/submission";
 
 export const timerInterval = 200;
 
-function getChartObj(
-  title: string,
-  xText: string,
-  yText: string,
-  cat: any,
-  series: any,
-  colors: any,
-) {
+function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any) {
   return {
     colors: colors,
     chart:
@@ -77,10 +70,7 @@ function getChartObj(
   };
 }
 
-function getTeamAndProblemId(
-  team_id: number | string,
-  problem_id: number | string,
-): string {
+function getTeamAndProblemId(team_id: number | string, problem_id: number | string): string {
   return [team_id, problem_id].join("-#@!-");
 }
 
@@ -139,14 +129,7 @@ export function getProblemChart(contest_config: any, team: any, run: Run[]) {
     return { cat, series, colors };
   })();
 
-  return getChartObj(
-    "题目通过数统计",
-    "题目编号",
-    "通过数",
-    cat,
-    series,
-    colors,
-  );
+  return getChartObj("题目通过数统计", "题目编号", "通过数", cat, series, colors);
 }
 
 export function getTeamChart(contest_config: any, team: any, run: Run[]) {

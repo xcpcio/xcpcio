@@ -11,9 +11,7 @@ export function useScreenWidthWithin(l: number, r: number): boolean {
   // Initialization
   if (!refMediaQueryList.current) {
     refMediaQueryList.current = Number.isFinite(r)
-      ? window.matchMedia(
-          `only screen and (min-width: ${l}px) and (max-width: ${r - 1}px)`,
-        )
+      ? window.matchMedia(`only screen and (min-width: ${l}px) and (max-width: ${r - 1}px)`)
       : window.matchMedia(`only screen and (min-width: ${l}px)`);
   }
 
@@ -26,8 +24,7 @@ export function useScreenWidthWithin(l: number, r: number): boolean {
 
     if (refMediaQueryList.current.addEventListener) {
       refMediaQueryList.current.addEventListener("change", onChange);
-      return () =>
-        refMediaQueryList.current.removeEventListener("change", onChange);
+      return () => refMediaQueryList.current.removeEventListener("change", onChange);
     } else {
       refMediaQueryList.current.addListener(onChange);
       return () => refMediaQueryList.current.removeListener(onChange);

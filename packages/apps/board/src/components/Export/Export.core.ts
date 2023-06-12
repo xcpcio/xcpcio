@@ -1,17 +1,11 @@
 import { Run, SubmissionStatus } from "@/types/submission";
 
-import {
-  isAccepted,
-  isPending,
-  isNotCalculatedPenaltyStatus,
-} from "@/core/submission";
+import { isAccepted, isPending, isNotCalculatedPenaltyStatus } from "@/core/submission";
 
 import { getDisplayTime, deepCopy } from "@/utils";
 import { JsonRankTeam } from "./Export.type";
 
-export function submissionStatusToCodeforcesDatFile(
-  status: SubmissionStatus,
-): string {
+export function submissionStatusToCodeforcesDatFile(status: SubmissionStatus): string {
   if (isAccepted(status)) {
     return "OK";
   }
@@ -40,10 +34,7 @@ export function submissionStatusToCodeforcesDatFile(
     return "RT";
   }
 
-  if (
-    status === SubmissionStatus.CompilationError ||
-    isNotCalculatedPenaltyStatus(status)
-  ) {
+  if (status === SubmissionStatus.CompilationError || isNotCalculatedPenaltyStatus(status)) {
     return "CE";
   }
 
@@ -54,11 +45,7 @@ export function submissionStatusToCodeforcesDatFile(
   return "RJ";
 }
 
-export function boardToDatFile(
-  contestConfig: any,
-  teams: any,
-  submissions: Run[],
-) {
+export function boardToDatFile(contestConfig: any, teams: any, submissions: Run[]) {
   let datFile = "";
 
   datFile += `@contest "${contestConfig.contest_name}"
@@ -111,11 +98,9 @@ export function boardToDatFile(
     const status = submissionStatusToCodeforcesDatFile(submission.status);
     ++team_problem_submit_index[submission.teamId][submission.problemId];
 
-    datFile += `@s ${team_new_id[submission.teamId]},${
-      contestConfig.problem_id[submission.problemId]
-    },${team_problem_submit_index[submission.teamId][submission.problemId]},${
-      submission.timestamp
-    },${status}\n`;
+    datFile += `@s ${team_new_id[submission.teamId]},${contestConfig.problem_id[submission.problemId]},${
+      team_problem_submit_index[submission.teamId][submission.problemId]
+    },${submission.timestamp},${status}\n`;
   });
 
   return datFile;
@@ -136,8 +121,7 @@ export function boardToJSON(contestConfig: any, team: any, run: Run[]) {
   run.forEach((run: Run) => {
     if (isAccepted(run.status)) {
       _team[run.teamId].solved += 1;
-      _team[run.teamId].time +=
-        run.timestamp + penalty * _team[run.teamId].problem[run.problemId];
+      _team[run.teamId].time += run.timestamp + penalty * _team[run.teamId].problem[run.problemId];
     } else {
       _team[run.teamId].problem[run.problemId] += 1;
     }
