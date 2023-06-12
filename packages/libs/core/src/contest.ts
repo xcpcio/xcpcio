@@ -1,6 +1,6 @@
 import { Contest as IContest, ContestState, Image, VERSION, StatusTimeDisplay } from "@xcpcio/types";
 
-import { Problems, createProblems, createProblemsByProblemIds } from "./problem";
+import { Problem, Problems, createProblems, createProblemsByProblemIds } from "./problem";
 import { dayjs, createDayJS, getTimeDiff } from "./utils";
 
 export class Contest {
@@ -13,6 +13,8 @@ export class Contest {
   penalty: number;
 
   problems: Problems;
+  problemsMap: Map<string, Problem>;
+
   statusTimeDisplay: StatusTimeDisplay;
 
   badge?: string;
@@ -36,6 +38,8 @@ export class Contest {
     this.penalty = 20 * 60;
 
     this.problems = [];
+    this.problemsMap = new Map<string, Problem>();
+
     this.statusTimeDisplay = {
       correct: true,
       incorrect: true,
@@ -138,6 +142,8 @@ export function createContest(contestJSON: IContest): Contest {
     if (contestJSON.problems !== undefined && contestJSON.problems !== null) {
       c.problems = createProblems(contestJSON.problems);
     }
+
+    c.problemsMap = new Map(c.problems.map((p) => [p.id, p]));
   }
 
   if (contestJSON.status_time_display !== undefined && contestJSON.status_time_display !== null) {

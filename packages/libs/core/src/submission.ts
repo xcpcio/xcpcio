@@ -58,14 +58,12 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
 
 export function createSubmissions(submissionsJSON: ISubmissions): Submissions {
   if (Array.isArray(submissionsJSON)) {
-    return submissionsJSON
-      .map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }))
-      .sort((a, b) => a.timestamp - b.timestamp);
+    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }));
   } else {
     const submissions = Object.entries(submissionsJSON).map(([submissionId, s]) =>
       createSubmission({ ...s, id: s.submission_id ?? submissionId }),
     );
 
-    return submissions.sort((a, b) => a.timestamp - b.timestamp);
+    return submissions;
   }
 }

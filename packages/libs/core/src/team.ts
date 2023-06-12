@@ -1,5 +1,7 @@
 import { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
+import { TeamProblemStatistics } from "./problem";
+
 export class Team {
   id: string;
   name: string;
@@ -12,8 +14,11 @@ export class Team {
   members?: string | Array<string>;
 
   rank: number;
-  numberOfProblemSolved: number;
+  solvedProblemNum: number;
   penalty: number;
+
+  problemStatistics: Array<TeamProblemStatistics>;
+  problemStatisticsMap: Map<string, TeamProblemStatistics>;
 
   constructor() {
     this.id = "";
@@ -24,8 +29,11 @@ export class Team {
     this.tag = [];
 
     this.rank = 0;
-    this.numberOfProblemSolved = 0;
+    this.solvedProblemNum = 0;
     this.penalty = 0;
+
+    this.problemStatistics = [];
+    this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
   }
 }
 

@@ -19,8 +19,8 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
     return SubmissionStatus.WRONG_ANSWER;
   }
 
-  if (["RJ", "INCORRECT", SubmissionStatus.REJECT.toString()].includes(status)) {
-    return SubmissionStatus.REJECT;
+  if (["RJ", "INCORRECT", SubmissionStatus.REJECTED.toString()].includes(status)) {
+    return SubmissionStatus.REJECTED;
   }
 
   if (["PD", SubmissionStatus.PENDING.toString()].includes(status)) {
@@ -116,7 +116,7 @@ export function isRejected(status: SubmissionStatus): boolean {
     SubmissionStatus.OUTPUT_LIMIT_EXCEEDED,
     SubmissionStatus.IDLENESS_LIMIT_EXCEEDED,
     SubmissionStatus.WRONG_ANSWER,
-    SubmissionStatus.REJECT,
+    SubmissionStatus.REJECTED,
     SubmissionStatus.JUDGEMENT_FAILED,
     SubmissionStatus.HACKED,
   ];

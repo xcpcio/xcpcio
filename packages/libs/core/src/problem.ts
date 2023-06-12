@@ -1,4 +1,14 @@
-import { Problem as IProblem, Problems as IProblems, ProblemStatistics, BalloonColor } from "@xcpcio/types";
+import { Problem as IProblem, Problems as IProblems, BalloonColor } from "@xcpcio/types";
+
+import { Submissions } from "./submission";
+
+export interface ProblemStatistics {
+  acceptedNum: number;
+  rejectedNum: number;
+  pendingNum: number;
+
+  submittedNum: number;
+}
 
 export class Problem {
   id: string;
@@ -20,8 +30,10 @@ export class Problem {
     this.name = "";
 
     this.statistics = {
-      accepted: 0,
-      submitted: 0,
+      acceptedNum: 0,
+      rejectedNum: 0,
+      pendingNum: 0,
+      submittedNum: 0,
     };
   }
 }
@@ -78,4 +90,32 @@ export function createProblemsByProblemIds(problemIds: string[], balloonColors?:
   }
 
   return problems;
+}
+
+export class TeamProblemStatistics {
+  isFirstSolved: boolean;
+
+  isSolved: boolean;
+  solvedTimestamp: number;
+
+  failedCount: number;
+  pendingCount: number;
+  ignoreCount: number;
+
+  submissions: Submissions;
+  problem: Problem;
+
+  constructor() {
+    this.isFirstSolved = false;
+
+    this.isSolved = false;
+    this.solvedTimestamp = 0;
+
+    this.failedCount = 0;
+    this.pendingCount = 0;
+    this.ignoreCount = 0;
+
+    this.submissions = [];
+    this.problem = new Problem();
+  }
 }

@@ -35,7 +35,7 @@ describe("submission", () => {
         "id": "1899",
         "isIgnore": false,
         "problemId": "0",
-        "status": "REJECT",
+        "status": "REJECTED",
         "teamId": "3000202305140116",
         "timestamp": 17940,
       }

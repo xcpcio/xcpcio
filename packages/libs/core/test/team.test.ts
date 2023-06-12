@@ -21,10 +21,12 @@ describe("team", () => {
           "辜飞云",
         ],
         "name": "前面的题目以后再来探索吧？",
-        "numberOfProblemSolved": 0,
         "organization": "重庆邮电大学",
         "penalty": 0,
+        "problemStatistics": [],
+        "problemStatisticsMap": Map {},
         "rank": 0,
+        "solvedProblemNum": 0,
         "tag": [],
       }
     `);
