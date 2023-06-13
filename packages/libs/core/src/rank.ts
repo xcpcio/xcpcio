@@ -143,7 +143,7 @@ export class Rank {
           return 1;
         }
 
-        return -1;
+        return 0;
       });
 
       {
