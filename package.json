@@ -19,7 +19,7 @@
     "url": "https://github.com/XCPCIO/board/issues"
   },
   "engines": {
-    "node": "^16.16.0"
+    "node": "^16.19.0"
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/**/* run build",
