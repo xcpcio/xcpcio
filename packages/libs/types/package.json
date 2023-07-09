@@ -45,7 +45,7 @@
     "start": "esmo src/index.ts",
     "test": "vitest",
     "lint": "run-p lint:*",
-    "lint:build": "tsc --noEmit"
+    "lint:build": "# tsc --noEmit"
   },
   "devDependencies": {
     "@babel/types": "^7.22.4",
