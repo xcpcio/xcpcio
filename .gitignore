@@ -19,3 +19,6 @@ temp/
 .umi-production
 .umi-test
 .env.local
+
+.next
+out
