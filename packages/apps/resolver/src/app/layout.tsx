@@ -6,6 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 import { GITHUB_URL } from "@xcpcio/types";
 
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 import "./globals.css";
 
@@ -29,6 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <NextTopLoader />
+          <Toaster />
           {children}
         </ThemeProvider>
       </body>

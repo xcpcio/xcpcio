@@ -4,3 +4,4 @@ out
 .next
 
 packages/apps/board/src/
+packages/apps/resolver/src/components/ui/*

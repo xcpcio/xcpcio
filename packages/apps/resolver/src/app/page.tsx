@@ -7,13 +7,51 @@ import { Icon } from "@iconify/react";
 import { GITHUB_URL } from "@xcpcio/types";
 
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+import { useLoadBoardData } from "@/lib/local-storage";
 
 export default function Home() {
-  const [texValue, setTexValue] = useState("");
+  const { toast } = useToast();
 
-  const handleTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback((event) => {
-    setTexValue(event.target.value);
-  }, []);
+  const [textValue, setTextValue] = useState("");
+
+  const [, setBoardData] = useLoadBoardData();
+
+  const handleTextareaChange: ChangeEventHandler<HTMLTextAreaElement> = useCallback(
+    (event) => {
+      setTextValue(event.target.value);
+    },
+    [setTextValue],
+  );
+
+  const handleLoadData = useCallback(async () => {
+    setBoardData(textValue);
+
+    toast({
+      title: "Load Data",
+      description: `Success. [length=${textValue.length}]`,
+    });
+  }, [textValue, setBoardData, toast]);
+
+  const handleLoadExampleData = useCallback(async () => {
+    const resp = await fetch("/api/load-data");
+    const toastTitle = "Load Example Data";
+
+    if (resp.status === 200) {
+      const text = await resp.text();
+      setBoardData(text);
+
+      toast({
+        title: toastTitle,
+        description: `Success. [data=2023-ccpc-final] [length=${text.length}]`,
+      });
+    } else {
+      toast({
+        title: toastTitle,
+        description: `Failed. [data=2023-ccpc-final] [status=${resp.statusText}]`,
+      });
+    }
+  }, [setBoardData, toast]);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -34,7 +72,7 @@ export default function Home() {
       </div>
 
       <div className="flex w-2/5">
-        <Textarea rows={16} value={texValue} onChange={handleTextareaChange} />
+        <Textarea rows={16} value={textValue} onChange={handleTextareaChange} />
       </div>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
@@ -54,7 +92,7 @@ export default function Home() {
         </a>
 
         <div
-          onClick={() => alert("DD")}
+          onClick={handleLoadData}
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 cursor-pointer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
@@ -67,7 +105,7 @@ export default function Home() {
         </div>
 
         <div
-          onClick={() => alert("DD")}
+          onClick={handleLoadExampleData}
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 cursor-pointer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
