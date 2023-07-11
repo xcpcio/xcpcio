@@ -8,4 +8,8 @@ export class Resolver extends Rank {
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     super(contest, teams, submissions);
   }
+
+  buildResolver() {
+    this.buildRank();
+  }
 }

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useInView } from "react-intersection-observer";
+import { useKeyPressEvent } from "react-use";
 
 import { Resolver, Team } from "@xcpcio/core";
 import { cn } from "@/lib/utils";
@@ -70,7 +71,36 @@ export interface ResolverUIProps {
 
 const ResolverUI: React.FC<ResolverUIProps> = (props) => {
   const { resolver } = props;
-  const [currentIndex, setCurrentIndex] = React.useState((props.resolver?.teams.length ?? 1) - 1);
+
+  const maxIndex = (props.resolver?.teams.length ?? 1) - 1;
+  const [currentIndex, setCurrentIndex] = React.useState(maxIndex);
+
+  const handleArrowLeft = () => {
+    setCurrentIndex((currentIndex) => {
+      ++currentIndex;
+
+      if (currentIndex > maxIndex) {
+        currentIndex = maxIndex;
+      }
+
+      return currentIndex;
+    });
+  };
+
+  const handleArrowRight = () => {
+    setCurrentIndex((currentIndex) => {
+      --currentIndex;
+
+      if (currentIndex < 0) {
+        currentIndex = 0;
+      }
+
+      return currentIndex;
+    });
+  };
+
+  useKeyPressEvent("ArrowLeft", null, handleArrowLeft);
+  useKeyPressEvent("ArrowRight", null, handleArrowRight);
 
   return (
     <>
