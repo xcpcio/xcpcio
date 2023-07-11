@@ -19,7 +19,7 @@ const ResolverUI: React.FC<ResolverUIProps> = (props) => {
           return (
             <div
               key={team.id}
-              className={cn("flex flex-row gap-x-4 h-24", index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-950")}
+              className={cn("flex flex-row gap-x-4 h-24 font-mono", index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-950")}
             >
               <div className="w-20 text-4xl flex justify-center items-center">{team.rank}</div>
               <div className="flex-1 flex justify-start items-center">
