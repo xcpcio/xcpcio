@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 import { CCPC_FINAL } from "@/lib/constant";
+import { IBoardData } from "@/lib/types";
 
 import path from "path";
 import fs from "fs";
@@ -23,7 +24,7 @@ export async function GET(req: NextRequest) {
   const run = fs.readFileSync(path.join(dir, "run.json"), "utf8");
   const team = fs.readFileSync(path.join(dir, "team.json"), "utf8");
 
-  const data = {
+  const data: IBoardData = {
     config: config,
     run: run,
     team: team,

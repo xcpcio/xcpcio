@@ -25,7 +25,7 @@ export default function Home() {
   );
 
   const handleLoadData = useCallback(async () => {
-    setBoardData(textValue);
+    setBoardData(JSON.parse(textValue));
 
     toast({
       title: "Load Data",
@@ -39,7 +39,7 @@ export default function Home() {
 
     if (resp.status === 200) {
       const text = await resp.text();
-      setBoardData(text);
+      setBoardData(JSON.parse(text));
 
       toast({
         title: toastTitle,
@@ -95,9 +95,7 @@ export default function Home() {
           onClick={handleLoadData}
           className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30 cursor-pointer"
         >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Load data{" "}
-          </h2>
+          <h2 className={`mb-3 text-2xl font-semibold`}>Load data </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>Loading data from the textarea above.</p>
         </div>
 

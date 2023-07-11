@@ -23,6 +23,7 @@
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/**/* run build",
+    "build:libs": "pnpm -r --filter=./packages/libs/**/* run build",
     "dev": "pnpm -r --parallel --filter=./packages/**/* run dev",
     "start": "pnpm -r --parallel --filter=./packages/**/* run start",
     "test": "vitest",

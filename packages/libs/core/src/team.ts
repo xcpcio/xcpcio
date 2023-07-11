@@ -35,6 +35,10 @@ export class Team {
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
   }
+
+  penaltyToMinute() {
+    return Math.floor(this.penalty / 60);
+  }
 }
 
 export type Teams = Array<Team>;
