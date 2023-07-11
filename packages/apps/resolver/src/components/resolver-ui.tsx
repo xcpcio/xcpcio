@@ -19,18 +19,36 @@ const TeamUI: React.FC<TeamProps> = (props) => {
     <div
       ref={ref}
       key={team.id}
-      className={cn("flex flex-row gap-x-4 h-24 font-mono", index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-950")}
+      className={cn("flex flex-row gap-x-4 h-24 font-mono text-4xl", index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-950")}
     >
       {entry?.isIntersecting && (
         <>
-          <div className="w-20 text-4xl flex justify-center items-center">{team.rank}</div>
-          <div className="flex-1 flex justify-start items-center">
-            <div className="h-4/6 text-4xl">
-              {team.organization}-{team.name}
+          <div className="w-20 flex justify-center items-center">{team.rank}</div>
+          <div className="flex-1 flex flex-col justify-center items-start gap-y-3">
+            <div className="">
+              {team.organization} - {team.name}
             </div>
-            <div className="h=2/6"></div>
+            <div className="flex flex-row text-sm items-start gap-x-2">
+              {team.problemStatistics.map((p) => {
+                return (
+                  <div
+                    className={cn(
+                      "rounded w-20 h-7 flex justify-center items-center",
+                      p.isAccepted() ? "bg-resolver-ac" : "",
+                      p.isWrongAnswer() ? "bg-resolver-wa" : "",
+                      p.isPending() ? "bg-resolver-pending" : "",
+                      p.isUnSubmitted() ? "bg-zinc-900" : "",
+                    )}
+                    key={p.problem.id}
+                  >
+                    {p.isUnSubmitted() && p.problem.label}
+                    {p.isSubmitted && `${p.failedCount + Number(p.isAccepted())}/${p.lastSubmitTimestamp / 60}`}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <div className="w-48 text-4xl flex flex-row justify-start items-center">
+          <div className="w-48 flex flex-row justify-start items-center">
             <div className="w-1/3">{team.solvedProblemNum}</div>
             <div className="w-2/3">{team.penaltyToMinute()}</div>
           </div>

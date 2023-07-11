@@ -98,9 +98,13 @@ export class TeamProblemStatistics {
   isSolved: boolean;
   solvedTimestamp: number;
 
+  isSubmitted: boolean;
+  lastSubmitTimestamp: number;
+
   failedCount: number;
   pendingCount: number;
   ignoreCount: number;
+  totalCount: number;
 
   submissions: Submissions;
   problem: Problem;
@@ -111,11 +115,31 @@ export class TeamProblemStatistics {
     this.isSolved = false;
     this.solvedTimestamp = 0;
 
+    this.isSubmitted = false;
+    this.lastSubmitTimestamp = 0;
+
     this.failedCount = 0;
     this.pendingCount = 0;
     this.ignoreCount = 0;
+    this.totalCount = 0;
 
     this.submissions = [];
     this.problem = new Problem();
+  }
+
+  isAccepted() {
+    return this.isSolved;
+  }
+
+  isWrongAnswer() {
+    return !this.isSolved && this.pendingCount === 0 && this.failedCount > 0;
+  }
+
+  isPending() {
+    return !this.isSolved && this.pendingCount > 0;
+  }
+
+  isUnSubmitted() {
+    return this.totalCount === 0;
   }
 }

@@ -89,6 +89,10 @@ export class Rank {
           continue;
         }
 
+        problemStatistics.isSubmitted = true;
+        problemStatistics.lastSubmitTimestamp = s.timestamp;
+        problemStatistics.totalCount++;
+
         if (s.isAccepted()) {
           problemStatistics.isSolved = true;
           problemStatistics.solvedTimestamp = s.timestamp;
