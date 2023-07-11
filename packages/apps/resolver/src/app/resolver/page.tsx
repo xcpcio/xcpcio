@@ -27,8 +27,12 @@ export default function Page() {
   }, [boardData, setLoaded, setData]);
 
   return (
-    <main className="flex min-h-screen">
-      {!loaded && <p>loading data...</p>}
+    <main className="flex min-h-screen min-w-screen">
+      {!loaded && (
+        <div className="flex w-full justify-center items-center">
+          <p>loading data...</p>
+        </div>
+      )}
       {loaded && <ResolverUI resolver={data}></ResolverUI>}
     </main>
   );

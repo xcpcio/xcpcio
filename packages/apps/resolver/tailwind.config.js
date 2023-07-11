@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
@@ -48,6 +49,9 @@ module.exports = {
         "resolver-ac": "#5eb95e",
         "resolver-wa": "#dd514c",
         "resolver-pending": "#607D8B",
+        "resolver-untouched": "#1f1f1f",
+        "resolver-selected": "#406b82",
+        "resolver-bg-0": "#3e3e3e",
       },
       borderRadius: {
         lg: "var(--radius)",

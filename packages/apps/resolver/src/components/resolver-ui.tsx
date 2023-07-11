@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 interface TeamProps {
   index: number;
   team: Team;
+  currentIndex: number;
+  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const TeamUI: React.FC<TeamProps> = (props) => {
@@ -19,7 +21,11 @@ const TeamUI: React.FC<TeamProps> = (props) => {
     <div
       ref={ref}
       key={team.id}
-      className={cn("flex flex-row gap-x-4 h-24 font-mono text-4xl", index % 2 === 0 ? "bg-zinc-800" : "bg-zinc-950")}
+      className={cn(
+        "flex flex-row gap-x-4 h-24 font-mono text-4xl",
+        index % 2 === 0 ? "bg-resolver-bg-0" : "bg-zinc-950",
+        props.index === props.currentIndex ? "bg-resolver-selected" : "",
+      )}
     >
       {entry?.isIntersecting && (
         <>
@@ -37,7 +43,7 @@ const TeamUI: React.FC<TeamProps> = (props) => {
                       p.isAccepted() ? "bg-resolver-ac" : "",
                       p.isWrongAnswer() ? "bg-resolver-wa" : "",
                       p.isPending() ? "bg-resolver-pending" : "",
-                      p.isUnSubmitted() ? "bg-zinc-900" : "",
+                      p.isUnSubmitted() ? "bg-resolver-untouched" : "",
                     )}
                     key={p.problem.id}
                   >
@@ -64,12 +70,21 @@ export interface ResolverUIProps {
 
 const ResolverUI: React.FC<ResolverUIProps> = (props) => {
   const { resolver } = props;
+  const [currentIndex, setCurrentIndex] = React.useState((props.resolver?.teams.length ?? 1) - 1);
 
   return (
     <>
       <div className="flex flex-col justify-between w-screen">
         {resolver?.teams.map((team, index) => {
-          return <TeamUI team={team} index={index} key={team.id}></TeamUI>;
+          return (
+            <TeamUI
+              team={team}
+              index={index}
+              currentIndex={currentIndex}
+              setCurrentIndex={setCurrentIndex}
+              key={team.id}
+            ></TeamUI>
+          );
         })}
       </div>
     </>
