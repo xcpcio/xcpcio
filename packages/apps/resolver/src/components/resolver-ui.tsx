@@ -2,43 +2,26 @@
 
 import * as React from "react";
 import { useKey, useKeyPressEvent } from "react-use";
+import { Updater } from "use-immer";
 
 import { Resolver } from "@xcpcio/core";
 
 import { TeamUI } from "./team-ui";
 
 export interface ResolverUIProps {
-  resolver?: Resolver;
+  resolver: Resolver;
+  updateResolver: Updater<Resolver>;
 }
 
 const ResolverUI: React.FC<ResolverUIProps> = (props) => {
-  const { resolver } = props;
-
-  const maxIndex = (props.resolver?.teams.length ?? 1) - 1;
-  const [currentIndex, setCurrentIndex] = React.useState(maxIndex);
+  const { resolver, updateResolver } = props;
 
   const handleArrowUp = () => {
-    setCurrentIndex((currentIndex) => {
-      --currentIndex;
-
-      if (currentIndex < 0) {
-        currentIndex = 0;
-      }
-
-      return currentIndex;
-    });
+    updateResolver((resolver) => resolver.up());
   };
 
   const handleArrowDown = () => {
-    setCurrentIndex((currentIndex) => {
-      ++currentIndex;
-
-      if (currentIndex > maxIndex) {
-        currentIndex = maxIndex;
-      }
-
-      return currentIndex;
-    });
+    updateResolver((resolver) => resolver.down());
   };
 
   useKeyPressEvent("ArrowRight", null, handleArrowUp);
@@ -51,15 +34,7 @@ const ResolverUI: React.FC<ResolverUIProps> = (props) => {
     <>
       <div className="flex flex-col justify-between w-screen">
         {resolver?.teams.map((team, index) => {
-          return (
-            <TeamUI
-              team={team}
-              index={index}
-              currentIndex={currentIndex}
-              setCurrentIndex={setCurrentIndex}
-              key={team.id}
-            ></TeamUI>
-          );
+          return <TeamUI {...props} team={team} index={index} key={team.id}></TeamUI>;
         })}
       </div>
     </>

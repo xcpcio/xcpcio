@@ -16,6 +16,8 @@
         "fortawesome",
         "highcharts",
         "icpc",
+        "Immer",
+        "immerable",
         "metas",
         "pnpm",
         "prettierrc",

@@ -2,19 +2,21 @@
 
 import * as React from "react";
 import { useInView } from "react-intersection-observer";
+import { Updater } from "use-immer";
 
-import { Team } from "@xcpcio/core";
+import { Resolver, Team } from "@xcpcio/core";
+
 import { cn } from "@/lib/utils";
 
 export interface TeamUIProps {
   index: number;
   team: Team;
-  currentIndex: number;
-  setCurrentIndex: React.Dispatch<React.SetStateAction<number>>;
+  resolver: Resolver;
+  updateResolver: Updater<Resolver>;
 }
 
 export const TeamUI: React.FC<TeamUIProps> = (props) => {
-  const { team, index } = props;
+  const { team, index, resolver } = props;
   const { ref, entry } = useInView();
 
   return (
@@ -24,7 +26,7 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
       className={cn(
         "flex flex-row gap-x-4 h-24 font-mono text-4xl",
         index % 2 === 0 ? "bg-resolver-bg-0" : "bg-zinc-950",
-        props.index === props.currentIndex ? "bg-resolver-selected" : "",
+        props.index === resolver.currentIndex ? "bg-resolver-selected" : "",
       )}
     >
       {entry?.isIntersecting && (
@@ -40,15 +42,17 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
                   <div
                     className={cn(
                       "rounded w-20 h-7 flex justify-center items-center",
-                      p.isAccepted() ? "bg-resolver-ac" : "",
-                      p.isWrongAnswer() ? "bg-resolver-wa" : "",
-                      p.isPending() ? "bg-resolver-pending" : "",
-                      p.isUnSubmitted() ? "bg-resolver-untouched" : "",
+                      p.isAccepted ? "bg-resolver-ac" : "",
+                      p.isWrongAnswer ? "bg-resolver-wa" : "",
+                      p.isPending ? "bg-resolver-pending" : "",
+                      p.isUnSubmitted ? "bg-resolver-untouched" : "",
                     )}
                     key={p.problem.id}
                   >
-                    {p.isUnSubmitted() && p.problem.label}
-                    {p.isSubmitted && `${p.failedCount + Number(p.isAccepted())}/${p.lastSubmitTimestamp / 60}`}
+                    {p.isAccepted && `${p.failedCount + Number(p.isAccepted)}/${p.lastSubmitTimestamp / 60}`}
+                    {p.isWrongAnswer && `${p.failedCount}/${p.lastSubmitTimestamp / 60}`}
+                    {p.isPending && `${p.failedCount} + ${p.pendingCount}`}
+                    {p.isUnSubmitted && p.problem.label}
                   </div>
                 );
               })}

@@ -1,6 +1,6 @@
 import { Contest } from "./contest";
 import { Team, Teams } from "./team";
-import { Submission, Submissions } from "./submission";
+import { Submission, Submissions, sortSubmissions } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 
 export class Rank {
@@ -12,7 +12,7 @@ export class Rank {
   submissions: Submissions;
   submissionsMap: Map<string, Submission>;
 
-  firstSolvedSubmissions: Map<string, Array<Submission>>;
+  firstSolvedSubmissions: Map<string, Submissions>;
 
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
@@ -20,23 +20,7 @@ export class Rank {
     this.teams = teams;
     this.teamsMap = new Map(this.teams.map((t) => [t.id, t]));
 
-    this.submissions = submissions.sort((a, b) => {
-      if (a.timestamp !== b.timestamp) {
-        return a.timestamp - b.timestamp;
-      }
-
-      if (a.teamId === b.teamId) {
-        if (a.isAccepted() && !b.isAccepted()) {
-          return -1;
-        }
-
-        if (!a.isAccepted() && b.isAccepted()) {
-          return 1;
-        }
-      }
-
-      return 0;
-    });
+    this.submissions = sortSubmissions(submissions);
     this.submissionsMap = new Map(this.submissions.map((s) => [s.id, s]));
 
     this.firstSolvedSubmissions = new Map(this.contest.problems.map((p) => [p.id, []]));
@@ -48,6 +32,7 @@ export class Rank {
         t.problemStatistics = this.contest.problems.map((p) => {
           const ps = new TeamProblemStatistics();
           ps.problem = p;
+          ps.contestPenalty = this.contest.penalty;
 
           return ps;
         });
@@ -126,8 +111,7 @@ export class Rank {
         for (const p of t.problemStatistics) {
           if (p.isSolved) {
             t.solvedProblemNum++;
-            t.penalty += Math.floor(p.solvedTimestamp / 60) * 60;
-            t.penalty += p.failedCount * this.contest.penalty;
+            t.penalty += p.penalty;
           }
         }
       }

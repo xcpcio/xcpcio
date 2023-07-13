@@ -8,7 +8,11 @@ export class Contest {
 
   startTime: dayjs.Dayjs;
   endTime: dayjs.Dayjs;
-  freezeTime?: dayjs.Dayjs;
+  freezeTime: dayjs.Dayjs;
+
+  totalDurationTimestamp: number;
+  freezeDurationTimestamp: number;
+  unFreezeDurationTimestamp: number;
 
   penalty: number;
 
@@ -33,6 +37,11 @@ export class Contest {
   constructor() {
     this.startTime = createDayJS();
     this.endTime = createDayJS();
+    this.freezeTime = createDayJS();
+
+    this.totalDurationTimestamp = 0;
+    this.freezeDurationTimestamp = 0;
+    this.unFreezeDurationTimestamp = 0;
 
     // 20 mins
     this.penalty = 20 * 60;
@@ -122,14 +131,26 @@ export function createContest(contestJSON: IContest): Contest {
   c.startTime = createDayJS(contestJSON.start_time);
   c.endTime = createDayJS(contestJSON.end_time);
 
+  c.totalDurationTimestamp = c.endTime.unix() - c.startTime.unix();
+
   {
+    // default value
+    c.freezeTime = c.endTime;
+    c.freezeDurationTimestamp = 0;
+
     if (contestJSON.frozen_time !== undefined && contestJSON.frozen_time != null) {
-      c.freezeTime = createDayJS(c.endTime.unix() - Number(contestJSON.frozen_time));
+      const frozenTime = Number(contestJSON.frozen_time);
+
+      c.freezeTime = createDayJS(c.endTime.unix() - frozenTime);
+      c.freezeDurationTimestamp = frozenTime;
     }
 
     if (contestJSON.freeze_time !== undefined && contestJSON.freeze_time !== null) {
       c.freezeTime = createDayJS(contestJSON.freeze_time);
+      c.freezeDurationTimestamp = c.endTime.unix() - c.freezeTime.unix();
     }
+
+    c.unFreezeDurationTimestamp = c.totalDurationTimestamp - c.freezeDurationTimestamp;
   }
 
   c.penalty = contestJSON.penalty;

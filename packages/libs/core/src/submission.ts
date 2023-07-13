@@ -56,6 +56,26 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
   return s;
 }
 
+export function sortSubmissions(submissions: Submissions): Submissions {
+  return submissions.sort((a, b) => {
+    if (a.timestamp !== b.timestamp) {
+      return a.timestamp - b.timestamp;
+    }
+
+    if (a.teamId === b.teamId) {
+      if (a.isAccepted() && !b.isAccepted()) {
+        return -1;
+      }
+
+      if (!a.isAccepted() && b.isAccepted()) {
+        return 1;
+      }
+    }
+
+    return 0;
+  });
+}
+
 export function createSubmissions(submissionsJSON: ISubmissions): Submissions {
   if (Array.isArray(submissionsJSON)) {
     return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }));
