@@ -158,10 +158,13 @@ describe("contest", () => {
     expect(rank.teams[0].problemStatistics).toMatchInlineSnapshot(`
       [
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 960,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -191,12 +194,16 @@ describe("contest", () => {
               "timestamp": 960,
             },
           ],
+          "totalCount": 1,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 2,
           "ignoreCount": 0,
           "isFirstSolved": true,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 10920,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -242,12 +249,16 @@ describe("contest", () => {
               "timestamp": 10920,
             },
           ],
+          "totalCount": 3,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 4800,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -277,12 +288,16 @@ describe("contest", () => {
               "timestamp": 4800,
             },
           ],
+          "totalCount": 1,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -303,12 +318,16 @@ describe("contest", () => {
           },
           "solvedTimestamp": 0,
           "submissions": [],
+          "totalCount": 0,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 300,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -338,12 +357,16 @@ describe("contest", () => {
               "timestamp": 300,
             },
           ],
+          "totalCount": 1,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": true,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 1200,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -373,12 +396,16 @@ describe("contest", () => {
               "timestamp": 1200,
             },
           ],
+          "totalCount": 1,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -399,12 +426,16 @@ describe("contest", () => {
           },
           "solvedTimestamp": 0,
           "submissions": [],
+          "totalCount": 0,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 1,
           "ignoreCount": 0,
           "isFirstSolved": true,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 7680,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -442,12 +473,16 @@ describe("contest", () => {
               "timestamp": 7680,
             },
           ],
+          "totalCount": 2,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 1,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 17460,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -485,12 +520,16 @@ describe("contest", () => {
               "timestamp": 17460,
             },
           ],
+          "totalCount": 2,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 1,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 2760,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -528,12 +567,16 @@ describe("contest", () => {
               "timestamp": 2760,
             },
           ],
+          "totalCount": 2,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 3,
           "ignoreCount": 0,
           "isFirstSolved": true,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 14280,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -587,12 +630,16 @@ describe("contest", () => {
               "timestamp": 14280,
             },
           ],
+          "totalCount": 4,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 4,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 5760,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -654,12 +701,16 @@ describe("contest", () => {
               "timestamp": 5760,
             },
           ],
+          "totalCount": 5,
         },
         TeamProblemStatistics {
+          "contestPenalty": 1200,
           "failedCount": 0,
           "ignoreCount": 0,
           "isFirstSolved": false,
           "isSolved": true,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 9300,
           "pendingCount": 0,
           "problem": Problem {
             "balloonColor": {
@@ -689,6 +740,7 @@ describe("contest", () => {
               "timestamp": 9300,
             },
           ],
+          "totalCount": 1,
         },
       ]
     `);
@@ -933,10 +985,13 @@ describe("contest", () => {
         "penalty": 89820,
         "problemStatistics": [
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 960,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -966,12 +1021,16 @@ describe("contest", () => {
                 "timestamp": 960,
               },
             ],
+            "totalCount": 1,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 2,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 10920,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1017,12 +1076,16 @@ describe("contest", () => {
                 "timestamp": 10920,
               },
             ],
+            "totalCount": 3,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 4800,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1052,12 +1115,16 @@ describe("contest", () => {
                 "timestamp": 4800,
               },
             ],
+            "totalCount": 1,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": false,
+            "isSubmitted": false,
+            "lastSubmitTimestamp": 0,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1078,12 +1145,16 @@ describe("contest", () => {
             },
             "solvedTimestamp": 0,
             "submissions": [],
+            "totalCount": 0,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 300,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1113,12 +1184,16 @@ describe("contest", () => {
                 "timestamp": 300,
               },
             ],
+            "totalCount": 1,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 1200,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1148,12 +1223,16 @@ describe("contest", () => {
                 "timestamp": 1200,
               },
             ],
+            "totalCount": 1,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": false,
+            "isSubmitted": false,
+            "lastSubmitTimestamp": 0,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1174,12 +1253,16 @@ describe("contest", () => {
             },
             "solvedTimestamp": 0,
             "submissions": [],
+            "totalCount": 0,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 7680,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1217,12 +1300,16 @@ describe("contest", () => {
                 "timestamp": 7680,
               },
             ],
+            "totalCount": 2,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 17460,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1260,12 +1347,16 @@ describe("contest", () => {
                 "timestamp": 17460,
               },
             ],
+            "totalCount": 2,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 2760,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1303,12 +1394,16 @@ describe("contest", () => {
                 "timestamp": 2760,
               },
             ],
+            "totalCount": 2,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 3,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 14280,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1362,12 +1457,16 @@ describe("contest", () => {
                 "timestamp": 14280,
               },
             ],
+            "totalCount": 4,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 4,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 5760,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1429,12 +1528,16 @@ describe("contest", () => {
                 "timestamp": 5760,
               },
             ],
+            "totalCount": 5,
           },
           TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 9300,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1464,14 +1567,18 @@ describe("contest", () => {
                 "timestamp": 9300,
               },
             ],
+            "totalCount": 1,
           },
         ],
         "problemStatisticsMap": Map {
           "0" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 960,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1501,12 +1608,16 @@ describe("contest", () => {
                 "timestamp": 960,
               },
             ],
+            "totalCount": 1,
           },
           "1" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 2,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 10920,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1552,12 +1663,16 @@ describe("contest", () => {
                 "timestamp": 10920,
               },
             ],
+            "totalCount": 3,
           },
           "2" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 4800,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1587,12 +1702,16 @@ describe("contest", () => {
                 "timestamp": 4800,
               },
             ],
+            "totalCount": 1,
           },
           "3" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": false,
+            "isSubmitted": false,
+            "lastSubmitTimestamp": 0,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1613,12 +1732,16 @@ describe("contest", () => {
             },
             "solvedTimestamp": 0,
             "submissions": [],
+            "totalCount": 0,
           },
           "4" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 300,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1648,12 +1771,16 @@ describe("contest", () => {
                 "timestamp": 300,
               },
             ],
+            "totalCount": 1,
           },
           "5" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 1200,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1683,12 +1810,16 @@ describe("contest", () => {
                 "timestamp": 1200,
               },
             ],
+            "totalCount": 1,
           },
           "6" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": false,
+            "isSubmitted": false,
+            "lastSubmitTimestamp": 0,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1709,12 +1840,16 @@ describe("contest", () => {
             },
             "solvedTimestamp": 0,
             "submissions": [],
+            "totalCount": 0,
           },
           "7" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 7680,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1752,12 +1887,16 @@ describe("contest", () => {
                 "timestamp": 7680,
               },
             ],
+            "totalCount": 2,
           },
           "8" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 17460,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1795,12 +1934,16 @@ describe("contest", () => {
                 "timestamp": 17460,
               },
             ],
+            "totalCount": 2,
           },
           "9" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 1,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 2760,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1838,12 +1981,16 @@ describe("contest", () => {
                 "timestamp": 2760,
               },
             ],
+            "totalCount": 2,
           },
           "10" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 3,
             "ignoreCount": 0,
             "isFirstSolved": true,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 14280,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1897,12 +2044,16 @@ describe("contest", () => {
                 "timestamp": 14280,
               },
             ],
+            "totalCount": 4,
           },
           "11" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 4,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 5760,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1964,12 +2115,16 @@ describe("contest", () => {
                 "timestamp": 5760,
               },
             ],
+            "totalCount": 5,
           },
           "12" => TeamProblemStatistics {
+            "contestPenalty": 1200,
             "failedCount": 0,
             "ignoreCount": 0,
             "isFirstSolved": false,
             "isSolved": true,
+            "isSubmitted": true,
+            "lastSubmitTimestamp": 9300,
             "pendingCount": 0,
             "problem": Problem {
               "balloonColor": {
@@ -1999,6 +2154,7 @@ describe("contest", () => {
                 "timestamp": 9300,
               },
             ],
+            "totalCount": 1,
           },
         },
         "rank": 1,

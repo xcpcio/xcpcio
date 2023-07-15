@@ -2,19 +2,20 @@ import _ from "lodash";
 
 import { Rank } from "./rank";
 import { Contest } from "./contest";
-import { Teams } from "./team";
-import { Submissions, sortSubmissions } from "./submission";
+import { Team, Teams } from "./team";
+import { Submission, Submissions } from "./submission";
 import { TeamProblemStatistics } from "./problem";
+import { ResolverOperation } from "./resolver-operation";
 
 export class Resolver extends Rank {
+  finalRank: Rank;
+  operations: Array<ResolverOperation>;
+
   beforeFreezeSubmissions: Submissions;
   afterFreezeSubmissions: Submissions;
 
-  currentIndex: number;
-  maxIndex: number;
-
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
-    submissions = sortSubmissions(submissions);
+    submissions.sort(Submission.compare);
 
     let beforeFreezeSubmissions = submissions;
     let afterFreezeSubmissions = submissions;
@@ -31,15 +32,16 @@ export class Resolver extends Rank {
 
     super(contest, teams, beforeFreezeSubmissions);
 
+    this.finalRank = new Rank(contest, teams, submissions);
+    this.operations = [];
+
     this.beforeFreezeSubmissions = beforeFreezeSubmissions;
     this.afterFreezeSubmissions = afterFreezeSubmissions;
-
-    this.currentIndex = 0;
-    this.maxIndex = 0;
   }
 
   buildResolver() {
     this.buildRank();
+    this.finalRank.buildRank();
 
     for (const s of this.afterFreezeSubmissions) {
       const teamId = s.teamId;
@@ -52,30 +54,67 @@ export class Resolver extends Rank {
       }
 
       const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
-      // const submissions = problemStatistics.submissions;
-      // const firstSolvedSubmissions = this.firstSolvedSubmissions.get(problemId) as Array<Submission>;
 
       problemStatistics.pendingCount++;
       problemStatistics.totalCount++;
+      if (!problemStatistics.isAccepted) {
+        problemStatistics.lastSubmitTimestamp = s.timestamp;
+      }
     }
 
-    this.maxIndex = Math.max(0, this.teams.length - 1);
-    this.currentIndex = this.maxIndex;
-  }
+    {
+      const teams_ = _.cloneDeep(this.teams);
 
-  up() {
-    this.currentIndex--;
+      for (let i = this.teams.length - 1; i >= 0; ) {
+        const team = teams_[i];
+        const teamId = team.id;
 
-    if (this.currentIndex < 0) {
-      this.currentIndex = 0;
-    }
-  }
+        let handleCnt = 0;
+        let problemIx = -1;
+        for (const p of team.problemStatistics) {
+          problemIx++;
 
-  down() {
-    this.currentIndex++;
+          if (!p.isPending) {
+            continue;
+          }
 
-    if (this.currentIndex > this.maxIndex) {
-      this.currentIndex = this.maxIndex;
+          handleCnt++;
+
+          const beforeTeamProblemStatistics = this.teamsMap.get(teamId)?.problemStatistics[
+            problemIx
+          ] as TeamProblemStatistics;
+          const afterTeamProblemStatistics = this.finalRank.teamsMap.get(teamId)?.problemStatistics[
+            problemIx
+          ] as TeamProblemStatistics;
+
+          const op = new ResolverOperation();
+          op.id = this.operations.length;
+          op.team = this.teamsMap.get(teamId) as Team;
+          op.problemIx = problemIx;
+
+          op.beforeTeamProblemStatistics = beforeTeamProblemStatistics;
+          op.afterTeamProblemStatistics = afterTeamProblemStatistics;
+
+          this.operations.push(op);
+
+          team.problemStatistics[problemIx] = afterTeamProblemStatistics;
+          team.calcSolvedData();
+
+          break;
+        }
+
+        {
+          let j = i;
+          while (j > 0 && Team.compare(teams_[j], teams_[j - 1]) < 0) {
+            [teams_[j], teams_[j - 1]] = [teams_[j - 1], teams_[j]];
+            j--;
+          }
+        }
+
+        if (handleCnt === 0) {
+          i--;
+        }
+      }
     }
   }
 }

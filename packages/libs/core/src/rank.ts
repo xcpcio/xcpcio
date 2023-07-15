@@ -1,10 +1,12 @@
+import _ from "lodash";
+
 import { Contest } from "./contest";
 import { Team, Teams } from "./team";
-import { Submission, Submissions, sortSubmissions } from "./submission";
+import { Submission, Submissions } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 
 export class Rank {
-  contest: Contest;
+  readonly contest: Contest;
 
   teams: Teams;
   teamsMap: Map<string, Team>;
@@ -17,10 +19,10 @@ export class Rank {
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
-    this.teams = teams;
+    this.teams = _.cloneDeep(teams);
     this.teamsMap = new Map(this.teams.map((t) => [t.id, t]));
 
-    this.submissions = sortSubmissions(submissions);
+    this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
     this.submissionsMap = new Map(this.submissions.map((s) => [s.id, s]));
 
     this.firstSolvedSubmissions = new Map(this.contest.problems.map((p) => [p.id, []]));
@@ -104,35 +106,8 @@ export class Rank {
         }
       }
 
-      for (const t of this.teams) {
-        t.solvedProblemNum = 0;
-        t.penalty = 0;
-
-        for (const p of t.problemStatistics) {
-          if (p.isSolved) {
-            t.solvedProblemNum++;
-            t.penalty += p.penalty;
-          }
-        }
-      }
-
-      this.teams.sort((a, b) => {
-        if (a.solvedProblemNum !== b.solvedProblemNum) {
-          return b.solvedProblemNum - a.solvedProblemNum;
-        }
-
-        if (a.penalty !== b.penalty) {
-          return a.penalty - b.penalty;
-        }
-
-        if (a.name < b.name) {
-          return -1;
-        } else if (a.name > b.name) {
-          return 1;
-        }
-
-        return 0;
-      });
+      this.teams.forEach((t) => t.calcSolvedData());
+      this.teams.sort(Team.compare);
 
       {
         let rank = 1;

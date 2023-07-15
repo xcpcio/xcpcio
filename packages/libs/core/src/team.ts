@@ -39,6 +39,36 @@ export class Team {
   penaltyToMinute() {
     return Math.floor(this.penalty / 60);
   }
+
+  calcSolvedData() {
+    this.solvedProblemNum = 0;
+    this.penalty = 0;
+
+    for (const p of this.problemStatistics) {
+      if (p.isAccepted) {
+        this.solvedProblemNum++;
+        this.penalty += p.penalty;
+      }
+    }
+  }
+
+  static compare(lhs: Team, rhs: Team): number {
+    if (lhs.solvedProblemNum !== rhs.solvedProblemNum) {
+      return rhs.solvedProblemNum - lhs.solvedProblemNum;
+    }
+
+    if (lhs.penalty !== rhs.penalty) {
+      return lhs.penalty - rhs.penalty;
+    }
+
+    if (lhs.name < rhs.name) {
+      return -1;
+    } else if (lhs.name > rhs.name) {
+      return 1;
+    }
+
+    return 0;
+  }
 }
 
 export type Teams = Array<Team>;

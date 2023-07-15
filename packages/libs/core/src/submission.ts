@@ -39,6 +39,24 @@ export class Submission {
   isNotCalculatedPenaltyStatus() {
     return isNotCalculatedPenaltyStatus(this.status);
   }
+
+  static compare(lhs: Submission, rhs: Submission): number {
+    if (lhs.timestamp !== rhs.timestamp) {
+      return lhs.timestamp - rhs.timestamp;
+    }
+
+    if (lhs.teamId === rhs.teamId) {
+      if (lhs.isAccepted() && !rhs.isAccepted()) {
+        return -1;
+      }
+
+      if (!lhs.isAccepted() && rhs.isAccepted()) {
+        return 1;
+      }
+    }
+
+    return 0;
+  }
 }
 
 export type Submissions = Array<Submission>;
@@ -54,26 +72,6 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
   s.isIgnore = submissionJSON.is_ignore ?? false;
 
   return s;
-}
-
-export function sortSubmissions(submissions: Submissions): Submissions {
-  return submissions.sort((a, b) => {
-    if (a.timestamp !== b.timestamp) {
-      return a.timestamp - b.timestamp;
-    }
-
-    if (a.teamId === b.teamId) {
-      if (a.isAccepted() && !b.isAccepted()) {
-        return -1;
-      }
-
-      if (!a.isAccepted() && b.isAccepted()) {
-        return 1;
-      }
-    }
-
-    return 0;
-  });
 }
 
 export function createSubmissions(submissionsJSON: ISubmissions): Submissions {

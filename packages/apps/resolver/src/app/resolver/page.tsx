@@ -2,16 +2,22 @@
 
 import * as React from "react";
 import { useImmer } from "use-immer";
-import { immerable } from "immer";
+import { enableMapSet, enablePatches } from "immer";
 
-import { createContest, createTeams, createSubmissions, Contest, Resolver } from "@xcpcio/core";
+import { createContest, createTeams, createSubmissions, Contest } from "@xcpcio/core";
+
+import { Resolver } from "@/lib/resolver";
 
 import { useLoadBoardData } from "@/lib/local-storage";
 import { ResolverUI } from "@/components/resolver-ui";
 
+enableMapSet();
+enablePatches();
+
 export default function Page() {
   const [loaded, setLoaded] = React.useState(false);
   const [boardData, ,] = useLoadBoardData();
+
   const [resolver, updateResolver] = useImmer<Resolver>(new Resolver(new Contest(), [], []));
 
   React.useEffect(() => {
@@ -21,10 +27,6 @@ export default function Page() {
 
     const resolver = new Resolver(contest, teams, submissions);
     resolver.buildResolver();
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    resolver[immerable] = true;
 
     updateResolver(resolver);
     setLoaded(true);

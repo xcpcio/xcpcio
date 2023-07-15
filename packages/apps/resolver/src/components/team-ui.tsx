@@ -4,7 +4,9 @@ import * as React from "react";
 import { useInView } from "react-intersection-observer";
 import { Updater } from "use-immer";
 
-import { Resolver, Team } from "@xcpcio/core";
+import { Team } from "@xcpcio/core";
+
+import { Resolver } from "@/lib/resolver";
 
 import { cn } from "@/lib/utils";
 
@@ -25,6 +27,8 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
       key={team.id}
       className={cn(
         "flex flex-row gap-x-4 h-24 font-mono text-4xl",
+        // https://github.com/facebook/react/issues/27044
+        "no-overflow-anchoring",
         index % 2 === 0 ? "bg-resolver-bg-0" : "bg-zinc-950",
         props.index === resolver.currentIndex ? "bg-resolver-selected" : "",
       )}
