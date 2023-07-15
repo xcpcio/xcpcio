@@ -60,7 +60,7 @@ const ResolverUI: React.FC<ResolverUIProps> = (props) => {
   // useKeyPressEvent("l", null, handleArrowRight);
 
   useKey("a", handleArrowLeft);
-  //   useKeyPressEvent("j", null, handleArrowLeft);
+  // useKeyPressEvent("j", null, handleArrowLeft);
 
   return (
     <>
