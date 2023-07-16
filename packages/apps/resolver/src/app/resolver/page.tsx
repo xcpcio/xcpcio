@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useKey, useKeyPressEvent } from "react-use";
 import { useImmer } from "use-immer";
 import { enableMapSet, enablePatches } from "immer";
 
@@ -17,7 +18,6 @@ enablePatches();
 export default function Page() {
   const [loaded, setLoaded] = React.useState(false);
   const [boardData, ,] = useLoadBoardData();
-
   const [resolver, updateResolver] = useImmer<Resolver>(new Resolver(new Contest(), [], []));
 
   React.useEffect(() => {
@@ -25,12 +25,54 @@ export default function Page() {
     const teams = createTeams(JSON.parse(boardData?.team ?? "[]"));
     const submissions = createSubmissions(JSON.parse(boardData?.run ?? "[]"));
 
-    const resolver = new Resolver(contest, teams, submissions);
-    resolver.buildResolver();
+    const resolverC = new Resolver(contest, teams, submissions);
+    resolverC.buildResolver();
 
-    updateResolver(resolver);
+    updateResolver(resolverC);
     setLoaded(true);
   }, [boardData, setLoaded, updateResolver]);
+
+  const handleArrowUp = React.useCallback(() => {
+    updateResolver((resolver) => {
+      resolver.up();
+    });
+  }, [updateResolver]);
+
+  const handleArrowDown = React.useCallback(() => {
+    updateResolver((resolver) => {
+      resolver.down();
+    });
+  }, [updateResolver]);
+
+  const handleArrowRight = React.useCallback(() => {
+    updateResolver((resolver) => {
+      resolver.right();
+    });
+  }, [updateResolver]);
+
+  const handleArrowLeft = React.useCallback(() => {
+    updateResolver((resolver) => {
+      resolver.left();
+    });
+  }, [updateResolver]);
+
+  React.useEffect(() => {
+    updateResolver((resolver) => {
+      resolver.teamScrollUp();
+    });
+  }, [resolver, updateResolver]);
+
+  useKey("w", handleArrowUp);
+  useKeyPressEvent("i", undefined, handleArrowUp);
+
+  useKey("s", handleArrowDown);
+  useKeyPressEvent("k", undefined, handleArrowDown);
+
+  useKey("d", handleArrowRight);
+  useKeyPressEvent("l", undefined, handleArrowRight);
+
+  useKey("a", handleArrowLeft);
+  useKeyPressEvent("j", undefined, handleArrowLeft);
 
   return (
     <main className="flex min-h-screen min-w-screen">

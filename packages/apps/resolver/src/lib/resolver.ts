@@ -75,7 +75,7 @@ export class Resolver extends ResolverCore {
     this.currentOpIndex--;
   }
 
-  teamScroll() {
+  teamScrollUp() {
     let j = this.currentIndex;
     while (j > 0 && Team.compare(this.teams[j], this.teams[j - 1]) < 0) {
       [this.teams[j], this.teams[j - 1]] = [this.teams[j - 1], this.teams[j]];
