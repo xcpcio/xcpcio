@@ -7,7 +7,6 @@ import { Updater } from "use-immer";
 import { Team } from "@xcpcio/core";
 
 import { Resolver } from "@/lib/resolver";
-
 import { cn } from "@/lib/utils";
 
 export interface TeamUIProps {
@@ -17,7 +16,7 @@ export interface TeamUIProps {
   updateResolver: Updater<Resolver>;
 }
 
-export const TeamUI: React.FC<TeamUIProps> = (props) => {
+const TeamUI: React.FC<TeamUIProps> = (props) => {
   const { team, index, resolver } = props;
   const { ref, entry } = useInView();
 
@@ -27,10 +26,9 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
       key={team.id}
       className={cn(
         "flex flex-row gap-x-4 h-24 font-mono text-4xl",
-        // https://github.com/facebook/react/issues/27044
-        "no-overflow-anchoring",
         index % 2 === 0 ? "bg-resolver-bg-0" : "bg-zinc-950",
-        props.index === resolver.currentIndex ? "bg-resolver-selected" : "",
+        resolver.duringAnimation && team.id === resolver.currentTeamId ? "bg-resolver-selected" : "",
+        !resolver.duringAnimation && props.index === resolver.currentIndex ? "bg-resolver-selected" : "",
       )}
     >
       {entry?.isIntersecting && (
@@ -41,7 +39,7 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
               {team.organization} - {team.name}
             </div>
             <div className="flex flex-row text-sm items-start gap-x-2">
-              {team.problemStatistics.map((p) => {
+              {team.problemStatistics.map((p, pIx) => {
                 return (
                   <div
                     className={cn(
@@ -50,6 +48,11 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
                       p.isWrongAnswer ? "bg-resolver-wa" : "",
                       p.isPending ? "bg-resolver-pending" : "",
                       p.isUnSubmitted ? "bg-resolver-untouched" : "",
+                      resolver.problemFlashingEnded === false &&
+                        props.index === resolver.currentIndex &&
+                        resolver.currentProblemIndex === pIx
+                        ? "resolver-uncover"
+                        : "",
                     )}
                     key={p.problem.id}
                   >
@@ -71,3 +74,6 @@ export const TeamUI: React.FC<TeamUIProps> = (props) => {
     </div>
   );
 };
+
+export { TeamUI };
+export default TeamUI;

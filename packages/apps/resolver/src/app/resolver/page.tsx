@@ -12,6 +12,8 @@ import { Resolver } from "@/lib/resolver";
 import { useLoadBoardData } from "@/lib/local-storage";
 import { ResolverUI } from "@/components/resolver-ui";
 
+import "./resolver.css";
+
 enableMapSet();
 enablePatches();
 
@@ -58,7 +60,16 @@ export default function Page() {
 
   React.useEffect(() => {
     updateResolver((resolver) => {
-      resolver.teamScrollUp();
+      if (resolver.problemFlashingEnded === true) {
+        resolver.teamScrollUp();
+        resolver.problemFlashingEnded = false;
+
+        setTimeout(() => {
+          updateResolver((resolver) => {
+            resolver.problemFlashingEnded = true;
+          });
+        }, resolver.FLASHING_TIME_MS);
+      }
     });
   }, [resolver, updateResolver]);
 

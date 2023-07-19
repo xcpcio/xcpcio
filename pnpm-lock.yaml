@@ -243,6 +243,9 @@ importers:
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
+      react-flip-move:
+        specifier: ^3.0.5
+        version: 3.0.5(react-dom@18.2.0)(react@18.2.0)
       react-intersection-observer:
         specifier: ^9.5.2
         version: 9.5.2(react@18.2.0)
@@ -11845,6 +11848,16 @@ packages:
   /react-fast-compare@3.2.2:
     resolution: {integrity: sha512-nsO+KSNgo1SbJqJEYRE9ERzo7YtYbou/OqjSQKxV7jcKox7+usiUVZOAC+XnDOABXggQTno0Y1CpVnuWEc1boQ==}
     dev: true
+
+  /react-flip-move@3.0.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Mf4XpbkUNZy9eu80iXXFIjToDvw+bnHxmKHVoositbMpV87O/EQswnXUqVovRHoTx/F+4dE+p//PyJnAT7OtPA==}
+    peerDependencies:
+      react: '>=16.3.x'
+      react-dom: '>=16.3.x'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /react-helmet@6.1.0(react@17.0.2):
     resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
