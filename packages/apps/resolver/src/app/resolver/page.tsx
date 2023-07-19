@@ -59,18 +59,26 @@ export default function Page() {
   }, [updateResolver]);
 
   React.useEffect(() => {
+    let timeoutId: NodeJS.Timeout | null = null;
+
     updateResolver((resolver) => {
       if (resolver.problemFlashingEnded === true) {
         resolver.teamScrollUp();
         resolver.problemFlashingEnded = false;
 
-        setTimeout(() => {
+        timeoutId = setTimeout(() => {
           updateResolver((resolver) => {
             resolver.problemFlashingEnded = true;
           });
         }, resolver.FLASHING_TIME_MS);
       }
     });
+
+    if (timeoutId !== null) {
+      return () => {
+        clearTimeout(timeoutId as NodeJS.Timeout);
+      };
+    }
   }, [resolver, updateResolver]);
 
   useKey("w", handleArrowUp);
