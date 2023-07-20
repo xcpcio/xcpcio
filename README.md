@@ -31,7 +31,7 @@ pnpm build
 
 ## License
 
-MIT.
+[MIT](./LICENSE)
 
 ## :clap:  Our Supporters
 
