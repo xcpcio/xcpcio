@@ -62,8 +62,11 @@ export default function Page() {
     let timeoutId: NodeJS.Timeout | null = null;
 
     updateResolver((resolver) => {
+      if (!resolver.startScrollUp) {
+        return;
+      }
+
       if (resolver.problemFlashingEnded === true) {
-        resolver.teamScrollUp();
         resolver.problemFlashingEnded = false;
 
         timeoutId = setTimeout(() => {
@@ -72,6 +75,8 @@ export default function Page() {
           });
         }, resolver.FLASHING_TIME_MS);
       }
+
+      resolver.scrollUp();
     });
 
     if (timeoutId !== null) {
@@ -79,6 +84,16 @@ export default function Page() {
         clearTimeout(timeoutId as NodeJS.Timeout);
       };
     }
+  }, [resolver, updateResolver]);
+
+  React.useEffect(() => {
+    updateResolver((resolver) => {
+      if (!resolver.startScrollDown) {
+        return;
+      }
+
+      resolver.scrollDown();
+    });
   }, [resolver, updateResolver]);
 
   useKey("w", handleArrowUp);
