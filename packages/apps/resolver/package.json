@@ -18,10 +18,14 @@
     "url": "https://github.com/XCPCIO/board/issues"
   },
   "engines": {
-    "node": "^16.19.0"
+    "node": "^18.12.1"
   },
   "files": [
-    ".next"
+    "src",
+    "public",
+    ".next",
+    "./*.json",
+    "./*.{js,ts}"
   ],
   "scripts": {
     "dev": "next dev",
