@@ -1,6 +1,6 @@
-# xcpcio/board
+# xcpcio
 
-[![Test](https://github.com/XCPCIO/board/actions/workflows/test.yml/badge.svg)](https://github.com/XCPCIO/board/actions/workflows/test.yml)
+[![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
 [![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]](https://mit-license.org/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board)
@@ -17,7 +17,7 @@
 ## Deploying
 
 ```bash
-git clone https://github.com/XCPCIO/board.git
+git clone https://github.com/xcpcio/xcpcio.git
 
 # Installation dependencies
 pnpm install
@@ -37,12 +37,12 @@ MIT.
 
 ### &#8627; Stargazers
 
-[![Stargazers repo roster for @XCPCIO/board](https://reporoster.com/stars/XCPCIO/board)](https://github.com/XCPCIO/board/stargazers)
+[![Stargazers repo roster for @xcpcio/xcpcio](https://reporoster.com/stars/xcpcio/xcpcio)](https://github.com/xcpcio/xcpcio/stargazers)
 
 <br/>
 <br/>
-<p align="center"><a href="https://github.com/XCPCIO/board#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+<p align="center"><a href="https://github.com/xcpcio/xcpcio#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
 
-[gh-release-badge]: https://img.shields.io/github/release/XCPCIO/board.svg
-[gh-release]: https://GitHub.com/XCPCIO/board/releases/
+[gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
+[gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
