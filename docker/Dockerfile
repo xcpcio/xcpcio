@@ -2,11 +2,11 @@ FROM node:18
 
 USER root
 WORKDIR /app
-COPY ./ ./board
+COPY ./ ./xcpcio
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-EXPOSE 8000
+EXPOSE 3000
 
-ENTRYPOINT ["/app/board/docker/docker_entry.sh"]
+ENTRYPOINT ["/app/xcpcio/docker/docker_entry.sh"]
 CMD ["primary"]

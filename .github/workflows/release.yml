@@ -97,11 +97,11 @@ jobs:
       - name: Build and Push packages/app
         uses: docker/build-push-action@v4
         env:
-          image_name: "board-app"
+          image_name: "xcpcio"
           tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
-          context: ./packages/apps/board/
-          file: ./packages/apps/board/docker/Dockerfile.release
+          context: ./
+          file: .//docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

@@ -30,7 +30,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start --port 3000",
     "lint": "next lint",
     "tcv": "tailwind-config-viewer"
   },
