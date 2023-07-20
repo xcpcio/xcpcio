@@ -1,7 +1,7 @@
 {
     "name": "@xcpcio/resolver-app",
     "description": "XCPCIO Resolver App",
-    "version": "0.1.18",
+    "version": "0.2.0",
     "license": "MIT",
     "author": "Dup4 <lyuzhi.pan@gmail.com>",
     "keywords": [
