@@ -7,10 +7,10 @@
 
 ## Packages
 
-- apps
+- [apps](./packages/apps/)
   - [board](./packages/apps/board/README.md)
   - [resolver](./packages/apps/resolver/README.md)
-- libs
+- [libs](./packages/libs/)
   - [types](./packages/libs/types/README.md)
   - [core](./packages/libs/core/README.md)
 
