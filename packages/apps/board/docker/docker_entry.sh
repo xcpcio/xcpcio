@@ -2,7 +2,7 @@
 
 CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
-BOARD_PATH="${CUR_DIR}/dist"
+BOARD_PATH="${CUR_DIR}/../dist"
 EXPORT_PATH="/app/export"
 
 bash "${CUR_DIR}/../scripts/inject_vars.sh" "${BOARD_PATH}"/*.html
