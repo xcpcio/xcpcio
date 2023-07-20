@@ -5,9 +5,12 @@ CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 BOARD_PATH="${CUR_DIR}/../dist"
 EXPORT_PATH="/app/export"
 
-bash "${CUR_DIR}/../scripts/inject_vars.sh" "${BOARD_PATH}"/*.html
+for html_file in "${BOARD_PATH}"/*.html; do
+    bash "${CUR_DIR}/../scripts/inject_vars.sh" "${html_file}"
+done
 
 if [[ -d "${EXPORT_PATH}" ]]; then
+    rm -rf "${EXPORT_PATH:?}"/*
     cp -a "${BOARD_PATH}"/* "${EXPORT_PATH}"/
 fi
 
