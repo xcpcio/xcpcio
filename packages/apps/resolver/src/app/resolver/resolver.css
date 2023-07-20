@@ -1,0 +1,4 @@
+.resolver-uncover {
+  animation: flashing 300ms infinite;
+  -webkit-animation: flashing 30ms infinite; /*Safari and Chrome*/
+}

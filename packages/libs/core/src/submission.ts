@@ -39,6 +39,24 @@ export class Submission {
   isNotCalculatedPenaltyStatus() {
     return isNotCalculatedPenaltyStatus(this.status);
   }
+
+  static compare(lhs: Submission, rhs: Submission): number {
+    if (lhs.timestamp !== rhs.timestamp) {
+      return lhs.timestamp - rhs.timestamp;
+    }
+
+    if (lhs.teamId === rhs.teamId) {
+      if (lhs.isAccepted() && !rhs.isAccepted()) {
+        return -1;
+      }
+
+      if (!lhs.isAccepted() && rhs.isAccepted()) {
+        return 1;
+      }
+    }
+
+    return 0;
+  }
 }
 
 export type Submissions = Array<Submission>;

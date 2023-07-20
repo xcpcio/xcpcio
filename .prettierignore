@@ -14,3 +14,5 @@
 *.yml
 
 Progress.module.less
+
+packages/apps/resolver/src/components/ui/*

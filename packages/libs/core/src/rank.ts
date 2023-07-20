@@ -1,10 +1,12 @@
+import _ from "lodash";
+
 import { Contest } from "./contest";
 import { Team, Teams } from "./team";
 import { Submission, Submissions } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 
 export class Rank {
-  contest: Contest;
+  readonly contest: Contest;
 
   teams: Teams;
   teamsMap: Map<string, Team>;
@@ -12,31 +14,15 @@ export class Rank {
   submissions: Submissions;
   submissionsMap: Map<string, Submission>;
 
-  firstSolvedSubmissions: Map<string, Array<Submission>>;
+  firstSolvedSubmissions: Map<string, Submissions>;
 
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
-    this.teams = teams;
+    this.teams = _.cloneDeep(teams);
     this.teamsMap = new Map(this.teams.map((t) => [t.id, t]));
 
-    this.submissions = submissions.sort((a, b) => {
-      if (a.timestamp !== b.timestamp) {
-        return a.timestamp - b.timestamp;
-      }
-
-      if (a.teamId === b.teamId) {
-        if (a.isAccepted() && !b.isAccepted()) {
-          return -1;
-        }
-
-        if (!a.isAccepted() && b.isAccepted()) {
-          return 1;
-        }
-      }
-
-      return 0;
-    });
+    this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
     this.submissionsMap = new Map(this.submissions.map((s) => [s.id, s]));
 
     this.firstSolvedSubmissions = new Map(this.contest.problems.map((p) => [p.id, []]));
@@ -48,6 +34,7 @@ export class Rank {
         t.problemStatistics = this.contest.problems.map((p) => {
           const ps = new TeamProblemStatistics();
           ps.problem = p;
+          ps.contestPenalty = this.contest.penalty;
 
           return ps;
         });
@@ -89,6 +76,10 @@ export class Rank {
           continue;
         }
 
+        problemStatistics.isSubmitted = true;
+        problemStatistics.lastSubmitTimestamp = s.timestamp;
+        problemStatistics.totalCount++;
+
         if (s.isAccepted()) {
           problemStatistics.isSolved = true;
           problemStatistics.solvedTimestamp = s.timestamp;
@@ -115,36 +106,8 @@ export class Rank {
         }
       }
 
-      for (const t of this.teams) {
-        t.solvedProblemNum = 0;
-        t.penalty = 0;
-
-        for (const p of t.problemStatistics) {
-          if (p.isSolved) {
-            t.solvedProblemNum++;
-            t.penalty += Math.floor(p.solvedTimestamp / 60) * 60;
-            t.penalty += p.failedCount * this.contest.penalty;
-          }
-        }
-      }
-
-      this.teams.sort((a, b) => {
-        if (a.solvedProblemNum !== b.solvedProblemNum) {
-          return b.solvedProblemNum - a.solvedProblemNum;
-        }
-
-        if (a.penalty !== b.penalty) {
-          return a.penalty - b.penalty;
-        }
-
-        if (a.name < b.name) {
-          return -1;
-        } else if (a.name > b.name) {
-          return 1;
-        }
-
-        return 0;
-      });
+      this.teams.forEach((t) => t.calcSolvedData());
+      this.teams.sort(Team.compare);
 
       {
         let rank = 1;

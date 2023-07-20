@@ -98,24 +98,60 @@ export class TeamProblemStatistics {
   isSolved: boolean;
   solvedTimestamp: number;
 
+  isSubmitted: boolean;
+  lastSubmitTimestamp: number;
+
   failedCount: number;
   pendingCount: number;
   ignoreCount: number;
+  totalCount: number;
 
   submissions: Submissions;
   problem: Problem;
 
-  constructor() {
-    this.isFirstSolved = false;
+  contestPenalty: number;
 
-    this.isSolved = false;
-    this.solvedTimestamp = 0;
+  constructor(options?: { teamProblemStatistics?: TeamProblemStatistics }) {
+    this.isFirstSolved = options?.teamProblemStatistics?.isFirstSolved ?? false;
 
-    this.failedCount = 0;
-    this.pendingCount = 0;
-    this.ignoreCount = 0;
+    this.isSolved = options?.teamProblemStatistics?.isSolved ?? false;
+    this.solvedTimestamp = options?.teamProblemStatistics?.solvedTimestamp ?? 0;
 
-    this.submissions = [];
-    this.problem = new Problem();
+    this.isSubmitted = options?.teamProblemStatistics?.isSubmitted ?? false;
+    this.lastSubmitTimestamp = options?.teamProblemStatistics?.lastSubmitTimestamp ?? 0;
+
+    this.failedCount = options?.teamProblemStatistics?.failedCount ?? 0;
+    this.pendingCount = options?.teamProblemStatistics?.pendingCount ?? 0;
+    this.ignoreCount = options?.teamProblemStatistics?.ignoreCount ?? 0;
+    this.totalCount = options?.teamProblemStatistics?.totalCount ?? 0;
+
+    this.submissions = options?.teamProblemStatistics?.submissions ?? [];
+    this.problem = options?.teamProblemStatistics?.problem ?? new Problem();
+
+    this.contestPenalty = options?.teamProblemStatistics?.contestPenalty ?? 20 * 60;
+  }
+
+  get isAccepted() {
+    return this.isSolved;
+  }
+
+  get isWrongAnswer() {
+    return !this.isSolved && this.pendingCount === 0 && this.failedCount > 0;
+  }
+
+  get isPending() {
+    return !this.isSolved && this.pendingCount > 0;
+  }
+
+  get isUnSubmitted() {
+    return this.totalCount === 0;
+  }
+
+  get penalty() {
+    if (this.isSolved === false) {
+      return 0;
+    }
+
+    return Math.floor(this.solvedTimestamp / 60) * 60 + this.failedCount * this.contestPenalty;
   }
 }
