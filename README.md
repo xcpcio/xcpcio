@@ -5,6 +5,15 @@
 [![License][license-image-mit]](https://mit-license.org/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board)
 
+## Packages
+
+- apps
+  - [board](./packages/apps/board/README.md)
+  - [resolver](./packages/apps/resolver/README.md)
+- libs
+  - [types](./packages/libs/types/README.md)
+  - [core](./packages/libs/core/README.md)
+
 ## Deploying
 
 ```bash
