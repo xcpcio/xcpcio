@@ -11,5 +11,4 @@ if [[ -d "${EXPORT_PATH}" ]]; then
     cp -a "${BOARD_PATH}"/* "${EXPORT_PATH}"/
 fi
 
-cd "${CUR_DIR}" || exit 1
-exec npm run start
+echo "done"
