@@ -6,8 +6,4 @@ if [[ -z "${APP}" ]]; then
     APP="board"
 fi
 
-if [[ X"${1}" = X"primary" ]]; then
-    exec bash "${CUR_DIR}/packages/apps/${APP}/docker/docker_entry.sh"
-else
-    exec "${@}"
-fi
+exec bash "${CUR_DIR}/../packages/apps/${APP}/docker/docker_entry.sh"
