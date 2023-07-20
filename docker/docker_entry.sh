@@ -6,4 +6,4 @@ if [[ -z "${APP}" ]]; then
     APP="board"
 fi
 
-exec bash "${CUR_DIR}/../packages/apps/${APP}/docker/docker_entry.sh"
+exec bash "${CUR_DIR}/../packages/apps/${APP}/docker/docker_entry.sh" "${@}"
