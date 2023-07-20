@@ -8,8 +8,8 @@ import { enableMapSet, enablePatches } from "immer";
 import { createContest, createTeams, createSubmissions, Contest } from "@xcpcio/core";
 
 import { Resolver } from "@/lib/resolver";
-
 import { useLoadBoardData } from "@/lib/local-storage";
+
 import { ResolverUI } from "@/components/resolver-ui";
 
 import "./resolver.css";
