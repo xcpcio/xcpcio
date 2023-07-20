@@ -14,7 +14,7 @@
   - [types](./packages/libs/types/README.md)
   - [core](./packages/libs/core/README.md)
 
-## Deploying
+## Development
 
 ```bash
 git clone https://github.com/xcpcio/xcpcio.git
