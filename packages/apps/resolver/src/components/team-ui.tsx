@@ -56,8 +56,9 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
                     )}
                     key={p.problem.id}
                   >
-                    {p.isAccepted && `${p.failedCount + Number(p.isAccepted)}/${p.lastSubmitTimestamp / 60}`}
-                    {p.isWrongAnswer && `${p.failedCount}/${p.lastSubmitTimestamp / 60}`}
+                    {p.isAccepted &&
+                      `${p.failedCount + Number(p.isAccepted)}/${Math.floor(p.lastSubmitTimestamp / 60)}`}
+                    {p.isWrongAnswer && `${p.failedCount}/${Math.floor(p.lastSubmitTimestamp / 60)}`}
                     {p.isPending && `${p.failedCount} + ${p.pendingCount}`}
                     {p.isUnSubmitted && p.problem.label}
                   </div>
