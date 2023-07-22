@@ -24,6 +24,7 @@ import { Statistics } from "@/components/Statistics";
 import { Selected } from "@/components/Selected";
 import { Balloon } from "@/components/Balloon";
 import { Export } from "@/components/Export";
+import { Resolver } from "@/components/Resolver";
 
 import { throttle, debounce } from "lodash";
 
@@ -115,22 +116,11 @@ class Board extends React.Component<BoardProps, BoardState> {
 
     const timeFlag = getTimeFlag(this.contest_config, props.location.search);
 
-    const currentGroup = getCurrentGroup(
-      props.location.search,
-      menu_item.group,
-      fgroup,
-    );
+    const currentGroup = getCurrentGroup(props.location.search, menu_item.group, fgroup);
 
     const { current_contest_config, current_team, current_run } = (() => {
-      const current_contest_config = getConfig(
-        this.contest_config,
-        currentGroup,
-      );
-      const current_team = getTeam(
-        this.team,
-        currentGroup,
-        props.location.search,
-      );
+      const current_contest_config = getConfig(this.contest_config, currentGroup);
+      const current_team = getTeam(this.team, currentGroup, props.location.search);
       const current_run = getRun(this.run, current_team, timeFlag);
       return { current_contest_config, current_team, current_run };
     })();
@@ -220,19 +210,14 @@ class Board extends React.Component<BoardProps, BoardState> {
               <div className={style.banner}>
                 <img
                   className={style["banner-img"]}
-                  src={[
-                    "data:image/png;base64,",
-                    this.state.contest_config.banner.base64,
-                  ].join("")}
+                  src={["data:image/png;base64,", this.state.contest_config.banner.base64].join("")}
                   alt="banner"
                 ></img>
               </div>
             )}
 
             {this.state.contest_config?.banner === undefined && (
-              <div className={style.title}>
-                {this.state.contest_config?.contest_name}
-              </div>
+              <div className={style.title}>{this.state.contest_config?.contest_name}</div>
             )}
 
             <ProgressBig
@@ -253,26 +238,19 @@ class Board extends React.Component<BoardProps, BoardState> {
                   history={this.props.history}
                   queryName={"group"}
                   siderItem={this.state.menu_item.group}
-                  currentItem={
-                    this.state.menu_item.group[this.state.menu_index.group]
-                  }
+                  currentItem={this.state.menu_item.group[this.state.menu_index.group]}
                 />
               </div>
 
               {this.state.contest_config?.organization && (
                 <div style={{ flex: "1", maxWidth: "480px" }}>
                   <Selected
-                    placeholder={[
-                      this.state.contest_config.organization,
-                      "Filter",
-                    ].join(" ")}
+                    placeholder={[this.state.contest_config.organization, "Filter"].join(" ")}
                     search={this.props.location.search}
                     history={this.props.history}
                     queryName={"organization"}
                     selectedItem={getOrganization(this.state.team)}
-                    currentSelected={getCurrentOrganization(
-                      this.props.location.search,
-                    )}
+                    currentSelected={getCurrentOrganization(this.props.location.search)}
                   />
                 </div>
               )}
@@ -284,9 +262,7 @@ class Board extends React.Component<BoardProps, BoardState> {
                   history={this.props.history}
                   queryName={"type"}
                   siderItem={this.state.menu_item.type.slice().reverse()}
-                  currentItem={
-                    this.state.menu_item.type[this.state.menu_index.type]
-                  }
+                  currentItem={this.state.menu_item.type[this.state.menu_index.type]}
                 />
               </div>
             </div>
@@ -324,6 +300,8 @@ class Board extends React.Component<BoardProps, BoardState> {
                 run={this.state.current_run}
               />
             )}
+
+            {this.state.menu_index.type === 4 && <Resolver></Resolver>}
           </>
         )}
       </div>

@@ -1,112 +1,55 @@
 "use client";
 
 import * as React from "react";
-import { useKey, useKeyPressEvent } from "react-use";
-import { useImmer } from "use-immer";
-import { enableMapSet, enablePatches } from "immer";
+import _ from "lodash";
 
-import { createContest, createTeams, createSubmissions, Contest } from "@xcpcio/core";
-
-import { Resolver } from "@/lib/resolver";
+import { useSearchParams } from "next/navigation";
 
 import { useLoadBoardData } from "@/lib/local-storage";
+import { IBoardData } from "@/lib/types";
+
 import { ResolverUI } from "@/components/resolver-ui";
-
-import "./resolver.css";
-
-enableMapSet();
-enablePatches();
+import { toast } from "@/components/ui/use-toast";
 
 export default function Page() {
   const [loaded, setLoaded] = React.useState(false);
-  const [boardData, ,] = useLoadBoardData();
-  const [resolver, updateResolver] = useImmer<Resolver>(new Resolver(new Contest(), [], []));
+  const [boardDataInLocalStorage, ,] = useLoadBoardData();
+  const [boardData, setBoardData] = React.useState({} as IBoardData);
+
+  const searchParams = useSearchParams();
+  const xcpcioDataSource = searchParams.get("xcpcio-data-source");
+
+  const fetchData = React.useCallback(async () => {
+    const f = _.throttle(async () => {
+      const boardDataResp = await fetch(`/api/load-xcpcio-data?data-source=${xcpcioDataSource}`);
+      if (boardDataResp.status === 200) {
+        setBoardData(JSON.parse(await boardDataResp.text()));
+        setLoaded(true);
+      } else {
+        toast({
+          title: "Fetch Data Failed",
+          description: `code: ${boardDataResp.status}, err: ${
+            JSON.parse(await boardDataResp.text())?.msg ?? "unknown"
+          }`,
+        });
+      }
+    }, 1000);
+
+    await f();
+  }, [xcpcioDataSource]);
 
   React.useEffect(() => {
-    const contest = createContest(JSON.parse(boardData?.config ?? "{}"));
-    const teams = createTeams(JSON.parse(boardData?.team ?? "[]"));
-    const submissions = createSubmissions(JSON.parse(boardData?.run ?? "[]"));
-
-    const resolverC = new Resolver(contest, teams, submissions);
-    resolverC.buildResolver();
-
-    updateResolver(resolverC);
-    setLoaded(true);
-  }, [boardData, setLoaded, updateResolver]);
-
-  const handleArrowUp = React.useCallback(() => {
-    updateResolver((resolver) => {
-      resolver.up();
-    });
-  }, [updateResolver]);
-
-  const handleArrowDown = React.useCallback(() => {
-    updateResolver((resolver) => {
-      resolver.down();
-    });
-  }, [updateResolver]);
-
-  const handleArrowRight = React.useCallback(() => {
-    updateResolver((resolver) => {
-      resolver.right();
-    });
-  }, [updateResolver]);
-
-  const handleArrowLeft = React.useCallback(() => {
-    updateResolver((resolver) => {
-      resolver.left();
-    });
-  }, [updateResolver]);
-
-  React.useEffect(() => {
-    let timeoutId: NodeJS.Timeout | null = null;
-
-    updateResolver((resolver) => {
-      if (!resolver.startScrollUp) {
-        return;
-      }
-
-      if (resolver.problemFlashingEnded === true) {
-        resolver.problemFlashingEnded = false;
-
-        timeoutId = setTimeout(() => {
-          updateResolver((resolver) => {
-            resolver.problemFlashingEnded = true;
-          });
-        }, resolver.FLASHING_TIME_MS);
-      }
-
-      resolver.scrollUp();
-    });
-
-    if (timeoutId !== null) {
-      return () => {
-        clearTimeout(timeoutId as NodeJS.Timeout);
-      };
+    if (xcpcioDataSource !== null) {
+      fetchData();
     }
-  }, [resolver, updateResolver]);
+  }, [fetchData, xcpcioDataSource]);
 
   React.useEffect(() => {
-    updateResolver((resolver) => {
-      if (!resolver.startScrollDown) {
-        return;
-      }
-
-      resolver.scrollDown();
-    });
-  }, [resolver, updateResolver]);
-
-  useKey("w", handleArrowUp);
-  useKeyPressEvent("i", undefined, handleArrowUp);
-
-  useKey("s", handleArrowDown);
-  useKeyPressEvent("k", undefined, handleArrowDown);
-
-  useKey("d", handleArrowRight);
-  useKeyPressEvent("l", undefined, handleArrowRight);
-
-  useKey("a", handleArrowLeft);
-  useKeyPressEvent("j", undefined, handleArrowLeft);
+    if (xcpcioDataSource === null) {
+      setBoardData(boardDataInLocalStorage as IBoardData);
+      setLoaded(true);
+    }
+  }, [boardData, boardDataInLocalStorage, setLoaded, xcpcioDataSource]);
 
   return (
     <main className="flex min-h-screen min-w-screen">
@@ -115,7 +58,7 @@ export default function Page() {
           <p>loading data...</p>
         </div>
       )}
-      {loaded && <ResolverUI resolver={resolver} updateResolver={updateResolver}></ResolverUI>}
+      {loaded && <ResolverUI boardData={boardData}></ResolverUI>}
     </main>
   );
 }
