@@ -4,6 +4,8 @@ import * as React from "react";
 import { useInView } from "react-intersection-observer";
 import { Updater } from "use-immer";
 
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 import { Team } from "@xcpcio/core";
 
 import { Resolver } from "@/lib/resolver";
@@ -20,6 +22,20 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
   const { team, index, resolver } = props;
   const { ref, entry } = useInView();
 
+  const showTeamName = (team: Team) => {
+    const left = team.organization;
+    const right = team.name;
+    if (right.length === 0) {
+      return left;
+    }
+
+    if (left.length === 0) {
+      return right;
+    }
+
+    return `${left} - ${right}`;
+  };
+
   return (
     <div
       ref={ref}
@@ -33,10 +49,17 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
     >
       {entry?.isIntersecting && (
         <>
-          <div className="w-20 flex justify-center items-center">{team.rank}</div>
-          <div className="flex-1 flex flex-col justify-center items-start gap-y-3">
-            <div className="">
-              {team.organization} - {team.name}
+          <div className="w-20 flex flex-shrink-0 justify-center items-center">{team.rank}</div>
+          <div className="flex flex-1 flex-col justify-center items-start gap-y-3">
+            <div className="truncate overflow-hidden resolver-team-name">
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>{showTeamName(team)}</TooltipTrigger>
+                  <TooltipContent>
+                    <p>{showTeamName(team)}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
             <div className="flex flex-row text-sm items-start gap-x-2">
               {team.problemStatistics.map((p, pIx) => {
@@ -66,7 +89,7 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
               })}
             </div>
           </div>
-          <div className="w-48 flex flex-row justify-start items-center">
+          <div className="w-48 flex flex-shrink-0 flex-row justify-start items-center">
             <div className="w-1/3">{team.solvedProblemNum}</div>
             <div className="w-2/3">{team.penaltyToMinute()}</div>
           </div>
