@@ -2,7 +2,7 @@
     "private": true,
     "name": "@xcpcio/xcpcio",
     "description": "XCPCIO",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "packageManager": "pnpm@8.6.7",
     "license": "MIT",
     "author": "Dup4 <lyuzhi.pan@gmail.com>",
