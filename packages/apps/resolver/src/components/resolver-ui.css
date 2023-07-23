@@ -2,3 +2,7 @@
   animation: flashing 300ms infinite;
   -webkit-animation: flashing 30ms infinite; /*Safari and Chrome*/
 }
+
+.resolver-team-name {
+  max-width: calc(100vw - 80px - 192px - 112px);
+}
