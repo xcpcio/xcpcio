@@ -24,6 +24,8 @@
         "prettierrc",
         "tailwindcss",
         "umijs",
+        "vitepress",
+        "XCPC",
         "XCPCIO"
     ],
     "typescript.tsdk": "node_modules/typescript/lib",
