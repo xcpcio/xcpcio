@@ -4,6 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "XCPCIO",
   description: "To Make XCPC Better",
+  srcDir: "src",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
