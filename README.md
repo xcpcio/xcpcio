@@ -9,6 +9,7 @@
 
 - [apps](./packages/apps/)
   - [board](./packages/apps/board/README.md)
+  - [docs](./packages/apps/docs/README.md)
   - [resolver](./packages/apps/resolver/README.md)
 - [libs](./packages/libs/)
   - [types](./packages/libs/types/README.md)
