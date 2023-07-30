@@ -17,7 +17,7 @@
         "url": "https://github.com/xcpcio/xcpcio/issues"
     },
     "engines": {
-        "node": "^16.19.0"
+        "node": "^16.16.0"
     },
     "files": [
         "dist"
