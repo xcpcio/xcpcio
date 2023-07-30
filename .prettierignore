@@ -15,4 +15,6 @@
 
 Progress.module.less
 
+packages/apps/board/src/
+packages/apps/board-vitesse/
 packages/apps/resolver/src/components/ui/*

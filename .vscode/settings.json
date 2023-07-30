@@ -5,8 +5,20 @@
     "files.trimTrailingWhitespace": true,
     "files.insertFinalNewline": true,
     "files.trimFinalNewlines": true,
+    "i18n-ally.sourceLanguage": "en",
+    "i18n-ally.keystyle": "nested",
+    "i18n-ally.localesPaths": "locales",
+    "i18n-ally.sortKeys": true,
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "cSpell.words": [
         "antd",
+        "antfu",
         "buildx",
         "bumpp",
         "ccpc",
@@ -17,23 +29,20 @@
         "fortawesome",
         "frontmatter",
         "highcharts",
+        "iconify",
         "icpc",
         "Immer",
         "immerable",
         "metas",
         "pnpm",
         "prettierrc",
+        "shiki",
         "tailwindcss",
         "umijs",
+        "unplugin",
         "vitepress",
+        "vitesse",
         "XCPC",
         "XCPCIO"
     ],
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
 }
