@@ -34,9 +34,9 @@ export type Color = ColorHEX | ColorRGB | ColorRGBA;
 export type ThemeColor =
   | Color
   | {
-      light: Color;
-      dark: Color;
-    };
+    light: Color;
+    dark: Color;
+  };
 
 export interface Style {
   /**
@@ -62,12 +62,12 @@ export interface BalloonColor {
  * @example
  * { "en-US": 'English', "zh-CN": '中文', fallback: 'English' }
  */
-export type I18NStringSet = {
+export interface I18NStringSet {
   /** The fallback string if renderer cannot determine the language to use. */
   fallback: string;
   /** The key is the IETF BCP 47 language tag, and the value is the string for this language tag. */
   [key: string]: string;
-};
+}
 
 /**
  * Text (i18n supported).

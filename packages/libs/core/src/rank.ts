@@ -1,8 +1,10 @@
 import _ from "lodash";
 
-import { Contest } from "./contest";
-import { Team, Teams } from "./team";
-import { Submission, Submissions } from "./submission";
+import type { Contest } from "./contest";
+import type { Teams } from "./team";
+import { Team } from "./team";
+import type { Submissions } from "./submission";
+import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 
 export class Rank {
@@ -20,12 +22,12 @@ export class Rank {
     this.contest = contest;
 
     this.teams = _.cloneDeep(teams);
-    this.teamsMap = new Map(this.teams.map((t) => [t.id, t]));
+    this.teamsMap = new Map(this.teams.map(t => [t.id, t]));
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
-    this.submissionsMap = new Map(this.submissions.map((s) => [s.id, s]));
+    this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
-    this.firstSolvedSubmissions = new Map(this.contest.problems.map((p) => [p.id, []]));
+    this.firstSolvedSubmissions = new Map(this.contest.problems.map(p => [p.id, []]));
   }
 
   buildRank(options?: { timestamp?: number }) {
@@ -39,10 +41,10 @@ export class Rank {
           return ps;
         });
 
-        t.problemStatisticsMap = new Map(t.problemStatistics.map((ps) => [ps.problem.id, ps]));
+        t.problemStatisticsMap = new Map(t.problemStatistics.map(ps => [ps.problem.id, ps]));
       }
 
-      this.firstSolvedSubmissions = new Map(this.contest.problems.map((p) => [p.id, []]));
+      this.firstSolvedSubmissions = new Map(this.contest.problems.map(p => [p.id, []]));
 
       for (const s of this.submissions) {
         const teamId = s.teamId;
@@ -87,8 +89,8 @@ export class Rank {
           problem.statistics.acceptedNum++;
 
           if (
-            firstSolvedSubmissions.length === 0 ||
-            firstSolvedSubmissions[firstSolvedSubmissions.length - 1].timestamp === s.timestamp
+            firstSolvedSubmissions.length === 0
+            || firstSolvedSubmissions[firstSolvedSubmissions.length - 1].timestamp === s.timestamp
           ) {
             problemStatistics.isFirstSolved = true;
             firstSolvedSubmissions.push(s);
@@ -106,7 +108,7 @@ export class Rank {
         }
       }
 
-      this.teams.forEach((t) => t.calcSolvedData());
+      this.teams.forEach(t => t.calcSolvedData());
       this.teams.sort(Team.compare);
 
       {

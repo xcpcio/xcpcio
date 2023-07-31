@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
-import { IBoardData } from "@/lib/types";
+import type { IBoardData } from "@/lib/types";
 
 const DATA_HOST = "https://board.xcpcio.com/data";
 

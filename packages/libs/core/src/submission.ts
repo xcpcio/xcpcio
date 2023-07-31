@@ -1,10 +1,11 @@
-import { Submission as ISubmission, Submissions as ISubmissions, SubmissionStatus } from "@xcpcio/types";
+import type { Submission as ISubmission, Submissions as ISubmissions } from "@xcpcio/types";
+import { SubmissionStatus } from "@xcpcio/types";
 
 import {
   isAccepted,
-  isRejected,
-  isPending,
   isNotCalculatedPenaltyStatus,
+  isPending,
+  isRejected,
   stringToSubmissionStatus,
 } from "./submission-status";
 

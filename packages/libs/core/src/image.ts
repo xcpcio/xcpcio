@@ -1,4 +1,4 @@
-import { Image } from "@xcpcio/types";
+import type { Image } from "@xcpcio/types";
 
 export function getImageSource(image: Image): string {
   if (image?.url) {

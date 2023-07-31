@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { resolve } from "node:path";
-import fs from "fs";
+import fs from "node:fs";
+import { describe, expect, it } from "vitest";
 
 import { createTeams } from "../src/team";
 

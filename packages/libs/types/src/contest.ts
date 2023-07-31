@@ -1,5 +1,5 @@
-import { BalloonColor, Image, DateTimeISO8601String } from "./basic-types";
-import { Problem } from "./problem";
+import type { BalloonColor, DateTimeISO8601String, Image } from "./basic-types";
+import type { Problem } from "./problem";
 
 export enum ContestState {
   PENDING = "PENDING",

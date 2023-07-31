@@ -1,18 +1,18 @@
 <script setup lang="ts">
-const props = defineProps<{ name: string }>()
-const router = useRouter()
-const user = useUserStore()
-const { t } = useI18n()
+const props = defineProps<{ name: string }>();
+const router = useRouter();
+const user = useUserStore();
+const { t } = useI18n();
 
 watchEffect(() => {
-  user.setNewName(props.name)
-})
+  user.setNewName(props.name);
+});
 </script>
 
 <template>
   <div>
     <div text-4xl>
-      <div i-carbon-pedestrian inline-block />
+      <div inline-block i-carbon-pedestrian />
     </div>
     <p>
       {{ t('intro.hi', { name: props.name }) }}
@@ -23,7 +23,7 @@ watchEffect(() => {
     </p>
 
     <template v-if="user.otherNames.length">
-      <p mt-4 text-sm>
+      <p text-sm mt-4>
         <span opacity-75>{{ t('intro.aka') }}:</span>
         <ul>
           <li v-for="otherName in user.otherNames" :key="otherName">

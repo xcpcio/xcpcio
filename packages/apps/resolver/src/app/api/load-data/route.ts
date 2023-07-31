@@ -1,15 +1,16 @@
-import { NextRequest, NextResponse } from "next/server";
+import path from "node:path";
+import fs from "node:fs";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 import { CCPC_FINAL } from "@/lib/constant";
-import { IBoardData } from "@/lib/types";
-
-import path from "path";
-import fs from "fs";
+import type { IBoardData } from "@/lib/types";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const contestName = searchParams.get("contestName") ?? CCPC_FINAL;
 
+  // eslint-disable-next-line n/prefer-global/process
   const dir = path.join(process.cwd(), "src/app/api/load-data/data", contestName);
 
   if (!fs.existsSync(dir)) {
@@ -25,9 +26,9 @@ export async function GET(req: NextRequest) {
   const team = fs.readFileSync(path.join(dir, "team.json"), "utf8");
 
   const data: IBoardData = {
-    config: config,
-    run: run,
-    team: team,
+    config,
+    run,
+    team,
   };
 
   return NextResponse.json(data);

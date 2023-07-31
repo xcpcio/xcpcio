@@ -1,8 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
   transpilePackages: ["@xcpcio/types", "@xcpcio/core"],
 };
-
-module.exports = nextConfig;

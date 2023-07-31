@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { availableLocales, loadLanguageAsync } from '~/modules/i18n'
+import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
-const { t, locale } = useI18n()
+const { t, locale } = useI18n();
 
 async function toggleLocales() {
   // change to some real logic
-  const locales = availableLocales
-  const newLocale = locales[(locales.indexOf(locale.value) + 1) % locales.length]
-  await loadLanguageAsync(newLocale)
-  locale.value = newLocale
+  const locales = availableLocales;
+  const newLocale = locales[(locales.indexOf(locale.value) + 1) % locales.length];
+  await loadLanguageAsync(newLocale);
+  locale.value = newLocale;
 }
 </script>
 
 <template>
-  <nav flex="~ gap-4" mt-6 justify-center text-xl>
+  <nav flex="~ gap-4" justify-center mt-6 text-xl>
     <RouterLink icon-btn to="/" :title="t('button.home')">
       <div i-carbon-campsite />
     </RouterLink>

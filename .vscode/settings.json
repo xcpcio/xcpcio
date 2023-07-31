@@ -1,51 +1,82 @@
 {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.formatOnSave": true,
-    "files.trimTrailingWhitespace": true,
-    "files.insertFinalNewline": true,
-    "files.trimFinalNewlines": true,
-    "i18n-ally.sourceLanguage": "en",
-    "i18n-ally.keystyle": "nested",
-    "i18n-ally.localesPaths": "locales",
-    "i18n-ally.sortKeys": true,
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "[javascript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "cSpell.words": [
-        "antd",
-        "antfu",
-        "buildx",
-        "bumpp",
-        "ccpc",
-        "codeforces",
-        "Delivr",
-        "DOCKERHUB",
-        "fontawesome",
-        "fortawesome",
-        "frontmatter",
-        "highcharts",
-        "iconify",
-        "icpc",
-        "Immer",
-        "immerable",
-        "metas",
-        "pinia",
-        "pnpm",
-        "prettierrc",
-        "shiki",
-        "tailwindcss",
-        "umijs",
-        "unocss",
-        "unplugin",
-        "vite",
-        "vitepress",
-        "vitesse",
-        "XCPC",
-        "XCPCIO"
-    ],
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+
+  "prettier.enable": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": false
+  },
+
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "vue",
+    "html",
+    "markdown",
+    "json",
+    "jsonc",
+    "yaml"
+  ],
+
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": "locales",
+  "i18n-ally.sortKeys": true,
+
+  "cSpell.words": [
+    "antd",
+    "antfu",
+    "buildx",
+    "bumpp",
+    "ccpc",
+    "codeforces",
+    "Delivr",
+    "DOCKERHUB",
+    "esmo",
+    "fontawesome",
+    "fortawesome",
+    "frontmatter",
+    "highcharts",
+    "iconify",
+    "icpc",
+    "Immer",
+    "immerable",
+    "metas",
+    "pinia",
+    "pnpm",
+    "prettierrc",
+    "shiki",
+    "tailwindcss",
+    "taze",
+    "umijs",
+    "unocss",
+    "unplugin",
+    "vite",
+    "vitepress",
+    "vitesse",
+    "XCPC",
+    "XCPCIO"
+  ]
 }

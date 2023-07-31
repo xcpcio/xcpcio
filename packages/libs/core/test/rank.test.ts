@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { resolve } from "node:path";
-import fs from "fs";
+import fs from "node:fs";
+import { describe, expect, it } from "vitest";
 
 import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
@@ -153,8 +153,8 @@ describe("contest", () => {
     expect(rank.teams[0].rank).toMatchInlineSnapshot("1");
     expect(rank.teams[0].solvedProblemNum).toMatchInlineSnapshot("11");
     expect(rank.teams[0].penalty).toMatchInlineSnapshot("89820");
-    expect(rank.teams[0].name).toMatchInlineSnapshot('"重生之我是菜狗"');
-    expect(rank.teams[0].organization).toMatchInlineSnapshot('"北京大学"');
+    expect(rank.teams[0].name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
+    expect(rank.teams[0].organization).toMatchInlineSnapshot("\"北京大学\"");
     expect(rank.teams[0].problemStatistics).toMatchInlineSnapshot(`
       [
         TeamProblemStatistics {

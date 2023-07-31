@@ -1,4 +1,4 @@
-import { BalloonColor } from "./basic-types";
+import type { BalloonColor } from "./basic-types";
 
 export interface Problem {
   id: string;

@@ -1,6 +1,7 @@
 # xcpcio
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
+[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 [![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]](https://mit-license.org/)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board)
