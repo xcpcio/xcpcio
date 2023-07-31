@@ -18,20 +18,20 @@
     "outDir": "dist",
     "paths": {
       "@xcpcio/types": [
-        "./packages/libs/types/src/index.ts",
+        "./packages/libs/types/src/index.ts"
       ],
       "@xcpcio/core": [
-        "./packages/libs/core/src/index.ts",
-      ],
+        "./packages/libs/core/src/index.ts"
+      ]
     }
   },
   "include": [
-    "./packages/**/*.ts",
+    "./packages/**/*.ts"
   ],
   "exclude": [
     "**/dist/**",
     "node_modules",
     "./packages/**/*.test.ts",
-    "./packages/apps/board",
-  ],
+    "./packages/apps/board"
+  ]
 }

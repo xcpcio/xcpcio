@@ -1,4 +1,4 @@
-import { resolve as _resolve } from "path";
+import { resolve as _resolve } from "node:path";
 import { defineConfig } from "vitest/config";
 
 const resolve = (p: string) => _resolve(__dirname, p);

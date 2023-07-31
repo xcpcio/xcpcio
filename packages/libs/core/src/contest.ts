@@ -1,7 +1,9 @@
-import { Contest as IContest, ContestState, Image, VERSION, StatusTimeDisplay } from "@xcpcio/types";
+import type { Contest as IContest, Image, StatusTimeDisplay } from "@xcpcio/types";
+import { ContestState, VERSION } from "@xcpcio/types";
 
-import { Problem, Problems, createProblems, createProblemsByProblemIds } from "./problem";
-import { dayjs, createDayJS, getTimeDiff } from "./utils";
+import type { Problem, Problems } from "./problem";
+import { createProblems, createProblemsByProblemIds } from "./problem";
+import { createDayJS, dayjs, getTimeDiff } from "./utils";
 
 export class Contest {
   name = "";
@@ -164,7 +166,7 @@ export function createContest(contestJSON: IContest): Contest {
       c.problems = createProblems(contestJSON.problems);
     }
 
-    c.problemsMap = new Map(c.problems.map((p) => [p.id, p]));
+    c.problemsMap = new Map(c.problems.map(p => [p.id, p]));
   }
 
   if (contestJSON.status_time_display !== undefined && contestJSON.status_time_display !== null) {

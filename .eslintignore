@@ -3,6 +3,8 @@ node_modules
 out
 .next
 
-packages/apps/board/src/
-packages/apps/board-vitesse/
+data
+test-data
+
+packages/apps/board/
 packages/apps/resolver/src/components/ui/*

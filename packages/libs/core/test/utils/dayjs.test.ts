@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { dayjs, createDayJS, getTimestamp } from "../../src/utils";
+import { createDayJS, dayjs, getTimestamp } from "../../src/utils";
 
 describe("dayjs", () => {
   dayjs.tz.setDefault("Asia/Shanghai");
@@ -8,11 +8,11 @@ describe("dayjs", () => {
   it("createDayJS", () => {
     const timestamp = 1686454157;
     const t = createDayJS(timestamp);
-    expect(t.toJSON()).toMatchInlineSnapshot('"2023-06-11T03:29:17.000Z"');
-    expect(t.toISOString()).toMatchInlineSnapshot('"2023-06-11T03:29:17.000Z"');
+    expect(t.toJSON()).toMatchInlineSnapshot("\"2023-06-11T03:29:17.000Z\"");
+    expect(t.toISOString()).toMatchInlineSnapshot("\"2023-06-11T03:29:17.000Z\"");
     expect(getTimestamp(t)).toMatchInlineSnapshot("1686454157");
 
-    expect(dayjs.tz("2014-06-01 12:00").format()).toMatchInlineSnapshot('"2014-06-01T12:00:00+08:00"');
+    expect(dayjs.tz("2014-06-01 12:00").format()).toMatchInlineSnapshot("\"2014-06-01T12:00:00+08:00\"");
   });
 
   it("parse", () => {

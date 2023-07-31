@@ -8,11 +8,11 @@ import FlipMove from "react-flip-move";
 
 import { createContest, createSubmissions, createTeams } from "@xcpcio/core";
 
+import { TeamUI } from "./team-ui";
 import { Resolver } from "@/lib/resolver";
 import { cn } from "@/lib/utils";
 
-import { TeamUI } from "./team-ui";
-import { IBoardData } from "@/lib/types";
+import type { IBoardData } from "@/lib/types";
 
 import "./resolver-ui.css";
 

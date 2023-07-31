@@ -1,6 +1,6 @@
-import { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
+import type { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
-import { TeamProblemStatistics } from "./problem";
+import type { TeamProblemStatistics } from "./problem";
 
 export class Team {
   id: string;
@@ -106,7 +106,7 @@ export function createTeam(teamJSON: ITeam): Team {
 
 export function createTeams(teamsJSON: ITeams): Teams {
   if (Array.isArray(teamsJSON)) {
-    return teamsJSON.map((t) => createTeam(t));
+    return teamsJSON.map(t => createTeam(t));
   } else {
     const teams = Object.entries(teamsJSON).map(([teamId, team]) =>
       createTeam({ ...team, team_id: team.team_id ?? teamId }),

@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { resolve } from "node:path";
-import fs from "fs";
+import fs from "node:fs";
+import { describe, expect, it } from "vitest";
 
 import { createContest } from "../src/contest";
 
@@ -10,12 +10,12 @@ describe("contest", () => {
     const contestJSON = JSON.parse(data.toString());
     const contest = createContest(contestJSON);
 
-    expect(contest.name).toMatchInlineSnapshot('"第八届中国大学生程序设计竞赛总决赛（正式赛）"');
-    expect(contest.startTime).toMatchInlineSnapshot('"2023-05-14T01:10:00.000Z"');
-    expect(contest.endTime).toMatchInlineSnapshot('"2023-05-14T06:10:00.000Z"');
-    expect(contest.freezeTime).toMatchInlineSnapshot('"2023-05-14T05:10:00.000Z"');
+    expect(contest.name).toMatchInlineSnapshot("\"第八届中国大学生程序设计竞赛总决赛（正式赛）\"");
+    expect(contest.startTime).toMatchInlineSnapshot("\"2023-05-14T01:10:00.000Z\"");
+    expect(contest.endTime).toMatchInlineSnapshot("\"2023-05-14T06:10:00.000Z\"");
+    expect(contest.freezeTime).toMatchInlineSnapshot("\"2023-05-14T05:10:00.000Z\"");
     expect(contest.penalty).toMatchInlineSnapshot("1200");
-    expect(contest.organization).toMatchInlineSnapshot('"School"');
+    expect(contest.organization).toMatchInlineSnapshot("\"School\"");
     expect(contest.problems).toMatchInlineSnapshot(`
       [
         Problem {

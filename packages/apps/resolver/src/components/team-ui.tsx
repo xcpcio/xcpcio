@@ -2,13 +2,12 @@
 
 import * as React from "react";
 import { useInView } from "react-intersection-observer";
-import { Updater } from "use-immer";
+import type { Updater } from "use-immer";
 
+import type { Team } from "@xcpcio/core";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
-import { Team } from "@xcpcio/core";
-
-import { Resolver } from "@/lib/resolver";
+import type { Resolver } from "@/lib/resolver";
 import { cn } from "@/lib/utils";
 
 export interface TeamUIProps {
@@ -71,16 +70,16 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
                       p.isWrongAnswer ? "bg-resolver-wa" : "",
                       p.isPending ? "bg-resolver-pending" : "",
                       p.isUnSubmitted ? "bg-resolver-untouched" : "",
-                      resolver.problemFlashingEnded === false &&
-                        props.index === resolver.currentIndex &&
-                        resolver.currentProblemIndex === pIx
+                      resolver.problemFlashingEnded === false
+                        && props.index === resolver.currentIndex
+                        && resolver.currentProblemIndex === pIx
                         ? "resolver-uncover"
                         : "",
                     )}
                     key={p.problem.id}
                   >
-                    {p.isAccepted &&
-                      `${p.failedCount + Number(p.isAccepted)}/${Math.floor(p.lastSubmitTimestamp / 60)}`}
+                    {p.isAccepted
+                      && `${p.failedCount + Number(p.isAccepted)}/${Math.floor(p.lastSubmitTimestamp / 60)}`}
                     {p.isWrongAnswer && `${p.failedCount}/${Math.floor(p.lastSubmitTimestamp / 60)}`}
                     {p.isPending && `${p.failedCount} + ${p.pendingCount}`}
                     {p.isUnSubmitted && p.problem.label}

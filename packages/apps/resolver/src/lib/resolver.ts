@@ -1,4 +1,5 @@
-import { Contest, Resolver as ResolverCore, Submissions, Team, Teams } from "@xcpcio/core";
+import type { Contest, Submissions, Teams } from "@xcpcio/core";
+import { Resolver as ResolverCore, Team } from "@xcpcio/core";
 
 import { immerable } from "immer";
 

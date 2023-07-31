@@ -1,26 +1,29 @@
 {
-    "private": true,
-    "name": "@xcpcio/docs",
-    "description": "XCPCIO docs",
-    "version": "0.3.3",
-    "packageManager": "pnpm@8.6.7",
-    "license": "MIT",
-    "author": "Dup4 <lyuzhi.pan@gmail.com>",
-    "keywords": [
-        "ICPC",
-        "CCPC"
-    ],
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/xcpcio/xcpcio.git"
-    },
-    "homepage": "https://github.com/xcpcio/xcpcio",
-    "bugs": {
-        "url": "https://github.com/xcpcio/xcpcio/issues"
-    },
-    "scripts": {
-        "dev": "vitepress dev",
-        "build": "vitepress build",
-        "preview": "vitepress preview"
-    }
+  "name": "@xcpcio/docs",
+  "version": "0.3.3",
+  "private": true,
+  "packageManager": "pnpm@8.6.7",
+  "description": "XCPCIO docs",
+  "author": "Dup4 <lyuzhi.pan@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/xcpcio/xcpcio",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xcpcio/xcpcio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xcpcio/xcpcio/issues"
+  },
+  "keywords": [
+    "ICPC",
+    "CCPC"
+  ],
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vue": "^3.3.4"
+  }
 }

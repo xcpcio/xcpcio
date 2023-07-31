@@ -1,10 +1,12 @@
 import _ from "lodash";
 
 import { Rank } from "./rank";
-import { Contest } from "./contest";
-import { Team, Teams } from "./team";
-import { Submission, Submissions } from "./submission";
-import { TeamProblemStatistics } from "./problem";
+import type { Contest } from "./contest";
+import type { Teams } from "./team";
+import { Team } from "./team";
+import type { Submissions } from "./submission";
+import { Submission } from "./submission";
+import type { TeamProblemStatistics } from "./problem";
 import { ResolverOperation } from "./resolver-operation";
 
 export class Resolver extends Rank {
@@ -22,7 +24,7 @@ export class Resolver extends Rank {
 
     {
       const ix = _.sortedIndex(
-        submissions.map((s) => s.timestamp),
+        submissions.map(s => s.timestamp),
         contest.unFreezeDurationTimestamp,
       );
 
@@ -65,7 +67,7 @@ export class Resolver extends Rank {
     {
       const teams_ = _.cloneDeep(this.teams);
 
-      for (let i = this.teams.length - 1; i >= 0; ) {
+      for (let i = this.teams.length - 1; i >= 0;) {
         const team = teams_[i];
         const teamId = team.id;
 

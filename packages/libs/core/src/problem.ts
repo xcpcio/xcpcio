@@ -1,6 +1,6 @@
-import { Problem as IProblem, Problems as IProblems, BalloonColor } from "@xcpcio/types";
+import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 
-import { Submissions } from "./submission";
+import type { Submissions } from "./submission";
 
 export interface ProblemStatistics {
   acceptedNum: number;

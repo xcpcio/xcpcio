@@ -1,6 +1,6 @@
 {
   "extends": [
-    "@antfu",
+    "../../../.eslintrc",
     "@unocss"
   ]
 }

@@ -6,7 +6,7 @@ import _ from "lodash";
 import { useSearchParams } from "next/navigation";
 
 import { useLoadBoardData } from "@/lib/local-storage";
-import { IBoardData } from "@/lib/types";
+import type { IBoardData } from "@/lib/types";
 
 import { ResolverUI } from "@/components/resolver-ui";
 import { toast } from "@/components/ui/use-toast";
@@ -54,7 +54,7 @@ export default function Page() {
   return (
     <main className="flex min-h-screen min-w-screen">
       {!loaded && (
-        <div className="flex w-full justify-center items-center">
+        <div className="flex justify-center items-center w-full">
           <p>loading data...</p>
         </div>
       )}

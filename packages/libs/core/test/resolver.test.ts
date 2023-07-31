@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
 import { resolve } from "node:path";
-import fs from "fs";
+import fs from "node:fs";
+import { describe, expect, it } from "vitest";
 
 import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
@@ -28,11 +28,11 @@ describe("contest", () => {
 
     expect(resolver.operations[0].id).toMatchInlineSnapshot("0");
     expect(resolver.operations[0].problemIx).toMatchInlineSnapshot("4");
-    expect(resolver.operations[0].team.name).toMatchInlineSnapshot('"红旗精英"');
+    expect(resolver.operations[0].team.name).toMatchInlineSnapshot("\"红旗精英\"");
     expect(resolver.operations[0]).toMatchSnapshot();
 
     expect(resolver.operations.slice(-1)[0].id).toMatchInlineSnapshot("202");
-    expect(resolver.operations.slice(-1)[0].team.name).toMatchInlineSnapshot('"重生之我是菜狗"');
+    expect(resolver.operations.slice(-1)[0].team.name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
     expect(resolver.operations.slice(-1)[0].problemIx).toMatchInlineSnapshot("8");
     expect(resolver.operations.slice(-1)[0].beforeTeamProblemStatistics.pendingCount).toMatchInlineSnapshot("2");
     expect(resolver.operations.slice(-1)[0].afterTeamProblemStatistics.isAccepted).toMatchInlineSnapshot("true");
