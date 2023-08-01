@@ -39,6 +39,9 @@
   "[json]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
+  "[shellscript]": {
+    "editor.formatOnSave": true
+  },
 
   "i18n-ally.sourceLanguage": "en",
   "i18n-ally.keystyle": "nested",
@@ -58,13 +61,13 @@
     "fontawesome",
     "fortawesome",
     "frontmatter",
-    "vueuse",
     "highcharts",
     "iconify",
     "icpc",
     "Immer",
     "immerable",
     "metas",
+    "noopener",
     "pinia",
     "pnpm",
     "prettierrc",
@@ -77,6 +80,8 @@
     "vite",
     "vitepress",
     "vitesse",
+    "vueuse",
+    "Webfont",
     "XCPC",
     "XCPCIO"
   ]

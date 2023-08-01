@@ -5,8 +5,5 @@
   >
     <RouterView />
     <TheFooter />
-    <div text-sm mx-auto mt-5 text-center opacity-50>
-      [Default Layout]
-    </div>
   </main>
 </template>

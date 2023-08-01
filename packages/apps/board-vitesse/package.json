@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "vite-ssg build",
-    "dev": "vite --host :: --port 3333",
+    "dev": "vite --port 3333",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",

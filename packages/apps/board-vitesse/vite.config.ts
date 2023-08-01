@@ -162,4 +162,14 @@ export default defineConfig({
     // TODO: workaround until they support native ESM
     noExternal: ["workbox-window", /vue-i18n/],
   },
+
+  server: {
+    host: true,
+    proxy: {
+      "/data": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
+    },
+  },
 });

@@ -1,5 +1,5 @@
 declare interface Window {
-  // extend the window
+  DATA_HOST: string;
 }
 
 // with vite-plugin-vue-markdown, markdown files can be treated as Vue components

@@ -1,57 +1,47 @@
 <script setup lang="ts">
-defineOptions({
-  name: "IndexPage",
-});
-const user = useUserStore();
-const name = ref(user.savedName);
-
-const router = useRouter();
-function go() {
-  if (name.value) {
-    router.push(`/hi/${encodeURIComponent(name.value)}`);
-  }
-}
+import { useFetch, useVirtualList } from "@vueuse/core";
+import { type ContestIndexList, createContestIndexList } from "@xcpcio/core";
 
 const { t } = useI18n();
+
+const url = ref(`${window.DATA_HOST}index/contest_list.json`);
+const refetch = ref(false);
+
+const contestIndexList = ref([] as ContestIndexList);
+
+const { list, containerProps, wrapperProps } = useVirtualList(
+  contestIndexList,
+  {
+    itemHeight: 64,
+  },
+);
+
+const {
+  isFetching,
+  isFinished,
+} = useFetch(url, {
+  refetch,
+  afterFetch: (ctx) => {
+    contestIndexList.value = createContestIndexList(JSON.parse(ctx.data));
+    return ctx;
+  },
+}).get();
 </script>
 
 <template>
-  <div>
-    <div text-4xl>
-      <div i-carbon-campsite inline-block />
-    </div>
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
-      </a>
-    </p>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
+  <div v-if="isFetching">
+    {{ t("common.loading") }}...
+  </div>
 
-    <div py-4 />
-
-    <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
-
-    <div>
-      <button
-        text-sm btn m-3
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
+  <div v-if="isFinished">
+    <div v-bind="containerProps" style="height: calc(100vh - 144px)">
+      <div v-bind="wrapperProps">
+        <div v-for="item in list" :key="item.data.boardLink" style="height: 64px">
+          {{ item.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ item.data.config.startTime.format("z") }}</sup>
+          <br>
+          {{ item.data.config.contestName }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>
