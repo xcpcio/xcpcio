@@ -17,6 +17,7 @@ const { list, containerProps, wrapperProps } = useVirtualList(
 );
 
 const {
+  error,
   isFetching,
   isFinished,
 } = useFetch(url, {
@@ -34,7 +35,11 @@ const {
   </div>
 
   <div v-if="isFinished">
-    <div v-bind="containerProps" style="height: calc(100vh - 144px)">
+    <div v-if="error">
+      {{ error }}
+    </div>
+
+    <div v-bind="containerProps" style="height: calc(100vh - 128px)">
       <div v-bind="wrapperProps">
         <div v-for="item in list" :key="item.data.boardLink" style="height: 64px">
           {{ item.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ item.data.config.startTime.format("z") }}</sup>
