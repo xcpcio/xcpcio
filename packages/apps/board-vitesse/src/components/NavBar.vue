@@ -23,7 +23,7 @@ async function toggleLocales() {
 <template>
   <header class="header z-40">
     <RouterLink
-      class="absolute m-5 h-12 w-12 select-none outline-none xl:fixed"
+      class="absolute h-12 w-12 select-none outline-none xl:fixed m-6"
       text-xl
       to="/"
       focusable="false"

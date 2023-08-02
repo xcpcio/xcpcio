@@ -18,9 +18,6 @@ const isVisible = useElementVisibility(el);
         <br>
         {{ props.data.config.contestName }}
       </div>
-      <div v-else>
-        {{ isVisible }}
-      </div>
     </div>
   </div>
 </template>
