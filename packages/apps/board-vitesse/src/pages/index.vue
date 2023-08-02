@@ -1,20 +1,12 @@
 <script setup lang="ts">
-import { useFetch, useVirtualList } from "@vueuse/core";
+import { useFetch } from "@vueuse/core";
 import { type ContestIndexList, createContestIndexList } from "@xcpcio/core";
 
 const { t } = useI18n();
 
 const url = ref(`${window.DATA_HOST}index/contest_list.json`);
 const refetch = ref(false);
-
 const contestIndexList = ref([] as ContestIndexList);
-
-const { list, containerProps, wrapperProps } = useVirtualList(
-  contestIndexList,
-  {
-    itemHeight: 64,
-  },
-);
 
 const {
   error,
@@ -30,22 +22,18 @@ const {
 </script>
 
 <template>
-  <div v-if="isFetching">
-    {{ t("common.loading") }}...
-  </div>
-
-  <div v-if="isFinished">
-    <div v-if="error">
-      {{ error }}
+  <div>
+    <div v-if="isFetching">
+      {{ t("common.loading") }}...
     </div>
 
-    <div v-bind="containerProps" style="height: calc(100vh - 128px)">
-      <div v-bind="wrapperProps">
-        <div v-for="item in list" :key="item.data.boardLink" style="height: 64px">
-          {{ item.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ item.data.config.startTime.format("z") }}</sup>
-          <br>
-          {{ item.data.config.contestName }}
-        </div>
+    <div v-if="isFinished">
+      <div v-if="error">
+        {{ error }}
+      </div>
+
+      <div v-for="item in contestIndexList" :key="item.boardLink">
+        <ContestIndex :data="item" />
       </div>
     </div>
   </div>

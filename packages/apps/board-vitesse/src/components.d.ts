@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']

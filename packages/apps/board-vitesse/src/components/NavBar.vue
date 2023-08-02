@@ -2,8 +2,8 @@
 import { GITHUB_URL } from "@xcpcio/types";
 import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
-const { y: scroll } = useWindowScroll();
 const { t, locale } = useI18n();
+const { y: scroll } = useWindowScroll();
 
 function toTop() {
   window.scrollTo({
@@ -33,7 +33,7 @@ async function toggleLocales() {
 
     <button
       title="Scroll to top"
-      fixed bottom-3 right-3 z-100 h-10 w-10 rounded-full transition duration-300 print:hidden hover-bg-hex-8883 hover:op100
+      fixed z-100 h-10 w-10 rounded-full transition duration-300 print:hidden hover-bg-hex-8883 hover:op100 bottom-6 right-6
       :class="scroll > 300 ? 'op30' : 'op0! pointer-events-none'"
       @click="toTop()"
     >
