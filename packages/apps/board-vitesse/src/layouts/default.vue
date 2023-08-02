@@ -1,9 +1,10 @@
 <template>
+  <NavBar />
   <main
-    px-4 py-10
+    px-7 py-10 of-x-hidden
     text="center gray-700 dark:gray-200"
   >
     <RouterView />
-    <TheFooter />
+    <Footer />
   </main>
 </template>
