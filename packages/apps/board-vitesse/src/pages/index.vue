@@ -27,11 +27,11 @@ const {
       {{ t("common.loading") }}...
     </div>
 
-    <div v-if="isFinished">
-      <div v-if="error">
-        {{ error }}
-      </div>
+    <div v-if="error">
+      {{ error }}
+    </div>
 
+    <div v-if="isFinished && contestIndexList.length">
       <div v-for="item in contestIndexList" :key="item.boardLink">
         <ContestIndex :data="item" />
       </div>
