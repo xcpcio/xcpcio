@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { GITHUB_URL } from "@xcpcio/types";
 import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
 const { t, locale } = useI18n();
@@ -14,11 +15,7 @@ async function toggleLocales() {
 <template>
   <nav flex="~ gap-4" justify-center mt-6 text-xl>
     <RouterLink icon-btn to="/" :title="t('button.home')">
-      <div i-carbon-campsite />
-    </RouterLink>
-
-    <RouterLink icon-btn to="/about" :title="t('button.about')" data-test-id="about">
-      <div i-carbon-dicom-overlay />
+      <div i-ion-balloon-sharp />
     </RouterLink>
 
     <a icon-btn :title="t('button.toggle_langs')" @click="toggleLocales()">
@@ -29,7 +26,7 @@ async function toggleLocales() {
       <div i="carbon-sun dark:carbon-moon" />
     </button>
 
-    <a icon-btn rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank" title="GitHub">
+    <a icon-btn rel="noreferrer" :href="GITHUB_URL" target="_blank" title="GitHub">
       <div i-carbon-logo-github />
     </a>
   </nav>
