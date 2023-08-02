@@ -4,11 +4,10 @@ const { t } = useI18n();
 
 <template>
   <div>
+    <div text-4xl>
+      <div inline-block i-carbon-warning />
+    </div>
     {{ t('not-found') }}
+    <GoBack />
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: 404
-</route>
