@@ -22,14 +22,14 @@ async function toggleLocales() {
 
 <template>
   <header class="header z-40">
-    <RouterLink
+    <!-- <RouterLink
       class="absolute h-12 w-12 select-none outline-none xl:fixed m-6"
       text-xl
       to="/"
       focusable="false"
     >
       <div i-ion-balloon-sharp />
-    </RouterLink>
+    </RouterLink> -->
 
     <button
       title="Scroll to top"
@@ -40,12 +40,15 @@ async function toggleLocales() {
       <div i-ri-arrow-up-line />
     </button>
 
-    <nav class="nav" text-xl>
+    <nav class="nav xl:fixed" text-xl>
       <div class="spacer" />
       <div class="right" print:op0>
-        <a icon-btn rel="noreferrer" :href="GITHUB_URL" target="_blank" title="GitHub">
-          <div i-carbon-logo-github />
-        </a>
+        <RouterLink
+          to="/"
+          focusable="false"
+        >
+          <div i-ion-balloon-sharp />
+        </RouterLink>
 
         <a icon-btn :title="t('button.toggle_langs')" @click="toggleLocales()">
           <div i-carbon-language />
@@ -53,6 +56,10 @@ async function toggleLocales() {
 
         <a icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
           <div i="carbon-sun dark:carbon-moon" />
+        </a>
+
+        <a icon-btn rel="noreferrer" :href="GITHUB_URL" target="_blank" title="GitHub">
+          <div i-carbon-logo-github />
         </a>
       </div>
     </nav>
