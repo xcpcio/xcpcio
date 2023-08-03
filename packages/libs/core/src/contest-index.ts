@@ -69,6 +69,8 @@ export function createContestIndex(contestIndexJSON: IContestIndex): ContestInde
     cc.unFreezeDurationTimestamp = cc.totalDurationTimestamp - cc.freezeDurationTimestamp;
   }
 
+  cc.logo = cjc.logo;
+
   c.boardLink = contestIndexJSON.board_link;
 
   return c;

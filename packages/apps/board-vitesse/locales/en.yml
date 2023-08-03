@@ -14,3 +14,6 @@ intro:
 not-found: Not found
 common:
   loading: Loading
+index:
+  start: Start
+  duration: Duration

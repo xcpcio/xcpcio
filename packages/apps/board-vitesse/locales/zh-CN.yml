@@ -14,3 +14,6 @@ intro:
 not-found: 未找到页面
 common:
   loading: 加载中
+index:
+  start: 开始时间
+  duration: 持续时间

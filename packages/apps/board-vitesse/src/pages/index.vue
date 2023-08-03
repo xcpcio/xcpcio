@@ -22,7 +22,7 @@ const {
 </script>
 
 <template>
-  <div>
+  <div class="flex justify-center w-screen">
     <div v-if="isFetching">
       {{ t("common.loading") }}...
     </div>
