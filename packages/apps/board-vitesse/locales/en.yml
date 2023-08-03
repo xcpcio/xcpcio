@@ -15,5 +15,5 @@ not-found: Not found
 common:
   loading: Loading
 index:
-  start: Start
+  start: StartTime
   duration: Duration

@@ -49,7 +49,7 @@ function getContestDuration(
               <img class="w-10 h-10" :src="getImageSource(props.data.config.logo)" alt="logo">
             </div>
 
-            <div class="title">
+            <div class="title text-2xl">
               {{ props.data.config.contestName }}
             </div>
           </div>
@@ -97,7 +97,6 @@ function getContestDuration(
   position: relative;
   overflow: hidden;
   text-align: left;
-  font-size: 24px;
   font-weight: 400;
   padding-left: 0px;
   padding-right: 16px;

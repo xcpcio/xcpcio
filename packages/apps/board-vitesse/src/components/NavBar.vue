@@ -78,7 +78,7 @@ async function toggleLocales() {
 }
 
 .nav {
-  padding: 2rem;
+  padding: 1rem;
   width: 100%;
   display: grid;
   grid-template-columns: auto max-content;
