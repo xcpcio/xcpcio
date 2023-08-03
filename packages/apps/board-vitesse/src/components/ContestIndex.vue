@@ -54,12 +54,25 @@ function getContestDuration(
             </div>
           </div>
 
-          <div class="float-left text-left text-[16px]">
-            {{ t("index.start") }}:
-            {{ props.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ props.data.config.startTime.format("z") }}</sup>
-            <br>
-            {{ t("index.duration") }}:
-            {{ getContestDuration(props.data.config) }}
+          <div class="flex">
+            <div class="float-left text-left text-[16px]">
+              {{ t("index.start") }}:
+              {{ props.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ props.data.config.startTime.format("z") }}</sup>
+              <br>
+              {{ t("index.duration") }}:
+              {{ getContestDuration(props.data.config) }}
+            </div>
+            <div class="flex-1" />
+            <div class="float-right">
+              <RouterLink
+                class="go MuiIconButton-root"
+                :to="props.data.boardLink"
+              >
+                <span class="MuiIconButton-label">
+                  <RightArrowIcon />
+                </span>
+              </RouterLink>
+            </div>
           </div>
         </div>
       </div>
@@ -94,7 +107,6 @@ function getContestDuration(
 
 .MuiIconButton-root {
   -webkit-font-smoothing: antialiased;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   line-height: 1.43;
   letter-spacing: 0.01071em;

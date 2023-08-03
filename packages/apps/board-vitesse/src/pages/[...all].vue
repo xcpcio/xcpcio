@@ -3,7 +3,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col items-center">
     <div text-4xl>
       <div inline-block i-carbon-warning />
     </div>
