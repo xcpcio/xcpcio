@@ -6,7 +6,7 @@ const { t } = useI18n();
 <template>
   <div>
     <div
-      class="m-3 text-sm btn"
+      class="text-sm btn m-3"
       @click="router.back()"
     >
       {{ t("button.back") }}
