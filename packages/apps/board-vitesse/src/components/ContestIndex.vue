@@ -41,7 +41,7 @@ function getContestDuration(
     <div h-32>
       <div v-if="isVisible">
         <div
-          class="flex flex-col pb-3 font-serif w-240"
+          class="flex flex-col font-serif w-240 pb-2"
           border="b-2 gray-200 dark:gray-700"
         >
           <div class="flex w-full">
