@@ -44,14 +44,20 @@ function getContestDuration(
           class="flex flex-col pb-3 font-serif w-240"
           border="b-2 gray-200 dark:gray-700"
         >
-          <div class="flex">
+          <div class="flex w-full">
             <div v-if="props.data.config.logo !== undefined" class="logo">
               <img class="w-10 h-10" :src="getImageSource(props.data.config.logo)" alt="logo">
             </div>
 
-            <div class="title text-2xl truncate overflow-hidden">
-              {{ props.data.config.contestName }}
-            </div>
+            <VTooltip class="w-inherit">
+              <div class="title text-2xl truncate overflow-hidden">
+                {{ props.data.config.contestName }}
+              </div>
+
+              <template #popper>
+                {{ props.data.config.contestName }}
+              </template>
+            </VTooltip>
           </div>
 
           <div class="flex items-end">
@@ -95,7 +101,6 @@ function getContestDuration(
   line-height: 1.5715;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
   text-align: left;
   font-weight: 400;
   padding-left: 0px;

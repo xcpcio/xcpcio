@@ -1,11 +1,14 @@
 import { ViteSSG } from "vite-ssg";
 import { setupLayouts } from "virtual:generated-layouts";
 
+import FloatingVue from "floating-vue";
+
 // import Previewer from 'virtual:vue-component-preview'
 import App from "./App.vue";
 import type { UserModule } from "./types";
 import generatedRoutes from "~pages";
 
+import "floating-vue/dist/style.css";
 import "@unocss/reset/tailwind.css";
 import "./styles/main.css";
 import "uno.css";
@@ -21,5 +24,6 @@ export const createApp = ViteSSG(
     Object.values(import.meta.glob<{ install: UserModule }>("./modules/*.ts", { eager: true }))
       .forEach(i => i.install?.(ctx));
     // ctx.app.use(Previewer)
+    ctx.app.use(FloatingVue);
   },
 );
