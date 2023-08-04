@@ -38,10 +38,10 @@ function getContestDuration(
 
 <template>
   <div ref="el">
-    <div h-38>
+    <div h-32>
       <div v-if="isVisible">
         <div
-          class="flex flex-col pb-3 w-224 font-serif"
+          class="flex flex-col pb-3 font-serif w-240"
           border="b-2 gray-200 dark:gray-700"
         >
           <div class="flex">
@@ -49,15 +49,15 @@ function getContestDuration(
               <img class="w-10 h-10" :src="getImageSource(props.data.config.logo)" alt="logo">
             </div>
 
-            <div class="title text-2xl">
+            <div class="title text-2xl truncate overflow-hidden">
               {{ props.data.config.contestName }}
             </div>
           </div>
 
-          <div class="flex">
-            <div class="float-left text-left text-[16px]">
+          <div class="flex items-end">
+            <div class="float-left text-base">
               {{ t("index.start") }}:
-              {{ props.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup>{{ props.data.config.startTime.format("z") }}</sup>
+              {{ props.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ props.data.config.startTime.format("z") }}</sup>
               <br>
               {{ t("index.duration") }}:
               {{ getContestDuration(props.data.config) }}

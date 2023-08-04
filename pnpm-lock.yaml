@@ -216,6 +216,9 @@ importers:
       pinia:
         specifier: ^2.1.4
         version: 2.1.4(typescript@5.1.6)(vue@3.3.4)
+      radix-vue:
+        specifier: ^0.1.17
+        version: 0.1.17(vue@3.3.4)
       vue:
         specifier: ^3.3.4
         version: 3.3.4
@@ -3401,6 +3404,16 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
+  /@floating-ui/vue@1.0.2(vue@3.3.4):
+    resolution: {integrity: sha512-sImlAl9mAoCKZLNlwWz2P2ZMJIDlOEDXrRD6aD2sIHAka1LPC+nWtB+D3lPe7IE7FGWSbwBPTnlSdlABa3Fr0A==}
+    dependencies:
+      '@floating-ui/dom': 1.4.5
+      vue-demi: 0.14.5(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
+
   /@formatjs/intl-displaynames@1.2.10:
     resolution: {integrity: sha512-GROA2RP6+7Ouu0WnHFF78O5XIU7pBfI19WM1qm93l6MFWibUk67nCfVCK3VAYJkLy8L8ZxjkYT11VIAfvSz8wg==}
     dependencies:
@@ -4057,7 +4070,7 @@ packages:
       nopt: 7.1.0
       proc-log: 3.0.0
       read-package-json-fast: 3.0.2
-      semver: 7.5.1
+      semver: 7.5.4
       walk-up-path: 3.0.1
     dev: true
 
@@ -6034,7 +6047,7 @@ packages:
     dependencies:
       antd: 4.24.10(react-dom@17.0.2)(react@17.0.2)
       antd-mobile: 2.3.4(react-dom@17.0.2)(react@17.0.2)
-      semver: 7.5.1
+      semver: 7.5.4
       umi: 3.5.41(react-router@6.3.0)
     transitivePeerDependencies:
       - react
@@ -17331,6 +17344,16 @@ packages:
 
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
+
+  /radix-vue@0.1.17(vue@3.3.4):
+    resolution: {integrity: sha512-4MALGKTAqlnR+XUrBtlsE2Y9F53C1MCSkxP3dUb95Ex5QT+K8D0MSCVd+H+GNqF8qyw357tlWVEtHrgAjB6X3Q==}
+    dependencies:
+      '@floating-ui/dom': 1.4.5
+      '@floating-ui/vue': 1.0.2(vue@3.3.4)
+    transitivePeerDependencies:
+      - '@vue/composition-api'
+      - vue
+    dev: false
 
   /raf@3.4.1:
     resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
