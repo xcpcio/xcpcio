@@ -73,6 +73,7 @@
     "prettierrc",
     "shiki",
     "tailwindcss",
+    "tanstack",
     "taze",
     "umijs",
     "unocss",
@@ -84,5 +85,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }
