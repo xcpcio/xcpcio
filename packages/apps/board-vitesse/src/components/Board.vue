@@ -10,17 +10,17 @@ const contest = ref({} as Contest);
 const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 
-const { isError, data, error } = useQueryBoardData(route.fullPath);
-const boardData = data;
-
-watch(boardData, async (newBoardData) => {
-  if (newBoardData !== undefined && newBoardData !== null) {
-    firstLoaded.value = true;
+const { data, isError, error } = useQueryBoardData(route.fullPath);
+watch(data, async (newBoardData) => {
+  if (newBoardData === undefined || newBoardData === null) {
+    return;
   }
 
   contest.value = createContest(newBoardData?.contest as IContest);
   teams.value = createTeams(newBoardData?.teams as ITeams);
   submissions.value = createSubmissions(newBoardData?.submissions as ISubmissions);
+
+  firstLoaded.value = true;
 });
 </script>
 
@@ -34,8 +34,8 @@ watch(boardData, async (newBoardData) => {
       </div>
     </div>
 
-    <div v-if="firstLoaded">
-      {{ contest }}
+    <div v-if="firstLoaded" class="pt-5">
+      {{ contest.name }}
     </div>
   </div>
 </template>
