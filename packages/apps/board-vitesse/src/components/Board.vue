@@ -41,11 +41,13 @@ watchEffect(async () => {
     </div>
 
     <div v-if="firstLoaded">
-      <div class="title font-serif text-3xl font-normal">
+      <div class="title font-serif text-3xl font-normal text-center">
         {{ contest.name }}
       </div>
 
-      <Standings :rank="rank" />
+      <div class="flex justify-center">
+        <Standings :rank="rank" />
+      </div>
     </div>
   </div>
 </template>
