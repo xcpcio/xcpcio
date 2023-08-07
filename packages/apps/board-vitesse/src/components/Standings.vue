@@ -59,7 +59,7 @@ const rank = reactive(props.rank);
             :key="team.id"
             class="stand team"
           >
-            <td class="empty">
+            <td class="stnd">
               {{ team.rank }}
             </td>
             <td v-if="rank.contest.organization" class="stnd">
