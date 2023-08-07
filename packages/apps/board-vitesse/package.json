@@ -67,6 +67,7 @@
     "eslint": "^8.44.0",
     "eslint-plugin-cypress": "^2.13.3",
     "https-localhost": "^4.7.1",
+    "less": "^4.2.0",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.9.0",
     "pnpm": "^8.6.7",

@@ -8,7 +8,9 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Board: typeof import('./components/Board.vue')['default']
+    BoardEntry: typeof import('./components/BoardEntry.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
+    copy: typeof import('./components/BoardEntry copy.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
@@ -17,6 +19,7 @@ declare module 'vue' {
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Standings: typeof import('./components/Standings.vue')['default']
     TFooter: typeof import('./components/TFooter.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']

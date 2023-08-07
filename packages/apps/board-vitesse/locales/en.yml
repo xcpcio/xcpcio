@@ -17,3 +17,9 @@ common:
 index:
   start: StartTime
   duration: Duration
+standings:
+  place: Place
+  team: Team
+  solved: Solved
+  penalty: Penalty
+  dict: Dict
