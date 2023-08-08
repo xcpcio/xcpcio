@@ -45,26 +45,6 @@ function getProblemShow(p: TeamProblemStatistics): string {
   return res;
 }
 
-function getTeamDict(t: Team): string {
-  let failedCount = 0;
-  let solved = 0;
-
-  t.problemStatistics.forEach((p) => {
-    if (p.isSolved) {
-      failedCount += p.failedCount;
-      solved++;
-    }
-  });
-
-  let dict = 0;
-
-  if (solved > 0) {
-    dict = Math.floor((failedCount / (failedCount + solved)) * 100);
-  }
-
-  return `${dict}%`;
-}
-
 function getProblemColorClass(p: TeamProblemStatistics): string {
   if (p.isFirstSolved) {
     return "first-solve";
@@ -117,7 +97,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      {{ team.penaltyToMinute() }}
+      {{ team.penaltyToMinute }}
     </td>
 
     <template
@@ -133,12 +113,11 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
         {{ getProblemShow(p) }}
       </td>
     </template>
-
     <td
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      {{ getTeamDict(team) }}
+      {{ `${team.dict}%` }}
     </td>
   </tr>
 </template>

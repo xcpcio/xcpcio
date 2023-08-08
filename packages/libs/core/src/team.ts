@@ -36,8 +36,28 @@ export class Team {
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
   }
 
-  penaltyToMinute() {
+  get penaltyToMinute() {
     return Math.floor(this.penalty / 60);
+  }
+
+  get dict() {
+    let failedCount = 0;
+    let solved = 0;
+
+    this.problemStatistics.forEach((p) => {
+      if (p.isSolved) {
+        failedCount += p.failedCount;
+        solved++;
+      }
+    });
+
+    let dict = 0;
+
+    if (solved > 0) {
+      dict = Math.floor((failedCount / (failedCount + solved)) * 100);
+    }
+
+    return dict;
   }
 
   calcSolvedData() {
