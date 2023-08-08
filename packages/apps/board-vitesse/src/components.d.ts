@@ -20,6 +20,8 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Standings: typeof import('./components/Standings.vue')['default']
+    Team: typeof import('./components/Team.vue')['default']
+    TeamUI: typeof import('./components/TeamUI.vue')['default']
     TFooter: typeof import('./components/TFooter.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']

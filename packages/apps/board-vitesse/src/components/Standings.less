@@ -5,7 +5,7 @@ table.standings {
   margin: 0pt;
   padding: 0pt;
   /* width: 100%; */
-  max-width: 1560px;
+  // max-width: 1560px;
   // font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   //   "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
   //   "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !important;
@@ -55,6 +55,10 @@ td.stnd {
   border-color: #000000;
   margin: 1px;
   font-weight: bold;
+}
+
+.dark td.stnd {
+  border-color: #fff;
 }
 
 td.stndact {
@@ -144,7 +148,7 @@ td.honorable {
   font-weight: bold;
 }
 
-td.firstsolve {
+td.first-solve {
   background-color: #3db03d;
   font-size: 12px;
   border-width: 0px;
@@ -172,11 +176,15 @@ td.correct {
 }
 
 td.unattempted {
-  background-color: #fff;
+  // background-color: #fff;
   font-size: 12px;
   border-width: 0px;
   border-color: #000000;
   margin: 1px;
+}
+
+.dark td.unattempted {
+  color: #fff;
 }
 
 th.success {
@@ -272,19 +280,19 @@ td.o00 {
   background-color: #004080;
 }
 
-tr.stand00 {
+td.stand00 {
   background-color: #e0e0ff;
 }
 
-tr.stand01 {
+td.stand01 {
   background-color: #e8e8ff;
 }
 
-tr.stand10 {
+td.stand10 {
   background-color: #f8f8f8;
 }
 
-tr.stand11 {
+td.stand11 {
   background-color: #f2f2f2;
 }
 

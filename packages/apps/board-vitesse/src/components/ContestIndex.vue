@@ -46,7 +46,7 @@ function getContestDuration(
         >
           <div class="flex w-full">
             <div v-if="props.data.config.logo !== undefined" class="logo">
-              <img class="w-10 h-10" :src="getImageSource(props.data.config.logo)" alt="logo">
+              <img class="h-10 w-10" :src="getImageSource(props.data.config.logo)" alt="logo">
             </div>
 
             <VTooltip class="w-inherit">

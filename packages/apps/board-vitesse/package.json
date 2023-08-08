@@ -38,6 +38,7 @@
     "@tanstack/vue-query": "^4.32.6",
     "@unhead/vue": "^1.1.30",
     "@unocss/reset": "^0.53.5",
+    "@vueuse/components": "^10.3.0",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
     "@xcpcio/core": "workspace:*",
