@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
-import { useElementVisibility } from "@vueuse/core";
 
 const props = defineProps<{
   rank: Rank,
@@ -9,9 +8,6 @@ const props = defineProps<{
 
 const rank = reactive(props.rank);
 const team = reactive(props.team);
-
-const el = ref(null);
-const isVisible = useElementVisibility(el);
 
 function getStandClassName(t: Team): string {
   return `stand${t.solvedProblemNum % 2}${(t.rank - 1) % 2}`;
@@ -91,7 +87,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 </script>
 
 <template>
-  <tr ref="el" class="h-10">
+  <tr class="h-10">
     <td
       class="stnd"
       :class="[getStandClassName(team)]"
@@ -129,7 +125,6 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       :key="p.problem.id"
     >
       <td
-        v-if="isVisible"
         class="stnd"
         :class="[getProblemColorClass(p)]"
       >
