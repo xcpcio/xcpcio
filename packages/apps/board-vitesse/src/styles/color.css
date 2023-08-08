@@ -1,0 +1,7 @@
+html {
+  --global-background: #fff;
+}
+
+html.dark {
+  --global-background: #323443;
+}

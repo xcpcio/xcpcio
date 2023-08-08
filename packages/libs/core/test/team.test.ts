@@ -12,6 +12,7 @@ describe("team", () => {
 
     expect(teams[0]).toMatchInlineSnapshot(`
       Team {
+        "attemptedProblemNum": 0,
         "coach": undefined,
         "group": [],
         "id": "3000202305140115",

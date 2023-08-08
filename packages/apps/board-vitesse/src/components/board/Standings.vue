@@ -57,6 +57,8 @@ const rank = reactive(props.rank);
           >
             <TeamUI :rank="rank" :team="team" />
           </template>
+
+          <BottomStatistics :rank="rank" />
         </tbody>
       </table>
     </div>

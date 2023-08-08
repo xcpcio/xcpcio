@@ -1,6 +1,7 @@
 import type { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
 import type { TeamProblemStatistics } from "./problem";
+import { calcDict } from "./utils";
 
 export class Team {
   id: string;
@@ -14,7 +15,10 @@ export class Team {
   members?: string | Array<string>;
 
   rank: number;
+
   solvedProblemNum: number;
+  attemptedProblemNum: number;
+
   penalty: number;
 
   problemStatistics: Array<TeamProblemStatistics>;
@@ -29,7 +33,10 @@ export class Team {
     this.tag = [];
 
     this.rank = 0;
+
     this.solvedProblemNum = 0;
+    this.attemptedProblemNum = 0;
+
     this.penalty = 0;
 
     this.problemStatistics = [];
@@ -41,32 +48,22 @@ export class Team {
   }
 
   get dict() {
-    let failedCount = 0;
-    let solved = 0;
+    const attemptedNum = this.attemptedProblemNum;
+    const solvedNum = this.solvedProblemNum;
 
-    this.problemStatistics.forEach((p) => {
-      if (p.isSolved) {
-        failedCount += p.failedCount;
-        solved++;
-      }
-    });
-
-    let dict = 0;
-
-    if (solved > 0) {
-      dict = Math.floor((failedCount / (failedCount + solved)) * 100);
-    }
-
-    return dict;
+    return calcDict(attemptedNum, solvedNum);
   }
 
   calcSolvedData() {
     this.solvedProblemNum = 0;
     this.penalty = 0;
+    this.attemptedProblemNum = 0;
 
     for (const p of this.problemStatistics) {
       if (p.isAccepted) {
         this.solvedProblemNum++;
+        this.attemptedProblemNum += p.failedCount + 1;
+
         this.penalty += p.penalty;
       }
     }

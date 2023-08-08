@@ -23,3 +23,10 @@ standings:
   solved: Solved
   penalty: Penalty
   dict: Dict
+  statistics:
+    submitted: Submitted
+    attempted: Attempted
+    accepted: Accepted
+    dict: Dict
+    first_solved: First Solved
+    last_solved: Last Solved

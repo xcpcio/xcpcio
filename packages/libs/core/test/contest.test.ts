@@ -27,8 +27,12 @@ describe("contest", () => {
           "label": "A",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -44,8 +48,12 @@ describe("contest", () => {
           "label": "B",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -61,8 +69,12 @@ describe("contest", () => {
           "label": "C",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -78,8 +90,12 @@ describe("contest", () => {
           "label": "D",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -95,8 +111,12 @@ describe("contest", () => {
           "label": "E",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -112,8 +132,12 @@ describe("contest", () => {
           "label": "F",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -129,8 +153,12 @@ describe("contest", () => {
           "label": "G",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -146,8 +174,12 @@ describe("contest", () => {
           "label": "H",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -163,8 +195,12 @@ describe("contest", () => {
           "label": "I",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -180,8 +216,12 @@ describe("contest", () => {
           "label": "J",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -197,8 +237,12 @@ describe("contest", () => {
           "label": "K",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -214,8 +258,12 @@ describe("contest", () => {
           "label": "L",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
@@ -231,8 +279,12 @@ describe("contest", () => {
           "label": "M",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 0,
             "submittedNum": 0,
