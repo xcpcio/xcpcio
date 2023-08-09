@@ -27,6 +27,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
+    "start": "npm run preview",
     "test": "vitest",
     "test:e2e": "cypress open",
     "test:unit": "vitest",
