@@ -17,6 +17,7 @@ export class Team {
   members?: string | Array<string>;
 
   rank: number;
+  organizationRank: number;
 
   solvedProblemNum: number;
   attemptedProblemNum: number;
@@ -36,6 +37,7 @@ export class Team {
     this.tag = [];
 
     this.rank = 0;
+    this.organizationRank = -1;
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;

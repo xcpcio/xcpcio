@@ -122,6 +122,19 @@ export class Rank {
           t.rank = rank++;
         }
       }
+
+      if (this.contest.organization) {
+        let rank = 1;
+        const se = new Set<string>();
+
+        for (const t of this.teams) {
+          if (!se.has(t.organization)) {
+            se.add(t.organization);
+            t.organizationRank = rank;
+            rank++;
+          }
+        }
+      }
     })();
 
     return this;
