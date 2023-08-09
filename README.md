@@ -4,12 +4,14 @@
 [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 [![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]](https://mit-license.org/)
+![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board)
 
 ## Packages
 
 - [apps](./packages/apps/)
   - [board](./packages/apps/board/README.md)
+  - [board-vitesse](./packages/apps/board-vitesse/README.md)
   - [docs](./packages/apps/docs/README.md)
   - [resolver](./packages/apps/resolver/README.md)
 - [libs](./packages/libs/)
