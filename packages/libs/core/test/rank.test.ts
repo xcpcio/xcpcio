@@ -1389,7 +1389,9 @@ describe("contest", () => {
       Team {
         "attemptedProblemNum": 23,
         "coach": undefined,
-        "group": [],
+        "group": [
+          "official",
+        ],
         "id": "3000202305140047",
         "members": [
           "王展鹏",

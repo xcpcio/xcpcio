@@ -103,15 +103,15 @@ export function createTeam(teamJSON: ITeam): Team {
   t.coach = teamJSON.coach;
   t.members = teamJSON.members;
 
-  if (teamJSON.official === true) {
+  if (Boolean(teamJSON.official) === true) {
     t.group.push("official");
   }
 
-  if (teamJSON.unofficial === true) {
+  if (Boolean(teamJSON.unofficial) === true) {
     t.group.push("unofficial");
   }
 
-  if (teamJSON.girl === true) {
+  if (Boolean(teamJSON.girl) === true) {
     t.group.push("girl");
   }
 

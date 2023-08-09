@@ -85,7 +85,9 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      {{ team.name }}
+      <span>{{ team.name }}</span>
+      <StarIcon v-if="team.group.includes('unofficial')" inline-block />
+      <GirlIcon v-if="team.group.includes('girl')" inline-block />
     </td>
     <td
       class="stnd"

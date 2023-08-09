@@ -14,7 +14,9 @@ describe("team", () => {
       Team {
         "attemptedProblemNum": 0,
         "coach": undefined,
-        "group": [],
+        "group": [
+          "official",
+        ],
         "id": "3000202305140115",
         "members": [
           "江骏扬",

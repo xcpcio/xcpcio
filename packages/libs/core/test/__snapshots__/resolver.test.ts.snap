@@ -385,7 +385,9 @@ ResolverOperation {
   "team": Team {
     "attemptedProblemNum": 0,
     "coach": undefined,
-    "group": [],
+    "group": [
+      "unofficial",
+    ],
     "id": "3000202305140132",
     "members": [
       "柴榕杉",
@@ -2092,7 +2094,9 @@ ResolverOperation {
   "team": Team {
     "attemptedProblemNum": 21,
     "coach": undefined,
-    "group": [],
+    "group": [
+      "official",
+    ],
     "id": "3000202305140047",
     "members": [
       "王展鹏",
