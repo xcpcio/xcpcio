@@ -75,6 +75,16 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       {{ team.rank }}
     </td>
     <td
+      v-if="rank.contest.badge"
+      class="empty"
+    >
+      <img
+        :src="['data:image/png;base64,', team.badge?.base64].join('')"
+        alt=""
+        class="w-8 h-8"
+      >
+    </td>
+    <td
       v-if="rank.contest.organization"
       class="stnd"
       :class="[getStandClassName(team)]"
@@ -125,5 +135,5 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 </template>
 
 <style scoped lang="less">
-  @import "./Standings.less";
+@import "./Standings.less";
 </style>

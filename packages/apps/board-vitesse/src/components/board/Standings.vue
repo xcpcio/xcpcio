@@ -19,6 +19,9 @@ const rank = reactive(props.rank);
             <th class="title" style="width: 4em;">
               {{ t("standings.place") }}
             </th>
+            <th v-if="rank.contest.badge" class="title" style="min-width: 3em;">
+              {{ rank.contest.badge }}
+            </th>
             <th v-if="rank.contest.organization" class="title" style="min-width: 12em;">
               {{ rank.contest.organization }}
             </th>

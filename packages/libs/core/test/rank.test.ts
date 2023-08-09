@@ -1388,6 +1388,7 @@ describe("contest", () => {
     expect(rank.teams[0]).toMatchInlineSnapshot(`
       Team {
         "attemptedProblemNum": 23,
+        "badge": undefined,
         "coach": undefined,
         "group": [
           "official",

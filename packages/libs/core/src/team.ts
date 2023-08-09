@@ -1,4 +1,4 @@
-import type { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
+import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
 import type { TeamProblemStatistics } from "./problem";
 import { calcDict } from "./utils";
@@ -6,7 +6,9 @@ import { calcDict } from "./utils";
 export class Team {
   id: string;
   name: string;
+
   organization: string;
+  badge?: Image;
 
   group: Array<string>;
   tag: Array<string>;
@@ -27,6 +29,7 @@ export class Team {
   constructor() {
     this.id = "";
     this.name = "";
+
     this.organization = "";
 
     this.group = [];
@@ -97,6 +100,8 @@ export function createTeam(teamJSON: ITeam): Team {
   t.name = teamJSON.name ?? teamJSON.team_name ?? "";
 
   t.organization = teamJSON.organization ?? "";
+  t.badge = teamJSON.badge;
+
   t.group = teamJSON.group ?? [];
   t.tag = teamJSON.group ?? [];
 

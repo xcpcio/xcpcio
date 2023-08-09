@@ -384,6 +384,7 @@ ResolverOperation {
   "problemIx": 4,
   "team": Team {
     "attemptedProblemNum": 0,
+    "badge": undefined,
     "coach": undefined,
     "group": [
       "unofficial",
@@ -2093,6 +2094,7 @@ ResolverOperation {
   "problemIx": 8,
   "team": Team {
     "attemptedProblemNum": 21,
+    "badge": undefined,
     "coach": undefined,
     "group": [
       "official",

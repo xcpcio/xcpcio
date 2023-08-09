@@ -1,3 +1,5 @@
+import type { Image } from "./basic-types";
+
 export interface Team {
   id?: string;
   team_id?: string;
@@ -15,6 +17,8 @@ export interface Team {
   official?: boolean;
   unofficial?: boolean;
   girl?: boolean;
+
+  badge?: Image;
 }
 
 export type Teams = Array<Team> | Record<string, Team>;
