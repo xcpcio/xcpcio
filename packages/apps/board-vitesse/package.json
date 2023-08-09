@@ -73,7 +73,7 @@
     "less": "^4.2.0",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.9.0",
-    "pnpm": "^8.6.7",
+    "pnpm": "^8.6.12",
     "shiki": "^0.14.3",
     "taze": "^0.11.2",
     "typescript": "^5.1.6",
