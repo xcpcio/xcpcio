@@ -7,11 +7,23 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    README: typeof import('./components/README.md')['default']
+    Board: typeof import('./components/board/Board.vue')['default']
+    BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
+    ContestIndex: typeof import('./components/ContestIndex.vue')['default']
+    copy: typeof import('./components/icon/StarIcon copy.vue')['default']
+    Footer: typeof import('./components/Footer.vue')['default']
+    GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
+    GoBack: typeof import('./components/GoBack.vue')['default']
+    NavBar: typeof import('./components/NavBar.vue')['default']
+    RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Standings: typeof import('./components/board/Standings.vue')['default']
+    Star: typeof import('./components/icon/Star.vue')['default']
+    StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
+    Start: typeof import('./components/Start.vue')['default']
+    TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
-    TheFooter: typeof import('./components/TheFooter.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
   }
 }

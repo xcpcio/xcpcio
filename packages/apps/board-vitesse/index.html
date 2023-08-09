@@ -7,12 +7,31 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#00aba9">
   <meta name="msapplication-TileColor" content="#00aba9">
   <script>
+    function normalizePath(path) {
+      while (path.endsWith("/")) {
+        path = path.slice(0, -1);
+      }
+      return `${path}/`;
+    }
+
+    let DATA_HOST;
+    try {
+      // eslint-disable-next-line no-undef
+      DATA_HOST = __DATA_HOST__;
+    } catch (e) {
+      DATA_HOST = "/data/";
+    }
+    DATA_HOST = normalizePath(DATA_HOST);
+    window.DATA_HOST = DATA_HOST;
+  </script>
+  <script>
     (function () {
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-      const setting = localStorage.getItem('vueuse-color-scheme') || 'auto'
-      if (setting === 'dark' || (prefersDark && setting !== 'light'))
-        document.documentElement.classList.toggle('dark', true)
-    })()
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const setting = localStorage.getItem("vueuse-color-scheme") || "auto";
+      if (setting === "dark" || (prefersDark && setting !== "light")) {
+        document.documentElement.classList.toggle("dark", true);
+      }
+    })();
   </script>
 </head>
 <body class="font-sans">

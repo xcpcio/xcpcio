@@ -12,3 +12,21 @@ intro:
   aka: 也叫
   whats-your-name: 输入你的名字
 not-found: 未找到页面
+common:
+  loading: 加载中
+index:
+  start: 开始时间
+  duration: 持续时间
+standings:
+  place: Place
+  team: Team
+  solved: Solved
+  penalty: Penalty
+  dict: Dict
+  statistics:
+    submitted: Submitted
+    attempted: Attempted
+    accepted: Accepted
+    dict: Dict
+    first_solved: First Solved
+    last_solved: Last Solved

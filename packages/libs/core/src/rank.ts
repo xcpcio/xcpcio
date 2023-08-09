@@ -16,8 +16,6 @@ export class Rank {
   submissions: Submissions;
   submissionsMap: Map<string, Submission>;
 
-  firstSolvedSubmissions: Map<string, Submissions>;
-
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
@@ -26,8 +24,6 @@ export class Rank {
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
-
-    this.firstSolvedSubmissions = new Map(this.contest.problems.map(p => [p.id, []]));
   }
 
   buildRank(options?: { timestamp?: number }) {
@@ -44,7 +40,9 @@ export class Rank {
         t.problemStatisticsMap = new Map(t.problemStatistics.map(ps => [ps.problem.id, ps]));
       }
 
-      this.firstSolvedSubmissions = new Map(this.contest.problems.map(p => [p.id, []]));
+      this.contest.problems.forEach((p) => {
+        p.statistics.reset();
+      });
 
       for (const s of this.submissions) {
         const teamId = s.teamId;
@@ -64,7 +62,6 @@ export class Rank {
 
         const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
         const submissions = problemStatistics.submissions;
-        const firstSolvedSubmissions = this.firstSolvedSubmissions.get(problemId) as Array<Submission>;
 
         submissions.push(s);
         problem.statistics.submittedNum++;
@@ -74,6 +71,7 @@ export class Rank {
         }
 
         if (s.isIgnore || s.isNotCalculatedPenaltyStatus()) {
+          problem.statistics.ignoreNum++;
           problemStatistics.ignoreCount++;
           continue;
         }
@@ -87,14 +85,21 @@ export class Rank {
           problemStatistics.solvedTimestamp = s.timestamp;
 
           problem.statistics.acceptedNum++;
+          problem.statistics.attemptedNum += problemStatistics.failedCount + 1;
 
           if (
-            firstSolvedSubmissions.length === 0
-            || firstSolvedSubmissions[firstSolvedSubmissions.length - 1].timestamp === s.timestamp
+            problem.statistics.firstSolveSubmissions.length === 0
+            || problem.statistics.firstSolveSubmissions[problem.statistics.firstSolveSubmissions.length - 1].timestamp === s.timestamp
           ) {
             problemStatistics.isFirstSolved = true;
-            firstSolvedSubmissions.push(s);
+            problem.statistics.firstSolveSubmissions.push(s);
           }
+
+          while (problem.statistics.lastSolveSubmissions.length > 0) {
+            problem.statistics.lastSolveSubmissions.pop();
+          }
+
+          problem.statistics.lastSolveSubmissions.push(s);
         }
 
         if (s.isRejected()) {
@@ -115,6 +120,19 @@ export class Rank {
         let rank = 1;
         for (const t of this.teams) {
           t.rank = rank++;
+        }
+      }
+
+      if (this.contest.organization) {
+        let rank = 1;
+        const se = new Set<string>();
+
+        for (const t of this.teams) {
+          if (!se.has(t.organization)) {
+            se.add(t.organization);
+            t.organizationRank = rank;
+            rank++;
+          }
         }
       }
     })();

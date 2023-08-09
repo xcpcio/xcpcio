@@ -1,0 +1,159 @@
+<script setup lang="ts">
+import type { ProblemStatistics, Rank } from "@xcpcio/core";
+
+const props = defineProps<{
+  rank: Rank,
+}>();
+
+const { t } = useI18n();
+
+const rank = reactive(props.rank);
+
+function getColSpan() {
+  let res = 3;
+
+  if (rank.contest.organization) {
+    res++;
+  }
+
+  if (rank.contest.badge) {
+    res++;
+  }
+
+  return res;
+}
+
+function getAttemptedRatio(p: ProblemStatistics): string {
+  if (p.submittedNum === 0) {
+    return "NaN";
+  }
+
+  const ratio = Math.floor(p.attemptedNum * 100 / p.submittedNum);
+  return `${ratio}%`;
+}
+
+function getAcceptedRatio(p: ProblemStatistics): string {
+  if (p.submittedNum === 0) {
+    return "NaN";
+  }
+
+  const ratio = Math.floor(p.acceptedNum * 100 / p.submittedNum);
+  return `${ratio}%`;
+}
+
+function getDict(p: ProblemStatistics): string {
+  if (p.attemptedNum === 0) {
+    return "NaN";
+  }
+
+  return `${p.dict}%`;
+}
+
+function getFirstSolved(p: ProblemStatistics): string {
+  if (p.firstSolveSubmissions.length === 0) {
+    return "Null";
+  }
+
+  const t = Math.floor(p.firstSolveSubmissions[0].timestamp / 60);
+  return `${t}`;
+}
+
+function getLastSolved(p: ProblemStatistics): string {
+  if (p.lastSolveSubmissions.length === 0) {
+    return "Null";
+  }
+
+  const t = Math.floor(p.lastSolveSubmissions[0].timestamp / 60);
+  return `${t}`;
+}
+</script>
+
+<template>
+  <tr class="statistics-0">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.submitted") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ p.statistics.submittedNum }}</b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-1">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.attempted") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ p.statistics.attemptedNum }}</b>
+        <br>
+        <b>
+          ({{ getAttemptedRatio(p.statistics) }})
+        </b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-0">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.accepted") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ p.statistics.acceptedNum }}</b>
+        <br>
+        <b>
+          ({{ getAcceptedRatio(p.statistics) }})
+        </b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-1">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.dict") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ p.statistics.attemptedNum - p.statistics.acceptedNum }}</b>
+        <br>
+        <b>
+          ({{ getDict(p.statistics) }})
+        </b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-0">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.first_solved") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ getFirstSolved(p.statistics) }}</b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-1">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
+      <b>{{ t("standings.statistics.last_solved") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>{{ getLastSolved(p.statistics) }}</b>
+      </td>
+    </template>
+  </tr>
+</template>
+
+<style scoped lang="less">
+@import "./Standings.less";
+</style>

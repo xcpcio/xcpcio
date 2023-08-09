@@ -1,57 +1,40 @@
 <script setup lang="ts">
-defineOptions({
-  name: "IndexPage",
-});
-const user = useUserStore();
-const name = ref(user.savedName);
-
-const router = useRouter();
-function go() {
-  if (name.value) {
-    router.push(`/hi/${encodeURIComponent(name.value)}`);
-  }
-}
+import { useFetch } from "@vueuse/core";
+import { type ContestIndexList, createContestIndexList } from "@xcpcio/core";
 
 const { t } = useI18n();
+
+const url = ref(`${window.DATA_HOST}index/contest_list.json`);
+const refetch = ref(false);
+const contestIndexList = ref([] as ContestIndexList);
+
+const {
+  error,
+  isFetching,
+  isFinished,
+} = useFetch(url, {
+  refetch,
+  afterFetch: (ctx) => {
+    contestIndexList.value = createContestIndexList(JSON.parse(ctx.data));
+    return ctx;
+  },
+}).get();
 </script>
 
 <template>
-  <div>
-    <div text-4xl>
-      <div i-carbon-campsite inline-block />
+  <div class="flex justify-center w-screen">
+    <div v-if="isFetching">
+      {{ t("common.loading") }}...
     </div>
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse" target="_blank">
-        Vitesse
-      </a>
-    </p>
-    <p>
-      <em text-sm opacity-75>{{ t('intro.desc') }}</em>
-    </p>
 
-    <div py-4 />
+    <div v-if="error">
+      {{ error }}
+    </div>
 
-    <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
-
-    <div>
-      <button
-        text-sm btn m-3
-        :disabled="!name"
-        @click="go"
-      >
-        {{ t('button.go') }}
-      </button>
+    <div v-if="isFinished && contestIndexList.length">
+      <div v-for="item in contestIndexList" :key="item.boardLink">
+        <ContestIndex :data="item" />
+      </div>
     </div>
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: home
-</route>

@@ -1,11 +1,14 @@
-import type { Team as ITeam, Teams as ITeams } from "@xcpcio/types";
+import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
 import type { TeamProblemStatistics } from "./problem";
+import { calcDict } from "./utils";
 
 export class Team {
   id: string;
   name: string;
+
   organization: string;
+  badge?: Image;
 
   group: Array<string>;
   tag: Array<string>;
@@ -14,7 +17,11 @@ export class Team {
   members?: string | Array<string>;
 
   rank: number;
+  organizationRank: number;
+
   solvedProblemNum: number;
+  attemptedProblemNum: number;
+
   penalty: number;
 
   problemStatistics: Array<TeamProblemStatistics>;
@@ -23,30 +30,45 @@ export class Team {
   constructor() {
     this.id = "";
     this.name = "";
+
     this.organization = "";
 
     this.group = [];
     this.tag = [];
 
     this.rank = 0;
+    this.organizationRank = -1;
+
     this.solvedProblemNum = 0;
+    this.attemptedProblemNum = 0;
+
     this.penalty = 0;
 
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
   }
 
-  penaltyToMinute() {
+  get penaltyToMinute() {
     return Math.floor(this.penalty / 60);
+  }
+
+  get dict() {
+    const attemptedNum = this.attemptedProblemNum;
+    const solvedNum = this.solvedProblemNum;
+
+    return calcDict(attemptedNum, solvedNum);
   }
 
   calcSolvedData() {
     this.solvedProblemNum = 0;
     this.penalty = 0;
+    this.attemptedProblemNum = 0;
 
     for (const p of this.problemStatistics) {
       if (p.isAccepted) {
         this.solvedProblemNum++;
+        this.attemptedProblemNum += p.failedCount + 1;
+
         this.penalty += p.penalty;
       }
     }
@@ -80,21 +102,23 @@ export function createTeam(teamJSON: ITeam): Team {
   t.name = teamJSON.name ?? teamJSON.team_name ?? "";
 
   t.organization = teamJSON.organization ?? "";
+  t.badge = teamJSON.badge;
+
   t.group = teamJSON.group ?? [];
   t.tag = teamJSON.group ?? [];
 
   t.coach = teamJSON.coach;
   t.members = teamJSON.members;
 
-  if (teamJSON.official === true) {
+  if (Boolean(teamJSON.official) === true) {
     t.group.push("official");
   }
 
-  if (teamJSON.unofficial === true) {
+  if (Boolean(teamJSON.unofficial) === true) {
     t.group.push("unofficial");
   }
 
-  if (teamJSON.girl === true) {
+  if (Boolean(teamJSON.girl) === true) {
     t.group.push("girl");
   }
 

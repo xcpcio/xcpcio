@@ -12,8 +12,12 @@ describe("team", () => {
 
     expect(teams[0]).toMatchInlineSnapshot(`
       Team {
+        "attemptedProblemNum": 0,
+        "badge": undefined,
         "coach": undefined,
-        "group": [],
+        "group": [
+          "official",
+        ],
         "id": "3000202305140115",
         "members": [
           "江骏扬",
@@ -22,6 +26,7 @@ describe("team", () => {
         ],
         "name": "前面的题目以后再来探索吧？",
         "organization": "重庆邮电大学",
+        "organizationRank": -1,
         "penalty": 0,
         "problemStatistics": [],
         "problemStatisticsMap": Map {},

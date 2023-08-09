@@ -24,138 +24,21 @@ describe("contest", () => {
     const rank = new Rank(contest, teams, submissions);
     rank.buildRank();
 
-    expect(rank.firstSolvedSubmissions).toMatchInlineSnapshot(`
-      Map {
-        "0" => [
-          Submission {
-            "id": "68",
-            "isIgnore": false,
-            "problemId": "0",
-            "status": "CORRECT",
-            "teamId": "3000202305140102",
-            "timestamp": 720,
-          },
-        ],
-        "1" => [
-          Submission {
-            "id": "920",
-            "isIgnore": false,
-            "problemId": "1",
-            "status": "CORRECT",
-            "teamId": "3000202305140047",
-            "timestamp": 10920,
-          },
-        ],
-        "2" => [
-          Submission {
-            "id": "165",
-            "isIgnore": false,
-            "problemId": "2",
-            "status": "CORRECT",
-            "teamId": "3000202305140063",
-            "timestamp": 1800,
-          },
-        ],
-        "3" => [
-          Submission {
-            "id": "787",
-            "isIgnore": false,
-            "problemId": "3",
-            "status": "CORRECT",
-            "teamId": "3000202305140103",
-            "timestamp": 8700,
-          },
-        ],
-        "4" => [
-          Submission {
-            "id": "0",
-            "isIgnore": false,
-            "problemId": "4",
-            "status": "CORRECT",
-            "teamId": "3000202305140002",
-            "timestamp": 240,
-          },
-        ],
-        "5" => [
-          Submission {
-            "id": "121",
-            "isIgnore": false,
-            "problemId": "5",
-            "status": "CORRECT",
-            "teamId": "3000202305140047",
-            "timestamp": 1200,
-          },
-        ],
-        "6" => [],
-        "7" => [
-          Submission {
-            "id": "685",
-            "isIgnore": false,
-            "problemId": "7",
-            "status": "CORRECT",
-            "teamId": "3000202305140047",
-            "timestamp": 7680,
-          },
-        ],
-        "8" => [
-          Submission {
-            "id": "903",
-            "isIgnore": false,
-            "problemId": "8",
-            "status": "CORRECT",
-            "teamId": "3000202305140046",
-            "timestamp": 10560,
-          },
-        ],
-        "9" => [
-          Submission {
-            "id": "146",
-            "isIgnore": false,
-            "problemId": "9",
-            "status": "CORRECT",
-            "teamId": "3000202305140046",
-            "timestamp": 1440,
-          },
-        ],
-        "10" => [
-          Submission {
-            "id": "1164",
-            "isIgnore": false,
-            "problemId": "10",
-            "status": "CORRECT",
-            "teamId": "3000202305140047",
-            "timestamp": 14280,
-          },
-        ],
-        "11" => [
-          Submission {
-            "id": "201",
-            "isIgnore": false,
-            "problemId": "11",
-            "status": "CORRECT",
-            "teamId": "3000202305140027",
-            "timestamp": 2340,
-          },
-        ],
-        "12" => [
-          Submission {
-            "id": "347",
-            "isIgnore": false,
-            "problemId": "12",
-            "status": "CORRECT",
-            "teamId": "3000202305140046",
-            "timestamp": 3660,
-          },
-        ],
-      }
-    `);
+    const firstTeam = rank.teams[0];
+    const lastTeam = rank.teams[rank.teams.length - 1];
 
-    expect(rank.teams[0].rank).toMatchInlineSnapshot("1");
-    expect(rank.teams[0].solvedProblemNum).toMatchInlineSnapshot("11");
-    expect(rank.teams[0].penalty).toMatchInlineSnapshot("89820");
-    expect(rank.teams[0].name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
-    expect(rank.teams[0].organization).toMatchInlineSnapshot("\"北京大学\"");
-    expect(rank.teams[0].problemStatistics).toMatchInlineSnapshot(`
+    expect(firstTeam.rank).toMatchInlineSnapshot("1");
+    expect(firstTeam.organizationRank).toMatchInlineSnapshot("1");
+
+    expect(firstTeam.solvedProblemNum).toMatchInlineSnapshot("11");
+    expect(firstTeam.penalty).toMatchInlineSnapshot("89820");
+    expect(firstTeam.name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
+    expect(firstTeam.organization).toMatchInlineSnapshot("\"北京大学\"");
+
+    expect(firstTeam.penaltyToMinute).toMatchInlineSnapshot("1497");
+    expect(firstTeam.dict).toMatchInlineSnapshot("52");
+
+    expect(firstTeam.problemStatistics).toMatchInlineSnapshot(`
       [
         TeamProblemStatistics {
           "contestPenalty": 1200,
@@ -175,8 +58,30 @@ describe("contest", () => {
             "label": "A",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 29,
+              "attemptedNum": 56,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "68",
+                  "isIgnore": false,
+                  "problemId": "0",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140102",
+                  "timestamp": 720,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1636",
+                  "isIgnore": false,
+                  "problemId": "0",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140034",
+                  "timestamp": 17460,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 178,
               "submittedNum": 207,
@@ -214,8 +119,30 @@ describe("contest", () => {
             "label": "B",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 3,
+              "attemptedNum": 9,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "920",
+                  "isIgnore": false,
+                  "problemId": "1",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 10920,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1509",
+                  "isIgnore": false,
+                  "problemId": "1",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 17040,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 12,
               "submittedNum": 15,
@@ -269,8 +196,30 @@ describe("contest", () => {
             "label": "C",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 99,
+              "attemptedNum": 184,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "165",
+                  "isIgnore": false,
+                  "problemId": "2",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140063",
+                  "timestamp": 1800,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1806",
+                  "isIgnore": false,
+                  "problemId": "2",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140025",
+                  "timestamp": 17880,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 161,
               "submittedNum": 263,
@@ -308,8 +257,30 @@ describe("contest", () => {
             "label": "D",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 1,
+              "attemptedNum": 1,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "787",
+                  "isIgnore": false,
+                  "problemId": "3",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140103",
+                  "timestamp": 8700,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "787",
+                  "isIgnore": false,
+                  "problemId": "3",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140103",
+                  "timestamp": 8700,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 2,
               "submittedNum": 3,
@@ -338,8 +309,30 @@ describe("contest", () => {
             "label": "E",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 126,
+              "attemptedNum": 148,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "0",
+                  "isIgnore": false,
+                  "problemId": "4",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140002",
+                  "timestamp": 240,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "477",
+                  "isIgnore": false,
+                  "problemId": "4",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140119",
+                  "timestamp": 5160,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 78,
               "submittedNum": 207,
@@ -377,8 +370,30 @@ describe("contest", () => {
             "label": "F",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 125,
+              "attemptedNum": 255,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "121",
+                  "isIgnore": false,
+                  "problemId": "5",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 1200,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1692",
+                  "isIgnore": false,
+                  "problemId": "5",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140098",
+                  "timestamp": 17640,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 147,
               "submittedNum": 275,
@@ -416,8 +431,12 @@ describe("contest", () => {
             "label": "G",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 0,
+              "attemptedNum": 0,
+              "firstSolveSubmissions": [],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [],
               "pendingNum": 0,
               "rejectedNum": 2,
               "submittedNum": 2,
@@ -446,8 +465,30 @@ describe("contest", () => {
             "label": "H",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 6,
+              "attemptedNum": 12,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "685",
+                  "isIgnore": false,
+                  "problemId": "7",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 7680,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1517",
+                  "isIgnore": false,
+                  "problemId": "7",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140050",
+                  "timestamp": 17100,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 40,
               "submittedNum": 46,
@@ -493,8 +534,30 @@ describe("contest", () => {
             "label": "I",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 2,
+              "attemptedNum": 6,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "903",
+                  "isIgnore": false,
+                  "problemId": "8",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 10560,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1632",
+                  "isIgnore": false,
+                  "problemId": "8",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 17460,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 10,
               "submittedNum": 12,
@@ -540,8 +603,30 @@ describe("contest", () => {
             "label": "J",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 108,
+              "attemptedNum": 337,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "146",
+                  "isIgnore": false,
+                  "problemId": "9",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 1440,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1530",
+                  "isIgnore": false,
+                  "problemId": "9",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140124",
+                  "timestamp": 17160,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 329,
               "submittedNum": 441,
@@ -587,8 +672,30 @@ describe("contest", () => {
             "label": "K",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 1,
+              "attemptedNum": 4,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "1164",
+                  "isIgnore": false,
+                  "problemId": "10",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 14280,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1164",
+                  "isIgnore": false,
+                  "problemId": "10",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 14280,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 7,
               "submittedNum": 8,
@@ -650,8 +757,30 @@ describe("contest", () => {
             "label": "L",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 48,
+              "attemptedNum": 183,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "201",
+                  "isIgnore": false,
+                  "problemId": "11",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140027",
+                  "timestamp": 2340,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1822",
+                  "isIgnore": false,
+                  "problemId": "11",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140054",
+                  "timestamp": 17880,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 328,
               "submittedNum": 389,
@@ -721,8 +850,30 @@ describe("contest", () => {
             "label": "M",
             "memoryLimit": undefined,
             "name": "",
-            "statistics": {
+            "statistics": ProblemStatistics {
               "acceptedNum": 7,
+              "attemptedNum": 8,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "347",
+                  "isIgnore": false,
+                  "problemId": "12",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 3660,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1607",
+                  "isIgnore": false,
+                  "problemId": "12",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140087",
+                  "timestamp": 17400,
+                },
+              ],
               "pendingNum": 0,
               "rejectedNum": 25,
               "submittedNum": 32,
@@ -744,6 +895,834 @@ describe("contest", () => {
         },
       ]
     `);
+
+    expect(lastTeam.rank).toMatchInlineSnapshot("132");
+    expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
+
+    expect(lastTeam.solvedProblemNum).toMatchInlineSnapshot("0");
+    expect(lastTeam.penalty).toMatchInlineSnapshot("0");
+    expect(lastTeam.name).toMatchInlineSnapshot("\"红旗精英\"");
+    expect(lastTeam.organization).toMatchInlineSnapshot("\"一汽红旗\"");
+
+    expect(lastTeam.penaltyToMinute).toMatchInlineSnapshot("0");
+    expect(lastTeam.dict).toMatchInlineSnapshot("0");
+
+    expect(lastTeam.problemStatistics).toMatchInlineSnapshot(`
+      [
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(189, 14, 14, 0.7)",
+              "color": "#fff",
+            },
+            "id": "0",
+            "label": "A",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 29,
+              "attemptedNum": 56,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "68",
+                  "isIgnore": false,
+                  "problemId": "0",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140102",
+                  "timestamp": 720,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1636",
+                  "isIgnore": false,
+                  "problemId": "0",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140034",
+                  "timestamp": 17460,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 178,
+              "submittedNum": 207,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "#951FD9",
+              "color": "#fff",
+            },
+            "id": "1",
+            "label": "B",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 3,
+              "attemptedNum": 9,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "920",
+                  "isIgnore": false,
+                  "problemId": "1",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 10920,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1509",
+                  "isIgnore": false,
+                  "problemId": "1",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 17040,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 12,
+              "submittedNum": 15,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(255, 255, 255, 0.7)",
+              "color": "#000",
+            },
+            "id": "2",
+            "label": "C",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 99,
+              "attemptedNum": 184,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "165",
+                  "isIgnore": false,
+                  "problemId": "2",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140063",
+                  "timestamp": 1800,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1806",
+                  "isIgnore": false,
+                  "problemId": "2",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140025",
+                  "timestamp": 17880,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 161,
+              "submittedNum": 263,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(38, 185, 60, 0.7)",
+              "color": "#fff",
+            },
+            "id": "3",
+            "label": "D",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 1,
+              "attemptedNum": 1,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "787",
+                  "isIgnore": false,
+                  "problemId": "3",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140103",
+                  "timestamp": 8700,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "787",
+                  "isIgnore": false,
+                  "problemId": "3",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140103",
+                  "timestamp": 8700,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 2,
+              "submittedNum": 3,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 19,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": true,
+          "lastSubmitTimestamp": 17520,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(239, 217, 9, 0.7)",
+              "color": "#000",
+            },
+            "id": "4",
+            "label": "E",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 126,
+              "attemptedNum": 148,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "0",
+                  "isIgnore": false,
+                  "problemId": "4",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140002",
+                  "timestamp": 240,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "477",
+                  "isIgnore": false,
+                  "problemId": "4",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140119",
+                  "timestamp": 5160,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 78,
+              "submittedNum": 207,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [
+            Submission {
+              "id": "554",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 6000,
+            },
+            Submission {
+              "id": "560",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 6180,
+            },
+            Submission {
+              "id": "573",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 6300,
+            },
+            Submission {
+              "id": "577",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 6360,
+            },
+            Submission {
+              "id": "697",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 7740,
+            },
+            Submission {
+              "id": "700",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 7740,
+            },
+            Submission {
+              "id": "709",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 7920,
+            },
+            Submission {
+              "id": "711",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 7920,
+            },
+            Submission {
+              "id": "780",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 8700,
+            },
+            Submission {
+              "id": "884",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 10260,
+            },
+            Submission {
+              "id": "886",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 10260,
+            },
+            Submission {
+              "id": "952",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 11340,
+            },
+            Submission {
+              "id": "953",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 11340,
+            },
+            Submission {
+              "id": "1017",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 12180,
+            },
+            Submission {
+              "id": "1031",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 12420,
+            },
+            Submission {
+              "id": "1235",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 15120,
+            },
+            Submission {
+              "id": "1328",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 16020,
+            },
+            Submission {
+              "id": "1404",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 16500,
+            },
+            Submission {
+              "id": "1649",
+              "isIgnore": false,
+              "problemId": "4",
+              "status": "REJECTED",
+              "teamId": "3000202305140132",
+              "timestamp": 17520,
+            },
+          ],
+          "totalCount": 19,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(243, 88, 20, 0.7)",
+              "color": "#fff",
+            },
+            "id": "5",
+            "label": "F",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 125,
+              "attemptedNum": 255,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "121",
+                  "isIgnore": false,
+                  "problemId": "5",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 1200,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1692",
+                  "isIgnore": false,
+                  "problemId": "5",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140098",
+                  "timestamp": 17640,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 147,
+              "submittedNum": 275,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(12, 76, 138, 0.7)",
+              "color": "#fff",
+            },
+            "id": "6",
+            "label": "G",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 0,
+              "attemptedNum": 0,
+              "firstSolveSubmissions": [],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [],
+              "pendingNum": 0,
+              "rejectedNum": 2,
+              "submittedNum": 2,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(156, 155, 155, 0.7)",
+              "color": "#fff",
+            },
+            "id": "7",
+            "label": "H",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 6,
+              "attemptedNum": 12,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "685",
+                  "isIgnore": false,
+                  "problemId": "7",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 7680,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1517",
+                  "isIgnore": false,
+                  "problemId": "7",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140050",
+                  "timestamp": 17100,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 40,
+              "submittedNum": 46,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(4, 154, 115, 0.7)",
+              "color": "#fff",
+            },
+            "id": "8",
+            "label": "I",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 2,
+              "attemptedNum": 6,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "903",
+                  "isIgnore": false,
+                  "problemId": "8",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 10560,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1632",
+                  "isIgnore": false,
+                  "problemId": "8",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 17460,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 10,
+              "submittedNum": 12,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(159, 19, 236, 0.7)",
+              "color": "#fff",
+            },
+            "id": "9",
+            "label": "J",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 108,
+              "attemptedNum": 337,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "146",
+                  "isIgnore": false,
+                  "problemId": "9",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 1440,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1530",
+                  "isIgnore": false,
+                  "problemId": "9",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140124",
+                  "timestamp": 17160,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 329,
+              "submittedNum": 441,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(42, 197, 202, 0.7)",
+              "color": "#000",
+            },
+            "id": "10",
+            "label": "K",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 1,
+              "attemptedNum": 4,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "1164",
+                  "isIgnore": false,
+                  "problemId": "10",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 14280,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1164",
+                  "isIgnore": false,
+                  "problemId": "10",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140047",
+                  "timestamp": 14280,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 7,
+              "submittedNum": 8,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(142, 56, 54, 0.7)",
+              "color": "#fff",
+            },
+            "id": "11",
+            "label": "L",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 48,
+              "attemptedNum": 183,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "201",
+                  "isIgnore": false,
+                  "problemId": "11",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140027",
+                  "timestamp": 2340,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1822",
+                  "isIgnore": false,
+                  "problemId": "11",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140054",
+                  "timestamp": 17880,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 328,
+              "submittedNum": 389,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+        TeamProblemStatistics {
+          "contestPenalty": 1200,
+          "failedCount": 0,
+          "ignoreCount": 0,
+          "isFirstSolved": false,
+          "isSolved": false,
+          "isSubmitted": false,
+          "lastSubmitTimestamp": 0,
+          "pendingCount": 0,
+          "problem": Problem {
+            "balloonColor": {
+              "background_color": "rgba(0, 0, 0, 0.7)",
+              "color": "#fff",
+            },
+            "id": "12",
+            "label": "M",
+            "memoryLimit": undefined,
+            "name": "",
+            "statistics": ProblemStatistics {
+              "acceptedNum": 7,
+              "attemptedNum": 8,
+              "firstSolveSubmissions": [
+                Submission {
+                  "id": "347",
+                  "isIgnore": false,
+                  "problemId": "12",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140046",
+                  "timestamp": 3660,
+                },
+              ],
+              "ignoreNum": 0,
+              "lastSolveSubmissions": [
+                Submission {
+                  "id": "1607",
+                  "isIgnore": false,
+                  "problemId": "12",
+                  "status": "CORRECT",
+                  "teamId": "3000202305140087",
+                  "timestamp": 17400,
+                },
+              ],
+              "pendingNum": 0,
+              "rejectedNum": 25,
+              "submittedNum": 32,
+            },
+            "timeLimit": undefined,
+          },
+          "solvedTimestamp": 0,
+          "submissions": [],
+          "totalCount": 0,
+        },
+      ]
+    `);
+
     expect(rank.contest.problems).toMatchInlineSnapshot(`
       [
         Problem {
@@ -755,8 +1734,30 @@ describe("contest", () => {
           "label": "A",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 29,
+            "attemptedNum": 56,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "68",
+                "isIgnore": false,
+                "problemId": "0",
+                "status": "CORRECT",
+                "teamId": "3000202305140102",
+                "timestamp": 720,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1636",
+                "isIgnore": false,
+                "problemId": "0",
+                "status": "CORRECT",
+                "teamId": "3000202305140034",
+                "timestamp": 17460,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 178,
             "submittedNum": 207,
@@ -772,8 +1773,30 @@ describe("contest", () => {
           "label": "B",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 3,
+            "attemptedNum": 9,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "920",
+                "isIgnore": false,
+                "problemId": "1",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 10920,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1509",
+                "isIgnore": false,
+                "problemId": "1",
+                "status": "CORRECT",
+                "teamId": "3000202305140046",
+                "timestamp": 17040,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 12,
             "submittedNum": 15,
@@ -789,8 +1812,30 @@ describe("contest", () => {
           "label": "C",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 99,
+            "attemptedNum": 184,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "165",
+                "isIgnore": false,
+                "problemId": "2",
+                "status": "CORRECT",
+                "teamId": "3000202305140063",
+                "timestamp": 1800,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1806",
+                "isIgnore": false,
+                "problemId": "2",
+                "status": "CORRECT",
+                "teamId": "3000202305140025",
+                "timestamp": 17880,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 161,
             "submittedNum": 263,
@@ -806,8 +1851,30 @@ describe("contest", () => {
           "label": "D",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 1,
+            "attemptedNum": 1,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "787",
+                "isIgnore": false,
+                "problemId": "3",
+                "status": "CORRECT",
+                "teamId": "3000202305140103",
+                "timestamp": 8700,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "787",
+                "isIgnore": false,
+                "problemId": "3",
+                "status": "CORRECT",
+                "teamId": "3000202305140103",
+                "timestamp": 8700,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 2,
             "submittedNum": 3,
@@ -823,8 +1890,30 @@ describe("contest", () => {
           "label": "E",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 126,
+            "attemptedNum": 148,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "0",
+                "isIgnore": false,
+                "problemId": "4",
+                "status": "CORRECT",
+                "teamId": "3000202305140002",
+                "timestamp": 240,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "477",
+                "isIgnore": false,
+                "problemId": "4",
+                "status": "CORRECT",
+                "teamId": "3000202305140119",
+                "timestamp": 5160,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 78,
             "submittedNum": 207,
@@ -840,8 +1929,30 @@ describe("contest", () => {
           "label": "F",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 125,
+            "attemptedNum": 255,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "121",
+                "isIgnore": false,
+                "problemId": "5",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 1200,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1692",
+                "isIgnore": false,
+                "problemId": "5",
+                "status": "CORRECT",
+                "teamId": "3000202305140098",
+                "timestamp": 17640,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 147,
             "submittedNum": 275,
@@ -857,8 +1968,12 @@ describe("contest", () => {
           "label": "G",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 0,
+            "attemptedNum": 0,
+            "firstSolveSubmissions": [],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [],
             "pendingNum": 0,
             "rejectedNum": 2,
             "submittedNum": 2,
@@ -874,8 +1989,30 @@ describe("contest", () => {
           "label": "H",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 6,
+            "attemptedNum": 12,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "685",
+                "isIgnore": false,
+                "problemId": "7",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 7680,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1517",
+                "isIgnore": false,
+                "problemId": "7",
+                "status": "CORRECT",
+                "teamId": "3000202305140050",
+                "timestamp": 17100,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 40,
             "submittedNum": 46,
@@ -891,8 +2028,30 @@ describe("contest", () => {
           "label": "I",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 2,
+            "attemptedNum": 6,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "903",
+                "isIgnore": false,
+                "problemId": "8",
+                "status": "CORRECT",
+                "teamId": "3000202305140046",
+                "timestamp": 10560,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1632",
+                "isIgnore": false,
+                "problemId": "8",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 17460,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 10,
             "submittedNum": 12,
@@ -908,8 +2067,30 @@ describe("contest", () => {
           "label": "J",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 108,
+            "attemptedNum": 337,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "146",
+                "isIgnore": false,
+                "problemId": "9",
+                "status": "CORRECT",
+                "teamId": "3000202305140046",
+                "timestamp": 1440,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1530",
+                "isIgnore": false,
+                "problemId": "9",
+                "status": "CORRECT",
+                "teamId": "3000202305140124",
+                "timestamp": 17160,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 329,
             "submittedNum": 441,
@@ -925,8 +2106,30 @@ describe("contest", () => {
           "label": "K",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 1,
+            "attemptedNum": 4,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "1164",
+                "isIgnore": false,
+                "problemId": "10",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 14280,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1164",
+                "isIgnore": false,
+                "problemId": "10",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 14280,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 7,
             "submittedNum": 8,
@@ -942,8 +2145,30 @@ describe("contest", () => {
           "label": "L",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 48,
+            "attemptedNum": 183,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "201",
+                "isIgnore": false,
+                "problemId": "11",
+                "status": "CORRECT",
+                "teamId": "3000202305140027",
+                "timestamp": 2340,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1822",
+                "isIgnore": false,
+                "problemId": "11",
+                "status": "CORRECT",
+                "teamId": "3000202305140054",
+                "timestamp": 17880,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 328,
             "submittedNum": 389,
@@ -959,8 +2184,30 @@ describe("contest", () => {
           "label": "M",
           "memoryLimit": undefined,
           "name": "",
-          "statistics": {
+          "statistics": ProblemStatistics {
             "acceptedNum": 7,
+            "attemptedNum": 8,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "347",
+                "isIgnore": false,
+                "problemId": "12",
+                "status": "CORRECT",
+                "teamId": "3000202305140046",
+                "timestamp": 3660,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1607",
+                "isIgnore": false,
+                "problemId": "12",
+                "status": "CORRECT",
+                "teamId": "3000202305140087",
+                "timestamp": 17400,
+              },
+            ],
             "pendingNum": 0,
             "rejectedNum": 25,
             "submittedNum": 32,
@@ -972,8 +2219,12 @@ describe("contest", () => {
 
     expect(rank.teams[0]).toMatchInlineSnapshot(`
       Team {
+        "attemptedProblemNum": 23,
+        "badge": undefined,
         "coach": undefined,
-        "group": [],
+        "group": [
+          "official",
+        ],
         "id": "3000202305140047",
         "members": [
           "王展鹏",
@@ -982,6 +2233,7 @@ describe("contest", () => {
         ],
         "name": "重生之我是菜狗",
         "organization": "北京大学",
+        "organizationRank": 1,
         "penalty": 89820,
         "problemStatistics": [
           TeamProblemStatistics {
@@ -1002,8 +2254,30 @@ describe("contest", () => {
               "label": "A",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 29,
+                "attemptedNum": 56,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "68",
+                    "isIgnore": false,
+                    "problemId": "0",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140102",
+                    "timestamp": 720,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1636",
+                    "isIgnore": false,
+                    "problemId": "0",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140034",
+                    "timestamp": 17460,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 178,
                 "submittedNum": 207,
@@ -1041,8 +2315,30 @@ describe("contest", () => {
               "label": "B",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 3,
+                "attemptedNum": 9,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "920",
+                    "isIgnore": false,
+                    "problemId": "1",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 10920,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1509",
+                    "isIgnore": false,
+                    "problemId": "1",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 17040,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 12,
                 "submittedNum": 15,
@@ -1096,8 +2392,30 @@ describe("contest", () => {
               "label": "C",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 99,
+                "attemptedNum": 184,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "165",
+                    "isIgnore": false,
+                    "problemId": "2",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140063",
+                    "timestamp": 1800,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1806",
+                    "isIgnore": false,
+                    "problemId": "2",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140025",
+                    "timestamp": 17880,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 161,
                 "submittedNum": 263,
@@ -1135,8 +2453,30 @@ describe("contest", () => {
               "label": "D",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 1,
+                "attemptedNum": 1,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "787",
+                    "isIgnore": false,
+                    "problemId": "3",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140103",
+                    "timestamp": 8700,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "787",
+                    "isIgnore": false,
+                    "problemId": "3",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140103",
+                    "timestamp": 8700,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 2,
                 "submittedNum": 3,
@@ -1165,8 +2505,30 @@ describe("contest", () => {
               "label": "E",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 126,
+                "attemptedNum": 148,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "0",
+                    "isIgnore": false,
+                    "problemId": "4",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140002",
+                    "timestamp": 240,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "477",
+                    "isIgnore": false,
+                    "problemId": "4",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140119",
+                    "timestamp": 5160,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 78,
                 "submittedNum": 207,
@@ -1204,8 +2566,30 @@ describe("contest", () => {
               "label": "F",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 125,
+                "attemptedNum": 255,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "121",
+                    "isIgnore": false,
+                    "problemId": "5",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 1200,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1692",
+                    "isIgnore": false,
+                    "problemId": "5",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140098",
+                    "timestamp": 17640,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 147,
                 "submittedNum": 275,
@@ -1243,8 +2627,12 @@ describe("contest", () => {
               "label": "G",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 0,
+                "attemptedNum": 0,
+                "firstSolveSubmissions": [],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [],
                 "pendingNum": 0,
                 "rejectedNum": 2,
                 "submittedNum": 2,
@@ -1273,8 +2661,30 @@ describe("contest", () => {
               "label": "H",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 6,
+                "attemptedNum": 12,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "685",
+                    "isIgnore": false,
+                    "problemId": "7",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 7680,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1517",
+                    "isIgnore": false,
+                    "problemId": "7",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140050",
+                    "timestamp": 17100,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 40,
                 "submittedNum": 46,
@@ -1320,8 +2730,30 @@ describe("contest", () => {
               "label": "I",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 2,
+                "attemptedNum": 6,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "903",
+                    "isIgnore": false,
+                    "problemId": "8",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 10560,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1632",
+                    "isIgnore": false,
+                    "problemId": "8",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 17460,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 10,
                 "submittedNum": 12,
@@ -1367,8 +2799,30 @@ describe("contest", () => {
               "label": "J",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 108,
+                "attemptedNum": 337,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "146",
+                    "isIgnore": false,
+                    "problemId": "9",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 1440,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1530",
+                    "isIgnore": false,
+                    "problemId": "9",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140124",
+                    "timestamp": 17160,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 329,
                 "submittedNum": 441,
@@ -1414,8 +2868,30 @@ describe("contest", () => {
               "label": "K",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 1,
+                "attemptedNum": 4,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "1164",
+                    "isIgnore": false,
+                    "problemId": "10",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 14280,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1164",
+                    "isIgnore": false,
+                    "problemId": "10",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 14280,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 7,
                 "submittedNum": 8,
@@ -1477,8 +2953,30 @@ describe("contest", () => {
               "label": "L",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 48,
+                "attemptedNum": 183,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "201",
+                    "isIgnore": false,
+                    "problemId": "11",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140027",
+                    "timestamp": 2340,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1822",
+                    "isIgnore": false,
+                    "problemId": "11",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140054",
+                    "timestamp": 17880,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 328,
                 "submittedNum": 389,
@@ -1548,8 +3046,30 @@ describe("contest", () => {
               "label": "M",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 7,
+                "attemptedNum": 8,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "347",
+                    "isIgnore": false,
+                    "problemId": "12",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 3660,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1607",
+                    "isIgnore": false,
+                    "problemId": "12",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140087",
+                    "timestamp": 17400,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 25,
                 "submittedNum": 32,
@@ -1589,8 +3109,30 @@ describe("contest", () => {
               "label": "A",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 29,
+                "attemptedNum": 56,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "68",
+                    "isIgnore": false,
+                    "problemId": "0",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140102",
+                    "timestamp": 720,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1636",
+                    "isIgnore": false,
+                    "problemId": "0",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140034",
+                    "timestamp": 17460,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 178,
                 "submittedNum": 207,
@@ -1628,8 +3170,30 @@ describe("contest", () => {
               "label": "B",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 3,
+                "attemptedNum": 9,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "920",
+                    "isIgnore": false,
+                    "problemId": "1",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 10920,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1509",
+                    "isIgnore": false,
+                    "problemId": "1",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 17040,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 12,
                 "submittedNum": 15,
@@ -1683,8 +3247,30 @@ describe("contest", () => {
               "label": "C",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 99,
+                "attemptedNum": 184,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "165",
+                    "isIgnore": false,
+                    "problemId": "2",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140063",
+                    "timestamp": 1800,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1806",
+                    "isIgnore": false,
+                    "problemId": "2",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140025",
+                    "timestamp": 17880,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 161,
                 "submittedNum": 263,
@@ -1722,8 +3308,30 @@ describe("contest", () => {
               "label": "D",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 1,
+                "attemptedNum": 1,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "787",
+                    "isIgnore": false,
+                    "problemId": "3",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140103",
+                    "timestamp": 8700,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "787",
+                    "isIgnore": false,
+                    "problemId": "3",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140103",
+                    "timestamp": 8700,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 2,
                 "submittedNum": 3,
@@ -1752,8 +3360,30 @@ describe("contest", () => {
               "label": "E",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 126,
+                "attemptedNum": 148,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "0",
+                    "isIgnore": false,
+                    "problemId": "4",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140002",
+                    "timestamp": 240,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "477",
+                    "isIgnore": false,
+                    "problemId": "4",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140119",
+                    "timestamp": 5160,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 78,
                 "submittedNum": 207,
@@ -1791,8 +3421,30 @@ describe("contest", () => {
               "label": "F",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 125,
+                "attemptedNum": 255,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "121",
+                    "isIgnore": false,
+                    "problemId": "5",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 1200,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1692",
+                    "isIgnore": false,
+                    "problemId": "5",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140098",
+                    "timestamp": 17640,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 147,
                 "submittedNum": 275,
@@ -1830,8 +3482,12 @@ describe("contest", () => {
               "label": "G",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 0,
+                "attemptedNum": 0,
+                "firstSolveSubmissions": [],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [],
                 "pendingNum": 0,
                 "rejectedNum": 2,
                 "submittedNum": 2,
@@ -1860,8 +3516,30 @@ describe("contest", () => {
               "label": "H",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 6,
+                "attemptedNum": 12,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "685",
+                    "isIgnore": false,
+                    "problemId": "7",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 7680,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1517",
+                    "isIgnore": false,
+                    "problemId": "7",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140050",
+                    "timestamp": 17100,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 40,
                 "submittedNum": 46,
@@ -1907,8 +3585,30 @@ describe("contest", () => {
               "label": "I",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 2,
+                "attemptedNum": 6,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "903",
+                    "isIgnore": false,
+                    "problemId": "8",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 10560,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1632",
+                    "isIgnore": false,
+                    "problemId": "8",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 17460,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 10,
                 "submittedNum": 12,
@@ -1954,8 +3654,30 @@ describe("contest", () => {
               "label": "J",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 108,
+                "attemptedNum": 337,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "146",
+                    "isIgnore": false,
+                    "problemId": "9",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 1440,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1530",
+                    "isIgnore": false,
+                    "problemId": "9",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140124",
+                    "timestamp": 17160,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 329,
                 "submittedNum": 441,
@@ -2001,8 +3723,30 @@ describe("contest", () => {
               "label": "K",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 1,
+                "attemptedNum": 4,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "1164",
+                    "isIgnore": false,
+                    "problemId": "10",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 14280,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1164",
+                    "isIgnore": false,
+                    "problemId": "10",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140047",
+                    "timestamp": 14280,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 7,
                 "submittedNum": 8,
@@ -2064,8 +3808,30 @@ describe("contest", () => {
               "label": "L",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 48,
+                "attemptedNum": 183,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "201",
+                    "isIgnore": false,
+                    "problemId": "11",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140027",
+                    "timestamp": 2340,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1822",
+                    "isIgnore": false,
+                    "problemId": "11",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140054",
+                    "timestamp": 17880,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 328,
                 "submittedNum": 389,
@@ -2135,8 +3901,30 @@ describe("contest", () => {
               "label": "M",
               "memoryLimit": undefined,
               "name": "",
-              "statistics": {
+              "statistics": ProblemStatistics {
                 "acceptedNum": 7,
+                "attemptedNum": 8,
+                "firstSolveSubmissions": [
+                  Submission {
+                    "id": "347",
+                    "isIgnore": false,
+                    "problemId": "12",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140046",
+                    "timestamp": 3660,
+                  },
+                ],
+                "ignoreNum": 0,
+                "lastSolveSubmissions": [
+                  Submission {
+                    "id": "1607",
+                    "isIgnore": false,
+                    "problemId": "12",
+                    "status": "CORRECT",
+                    "teamId": "3000202305140087",
+                    "timestamp": 17400,
+                  },
+                ],
                 "pendingNum": 0,
                 "rejectedNum": 25,
                 "submittedNum": 32,

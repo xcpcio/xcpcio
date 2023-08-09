@@ -90,7 +90,7 @@ const TeamUI: React.FC<TeamUIProps> = (props) => {
           </div>
           <div className="w-48 flex flex-shrink-0 flex-row justify-start items-center">
             <div className="w-1/3">{team.solvedProblemNum}</div>
-            <div className="w-2/3">{team.penaltyToMinute()}</div>
+            <div className="w-2/3">{team.penaltyToMinute}</div>
           </div>
         </>
       )}

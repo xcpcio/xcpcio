@@ -23,7 +23,7 @@
   },
   "scripts": {
     "build": "vite-ssg build",
-    "dev": "vite --host :: --port 3333",
+    "dev": "vite --port 3333",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
@@ -35,12 +35,15 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
+    "@tanstack/vue-query": "^4.32.6",
     "@unhead/vue": "^1.1.30",
     "@unocss/reset": "^0.53.5",
+    "@vueuse/components": "^10.3.0",
     "@vueuse/core": "^10.2.1",
     "@vueuse/head": "^1.1.26",
     "@xcpcio/core": "workspace:*",
     "@xcpcio/types": "workspace:*",
+    "floating-vue": "2.0.0-beta.24",
     "nprogress": "^0.2.0",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",
@@ -50,7 +53,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.7",
-    "@iconify-json/carbon": "^1.1.18",
+    "@iconify/json": "^2.2.95",
     "@intlify/unplugin-vue-i18n": "^0.12.2",
     "@types/markdown-it-link-attributes": "^3.0.1",
     "@types/nprogress": "^0.2.0",
@@ -65,6 +68,7 @@
     "eslint": "^8.44.0",
     "eslint-plugin-cypress": "^2.13.3",
     "https-localhost": "^4.7.1",
+    "less": "^4.2.0",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.9.0",
     "pnpm": "^8.6.7",

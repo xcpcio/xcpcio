@@ -1,13 +1,51 @@
 import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 
 import type { Submissions } from "./submission";
+import { calcDict } from "./utils";
 
-export interface ProblemStatistics {
+export class ProblemStatistics {
   acceptedNum: number;
   rejectedNum: number;
   pendingNum: number;
 
   submittedNum: number;
+  attemptedNum: number;
+  ignoreNum: number;
+
+  firstSolveSubmissions: Submissions;
+  lastSolveSubmissions: Submissions;
+
+  constructor() {
+    this.acceptedNum = 0;
+    this.rejectedNum = 0;
+    this.pendingNum = 0;
+
+    this.submittedNum = 0;
+    this.attemptedNum = 0;
+    this.ignoreNum = 0;
+
+    this.firstSolveSubmissions = [];
+    this.lastSolveSubmissions = [];
+  }
+
+  reset() {
+    this.acceptedNum = 0;
+    this.rejectedNum = 0;
+    this.pendingNum = 0;
+
+    this.submittedNum = 0;
+
+    this.firstSolveSubmissions = [];
+    this.lastSolveSubmissions = [];
+  }
+
+  get dict() {
+    if (this.acceptedNum === 0) {
+      return 0;
+    }
+
+    return calcDict(this.attemptedNum, this.acceptedNum);
+  }
 }
 
 export class Problem {
@@ -29,12 +67,7 @@ export class Problem {
 
     this.name = "";
 
-    this.statistics = {
-      acceptedNum: 0,
-      rejectedNum: 0,
-      pendingNum: 0,
-      submittedNum: 0,
-    };
+    this.statistics = new ProblemStatistics();
   }
 }
 
