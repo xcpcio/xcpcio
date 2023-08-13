@@ -30,3 +30,10 @@ standings:
     dict: Dict
     first_solved: First Solved
     last_solved: Last Solved
+type_menu:
+  rank: Rank
+  submit: Submit
+  statistics: Statistics
+  balloon: Balloon
+  export: Export
+  resolver: Resolver

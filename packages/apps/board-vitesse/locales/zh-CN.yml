@@ -30,3 +30,10 @@ standings:
     dict: Dict
     first_solved: First Solved
     last_solved: Last Solved
+type_menu:
+  rank: 排名
+  submit: 提交
+  statistics: 统计
+  balloon: 气球
+  export: 导出
+  resolver: 滚榜

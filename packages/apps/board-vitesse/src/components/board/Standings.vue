@@ -11,7 +11,7 @@ const rank = reactive(props.rank);
 </script>
 
 <template>
-  <div class="mt-5">
+  <div class="mt-1">
     <div>
       <table class="standings font-mono dark:text-gray-700">
         <thead>
