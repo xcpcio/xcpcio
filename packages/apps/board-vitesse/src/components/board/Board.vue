@@ -3,6 +3,8 @@ import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/cor
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
 
+import type { Item } from "~/components/board/SecondLevelMenu.vue";
+
 const route = useRoute();
 const { t } = useI18n();
 
@@ -12,7 +14,7 @@ const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
 
-const { data, isError, error } = useQueryBoardData(route.fullPath);
+const { data, isError, error } = useQueryBoardData(route.path);
 
 watchEffect(async () => {
   if (data.value === null || data.value === undefined) {
@@ -28,26 +30,69 @@ watchEffect(async () => {
 
   firstLoaded.value = true;
 });
+
+const currentType = ref("rank");
+
+const secondLevelMenuList = ref<Array<Item>>([
+  {
+    title: "type_menu.rank",
+    keyword: "rank",
+    isDefault: true,
+  },
+  {
+    title: "type_menu.submit",
+    keyword: "submit",
+  },
+  {
+    title: "type_menu.statistics",
+    keyword: "statistics",
+  },
+  {
+    title: "type_menu.balloon",
+    keyword: "balloon",
+  },
+  {
+    title: "type_menu.export",
+    keyword: "export",
+  },
+  {
+    title: "type_menu.resolver",
+    keyword: "resolver",
+    link: `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`,
+  },
+]);
+
+function handleUpdateType(type: string) {
+  currentType.value = type;
+}
 </script>
 
 <template>
-  <div class="flex items-center justify-center">
-    <div v-if="!firstLoaded">
+  <div v-if="!firstLoaded">
+    <div class="flex items-center justify-center">
       {{ t("common.loading") }}...
 
       <div v-if="isError">
         {{ error }}
       </div>
     </div>
+  </div>
 
-    <div v-if="firstLoaded">
-      <div class="title font-serif text-3xl font-normal text-center">
-        {{ contest.name }}
-      </div>
+  <div v-if="firstLoaded">
+    <div class="title text-3xl text-center font-normal font-serif">
+      {{ contest.name }}
+    </div>
 
-      <div class="flex justify-center">
-        <Standings :rank="rank" />
+    <div class="flex mt-4" style="width: calc(90vw)">
+      <div class="float-left" />
+      <div class="flex-1" />
+      <div class="float-right">
+        <SecondLevelMenu :items="secondLevelMenuList" @update-type="handleUpdateType" />
       </div>
+    </div>
+
+    <div v-if="currentType === 'rank'" class="flex justify-center">
+      <Standings :rank="rank" />
     </div>
   </div>
 </template>

@@ -17,6 +17,7 @@ declare module 'vue' {
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SecondLevelMenu: typeof import('./components/board/SecondLevelMenu.vue')['default']
     Standings: typeof import('./components/board/Standings.vue')['default']
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
