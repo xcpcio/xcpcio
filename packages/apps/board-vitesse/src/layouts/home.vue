@@ -5,7 +5,7 @@
   >
     <RouterView />
     <Footer />
-    <div text-sm mx-auto mt-5 text-center opacity-50>
+    <div text-sm text-center mx-auto mt-5 opacity-50>
       [Home Layout]
     </div>
   </main>

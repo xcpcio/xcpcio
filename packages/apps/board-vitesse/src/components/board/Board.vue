@@ -68,7 +68,7 @@ function handleUpdateType(type: string) {
 
 <template>
   <div v-if="!firstLoaded">
-    <div class="flex items-center justify-center">
+    <div class="flex justify-center items-center">
       {{ t("common.loading") }}...
 
       <div v-if="isError">
@@ -78,7 +78,7 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title text-3xl text-center font-normal font-serif">
+    <div class="title font-serif text-3xl text-center font-normal">
       {{ contest.name }}
     </div>
 

@@ -13,7 +13,7 @@ const rank = reactive(props.rank);
 <template>
   <div class="mt-1">
     <div>
-      <table class="standings font-mono dark:text-gray-700">
+      <table class="font-mono standings dark:text-gray-700">
         <thead>
           <tr>
             <th class="title" style="width: 4em;">
