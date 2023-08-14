@@ -39,7 +39,7 @@ function onClick(item: Item) {
 </script>
 
 <template>
-  <div class="second-level-menu-list font-mono">
+  <div class="font-mono second-level-menu-list">
     <div class="flex flex-row-reverse">
       <template v-for="item in props.items" :key="item.title">
         <div

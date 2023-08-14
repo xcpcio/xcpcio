@@ -2,7 +2,6 @@
 import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
-
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 const route = useRoute();
