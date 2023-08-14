@@ -68,6 +68,7 @@
     "immerable",
     "metas",
     "noopener",
+    "nums",
     "pinia",
     "pnpm",
     "prettierrc",
@@ -85,5 +86,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }
