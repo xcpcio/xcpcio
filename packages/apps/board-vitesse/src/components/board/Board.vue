@@ -87,7 +87,10 @@ function handleUpdateType(type: string) {
       <div class="float-left" />
       <div class="flex-1" />
       <div class="float-right">
-        <SecondLevelMenu :items="secondLevelMenuList" @update-type="handleUpdateType" />
+        <SecondLevelMenu
+          :items="secondLevelMenuList"
+          @update-type="handleUpdateType"
+        />
       </div>
     </div>
 
