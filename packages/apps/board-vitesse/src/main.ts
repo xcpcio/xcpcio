@@ -3,7 +3,6 @@ import { setupLayouts } from "virtual:generated-layouts";
 
 import FloatingVue from "floating-vue";
 import { VueQueryPlugin } from "@tanstack/vue-query";
-import HighchartsVue from "highcharts-vue";
 
 // import Previewer from 'virtual:vue-component-preview'
 import App from "./App.vue";
@@ -12,8 +11,8 @@ import generatedRoutes from "~pages";
 
 import "floating-vue/dist/style.css";
 import "@unocss/reset/tailwind.css";
-import "./styles/main.css";
 import "uno.css";
+import "./styles/main.css";
 
 const routes = setupLayouts(generatedRoutes);
 
@@ -29,9 +28,5 @@ export const createApp = ViteSSG(
     // ctx.app.use(Previewer)
     ctx.app.use(FloatingVue);
     ctx.app.use(VueQueryPlugin);
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    ctx.app.use(HighchartsVue);
   },
 );
