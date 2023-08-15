@@ -3951,6 +3951,27 @@ describe("contest", () => {
       }
     `);
 
+    expect(rank.rankStatistics).toMatchInlineSnapshot(`
+      RankStatistics {
+        "teamSolvedNum": [
+          4,
+          4,
+          10,
+          20,
+          43,
+          26,
+          17,
+          3,
+          2,
+          1,
+          1,
+          1,
+          0,
+          0,
+        ],
+      }
+    `);
+
     expect(JSON.stringify(rank)).toMatchSnapshot();
   });
 });
