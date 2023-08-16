@@ -165,7 +165,7 @@ export function getSubmitChart(rank: Rank) {
       Accepted.push(p.statistics.acceptedNum);
       Rejected.push(p.statistics.rejectedNum);
       Pending.push(p.statistics.pendingNum);
-      cat.push(p.id);
+      cat.push(p.label);
     });
 
     const series = [
