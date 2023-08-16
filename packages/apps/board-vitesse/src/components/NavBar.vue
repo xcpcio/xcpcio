@@ -58,7 +58,13 @@ async function toggleLocales() {
           <div i="carbon-sun dark:carbon-moon" />
         </a>
 
-        <a icon-btn rel="noreferrer" :href="GITHUB_URL" target="_blank" title="GitHub">
+        <a
+          icon-btn
+          rel="noreferrer"
+          :href="GITHUB_URL"
+          target="_blank"
+          title="GitHub"
+        >
           <div i-carbon-logo-github />
         </a>
       </div>

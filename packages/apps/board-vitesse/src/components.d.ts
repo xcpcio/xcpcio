@@ -12,6 +12,7 @@ declare module 'vue' {
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    Footer2: typeof import('./components/Footer2.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
