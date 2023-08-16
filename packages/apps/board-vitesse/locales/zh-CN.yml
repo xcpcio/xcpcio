@@ -17,6 +17,7 @@ common:
 index:
   start: 开始时间
   duration: 持续时间
+
 standings:
   place: Place
   team: Team
@@ -31,9 +32,10 @@ standings:
     first_solved: First Solved
     last_solved: Last Solved
     head_data:
-      problems: Problems
-      teams: Teams
-      submissions: Submissions
+      problems: 题目数
+      teams: 队伍数
+      submissions: 提交数
+
 type_menu:
   rank: 排名
   submit: 提交
