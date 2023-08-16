@@ -10,6 +10,7 @@ export interface Item {
 
 const props = defineProps<{
   items: Array<Item>;
+  // eslint-disable-next-line unused-imports/no-unused-vars
   onUpdateType: (type: string) => void;
 }>();
 

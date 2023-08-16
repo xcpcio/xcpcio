@@ -2,6 +2,7 @@
 import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import { useRouteQuery } from "@vueuse/router";
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 const route = useRoute();
@@ -30,7 +31,8 @@ watchEffect(async () => {
   firstLoaded.value = true;
 });
 
-const currentType = ref("rank");
+const currentTypeFromQuery = useRouteQuery("type", "rank", { transform: String });
+const currentType = ref(currentTypeFromQuery.value);
 
 const secondLevelMenuList = ref<Array<Item>>([
   {
@@ -95,6 +97,10 @@ function handleUpdateType(type: string) {
 
     <div v-if="currentType === 'rank'" class="flex justify-center">
       <Standings :rank="rank" />
+    </div>
+
+    <div v-if="currentType === 'statistics'" class="flex justify-center">
+      <Statistics :rank="rank" />
     </div>
   </div>
 </template>
