@@ -84,7 +84,7 @@ function handleUpdateType(type: string) {
       {{ contest.name }}
     </div>
 
-    <div class="flex mt-4" style="width: calc(90vw)">
+    <div class="flex mt-4 md:w-90vw">
       <div class="float-left" />
       <div class="flex-1" />
       <div class="float-right">
