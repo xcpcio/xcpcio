@@ -30,6 +30,10 @@ standings:
     dict: Dict
     first_solved: First Solved
     last_solved: Last Solved
+    head_data:
+      problems: Problems
+      teams: Teams
+      submissions: Submissions
 type_menu:
   rank: 排名
   submit: 提交

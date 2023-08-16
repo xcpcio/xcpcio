@@ -10,6 +10,7 @@ declare module 'vue' {
     Board: typeof import('./components/board/Board.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
+    Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
@@ -22,6 +23,7 @@ declare module 'vue' {
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
+    Test: typeof import('./components/board/Test.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
   }

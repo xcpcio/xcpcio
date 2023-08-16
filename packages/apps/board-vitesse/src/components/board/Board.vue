@@ -102,6 +102,10 @@ function handleUpdateType(type: string) {
     <div v-if="currentType === 'statistics'" class="flex justify-center">
       <Statistics :rank="rank" />
     </div>
+
+    <div v-if="currentType === 'export'" class="flex justify-center mt-5">
+      <Export />
+    </div>
   </div>
 </template>
 
