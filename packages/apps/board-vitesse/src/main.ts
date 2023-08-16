@@ -11,8 +11,8 @@ import generatedRoutes from "~pages";
 
 import "floating-vue/dist/style.css";
 import "@unocss/reset/tailwind.css";
-import "./styles/main.css";
 import "uno.css";
+import "./styles/main.css";
 
 const routes = setupLayouts(generatedRoutes);
 
@@ -24,6 +24,7 @@ export const createApp = ViteSSG(
     // install all modules under `modules/`
     Object.values(import.meta.glob<{ install: UserModule }>("./modules/*.ts", { eager: true }))
       .forEach(i => i.install?.(ctx));
+
     // ctx.app.use(Previewer)
     ctx.app.use(FloatingVue);
     ctx.app.use(VueQueryPlugin);

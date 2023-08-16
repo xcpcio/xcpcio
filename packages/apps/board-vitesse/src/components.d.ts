@@ -20,6 +20,7 @@ declare module 'vue' {
     SecondLevelMenu: typeof import('./components/board/SecondLevelMenu.vue')['default']
     Standings: typeof import('./components/board/Standings.vue')['default']
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
+    Statistics: typeof import('./components/board/Statistics.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']

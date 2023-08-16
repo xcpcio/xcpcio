@@ -6,6 +6,7 @@ import { Team } from "./team";
 import type { Submissions } from "./submission";
 import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
+import { RankStatistics } from "./rank-statistics";
 
 export class Rank {
   readonly contest: Contest;
@@ -16,6 +17,8 @@ export class Rank {
   submissions: Submissions;
   submissionsMap: Map<string, Submission>;
 
+  rankStatistics: RankStatistics;
+
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
@@ -24,6 +27,8 @@ export class Rank {
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
+
+    this.rankStatistics = new RankStatistics();
   }
 
   buildRank(options?: { timestamp?: number }) {
@@ -134,6 +139,16 @@ export class Rank {
             rank++;
           }
         }
+      }
+    })();
+
+    (() => {
+      this.rankStatistics.reset();
+
+      this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
+
+      for (const t of this.teams) {
+        this.rankStatistics.teamSolvedNum[t.solvedProblemNum]++;
       }
     })();
 
