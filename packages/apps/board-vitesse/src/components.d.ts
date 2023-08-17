@@ -7,9 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Balloon: typeof import('./components/board/Balloon.vue')['default']
     Board: typeof import('./components/board/Board.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
+    copy: typeof import('./components/board/Export copy.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     Footer2: typeof import('./components/Footer2.vue')['default']
@@ -23,6 +25,7 @@ declare module 'vue' {
     Standings: typeof import('./components/board/Standings.vue')['default']
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
+    Submit: typeof import('./components/board/Submit.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     Test: typeof import('./components/board/Test.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']

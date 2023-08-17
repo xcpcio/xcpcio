@@ -95,16 +95,26 @@ function handleUpdateType(type: string) {
       </div>
     </div>
 
-    <div v-if="currentType === 'rank'" class="flex justify-center">
-      <Standings :rank="rank" />
-    </div>
+    <div class="mt-5">
+      <div v-if="currentType === 'rank'" class="flex justify-center">
+        <Standings :rank="rank" />
+      </div>
 
-    <div v-if="currentType === 'statistics'" class="flex justify-center">
-      <Statistics :rank="rank" />
-    </div>
+      <div v-if="currentType === 'submit'" class="flex justify-center">
+        <Submit :rank="rank" />
+      </div>
 
-    <div v-if="currentType === 'export'" class="flex justify-center mt-5">
-      <Export />
+      <div v-if="currentType === 'statistics'" class="flex justify-center">
+        <Statistics :rank="rank" />
+      </div>
+
+      <div v-if="currentType === 'balloon'" class="flex justify-center">
+        <Balloon :rank="rank" />
+      </div>
+
+      <div v-if="currentType === 'export'" class="flex justify-center">
+        <Export :rank="rank" />
+      </div>
     </div>
   </div>
 </template>
