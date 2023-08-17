@@ -3,6 +3,7 @@ import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/cor
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
 import { useRouteQuery } from "@vueuse/router";
+
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 const route = useRoute();
@@ -41,8 +42,8 @@ const secondLevelMenuList = ref<Array<Item>>([
     isDefault: true,
   },
   {
-    title: "type_menu.submit",
-    keyword: "submit",
+    title: "type_menu.submissions",
+    keyword: "submissions",
   },
   {
     title: "type_menu.statistics",
@@ -100,8 +101,8 @@ function handleUpdateType(type: string) {
         <Standings :rank="rank" />
       </div>
 
-      <div v-if="currentType === 'submit'" class="flex justify-center">
-        <Submit :rank="rank" />
+      <div v-if="currentType === 'submissions'" class="flex justify-center">
+        <SubmissionsUI :rank="rank" />
       </div>
 
       <div v-if="currentType === 'statistics'" class="flex justify-center">

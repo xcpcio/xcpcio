@@ -38,7 +38,7 @@ standings:
 
 type_menu:
   rank: Rank
-  submit: Submit
+  submissions: Submissions
   statistics: Statistics
   balloon: Balloon
   export: Export
