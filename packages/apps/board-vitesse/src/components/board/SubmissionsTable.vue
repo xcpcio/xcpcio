@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { initFlowbite } from "flowbite";
-
 import type { Rank } from "@xcpcio/core";
 
 import { Pagination } from "~/composables/pagination";
@@ -9,10 +6,6 @@ import { Pagination } from "~/composables/pagination";
 const props = defineProps<{
   rank: Rank,
 }>();
-
-onMounted(() => {
-  initFlowbite();
-});
 
 const rank = reactive(props.rank);
 
@@ -22,6 +15,7 @@ p.value.currentPage = 0;
 p.value.totalSize = rank.submissions.length;
 
 const submissions = ref(rank.submissions.reverse());
+const notShowing = ref(false);
 
 function getSubmitTime(
   timeDiff: number,
@@ -34,8 +28,6 @@ function getSubmitTime(
 
   return `${f(h)}:${f(m)}:${f(s)}`;
 }
-
-const notShowing = ref(false);
 </script>
 
 <template>
@@ -145,91 +137,7 @@ const notShowing = ref(false);
           </table>
         </div>
 
-        <nav
-          class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 p-4 items-start justify-between"
-          aria-label="Table navigation"
-        >
-          <span class="text-sm text-gray-500 dark:text-gray-400 font-normal">
-            Showing
-            <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ p.currentRight - 1 }}</span>
-            of
-            <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
-          </span>
-
-          <ul class="font-mono inline-flex items-stretch -space-x-px">
-            <li>
-              <a
-                href="#"
-                :class="class_pagination_ix_pre"
-                @click="p.onPageChange({ diff: -1 })"
-              >
-                <span class="sr-only">Previous</span>
-                <div i-ic-baseline-keyboard-arrow-left class="w-5 h-5" />
-              </a>
-            </li>
-
-            <li v-if="p.currentPage !== 0">
-              <a
-                href="#"
-                :class="class_pagination_ix"
-                @click="p.onPageChange({ to: 0 })"
-              >
-                1
-              </a>
-            </li>
-
-            <li v-for="pn in p.leftDecrPage.reverse()" :key="pn">
-              <a
-                href="#"
-                :class="class_pagination_ix"
-                @click="p.onPageChange({ to: pn })"
-              >
-                {{ pn + 1 }}
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                aria-current="page"
-                :class="class_pagination_ix_current"
-              >
-                {{ p.currentPage + 1 }}
-              </a>
-            </li>
-
-            <li v-for="pn in p.rightIncrPage" :key="pn">
-              <a
-                href="#"
-                :class="class_pagination_ix"
-                @click="p.onPageChange({ to: pn })"
-              >
-                {{ pn + 1 }}
-              </a>
-            </li>
-
-            <li v-if="p.currentPage !== p.totalPage - 1">
-              <a
-                href="#"
-                :class="class_pagination_ix"
-                @click="p.onPageChange({ to: p.totalPage - 1 })"
-              >
-                {{ p.totalPage }}
-              </a>
-            </li>
-
-            <li>
-              <a
-                href="#"
-                :class="class_pagination_ix_nx"
-                @click="p.onPageChange({ diff: 1 })"
-              >
-                <span class="sr-only">Next</span>
-                <div i-ic-baseline-keyboard-arrow-right class="w-5 h-5" />
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <TablePagination v-model:pagination="p" />
       </div>
     </div>
   </section>

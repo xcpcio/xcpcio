@@ -310,10 +310,6 @@ declare module 'vue' {
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly class_pagination_ix: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix']>
-    readonly class_pagination_ix_current: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_current']>
-    readonly class_pagination_ix_nx: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_nx']>
-    readonly class_pagination_ix_pre: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_pre']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -605,10 +601,6 @@ declare module '@vue/runtime-core' {
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly class_pagination_ix: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix']>
-    readonly class_pagination_ix_current: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_current']>
-    readonly class_pagination_ix_nx: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_nx']>
-    readonly class_pagination_ix_pre: UnwrapRef<typeof import('./composables/pagination')['class_pagination_ix_pre']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
