@@ -18,6 +18,14 @@ index:
   start: 开始时间
   duration: 持续时间
 
+type_menu:
+  rank: 排名
+  submissions: 提交
+  statistics: 统计
+  balloon: 气球
+  export: 导出
+  resolver: 滚榜
+
 standings:
   place: Place
   team: Team
@@ -36,10 +44,5 @@ standings:
       teams: 队伍数
       submissions: 提交数
 
-type_menu:
-  rank: 排名
-  submissions: 提交
-  statistics: 统计
-  balloon: 气球
-  export: 导出
-  resolver: 滚榜
+submissions:
+  total_submissions: 总提交数

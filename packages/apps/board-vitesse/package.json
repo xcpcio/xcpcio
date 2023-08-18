@@ -47,6 +47,7 @@
     "@xcpcio/core": "workspace:*",
     "@xcpcio/types": "workspace:*",
     "floating-vue": "2.0.0-beta.24",
+    "flowbite": "^1.8.1",
     "highcharts": "^11.1.0",
     "highcharts-vue": "^1.4.3",
     "nprogress": "^0.2.0",

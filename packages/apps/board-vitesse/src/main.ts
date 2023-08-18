@@ -11,6 +11,7 @@ import generatedRoutes from "~pages";
 
 import "floating-vue/dist/style.css";
 import "@unocss/reset/tailwind.css";
+import "@unocss/reset/tailwind-compat.css";
 import "uno.css";
 import "./styles/main.css";
 

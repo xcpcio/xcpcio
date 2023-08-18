@@ -18,6 +18,14 @@ index:
   start: StartTime
   duration: Duration
 
+type_menu:
+  rank: Rank
+  submissions: Submissions
+  statistics: Statistics
+  balloon: Balloon
+  export: Export
+  resolver: Resolver
+
 standings:
   place: Place
   team: Team
@@ -36,10 +44,5 @@ standings:
       teams: Teams
       submissions: Submissions
 
-type_menu:
-  rank: Rank
-  submissions: Submissions
-  statistics: Statistics
-  balloon: Balloon
-  export: Export
-  resolver: Resolver
+submissions:
+  total_submissions: Total Submissions

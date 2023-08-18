@@ -6,8 +6,13 @@
 export {}
 declare global {
   const EffectScope: typeof import('vue')['EffectScope']
+  const Pagination: typeof import('./composables/pagination')['Pagination']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const class_pagination_ix: typeof import('./composables/pagination')['class_pagination_ix']
+  const class_pagination_ix_current: typeof import('./composables/pagination')['class_pagination_ix_current']
+  const class_pagination_ix_nx: typeof import('./composables/pagination')['class_pagination_ix_nx']
+  const class_pagination_ix_pre: typeof import('./composables/pagination')['class_pagination_ix_pre']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -302,6 +307,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -592,6 +598,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>

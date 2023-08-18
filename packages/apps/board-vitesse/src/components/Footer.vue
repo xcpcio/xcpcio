@@ -6,7 +6,7 @@ import { GITHUB_URL } from "@xcpcio/types";
   <footer class="p-4 md:p-8 lg:p-10 mt-8">
     <div class="mx-auto text-center max-w-screen-lg">
       <RouterLink
-        class="flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white"
+        class="flex text-2xl justify-center items-center font-semibold text-gray-900 dark:text-white"
         to="/"
       >
         <div i-ion-balloon-sharp class="mr-4 h-8" />
@@ -17,7 +17,7 @@ import { GITHUB_URL } from "@xcpcio/types";
         Open-source project of ICPC/CCPC Standings.
       </p>
 
-      <ul class="flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white">
+      <ul class="flex justify-center items-center text-gray-900 dark:text-white flex-wrap mb-6">
         <li>
           <RouterLink to="/" class="mr-4 hover:underline md:mr-6">
             Home
@@ -45,7 +45,7 @@ import { GITHUB_URL } from "@xcpcio/types";
       </ul>
 
       <span
-        class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        class="text-gray-500 dark:text-gray-400 text-sm sm:text-center"
       >© 2020-PRESENT <RouterLink
         to="/"
         class="hover:underline"
