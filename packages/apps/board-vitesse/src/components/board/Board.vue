@@ -81,7 +81,7 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title font-serif text-3xl text-center font-normal">
+    <div class="font-normal title font-serif text-3xl text-center">
       {{ contest.name }}
     </div>
 
@@ -96,13 +96,13 @@ function handleUpdateType(type: string) {
       </div>
     </div>
 
-    <div class="mt-5">
+    <div class="mt-4">
       <div v-if="currentType === 'rank'" class="flex justify-center">
         <Standings :rank="rank" />
       </div>
 
       <div v-if="currentType === 'submissions'" class="flex justify-center">
-        <SubmissionsUI :rank="rank" />
+        <SubmissionsTable :rank="rank" />
       </div>
 
       <div v-if="currentType === 'statistics'" class="flex justify-center">

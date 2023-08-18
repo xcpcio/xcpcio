@@ -50,7 +50,7 @@ function getContestDuration(
             </div>
 
             <VTooltip class="w-inherit">
-              <div class="title text-2xl truncate overflow-hidden">
+              <div class="title overflow-hidden text-2xl truncate">
                 {{ props.data.config.contestName }}
               </div>
 

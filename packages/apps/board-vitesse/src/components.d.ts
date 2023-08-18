@@ -26,6 +26,7 @@ declare module 'vue' {
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
     Submissions: typeof import('./components/board/Submissions.vue')['default']
+    SubmissionsTable: typeof import('./components/board/SubmissionsTable.vue')['default']
     SubmissionsUI: typeof import('./components/board/SubmissionsUI.vue')['default']
     Submit: typeof import('./components/board/Submit.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']

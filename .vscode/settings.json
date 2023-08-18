@@ -55,9 +55,11 @@
     "bumpp",
     "ccpc",
     "codeforces",
+    "composables",
     "Delivr",
     "DOCKERHUB",
     "esmo",
+    "flowbite",
     "fontawesome",
     "fortawesome",
     "frontmatter",
@@ -87,5 +89,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }
