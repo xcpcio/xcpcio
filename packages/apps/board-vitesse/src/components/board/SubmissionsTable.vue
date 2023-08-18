@@ -42,9 +42,9 @@ const notShowing = ref(false);
   <section>
     <div class="px-4 mx-auto lg:px-12 max-w-screen-2xl lg:min-w-screen-2xl">
       <div class="overflow-hidden bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg">
-        <div class="px-4 py-3 flex flex-col lg:space-y-0 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-x-4">
+        <div class="px-4 flex flex-col lg:space-y-0 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-x-4">
           <div class="flex flex-col space-y-3 flex-shrink-0 md:flex-row md:items-center lg:justify-end md:space-y-0 md:space-x-3">
-            <button v-if="notShowing" type="button" class="flex items-center px-4 justify-center text-sm font-medium text-white rounded-lg focus:ring-4 py-2 bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+            <button v-if="notShowing" type="button" class="flex items-center px-4 justify-center text-sm rounded-lg font-medium text-white focus:ring-4 py-2 bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
               <svg class="mr-2 h-3.5 w-3.5" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
               </svg>
@@ -156,7 +156,7 @@ const notShowing = ref(false);
             <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
           </span>
 
-          <ul class="inline-flex items-stretch -space-x-px font-mono">
+          <ul class="font-mono inline-flex items-stretch -space-x-px">
             <li>
               <a
                 href="#"

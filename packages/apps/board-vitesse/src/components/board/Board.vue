@@ -81,7 +81,7 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="font-normal title font-serif text-3xl text-center">
+    <div class="title font-serif text-center font-normal text-3xl">
       {{ contest.name }}
     </div>
 

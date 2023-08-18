@@ -81,7 +81,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       <img
         :src="['data:image/png;base64,', team.badge?.base64].join('')"
         alt=""
-        class="w-8 h-8"
+        class="h-8 w-8"
       >
     </td>
     <td
