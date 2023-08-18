@@ -156,7 +156,7 @@ const notShowing = ref(false);
             <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
           </span>
 
-          <ul class="inline-flex items-stretch -space-x-px">
+          <ul class="inline-flex items-stretch -space-x-px font-mono">
             <li>
               <a
                 href="#"
