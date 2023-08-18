@@ -14,7 +14,14 @@ const p = ref(new Pagination());
 p.value.currentPage = 0;
 p.value.totalSize = rank.submissions.length;
 
-const submissions = ref(rank.submissions.reverse());
+const submissions = computed(() => {
+  return rank.submissions.reverse();
+});
+
+const currentSubmissions = computed(() => {
+  return submissions.value.slice(p.value.currentLeft, p.value.currentRight);
+});
+
 const notShowing = ref(false);
 
 function getSubmitTime(
@@ -89,7 +96,7 @@ function getSubmitTime(
             </thead>
 
             <tbody>
-              <template v-for="s in submissions.slice(p.currentLeft, p.currentRight)" :key="s.id">
+              <template v-for="s in currentSubmissions" :key="s.id">
                 <tr class="dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 border-b">
                   <td class="px-4 py-2 font-mono">
                     <span class="text-xs font-medium rounded bg-primary-100 text-primary-800 px-2 py-0.5 dark:bg-primary-900 dark:text-primary-300">
