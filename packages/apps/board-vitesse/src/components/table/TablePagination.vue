@@ -4,10 +4,16 @@ import type { Pagination } from "~/composables/pagination";
 const props = defineProps<{
   pagination: Pagination,
 }>();
+const emit = defineEmits(["update:pagination"]);
 
 const p = reactive(props.pagination);
 
 const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white leading-tight";
+
+function handleChange(f: () => void) {
+  f();
+  emit("update:pagination", p);
+}
 </script>
 
 <template>
@@ -24,7 +30,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          @click="p.onPageChange({ diff: -1 })"
+          @click="handleChange(() => p.onPageChange({ diff: -1 }))"
         >
           <span class="sr-only">Previous</span>
           <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +43,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="p.onPageChange({ to: 0 })"
+          @click="handleChange(() => p.onPageChange({ to: 0 }))"
         >
           1
         </a>
@@ -47,7 +53,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="p.onPageChange({ to: pn })"
+          @click="handleChange(() => p.onPageChange({ to: pn }))"
         >
           {{ pn + 1 }}
         </a>
@@ -67,7 +73,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="p.onPageChange({ to: pn })"
+          @click="handleChange(() => p.onPageChange({ to: pn }))"
         >
           {{ pn + 1 }}
         </a>
@@ -77,7 +83,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="p.onPageChange({ to: p.totalPage - 1 })"
+          @click="handleChange(() => p.onPageChange({ to: p.totalPage - 1 }))"
         >
           {{ p.totalPage }}
         </a>
@@ -87,7 +93,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-          @click="p.onPageChange({ diff: 1 })"
+          @click="handleChange(() => p.onPageChange({ diff: 1 }))"
         >
           <span class="sr-only">Next</span>
           <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
