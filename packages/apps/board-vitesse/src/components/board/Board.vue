@@ -81,18 +81,24 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title font-serif text-center font-normal text-3xl">
+    <div class="title font-serif text-center font-normal text-3xl max-w-screen">
       {{ contest.name }}
     </div>
 
-    <div class="flex mt-4 md:w-90vw">
-      <div class="float-left" />
-      <div class="flex-1" />
-      <div class="float-right">
-        <SecondLevelMenu
-          :items="secondLevelMenuList"
-          @update-type="handleUpdateType"
-        />
+    <div class="flex justify-center max-w-screen flex-row mt-4">
+      <div class="w-[92vw]">
+        <Progress />
+
+        <div class="flex mt-4">
+          <div class="float-left" />
+          <div class="flex-1" />
+          <div class="float-right">
+            <SecondLevelMenu
+              :items="secondLevelMenuList"
+              @update-type="handleUpdateType"
+            />
+          </div>
+        </div>
       </div>
     </div>
 
