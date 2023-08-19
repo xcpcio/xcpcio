@@ -19,7 +19,15 @@ const submissions = computed(() => {
 });
 
 const currentSubmissions = computed(() => {
-  return submissions.value.slice(p.value.currentLeft, p.value.currentRight);
+//   return submissions.value.slice(p.value.currentLeft, p.value.currentRight);
+
+  const res = [];
+
+  for (let i = p.value.currentLeft; i < p.value.currentRight; i++) {
+    res.push(submissions.value[i]);
+  }
+
+  return res;
 });
 
 const notShowing = ref(false);
