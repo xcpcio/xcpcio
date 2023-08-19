@@ -36,7 +36,7 @@ export class Pagination {
       cur -= step;
     }
 
-    return res;
+    return res.reverse();
   }
 
   get rightIncrPage() {
@@ -45,7 +45,7 @@ export class Pagination {
     let step = 1;
     let cur = this.currentPage + step;
 
-    while (cur < this.totalPage) {
+    while (cur + 1 < this.totalPage) {
       res.push(cur);
 
       step = step << 1;
