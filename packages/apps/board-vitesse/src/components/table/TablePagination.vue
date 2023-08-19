@@ -16,11 +16,6 @@ const p = computed({
 });
 
 const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white leading-tight";
-
-function handleChange(f: () => void) {
-  f();
-  // emit("update:pagination", p.value);
-}
 </script>
 
 <template>
@@ -37,7 +32,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           class="flex items-center justify-center px-3 text-gray-500 bg-white border hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white h-full py-1.5 ml-0 rounded-l-lg border-gray-300 hover:text-gray-700 dark:border-gray-700"
-          @click="handleChange(() => p.onPageChange({ diff: -1 }))"
+          @click="p.onPageChange({ diff: -1 })"
         >
           <span class="sr-only">Previous</span>
           <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -50,7 +45,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="handleChange(() => p.onPageChange({ to: 0 }))"
+          @click=" p.onPageChange({ to: 0 })"
         >
           1
         </a>
@@ -60,7 +55,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="handleChange(() => p.onPageChange({ to: pn }))"
+          @click="p.onPageChange({ to: pn })"
         >
           {{ pn + 1 }}
         </a>
@@ -80,7 +75,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="handleChange(() => p.onPageChange({ to: pn }))"
+          @click="p.onPageChange({ to: pn })"
         >
           {{ pn + 1 }}
         </a>
@@ -90,7 +85,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           :class="class_pagination_ix"
-          @click="handleChange(() => p.onPageChange({ to: p.totalPage - 1 }))"
+          @click="p.onPageChange({ to: p.totalPage - 1 })"
         >
           {{ p.totalPage }}
         </a>
@@ -100,7 +95,7 @@ function handleChange(f: () => void) {
         <a
           href="#"
           class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white rounded-r-lg"
-          @click="handleChange(() => p.onPageChange({ diff: 1 }))"
+          @click="p.onPageChange({ diff: 1 })"
         >
           <span class="sr-only">Next</span>
           <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
