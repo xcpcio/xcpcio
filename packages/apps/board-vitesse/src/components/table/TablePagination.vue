@@ -6,7 +6,7 @@ const props = defineProps<{
 }>();
 const emit = defineEmits(["update:pagination"]);
 
-const p = reactive(props.pagination);
+const p = ref(props.pagination);
 
 const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white leading-tight";
 
@@ -49,7 +49,7 @@ function handleChange(f: () => void) {
         </a>
       </li>
 
-      <li v-for="pn in p.leftDecrPage.reverse()" :key="pn">
+      <li v-for="pn in p.leftDecrPage" :key="pn">
         <a
           href="#"
           :class="class_pagination_ix"
