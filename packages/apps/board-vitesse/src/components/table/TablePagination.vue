@@ -12,7 +12,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
 function handleChange(f: () => void) {
   f();
-  emit("update:pagination", p);
+  emit("update:pagination", p.value);
 }
 </script>
 
