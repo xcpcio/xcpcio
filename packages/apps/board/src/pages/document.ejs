@@ -3,6 +3,50 @@
 
 <head>
   <meta charSet="utf-8" />
+
+  <style>
+.top-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  width: 100%;
+
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  --un-bg-opacity: 1;
+  background-color: rgba(249, 250, 251, var(--un-bg-opacity));
+
+  border-width: 1px;
+  border-bottom-width: 1px;
+  border-color: rgba(229, 231, 235, var(--un-bg-opacity));
+}
+
+.top-banner-text {
+  font-size: 1rem;
+  line-height: 1.25rem;
+  font-weight: 300;
+
+  --un-bg-opacity: 1;
+  color: rgba(107, 114, 128, var(--un-bg-opacity));
+}
+
+.top-banner-link {
+  font-weight: 500;
+  text-decoration-line: underline;
+
+  color: #2563eb;
+}
+
+.hover\:top-banner-link:hover {
+  text-decoration-line: none;
+}
+  </style>
+
   <script>
     function normalizePath(path) {
         while (path.endsWith("/")) path = path.slice(0, -1);
@@ -85,6 +129,20 @@
         })();
     } catch (e) {}
   </script>
+
+  <div class="top-banner">
+    <p class="top-banner-text">
+      欢迎预览
+      <a
+        class="top-banner-link"
+        href="https://board-ng.xcpcio.com"
+        target="_blank"
+      >
+        Board NG
+      </a>
+    </p>
+  </div>
+
   <center>
     <div id="root"></div>
   </center>
