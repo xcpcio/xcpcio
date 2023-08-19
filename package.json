@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "bumpp": "^7.2.0",
-    "eslint": "^8.46.0",
+    "eslint": "^8.47.0",
     "eslint-config-next": "13.4.9",
     "esmo": "^0.14.1",
     "fsxx": "^0.0.5",
