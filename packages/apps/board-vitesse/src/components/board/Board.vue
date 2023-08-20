@@ -106,23 +106,37 @@ function handleUpdateType(type: string) {
 
     <div class="mt-4 max-w-screen flex justify-center">
       <div class="max-w-[92vw]">
-        <div v-if="currentType === 'rank'" class="">
+        <div
+          v-if="currentType === 'rank'"
+        >
           <Standings :rank="rank" />
         </div>
 
-        <div v-if="currentType === 'submissions'" class="">
+        <div
+          v-if="currentType === 'submissions'"
+          class=""
+        >
           <SubmissionsTable :rank="rank" />
         </div>
 
-        <div v-if="currentType === 'statistics'" class="">
+        <div
+          v-if="currentType === 'statistics'"
+          class=""
+        >
           <Statistics :rank="rank" />
         </div>
 
-        <div v-if="currentType === 'balloon'" class="">
+        <div
+          v-if="currentType === 'balloon'"
+          class=""
+        >
           <Balloon :rank="rank" />
         </div>
 
-        <div v-if="currentType === 'export'" class="">
+        <div
+          v-if="currentType === 'export'"
+          class=""
+        >
           <Export :rank="rank" />
         </div>
       </div>
