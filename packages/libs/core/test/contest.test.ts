@@ -302,6 +302,14 @@ describe("contest", () => {
       }
     `);
     expect(contest.medal).toMatchInlineSnapshot("{}");
+
+    expect(contest.getContestDuration()).toMatchInlineSnapshot("\"05:00:00\"");
+    expect(contest.getContestElapsedTime()).toMatchInlineSnapshot("\"05:00:00\"");
+    expect(contest.getContestRemainingTime()).toMatchInlineSnapshot("\"00:00:00\"");
+    expect(contest.getContestPendingTime()).toMatchInlineSnapshot("\"00:00:00\"");
+    expect(contest.getContestState()).toMatchInlineSnapshot("\"FINISHED\"");
+    expect(contest.getContestProgressRatio()).toMatchInlineSnapshot("100");
+
     expect(JSON.stringify(contest)).toMatchSnapshot();
   });
 });

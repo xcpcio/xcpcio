@@ -14,6 +14,7 @@ const contest = ref({} as Contest);
 const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
+const now = ref(new Date());
 
 const { data, isError, error } = useQueryBoardData(route.path);
 
@@ -104,7 +105,9 @@ const endTime = computed(() => {
             {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
           </div>
           <div class="flex-1">
-            <ContestStateBadge :state="rank.contest.getContestState()" />
+            <ContestStateBadge
+              :state="rank.contest.getContestState(now)"
+            />
           </div>
           <div class="float-right">
             {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
@@ -112,7 +115,10 @@ const endTime = computed(() => {
         </div>
 
         <div class="mt-2">
-          <Progress :width="100" />
+          <Progress
+            :width="rank.contest.getContestProgressRatio(now)"
+            :state="rank.contest.getContestState(now)"
+          />
         </div>
 
         <div class="flex mt-4">
