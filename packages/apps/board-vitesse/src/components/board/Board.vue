@@ -103,7 +103,9 @@ const endTime = computed(() => {
           <div class="float-left">
             {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
           </div>
-          <div class="flex-1" />
+          <div class="flex-1">
+            <ContestStateBadge :state="rank.contest.getContestState()" />
+          </div>
           <div class="float-right">
             {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
           </div>
