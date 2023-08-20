@@ -27,11 +27,15 @@ type_menu:
   resolver: 滚榜
 
 standings:
+  start_time: 开始时间：
+  end_time: 结束时间：
+
   place: Place
   team: Team
   solved: Solved
   penalty: Penalty
   dict: Dict
+
   statistics:
     submitted: Submitted
     attempted: Attempted

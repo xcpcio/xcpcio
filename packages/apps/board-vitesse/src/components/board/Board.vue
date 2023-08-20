@@ -67,6 +67,16 @@ const secondLevelMenuList = ref<Array<Item>>([
 function handleUpdateType(type: string) {
   currentType.value = type;
 }
+
+const startTime = computed(() => {
+  const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.start_time")}${time}`;
+});
+
+const endTime = computed(() => {
+  const time = rank.value.contest.endTime.format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.end_time")}${time}`;
+});
 </script>
 
 <template>
@@ -89,7 +99,19 @@ function handleUpdateType(type: string) {
 
     <div class="flex justify-center max-w-screen flex-row mt-4">
       <div class="w-[92vw]">
-        <Progress :width="100" />
+        <div class="flex font-mono font-bold">
+          <div class="float-left">
+            {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
+          </div>
+          <div class="flex-1" />
+          <div class="float-right">
+            {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <Progress :width="100" />
+        </div>
 
         <div class="flex mt-4">
           <div class="float-left" />
