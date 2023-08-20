@@ -71,12 +71,22 @@ function handleUpdateType(type: string) {
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
-  return `${t("standings.start_time")}${time}`;
+  return `${t("standings.start_time")}${t("common.colon")}${time}`;
 });
 
 const endTime = computed(() => {
   const time = rank.value.contest.endTime.format("YYYY-MM-DD HH:mm:ss");
-  return `${t("standings.end_time")}${time}`;
+  return `${t("standings.end_time")}${t("common.colon")}${time}`;
+});
+
+const elapsedTime = computed(() => {
+  const time = rank.value.contest.getContestElapsedTime(now.value);
+  return `${t("standings.elapsed")}${t("common.colon")}${time}`;
+});
+
+const remainingTime = computed(() => {
+  const time = rank.value.contest.getContestRemainingTime(now.value);
+  return `${t("standings.remaining")}${t("common.colon")}${time}`;
 });
 </script>
 
@@ -119,6 +129,16 @@ const endTime = computed(() => {
             :width="rank.contest.getContestProgressRatio(now)"
             :state="rank.contest.getContestState(now)"
           />
+        </div>
+
+        <div class="flex mt-2 font-mono font-bold">
+          <div class="float-left">
+            {{ elapsedTime }}
+          </div>
+          <div class="flex-1" />
+          <div class="float-right">
+            {{ remainingTime }}
+          </div>
         </div>
 
         <div class="flex mt-4">

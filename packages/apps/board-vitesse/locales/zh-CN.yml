@@ -12,8 +12,11 @@ intro:
   aka: 也叫
   whats-your-name: 输入你的名字
 not-found: 未找到页面
+
 common:
   loading: 加载中
+  colon: ：
+
 index:
   start: 开始时间
   duration: 持续时间
@@ -27,8 +30,10 @@ type_menu:
   resolver: 滚榜
 
 standings:
-  start_time: 开始时间：
-  end_time: 结束时间：
+  start_time: 开始时间
+  end_time: 结束时间
+  elapsed: 已用时
+  remaining: 还剩余
 
   place: Place
   team: Team

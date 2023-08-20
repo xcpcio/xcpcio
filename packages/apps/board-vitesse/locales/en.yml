@@ -12,8 +12,11 @@ intro:
   aka: Also known as
   whats-your-name: What's your name?
 not-found: Not found
+
 common:
   loading: Loading
+  colon: ':'
+
 index:
   start: StartTime
   duration: Duration
@@ -27,8 +30,10 @@ type_menu:
   resolver: Resolver
 
 standings:
-  start_time: 'Start:'
-  end_time: 'End:'
+  start_time: Start
+  end_time: End
+  elapsed: Elapsed
+  remaining: Remaining
 
   place: Place
   team: Team
