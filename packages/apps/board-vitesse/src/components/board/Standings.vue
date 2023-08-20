@@ -58,7 +58,10 @@ const rank = reactive(props.rank);
             v-for="team in rank.teams"
             :key="team.id"
           >
-            <TeamUI :rank="rank" :team="team" />
+            <TeamUI
+              :rank="rank"
+              :team="team"
+            />
           </template>
 
           <BottomStatistics :rank="rank" />
