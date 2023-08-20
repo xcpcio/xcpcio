@@ -22,7 +22,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
   <nav class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 items-start justify-between p-4" aria-label="Table navigation">
     <span class="text-sm text-gray-500 dark:text-gray-400 font-normal">
       Showing
-      <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ p.currentRight - 1 }}</span>
+      <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ Math.max(0, p.currentRight - 1) }}</span>
       of
       <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
     </span>
@@ -81,7 +81,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         </a>
       </li>
 
-      <li v-if="p.currentPage !== p.totalPage - 1">
+      <li v-if="p.currentPage !== p.totalPage - 1 && p.totalPage > 1">
         <a
           href="#"
           :class="class_pagination_ix"
