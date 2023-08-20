@@ -32,8 +32,8 @@ type_menu:
 standings:
   start_time: 开始时间
   end_time: 结束时间
-  elapsed: 已用时
-  remaining: 还剩余
+  elapsed: 用时
+  remaining: 剩余
 
   place: Place
   team: Team
