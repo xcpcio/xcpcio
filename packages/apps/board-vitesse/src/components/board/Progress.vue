@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const props = defineProps<{
+  width: number,
+}>();
 </script>
 
 <template>
@@ -7,7 +10,7 @@
   >
     <div
       class="am-progress-bar am-progress-bar-primary"
-      style="width: 100%;"
+      :style="{ width: `${props.width}%` }"
     />
   </div>
 </template>

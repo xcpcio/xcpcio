@@ -89,7 +89,7 @@ function handleUpdateType(type: string) {
 
     <div class="flex justify-center max-w-screen flex-row mt-4">
       <div class="w-[92vw]">
-        <Progress />
+        <Progress :width="100" />
 
         <div class="flex mt-4">
           <div class="float-left" />
