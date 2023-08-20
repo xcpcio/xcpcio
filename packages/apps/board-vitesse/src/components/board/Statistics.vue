@@ -35,13 +35,13 @@ function getHeadData() {
 
 <template>
   <div
-    class="flex flex-col mt-4 w-88vw md:w-98vw"
+    class="flex flex-col w-88vw md:w-92vw"
   >
     <section>
       <div class="mx-auto px-4 max-w-screen-xl lg:px-6 py-4 lg:py-6">
-        <div class="space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 lg:space-y-0">
+        <div class="lg:space-y-0 space-y-8 lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10">
           <div v-for="h in getHeadData()" :key="h.title">
-            <div class="flex flex-col mx-auto text-center text-gray-900 dark:text-white p-6 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:p-8 dark:bg-gray-800 max-w-[16rem]">
+            <div class="flex flex-col mx-auto text-center text-gray-900 dark:text-white bg-white rounded-lg border dark:border-gray-600 dark:bg-gray-800 p-6 border-gray-100 shadow xl:p-8 max-w-[16rem]">
               <h3 class="text-2xl font-semibold mb-4">
                 {{ t(h.title) }}
               </h3>

@@ -81,8 +81,10 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title font-serif text-center font-normal text-3xl max-w-screen">
-      {{ contest.name }}
+    <div class="title font-serif text-center font-normal text-3xl max-w-screen flex justify-center">
+      <div class="max-w-[92vw]">
+        {{ contest.name }}
+      </div>
     </div>
 
     <div class="flex justify-center max-w-screen flex-row mt-4">
@@ -102,25 +104,27 @@ function handleUpdateType(type: string) {
       </div>
     </div>
 
-    <div class="mt-4">
-      <div v-if="currentType === 'rank'" class="flex justify-center">
-        <Standings :rank="rank" />
-      </div>
+    <div class="mt-4 max-w-screen flex justify-center">
+      <div class="max-w-[92vw]">
+        <div v-if="currentType === 'rank'" class="">
+          <Standings :rank="rank" />
+        </div>
 
-      <div v-if="currentType === 'submissions'" class="flex justify-center">
-        <SubmissionsTable :rank="rank" />
-      </div>
+        <div v-if="currentType === 'submissions'" class="">
+          <SubmissionsTable :rank="rank" />
+        </div>
 
-      <div v-if="currentType === 'statistics'" class="flex justify-center">
-        <Statistics :rank="rank" />
-      </div>
+        <div v-if="currentType === 'statistics'" class="">
+          <Statistics :rank="rank" />
+        </div>
 
-      <div v-if="currentType === 'balloon'" class="flex justify-center">
-        <Balloon :rank="rank" />
-      </div>
+        <div v-if="currentType === 'balloon'" class="">
+          <Balloon :rank="rank" />
+        </div>
 
-      <div v-if="currentType === 'export'" class="flex justify-center">
-        <Export :rank="rank" />
+        <div v-if="currentType === 'export'" class="">
+          <Export :rank="rank" />
+        </div>
       </div>
     </div>
   </div>
