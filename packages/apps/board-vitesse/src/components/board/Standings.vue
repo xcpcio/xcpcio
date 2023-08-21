@@ -11,7 +11,7 @@ const rank = reactive(props.rank);
 </script>
 
 <template>
-  <div class="mt-1">
+  <div>
     <div>
       <table class="font-mono standings dark:text-gray-700">
         <thead>
@@ -58,7 +58,10 @@ const rank = reactive(props.rank);
             v-for="team in rank.teams"
             :key="team.id"
           >
-            <TeamUI :rank="rank" :team="team" />
+            <TeamUI
+              :rank="rank"
+              :team="team"
+            />
           </template>
 
           <BottomStatistics :rank="rank" />

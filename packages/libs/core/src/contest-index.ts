@@ -1,8 +1,9 @@
 import type dayjs from "dayjs";
 
-import type { ContestIndex as IContestIndex, Image } from "@xcpcio/types";
+import type { Contest as IContest, ContestIndex as IContestIndex, Image } from "@xcpcio/types";
 
 import { createDayJS } from "./utils";
+import { Contest, createContest } from "./contest";
 
 export class ContestIndexConfig {
   contestName: string;
@@ -31,11 +32,11 @@ export class ContestIndexConfig {
 }
 
 export class ContestIndex {
-  config: ContestIndexConfig;
+  contest: Contest;
   boardLink: string;
 
   constructor() {
-    this.config = new ContestIndexConfig();
+    this.contest = new Contest();
     this.boardLink = "";
   }
 }
@@ -44,33 +45,9 @@ export type ContestIndexList = Array<ContestIndex>;
 
 export function createContestIndex(contestIndexJSON: IContestIndex): ContestIndex {
   const c = new ContestIndex();
-  const cc = c.config;
   const cjc = contestIndexJSON.config;
 
-  cc.contestName = cjc.contest_name;
-
-  cc.startTime = createDayJS(cjc.start_time);
-  cc.endTime = createDayJS(cjc.end_time);
-
-  cc.totalDurationTimestamp = cc.endTime.unix() - cc.startTime.unix();
-
-  {
-    // default value
-    cc.freezeTime = cc.endTime;
-    cc.freezeDurationTimestamp = 0;
-
-    if (cjc.frozen_time !== undefined && cjc.frozen_time != null) {
-      const frozenTime = Number(cjc.frozen_time);
-
-      cc.freezeTime = createDayJS(cc.endTime.unix() - frozenTime);
-      cc.freezeDurationTimestamp = frozenTime;
-    }
-
-    cc.unFreezeDurationTimestamp = cc.totalDurationTimestamp - cc.freezeDurationTimestamp;
-  }
-
-  cc.logo = cjc.logo;
-
+  c.contest = createContest(cjc as IContest);
   c.boardLink = contestIndexJSON.board_link;
 
   return c;
@@ -92,27 +69,27 @@ export function createContestIndexList(contestListJSON: any): ContestIndexList {
   dfs(contestListJSON);
 
   contestIndexList.sort((a: ContestIndex, b: ContestIndex) => {
-    if (a.config.startTime.isBefore(b.config.startTime)) {
+    if (a.contest.startTime.isBefore(b.contest.startTime)) {
       return 1;
     }
 
-    if (a.config.startTime.isAfter(b.config.startTime)) {
+    if (a.contest.startTime.isAfter(b.contest.startTime)) {
       return -1;
     }
 
-    if (a.config.endTime.isBefore(b.config.endTime)) {
+    if (a.contest.endTime.isBefore(b.contest.endTime)) {
       return 1;
     }
 
-    if (a.config.endTime.isAfter(b.config.endTime)) {
+    if (a.contest.endTime.isAfter(b.contest.endTime)) {
       return -1;
     }
 
-    if (a.config.contestName < b.config.contestName) {
+    if (a.contest.name < b.contest.name) {
       return 1;
     }
 
-    if (a.config.contestName > b.config.contestName) {
+    if (a.contest.name > b.contest.name) {
       return -1;
     }
 

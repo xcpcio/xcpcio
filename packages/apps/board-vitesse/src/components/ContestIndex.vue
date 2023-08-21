@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { dayjs } from "@xcpcio/core";
-import type { ContestIndex, ContestIndexConfig } from "@xcpcio/core";
+import type { ContestIndex } from "@xcpcio/core";
 import type { Image } from "@xcpcio/types";
 
 import { useElementVisibility } from "@vueuse/core";
@@ -10,6 +9,9 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+
+const contest = reactive(props.data.contest);
+const now = ref(new Date());
 
 const el = ref(null);
 const isVisible = useElementVisibility(el);
@@ -25,15 +27,6 @@ function getImageSource(image: Image): string {
 
   return "";
 }
-
-function getContestDuration(
-  config: ContestIndexConfig,
-  timeFormat = "HH:mm:ss",
-): string {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  return dayjs.duration(config.endTime.diff(config.startTime)).format(timeFormat);
-}
 </script>
 
 <template>
@@ -45,17 +38,17 @@ function getContestDuration(
           border="b-2 gray-200 dark:gray-700"
         >
           <div class="flex w-full">
-            <div v-if="props.data.config.logo !== undefined" class="logo">
-              <img class="h-10 w-10" :src="getImageSource(props.data.config.logo)" alt="logo">
+            <div v-if="contest.logo !== undefined" class="logo">
+              <img class="h-10 w-10" :src="getImageSource(contest.logo)" alt="logo">
             </div>
 
             <VTooltip class="w-inherit">
               <div class="title overflow-hidden text-2xl truncate">
-                {{ props.data.config.contestName }}
+                {{ contest.name }}
               </div>
 
               <template #popper>
-                {{ props.data.config.contestName }}
+                {{ contest.name }}
               </template>
             </VTooltip>
           </div>
@@ -63,12 +56,26 @@ function getContestDuration(
           <div class="flex items-end">
             <div class="float-left text-base">
               {{ t("index.start") }}:
-              {{ props.data.config.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ props.data.config.startTime.format("z") }}</sup>
+              {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
               {{ t("index.duration") }}:
-              {{ getContestDuration(props.data.config) }}
+              {{ contest.getContestDuration() }}
             </div>
-            <div class="flex-1" />
+            <div class="flex-1">
+              <div class="flex justify-center items-center">
+                <div class="font-mono w-[68%] font-bold">
+                  <div>
+                    <ContestStateBadge
+                      :state="contest.getContestState(now)"
+                    />
+                  </div>
+                  <Progress
+                    :width="contest.getContestProgressRatio(now)"
+                    :state="contest.getContestState(now)"
+                  />
+                </div>
+              </div>
+            </div>
             <div class="float-right">
               <RouterLink
                 class="go MuiIconButton-root"

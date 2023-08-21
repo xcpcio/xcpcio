@@ -41,8 +41,11 @@ function onClick(item: Item) {
 
 <template>
   <div class="font-mono second-level-menu-list">
-    <div class="flex flex-row-reverse">
-      <template v-for="item in props.items" :key="item.title">
+    <div class="flex flex-row-reverse mr-[-4px]">
+      <template
+        v-for="item in props.items"
+        :key="item.title"
+      >
         <div
           class="second-level-menu-item"
           :class="[isCurrent(item) ? 'second-level-menu-item-current' : '']"
@@ -57,7 +60,9 @@ function onClick(item: Item) {
             >
               {{ t(item.title) }}
             </a>
-            <div v-if="!item.link">
+            <div
+              v-if="!item.link"
+            >
               {{ t(item.title) }}
             </div>
           </div>
@@ -86,7 +91,7 @@ function onClick(item: Item) {
   transition: 0.7s;
   cursor: pointer;
   margin: 2px 4px !important;
-  padding: 5px !important;
+  padding: 4px !important;
   box-sizing: content-box !important;
   border-radius: 3px;
 }

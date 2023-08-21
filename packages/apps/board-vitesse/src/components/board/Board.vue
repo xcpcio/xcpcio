@@ -14,6 +14,7 @@ const contest = ref({} as Contest);
 const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
+const now = ref(new Date());
 
 const { data, isError, error } = useQueryBoardData(route.path);
 
@@ -67,6 +68,26 @@ const secondLevelMenuList = ref<Array<Item>>([
 function handleUpdateType(type: string) {
   currentType.value = type;
 }
+
+const startTime = computed(() => {
+  const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.start_time")}${t("common.colon")}${time}`;
+});
+
+const endTime = computed(() => {
+  const time = rank.value.contest.endTime.format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.end_time")}${t("common.colon")}${time}`;
+});
+
+const elapsedTime = computed(() => {
+  const time = rank.value.contest.getContestElapsedTime(now.value);
+  return `${t("standings.elapsed")}${t("common.colon")}${time}`;
+});
+
+const remainingTime = computed(() => {
+  const time = rank.value.contest.getContestRemainingTime(now.value);
+  return `${t("standings.remaining")}${t("common.colon")}${time}`;
+});
 </script>
 
 <template>
@@ -81,40 +102,93 @@ function handleUpdateType(type: string) {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title font-serif text-center font-normal text-3xl">
-      {{ contest.name }}
-    </div>
-
-    <div class="flex mt-4 md:w-90vw">
-      <div class="float-left" />
-      <div class="flex-1" />
-      <div class="float-right">
-        <SecondLevelMenu
-          :items="secondLevelMenuList"
-          @update-type="handleUpdateType"
-        />
+    <div class="title font-serif text-center font-normal text-3xl max-w-screen flex justify-center">
+      <div class="max-w-[92vw]">
+        {{ contest.name }}
       </div>
     </div>
 
-    <div class="mt-4">
-      <div v-if="currentType === 'rank'" class="flex justify-center">
-        <Standings :rank="rank" />
-      </div>
+    <div class="flex justify-center max-w-screen flex-row mt-4">
+      <div class="w-[92vw]">
+        <div class="flex font-mono font-bold">
+          <div class="float-left">
+            {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
+          </div>
+          <div class="flex-1">
+            <ContestStateBadge
+              :state="rank.contest.getContestState(now)"
+            />
+          </div>
+          <div class="float-right">
+            {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+          </div>
+        </div>
 
-      <div v-if="currentType === 'submissions'" class="flex justify-center">
-        <SubmissionsTable :rank="rank" />
-      </div>
+        <div class="mt-2">
+          <Progress
+            :width="rank.contest.getContestProgressRatio(now)"
+            :state="rank.contest.getContestState(now)"
+          />
+        </div>
 
-      <div v-if="currentType === 'statistics'" class="flex justify-center">
-        <Statistics :rank="rank" />
-      </div>
+        <div class="flex mt-2 font-mono font-bold">
+          <div class="float-left">
+            {{ elapsedTime }}
+          </div>
+          <div class="flex-1" />
+          <div class="float-right">
+            {{ remainingTime }}
+          </div>
+        </div>
 
-      <div v-if="currentType === 'balloon'" class="flex justify-center">
-        <Balloon :rank="rank" />
+        <div class="flex mt-4">
+          <div class="float-left" />
+          <div class="flex-1" />
+          <div class="float-right">
+            <SecondLevelMenu
+              :items="secondLevelMenuList"
+              @update-type="handleUpdateType"
+            />
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div v-if="currentType === 'export'" class="flex justify-center">
-        <Export :rank="rank" />
+    <div class="mt-4 max-w-screen flex justify-center">
+      <div class="max-w-[92vw]">
+        <div
+          v-if="currentType === 'rank'"
+        >
+          <Standings :rank="rank" />
+        </div>
+
+        <div
+          v-if="currentType === 'submissions'"
+          class=""
+        >
+          <SubmissionsTable :rank="rank" />
+        </div>
+
+        <div
+          v-if="currentType === 'statistics'"
+          class=""
+        >
+          <Statistics :rank="rank" />
+        </div>
+
+        <div
+          v-if="currentType === 'balloon'"
+          class=""
+        >
+          <Balloon :rank="rank" />
+        </div>
+
+        <div
+          v-if="currentType === 'export'"
+          class=""
+        >
+          <Export :rank="rank" />
+        </div>
       </div>
     </div>
   </div>
