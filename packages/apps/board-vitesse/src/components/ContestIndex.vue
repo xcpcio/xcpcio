@@ -54,7 +54,7 @@ function getImageSource(image: Image): string {
           </div>
 
           <div class="flex items-end">
-            <div class="float-left text-base">
+            <div class="float-left text-base font-mono">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>

@@ -14,31 +14,31 @@ const rank = reactive(props.rank);
   <div>
     <div>
       <table class="font-mono standings dark:text-gray-700">
-        <thead>
+        <thead class="z-9999 top-0 sticky">
           <tr>
-            <th class="title" style="width: 4em;">
+            <th class="title" style="width: 3rem;">
               {{ t("standings.place") }}
             </th>
-            <th v-if="rank.contest.badge" class="title" style="min-width: 3em;">
+            <th v-if="rank.contest.badge" class="title" style="min-width: 3rem;">
               {{ rank.contest.badge }}
             </th>
-            <th v-if="rank.contest.organization" class="title" style="min-width: 12em;">
+            <th v-if="rank.contest.organization" class="title" style="min-width: 12rem;">
               {{ rank.contest.organization }}
             </th>
-            <th class="title" style="min-width: 12em;">
+            <th class="title" style="min-width: 12rem;">
               {{ t("standings.team") }}
             </th>
-            <th class="title" style="width: 3em;">
+            <th class="title" style="width: 3rem;">
               {{ t("standings.solved") }}
             </th>
-            <th class="title" style="width: 5em;">
+            <th class="title" style="width: 4rem;">
               {{ t("standings.penalty") }}
             </th>
             <th
               v-for="p in rank.contest.problems"
               :key="p.id"
               class="success"
-              style="width: 4em;"
+              style="width: 3rem;"
               :style="{
                 'background-color': p.balloonColor?.background_color,
                 'color': p.balloonColor?.color,
@@ -48,7 +48,7 @@ const rank = reactive(props.rank);
               <br>
               <s>{{ p.statistics.acceptedNum }}</s>
             </th>
-            <th class="title">
+            <th class="title" style="width: 2.5rem;">
               {{ t("standings.dict") }}
             </th>
           </tr>
