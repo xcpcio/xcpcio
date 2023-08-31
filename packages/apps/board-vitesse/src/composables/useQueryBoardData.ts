@@ -15,7 +15,10 @@ async function fetcher(target: string): Promise<BoardData> {
   const teamsResp = await fetch(`${prefix}/team.json`);
   const submissionsResp = await fetch(`${prefix}/run.json`);
 
-  const p = Promise.all([contestResp.json(), teamsResp.json(), submissionsResp.json()]).then((res) => {
+  const p = Promise.all([
+    contestResp.json(),
+    teamsResp.json(),
+    submissionsResp.json()]).then((res) => {
     return {
       contest: res[0],
       teams: res[1],
