@@ -89,22 +89,30 @@ export class Contest {
     return getTimeDiff(Math.floor(dayjs.duration(this.startTime.diff(baseTime)).asSeconds()));
   }
 
-  getContestRemainingTime(nowTime?: Date): string {
-    let baseTime = createDayJS(nowTime);
-    if (baseTime.isAfter(this.endTime)) {
-      baseTime = this.endTime;
-    }
-
-    return getTimeDiff(Math.floor(dayjs.duration(this.endTime.diff(baseTime)).asSeconds()));
-  }
-
   getContestElapsedTime(nowTime?: Date): string {
     let baseTime = createDayJS(nowTime);
     if (baseTime.isAfter(this.endTime)) {
       baseTime = this.endTime;
     }
 
+    if (baseTime.isBefore(this.startTime)) {
+      baseTime = this.startTime;
+    }
+
     return getTimeDiff(Math.floor(dayjs.duration(baseTime.diff(this.startTime)).asSeconds()));
+  }
+
+  getContestRemainingTime(nowTime?: Date): string {
+    let baseTime = createDayJS(nowTime);
+    if (baseTime.isAfter(this.endTime)) {
+      baseTime = this.endTime;
+    }
+
+    if (baseTime.isBefore(this.startTime)) {
+      baseTime = this.startTime;
+    }
+
+    return getTimeDiff(Math.floor(dayjs.duration(this.endTime.diff(baseTime)).asSeconds()));
   }
 
   getContestProgressRatio(nowTime?: Date): number {
