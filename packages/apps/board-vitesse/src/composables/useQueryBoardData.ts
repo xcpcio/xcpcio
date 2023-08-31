@@ -7,13 +7,13 @@ export interface BoardData {
   submissions: Submissions;
 }
 
-async function fetcher(target: string): Promise<BoardData> {
+async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
   const prefix = `${window.DATA_HOST}${endpoint}`;
 
-  const contestResp = await fetch(`${prefix}/config.json`);
-  const teamsResp = await fetch(`${prefix}/team.json`);
-  const submissionsResp = await fetch(`${prefix}/run.json`);
+  const contestResp = await fetch(`${prefix}/config.json?t=${timestamp ?? 0}`);
+  const teamsResp = await fetch(`${prefix}/team.json?t=${timestamp ?? 0}`);
+  const submissionsResp = await fetch(`${prefix}/run.json?t=${timestamp ?? 0}`);
 
   const p = Promise.all([
     contestResp.json(),
@@ -29,10 +29,10 @@ async function fetcher(target: string): Promise<BoardData> {
   return p;
 }
 
-export function useQueryBoardData(target: string) {
+export function useQueryBoardData(target: string, timestamp?: number) {
   return useQuery({
-    queryKey: [target],
-    queryFn: () => fetcher(target),
+    queryKey: [target, timestamp],
+    queryFn: () => fetcher(target, timestamp),
     retry: 3,
   });
 }

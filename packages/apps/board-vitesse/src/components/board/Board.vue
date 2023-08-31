@@ -16,7 +16,7 @@ const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
 
-const { data, isError, error } = useQueryBoardData(route.path);
+const { data, isError, error } = useQueryBoardData(route.path, now.value.getTime());
 
 watchEffect(async () => {
   if (data.value === null || data.value === undefined) {
