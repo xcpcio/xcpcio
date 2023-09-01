@@ -19,7 +19,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 </script>
 
 <template>
-  <nav class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 items-start justify-between p-4" aria-label="Table navigation">
+  <nav class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 p-4 items-start justify-between" aria-label="Table navigation">
     <span class="font-normal text-sm text-gray-500 dark:text-gray-400">
       Showing
       <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ Math.max(0, p.currentRight - 1) }}</span>
