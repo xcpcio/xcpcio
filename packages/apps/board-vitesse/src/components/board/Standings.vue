@@ -8,30 +8,68 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const rank = reactive(props.rank);
+
+const maxOrgLength = computed(() => {
+  let res = 0;
+  rank.teams.forEach((t) => {
+    res = Math.max(res, t.organization.length);
+  });
+
+  return res;
+});
+
+const maxTeamLength = computed(() => {
+  let res = 0;
+  rank.teams.forEach((t) => {
+    res = Math.max(res, t.name.length);
+  });
+
+  return res;
+});
 </script>
 
 <template>
   <div>
     <div>
       <table class="font-mono standings dark:text-gray-700">
-        <thead class="z-9999 top-0 sticky">
+        <thead class="top-0 sticky z-999">
           <tr>
-            <th class="title" style="width: 3rem;">
+            <th
+              class="title"
+              style="width: 3rem;"
+            >
               {{ t("standings.place") }}
             </th>
-            <th v-if="rank.contest.badge" class="title" style="min-width: 3rem;">
+            <th
+              v-if="rank.contest.badge"
+              class="title"
+              style="width: 3rem;"
+            >
               {{ rank.contest.badge }}
             </th>
-            <th v-if="rank.contest.organization" class="title" style="min-width: 12rem;">
+            <th
+              v-if="rank.contest.organization"
+              class="title"
+              :style="{ width: `${Math.min(32, Math.ceil(maxOrgLength * 1.1))}rem` }"
+            >
               {{ rank.contest.organization }}
             </th>
-            <th class="title" style="min-width: 12rem;">
+            <th
+              class="title"
+              :style="{ width: `${Math.min(32, Math.ceil(maxTeamLength * 1))}rem` }"
+            >
               {{ t("standings.team") }}
             </th>
-            <th class="title" style="width: 3rem;">
+            <th
+              class="title"
+              style="width: 3rem;"
+            >
               {{ t("standings.solved") }}
             </th>
-            <th class="title" style="width: 4rem;">
+            <th
+              class="title"
+              style="width: 4rem;"
+            >
               {{ t("standings.penalty") }}
             </th>
             <th
