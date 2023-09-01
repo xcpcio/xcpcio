@@ -16,7 +16,7 @@ const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
 
-const { data, isError, error } = useQueryBoardData(route.path);
+const { data, isError, error } = useQueryBoardData(route.path, now);
 
 watchEffect(async () => {
   if (data.value === null || data.value === undefined) {
@@ -88,6 +88,14 @@ const remainingTime = computed(() => {
   const time = rank.value.contest.getContestRemainingTime(now.value);
   return `${t("standings.remaining")}${t("common.colon")}${time}`;
 });
+
+const setNowIntervalId = setInterval(() => {
+  now.value = new Date();
+}, 1000);
+
+onUnmounted(() => {
+  clearInterval(setNowIntervalId);
+});
 </script>
 
 <template>
@@ -102,7 +110,7 @@ const remainingTime = computed(() => {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title font-serif text-center font-normal text-3xl max-w-screen flex justify-center">
+    <div class="flex justify-center title font-serif text-center font-normal text-3xl max-w-screen">
       <div class="max-w-[92vw]">
         {{ contest.name }}
       </div>
@@ -117,6 +125,7 @@ const remainingTime = computed(() => {
           <div class="flex-1">
             <ContestStateBadge
               :state="rank.contest.getContestState(now)"
+              :pending-time="rank.contest.getContestPendingTime(now)"
             />
           </div>
           <div class="float-right">

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { ContestState } from "@xcpcio/types";
+import { ContestState } from "@xcpcio/types";
 
 const props = defineProps<{
   state: ContestState,
+  pendingTime?: string,
 }>();
 </script>
 
@@ -14,6 +15,12 @@ const props = defineProps<{
     />
     <div>
       {{ props.state }}
+    </div>
+    <div
+      v-if="props.pendingTime && props.state === ContestState.PENDING"
+      class="ml-2"
+    >
+      {{ props.pendingTime }}
     </div>
   </div>
 </template>

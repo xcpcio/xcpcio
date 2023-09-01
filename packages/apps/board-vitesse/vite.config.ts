@@ -167,7 +167,7 @@ export default defineConfig({
     host: true,
     proxy: {
       "/data": {
-        target: "http://localhost:8080",
+        target: "https://board.xcpcio.com",
         changeOrigin: true,
       },
     },

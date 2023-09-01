@@ -27,6 +27,14 @@ function getImageSource(image: Image): string {
 
   return "";
 }
+
+const setNowIntervalId = setInterval(() => {
+  now.value = new Date();
+}, 1000);
+
+onUnmounted(() => {
+  clearInterval(setNowIntervalId);
+});
 </script>
 
 <template>
@@ -54,7 +62,7 @@ function getImageSource(image: Image): string {
           </div>
 
           <div class="flex items-end">
-            <div class="float-left text-base font-mono">
+            <div class="float-left font-mono text-base">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -63,10 +71,11 @@ function getImageSource(image: Image): string {
             </div>
             <div class="flex-1">
               <div class="flex justify-center items-center">
-                <div class="font-mono w-[68%] font-bold">
+                <div class="font-mono font-bold w-[68%]">
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"
+                      :pending-time="contest.getContestPendingTime(now)"
                     />
                   </div>
                   <Progress

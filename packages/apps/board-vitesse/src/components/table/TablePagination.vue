@@ -19,8 +19,8 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 </script>
 
 <template>
-  <nav class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 items-start justify-between p-4" aria-label="Table navigation">
-    <span class="text-sm text-gray-500 dark:text-gray-400 font-normal">
+  <nav class="flex flex-col space-y-3 md:flex-row md:items-center md:space-y-0 p-4 items-start justify-between" aria-label="Table navigation">
+    <span class="font-normal text-sm text-gray-500 dark:text-gray-400">
       Showing
       <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ Math.max(0, p.currentRight - 1) }}</span>
       of
@@ -31,7 +31,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
       <li>
         <a
           href="#"
-          class="flex items-center justify-center px-3 text-gray-500 bg-white border hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white h-full py-1.5 ml-0 rounded-l-lg border-gray-300 hover:text-gray-700 dark:border-gray-700"
+          class="flex items-center justify-center text-gray-500 dark:text-gray-400 px-3 bg-white border hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white h-full py-1.5 ml-0 rounded-l-lg border-gray-300 hover:text-gray-700 dark:border-gray-700"
           @click="p.onPageChange({ diff: -1 })"
         >
           <span class="sr-only">Previous</span>
@@ -65,7 +65,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
         <a
           href="#"
           aria-current="page"
-          class="flex items-center justify-center px-3 py-2 text-sm border hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white z-10 leading-tight text-primary-600 bg-primary-50 border-primary-300 hover:bg-primary-100"
+          class="flex items-center justify-center px-3 text-sm border dark:border-gray-700 dark:text-white py-2 hover:text-primary-700 dark:bg-gray-700 z-10 leading-tight text-primary-600 bg-primary-50 border-primary-300 hover:bg-primary-100"
         >
           {{ p.currentPage + 1 }}
         </a>
