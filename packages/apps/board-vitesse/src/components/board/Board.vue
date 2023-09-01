@@ -110,7 +110,7 @@ onUnmounted(() => {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="flex justify-center title font-serif text-center font-normal text-3xl max-w-screen">
+    <div class="flex justify-center text-center title font-serif font-normal text-3xl max-w-screen">
       <div class="max-w-[92vw]">
         {{ contest.name }}
       </div>
