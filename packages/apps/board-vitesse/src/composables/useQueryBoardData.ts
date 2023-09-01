@@ -1,6 +1,9 @@
 import { useQuery } from "@tanstack/vue-query";
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
 
+const RETRY = 3;
+const REFETCH_INTERVAL = 30 * 1000;
+
 export interface BoardData {
   contest: Contest;
   teams: Teams;
@@ -29,10 +32,12 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   return p;
 }
 
-export function useQueryBoardData(target: string, timestamp?: number) {
+export function useQueryBoardData(target: string, timestamp?: any) {
   return useQuery({
-    queryKey: [target, timestamp],
-    queryFn: () => fetcher(target, timestamp),
-    retry: 3,
+    queryKey: [target, timestamp.value.getTime()],
+    queryFn: () => fetcher(target, timestamp.value.getTime()),
+    retry: RETRY,
+    staleTime: REFETCH_INTERVAL,
+    refetchInterval: REFETCH_INTERVAL,
   });
 }
