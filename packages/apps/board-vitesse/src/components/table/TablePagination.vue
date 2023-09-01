@@ -30,8 +30,8 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
     <ul class="font-mono inline-flex items-stretch -space-x-px">
       <li>
         <a
-          href="#"
-          class="flex items-center justify-center text-gray-500 dark:text-gray-400 px-3 bg-white border hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white h-full py-1.5 ml-0 rounded-l-lg border-gray-300 hover:text-gray-700 dark:border-gray-700"
+          class="flex text-gray-500 dark:text-gray-400 items-center justify-center px-3 bg-white border hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:hover:text-white h-full py-1.5 ml-0 rounded-l-lg border-gray-300 hover:text-gray-700 dark:border-gray-700"
+          hover="cursor-pointer"
           @click="p.onPageChange({ diff: -1 })"
         >
           <span class="sr-only">Previous</span>
@@ -43,8 +43,8 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li v-if="p.currentPage !== 0">
         <a
-          href="#"
           :class="class_pagination_ix"
+          hover="cursor-pointer"
           @click=" p.onPageChange({ to: 0 })"
         >
           1
@@ -53,8 +53,8 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li v-for="pn in p.leftDecrPage" :key="pn">
         <a
-          href="#"
           :class="class_pagination_ix"
+          hover="cursor-pointer"
           @click="p.onPageChange({ to: pn })"
         >
           {{ pn + 1 }}
@@ -63,9 +63,9 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li>
         <a
-          href="#"
           aria-current="page"
           class="flex items-center justify-center px-3 text-sm border dark:border-gray-700 dark:text-white py-2 hover:text-primary-700 dark:bg-gray-700 z-10 leading-tight text-primary-600 bg-primary-50 border-primary-300 hover:bg-primary-100"
+          hover="cursor-pointer"
         >
           {{ p.currentPage + 1 }}
         </a>
@@ -73,7 +73,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li v-for="pn in p.rightIncrPage" :key="pn">
         <a
-          href="#"
+          hover="cursor-pointer"
           :class="class_pagination_ix"
           @click="p.onPageChange({ to: pn })"
         >
@@ -83,7 +83,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li v-if="p.currentPage !== p.totalPage - 1 && p.totalPage > 1">
         <a
-          href="#"
+          hover="cursor-pointer"
           :class="class_pagination_ix"
           @click="p.onPageChange({ to: p.totalPage - 1 })"
         >
@@ -93,8 +93,8 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li>
         <a
-          href="#"
           class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white rounded-r-lg"
+          hover="cursor-pointer"
           @click="p.onPageChange({ diff: 1 })"
         >
           <span class="sr-only">Next</span>
