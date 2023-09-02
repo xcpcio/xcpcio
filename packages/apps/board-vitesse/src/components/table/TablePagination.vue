@@ -19,18 +19,18 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 </script>
 
 <template>
-  <nav class="flex flex-col items-start justify-between p-4 md:flex-row md:items-center space-y-3 md:space-y-0" aria-label="Table navigation">
+  <nav class="flex flex-col md:flex-row md:items-center space-y-3 md:space-y-0 items-start justify-between p-4" aria-label="Table navigation">
     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
       Showing
-      <span class="font-semibold text-gray-900 dark:text-white">{{ p.currentLeft }}-{{ Math.max(0, p.currentRight - 1) }}</span>
+      <span class="text-gray-900 dark:text-white font-semibold">{{ p.currentLeft }}-{{ Math.max(0, p.currentRight - 1) }}</span>
       of
       <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
     </span>
 
-    <ul class="inline-flex items-stretch font-mono -space-x-px">
+    <ul class="font-mono inline-flex items-stretch -space-x-px">
       <li>
         <a
-          class="ml-0 h-full flex items-center justify-center border border-gray-300 rounded-l-lg bg-white px-3 py-1.5 text-gray-500 dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+          class="flex items-center justify-center border bg-white px-3 text-gray-500 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ml-0 h-full border-gray-300 rounded-l-lg py-1.5 dark:border-gray-700 hover:text-gray-700"
           hover="cursor-pointer"
           @click="p.onPageChange({ diff: -1 })"
         >
@@ -64,7 +64,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
       <li>
         <a
           aria-current="page"
-          class="z-10 flex items-center justify-center border border-primary-300 bg-primary-50 px-3 py-2 text-sm leading-tight text-primary-600 dark:border-gray-700 dark:bg-gray-700 hover:bg-primary-100 dark:text-white hover:text-primary-700"
+          class="flex items-center justify-center border px-3 py-2 text-sm dark:border-gray-700 dark:bg-gray-700 dark:text-white hover:text-primary-700 z-10 border-primary-300 bg-primary-50 leading-tight text-primary-600 hover:bg-primary-100"
           hover="cursor-pointer"
         >
           {{ p.currentPage + 1 }}
@@ -93,7 +93,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
 
       <li>
         <a
-          class="h-full flex items-center justify-center border border-gray-300 rounded-r-lg bg-white px-3 py-1.5 leading-tight text-gray-500 dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
+          class="h-full flex items-center justify-center border border-gray-300 bg-white px-3 py-1.5 leading-tight text-gray-500 dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white rounded-r-lg"
           hover="cursor-pointer"
           @click="p.onPageChange({ diff: 1 })"
         >

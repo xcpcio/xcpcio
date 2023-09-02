@@ -8,6 +8,33 @@ import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 
+export class RankOptions {
+  enableFilterSubmissionsByTimestamp: boolean;
+  width: number;
+  timestamp: number;
+
+  constructor() {
+    this.enableFilterSubmissionsByTimestamp = false;
+    this.width = 0;
+    this.timestamp = 0;
+  }
+
+  buildOptions(rank: Rank) {
+    if (this.enableFilterSubmissionsByTimestamp) {
+      this.timestamp = Math.floor((rank.contest.endTime.unix() - rank.contest.startTime.unix()) * this.width * 0.0001);
+    }
+  }
+
+  setWidth(width: number) {
+    this.enableFilterSubmissionsByTimestamp = true;
+    this.width = width;
+  }
+
+  disableFilterSubmissionByTimestamp() {
+    this.enableFilterSubmissionsByTimestamp = false;
+  }
+}
+
 export class Rank {
   readonly contest: Contest;
 
@@ -19,6 +46,8 @@ export class Rank {
 
   rankStatistics: RankStatistics;
 
+  options: RankOptions;
+
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
@@ -29,9 +58,15 @@ export class Rank {
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
     this.rankStatistics = new RankStatistics();
+
+    this.options = new RankOptions();
   }
 
-  buildRank(options?: { timestamp?: number }) {
+  buildRank() {
+    (() => {
+      this.options.buildOptions(this);
+    })();
+
     (() => {
       for (const t of this.teams) {
         t.problemStatistics = this.contest.problems.map((p) => {
@@ -59,8 +94,8 @@ export class Rank {
           continue;
         }
 
-        if (options?.timestamp !== undefined && options?.timestamp !== null) {
-          if (s.timestamp > options.timestamp) {
+        if (this.options.enableFilterSubmissionsByTimestamp) {
+          if (s.timestamp > this.options.timestamp) {
             break;
           }
         }

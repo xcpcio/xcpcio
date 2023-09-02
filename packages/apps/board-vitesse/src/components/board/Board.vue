@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
+import { Rank, RankOptions, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
 import { useRouteQuery } from "@vueuse/router";
@@ -15,10 +15,11 @@ const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
+const rankOptions = ref(new RankOptions());
 
 const { data, isError, error } = useQueryBoardData(route.path, now);
 
-watchEffect(async () => {
+watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
   }
@@ -26,11 +27,18 @@ watchEffect(async () => {
   contest.value = createContest(data.value?.contest as IContest);
   teams.value = createTeams(data.value?.teams as ITeams);
   submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
+
   const newRank = new Rank(contest.value, teams.value, submissions.value);
+  newRank.options = rankOptions.value;
   newRank.buildRank();
   rank.value = newRank;
 
   firstLoaded.value = true;
+});
+
+watch(rankOptions.value, () => {
+  rank.value.options = rankOptions.value;
+  rank.value.buildRank();
 });
 
 const currentTypeFromQuery = useRouteQuery("type", "rank", { transform: String });
@@ -135,6 +143,7 @@ onUnmounted(() => {
 
         <div class="mt-2">
           <Progress
+            v-model:rank-options="rankOptions"
             :width="rank.contest.getContestProgressRatio(now)"
             :state="rank.contest.getContestState(now)"
             :need-scroll="true"

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ContestState } from "@xcpcio/types";
 import { useRouteQuery } from "@vueuse/router";
-import type { Rank } from "@xcpcio/core";
+import type { Rank, RankOptions } from "@xcpcio/core";
 import { createDayJS, getTimeDiff } from "@xcpcio/core";
 
 const props = defineProps<{
@@ -9,8 +9,19 @@ const props = defineProps<{
   state: ContestState,
   needScroll?: boolean,
   rank?: Rank,
+  rankOptions?: RankOptions,
   elapsedTime?: string,
 }>();
+const emit = defineEmits(["update:rank-options"]);
+
+const rankOptions = computed({
+  get() {
+    return props!.rankOptions;
+  },
+  set(value) {
+    emit("update:rank-options", value);
+  },
+});
 
 const barClass = computed(() => {
   switch (props.state) {
@@ -30,7 +41,7 @@ const isDragging = ref(false);
 const dragWidth = ref(0);
 const barWidth = ref(props.width);
 const barWidthPX = ref(0);
-const progressRatio = useRouteQuery("progress-ratio", 0, { transform: Number });
+const progressRatio = useRouteQuery("progress-ratio", -1, { transform: Number });
 
 const scroll = ref<HTMLElement>(null as unknown as HTMLElement);
 const mask = ref<HTMLElement>(null as unknown as HTMLElement);
@@ -68,6 +79,14 @@ function startDrag(event: MouseEvent) {
       width = Math.round((barLeft + bar.value.offsetWidth) / (scroll.value.offsetWidth) * 10000);
     }
 
+    if (width > 10000) {
+      width = 10000;
+    }
+
+    if (width === 10000) {
+      pauseUpdate.value = false;
+    }
+
     window.getSelection()?.removeAllRanges();
 
     dragWidth.value = width;
@@ -81,7 +100,16 @@ function startDrag(event: MouseEvent) {
     document.removeEventListener("mousemove", updateProgress);
 
     isDragging.value = false;
-    progressRatio.value = dragWidth.value;
+
+    if (pauseUpdate.value === true) {
+      progressRatio.value = dragWidth.value;
+      rankOptions.value?.setWidth(dragWidth.value);
+    } else {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
+      progressRatio.value = undefined;
+      rankOptions.value?.disableFilterSubmissionByTimestamp();
+    }
   };
 
   document.addEventListener("mousemove", updateProgress);
@@ -111,7 +139,7 @@ function elapsedTime() {
 
 function barWidthInStyle() {
   if (pauseUpdate.value === true) {
-    return `${barWidthPX.value}px`;
+    return `${Math.max(0, barWidthPX.value)}px`;
   }
 
   return `max(calc(0%), min(calc(${props.width}%), calc(100% - 10px)))`;
@@ -125,6 +153,18 @@ onMounted(() => {
   scroll.value.onmouseleave = () => {
     tooltip.value.classList.remove("in");
   };
+
+  if (progressRatio.value !== -1) {
+    pauseUpdate.value = true;
+    dragWidth.value = Math.max(0, Math.min(10000, progressRatio.value));
+
+    barWidth.value = dragWidth.value * 0.01;
+    barWidthPX.value = barWidth.value * 0.01 * scroll.value.offsetWidth - bar.value.offsetWidth;
+
+    rankOptions.value?.setWidth(progressRatio.value);
+  } else {
+    rankOptions.value?.disableFilterSubmissionByTimestamp();
+  }
 });
 
 onUnmounted(() => {});
