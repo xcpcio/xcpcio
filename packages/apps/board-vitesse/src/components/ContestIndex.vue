@@ -42,7 +42,7 @@ onUnmounted(() => {
     <div h-32>
       <div v-if="isVisible">
         <div
-          class="flex font-serif w-240 flex-col pb-2"
+          class="w-240 flex flex-col pb-2 font-serif"
           border="b-2 gray-200 dark:gray-700"
         >
           <div class="w-full flex">
@@ -62,7 +62,7 @@ onUnmounted(() => {
           </div>
 
           <div class="flex items-end">
-            <div class="float-left font-mono text-base">
+            <div class="float-left text-base font-mono">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -71,7 +71,7 @@ onUnmounted(() => {
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-center">
-                <div class="font-bold font-mono w-[68%]">
+                <div class="w-[68%] font-bold font-mono">
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"
