@@ -77,13 +77,14 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
     class="h-10"
   >
     <td
+      v-if="isVisible"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.badge"
+      v-if="rank.contest.badge && isVisible"
       class="empty"
     >
       <img
@@ -93,7 +94,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       >
     </td>
     <td
-      v-if="rank.contest.organization"
+      v-if="rank.contest.organization && isVisible"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
@@ -110,6 +111,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       </div>
     </td>
     <td
+      v-if="isVisible"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
