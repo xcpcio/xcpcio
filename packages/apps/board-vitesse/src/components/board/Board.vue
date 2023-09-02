@@ -137,6 +137,9 @@ onUnmounted(() => {
           <Progress
             :width="rank.contest.getContestProgressRatio(now)"
             :state="rank.contest.getContestState(now)"
+            :need-scroll="true"
+            :rank="rank"
+            :elapsed-time="rank.contest.getContestElapsedTime(now)"
           />
         </div>
 

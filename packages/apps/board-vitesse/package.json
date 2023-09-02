@@ -47,6 +47,7 @@
     "@vueuse/router": "^10.3.0",
     "@xcpcio/core": "workspace:*",
     "@xcpcio/types": "workspace:*",
+    "dayjs": "^1.11.8",
     "floating-vue": "2.0.0-beta.24",
     "flowbite": "^1.8.1",
     "highcharts": "^11.1.0",
