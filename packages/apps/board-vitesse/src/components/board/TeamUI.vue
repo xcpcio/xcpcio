@@ -69,6 +69,8 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 }
 
 function isRenderByVisible() {
+  // if use v-if="isVisible" may be not work
+  // when rank rebuild trigger by drag the progress bar
   return isVisible;
 }
 </script>
