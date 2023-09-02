@@ -100,7 +100,7 @@ onUnmounted(() => {
 
 <template>
   <div v-if="!firstLoaded">
-    <div class="flex justify-center items-center">
+    <div class="flex items-center justify-center">
       {{ t("common.loading") }}...
 
       <div v-if="isError">
@@ -110,15 +110,15 @@ onUnmounted(() => {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="flex justify-center text-center title font-serif font-normal text-3xl max-w-screen">
+    <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
       <div class="max-w-[92vw]">
         {{ contest.name }}
       </div>
     </div>
 
-    <div class="flex justify-center max-w-screen flex-row mt-4">
+    <div class="mt-4 max-w-screen flex flex-row justify-center">
       <div class="w-[92vw]">
-        <div class="flex font-mono font-bold">
+        <div class="flex font-bold font-mono">
           <div class="float-left">
             {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
           </div>
@@ -140,7 +140,7 @@ onUnmounted(() => {
           />
         </div>
 
-        <div class="flex mt-2 font-mono font-bold">
+        <div class="mt-2 flex font-bold font-mono">
           <div class="float-left">
             {{ elapsedTime }}
           </div>
@@ -150,7 +150,7 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <div class="flex mt-4">
+        <div class="mt-4 flex">
           <div class="float-left" />
           <div class="flex-1" />
           <div class="float-right">

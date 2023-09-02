@@ -26,6 +26,7 @@
     "build": "vite-ssg build",
     "dev": "vite --port 3333",
     "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "preview": "vite preview",
     "preview-https": "serve dist",
     "start": "npm run preview",

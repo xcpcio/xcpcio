@@ -40,8 +40,8 @@ function onClick(item: Item) {
 </script>
 
 <template>
-  <div class="font-mono second-level-menu-list">
-    <div class="flex flex-row-reverse mr-[-4px]">
+  <div class="second-level-menu-list font-mono">
+    <div class="mr-[-4px] flex flex-row-reverse">
       <template
         v-for="item in props.items"
         :key="item.title"

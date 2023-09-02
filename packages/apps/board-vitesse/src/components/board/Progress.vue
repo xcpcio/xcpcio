@@ -22,7 +22,7 @@ const barClass = computed(() => {
 
 <template>
   <div
-    class="w-full am-progress am-progress-striped am-active"
+    class="am-progress am-progress-striped am-active w-full"
   >
     <div
       class="am-progress-bar"

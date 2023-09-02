@@ -99,7 +99,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       :class="[getStandClassName(team)]"
     >
       <div flex>
-        <div class="float-left font-serif pl-2">
+        <div class="float-left pl-2 font-serif">
           <div v-if="team.organizationRank > -1">
             {{ team.organizationRank }}
           </div>

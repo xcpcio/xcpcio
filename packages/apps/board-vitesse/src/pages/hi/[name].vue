@@ -12,7 +12,7 @@ watchEffect(() => {
 <template>
   <div>
     <div text-4xl>
-      <div inline-block i-carbon-pedestrian />
+      <div i-carbon-pedestrian inline-block />
     </div>
     <p>
       {{ t('intro.hi', { name: props.name }) }}
@@ -23,7 +23,7 @@ watchEffect(() => {
     </p>
 
     <template v-if="user.otherNames.length">
-      <p text-sm mt-4>
+      <p mt-4 text-sm>
         <span opacity-75>{{ t('intro.aka') }}:</span>
         <ul>
           <li v-for="otherName in user.otherNames" :key="otherName">

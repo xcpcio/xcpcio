@@ -1,7 +1,7 @@
 <template>
   <NavBar />
   <main
-    text-gray-700 px-7 py-10 of-x-hidden dark:text-gray-200
+    of-x-hidden px-7 py-10 text-gray-700 dark:text-gray-200
   >
     <RouterView />
     <Footer />

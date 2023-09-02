@@ -42,16 +42,16 @@ onUnmounted(() => {
     <div h-32>
       <div v-if="isVisible">
         <div
-          class="flex font-serif flex-col pb-2 w-240"
+          class="w-240 flex flex-col pb-2 font-serif"
           border="b-2 gray-200 dark:gray-700"
         >
-          <div class="flex w-full">
+          <div class="w-full flex">
             <div v-if="contest.logo !== undefined" class="logo">
               <img class="h-10 w-10" :src="getImageSource(contest.logo)" alt="logo">
             </div>
 
             <VTooltip class="w-inherit">
-              <div class="title overflow-hidden text-2xl truncate">
+              <div class="title overflow-hidden truncate text-2xl">
                 {{ contest.name }}
               </div>
 
@@ -62,7 +62,7 @@ onUnmounted(() => {
           </div>
 
           <div class="flex items-end">
-            <div class="float-left font-mono text-base">
+            <div class="float-left text-base font-mono">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -70,8 +70,8 @@ onUnmounted(() => {
               {{ contest.getContestDuration() }}
             </div>
             <div class="flex-1">
-              <div class="flex justify-center items-center">
-                <div class="font-mono font-bold w-[68%]">
+              <div class="flex items-center justify-center">
+                <div class="w-[68%] font-bold font-mono">
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"
