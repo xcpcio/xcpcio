@@ -196,35 +196,45 @@ onUnmounted(() => {
         <div
           v-if="currentType === 'rank'"
         >
-          <Standings :rank="rank" />
+          <Standings
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'submissions'"
           class=""
         >
-          <SubmissionsTable :rank="rank" />
+          <SubmissionsTable
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'statistics'"
           class=""
         >
-          <Statistics :rank="rank" />
+          <Statistics
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'balloon'"
           class=""
         >
-          <Balloon :rank="rank" />
+          <Balloon
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'export'"
           class=""
         >
-          <Export :rank="rank" />
+          <Export
+            :rank="rank"
+          />
         </div>
       </div>
     </div>
