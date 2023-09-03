@@ -10,13 +10,7 @@ const props = defineProps<{
 const rank = reactive(props.rank);
 
 const submissions = computed(() => {
-  let submissions = rank.submissions;
-
-  if (rank.options.enableFilterSubmissionsByTimestamp) {
-    submissions = submissions.filter(s => s.timestamp <= rank.options.timestamp);
-  }
-
-  return submissions;
+  return rank.getSubmissions().reverse();
 });
 
 const p = ref(new Pagination());

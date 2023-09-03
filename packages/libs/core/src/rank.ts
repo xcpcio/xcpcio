@@ -189,4 +189,14 @@ export class Rank {
 
     return this;
   }
+
+  getSubmissions() {
+    if (this.options.enableFilterSubmissionsByTimestamp === false) {
+      return this.submissions;
+    }
+
+    this.options.buildOptions(this);
+
+    return this.submissions.filter(s => s.timestamp <= this.options.timestamp);
+  }
 }
