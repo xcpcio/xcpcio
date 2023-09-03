@@ -42,12 +42,16 @@ const headerTitle = computed(() => {
 
 <template>
   <div
-    class="overflow-x-hidden fixed flex justify-center w-full h-full md:inset-0 h-modal items-start mt-4"
+    class="overflow-x-hidden fixed md:inset-0"
+    sm:mt-16 md:mt-32
+    flex justify-center items-start
+    h-screen w-screen
     z-9997
   >
     <!-- background -->
     <div
-      class="fixed top-0 left-0 w-screen h-screen"
+      fixed top-0 left-0
+      w-screen h-screen
       z-9998
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -56,21 +60,28 @@ const headerTitle = computed(() => {
     />
 
     <div
-      class="relative p-4 w-full md:max-w-[92vw]"
+      class="relative p-4 w-[78vw]"
       z-9999
     >
-      <!-- Modal content -->
       <div
-        class="relative p-4 bg-white shadow dark:bg-gray-800 sm:p-5 rounded-sm"
+        class="relative bg-white dark:bg-gray-800 sm:p-4"
+        rounded-sm shadow-sm
       >
-        <!-- Modal header -->
-        <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+        <div
+          class="pb-4 mb-4 rounded-t border-b dark:border-gray-600 sm:mb-4"
+          flex justify-between items-center
+        >
+          <h3
+            class="text-gray-900 dark:text-white"
+            text-lg font-semibold
+          >
             {{ headerTitle }}
           </h3>
           <button
             type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 text-sm p-1.5 ml-auto dark:hover:bg-gray-600 dark:hover:text-white"
+            inline-flex items-center
+            rounded-lg
             @click="onClose"
           >
             <svg
@@ -92,10 +103,12 @@ const headerTitle = computed(() => {
         </div>
 
         <div
-          class="flex justify-center items-center"
+          flex justify-center items-center
           font-mono font-bold
+          w-full
         >
           <SubmissionsTable
+            w-full
             :rank="rank"
             :submissions="p.submissions"
             :page-size="8"

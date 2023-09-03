@@ -202,7 +202,10 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="mt-4 max-w-screen flex justify-center">
+    <div
+      class="mt-4 max-w-screen"
+      flex justify-center
+    >
       <div class="max-w-[92vw]">
         <div
           v-if="currentType === 'rank'"
@@ -215,9 +218,10 @@ onUnmounted(() => {
 
         <div
           v-if="currentType === 'submissions'"
-          class=""
+          class="w-[88vw]"
         >
           <SubmissionsTable
+            w-full
             :rank="rank"
             :submissions="rank.getSubmissions()"
           />

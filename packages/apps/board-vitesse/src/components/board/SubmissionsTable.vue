@@ -53,8 +53,8 @@ function getSubmitTime(
 <template>
   <section>
     <div
-      class="mx-auto max-w-screen-2xl px-4"
-      lg:min-w-screen-2xl lg:px-12
+      class="mx-auto w-full"
+      px-4
     >
       <div
         class="relative overflow-hidden bg-white dark:bg-gray-800"
@@ -64,7 +64,9 @@ function getSubmitTime(
         }"
       >
         <div
-          class="flex flex-col px-4 py-3 lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-x-4 lg:space-y-0"
+          class="lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-x-4 lg:space-y-0"
+          flex flex-col
+          px-4 py-3
         >
           <div
             class="flex flex-shrink-0 flex-col md:flex-row md:items-center lg:justify-end space-y-3 md:space-x-3 md:space-y-0"
