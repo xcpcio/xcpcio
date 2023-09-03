@@ -4,16 +4,16 @@ import { GITHUB_URL } from "@xcpcio/types";
 
 <template>
   <footer class="mt-8 p-4 lg:p-10 md:p-8">
-    <div class="mx-auto max-w-screen-lg text-center">
+    <div class="mx-auto text-center max-w-screen-lg">
       <RouterLink
         class="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white"
         to="/"
       >
         <div i-ion-balloon-sharp class="mr-4 h-8" />
-        XCPCIO Board
+        Get more balloons
       </RouterLink>
 
-      <p class="my-6 text-gray-500 dark:text-gray-400">
+      <p class="text-gray-500 dark:text-gray-400 my-6">
         Open-source project of ICPC/CCPC Standings.
       </p>
 
