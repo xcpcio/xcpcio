@@ -9,7 +9,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     Balloon: typeof import('./components/board/Balloon.vue')['default']
     Board: typeof import('./components/board/Board.vue')['default']
-    BoardAnnotate: typeof import('./components/board/BoardAnnotate.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
