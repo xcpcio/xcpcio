@@ -91,11 +91,15 @@ const headerTitle = computed(() => {
           </button>
         </div>
 
-        <div class="flex justify-center items-center">
+        <div
+          class="flex justify-center items-center"
+          font-mono font-bold
+        >
           <SubmissionsTable
             :rank="rank"
             :submissions="p.submissions"
             :page-size="8"
+            :remove-border="true"
           />
         </div>
       </div>
