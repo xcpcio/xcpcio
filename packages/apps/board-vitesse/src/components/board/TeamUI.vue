@@ -90,7 +90,7 @@ function isRenderByVisible() {
     </td>
     <td
       v-if="rank.contest.badge && isRenderByVisible()"
-      class="empty"
+      class="empty flex justify-center items-center"
     >
       <img
         :src="['data:image/png;base64,', team.badge?.base64].join('')"
