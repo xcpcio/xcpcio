@@ -48,7 +48,7 @@ function getSubmitTime(
 <template>
   <section>
     <div class="mx-auto max-w-screen-2xl px-4 lg:min-w-screen-2xl lg:px-12">
-      <div class="relative overflow-hidden bg-white shadow-md sm:rounded-lg dark:bg-gray-800">
+      <div class="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-sm">
         <div class="flex flex-col px-4 py-3 lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-x-4 lg:space-y-0">
           <div class="flex flex-shrink-0 flex-col md:flex-row md:items-center lg:justify-end space-y-3 md:space-x-3 md:space-y-0">
             <button v-if="notShowing" type="button" class="flex items-center justify-center rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white dark:bg-primary-600 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
