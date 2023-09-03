@@ -187,33 +187,34 @@ onUnmounted(() => {});
         width: `${props.width}%`,
       }"
     >
-      <div
-        ref="tooltip"
-        class="tooltip tooltip-top"
-        :style="{
-          marginLeft: '-32px',
-          bottom: '22px',
-          left: barWidthInStyle(),
-        }"
-      >
+      <template v-if="props.needScroll">
         <div
-          ref="tooltipInner"
-          class="tooltip-inner"
+          ref="tooltip"
+          class="tooltip tooltip-top"
+          :style="{
+            marginLeft: '-32px',
+            bottom: '22px',
+            left: barWidthInStyle(),
+          }"
         >
-          {{ elapsedTime() }}
+          <div
+            ref="tooltipInner"
+            class="tooltip-inner"
+          >
+            {{ elapsedTime() }}
+          </div>
         </div>
-      </div>
 
-      <div
-        v-if="props.needScroll"
-        ref="bar"
-        class="am-progress-bar am-progress-cursor am-progress-scroll-size z-9999"
-        :class="[barClass]"
-        :style="{
-          left: barWidthInStyle(),
-        }"
-        @mousedown="startDrag"
-      />
+        <div
+          ref="bar"
+          class="am-progress-bar am-progress-cursor am-progress-scroll-size z-9999"
+          :class="[barClass]"
+          :style="{
+            left: barWidthInStyle(),
+          }"
+          @mousedown="startDrag"
+        />
+      </template>
     </div>
   </div>
 </template>
