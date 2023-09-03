@@ -30,6 +30,7 @@ watch(data, async () => {
   }
 
   contest.value = createContest(data.value?.contest as IContest);
+
   teams.value = createTeams(data.value?.teams as ITeams);
   submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
 
@@ -131,13 +132,13 @@ onUnmounted(() => {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="flex justify-center title max-w-screen text-center text-3xl font-normal font-serif">
+    <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
       <div class="max-w-[92vw]">
         {{ contest.name }}
       </div>
     </div>
 
-    <div class="max-w-screen flex justify-center mt-4 flex-row">
+    <div class="mt-4 max-w-screen flex flex-row justify-center">
       <div class="w-[92vw]">
         <div class="flex font-bold font-mono">
           <div class="float-left">
@@ -169,7 +170,9 @@ onUnmounted(() => {
           <div class="float-left">
             {{ elapsedTime }}
           </div>
-          <div class="flex-1" />
+          <div class="flex-1">
+            <StandingsAnnotate />
+          </div>
           <div class="float-right">
             {{ remainingTime }}
           </div>
