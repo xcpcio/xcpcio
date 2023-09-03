@@ -10,9 +10,9 @@ const route = useRoute();
 const { t } = useI18n();
 
 const firstLoaded = ref(false);
-const contest = ref({} as Contest);
-const teams = ref([] as Teams);
-const submissions = ref([] as Submissions);
+const contestData = ref({} as Contest);
+const teamsData = ref([] as Teams);
+const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
@@ -29,12 +29,12 @@ watch(data, async () => {
     return;
   }
 
-  contest.value = createContest(data.value?.contest as IContest);
+  contestData.value = createContest(data.value?.contest as IContest);
 
-  teams.value = createTeams(data.value?.teams as ITeams);
-  submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
+  teamsData.value = createTeams(data.value?.teams as ITeams);
+  submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
 
-  const newRank = new Rank(contest.value, teams.value, submissions.value);
+  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = rankOptions.value;
   newRank.buildRank();
   rank.value = newRank;
@@ -145,7 +145,7 @@ onUnmounted(() => {
 
     <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
       <div class="max-w-[92vw]">
-        {{ contest.name }}
+        {{ rank.contest.name }}
       </div>
     </div>
 
@@ -219,6 +219,7 @@ onUnmounted(() => {
         >
           <SubmissionsTable
             :rank="rank"
+            :submissions="rank.getSubmissions().reverse()"
           />
         </div>
 

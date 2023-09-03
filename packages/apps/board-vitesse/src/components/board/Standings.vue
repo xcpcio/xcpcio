@@ -32,7 +32,7 @@ const maxTeamLength = computed(() => {
   <div>
     <div>
       <table class="standings font-mono dark:text-gray-700">
-        <thead class="sticky top-0 z-999">
+        <thead class="sticky top-0 z-99">
           <tr>
             <th
               class="title"

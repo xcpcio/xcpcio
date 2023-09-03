@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { type Rank } from "@xcpcio/core";
+import type { Rank, Submissions } from "@xcpcio/core";
 
 import { Pagination } from "~/composables/pagination";
 
 const props = defineProps<{
   rank: Rank,
+  submissions: Submissions,
 }>();
 
 const rank = reactive(props.rank);
-
 const submissions = computed(() => {
-  return rank.getSubmissions().reverse();
+  return props.submissions;
 });
 
 const p = ref(new Pagination());
@@ -80,10 +80,10 @@ function getSubmitTime(
                   Problem
                 </th>
                 <th v-if="rank.contest.organization" scope="col" class="px-4 py-3">
-                  Organization
+                  {{ rank.contest.organization }}
                 </th>
                 <th scope="col" class="px-4 py-3">
-                  Submitter
+                  Team
                 </th>
                 <th scope="col" class="px-4 py-3">
                   Status
