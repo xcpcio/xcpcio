@@ -103,7 +103,7 @@ function startDrag(event: MouseEvent) {
 
     if (pauseUpdate.value === true) {
       progressRatio.value = dragWidth.value;
-      rankOptions.value?.setWidth(dragWidth.value);
+      rankOptions.value?.setWidth(dragWidth.value, props.rank!.contest);
     } else {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-expect-error
@@ -161,7 +161,7 @@ onMounted(() => {
     barWidth.value = dragWidth.value * 0.01;
     barWidthPX.value = barWidth.value * 0.01 * scroll.value.offsetWidth - bar.value.offsetWidth;
 
-    rankOptions.value?.setWidth(progressRatio.value);
+    rankOptions.value?.setWidth(progressRatio.value, props.rank!.contest);
   } else {
     rankOptions.value?.disableFilterSubmissionByTimestamp();
   }
