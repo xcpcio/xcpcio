@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
 
-import { useElementVisibility } from "@vueuse/core";
-
 const props = defineProps<{
   rank: Rank,
   team: Team,
@@ -69,6 +67,13 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 
   return "unattempted";
 }
+
+function isRenderByVisible() {
+  // Some teams in the header may have rendering anomalies,
+  // so force the first 32 teams to render regardless of their visibility
+  // when rank rebuild trigger by drag the progress bar
+  return isVisible.value || team.rank < 32;
+}
 </script>
 
 <template>
@@ -77,14 +82,14 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
     class="h-10"
   >
     <td
-      v-if="isVisible"
+      v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.badge && isVisible"
+      v-if="rank.contest.badge && isRenderByVisible()"
       class="empty"
     >
       <img
@@ -94,7 +99,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       >
     </td>
     <td
-      v-if="rank.contest.organization && isVisible"
+      v-if="rank.contest.organization && isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
@@ -111,7 +116,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       </div>
     </td>
     <td
-      v-if="isVisible"
+      v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
@@ -120,14 +125,14 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       <GirlIcon v-if="team.group.includes('girl')" inline-block />
     </td>
     <td
-      v-if="isVisible"
+      v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
       {{ team.solvedProblemNum }}
     </td>
     <td
-      v-if="isVisible"
+      v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
@@ -139,7 +144,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       :key="p.problem.id"
     >
       <td
-        v-if="isVisible"
+        v-if="isRenderByVisible()"
         class="stnd"
         :class="[getProblemColorClass(p)]"
       >
@@ -149,7 +154,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       </td>
     </template>
     <td
-      v-if="isVisible"
+      v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >

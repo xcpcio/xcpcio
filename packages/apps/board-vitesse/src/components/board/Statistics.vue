@@ -26,7 +26,7 @@ function getHeadData() {
 
   l.push({
     title: "standings.statistics.head_data.submissions",
-    data: rank.submissions.length,
+    data: rank.getSubmissions().length,
   });
 
   return l;
