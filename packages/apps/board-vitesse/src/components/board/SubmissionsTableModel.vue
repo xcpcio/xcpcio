@@ -32,18 +32,23 @@ const headerTitle = computed(() => {
 </script>
 
 <template>
-  <!-- Main modal -->
   <div
-    id="updateProductModal"
-    tabindex="-1"
-    aria-hidden="true"
-    class="overflow-y-auto overflow-x-hidden fixed z-9999 flex justify-center w-full md:inset-0 h-modal md:h-full items-start mt-4"
-    :class="{
-      hidden: isHidden,
-    }"
+    class="overflow-x-hidden fixed flex justify-center w-full h-full md:inset-0 h-modal items-start mt-4"
+    z-9997
   >
+    <!-- background -->
     <div
-      class="relative p-4 w-full h-full max-w-[92vw] md:h-auto"
+      class="fixed top-0 left-0 w-screen h-screen"
+      z-9998
+      :style="{
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      }"
+      @click="onClose"
+    />
+
+    <div
+      class="relative p-4 w-full md:max-w-[92vw]"
+      z-9999
     >
       <!-- Modal content -->
       <div
@@ -57,11 +62,9 @@ const headerTitle = computed(() => {
           <button
             type="button"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
-            data-modal-toggle="updateProductModal"
             @click="onClose"
           >
             <svg
-              aria-hidden="true"
               class="w-5 h-5"
               fill="currentColor"
               viewBox="0 0 20 20"
@@ -82,7 +85,8 @@ const headerTitle = computed(() => {
         <div class="flex justify-center items-center">
           <SubmissionsTable
             :rank="rank"
-            :submissions="p.submissions.reverse()"
+            :submissions="p.submissions"
+            :page-size="8"
           />
         </div>
       </div>

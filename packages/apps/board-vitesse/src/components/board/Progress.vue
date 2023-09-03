@@ -207,7 +207,7 @@ onUnmounted(() => {});
 
         <div
           ref="bar"
-          class="am-progress-bar am-progress-cursor am-progress-scroll-size z-9999"
+          class="am-progress-bar am-progress-cursor am-progress-scroll-size z-999"
           :class="[barClass]"
           :style="{
             left: barWidthInStyle(),

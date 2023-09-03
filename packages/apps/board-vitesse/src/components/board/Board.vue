@@ -219,7 +219,7 @@ onUnmounted(() => {
         >
           <SubmissionsTable
             :rank="rank"
-            :submissions="rank.getSubmissions().reverse()"
+            :submissions="rank.getSubmissions()"
           />
         </div>
 

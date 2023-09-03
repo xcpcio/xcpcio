@@ -1,21 +1,25 @@
 <script setup lang="ts">
 import type { Rank, Submissions } from "@xcpcio/core";
+import { Submission } from "@xcpcio/core";
 
 import { Pagination } from "~/composables/pagination";
 
 const props = defineProps<{
   rank: Rank,
   submissions: Submissions,
+  pageSize?: number,
 }>();
 
 const rank = reactive(props.rank);
 const submissions = computed(() => {
-  return props.submissions;
+  const s = props.submissions;
+  return s.sort(Submission.compare).reverse();
 });
 
 const p = ref(new Pagination());
 
 p.value.currentPage = 0;
+p.value.pageSize = props.pageSize ?? 16;
 p.value.totalSize = submissions.value.length;
 
 watch(submissions, () => {
