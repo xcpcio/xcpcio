@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center dark:text-black">
+  <div class="flex items-center justify-center dark:text-black">
     <table>
       <tbody>
         <tr>
