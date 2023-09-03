@@ -896,7 +896,7 @@ describe("contest", () => {
       ]
     `);
 
-    expect(lastTeam.rank).toMatchInlineSnapshot('129');
+    expect(lastTeam.rank).toMatchInlineSnapshot("129");
     expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
 
     expect(lastTeam.solvedProblemNum).toMatchInlineSnapshot("0");

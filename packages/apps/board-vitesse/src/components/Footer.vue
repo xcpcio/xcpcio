@@ -17,7 +17,7 @@ import { GITHUB_URL } from "@xcpcio/types";
         Open-source project of ICPC/CCPC Standings.
       </p>
 
-      <ul class="mb-6 flex flex-wrap items-center justify-center text-gray-900 dark:text-white">
+      <ul class="flex items-center justify-center text-gray-900 dark:text-white mb-6 flex-wrap">
         <li>
           <RouterLink to="/" class="mr-4 md:mr-6 hover:underline">
             Home
@@ -45,7 +45,7 @@ import { GITHUB_URL } from "@xcpcio/types";
       </ul>
 
       <span
-        class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
+        class="text-gray-500 dark:text-gray-400 text-sm sm:text-center"
       >© 2020-PRESENT <RouterLink
         to="/"
         class="hover:underline"

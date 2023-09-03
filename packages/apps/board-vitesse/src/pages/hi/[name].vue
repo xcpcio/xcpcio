@@ -12,7 +12,7 @@ watchEffect(() => {
 <template>
   <div>
     <div text-4xl>
-      <div i-carbon-pedestrian inline-block />
+      <div inline-block i-carbon-pedestrian />
     </div>
     <p>
       {{ t('intro.hi', { name: props.name }) }}
