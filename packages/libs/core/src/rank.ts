@@ -19,15 +19,10 @@ export class RankOptions {
     this.timestamp = 0;
   }
 
-  buildOptions(rank: Rank) {
-    if (this.enableFilterSubmissionsByTimestamp) {
-      this.timestamp = Math.floor((rank.contest.endTime.unix() - rank.contest.startTime.unix()) * this.width * 0.0001);
-    }
-  }
-
-  setWidth(width: number) {
+  setWidth(width: number, contest: Contest) {
     this.enableFilterSubmissionsByTimestamp = true;
     this.width = width;
+    this.timestamp = Math.floor((contest.endTime.unix() - contest.startTime.unix()) * this.width * 0.0001);
   }
 
   disableFilterSubmissionByTimestamp() {
@@ -63,10 +58,6 @@ export class Rank {
   }
 
   buildRank() {
-    (() => {
-      this.options.buildOptions(this);
-    })();
-
     (() => {
       for (const t of this.teams) {
         t.problemStatistics = this.contest.problems.map((p) => {
@@ -194,8 +185,6 @@ export class Rank {
     if (this.options.enableFilterSubmissionsByTimestamp === false) {
       return this.submissions;
     }
-
-    this.options.buildOptions(this);
 
     return this.submissions.filter(s => s.timestamp <= this.options.timestamp);
   }

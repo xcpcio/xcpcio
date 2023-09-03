@@ -34,6 +34,8 @@ export class ProblemStatistics {
     this.pendingNum = 0;
 
     this.submittedNum = 0;
+    this.attemptedNum = 0;
+    this.ignoreNum = 0;
 
     this.firstSolveSubmissions = [];
     this.lastSolveSubmissions = [];
