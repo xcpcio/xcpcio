@@ -45,7 +45,15 @@ pnpm build
 
 <br/>
 <br/>
-<p align="center"><a href="https://github.com/xcpcio/xcpcio#"><img src="http://randojs.com/images/backToTopButton.png" alt="Back to top" height="29"/></a></p>
+<p align="center">
+  <a href="https://github.com/xcpcio/xcpcio#">
+    <img
+      src="https://cdn.jsdelivr.net/gh/dup4/static/backToTopButton.png"
+      alt="Back to top"
+      height="29"
+    />
+  </a>
+</p>
 
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
