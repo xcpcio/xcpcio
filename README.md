@@ -48,7 +48,7 @@ pnpm build
 <p align="center">
   <a href="https://github.com/xcpcio/xcpcio#">
     <img
-      src="https://cdn.jsdelivr.net/gh/dup4/static/backToTopButton.png"
+      src="https://cdn.jsdelivr.net/gh/dup4/static/back-to-top-button.png"
       alt="Back to top"
       height="29"
     />
