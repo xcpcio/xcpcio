@@ -43,7 +43,7 @@ const maxTeamLength = computed(() => {
             <th
               v-if="rank.contest.badge"
               class="title"
-              style="width: 3rem;"
+              style="width: 2rem;"
             >
               {{ rank.contest.badge }}
             </th>
