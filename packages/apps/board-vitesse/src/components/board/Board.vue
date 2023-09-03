@@ -195,6 +195,7 @@ onUnmounted(() => {
       <div class="max-w-[92vw]">
         <div
           v-if="currentType === 'rank'"
+          class=""
         >
           <Standings
             :rank="rank"
