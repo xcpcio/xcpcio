@@ -21,6 +21,7 @@ export class Team {
 
   solvedProblemNum: number;
   attemptedProblemNum: number;
+  lastSolvedProblemTimestamp: number;
 
   penalty: number;
 
@@ -41,6 +42,21 @@ export class Team {
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
+    this.lastSolvedProblemTimestamp = 0;
+
+    this.penalty = 0;
+
+    this.problemStatistics = [];
+    this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
+  }
+
+  reset() {
+    this.rank = 0;
+    this.organizationRank = -1;
+
+    this.solvedProblemNum = 0;
+    this.attemptedProblemNum = 0;
+    this.lastSolvedProblemTimestamp = 0;
 
     this.penalty = 0;
 
@@ -74,6 +90,10 @@ export class Team {
     }
   }
 
+  isEqualRank(otherTeam: Team) {
+    return this.solvedProblemNum === otherTeam.solvedProblemNum && this.penalty === otherTeam.penalty;
+  }
+
   static compare(lhs: Team, rhs: Team): number {
     if (lhs.solvedProblemNum !== rhs.solvedProblemNum) {
       return rhs.solvedProblemNum - lhs.solvedProblemNum;
@@ -81,6 +101,10 @@ export class Team {
 
     if (lhs.penalty !== rhs.penalty) {
       return lhs.penalty - rhs.penalty;
+    }
+
+    if (lhs.lastSolvedProblemTimestamp !== rhs.lastSolvedProblemTimestamp) {
+      return lhs.lastSolvedProblemTimestamp - rhs.lastSolvedProblemTimestamp;
     }
 
     if (lhs.name < rhs.name) {

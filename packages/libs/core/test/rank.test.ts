@@ -896,7 +896,7 @@ describe("contest", () => {
       ]
     `);
 
-    expect(lastTeam.rank).toMatchInlineSnapshot("132");
+    expect(lastTeam.rank).toMatchInlineSnapshot("129");
     expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
 
     expect(lastTeam.solvedProblemNum).toMatchInlineSnapshot("0");
@@ -2226,6 +2226,7 @@ describe("contest", () => {
           "official",
         ],
         "id": "3000202305140047",
+        "lastSolvedProblemTimestamp": 17460,
         "members": [
           "王展鹏",
           "罗煜翔",

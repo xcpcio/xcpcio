@@ -45,7 +45,7 @@ onUnmounted(() => {
           class="w-240 flex flex-col pb-2 font-serif"
           border="b-2 gray-200 dark:gray-700"
         >
-          <div class="w-full flex">
+          <div class="flex w-full">
             <div v-if="contest.logo !== undefined" class="logo">
               <img class="h-10 w-10" :src="getImageSource(contest.logo)" alt="logo">
             </div>
@@ -71,7 +71,7 @@ onUnmounted(() => {
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-center">
-                <div class="w-[68%] font-bold font-mono">
+                <div class="font-mono w-[68%] font-bold">
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"

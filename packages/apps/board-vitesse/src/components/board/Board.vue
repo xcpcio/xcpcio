@@ -132,13 +132,13 @@ onUnmounted(() => {
   </div>
 
   <div v-if="firstLoaded">
-    <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
+    <div class="title flex justify-center text-center font-serif max-w-screen text-3xl font-normal">
       <div class="max-w-[92vw]">
         {{ contest.name }}
       </div>
     </div>
 
-    <div class="mt-4 max-w-screen flex flex-row justify-center">
+    <div class="max-w-screen flex justify-center mt-4 flex-row">
       <div class="w-[92vw]">
         <div class="flex font-bold font-mono">
           <div class="float-left">
@@ -195,36 +195,47 @@ onUnmounted(() => {
       <div class="max-w-[92vw]">
         <div
           v-if="currentType === 'rank'"
+          class=""
         >
-          <Standings :rank="rank" />
+          <Standings
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'submissions'"
           class=""
         >
-          <SubmissionsTable :rank="rank" />
+          <SubmissionsTable
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'statistics'"
           class=""
         >
-          <Statistics :rank="rank" />
+          <Statistics
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'balloon'"
           class=""
         >
-          <Balloon :rank="rank" />
+          <Balloon
+            :rank="rank"
+          />
         </div>
 
         <div
           v-if="currentType === 'export'"
           class=""
         >
-          <Export :rank="rank" />
+          <Export
+            :rank="rank"
+          />
         </div>
       </div>
     </div>

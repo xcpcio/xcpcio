@@ -20,9 +20,9 @@ export class RankOptions {
   }
 
   setWidth(width: number, contest: Contest) {
-    this.enableFilterSubmissionsByTimestamp = true;
     this.width = width;
     this.timestamp = Math.floor((contest.endTime.unix() - contest.startTime.unix()) * this.width * 0.0001);
+    this.enableFilterSubmissionsByTimestamp = true;
   }
 
   disableFilterSubmissionByTimestamp() {
@@ -60,6 +60,8 @@ export class Rank {
   buildRank() {
     (() => {
       for (const t of this.teams) {
+        t.reset();
+
         t.problemStatistics = this.contest.problems.map((p) => {
           const ps = new TeamProblemStatistics();
           ps.problem = p;
@@ -75,7 +77,7 @@ export class Rank {
         p.statistics.reset();
       });
 
-      for (const s of this.submissions) {
+      for (const s of this.getSubmissions()) {
         const teamId = s.teamId;
         const problemId = s.problemId;
         const team = this.teamsMap.get(teamId);
@@ -83,12 +85,6 @@ export class Rank {
 
         if (team === undefined || problem === undefined) {
           continue;
-        }
-
-        if (this.options.enableFilterSubmissionsByTimestamp) {
-          if (s.timestamp > this.options.timestamp) {
-            break;
-          }
         }
 
         const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
@@ -131,6 +127,7 @@ export class Rank {
           }
 
           problem.statistics.lastSolveSubmissions.push(s);
+          team.lastSolvedProblemTimestamp = s.timestamp;
         }
 
         if (s.isRejected()) {
@@ -149,21 +146,42 @@ export class Rank {
 
       {
         let rank = 1;
+        let preTeam = null;
         for (const t of this.teams) {
           t.rank = rank++;
+
+          if (preTeam !== null) {
+            if (t.isEqualRank(preTeam)) {
+              t.rank = preTeam.rank;
+            }
+          }
+
+          preTeam = t;
         }
       }
 
       if (this.contest.organization) {
         let rank = 1;
+        let preTeam = null;
+
         const se = new Set<string>();
 
         for (const t of this.teams) {
-          if (!se.has(t.organization)) {
-            se.add(t.organization);
-            t.organizationRank = rank;
-            rank++;
+          const org = t.organization;
+          if (se.has(org)) {
+            continue;
           }
+
+          se.add(org);
+          t.organizationRank = rank++;
+
+          if (preTeam !== null) {
+            if (t.isEqualRank(preTeam)) {
+              t.organizationRank = preTeam.organizationRank;
+            }
+          }
+
+          preTeam = t;
         }
       }
     })();
@@ -172,7 +190,6 @@ export class Rank {
       this.rankStatistics.reset();
 
       this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
-
       for (const t of this.teams) {
         this.rankStatistics.teamSolvedNum[t.solvedProblemNum]++;
       }
@@ -186,6 +203,6 @@ export class Rank {
       return this.submissions;
     }
 
-    return this.submissions.filter(s => s.timestamp <= this.options.timestamp);
+    return this.submissions.filter(s => s.timestamp <= this.options.timestamp).sort(Submission.compare);
   }
 }

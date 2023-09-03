@@ -33,7 +33,7 @@ async function toggleLocales() {
 
     <button
       title="Scroll to top"
-      fixed bottom-6 right-6 z-100 h-10 w-10 rounded-full transition duration-300 print:hidden hover-bg-hex-8883 hover:op100
+      h-10 w-10 fixed bottom-6 right-6 z-100 rounded-full transition duration-300 print:hidden hover-bg-hex-8883 hover:op100
       :class="scroll > 300 ? 'op30' : 'op0! pointer-events-none'"
       @click="toTop()"
     >
