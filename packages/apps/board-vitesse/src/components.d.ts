@@ -9,6 +9,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Balloon: typeof import('./components/board/Balloon.vue')['default']
     Board: typeof import('./components/board/Board.vue')['default']
+    BoardAnnotate: typeof import('./components/board/BoardAnnotate.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
@@ -23,6 +24,7 @@ declare module 'vue' {
     RouterView: typeof import('vue-router')['RouterView']
     SecondLevelMenu: typeof import('./components/board/SecondLevelMenu.vue')['default']
     Standings: typeof import('./components/board/Standings.vue')['default']
+    StandingsAnnotate: typeof import('./components/board/StandingsAnnotate.vue')['default']
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
     SubmissionsTable: typeof import('./components/board/SubmissionsTable.vue')['default']

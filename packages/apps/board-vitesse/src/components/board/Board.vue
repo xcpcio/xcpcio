@@ -30,6 +30,7 @@ watch(data, async () => {
   }
 
   contest.value = createContest(data.value?.contest as IContest);
+
   teams.value = createTeams(data.value?.teams as ITeams);
   submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
 
@@ -169,7 +170,9 @@ onUnmounted(() => {
           <div class="float-left">
             {{ elapsedTime }}
           </div>
-          <div class="flex-1" />
+          <div class="flex-1">
+            <StandingsAnnotate />
+          </div>
           <div class="float-right">
             {{ remainingTime }}
           </div>
