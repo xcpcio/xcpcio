@@ -69,9 +69,10 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 }
 
 function isRenderByVisible() {
-  // if use v-if="isVisible" may be not work
+  // Some teams in the header may have rendering anomalies,
+  // so force the first 32 teams to render regardless of their visibility
   // when rank rebuild trigger by drag the progress bar
-  return isVisible;
+  return isVisible.value || team.rank < 32;
 }
 </script>
 
