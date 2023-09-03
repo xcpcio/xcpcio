@@ -77,7 +77,7 @@ export class Rank {
         p.statistics.reset();
       });
 
-      for (const s of this.submissions) {
+      for (const s of this.getSubmissions()) {
         const teamId = s.teamId;
         const problemId = s.problemId;
         const team = this.teamsMap.get(teamId);
@@ -85,12 +85,6 @@ export class Rank {
 
         if (team === undefined || problem === undefined) {
           continue;
-        }
-
-        if (this.options.enableFilterSubmissionsByTimestamp) {
-          if (s.timestamp > this.options.timestamp) {
-            break;
-          }
         }
 
         const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
