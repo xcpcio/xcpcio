@@ -19,6 +19,7 @@ describe("team", () => {
           "official",
         ],
         "id": "3000202305140115",
+        "lastSolvedProblemTimestamp": 0,
         "members": [
           "江骏扬",
           "罗昊",

@@ -22,7 +22,7 @@ ResolverOperation {
       "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 126,
-        "attemptedNum": 296,
+        "attemptedNum": 148,
         "firstSolveSubmissions": [
           Submission {
             "id": "0",
@@ -227,7 +227,7 @@ ResolverOperation {
       "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 126,
-        "attemptedNum": 296,
+        "attemptedNum": 148,
         "firstSolveSubmissions": [
           Submission {
             "id": "0",
@@ -390,6 +390,7 @@ ResolverOperation {
       "unofficial",
     ],
     "id": "3000202305140132",
+    "lastSolvedProblemTimestamp": 0,
     "members": [
       "柴榕杉",
       "罗香雨",
@@ -420,7 +421,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
-            "attemptedNum": 88,
+            "attemptedNum": 56,
             "firstSolveSubmissions": [
               Submission {
                 "id": "68",
@@ -472,7 +473,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
-            "attemptedNum": 15,
+            "attemptedNum": 9,
             "firstSolveSubmissions": [
               Submission {
                 "id": "920",
@@ -524,7 +525,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
-            "attemptedNum": 322,
+            "attemptedNum": 184,
             "firstSolveSubmissions": [
               Submission {
                 "id": "165",
@@ -576,7 +577,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 2,
+            "attemptedNum": 1,
             "firstSolveSubmissions": [
               Submission {
                 "id": "787",
@@ -628,7 +629,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
-            "attemptedNum": 296,
+            "attemptedNum": 148,
             "firstSolveSubmissions": [
               Submission {
                 "id": "0",
@@ -801,7 +802,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
-            "attemptedNum": 476,
+            "attemptedNum": 255,
             "firstSolveSubmissions": [
               Submission {
                 "id": "121",
@@ -887,7 +888,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
-            "attemptedNum": 23,
+            "attemptedNum": 12,
             "firstSolveSubmissions": [
               Submission {
                 "id": "685",
@@ -939,7 +940,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
-            "attemptedNum": 10,
+            "attemptedNum": 6,
             "firstSolveSubmissions": [
               Submission {
                 "id": "903",
@@ -991,7 +992,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
-            "attemptedNum": 615,
+            "attemptedNum": 337,
             "firstSolveSubmissions": [
               Submission {
                 "id": "146",
@@ -1043,7 +1044,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 8,
+            "attemptedNum": 4,
             "firstSolveSubmissions": [
               Submission {
                 "id": "1164",
@@ -1095,7 +1096,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
-            "attemptedNum": 244,
+            "attemptedNum": 183,
             "firstSolveSubmissions": [
               Submission {
                 "id": "201",
@@ -1147,7 +1148,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
-            "attemptedNum": 11,
+            "attemptedNum": 8,
             "firstSolveSubmissions": [
               Submission {
                 "id": "347",
@@ -1201,7 +1202,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
-            "attemptedNum": 88,
+            "attemptedNum": 56,
             "firstSolveSubmissions": [
               Submission {
                 "id": "68",
@@ -1253,7 +1254,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
-            "attemptedNum": 15,
+            "attemptedNum": 9,
             "firstSolveSubmissions": [
               Submission {
                 "id": "920",
@@ -1305,7 +1306,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
-            "attemptedNum": 322,
+            "attemptedNum": 184,
             "firstSolveSubmissions": [
               Submission {
                 "id": "165",
@@ -1357,7 +1358,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 2,
+            "attemptedNum": 1,
             "firstSolveSubmissions": [
               Submission {
                 "id": "787",
@@ -1409,7 +1410,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
-            "attemptedNum": 296,
+            "attemptedNum": 148,
             "firstSolveSubmissions": [
               Submission {
                 "id": "0",
@@ -1582,7 +1583,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
-            "attemptedNum": 476,
+            "attemptedNum": 255,
             "firstSolveSubmissions": [
               Submission {
                 "id": "121",
@@ -1668,7 +1669,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
-            "attemptedNum": 23,
+            "attemptedNum": 12,
             "firstSolveSubmissions": [
               Submission {
                 "id": "685",
@@ -1720,7 +1721,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
-            "attemptedNum": 10,
+            "attemptedNum": 6,
             "firstSolveSubmissions": [
               Submission {
                 "id": "903",
@@ -1772,7 +1773,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
-            "attemptedNum": 615,
+            "attemptedNum": 337,
             "firstSolveSubmissions": [
               Submission {
                 "id": "146",
@@ -1824,7 +1825,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 8,
+            "attemptedNum": 4,
             "firstSolveSubmissions": [
               Submission {
                 "id": "1164",
@@ -1876,7 +1877,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
-            "attemptedNum": 244,
+            "attemptedNum": 183,
             "firstSolveSubmissions": [
               Submission {
                 "id": "201",
@@ -1928,7 +1929,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
-            "attemptedNum": 11,
+            "attemptedNum": 8,
             "firstSolveSubmissions": [
               Submission {
                 "id": "347",
@@ -1961,7 +1962,7 @@ ResolverOperation {
         "totalCount": 0,
       },
     },
-    "rank": 132,
+    "rank": 128,
     "solvedProblemNum": 0,
     "tag": [],
   },
@@ -1990,7 +1991,7 @@ ResolverOperation {
       "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 2,
-        "attemptedNum": 10,
+        "attemptedNum": 6,
         "firstSolveSubmissions": [
           Submission {
             "id": "903",
@@ -2059,7 +2060,7 @@ ResolverOperation {
       "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 2,
-        "attemptedNum": 10,
+        "attemptedNum": 6,
         "firstSolveSubmissions": [
           Submission {
             "id": "903",
@@ -2101,6 +2102,7 @@ ResolverOperation {
       "official",
     ],
     "id": "3000202305140047",
+    "lastSolvedProblemTimestamp": 14280,
     "members": [
       "王展鹏",
       "罗煜翔",
@@ -2131,7 +2133,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
-            "attemptedNum": 88,
+            "attemptedNum": 56,
             "firstSolveSubmissions": [
               Submission {
                 "id": "68",
@@ -2192,7 +2194,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
-            "attemptedNum": 15,
+            "attemptedNum": 9,
             "firstSolveSubmissions": [
               Submission {
                 "id": "920",
@@ -2269,7 +2271,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
-            "attemptedNum": 322,
+            "attemptedNum": 184,
             "firstSolveSubmissions": [
               Submission {
                 "id": "165",
@@ -2330,7 +2332,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 2,
+            "attemptedNum": 1,
             "firstSolveSubmissions": [
               Submission {
                 "id": "787",
@@ -2382,7 +2384,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
-            "attemptedNum": 296,
+            "attemptedNum": 148,
             "firstSolveSubmissions": [
               Submission {
                 "id": "0",
@@ -2443,7 +2445,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
-            "attemptedNum": 476,
+            "attemptedNum": 255,
             "firstSolveSubmissions": [
               Submission {
                 "id": "121",
@@ -2538,7 +2540,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
-            "attemptedNum": 23,
+            "attemptedNum": 12,
             "firstSolveSubmissions": [
               Submission {
                 "id": "685",
@@ -2607,7 +2609,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
-            "attemptedNum": 10,
+            "attemptedNum": 6,
             "firstSolveSubmissions": [
               Submission {
                 "id": "903",
@@ -2659,7 +2661,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
-            "attemptedNum": 615,
+            "attemptedNum": 337,
             "firstSolveSubmissions": [
               Submission {
                 "id": "146",
@@ -2728,7 +2730,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 8,
+            "attemptedNum": 4,
             "firstSolveSubmissions": [
               Submission {
                 "id": "1164",
@@ -2813,7 +2815,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
-            "attemptedNum": 244,
+            "attemptedNum": 183,
             "firstSolveSubmissions": [
               Submission {
                 "id": "201",
@@ -2906,7 +2908,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
-            "attemptedNum": 11,
+            "attemptedNum": 8,
             "firstSolveSubmissions": [
               Submission {
                 "id": "347",
@@ -2969,7 +2971,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
-            "attemptedNum": 88,
+            "attemptedNum": 56,
             "firstSolveSubmissions": [
               Submission {
                 "id": "68",
@@ -3030,7 +3032,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
-            "attemptedNum": 15,
+            "attemptedNum": 9,
             "firstSolveSubmissions": [
               Submission {
                 "id": "920",
@@ -3107,7 +3109,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
-            "attemptedNum": 322,
+            "attemptedNum": 184,
             "firstSolveSubmissions": [
               Submission {
                 "id": "165",
@@ -3168,7 +3170,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 2,
+            "attemptedNum": 1,
             "firstSolveSubmissions": [
               Submission {
                 "id": "787",
@@ -3220,7 +3222,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
-            "attemptedNum": 296,
+            "attemptedNum": 148,
             "firstSolveSubmissions": [
               Submission {
                 "id": "0",
@@ -3281,7 +3283,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
-            "attemptedNum": 476,
+            "attemptedNum": 255,
             "firstSolveSubmissions": [
               Submission {
                 "id": "121",
@@ -3376,7 +3378,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
-            "attemptedNum": 23,
+            "attemptedNum": 12,
             "firstSolveSubmissions": [
               Submission {
                 "id": "685",
@@ -3445,7 +3447,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
-            "attemptedNum": 10,
+            "attemptedNum": 6,
             "firstSolveSubmissions": [
               Submission {
                 "id": "903",
@@ -3497,7 +3499,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
-            "attemptedNum": 615,
+            "attemptedNum": 337,
             "firstSolveSubmissions": [
               Submission {
                 "id": "146",
@@ -3566,7 +3568,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
-            "attemptedNum": 8,
+            "attemptedNum": 4,
             "firstSolveSubmissions": [
               Submission {
                 "id": "1164",
@@ -3651,7 +3653,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
-            "attemptedNum": 244,
+            "attemptedNum": 183,
             "firstSolveSubmissions": [
               Submission {
                 "id": "201",
@@ -3744,7 +3746,7 @@ ResolverOperation {
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
-            "attemptedNum": 11,
+            "attemptedNum": 8,
             "firstSolveSubmissions": [
               Submission {
                 "id": "347",
