@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
+import { useMagicKeys } from "@vueuse/core";
 
 const props = defineProps<{
   hidden: boolean,
@@ -7,6 +8,7 @@ const props = defineProps<{
   team: Team,
   p: TeamProblemStatistics,
 }>();
+
 const emit = defineEmits(["update:hidden"]);
 
 const rank = reactive(props.rank);
@@ -25,6 +27,13 @@ const isHidden = computed({
 function onClose() {
   isHidden.value = true;
 }
+
+const { Escape } = useMagicKeys();
+watch(Escape, (v) => {
+  if (v) {
+    onClose();
+  }
+});
 
 const headerTitle = computed(() => {
   return `${team.name} - ${p.problem.label}`;
