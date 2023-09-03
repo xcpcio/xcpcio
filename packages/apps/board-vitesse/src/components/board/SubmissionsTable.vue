@@ -9,13 +9,27 @@ const props = defineProps<{
 
 const rank = reactive(props.rank);
 
+const submissions = computed(() => {
+  let submissions = rank.submissions;
+
+  if (rank.options.enableFilterSubmissionsByTimestamp) {
+    submissions = submissions.filter(s => s.timestamp <= rank.options.timestamp);
+  }
+
+  return submissions;
+});
+
 const p = ref(new Pagination());
 
 p.value.currentPage = 0;
-p.value.totalSize = rank.submissions.length;
+p.value.totalSize = submissions.value.length;
 
-const submissions = computed(() => {
-  return rank.submissions.reverse();
+watch(submissions, () => {
+  p.value.totalSize = submissions.value.length;
+
+  if (p.value.currentPage >= p.value.totalPage) {
+    p.value.currentPage = p.value.totalPage - 1;
+  }
 });
 
 const currentSubmissions = computed(() => {

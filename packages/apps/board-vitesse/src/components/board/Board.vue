@@ -36,9 +36,18 @@ watch(data, async () => {
   firstLoaded.value = true;
 });
 
+const isReBuildRank = ref(false);
 watch(rankOptions.value, () => {
+  if (isReBuildRank.value === true) {
+    return;
+  }
+
+  isReBuildRank.value = true;
+
   rank.value.options = rankOptions.value;
   rank.value.buildRank();
+
+  isReBuildRank.value = false;
 });
 
 const currentTypeFromQuery = useRouteQuery("type", "rank", { transform: String });
