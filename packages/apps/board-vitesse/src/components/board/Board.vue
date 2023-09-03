@@ -17,10 +17,15 @@ const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
 
-const { data, isError, error } = useQueryBoardData(route.path, now);
+const isReBuildRank = ref(false);
 
+const { data, isError, error } = useQueryBoardData(route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
+    return;
+  }
+
+  if (rankOptions.value.enableFilterSubmissionsByTimestamp) {
     return;
   }
 
@@ -36,7 +41,6 @@ watch(data, async () => {
   firstLoaded.value = true;
 });
 
-const isReBuildRank = ref(false);
 watch(rankOptions.value, () => {
   if (isReBuildRank.value === true) {
     return;
