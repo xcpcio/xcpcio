@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const contest = reactive(props.data.contest);
+const contest = computed(() => props.data.contest);
 const now = ref(new Date());
 
 const el = ref(null);
@@ -42,7 +42,7 @@ onUnmounted(() => {
     <div h-32>
       <div v-if="isVisible">
         <div
-          class="w-240 flex flex-col pb-2 font-serif"
+          class="flex flex-col font-serif w-240 pb-2"
           border="b-2 gray-200 dark:gray-700"
         >
           <div class="w-full flex">
@@ -51,7 +51,7 @@ onUnmounted(() => {
             </div>
 
             <VTooltip class="w-inherit">
-              <div class="title overflow-hidden truncate text-2xl">
+              <div class="title overflow-hidden text-2xl truncate">
                 {{ contest.name }}
               </div>
 
@@ -62,7 +62,7 @@ onUnmounted(() => {
           </div>
 
           <div class="flex items-end">
-            <div class="float-left text-base font-mono">
+            <div class="float-left font-mono text-base">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -71,7 +71,7 @@ onUnmounted(() => {
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-center">
-                <div class="w-[68%] font-bold font-mono">
+                <div class="font-bold font-mono w-[68%]">
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"

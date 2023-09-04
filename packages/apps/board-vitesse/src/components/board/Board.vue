@@ -10,9 +10,9 @@ const route = useRoute();
 const { t } = useI18n();
 
 const firstLoaded = ref(false);
-const contest = ref({} as Contest);
-const teams = ref([] as Teams);
-const submissions = ref([] as Submissions);
+const contestData = ref({} as Contest);
+const teamsData = ref([] as Teams);
+const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
@@ -29,12 +29,12 @@ watch(data, async () => {
     return;
   }
 
-  contest.value = createContest(data.value?.contest as IContest);
+  contestData.value = createContest(data.value?.contest as IContest);
 
-  teams.value = createTeams(data.value?.teams as ITeams);
-  submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
+  teamsData.value = createTeams(data.value?.teams as ITeams);
+  submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
 
-  const newRank = new Rank(contest.value, teams.value, submissions.value);
+  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = rankOptions.value;
   newRank.buildRank();
   rank.value = newRank;
@@ -133,7 +133,7 @@ onUnmounted(() => {
 
   <div v-if="firstLoaded">
     <div v-if="rank.contest.banner">
-      <div class="flex items-center justify-center mb-4">
+      <div class="mb-4 flex items-center justify-center">
         <div class="max-w-[92vw]">
           <img
             :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
@@ -145,7 +145,7 @@ onUnmounted(() => {
 
     <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
       <div class="max-w-[92vw]">
-        {{ contest.name }}
+        {{ rank.contest.name }}
       </div>
     </div>
 
@@ -202,7 +202,10 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="mt-4 max-w-screen flex justify-center">
+    <div
+      class="mt-4 max-w-screen"
+      flex justify-center
+    >
       <div class="max-w-[92vw]">
         <div
           v-if="currentType === 'rank'"
@@ -215,10 +218,12 @@ onUnmounted(() => {
 
         <div
           v-if="currentType === 'submissions'"
-          class=""
+          class="w-[88vw]"
         >
           <SubmissionsTable
+            w-full
             :rank="rank"
+            :submissions="rank.getSubmissions()"
           />
         </div>
 

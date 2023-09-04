@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
+import type { Rank, Team } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank,
@@ -9,70 +9,18 @@ const props = defineProps<{
 const el = ref(null);
 const isVisible = useElementVisibility(el);
 
-const rank = reactive(props.rank);
-const team = reactive(props.team);
+const rank = computed(() => props.rank);
+const team = computed(() => props.team);
 
 function getStandClassName(t: Team): string {
   return `stand${t.solvedProblemNum % 2}${(t.rank - 1) % 2}`;
-}
-
-function getProblemSign(p: TeamProblemStatistics): string {
-  if (p.isSolved) {
-    return "+";
-  }
-
-  if (p.isWrongAnswer) {
-    return "-";
-  }
-
-  if (p.isPending) {
-    return `? ${p.pendingCount}`;
-  }
-
-  return "";
-}
-
-function getProblemShow(p: TeamProblemStatistics): string {
-  let res = "";
-
-  if (!p.isUnSubmitted) {
-    res += `${p.failedCount + Number(p.isSolved)}`;
-  }
-
-  if ((p.isSolved && rank.contest.statusTimeDisplay.correct)
-                || (p.isPending && rank.contest.statusTimeDisplay.pending)
-                || (p.isWrongAnswer && rank.contest.statusTimeDisplay.incorrect)) {
-    res += `/${Math.floor(p.lastSubmitTimestamp / 60)}`;
-  }
-
-  return res;
-}
-
-function getProblemColorClass(p: TeamProblemStatistics): string {
-  if (p.isFirstSolved) {
-    return "first-solve";
-  }
-
-  if (p.isSolved) {
-    return "correct";
-  }
-
-  if (p.isWrongAnswer) {
-    return "incorrect";
-  }
-
-  if (p.isPending) {
-    return "pending";
-  }
-
-  return "unattempted";
 }
 
 function isRenderByVisible() {
   // Some teams in the header may have rendering anomalies,
   // so force the first 32 teams to render regardless of their visibility
   // when rank rebuild trigger by drag the progress bar
-  return isVisible.value || team.rank < 32;
+  return isVisible.value || team.value.rank < 32;
 }
 </script>
 
@@ -143,15 +91,12 @@ function isRenderByVisible() {
       v-for="p in team.problemStatistics"
       :key="p.problem.id"
     >
-      <td
+      <TeamProblemBlock
         v-if="isRenderByVisible()"
-        class="stnd"
-        :class="[getProblemColorClass(p)]"
-      >
-        {{ getProblemSign(p) }}
-        <br>
-        {{ getProblemShow(p) }}
-      </td>
+        :rank="rank"
+        :team="team"
+        :p="p"
+      />
     </template>
     <td
       v-if="isRenderByVisible()"

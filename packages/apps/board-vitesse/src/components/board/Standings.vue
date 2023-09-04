@@ -7,11 +7,11 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const rank = reactive(props.rank);
+const rank = computed(() => props.rank);
 
 const maxOrgLength = computed(() => {
   let res = 0;
-  rank.teams.forEach((t) => {
+  rank.value.teams.forEach((t) => {
     res = Math.max(res, t.organization.length);
   });
 
@@ -20,7 +20,7 @@ const maxOrgLength = computed(() => {
 
 const maxTeamLength = computed(() => {
   let res = 0;
-  rank.teams.forEach((t) => {
+  rank.value.teams.forEach((t) => {
     res = Math.max(res, t.name.length);
   });
 
@@ -32,7 +32,7 @@ const maxTeamLength = computed(() => {
   <div>
     <div>
       <table class="standings font-mono dark:text-gray-700">
-        <thead class="sticky top-0 z-999">
+        <thead class="sticky top-0 z-99">
           <tr>
             <th
               class="title"
