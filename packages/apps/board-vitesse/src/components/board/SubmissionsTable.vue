@@ -200,7 +200,9 @@ function getSubmitTime(
                 <tr
                   class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
-                  <td class="px-4 py-2">
+                  <td
+                    px-4 py-2
+                  >
                     <span class="rounded bg-primary-100 px-2 py-0.5 text-xs text-primary-800 dark:bg-primary-900 dark:text-primary-300">
                       {{ rank.contest.problemsMap.get(s.problemId)?.label }}
                     </span>
@@ -219,7 +221,8 @@ function getSubmitTime(
 
                   <td
                     scope="row"
-                    class="flex items-center whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                    flex items-center
                   >
                     {{ s.status }}
                   </td>
