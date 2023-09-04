@@ -133,7 +133,7 @@ onUnmounted(() => {
 
   <div v-if="firstLoaded">
     <div v-if="rank.contest.banner">
-      <div class="flex items-center justify-center mb-4">
+      <div class="mb-4 flex items-center justify-center">
         <div class="max-w-[92vw]">
           <img
             :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"

@@ -42,17 +42,14 @@ const headerTitle = computed(() => {
 
 <template>
   <div
-    class="overflow-x-hidden fixed md:inset-0"
-    sm:mt-16 md:mt-32
-    flex justify-center items-start
-    h-screen w-screen
-    z-9997
+    class="fixed overflow-x-hidden md:inset-0"
+
+    z-9997 h-screen w-screen flex items-start justify-center md:mt-32 sm:mt-16
   >
     <!-- background -->
     <div
-      fixed top-0 left-0
-      w-screen h-screen
-      z-9998
+
+      fixed left-0 top-0 z-9998 h-screen w-screen
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
@@ -60,7 +57,7 @@ const headerTitle = computed(() => {
     />
 
     <div
-      class="relative p-4 w-[78vw]"
+      class="relative w-[78vw] p-4"
       z-9999
     >
       <div
@@ -68,8 +65,8 @@ const headerTitle = computed(() => {
         rounded-sm shadow-sm
       >
         <div
-          class="pb-4 mb-4 rounded-t border-b dark:border-gray-600 sm:mb-4"
-          flex justify-between items-center
+          class="mb-4 border-b rounded-t pb-4 sm:mb-4 dark:border-gray-600"
+          flex items-center justify-between
         >
           <h3
             class="text-gray-900 dark:text-white"
@@ -79,13 +76,13 @@ const headerTitle = computed(() => {
           </h3>
           <button
             type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 text-sm p-1.5 ml-auto dark:hover:bg-gray-600 dark:hover:text-white"
+            class="ml-auto bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
             inline-flex items-center
             rounded-lg
             @click="onClose"
           >
             <svg
-              class="w-5 h-5"
+              class="h-5 w-5"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
@@ -103,9 +100,8 @@ const headerTitle = computed(() => {
         </div>
 
         <div
-          flex justify-center items-center
-          font-mono font-bold
-          w-full
+
+          w-full flex items-center justify-center font-bold font-mono
         >
           <SubmissionsTable
             w-full

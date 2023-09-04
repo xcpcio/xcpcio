@@ -133,7 +133,7 @@ function getSubmitTime(
         >
           <table
             class="w-full text-left text-sm text-gray-500 dark:text-gray-400"
-            font-mono font-medium
+            font-medium font-mono
           >
             <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
               <tr>
