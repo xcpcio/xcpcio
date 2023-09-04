@@ -7,16 +7,16 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const rank = reactive(props.rank);
+const rank = computed(() => props.rank);
 
 function getColSpan() {
   let res = 3;
 
-  if (rank.contest.organization) {
+  if (rank.value.contest.organization) {
     res++;
   }
 
-  if (rank.contest.badge) {
+  if (rank.value.contest.badge) {
     res++;
   }
 

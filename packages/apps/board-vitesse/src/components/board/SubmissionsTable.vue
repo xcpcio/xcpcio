@@ -11,7 +11,7 @@ const props = defineProps<{
   removeBorder?: boolean,
 }>();
 
-const rank = reactive(props.rank);
+const rank = computed(() => props.rank);
 const submissions = computed(() => {
   const s = props.submissions;
   return s.sort(Submission.compare).reverse();

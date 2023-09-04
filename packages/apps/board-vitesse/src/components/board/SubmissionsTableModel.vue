@@ -11,9 +11,9 @@ const props = defineProps<{
 
 const emit = defineEmits(["update:hidden"]);
 
-const rank = reactive(props.rank);
-const team = reactive(props.team);
-const p = reactive(props.p);
+const rank = computed(() => props.rank);
+const team = computed(() => props.team);
+const p = computed(() => props.p);
 
 const isHidden = computed({
   get() {
@@ -36,7 +36,7 @@ watch(Escape, (v) => {
 });
 
 const headerTitle = computed(() => {
-  return `${team.name} - ${p.problem.label}`;
+  return `${team.value.name} - ${p.value.problem.label}`;
 });
 </script>
 

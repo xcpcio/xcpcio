@@ -9,24 +9,24 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const rank = reactive(props.rank);
+const rank = computed(() => props.rank);
 
 function getHeadData() {
   const l = [];
 
   l.push({
     title: "standings.statistics.head_data.problems",
-    data: rank.contest.problems.length,
+    data: rank.value.contest.problems.length,
   });
 
   l.push({
     title: "standings.statistics.head_data.teams",
-    data: rank.teams.length,
+    data: rank.value.teams.length,
   });
 
   l.push({
     title: "standings.statistics.head_data.submissions",
-    data: rank.getSubmissions().length,
+    data: rank.value.getSubmissions().length,
   });
 
   return l;

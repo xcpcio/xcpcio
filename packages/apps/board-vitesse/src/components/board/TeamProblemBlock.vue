@@ -7,9 +7,10 @@ const props = defineProps<{
   p: TeamProblemStatistics,
 }>();
 
-const rank = reactive(props.rank);
-const team = reactive(props.team);
-const p = reactive(props.p);
+const rank = computed(() => props.rank);
+const team = computed(() => props.team);
+const p = computed(() => props.p);
+
 const hiddenModel = ref(true);
 
 function getProblemSign(p: TeamProblemStatistics): string {
@@ -35,9 +36,9 @@ function getProblemShow(p: TeamProblemStatistics): string {
     res += `${p.failedCount + Number(p.isSolved)}`;
   }
 
-  if ((p.isSolved && rank.contest.statusTimeDisplay.correct)
-                || (p.isPending && rank.contest.statusTimeDisplay.pending)
-                || (p.isWrongAnswer && rank.contest.statusTimeDisplay.incorrect)) {
+  if ((p.isSolved && rank.value.contest.statusTimeDisplay.correct)
+                || (p.isPending && rank.value.contest.statusTimeDisplay.pending)
+                || (p.isWrongAnswer && rank.value.contest.statusTimeDisplay.incorrect)) {
     res += `/${Math.floor(p.lastSubmitTimestamp / 60)}`;
   }
 

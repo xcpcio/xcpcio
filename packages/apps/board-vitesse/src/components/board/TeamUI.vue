@@ -9,8 +9,8 @@ const props = defineProps<{
 const el = ref(null);
 const isVisible = useElementVisibility(el);
 
-const rank = reactive(props.rank);
-const team = reactive(props.team);
+const rank = computed(() => props.rank);
+const team = computed(() => props.team);
 
 function getStandClassName(t: Team): string {
   return `stand${t.solvedProblemNum % 2}${(t.rank - 1) % 2}`;
@@ -20,7 +20,7 @@ function isRenderByVisible() {
   // Some teams in the header may have rendering anomalies,
   // so force the first 32 teams to render regardless of their visibility
   // when rank rebuild trigger by drag the progress bar
-  return isVisible.value || team.rank < 32;
+  return isVisible.value || team.value.rank < 32;
 }
 </script>
 
