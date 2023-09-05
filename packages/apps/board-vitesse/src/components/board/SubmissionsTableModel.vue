@@ -43,13 +43,12 @@ const headerTitle = computed(() => {
 <template>
   <div
     class="fixed overflow-x-hidden md:inset-0"
-
     z-9997 h-screen w-screen flex items-start justify-center md:mt-32 sm:mt-16
   >
     <!-- background -->
     <div
-
-      fixed left-0 top-0 z-9998 h-screen w-screen
+      fixed left-0 top-0 z-9998
+      h-screen w-screen
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
@@ -77,8 +76,7 @@ const headerTitle = computed(() => {
           <button
             type="button"
             class="ml-auto bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-            inline-flex items-center
-            rounded-lg
+            items-center inline-flex rounded-lg
             @click="onClose"
           >
             <svg
@@ -100,8 +98,7 @@ const headerTitle = computed(() => {
         </div>
 
         <div
-
-          w-full flex items-center justify-center font-bold font-mono
+          flex items-center justify-center w-full font-bold font-mono
         >
           <SubmissionsTable
             w-full
