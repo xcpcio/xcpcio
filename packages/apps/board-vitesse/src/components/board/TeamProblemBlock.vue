@@ -7,11 +7,14 @@ const props = defineProps<{
   p: TeamProblemStatistics,
 }>();
 
+const hiddenModal = ref(true);
+function onClick() {
+  hiddenModal.value = false;
+}
+
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 const p = computed(() => props.p);
-
-const hiddenModel = ref(true);
 
 function getProblemSign(p: TeamProblemStatistics): string {
   if (p.isSolved) {
@@ -64,10 +67,6 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
 
   return "unattempted";
 }
-
-function onClick() {
-  hiddenModel.value = false;
-}
 </script>
 
 <template>
@@ -76,7 +75,7 @@ function onClick() {
     :class="[getProblemColorClass(p)]"
   >
     <div
-      class="cursor-pointer"
+      cursor-pointer
       @click="onClick"
     >
       {{ getProblemSign(p) }}
@@ -85,9 +84,9 @@ function onClick() {
     </div>
 
     <div>
-      <SubmissionsTableModel
-        v-if="!hiddenModel"
-        v-model:isHidden="hiddenModel"
+      <SubmissionsTableModal
+        v-if="!hiddenModal"
+        v-model:isHidden="hiddenModal"
         :rank="rank"
         :team="team"
         :p="p"
