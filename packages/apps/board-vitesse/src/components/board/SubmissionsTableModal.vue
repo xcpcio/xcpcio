@@ -42,8 +42,12 @@ const headerTitle = computed(() => {
 
 <template>
   <div
-    class="fixed overflow-x-hidden md:inset-0"
-    z-9997 h-screen w-screen flex items-start justify-center md:mt-32 sm:mt-16
+    class="md:inset-0"
+    fixed z-9997
+    h-screen w-screen
+    overflow-x-hidden
+    flex justify-center items-start
+    md:mt-32 sm:mt-16
   >
     <!-- background -->
     <div
@@ -91,14 +95,18 @@ const headerTitle = computed(() => {
                 clip-rule="evenodd"
               />
             </svg>
-            <span class="sr-only">
+            <span
+              sr-only
+            >
               Close modal
             </span>
           </button>
         </div>
 
         <div
-          flex items-center justify-center w-full font-bold font-mono
+          w-full
+          font-bold font-mono
+          flex items-center justify-center
         >
           <SubmissionsTable
             w-full
