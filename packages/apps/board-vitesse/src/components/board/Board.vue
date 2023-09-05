@@ -122,7 +122,9 @@ onUnmounted(() => {
 
 <template>
   <div v-if="!firstLoaded">
-    <div class="flex items-center justify-center">
+    <div
+      flex justify-center items-center
+    >
       {{ t("common.loading") }}...
 
       <div v-if="isError">
