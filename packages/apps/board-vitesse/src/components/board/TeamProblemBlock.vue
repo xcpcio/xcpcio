@@ -87,7 +87,7 @@ function onClick() {
     <div>
       <SubmissionsTableModel
         v-if="!hiddenModel"
-        v-model:hidden="hiddenModel"
+        v-model:isHidden="hiddenModel"
         :rank="rank"
         :team="team"
         :p="p"

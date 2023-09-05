@@ -3,24 +3,20 @@ import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
 import { useMagicKeys } from "@vueuse/core";
 
 const props = defineProps<{
-  hidden: boolean,
+  isHidden: boolean,
   rank: Rank,
   team: Team,
   p: TeamProblemStatistics,
 }>();
 
-const emit = defineEmits(["update:hidden"]);
-
-const rank = computed(() => props.rank);
-const team = computed(() => props.team);
-const p = computed(() => props.p);
+const emit = defineEmits(["update:isHidden"]);
 
 const isHidden = computed({
   get() {
-    return props.hidden;
+    return props.isHidden;
   },
   set(value) {
-    emit("update:hidden", value);
+    emit("update:isHidden", value);
   },
 });
 
@@ -34,6 +30,10 @@ watch(Escape, (v) => {
     onClose();
   }
 });
+
+const rank = computed(() => props.rank);
+const team = computed(() => props.team);
+const p = computed(() => props.p);
 
 const headerTitle = computed(() => {
   return `${team.value.name} - ${p.value.problem.label}`;
