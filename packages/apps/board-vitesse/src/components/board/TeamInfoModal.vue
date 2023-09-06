@@ -19,11 +19,27 @@ const isHidden = computed({
   },
 });
 
-// const rank = computed(() => props.rank);
+const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
 const headerTitle = computed(() => {
-  return `${team.value.name}`;
+  let res = "";
+
+  if (rank.value.contest.organization && team.value.organization.length > 0) {
+    res += `${team.value.organization} - `;
+  }
+
+  res += `${team.value.name}`;
+
+  if (team.value.members) {
+    res += ` - ${team.value.members}`;
+  }
+
+  if (team.value.coach) {
+    res += ` - ${team.value.coach}(coach)`;
+  }
+
+  return res;
 });
 </script>
 

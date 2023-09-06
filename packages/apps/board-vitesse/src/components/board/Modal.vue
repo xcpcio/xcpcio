@@ -64,7 +64,8 @@ watch(Escape, (v) => {
           <slot name="header">
             <h3
               text-gray-900 dark:text-white
-              text-lg font-semibold
+              text-xl
+              font-sans font-semibold italic
             >
               {{ props.title }}
             </h3>
