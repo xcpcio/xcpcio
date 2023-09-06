@@ -2,6 +2,7 @@ import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
 import type { TeamProblemStatistics } from "./problem";
 import { calcDict } from "./utils";
+import type { Submissions } from "./submission";
 
 export class Team {
   id: string;
@@ -28,6 +29,8 @@ export class Team {
   problemStatistics: Array<TeamProblemStatistics>;
   problemStatisticsMap: Map<string, TeamProblemStatistics>;
 
+  submissions: Submissions;
+
   constructor() {
     this.id = "";
     this.name = "";
@@ -48,6 +51,8 @@ export class Team {
 
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
+
+    this.submissions = [];
   }
 
   reset() {
@@ -62,6 +67,8 @@ export class Team {
 
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
+
+    this.submissions = [];
   }
 
   get penaltyToMinute() {

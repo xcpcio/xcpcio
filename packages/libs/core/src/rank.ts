@@ -91,6 +91,7 @@ export class Rank {
         const submissions = problemStatistics.submissions;
 
         submissions.push(s);
+        team.submissions.push(s);
         problem.statistics.submittedNum++;
 
         if (problemStatistics.isSolved) {

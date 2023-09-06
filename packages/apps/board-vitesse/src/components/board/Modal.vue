@@ -32,7 +32,6 @@ watch(Escape, (v) => {
 
 <template>
   <div
-    v-if="!isHidden"
     class="md:inset-0"
     fixed z-9997
     h-screen w-screen
