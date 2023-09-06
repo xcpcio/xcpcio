@@ -72,14 +72,17 @@ const headerTitle = computed(() => {
           flex items-center justify-between
         >
           <h3
-            class="text-gray-900 dark:text-white"
+            text-gray-900 dark:text-white
             text-lg font-semibold
           >
             {{ headerTitle }}
           </h3>
           <button
             type="button"
-            class="ml-auto bg-transparent p-1.5 text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+            class="hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
+            bg-transparent
+            ml-auto p-1.5
+            text-sm text-gray-400
             items-center inline-flex rounded-lg
             @click="onClose"
           >
