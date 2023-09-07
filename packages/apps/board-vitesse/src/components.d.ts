@@ -17,6 +17,7 @@ declare module 'vue' {
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     Modal: typeof import('./components/board/Modal.vue')['default']
+    ModalMenu: typeof import('./components/board/ModalMenu.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     Progress: typeof import('./components/board/Progress.vue')['default']
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
