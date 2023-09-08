@@ -572,6 +572,11 @@ ResolverOperation {
         "rank": 128,
         "timePoint": 135,
       },
+      {
+        "lastSolvedProblem": null,
+        "rank": 128,
+        "timePoint": 240,
+      },
     ],
     "problemStatistics": [
       TeamProblemStatistics {
@@ -2977,6 +2982,49 @@ ResolverOperation {
         },
         "rank": 1,
         "timePoint": 239,
+      },
+      {
+        "lastSolvedProblem": Problem {
+          "balloonColor": {
+            "background_color": "rgba(42, 197, 202, 0.7)",
+            "color": "#000",
+          },
+          "id": "10",
+          "label": "K",
+          "memoryLimit": undefined,
+          "name": "",
+          "statistics": ProblemStatistics {
+            "acceptedNum": 1,
+            "attemptedNum": 4,
+            "firstSolveSubmissions": [
+              Submission {
+                "id": "1164",
+                "isIgnore": false,
+                "problemId": "10",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 14280,
+              },
+            ],
+            "ignoreNum": 0,
+            "lastSolveSubmissions": [
+              Submission {
+                "id": "1164",
+                "isIgnore": false,
+                "problemId": "10",
+                "status": "CORRECT",
+                "teamId": "3000202305140047",
+                "timestamp": 14280,
+              },
+            ],
+            "pendingNum": 0,
+            "rejectedNum": 7,
+            "submittedNum": 8,
+          },
+          "timeLimit": undefined,
+        },
+        "rank": 1,
+        "timePoint": 240,
       },
     ],
     "problemStatistics": [

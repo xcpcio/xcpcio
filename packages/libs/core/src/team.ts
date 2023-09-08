@@ -134,13 +134,17 @@ export class Team {
     const res = [];
     res.push(this.placeChartPoints[0]);
 
-    for (let i = 1; i < this.placeChartPoints.length; i++) {
+    for (let i = 1; i < this.placeChartPoints.length - 1; i++) {
       const p = this.placeChartPoints[i];
       const preP = res[res.length - 1];
 
       if (p.rank !== preP.rank || p.lastSolvedProblem !== preP.lastSolvedProblem) {
         res.push(p);
       }
+    }
+
+    if (this.placeChartPoints.length > 1) {
+      res.push(this.placeChartPoints[this.placeChartPoints.length - 1]);
     }
 
     this.placeChartPoints = res;

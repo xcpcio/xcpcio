@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Chart } from "highcharts-vue";
+
 import type { Rank, Team } from "@xcpcio/core";
 
 const props = defineProps<{
@@ -94,6 +96,15 @@ const headerTitle = computed(() => {
           :submissions="team.submissions"
           :page-size="8"
           :remove-border="true"
+        />
+      </div>
+
+      <div
+        v-if="currentType === 'statistics'"
+        w-full
+      >
+        <Chart
+          :options="getTeamPlaceChart(rank, team)"
         />
       </div>
     </div>
