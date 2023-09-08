@@ -77,114 +77,108 @@ export class Rank {
         p.statistics.reset();
       });
 
-      for (const s of this.getSubmissions()) {
+      let preSubmissionTimestampToMinute = 0;
+      const allSubmissions = this.getSubmissions();
+
+      this.teams.forEach(t =>
+        t.placeChartPoints.push({
+          timePoint: 0,
+          rank: 1,
+          lastSolvedProblem: null,
+        }),
+      );
+
+      for (let ix = 0; ix < allSubmissions.length; ix++) {
+        const s = allSubmissions[ix];
+
         const teamId = s.teamId;
         const problemId = s.problemId;
         const team = this.teamsMap.get(teamId);
         const problem = this.contest.problemsMap.get(problemId);
 
-        if (team === undefined || problem === undefined) {
-          continue;
-        }
-
-        const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
-        const submissions = problemStatistics.submissions;
-
-        submissions.push(s);
-        team.submissions.push(s);
-        problem.statistics.submittedNum++;
-
-        if (problemStatistics.isSolved) {
-          continue;
-        }
-
-        if (s.isIgnore || s.isNotCalculatedPenaltyStatus()) {
-          problem.statistics.ignoreNum++;
-          problemStatistics.ignoreCount++;
-          continue;
-        }
-
-        problemStatistics.isSubmitted = true;
-        problemStatistics.lastSubmitTimestamp = s.timestamp;
-        problemStatistics.totalCount++;
-
-        if (s.isAccepted()) {
-          problemStatistics.isSolved = true;
-          problemStatistics.solvedTimestamp = s.timestamp;
-
-          problem.statistics.acceptedNum++;
-          problem.statistics.attemptedNum += problemStatistics.failedCount + 1;
-
-          if (
-            problem.statistics.firstSolveSubmissions.length === 0
-            || problem.statistics.firstSolveSubmissions[problem.statistics.firstSolveSubmissions.length - 1].timestamp === s.timestamp
-          ) {
-            problemStatistics.isFirstSolved = true;
-            problem.statistics.firstSolveSubmissions.push(s);
+        (() => {
+          if (team === undefined || problem === undefined) {
+            return;
           }
 
-          while (problem.statistics.lastSolveSubmissions.length > 0) {
-            problem.statistics.lastSolveSubmissions.pop();
+          const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
+          const submissions = problemStatistics.submissions;
+
+          submissions.push(s);
+          team.submissions.push(s);
+          problem.statistics.submittedNum++;
+
+          if (problemStatistics.isSolved) {
+            return;
           }
 
-          problem.statistics.lastSolveSubmissions.push(s);
-          team.lastSolvedProblemTimestamp = s.timestamp;
-        }
+          if (s.isIgnore || s.isNotCalculatedPenaltyStatus()) {
+            problem.statistics.ignoreNum++;
+            problemStatistics.ignoreCount++;
+            return;
+          }
 
-        if (s.isRejected()) {
-          problemStatistics.failedCount++;
-          problem.statistics.rejectedNum++;
-        }
+          problemStatistics.isSubmitted = true;
+          problemStatistics.lastSubmitTimestamp = s.timestamp;
+          problemStatistics.totalCount++;
 
-        if (s.isPending()) {
-          problemStatistics.pendingCount++;
-          problem.statistics.pendingNum++;
-        }
-      }
+          if (s.isAccepted()) {
+            problemStatistics.isSolved = true;
+            problemStatistics.solvedTimestamp = s.timestamp;
 
-      this.teams.forEach(t => t.calcSolvedData());
-      this.teams.sort(Team.compare);
+            problem.statistics.acceptedNum++;
+            problem.statistics.attemptedNum += problemStatistics.failedCount + 1;
 
-      {
-        let rank = 1;
-        let preTeam = null;
-        for (const t of this.teams) {
-          t.rank = rank++;
-
-          if (preTeam !== null) {
-            if (t.isEqualRank(preTeam)) {
-              t.rank = preTeam.rank;
+            if (
+              problem.statistics.firstSolveSubmissions.length === 0
+              || problem.statistics.firstSolveSubmissions[problem.statistics.firstSolveSubmissions.length - 1].timestamp === s.timestamp
+            ) {
+              problemStatistics.isFirstSolved = true;
+              problem.statistics.firstSolveSubmissions.push(s);
             }
-          }
 
-          preTeam = t;
-        }
-      }
-
-      if (this.contest.organization) {
-        let rank = 1;
-        let preTeam = null;
-
-        const se = new Set<string>();
-
-        for (const t of this.teams) {
-          const org = t.organization;
-          if (se.has(org)) {
-            continue;
-          }
-
-          se.add(org);
-          t.organizationRank = rank++;
-
-          if (preTeam !== null) {
-            if (t.isEqualRank(preTeam)) {
-              t.organizationRank = preTeam.organizationRank;
+            while (problem.statistics.lastSolveSubmissions.length > 0) {
+              problem.statistics.lastSolveSubmissions.pop();
             }
+
+            problem.statistics.lastSolveSubmissions.push(s);
+
+            team.lastSolvedProblem = problem;
+            team.lastSolvedProblemTimestamp = s.timestamp;
           }
 
-          preTeam = t;
+          if (s.isRejected()) {
+            problemStatistics.failedCount++;
+            problem.statistics.rejectedNum++;
+          }
+
+          if (s.isPending()) {
+            problemStatistics.pendingCount++;
+            problem.statistics.pendingNum++;
+          }
+        })();
+
+        if (s.timestampToMinute > preSubmissionTimestampToMinute || ix === allSubmissions.length - 1) {
+          this.teams.forEach(t => t.calcSolvedData());
+          this.teams.sort(Team.compare);
+          this.buildTeamRank();
+
+          this.teams.forEach(t =>
+            t.placeChartPoints.push(
+              {
+                timePoint: s.timestampToMinute,
+                rank: t.rank,
+                lastSolvedProblem: t.lastSolvedProblem,
+              },
+            ),
+          );
         }
+
+        preSubmissionTimestampToMinute = s.timestampToMinute;
       }
+
+      this.teams.forEach(t => t.postProcessPlaceChartPoints());
+      this.buildOrgRank();
     })();
 
     (() => {
@@ -197,6 +191,51 @@ export class Rank {
     })();
 
     return this;
+  }
+
+  buildTeamRank() {
+    let rank = 1;
+    let preTeam = null;
+    for (const t of this.teams) {
+      t.rank = rank++;
+
+      if (preTeam !== null) {
+        if (t.isEqualRank(preTeam)) {
+          t.rank = preTeam.rank;
+        }
+      }
+
+      preTeam = t;
+    }
+  }
+
+  buildOrgRank() {
+    if (!this.contest.organization) {
+      return;
+    }
+
+    let rank = 1;
+    let preTeam = null;
+
+    const se = new Set<string>();
+
+    for (const t of this.teams) {
+      const org = t.organization;
+      if (se.has(org)) {
+        continue;
+      }
+
+      se.add(org);
+      t.organizationRank = rank++;
+
+      if (preTeam !== null) {
+        if (t.isEqualRank(preTeam)) {
+          t.organizationRank = preTeam.organizationRank;
+        }
+      }
+
+      preTeam = t;
+    }
   }
 
   getSubmissions() {
