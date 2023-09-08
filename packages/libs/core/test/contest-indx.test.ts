@@ -42,7 +42,7 @@ describe("contest-index", () => {
           "tag": undefined,
           "totalDurationTimestamp": 18000,
           "unFreezeDurationTimestamp": 14400,
-          "version": "0.4.2",
+          "version": "0.4.3",
         },
       }
     `);
@@ -74,7 +74,7 @@ describe("contest-index", () => {
           "tag": undefined,
           "totalDurationTimestamp": 18000,
           "unFreezeDurationTimestamp": 18000,
-          "version": "0.4.2",
+          "version": "0.4.3",
         },
       }
     `);

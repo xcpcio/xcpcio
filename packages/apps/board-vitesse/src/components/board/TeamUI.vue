@@ -9,6 +9,11 @@ const props = defineProps<{
 const el = ref(null);
 const isVisible = useElementVisibility(el);
 
+const hiddenTeamInfoModal = ref(true);
+function onClickTeamInfoModal() {
+  hiddenTeamInfoModal.value = false;
+}
+
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
@@ -63,15 +68,31 @@ function isRenderByVisible() {
         <div class="float-right" />
       </div>
     </td>
+
     <td
       v-if="isRenderByVisible()"
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      <span>{{ team.name }}</span>
-      <StarIcon v-if="team.group.includes('unofficial')" inline-block />
-      <GirlIcon v-if="team.group.includes('girl')" inline-block />
+      <div
+        cursor-pointer
+        @click="onClickTeamInfoModal"
+      >
+        <span>{{ team.name }}</span>
+        <StarIcon v-if="team.group.includes('unofficial')" inline-block />
+        <GirlIcon v-if="team.group.includes('girl')" inline-block />
+      </div>
+
+      <div>
+        <TeamInfoModal
+          v-if="!hiddenTeamInfoModal"
+          v-model:isHidden="hiddenTeamInfoModal"
+          :rank="rank"
+          :team="team"
+        />
+      </div>
     </td>
+
     <td
       v-if="isRenderByVisible()"
       class="stnd"
@@ -79,6 +100,7 @@ function isRenderByVisible() {
     >
       {{ team.solvedProblemNum }}
     </td>
+
     <td
       v-if="isRenderByVisible()"
       class="stnd"

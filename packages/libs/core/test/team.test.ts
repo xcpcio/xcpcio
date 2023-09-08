@@ -19,6 +19,7 @@ describe("team", () => {
           "official",
         ],
         "id": "3000202305140115",
+        "lastSolvedProblem": null,
         "lastSolvedProblemTimestamp": 0,
         "members": [
           "江骏扬",
@@ -29,10 +30,12 @@ describe("team", () => {
         "organization": "重庆邮电大学",
         "organizationRank": -1,
         "penalty": 0,
+        "placeChartPoints": [],
         "problemStatistics": [],
         "problemStatisticsMap": Map {},
         "rank": 0,
         "solvedProblemNum": 0,
+        "submissions": [],
         "tag": [],
       }
     `);

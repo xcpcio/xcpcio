@@ -41,6 +41,10 @@ export class Submission {
     return isNotCalculatedPenaltyStatus(this.status);
   }
 
+  get timestampToMinute() {
+    return Math.floor(this.timestamp / 60);
+  }
+
   static compare(lhs: Submission, rhs: Submission): number {
     if (lhs.timestamp !== rhs.timestamp) {
       return lhs.timestamp - rhs.timestamp;

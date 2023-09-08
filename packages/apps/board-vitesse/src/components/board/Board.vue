@@ -122,7 +122,9 @@ onUnmounted(() => {
 
 <template>
   <div v-if="!firstLoaded">
-    <div class="flex items-center justify-center">
+    <div
+      flex justify-center items-center
+    >
       {{ t("common.loading") }}...
 
       <div v-if="isError">
@@ -133,7 +135,10 @@ onUnmounted(() => {
 
   <div v-if="firstLoaded">
     <div v-if="rank.contest.banner">
-      <div class="mb-4 flex items-center justify-center">
+      <div
+        mb-4
+        flex justify-center items-center
+      >
         <div class="max-w-[92vw]">
           <img
             :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
@@ -143,13 +148,22 @@ onUnmounted(() => {
       </div>
     </div>
 
-    <div class="title max-w-screen flex justify-center text-center text-3xl font-normal font-serif">
+    <div
+      class="title"
+      max-w-screen
+      flex justify-center
+      text-center text-3xl font-normal font-serif
+    >
       <div class="max-w-[92vw]">
         {{ rank.contest.name }}
       </div>
     </div>
 
-    <div class="mt-4 max-w-screen flex flex-row justify-center">
+    <div
+      mt-4
+      max-w-screen
+      flex flex-row justify-center
+    >
       <div class="w-[92vw]">
         <div class="flex font-bold font-mono">
           <div class="float-left">
@@ -203,13 +217,15 @@ onUnmounted(() => {
     </div>
 
     <div
-      class="mt-4 max-w-screen"
+      mt-4
+      max-w-screen
       flex justify-center
     >
-      <div class="max-w-[92vw]">
+      <div
+        class="max-w-[92vw]"
+      >
         <div
           v-if="currentType === 'rank'"
-          class=""
         >
           <Standings
             :rank="rank"
@@ -229,7 +245,6 @@ onUnmounted(() => {
 
         <div
           v-if="currentType === 'statistics'"
-          class=""
         >
           <Statistics
             :rank="rank"
@@ -238,7 +253,6 @@ onUnmounted(() => {
 
         <div
           v-if="currentType === 'balloon'"
-          class=""
         >
           <Balloon
             :rank="rank"
@@ -247,7 +261,6 @@ onUnmounted(() => {
 
         <div
           v-if="currentType === 'export'"
-          class=""
         >
           <Export
             :rank="rank"

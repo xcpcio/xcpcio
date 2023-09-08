@@ -42,6 +42,7 @@ declare global {
   const getProblemChart: typeof import('./composables/statistics')['getProblemChart']
   const getSubmitChart: typeof import('./composables/statistics')['getSubmitChart']
   const getTeamChart: typeof import('./composables/statistics')['getTeamChart']
+  const getTeamPlaceChart: typeof import('./composables/statistics')['getTeamPlaceChart']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -339,6 +340,7 @@ declare module 'vue' {
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
+    readonly getTeamPlaceChart: UnwrapRef<typeof import('./composables/statistics')['getTeamPlaceChart']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
@@ -630,6 +632,7 @@ declare module '@vue/runtime-core' {
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
+    readonly getTeamPlaceChart: UnwrapRef<typeof import('./composables/statistics')['getTeamPlaceChart']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>

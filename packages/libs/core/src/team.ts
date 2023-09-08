@@ -1,7 +1,20 @@
 import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
-import type { TeamProblemStatistics } from "./problem";
+import type { Problem, TeamProblemStatistics } from "./problem";
 import { calcDict } from "./utils";
+import type { Submissions } from "./submission";
+
+export class PlaceChartPointData {
+  timePoint: number;
+  rank: number;
+  lastSolvedProblem: Problem | null;
+
+  constructor() {
+    this.timePoint = 0;
+    this.rank = 0;
+    this.lastSolvedProblem = null;
+  }
+}
 
 export class Team {
   id: string;
@@ -21,12 +34,18 @@ export class Team {
 
   solvedProblemNum: number;
   attemptedProblemNum: number;
+
+  lastSolvedProblem: Problem | null;
   lastSolvedProblemTimestamp: number;
 
   penalty: number;
 
   problemStatistics: Array<TeamProblemStatistics>;
   problemStatisticsMap: Map<string, TeamProblemStatistics>;
+
+  submissions: Submissions;
+
+  placeChartPoints: Array<PlaceChartPointData>;
 
   constructor() {
     this.id = "";
@@ -42,12 +61,18 @@ export class Team {
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
+
+    this.lastSolvedProblem = null;
     this.lastSolvedProblemTimestamp = 0;
 
     this.penalty = 0;
 
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
+
+    this.submissions = [];
+
+    this.placeChartPoints = [];
   }
 
   reset() {
@@ -56,12 +81,18 @@ export class Team {
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
+
+    this.lastSolvedProblem = null;
     this.lastSolvedProblemTimestamp = 0;
 
     this.penalty = 0;
 
     this.problemStatistics = [];
     this.problemStatisticsMap = new Map<string, TeamProblemStatistics>();
+
+    this.submissions = [];
+
+    this.placeChartPoints = [];
   }
 
   get penaltyToMinute() {
@@ -77,8 +108,9 @@ export class Team {
 
   calcSolvedData() {
     this.solvedProblemNum = 0;
-    this.penalty = 0;
     this.attemptedProblemNum = 0;
+
+    this.penalty = 0;
 
     for (const p of this.problemStatistics) {
       if (p.isAccepted) {
@@ -92,6 +124,30 @@ export class Team {
 
   isEqualRank(otherTeam: Team) {
     return this.solvedProblemNum === otherTeam.solvedProblemNum && this.penalty === otherTeam.penalty;
+  }
+
+  postProcessPlaceChartPoints() {
+    if (this.placeChartPoints.length === 0) {
+      return;
+    }
+
+    const res = [];
+    res.push(this.placeChartPoints[0]);
+
+    for (let i = 1; i < this.placeChartPoints.length - 1; i++) {
+      const p = this.placeChartPoints[i];
+      const preP = res[res.length - 1];
+
+      if (p.rank !== preP.rank || p.lastSolvedProblem !== preP.lastSolvedProblem) {
+        res.push(p);
+      }
+    }
+
+    if (this.placeChartPoints.length > 1) {
+      res.push(this.placeChartPoints[this.placeChartPoints.length - 1]);
+    }
+
+    this.placeChartPoints = res;
   }
 
   static compare(lhs: Team, rhs: Team): number {

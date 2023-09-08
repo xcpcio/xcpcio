@@ -1,4 +1,4 @@
-import type { Rank } from "@xcpcio/core";
+import type { Rank, Team } from "@xcpcio/core";
 
 function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any) {
   return {
@@ -191,4 +191,81 @@ export function getSubmitChart(rank: Rank) {
   })();
 
   return getChartObj("提交分类统计", "题目编号", "提交数", cat, series, colors);
+}
+
+export function getTeamPlaceChart(_rank: Rank, team: Team) {
+  const data = team.placeChartPoints.map((p) => {
+    return {
+      x: p.timePoint,
+      y: p.rank,
+      lastSolved: `Last Solved Problem ${p.lastSolvedProblem?.label}`,
+    };
+  });
+
+  const options: Highcharts.Options = {
+    chart: {
+      type: "spline",
+    },
+    title: {
+      text: "排名变化趋势图",
+    },
+    series: [
+      {
+        showInLegend: false,
+        allowPointSelect: false,
+        name: "排名",
+        type: "spline",
+        data,
+      },
+    ],
+    xAxis: [
+      {
+        allowDecimals: false,
+        title: {
+          text: "Time",
+        },
+      },
+    ],
+    yAxis: [
+      {
+        allowDecimals: false,
+        reversed: true,
+        title: {
+          text: "Place",
+        },
+        gridLineWidth: 1,
+      },
+    ],
+    plotOptions: {
+      line: {
+        color: "#efbc47",
+        dataLabels: {
+          enabled: false,
+        },
+        enableMouseTracking: true,
+        marker: {
+          enabled: true,
+          fillColor: "#fff566",
+        },
+      },
+    },
+    tooltip: {
+      enabled: true,
+      headerFormat: "",
+      pointFormat: "Time: {point.x} <br/> Place: {point.y} <br/> {point.lastSolved}",
+    },
+    credits: {
+      enabled: false,
+    },
+    exporting: {
+      enabled: true,
+    },
+    navigation: {
+      menuItemStyle: {
+        fontSize: "10px",
+      },
+    },
+  };
+
+  return options;
 }
