@@ -99,7 +99,6 @@ watch(Escape, (v) => {
             </span>
           </button>
         </div>
-
         <slot />
       </div>
     </div>

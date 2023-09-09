@@ -2,7 +2,6 @@
 import { Rank, RankOptions, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
-import { useRouteQuery } from "@vueuse/router";
 
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
@@ -17,15 +16,16 @@ const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
 
-const isReBuildRank = ref(false);
+function reBuildRank() {
+  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
+  newRank.options = rankOptions.value;
+  newRank.buildRank();
+  rank.value = newRank;
+}
 
 const { data, isError, error } = useQueryBoardData(route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
-    return;
-  }
-
-  if (rankOptions.value.enableFilterSubmissionsByTimestamp) {
     return;
   }
 
@@ -34,31 +34,29 @@ watch(data, async () => {
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
 
-  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
-  newRank.options = rankOptions.value;
-  newRank.buildRank();
-  rank.value = newRank;
+  if (rankOptions.value.enableFilterSubmissionsByTimestamp) {
+    return;
+  }
+
+  reBuildRank();
 
   firstLoaded.value = true;
 });
 
-watch(rankOptions.value, () => {
+const isReBuildRank = ref(false);
+watch(rankOptions.value, async () => {
   if (isReBuildRank.value === true) {
     return;
   }
 
   isReBuildRank.value = true;
 
-  rank.value.options = rankOptions.value;
-  rank.value.buildRank();
+  reBuildRank();
 
   isReBuildRank.value = false;
 });
 
-const currentTypeFromQuery = useRouteQuery("type", "rank", { transform: String });
-const currentType = ref(currentTypeFromQuery.value);
-
-const secondLevelMenuList = ref<Array<Item>>([
+const menuItemList = ref<Array<Item>>([
   {
     title: "type_menu.rank",
     keyword: "rank",
@@ -87,9 +85,7 @@ const secondLevelMenuList = ref<Array<Item>>([
   },
 ]);
 
-function handleUpdateType(type: string) {
-  currentType.value = type;
-}
+const currentMenuItem = ref("rank");
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
@@ -123,6 +119,7 @@ onUnmounted(() => {
 <template>
   <div v-if="!firstLoaded">
     <div
+      w-screen
       flex justify-center items-center
     >
       {{ t("common.loading") }}...
@@ -208,8 +205,8 @@ onUnmounted(() => {
           <div class="flex-1" />
           <div class="float-right">
             <SecondLevelMenu
-              :items="secondLevelMenuList"
-              @update-type="handleUpdateType"
+              v-model:current-item="currentMenuItem"
+              :items="menuItemList"
             />
           </div>
         </div>
@@ -225,7 +222,7 @@ onUnmounted(() => {
         class="max-w-[92vw]"
       >
         <div
-          v-if="currentType === 'rank'"
+          v-if="currentMenuItem === 'rank'"
         >
           <Standings
             :rank="rank"
@@ -233,7 +230,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentType === 'submissions'"
+          v-if="currentMenuItem === 'submissions'"
           class="w-[88vw]"
         >
           <SubmissionsTable
@@ -244,7 +241,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentType === 'statistics'"
+          v-if="currentMenuItem === 'statistics'"
         >
           <Statistics
             :rank="rank"
@@ -252,7 +249,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentType === 'balloon'"
+          v-if="currentMenuItem === 'balloon'"
         >
           <Balloon
             :rank="rank"
@@ -260,7 +257,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentType === 'export'"
+          v-if="currentMenuItem === 'export'"
         >
           <Export
             :rank="rank"

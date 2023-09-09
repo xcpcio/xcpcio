@@ -10,19 +10,38 @@ export interface Item {
 
 const props = defineProps<{
   items: Array<Item>;
-  // eslint-disable-next-line unused-imports/no-unused-vars
-  onUpdateType: (type: string) => void;
+  currentItem: string;
 }>();
 
-const emit = defineEmits<{
-  updateType: [type: string],
-}>();
+const emit = defineEmits(["update:currentItem"]);
+
+const defaultType = computed(() => {
+  for (const item of props.items) {
+    if (item.isDefault) {
+      return item.keyword;
+    }
+  }
+
+  return props.items?.[0].keyword;
+});
+
+const currentItemFromRouteQuery = useRouteQuery("type", defaultType.value, { transform: String });
+
+const currentItem = computed({
+  get() {
+    return props.currentItem;
+  },
+  set(value) {
+    emit("update:currentItem", value);
+  },
+});
+
+currentItem.value = currentItemFromRouteQuery.value;
 
 const { t } = useI18n();
 
-const currentType = useRouteQuery("type", "rank", { transform: String });
 function isCurrent(item: Item): boolean {
-  if (currentType.value === item.keyword) {
+  if (currentItem.value === item.keyword) {
     return true;
   }
 
@@ -34,14 +53,20 @@ function onClick(item: Item) {
     return;
   }
 
-  currentType.value = item.keyword;
-  emit("updateType", currentType.value);
+  currentItem.value = item.keyword;
+  currentItemFromRouteQuery.value = item.keyword;
 }
 </script>
 
 <template>
-  <div class="second-level-menu-list font-mono">
-    <div class="mr-[-4px] flex flex-row-reverse">
+  <div
+    class="second-level-menu-list"
+    font-mono
+  >
+    <div
+      class="mr-[-4px]"
+      flex flex-row-reverse
+    >
       <template
         v-for="item in props.items"
         :key="item.title"
