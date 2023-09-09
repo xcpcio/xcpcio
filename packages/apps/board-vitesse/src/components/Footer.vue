@@ -3,13 +3,19 @@ import { GITHUB_URL } from "@xcpcio/types";
 </script>
 
 <template>
-  <footer class="mt-8 p-4 lg:p-10 md:p-8">
+  <footer
+    mt-8 p-4 lg:p-10 md:p-8
+    w-screen flex justify-center
+  >
     <div class="mx-auto max-w-screen-lg text-center">
       <RouterLink
         class="flex items-center justify-center text-2xl font-semibold text-gray-900 dark:text-white"
         to="/"
       >
-        <div i-ion-balloon-sharp class="mr-4 h-8" />
+        <div
+          i-ion-balloon-sharp
+          class="mr-4 h-8"
+        />
         Get more balloons
       </RouterLink>
 

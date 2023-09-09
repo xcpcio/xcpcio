@@ -17,15 +17,16 @@ const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
 
-const isReBuildRank = ref(false);
+function reBuildRank() {
+  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
+  newRank.options = rankOptions.value;
+  newRank.buildRank();
+  rank.value = newRank;
+}
 
 const { data, isError, error } = useQueryBoardData(route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
-    return;
-  }
-
-  if (rankOptions.value.enableFilterSubmissionsByTimestamp) {
     return;
   }
 
@@ -34,23 +35,24 @@ watch(data, async () => {
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
 
-  const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
-  newRank.options = rankOptions.value;
-  newRank.buildRank();
-  rank.value = newRank;
+  if (rankOptions.value.enableFilterSubmissionsByTimestamp) {
+    return;
+  }
+
+  reBuildRank();
 
   firstLoaded.value = true;
 });
 
-watch(rankOptions.value, () => {
+const isReBuildRank = ref(false);
+watch(rankOptions.value, async () => {
   if (isReBuildRank.value === true) {
     return;
   }
 
   isReBuildRank.value = true;
 
-  rank.value.options = rankOptions.value;
-  rank.value.buildRank();
+  reBuildRank();
 
   isReBuildRank.value = false;
 });
@@ -123,6 +125,7 @@ onUnmounted(() => {
 <template>
   <div v-if="!firstLoaded">
     <div
+      w-screen
       flex justify-center items-center
     >
       {{ t("common.loading") }}...
