@@ -8,7 +8,9 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-row items-center justify-center">
+  <div
+    flex flex-row items-center justify-center
+  >
     <div
       class="label"
       :class="props.state"
@@ -18,7 +20,7 @@ const props = defineProps<{
     </div>
     <div
       v-if="props.pendingTime && props.state === ContestState.PENDING"
-      class="ml-2"
+      ml-2
     >
       {{ props.pendingTime }}
     </div>
