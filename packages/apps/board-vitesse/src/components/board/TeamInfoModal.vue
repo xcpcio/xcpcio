@@ -45,6 +45,11 @@ const headerTitle = computed(() => {
 
   return res;
 });
+
+const TYPE_SUBMISSIONS = "submissions";
+const TYPE_STATISTICS = "statistics";
+const TYPE_BALLOON = "balloon";
+const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_BALLOON];
 </script>
 
 <template>
@@ -74,7 +79,8 @@ const headerTitle = computed(() => {
             </h3>
 
             <ModalMenu
-              v-model:type="currentType"
+              v-model:current-type="currentType"
+              :types="types"
             />
           </div>
         </div>
@@ -87,7 +93,7 @@ const headerTitle = computed(() => {
       flex items-center justify-center
     >
       <div
-        v-if="currentType === 'submissions'"
+        v-if="currentType === TYPE_SUBMISSIONS"
         w-full
       >
         <SubmissionsTable
@@ -100,12 +106,19 @@ const headerTitle = computed(() => {
       </div>
 
       <div
-        v-if="currentType === 'statistics'"
+        v-if="currentType === TYPE_STATISTICS"
         w-full
       >
         <Chart
           :options="getTeamPlaceChart(rank, team)"
         />
+      </div>
+
+      <div
+        v-if="currentType === TYPE_BALLOON"
+        w-full
+      >
+        <Balloon />
       </div>
     </div>
   </Modal>
