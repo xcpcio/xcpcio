@@ -44,17 +44,27 @@ async function toggleLocales() {
       <div class="spacer" />
       <div class="right" print:op0>
         <RouterLink
+          icon-btn
+          :title="t('button.home')"
           to="/"
           focusable="false"
         >
           <div i-ion-balloon-sharp />
         </RouterLink>
 
-        <a icon-btn :title="t('button.toggle_langs')" @click="toggleLocales()">
+        <a
+          icon-btn
+          :title="t('button.toggle_langs')"
+          @click="toggleLocales()"
+        >
           <div i-carbon-language />
         </a>
 
-        <a icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
+        <a
+          icon-btn
+          :title="t('button.toggle_dark')"
+          @click="toggleDark()"
+        >
           <div i="carbon-sun dark:carbon-moon" />
         </a>
 
