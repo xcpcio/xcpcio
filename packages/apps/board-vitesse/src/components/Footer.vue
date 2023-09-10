@@ -4,12 +4,14 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
 
 <template>
   <footer
-    mt-8 p-4 lg:p-10 md:p-8
+    mt-8
+    py-4 md:py-8 lg:py-10
     w-screen
     flex justify-center items-center
   >
     <div
-      mx-auto max-w-screen-lg text-center
+      text-center
+      w-full
     >
       <RouterLink
         flex items-center justify-center
@@ -75,7 +77,7 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
         <li>
           <a
             href="mailto:hi@dup4.com"
-            class="mr-4 md:mr-6 hover:underline"
+            mr-4 md:mr-6 hover:underline
           >Contact</a>
         </li>
       </ul>
@@ -85,7 +87,7 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
         w-full
       >© 2020-PRESENT <RouterLink
         to="/"
-        class="hover:underline"
+        hover:underline
       >XCPCIO™</RouterLink>. All Rights Reserved.</span>
     </div>
   </footer>
