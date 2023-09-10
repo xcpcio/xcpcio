@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GITHUB_URL } from "@xcpcio/types";
+import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
 </script>
 
 <template>
@@ -47,15 +47,29 @@ import { GITHUB_URL } from "@xcpcio/types";
         </li>
 
         <li>
-          <a
-            :href="GITHUB_URL"
-            class="mr-4 md:mr-6 hover:underline"
-            rel="noreferrer"
-            target="_blank"
-            title="GitHub"
+          <VTooltip
+            w-inherit
           >
-            GitHub
-          </a>
+            <a
+              :href="GITHUB_URL"
+              class="mr-4 md:mr-6 hover:underline"
+              rel="noreferrer"
+              target="_blank"
+              title="GitHub"
+            >
+              GitHub
+            </a>
+
+            <template #popper>
+              <div
+                flex justify-center
+                flex-col
+              >
+                <div>Tag: {{ VERSION }}</div>
+                <div>Sha: {{ GITHUB_SHA }}</div>
+              </div>
+            </template>
+          </VTooltip>
         </li>
 
         <li>
@@ -69,7 +83,6 @@ import { GITHUB_URL } from "@xcpcio/types";
       <span
         text-sm text-gray-500 sm:text-center dark:text-gray-400
         w-full
-        flex justify-center
       >© 2020-PRESENT <RouterLink
         to="/"
         class="hover:underline"
