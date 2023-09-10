@@ -130,8 +130,12 @@ onUnmounted(() => {
     </div>
   </div>
 
-  <div v-if="firstLoaded">
-    <div v-if="rank.contest.banner">
+  <div
+    v-if="firstLoaded"
+  >
+    <div
+      v-if="rank.contest.banner"
+    >
       <div
         mb-4
         flex justify-center items-center
