@@ -1,5 +1,8 @@
 import { defineBuildConfig } from "unbuild";
-import packageJson from "./package.json";
+import getGitRepoInfo from "git-repo-info";
+import packageJSON from "./package.json";
+
+const gitRepoInfo = getGitRepoInfo();
 
 export default defineBuildConfig({
   entries: ["src/index"],
@@ -10,7 +13,8 @@ export default defineBuildConfig({
   },
   replace: {
     "import.meta.vitest": "undefined",
-    "import.meta.package.version": packageJson.version,
-    "import.meta.package.homepage": packageJson.homepage,
+    "import.meta.package.version": packageJSON.version,
+    "import.meta.package.homepage": packageJSON.homepage,
+    "import.meta.git.repo.abbreviatedSha": gitRepoInfo.abbreviatedSha,
   },
 });
