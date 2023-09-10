@@ -40,18 +40,37 @@ onUnmounted(() => {
 <template>
   <div ref="el">
     <div h-32>
-      <div v-if="isVisible">
+      <div
+        v-if="isVisible"
+      >
         <div
-          class="flex flex-col font-serif w-240 pb-2"
+          w-240
+          flex flex-col justify-center
+          font-serif pb-2
           border="b-2 gray-200 dark:gray-700"
         >
-          <div class="w-full flex">
-            <div v-if="contest.logo !== undefined" class="logo">
-              <img class="h-10 w-10" :src="getImageSource(contest.logo)" alt="logo">
+          <div
+            w-full flex
+          >
+            <div
+              v-if="contest.logo !== undefined"
+              class="logo"
+            >
+              <img
+                class="h-10 w-10"
+                :src="getImageSource(contest.logo)"
+                alt="logo"
+              >
             </div>
 
-            <VTooltip class="w-inherit">
-              <div class="title overflow-hidden text-2xl truncate">
+            <VTooltip
+              w-inherit
+            >
+              <div
+                class="title"
+                overflow-hidden
+                text-2xl truncate
+              >
                 {{ contest.name }}
               </div>
 
@@ -61,17 +80,21 @@ onUnmounted(() => {
             </VTooltip>
           </div>
 
-          <div class="flex items-end">
-            <div class="float-left font-mono text-base">
+          <div flex items-end>
+            <div float-left font-mono text-base>
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
               {{ t("index.duration") }}:
               {{ contest.getContestDuration() }}
             </div>
-            <div class="flex-1">
-              <div class="flex items-center justify-center">
-                <div class="font-bold font-mono w-[68%]">
+
+            <div flex-1>
+              <div flex items-center justify-center>
+                <div
+                  font-bold font-mono
+                  class="w-[68%]"
+                >
                   <div>
                     <ContestStateBadge
                       :state="contest.getContestState(now)"
@@ -85,7 +108,7 @@ onUnmounted(() => {
                 </div>
               </div>
             </div>
-            <div class="float-right">
+            <div float-right>
               <RouterLink
                 class="go MuiIconButton-root"
                 :to="props.data.boardLink"

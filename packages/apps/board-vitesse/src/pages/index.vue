@@ -23,26 +23,36 @@ const {
 
 <template>
   <div
-    w-screen flex justify-center
+    sm:w-248
+    lg:w-screen
   >
-    <div v-if="isFetching">
-      {{ t("common.loading") }}...
-    </div>
-
-    <div v-if="error">
-      {{ error }}
-    </div>
-
-    <div
-      v-if="isFinished && contestIndexList.length"
-    >
+    <div>
       <div
-        v-for="item in contestIndexList"
-        :key="item.boardLink"
+        v-if="isFetching"
+        w-screen
+        flex justify-center
       >
-        <ContestIndex
-          :data="item"
-        />
+        {{ t("common.loading") }}...
+      </div>
+
+      <div v-if="error">
+        {{ error }}
+      </div>
+
+      <div
+        v-if="isFinished && contestIndexList.length"
+        sm:w-246
+        lg:w-screen
+        flex flex-col justify-center items-center
+      >
+        <div
+          v-for="item in contestIndexList"
+          :key="item.boardLink"
+        >
+          <ContestIndex
+            :data="item"
+          />
+        </div>
       </div>
     </div>
   </div>
