@@ -22,7 +22,9 @@ const {
 </script>
 
 <template>
-  <div class="w-screen flex justify-center">
+  <div
+    w-screen flex justify-center
+  >
     <div v-if="isFetching">
       {{ t("common.loading") }}...
     </div>
@@ -31,9 +33,16 @@ const {
       {{ error }}
     </div>
 
-    <div v-if="isFinished && contestIndexList.length">
-      <div v-for="item in contestIndexList" :key="item.boardLink">
-        <ContestIndex :data="item" />
+    <div
+      v-if="isFinished && contestIndexList.length"
+    >
+      <div
+        v-for="item in contestIndexList"
+        :key="item.boardLink"
+      >
+        <ContestIndex
+          :data="item"
+        />
       </div>
     </div>
   </div>
