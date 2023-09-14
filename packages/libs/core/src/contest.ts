@@ -4,6 +4,7 @@ import { ContestState, VERSION } from "@xcpcio/types";
 import type { Problem, Problems } from "./problem";
 import { createProblems, createProblemsByProblemIds } from "./problem";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
+import { Group } from "./group";
 
 export class Contest {
   name = "";
@@ -27,8 +28,8 @@ export class Contest {
   medal?: Record<string, Record<string, number>>;
   organization?: string;
 
-  group?: Record<string, string>;
-  tag?: Record<string, string>;
+  group: Map<string, Group>;
+  tag: Map<string, string>;
 
   logo?: Image;
   banner?: Image;
@@ -56,6 +57,9 @@ export class Contest {
       incorrect: true,
       pending: true,
     };
+
+    this.group = new Map<string, Group>();
+    this.tag = new Map<string, string>();
   }
 
   getContestDuration(timeFormat = "HH:mm:ss"): string {
@@ -189,8 +193,36 @@ export function createContest(contestJSON: IContest): Contest {
   c.medal = contestJSON.medal;
   c.organization = contestJSON.organization;
 
-  c.group = contestJSON.group;
-  c.tag = contestJSON.tag;
+  {
+    const g = new Group();
+    g.names.set("en", "All");
+    g.names.set("zh-CN", "所有队伍");
+    g.isDefault = true;
+
+    c.group.set("all", g);
+  }
+
+  for (const [k, v] of Object.entries(contestJSON?.group ?? {})) {
+    let key = k;
+
+    const g = new Group();
+    g.names.set("zh-CN", v);
+
+    if (k === "official") {
+      g.names.set("en", "Official");
+    }
+
+    if (k === "unofficial") {
+      g.names.set("en", "Unofficial");
+    }
+
+    if (k === "girl" || k === "girls") {
+      g.names.set("en", "Girls");
+      key = "girl";
+    }
+
+    c.group.set(key, g);
+  }
 
   c.banner = contestJSON.banner;
 

@@ -11,6 +11,7 @@ export interface Item {
 const props = defineProps<{
   items: Array<Item>;
   currentItem: string;
+  reverseOrder?: boolean;
 }>();
 
 const emit = defineEmits(["update:currentItem"]);
@@ -65,7 +66,10 @@ function onClick(item: Item) {
   >
     <div
       class="mr-[-4px]"
-      flex flex-row-reverse
+      flex
+      :class="{
+        'flex-row-reverse': props.reverseOrder,
+      }"
     >
       <template
         v-for="item in props.items"

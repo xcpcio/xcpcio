@@ -56,7 +56,7 @@ watch(rankOptions.value, async () => {
   isReBuildRank.value = false;
 });
 
-const menuItemList = ref<Array<Item>>([
+const typeMenuList = ref<Array<Item>>([
   {
     title: "type_menu.rank",
     keyword: "rank",
@@ -85,7 +85,28 @@ const menuItemList = ref<Array<Item>>([
   },
 ]);
 
-const currentMenuItem = ref("rank");
+const group = computed(() => {
+  return rank.value.contest.group;
+});
+
+const groupMenuList = computed(() => {
+  const res = Array<Item>();
+
+  for (const [k, v] of group.value) {
+    const item = {
+      title: v.names.get(v.defaultLang) as string,
+      keyword: k,
+      isDefault: v.isDefault,
+    };
+
+    res.push(item);
+  }
+
+  return res;
+});
+
+const currentType = ref("rank");
+const currentGroup = ref("all");
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
@@ -205,12 +226,18 @@ onUnmounted(() => {
         </div>
 
         <div class="mt-4 flex">
-          <div class="float-left" />
+          <div class="float-left">
+            <SecondLevelMenu
+              v-model:current-item="currentGroup"
+              :items="groupMenuList"
+            />
+          </div>
           <div class="flex-1" />
           <div class="float-right">
             <SecondLevelMenu
-              v-model:current-item="currentMenuItem"
-              :items="menuItemList"
+              v-model:current-item="currentType"
+              :items="typeMenuList"
+              :reverse-order="true"
             />
           </div>
         </div>
@@ -226,7 +253,7 @@ onUnmounted(() => {
         class="max-w-[92vw]"
       >
         <div
-          v-if="currentMenuItem === 'rank'"
+          v-if="currentType === 'rank'"
         >
           <Standings
             :rank="rank"
@@ -234,7 +261,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentMenuItem === 'submissions'"
+          v-if="currentType === 'submissions'"
           class="w-[88vw]"
         >
           <SubmissionsTable
@@ -245,7 +272,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentMenuItem === 'statistics'"
+          v-if="currentType === 'statistics'"
         >
           <Statistics
             :rank="rank"
@@ -253,7 +280,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentMenuItem === 'balloon'"
+          v-if="currentType === 'balloon'"
         >
           <Balloon
             :rank="rank"
@@ -261,7 +288,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          v-if="currentMenuItem === 'export'"
+          v-if="currentType === 'export'"
         >
           <Export
             :rank="rank"
