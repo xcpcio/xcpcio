@@ -44,8 +44,6 @@ const currentItem = computed({
   },
 });
 
-currentItem.value = currentItemFromRouteQuery.value;
-
 const { t } = useI18n();
 
 function isCurrent(item: Item): boolean {
@@ -68,6 +66,19 @@ function onClick(item: Item) {
     props.onChange(item.keyword);
   }
 }
+
+onMounted(() => {
+  (() => {
+    if (!(currentItemFromRouteQuery.value?.length > 0)) {
+      return;
+    }
+
+    currentItem.value = currentItemFromRouteQuery.value;
+    if (props.onChange) {
+      props.onChange(currentItemFromRouteQuery.value);
+    }
+  })();
+});
 </script>
 
 <template>
