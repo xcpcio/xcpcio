@@ -13,10 +13,16 @@ export class RankOptions {
   width: number;
   timestamp: number;
 
+  enableFilterTeamsByGroup: boolean;
+  group: string;
+
   constructor() {
     this.enableFilterSubmissionsByTimestamp = false;
     this.width = 0;
     this.timestamp = 0;
+
+    this.enableFilterTeamsByGroup = false;
+    this.group = "";
   }
 
   setWidth(width: number, contest: Contest) {
@@ -27,6 +33,19 @@ export class RankOptions {
 
   disableFilterSubmissionByTimestamp() {
     this.enableFilterSubmissionsByTimestamp = false;
+  }
+
+  setGroup(group: string) {
+    this.group = group;
+    this.enableFilterTeamsByGroup = true;
+
+    if (this.group === "all") {
+      this.disableFilterTeamsByGroup();
+    }
+  }
+
+  disableFilterTeamsByGroup() {
+    this.enableFilterTeamsByGroup = false;
   }
 }
 
@@ -59,6 +78,18 @@ export class Rank {
 
   buildRank() {
     (() => {
+      (() => {
+        this.teams = [];
+
+        for (const [_k, v] of this.teamsMap) {
+          if (this.filterTeamByOrg(v)) {
+            continue;
+          }
+
+          this.teams.push(v);
+        }
+      })();
+
       for (const t of this.teams) {
         t.reset();
 
@@ -97,7 +128,7 @@ export class Rank {
         const problem = this.contest.problemsMap.get(problemId);
 
         (() => {
-          if (team === undefined || problem === undefined) {
+          if (team === undefined || this.filterTeamByOrg(team) || problem === undefined) {
             return;
           }
 
@@ -236,6 +267,18 @@ export class Rank {
 
       preTeam = t;
     }
+  }
+
+  filterTeamByOrg(team: Team) {
+    const o = this.options;
+
+    if (o.enableFilterTeamsByGroup) {
+      if (!team.group?.includes(o.group)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   getSubmissions() {

@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useRouteQuery } from "@vueuse/router";
+import type { Lang } from "@xcpcio/types";
 
 export interface Item {
-  title: string;
+  title?: string;
+
+  titles?: Map<Lang, string>;
+  defaultLang?: Lang;
+
   keyword: string;
   isDefault?: boolean;
   link?: string;
@@ -11,6 +16,10 @@ export interface Item {
 const props = defineProps<{
   items: Array<Item>;
   currentItem: string;
+  queryParamName: string;
+  reverseOrder?: boolean;
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  onChange?: (current: string) => void;
 }>();
 
 const emit = defineEmits(["update:currentItem"]);
@@ -25,7 +34,11 @@ const defaultType = computed(() => {
   return props.items?.[0].keyword;
 });
 
-const currentItemFromRouteQuery = useRouteQuery("type", defaultType.value, { transform: String });
+const currentItemFromRouteQuery = useRouteQuery(
+  props.queryParamName,
+  defaultType.value,
+  { transform: String },
+);
 
 const currentItem = computed({
   get() {
@@ -36,9 +49,19 @@ const currentItem = computed({
   },
 });
 
-currentItem.value = currentItemFromRouteQuery.value;
+const { t, locale } = useI18n();
 
-const { t } = useI18n();
+function getTitle(item: Item) {
+  if (item.title) {
+    return t(item.title);
+  }
+
+  if (item.titles) {
+    return item.titles.get(locale.value as unknown as Lang) ?? item.titles.get(item.defaultLang!);
+  }
+
+  return "";
+}
 
 function isCurrent(item: Item): boolean {
   if (currentItem.value === item.keyword) {
@@ -55,7 +78,40 @@ function onClick(item: Item) {
 
   currentItem.value = item.keyword;
   currentItemFromRouteQuery.value = item.keyword;
+
+  if (props.onChange) {
+    props.onChange(item.keyword);
+  }
 }
+
+onMounted(() => {
+  (() => {
+    if (!(currentItemFromRouteQuery.value?.length > 0)) {
+      return;
+    }
+
+    (() => {
+      // Adapt the previous group query param
+      for (const item of props.items) {
+        if (!item.titles) {
+          continue;
+        }
+
+        for (const [_k, v] of item.titles) {
+          if (currentItemFromRouteQuery.value === v) {
+            currentItemFromRouteQuery.value = item.keyword;
+            return;
+          }
+        }
+      }
+    })();
+
+    currentItem.value = currentItemFromRouteQuery.value;
+    if (props.onChange) {
+      props.onChange(currentItemFromRouteQuery.value);
+    }
+  })();
+});
 </script>
 
 <template>
@@ -65,11 +121,14 @@ function onClick(item: Item) {
   >
     <div
       class="mr-[-4px]"
-      flex flex-row-reverse
+      flex
+      :class="{
+        'flex-row-reverse': props.reverseOrder,
+      }"
     >
       <template
         v-for="item in props.items"
-        :key="item.title"
+        :key="item.keyword"
       >
         <div
           class="second-level-menu-item"
@@ -83,12 +142,13 @@ function onClick(item: Item) {
               target="_blank"
               title="Resolver"
             >
-              {{ t(item.title) }}
+              {{ getTitle(item) }}
             </a>
+
             <div
               v-if="!item.link"
             >
-              {{ t(item.title) }}
+              {{ getTitle(item) }}
             </div>
           </div>
         </div>
