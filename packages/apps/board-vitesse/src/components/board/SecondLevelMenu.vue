@@ -11,7 +11,10 @@ export interface Item {
 const props = defineProps<{
   items: Array<Item>;
   currentItem: string;
+  queryParamName: string;
   reverseOrder?: boolean;
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  onChange?: (current: string) => void;
 }>();
 
 const emit = defineEmits(["update:currentItem"]);
@@ -26,7 +29,11 @@ const defaultType = computed(() => {
   return props.items?.[0].keyword;
 });
 
-const currentItemFromRouteQuery = useRouteQuery("type", defaultType.value, { transform: String });
+const currentItemFromRouteQuery = useRouteQuery(
+  props.queryParamName,
+  defaultType.value,
+  { transform: String },
+);
 
 const currentItem = computed({
   get() {
@@ -56,6 +63,10 @@ function onClick(item: Item) {
 
   currentItem.value = item.keyword;
   currentItemFromRouteQuery.value = item.keyword;
+
+  if (props.onChange) {
+    props.onChange(item.keyword);
+  }
 }
 </script>
 

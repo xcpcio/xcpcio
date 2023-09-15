@@ -44,7 +44,7 @@ watch(data, async () => {
 });
 
 const isReBuildRank = ref(false);
-watch(rankOptions.value, async () => {
+watch(rankOptions.value, () => {
   if (isReBuildRank.value === true) {
     return;
   }
@@ -107,6 +107,10 @@ const groupMenuList = computed(() => {
 
 const currentType = ref("rank");
 const currentGroup = ref("all");
+
+function onChangeCurrentGroup(currentGroup: string) {
+  rankOptions.value.setGroup(currentGroup);
+}
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
@@ -230,6 +234,8 @@ onUnmounted(() => {
             <SecondLevelMenu
               v-model:current-item="currentGroup"
               :items="groupMenuList"
+              query-param-name="group"
+              :on-change="onChangeCurrentGroup"
             />
           </div>
           <div class="flex-1" />
@@ -238,6 +244,7 @@ onUnmounted(() => {
               v-model:current-item="currentType"
               :items="typeMenuList"
               :reverse-order="true"
+              query-param-name="type"
             />
           </div>
         </div>
