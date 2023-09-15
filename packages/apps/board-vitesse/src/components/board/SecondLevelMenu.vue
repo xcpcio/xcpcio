@@ -1,8 +1,13 @@
 <script setup lang="ts">
 import { useRouteQuery } from "@vueuse/router";
+import type { Lang } from "@xcpcio/types";
 
 export interface Item {
-  title: string;
+  title?: string;
+
+  titles?: Map<Lang, string>;
+  defaultLang?: Lang;
+
   keyword: string;
   isDefault?: boolean;
   link?: string;
@@ -44,7 +49,19 @@ const currentItem = computed({
   },
 });
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+
+function getTitle(item: Item) {
+  if (item.title) {
+    return t(item.title);
+  }
+
+  if (item.titles) {
+    return item.titles.get(locale.value as unknown as Lang) ?? item.titles.get(item.defaultLang!);
+  }
+
+  return "";
+}
 
 function isCurrent(item: Item): boolean {
   if (currentItem.value === item.keyword) {
@@ -95,7 +112,7 @@ onMounted(() => {
     >
       <template
         v-for="item in props.items"
-        :key="item.title"
+        :key="item.keyword"
       >
         <div
           class="second-level-menu-item"
@@ -109,12 +126,13 @@ onMounted(() => {
               target="_blank"
               title="Resolver"
             >
-              {{ t(item.title) }}
+              {{ getTitle(item) }}
             </a>
+
             <div
               v-if="!item.link"
             >
-              {{ t(item.title) }}
+              {{ getTitle(item) }}
             </div>
           </div>
         </div>

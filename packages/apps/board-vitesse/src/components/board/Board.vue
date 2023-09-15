@@ -94,7 +94,8 @@ const groupMenuList = computed(() => {
 
   for (const [k, v] of group.value) {
     const item = {
-      title: v.names.get(v.defaultLang) as string,
+      titles: v.names,
+      defaultLang: v.defaultLang,
       keyword: k,
       isDefault: v.isDefault,
     };
