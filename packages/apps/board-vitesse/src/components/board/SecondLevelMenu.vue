@@ -90,6 +90,22 @@ onMounted(() => {
       return;
     }
 
+    (() => {
+      // Adapt the previous group query param
+      for (const item of props.items) {
+        if (!item.titles) {
+          continue;
+        }
+
+        for (const [_k, v] of item.titles) {
+          if (currentItemFromRouteQuery.value === v) {
+            currentItemFromRouteQuery.value = item.keyword;
+            return;
+          }
+        }
+      }
+    })();
+
     currentItem.value = currentItemFromRouteQuery.value;
     if (props.onChange) {
       props.onChange(currentItemFromRouteQuery.value);
