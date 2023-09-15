@@ -198,7 +198,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
     return {
       x: p.timePoint,
       y: p.rank,
-      lastSolved: `Last Solved Problem ${p.lastSolvedProblem?.label}`,
+      lastSolved: p.lastSolvedProblem?.label ? `Last Solved Problem ${p.lastSolvedProblem?.label}` : "",
     };
   });
 
@@ -213,7 +213,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
       {
         showInLegend: false,
         allowPointSelect: false,
-        name: "排名",
+        name: "rank",
         type: "spline",
         data,
       },
@@ -224,6 +224,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
         title: {
           text: "Time",
         },
+        crosshair: true,
       },
     ],
     yAxis: [
