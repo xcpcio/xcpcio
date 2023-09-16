@@ -28,6 +28,7 @@ type_menu:
   balloon: Balloon
   export: Export
   resolver: Resolver
+  options: Options
 
 standings:
   start_time: Start

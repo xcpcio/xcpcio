@@ -83,6 +83,10 @@ const typeMenuList = ref<Array<Item>>([
     keyword: "resolver",
     link: `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`,
   },
+  {
+    title: "type_menu.options",
+    keyword: "options",
+  },
 ]);
 
 const group = computed(() => {

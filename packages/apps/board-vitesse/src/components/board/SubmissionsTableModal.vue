@@ -38,6 +38,7 @@ const headerTitle = computed(() => {
       w-full
       font-bold font-mono
       flex items-center justify-center
+      class="mt-[-12px]"
     >
       <SubmissionsTable
         w-full
