@@ -1,4 +1,4 @@
-import type { Rank, Team } from "@xcpcio/core";
+import { type Rank, type Team, getTimeDiff } from "@xcpcio/core";
 
 function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any) {
   return {
@@ -198,7 +198,8 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
     return {
       x: p.timePoint,
       y: p.rank,
-      lastSolved: `Last Solved Problem ${p.lastSolvedProblem?.label}`,
+      showX: getTimeDiff(p.timePoint),
+      lastSolved: p.lastSolvedProblem?.label ? `Last Solved Problem ${p.lastSolvedProblem?.label}` : "",
     };
   });
 
@@ -213,26 +214,34 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
       {
         showInLegend: false,
         allowPointSelect: false,
-        name: "排名",
+        name: "rank",
         type: "spline",
         data,
+        marker: {
+          symbol: "circle",
+          radius: 4,
+          lineWidth: 2,
+          fillColor: "yellow",
+          lineColor: "yellow",
+        },
       },
     ],
     xAxis: [
       {
         allowDecimals: false,
         title: {
-          text: "Time",
+          text: "Time(min)",
         },
+        crosshair: true,
       },
     ],
     yAxis: [
       {
         allowDecimals: false,
-        reversed: true,
         title: {
           text: "Place",
         },
+        reversed: true,
         gridLineWidth: 1,
       },
     ],
@@ -252,7 +261,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
     tooltip: {
       enabled: true,
       headerFormat: "",
-      pointFormat: "Time: {point.x} <br/> Place: {point.y} <br/> {point.lastSolved}",
+      pointFormat: "Time: {point.showX} <br/> Place: {point.y} <br/> {point.lastSolved}",
     },
     credits: {
       enabled: false,
