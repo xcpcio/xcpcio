@@ -38,5 +38,60 @@
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
   <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+  <script>
+    try {
+        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    } catch (e) {}
+
+    try {
+        var plausibleJSUrl = __PLAUSIBLE_JS_URL__;
+        var plausibleDataDomain = __PLAUSIBLE_DATA_DOMAIN__;
+        (function () {
+            var script = document.createElement("script");
+            script.src = plausibleJSUrl;
+            script.defer = true;
+            script.setAttribute("data-domain", plausibleDataDomain);
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(script, s);
+        })();
+    } catch (e) {}
+
+    try {
+        var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
+        (function () {
+            if (!location.port) {
+                (function (i, s, o, g, r, a, m) {
+                    i["GoogleAnalyticsObject"] = r;
+                    (i[r] =
+                    i[r] ||
+                    function () {
+                        (i[r].q = i[r].q || []).push(arguments);
+                    }),
+                    (i[r].l = 1 * new Date());
+                    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m);
+                })(
+                    window,
+                    document,
+                    "script",
+                    "//www.google-analytics.com/analytics.js",
+                    "ga"
+                );
+                ga("create", `${googleAnalyticsId}`, "auto");
+                ga("send", "pageview");
+            }
+        })();
+    } catch (e) {}
+  </script>
+
 </body>
 </html>

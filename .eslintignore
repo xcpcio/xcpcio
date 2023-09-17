@@ -8,3 +8,5 @@ test-data
 
 packages/apps/board/
 packages/apps/resolver/src/components/ui/*
+
+*.html
