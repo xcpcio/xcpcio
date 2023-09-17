@@ -25,7 +25,7 @@ function isRenderByVisible() {
   // Some teams in the header may have rendering anomalies,
   // so force the first 32 teams to render regardless of their visibility
   // when rank rebuild trigger by drag the progress bar
-  return isVisible.value || team.value.rank < 32;
+  return isVisible.value || team.value.originalRank < 32;
 }
 </script>
 

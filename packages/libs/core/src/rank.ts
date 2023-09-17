@@ -209,6 +209,7 @@ export class Rank {
       }
 
       this.teams.forEach(t => t.postProcessPlaceChartPoints());
+      this.buildTeamRank();
       this.buildOrgRank();
     })();
 
@@ -226,9 +227,11 @@ export class Rank {
 
   buildTeamRank() {
     let rank = 1;
+    let originalRank = 1;
     let preTeam = null;
     for (const t of this.teams) {
       t.rank = rank++;
+      t.originalRank = originalRank++;
 
       if (preTeam !== null) {
         if (t.isEqualRank(preTeam)) {

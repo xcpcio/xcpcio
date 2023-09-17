@@ -29,6 +29,7 @@ describe("team", () => {
         "name": "前面的题目以后再来探索吧？",
         "organization": "重庆邮电大学",
         "organizationRank": -1,
+        "originalRank": 0,
         "penalty": 0,
         "placeChartPoints": [],
         "problemStatistics": [],
