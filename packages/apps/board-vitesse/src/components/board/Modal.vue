@@ -5,6 +5,7 @@ const props = defineProps<{
   isHidden: boolean,
 
   title?: string,
+  width?: string,
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
@@ -50,7 +51,8 @@ watch(Escape, (v) => {
     />
 
     <div
-      class="relative w-[78vw] p-4"
+      class="relative p-4"
+      :class="[props.width ?? 'w-[78vw]']"
       z-9999
     >
       <div

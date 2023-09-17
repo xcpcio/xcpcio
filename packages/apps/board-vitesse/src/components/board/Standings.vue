@@ -8,6 +8,25 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const rank = computed(() => props.rank);
+const teams = computed(() => props.rank.teams);
+
+const filterTeams = computed(() => {
+  const res = props.rank.teams.filter((t) => {
+    if (props.rank.organizations) {
+      if (props.rank.options.filterOrganizationMap.has(t.organization)) {
+        return true;
+      }
+    }
+
+    if (props.rank.options.filterTeamMap.has(t.id)) {
+      return true;
+    }
+
+    return false;
+  });
+
+  return res;
+});
 
 const maxOrgLength = computed(() => {
   let res = 0;
@@ -96,10 +115,23 @@ const maxTeamLength = computed(() => {
         </thead>
         <tbody>
           <template
-            v-for="team in rank.teams"
+            v-for="(team, ix) in filterTeams"
+            :key="`filter-${team.id}`"
+          >
+            <TeamUI
+              :ix="ix"
+              :rank="rank"
+              :team="team"
+              :is-filter="true"
+            />
+          </template>
+
+          <template
+            v-for="(team, ix) in teams"
             :key="team.id"
           >
             <TeamUI
+              :ix="ix"
               :rank="rank"
               :team="team"
             />

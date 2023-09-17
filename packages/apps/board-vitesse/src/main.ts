@@ -10,9 +10,12 @@ import type { UserModule } from "./types";
 import generatedRoutes from "~pages";
 
 import "floating-vue/dist/style.css";
+import "vue-search-select/dist/VueSearchSelect.css";
+
 import "@unocss/reset/tailwind.css";
 import "@unocss/reset/tailwind-compat.css";
 import "uno.css";
+
 import "./styles/main.css";
 
 const routes = setupLayouts(generatedRoutes);
