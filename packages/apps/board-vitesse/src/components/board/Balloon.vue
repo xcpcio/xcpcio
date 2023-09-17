@@ -1,3 +1,5 @@
 <template>
-  <div class="flex" />
+  <div
+    flex
+  />
 </template>

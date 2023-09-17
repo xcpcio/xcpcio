@@ -2,8 +2,10 @@
 import type { Rank, Team } from "@xcpcio/core";
 
 const props = defineProps<{
+  ix: number,
   rank: Rank,
   team: Team,
+  isFilter?: boolean;
 }>();
 
 const el = ref(null);
@@ -18,14 +20,18 @@ const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
 function getStandClassName(t: Team): string {
-  return `stand${t.solvedProblemNum % 2}${(t.rank - 1) % 2}`;
+  if (props.isFilter) {
+    return "filter-team";
+  }
+
+  return `stand${(rank.value.rankStatistics.maxSolvedProblems - t.solvedProblemNum) % 2}${(t.rank - 1) % 2}`;
 }
 
 function isRenderByVisible() {
   // Some teams in the header may have rendering anomalies,
   // so force the first 32 teams to render regardless of their visibility
   // when rank rebuild trigger by drag the progress bar
-  return isVisible.value || team.value.rank < 32;
+  return isVisible.value || props.ix < 32;
 }
 </script>
 
@@ -33,6 +39,7 @@ function isRenderByVisible() {
   <tr
     ref="el"
     class="h-10"
+    :class="[props.isFilter ? 'filter-team' : '']"
   >
     <td
       v-if="isRenderByVisible()"

@@ -83,6 +83,11 @@ const typeMenuList = ref<Array<Item>>([
     keyword: "resolver",
     link: `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`,
   },
+  {
+    title: "type_menu.options",
+    keyword: "options",
+    isModal: true,
+  },
 ]);
 
 const group = computed(() => {
@@ -107,6 +112,14 @@ const groupMenuList = computed(() => {
 });
 
 const currentType = ref("rank");
+const isHiddenOptionsModal = ref(true);
+
+function onChangeCurrentType(type: string) {
+  if (type === "options") {
+    isHiddenOptionsModal.value = false;
+  }
+}
+
 const currentGroup = ref("all");
 
 function onChangeCurrentGroup(currentGroup: string) {
@@ -246,6 +259,7 @@ onUnmounted(() => {
               :items="typeMenuList"
               :reverse-order="true"
               query-param-name="type"
+              :on-change="onChangeCurrentType"
             />
           </div>
         </div>
@@ -305,6 +319,13 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
+
+  <OptionsModal
+    v-if="!isHiddenOptionsModal"
+    v-model:is-hidden="isHiddenOptionsModal"
+    v-model:rank-options="rankOptions"
+    :rank="rank"
+  />
 </template>
 
 <style scoped>

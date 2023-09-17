@@ -3,6 +3,8 @@ button:
   back: Back
   go: GO
   home: Home
+  confirm: Confirm
+  cancel: Cancel
   toggle_dark: Toggle dark mode
   toggle_langs: Change languages
 intro:
@@ -28,6 +30,7 @@ type_menu:
   balloon: Balloon
   export: Export
   resolver: Resolver
+  options: Options
 
 standings:
   start_time: Start

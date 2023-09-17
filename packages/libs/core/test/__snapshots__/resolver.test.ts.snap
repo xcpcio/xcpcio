@@ -400,6 +400,7 @@ ResolverOperation {
     "name": "红旗精英",
     "organization": "一汽红旗",
     "organizationRank": -1,
+    "originalRank": 132,
     "penalty": 0,
     "placeChartPoints": [
       {
@@ -2450,6 +2451,7 @@ ResolverOperation {
     "name": "重生之我是菜狗",
     "organization": "北京大学",
     "organizationRank": 1,
+    "originalRank": 1,
     "penalty": 71160,
     "placeChartPoints": [
       {

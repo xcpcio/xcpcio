@@ -3,6 +3,8 @@ button:
   back: 返回
   go: 确定
   home: 首页
+  confirm: 确认
+  cancel: 取消
   toggle_dark: 切换深色模式
   toggle_langs: 切换语言
 intro:
@@ -28,6 +30,7 @@ type_menu:
   balloon: 气球
   export: 导出
   resolver: 滚榜
+  options: 选项
 
 standings:
   start_time: 开始时间

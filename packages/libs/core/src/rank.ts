@@ -8,6 +8,11 @@ import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 
+export interface SelectOptionItem {
+  value: string;
+  text: string;
+}
+
 export class RankOptions {
   enableFilterSubmissionsByTimestamp: boolean;
   width: number;
@@ -16,6 +21,11 @@ export class RankOptions {
   enableFilterTeamsByGroup: boolean;
   group: string;
 
+  filterOrganizations: Array<SelectOptionItem>;
+  filterOrganizationMap: Map<string, SelectOptionItem>;
+  filterTeams: Array<SelectOptionItem>;
+  filterTeamMap: Map<string, SelectOptionItem>;
+
   constructor() {
     this.enableFilterSubmissionsByTimestamp = false;
     this.width = 0;
@@ -23,6 +33,12 @@ export class RankOptions {
 
     this.enableFilterTeamsByGroup = false;
     this.group = "";
+
+    this.filterOrganizations = [];
+    this.filterOrganizationMap = new Map<string, SelectOptionItem>();
+
+    this.filterTeams = [];
+    this.filterTeamMap = new Map<string, SelectOptionItem>();
   }
 
   setWidth(width: number, contest: Contest) {
@@ -47,6 +63,26 @@ export class RankOptions {
   disableFilterTeamsByGroup() {
     this.enableFilterTeamsByGroup = false;
   }
+
+  setFilterOrganizations(filterOrganizations: Array<SelectOptionItem>) {
+    const m = new Map<string, SelectOptionItem>();
+    filterOrganizations.forEach((item) => {
+      m.set(item.value, item);
+    });
+
+    this.filterOrganizations = filterOrganizations;
+    this.filterOrganizationMap = m;
+  }
+
+  setFilterTeams(filterTeams: Array<SelectOptionItem>) {
+    const m = new Map<string, SelectOptionItem>();
+    filterTeams.forEach((item) => {
+      m.set(item.value, item);
+    });
+
+    this.filterTeams = filterTeams;
+    this.filterTeamMap = m;
+  }
 }
 
 export class Rank {
@@ -57,6 +93,9 @@ export class Rank {
 
   submissions: Submissions;
   submissionsMap: Map<string, Submission>;
+
+  organizations: Array<string>;
+  originTeams: Teams;
 
   rankStatistics: RankStatistics;
 
@@ -70,6 +109,10 @@ export class Rank {
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
+
+    this.organizations = this.buildOrganizations();
+    this.originTeams = this.teams.map(t => t);
+    this.originTeams.sort(Team.compare);
 
     this.rankStatistics = new RankStatistics();
 
@@ -208,8 +251,12 @@ export class Rank {
         preSubmissionTimestampToMinute = s.timestampToMinute;
       }
 
-      this.teams.forEach(t => t.postProcessPlaceChartPoints());
+      this.teams.forEach(t => t.calcSolvedData());
+      this.teams.sort(Team.compare);
+      this.buildTeamRank();
       this.buildOrgRank();
+
+      this.teams.forEach(t => t.postProcessPlaceChartPoints());
     })();
 
     (() => {
@@ -219,6 +266,10 @@ export class Rank {
       for (const t of this.teams) {
         this.rankStatistics.teamSolvedNum[t.solvedProblemNum]++;
       }
+
+      if (this.teams.length > 0) {
+        this.rankStatistics.maxSolvedProblems = this.teams[0].solvedProblemNum;
+      }
     })();
 
     return this;
@@ -226,9 +277,11 @@ export class Rank {
 
   buildTeamRank() {
     let rank = 1;
+    let originalRank = 1;
     let preTeam = null;
     for (const t of this.teams) {
       t.rank = rank++;
+      t.originalRank = originalRank++;
 
       if (preTeam !== null) {
         if (t.isEqualRank(preTeam)) {
@@ -267,6 +320,29 @@ export class Rank {
 
       preTeam = t;
     }
+  }
+
+  buildOrganizations() {
+    if (!this.contest.organization) {
+      return [];
+    }
+
+    const res = new Array<string>();
+    const se = new Set<string>();
+
+    this.teams.forEach((t) => {
+      const org = t.organization;
+      if (se.has(org)) {
+        return;
+      }
+
+      res.push(org);
+      se.add(org);
+    });
+
+    res.sort();
+
+    return res;
   }
 
   filterTeamByOrg(team: Team) {

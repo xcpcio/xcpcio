@@ -10,7 +10,10 @@ export interface Item {
 
   keyword: string;
   isDefault?: boolean;
+
   link?: string;
+
+  isModal?: boolean;
 }
 
 const props = defineProps<{
@@ -72,16 +75,16 @@ function isCurrent(item: Item): boolean {
 }
 
 function onClick(item: Item) {
-  if (item.link) {
+  if (props.onChange) {
+    props.onChange(item.keyword);
+  }
+
+  if (item.link || item.isModal) {
     return;
   }
 
   currentItem.value = item.keyword;
   currentItemFromRouteQuery.value = item.keyword;
-
-  if (props.onChange) {
-    props.onChange(item.keyword);
-  }
 }
 
 onMounted(() => {
@@ -116,8 +119,8 @@ onMounted(() => {
 
 <template>
   <div
-    class="second-level-menu-list"
     font-mono
+    flex
   >
     <div
       class="mr-[-4px]"
@@ -158,10 +161,6 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.second-level-menu-list {
-  display: flex;
-}
-
 .second-level-menu-item {
   height: 18px;
   background: #333;

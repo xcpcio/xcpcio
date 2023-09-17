@@ -95,6 +95,7 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_BALLOON];
       <div
         v-if="currentType === TYPE_SUBMISSIONS"
         w-full
+        class="mt-[-12px]"
       >
         <SubmissionsTable
           w-full
