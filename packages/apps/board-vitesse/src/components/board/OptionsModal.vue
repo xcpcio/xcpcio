@@ -52,7 +52,6 @@ const orgOptions = computed(() => {
 });
 
 const orgSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterOrganizations);
-
 const orgLastSelectItem = ref({});
 
 function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
@@ -83,7 +82,13 @@ function onCancel() {
   isHidden.value = true;
 }
 
+const filterOrganizations = useLocalStorageForFilterOrganizations();
+const filterTeams = useLocalStorageForFilterTeams();
+
 function onConfirm() {
+  filterOrganizations.value = orgSelectedItems.value;
+  filterTeams.value = teamsSelectedItems.value;
+
   rankOptions.value.setFilterOrganizations(orgSelectedItems.value);
   rankOptions.value.setFilterTeams(teamsSelectedItems.value);
 

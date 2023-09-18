@@ -16,6 +16,19 @@ const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
 
+(() => {
+  const filterOrganizations = useLocalStorageForFilterOrganizations();
+  const filterTeams = useLocalStorageForFilterTeams();
+
+  if (filterOrganizations.value.length > 0) {
+    rankOptions.value.setFilterOrganizations(filterOrganizations.value);
+  }
+
+  if (filterTeams.value.length > 0) {
+    rankOptions.value.setFilterTeams(filterTeams.value);
+  }
+})();
+
 function reBuildRank() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = rankOptions.value;
