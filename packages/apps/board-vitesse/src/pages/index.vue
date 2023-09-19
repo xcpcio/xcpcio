@@ -4,7 +4,8 @@ import { type ContestIndexList, createContestIndexList } from "@xcpcio/core";
 
 const { t } = useI18n();
 
-const url = ref(`${window.DATA_HOST}index/contest_list.json`);
+const now = ref(new Date());
+const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${now.value.getTime()}`);
 const refetch = ref(false);
 const contestIndexList = ref([] as ContestIndexList);
 
