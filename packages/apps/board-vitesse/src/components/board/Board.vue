@@ -16,6 +16,32 @@ const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
 
+(() => {
+  const filterOrganizations = useLocalStorageForFilterOrganizations();
+  const filterTeams = useLocalStorageForFilterTeams();
+
+  if (filterOrganizations.value.length > 0) {
+    rankOptions.value.setFilterOrganizations(filterOrganizations.value);
+  }
+
+  if (filterTeams.value.length > 0) {
+    rankOptions.value.setFilterTeams(filterTeams.value);
+  }
+})();
+
+const currentGroup = ref("all");
+function onChangeCurrentGroup(nextGroup: string) {
+  if (nextGroup === currentGroup.value) {
+    return;
+  }
+
+  rankOptions.value.setGroup(nextGroup);
+}
+
+(() => {
+  rankOptions.value.setGroup(currentGroup.value);
+})();
+
 function reBuildRank() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = rankOptions.value;
@@ -45,6 +71,10 @@ watch(data, async () => {
 
 const isReBuildRank = ref(false);
 watch(rankOptions.value, () => {
+  if (firstLoaded.value === false) {
+    return;
+  }
+
   if (isReBuildRank.value === true) {
     return;
   }
@@ -118,12 +148,6 @@ function onChangeCurrentType(type: string) {
   if (type === "options") {
     isHiddenOptionsModal.value = false;
   }
-}
-
-const currentGroup = ref("all");
-
-function onChangeCurrentGroup(currentGroup: string) {
-  rankOptions.value.setGroup(currentGroup);
 }
 
 const startTime = computed(() => {
