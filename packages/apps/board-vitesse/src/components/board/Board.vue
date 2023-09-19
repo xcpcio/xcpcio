@@ -6,6 +6,7 @@ import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams 
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 const route = useRoute();
+const title = useTitle();
 const { t } = useI18n();
 
 const firstLoaded = ref(false);
@@ -56,6 +57,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
+  title.value = `${contestData.value.name} - XCPCIO Board`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
