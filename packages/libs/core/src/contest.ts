@@ -1,5 +1,5 @@
 import type { Contest as IContest, Image, StatusTimeDisplay } from "@xcpcio/types";
-import { ContestState, VERSION } from "@xcpcio/types";
+import { ContestState } from "@xcpcio/types";
 
 import type { Problem, Problems } from "./problem";
 import { createProblems, createProblemsByProblemIds } from "./problem";
@@ -34,8 +34,6 @@ export class Contest {
   logo?: Image;
   banner?: Image;
   boardLink?: string;
-
-  version = VERSION;
 
   constructor() {
     this.startTime = createDayJS();

@@ -83,6 +83,30 @@ export class RankOptions {
     this.filterTeams = filterTeams;
     this.filterTeamMap = m;
   }
+
+  isNeedReBuildRank(nextRankOptions: RankOptions): boolean {
+    if (this.enableFilterSubmissionsByTimestamp !== nextRankOptions.enableFilterSubmissionsByTimestamp) {
+      return true;
+    }
+
+    if (this.width !== nextRankOptions.width) {
+      return true;
+    }
+
+    if (this.timestamp !== nextRankOptions.timestamp) {
+      return true;
+    }
+
+    if (this.enableFilterTeamsByGroup !== nextRankOptions.enableFilterTeamsByGroup) {
+      return true;
+    }
+
+    if (this.group !== nextRankOptions.group) {
+      return true;
+    }
+
+    return false;
+  }
 }
 
 export class Rank {
@@ -151,9 +175,6 @@ export class Rank {
         p.statistics.reset();
       });
 
-      let preSubmissionTimestampToMinute = 0;
-      const allSubmissions = this.getSubmissions();
-
       this.teams.forEach(t =>
         t.placeChartPoints.push({
           timePoint: 0,
@@ -161,6 +182,14 @@ export class Rank {
           lastSolvedProblem: null,
         }),
       );
+
+      (() => {
+        this.rankStatistics.reset();
+        this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
+      })();
+
+      let preSubmissionTimestampToMinute = 0;
+      const allSubmissions = this.getSubmissions();
 
       for (let ix = 0; ix < allSubmissions.length; ix++) {
         const s = allSubmissions[ix];
@@ -260,9 +289,6 @@ export class Rank {
     })();
 
     (() => {
-      this.rankStatistics.reset();
-
-      this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
       for (const t of this.teams) {
         this.rankStatistics.teamSolvedNum[t.solvedProblemNum]++;
       }
