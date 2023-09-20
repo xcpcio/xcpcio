@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouteQuery } from "@vueuse/router";
 import { Rank, RankOptions, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
@@ -31,17 +32,24 @@ const rankOptions = ref(new RankOptions());
 })();
 
 const currentGroup = ref("all");
+(() => {
+  const currentGroupFromRouteQuery = useRouteQuery(
+    "group",
+    "all",
+    { transform: String },
+  );
+
+  currentGroup.value = currentGroupFromRouteQuery.value;
+  rankOptions.value.setGroup(currentGroupFromRouteQuery.value);
+})();
+
 function onChangeCurrentGroup(nextGroup: string) {
-  if (nextGroup === currentGroup.value) {
+  if (nextGroup === rankOptions.value.group) {
     return;
   }
 
   rankOptions.value.setGroup(nextGroup);
 }
-
-(() => {
-  rankOptions.value.setGroup(currentGroup.value);
-})();
 
 function reBuildRank() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
