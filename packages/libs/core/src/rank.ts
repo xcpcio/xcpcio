@@ -83,6 +83,30 @@ export class RankOptions {
     this.filterTeams = filterTeams;
     this.filterTeamMap = m;
   }
+
+  isNeedReBuildRank(nextRankOptions: RankOptions): boolean {
+    if (this.enableFilterSubmissionsByTimestamp !== nextRankOptions.enableFilterSubmissionsByTimestamp) {
+      return true;
+    }
+
+    if (this.width !== nextRankOptions.width) {
+      return true;
+    }
+
+    if (this.timestamp !== nextRankOptions.timestamp) {
+      return true;
+    }
+
+    if (this.enableFilterTeamsByGroup !== nextRankOptions.enableFilterTeamsByGroup) {
+      return true;
+    }
+
+    if (this.group !== nextRankOptions.group) {
+      return true;
+    }
+
+    return false;
+  }
 }
 
 export class Rank {

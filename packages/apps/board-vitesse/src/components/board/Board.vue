@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
 import { Rank, RankOptions, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
@@ -52,7 +53,7 @@ function onChangeCurrentGroup(nextGroup: string) {
 
 function reBuildRank() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
-  newRank.options = rankOptions.value;
+  newRank.options = _.cloneDeep(rankOptions.value);
   newRank.buildRank();
   rank.value = newRank;
 }
@@ -81,6 +82,11 @@ watch(data, async () => {
 const isReBuildRank = ref(false);
 watch(rankOptions.value, () => {
   if (firstLoaded.value === false) {
+    return;
+  }
+
+  if (!rank.value.options.isNeedReBuildRank(rankOptions.value)) {
+    rank.value.options = _.cloneDeep(rankOptions.value);
     return;
   }
 
