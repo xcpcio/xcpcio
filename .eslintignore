@@ -1,12 +1,14 @@
-dist
-node_modules
 out
+dist
+cache
+node_modules
+
 .next
 
 data
 test-data
 
-packages/apps/board/
-packages/apps/resolver/src/components/ui/*
+packages/archived/**/*
 
 *.html
+packages/apps/resolver/src/components/ui/*

@@ -5,9 +5,7 @@ CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 BOARD_PATH="${CUR_DIR}/../dist"
 EXPORT_PATH="/app/export"
 
-for html_file in "${BOARD_PATH}"/*.html; do
-    bash "${CUR_DIR}/../scripts/inject_vars.sh" "${html_file}"
-done
+bash "${CUR_DIR}/../scripts/inject_vars_all.sh"
 
 if [[ -d "${EXPORT_PATH}" ]]; then
     rm -rf "${EXPORT_PATH:?}"/*
