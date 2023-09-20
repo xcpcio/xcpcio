@@ -1,4 +1,4 @@
-# xcpcio/apps/board
+# xcpcio/archived/board
 
 ## Configuration
 

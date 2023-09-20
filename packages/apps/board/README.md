@@ -1,4 +1,4 @@
-# xcpcio/apps/board-vitesse
+# xcpcio/apps/board
 
 ## Development
 

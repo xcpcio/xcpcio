@@ -11,7 +11,6 @@
 
 - [apps](./packages/apps/)
   - [board](./packages/apps/board/README.md)
-  - [board-vitesse](./packages/apps/board-vitesse/README.md)
   - [docs](./packages/apps/docs/README.md)
   - [resolver](./packages/apps/resolver/README.md)
 - [libs](./packages/libs/)
@@ -35,7 +34,7 @@ pnpm build
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](./LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
 
 ## :clap:  Our Supporters
 
@@ -55,6 +54,7 @@ pnpm build
   </a>
 </p>
 
+[xcpcio]: https://github.com/xcpcio
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
