@@ -32,6 +32,13 @@ const rankOptions = ref(new RankOptions());
 })();
 
 const currentGroup = ref("all");
+function onChangeCurrentGroup(nextGroup: string) {
+  if (nextGroup === rankOptions.value.group) {
+    return;
+  }
+
+  rankOptions.value.setGroup(nextGroup);
+}
 (() => {
   const currentGroupFromRouteQuery = useRouteQuery(
     "group",
@@ -42,14 +49,6 @@ const currentGroup = ref("all");
   currentGroup.value = currentGroupFromRouteQuery.value;
   rankOptions.value.setGroup(currentGroupFromRouteQuery.value);
 })();
-
-function onChangeCurrentGroup(nextGroup: string) {
-  if (nextGroup === rankOptions.value.group) {
-    return;
-  }
-
-  rankOptions.value.setGroup(nextGroup);
-}
 
 function reBuildRank() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
