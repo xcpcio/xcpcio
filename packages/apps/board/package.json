@@ -20,7 +20,7 @@
     "Resolver"
   ],
   "engines": {
-    "node": "^16.16.0"
+    "node": ">=16"
   },
   "scripts": {
     "build": "vite-ssg build",

@@ -19,7 +19,7 @@
     "CCPC"
   ],
   "engines": {
-    "node": "^16.16.0"
+    "node": ">=16"
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/**/* run build",
