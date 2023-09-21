@@ -26,7 +26,7 @@
     "!.next/cache"
   ],
   "engines": {
-    "node": "^16.16.0"
+    "node": ">=16"
   },
   "scripts": {
     "dev": "next dev",
