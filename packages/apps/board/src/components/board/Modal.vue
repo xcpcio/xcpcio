@@ -33,17 +33,16 @@ watch(Escape, (v) => {
 
 <template>
   <div
-    class="md:inset-0"
+    class="md:inset-0 w-[100%] h-[100%]"
     fixed z-9997
-    h-screen w-screen
-    overflow-x-hidden
+    of-x-hidden
     flex justify-center items-start
     md:mt-32 sm:mt-16
   >
     <!-- background -->
     <div
+      class="w-[100%] h-[100%]"
       fixed left-0 top-0 z-9998
-      h-screen w-screen
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
@@ -52,7 +51,7 @@ watch(Escape, (v) => {
 
     <div
       class="relative p-4"
-      :class="[props.width ?? 'w-[78vw]']"
+      :class="[props.width ?? 'w-[78%]']"
       z-9999
     >
       <div

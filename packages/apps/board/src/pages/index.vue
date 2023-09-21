@@ -24,8 +24,8 @@ const {
 
 <template>
   <div
-    sm:w-248
-    lg:w-screen
+    class="sm:w-[1024px] lg:w-screen"
+    lg:of-x-hidden
     flex flex-col justify-center items-center
   >
     <div>
@@ -43,8 +43,7 @@ const {
 
       <div
         v-if="isFinished && contestIndexList.length"
-        sm:w-240
-        lg:w-screen
+        class="sm:w-[1000px] lg:w-screen"
         flex flex-col justify-center items-center
       >
         <div
