@@ -100,7 +100,7 @@ function onConfirm() {
   <Modal
     v-model:isHidden="isHidden"
     :title="title"
-    width="w-[48vw]"
+    width="w-180"
   >
     <div
       w-full
