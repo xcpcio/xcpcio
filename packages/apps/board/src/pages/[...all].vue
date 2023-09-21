@@ -13,7 +13,10 @@ const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
 </script>
 
 <template>
-  <div v-if="isNotFound" class="flex flex-col items-center">
+  <div
+    v-if="isNotFound"
+    class="flex flex-col items-center"
+  >
     <div text-4xl>
       <div i-carbon-warning />
     </div>
@@ -24,3 +27,8 @@ const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
     <Board />
   </div>
 </template>
+
+<route lang="yaml">
+meta:
+  layout: board-layout
+</route>
