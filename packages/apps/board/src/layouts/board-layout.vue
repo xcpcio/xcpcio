@@ -1,7 +1,9 @@
 <template>
-  <NavBar />
+  <NavBar
+    width="sm:w-[1280px] xl:w-screen"
+  />
   <main
-    py-10
+    py-2
     text-gray-700 dark:text-gray-200
   >
     <RouterView />

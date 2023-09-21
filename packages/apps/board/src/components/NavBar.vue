@@ -2,6 +2,10 @@
 import { GITHUB_URL } from "@xcpcio/types";
 import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
+const props = defineProps<{
+  width?: string,
+}>();
+
 const { t, locale } = useI18n();
 const { y: scroll } = useWindowScroll();
 
@@ -21,7 +25,10 @@ async function toggleLocales() {
 </script>
 
 <template>
-  <header class="header z-40">
+  <header
+    class="header z-40"
+    :class="[props?.width ?? '']"
+  >
     <!-- <RouterLink
       class="absolute h-12 w-12 select-none outline-none xl:fixed m-6"
       text-xl
@@ -33,16 +40,26 @@ async function toggleLocales() {
 
     <button
       title="Scroll to top"
-      fixed bottom-6 right-6 z-100 h-10 w-10 rounded-full transition duration-300 print:hidden hover-bg-hex-8883 hover:op100
+      fixed bottom-6 right-6 z-100 h-10 w-10
+      rounded-full transition duration-300
+      print:hidden
+      hover-bg-hex-8883 hover:op100
       :class="scroll > 300 ? 'op30' : 'op0! pointer-events-none'"
       @click="toTop()"
     >
       <div i-ri-arrow-up-line />
     </button>
 
-    <nav class="nav xl:fixed" text-xl>
+    <nav
+      class="nav"
+      :class="[props?.width ? '' : 'fixed']"
+      text-xl
+    >
       <div class="spacer" />
-      <div class="right" print:op0>
+      <div
+        class="right"
+        print:op0
+      >
         <RouterLink
           icon-btn
           :title="t('button.home')"

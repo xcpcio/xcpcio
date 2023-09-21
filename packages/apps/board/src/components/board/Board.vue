@@ -192,179 +192,187 @@ const setNowIntervalId = setInterval(() => {
 onUnmounted(() => {
   clearInterval(setNowIntervalId);
 });
+
+const wrapperWidthClass = "sm:w-[1280px] xl:w-screen";
+const widthClass = "sm:w-[1260px] xl:w-screen";
 </script>
 
 <template>
-  <div v-if="!firstLoaded">
-    <div
-      w-screen
-      flex justify-center items-center
-    >
-      {{ t("common.loading") }}...
-
-      <div v-if="isError">
-        {{ error }}
-      </div>
-    </div>
-  </div>
-
-  <div
-    v-if="firstLoaded"
-  >
-    <div
-      v-if="rank.contest.banner"
-    >
+  <div>
+    <div v-if="!firstLoaded">
       <div
-        mb-4
+        w-screen
         flex justify-center items-center
       >
-        <div class="max-w-[92vw]">
-          <img
-            :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
-            alt="banner"
-          >
+        {{ t("common.loading") }}...
+
+        <div v-if="isError">
+          {{ error }}
         </div>
       </div>
     </div>
 
     <div
-      class="title"
-      max-w-screen
-      flex justify-center
-      text-center text-3xl font-normal font-serif
-    >
-      <div class="max-w-[92vw]">
-        {{ rank.contest.name }}
-      </div>
-    </div>
-
-    <div
-      mt-4
-      max-w-screen
-      flex flex-row justify-center
-    >
-      <div class="w-[92vw]">
-        <div class="flex font-bold font-mono">
-          <div class="float-left">
-            {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
-          </div>
-          <div class="flex-1">
-            <ContestStateBadge
-              :state="rank.contest.getContestState(now)"
-              :pending-time="rank.contest.getContestPendingTime(now)"
-            />
-          </div>
-          <div class="float-right">
-            {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
-          </div>
-        </div>
-
-        <div class="mt-2">
-          <Progress
-            v-model:rank-options="rankOptions"
-            :width="rank.contest.getContestProgressRatio(now)"
-            :state="rank.contest.getContestState(now)"
-            :need-scroll="true"
-            :rank="rank"
-            :elapsed-time="rank.contest.getContestElapsedTime(now)"
-          />
-        </div>
-
-        <div class="mt-2 flex font-bold font-mono">
-          <div class="float-left">
-            {{ elapsedTime }}
-          </div>
-          <div class="flex-1">
-            <StandingsAnnotate />
-          </div>
-          <div class="float-right">
-            {{ remainingTime }}
-          </div>
-        </div>
-
-        <div class="mt-4 flex">
-          <div class="float-left">
-            <SecondLevelMenu
-              v-model:current-item="currentGroup"
-              :items="groupMenuList"
-              query-param-name="group"
-              :on-change="onChangeCurrentGroup"
-            />
-          </div>
-          <div class="flex-1" />
-          <div class="float-right">
-            <SecondLevelMenu
-              v-model:current-item="currentType"
-              :items="typeMenuList"
-              :reverse-order="true"
-              query-param-name="type"
-              :on-change="onChangeCurrentType"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div
-      mt-4
-      max-w-screen
-      flex justify-center
+      v-if="firstLoaded"
+      :class="[wrapperWidthClass]"
+      flex flex-col justify-center items-center
     >
       <div
-        class="max-w-[92vw]"
+        v-if="rank.contest.banner"
       >
         <div
-          v-if="currentType === 'rank'"
+          :class="[widthClass]"
+          mb-4
+          flex justify-center items-center
         >
-          <Standings
-            :rank="rank"
-          />
+          <div class="max-w-[92%]">
+            <img
+              :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
+              alt="banner"
+            >
+          </div>
         </div>
+      </div>
 
-        <div
-          v-if="currentType === 'submissions'"
-          class="w-[88vw]"
-        >
-          <SubmissionsTable
-            w-full
-            :rank="rank"
-            :submissions="rank.getSubmissions()"
-          />
+      <div
+        class="title"
+        :class="[widthClass]"
+        flex justify-center
+        text-center text-3xl font-normal font-serif
+      >
+        <div class="max-w-[92%]">
+          {{ rank.contest.name }}
         </div>
+      </div>
 
-        <div
-          v-if="currentType === 'statistics'"
-        >
-          <Statistics
-            :rank="rank"
-          />
+      <div
+        :class="[widthClass]"
+        mt-4
+        flex flex-row justify-center
+      >
+        <div class="w-[92%]">
+          <div class="flex font-bold font-mono">
+            <div class="float-left">
+              {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
+            </div>
+            <div class="flex-1">
+              <ContestStateBadge
+                :state="rank.contest.getContestState(now)"
+                :pending-time="rank.contest.getContestPendingTime(now)"
+              />
+            </div>
+            <div class="float-right">
+              {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <Progress
+              v-model:rank-options="rankOptions"
+              :width="rank.contest.getContestProgressRatio(now)"
+              :state="rank.contest.getContestState(now)"
+              :need-scroll="true"
+              :rank="rank"
+              :elapsed-time="rank.contest.getContestElapsedTime(now)"
+            />
+          </div>
+
+          <div class="mt-2 flex font-bold font-mono">
+            <div class="float-left">
+              {{ elapsedTime }}
+            </div>
+            <div class="flex-1">
+              <StandingsAnnotate />
+            </div>
+            <div class="float-right">
+              {{ remainingTime }}
+            </div>
+          </div>
+
+          <div class="mt-4 flex">
+            <div class="float-left">
+              <SecondLevelMenu
+                v-model:current-item="currentGroup"
+                :items="groupMenuList"
+                query-param-name="group"
+                :on-change="onChangeCurrentGroup"
+              />
+            </div>
+            <div class="flex-1" />
+            <div class="float-right">
+              <SecondLevelMenu
+                v-model:current-item="currentType"
+                :items="typeMenuList"
+                :reverse-order="true"
+                query-param-name="type"
+                :on-change="onChangeCurrentType"
+              />
+            </div>
+          </div>
         </div>
+      </div>
 
+      <div
+        mt-4
+        :class="[widthClass]"
+        flex justify-center
+      >
         <div
-          v-if="currentType === 'balloon'"
+          class="max-w-[92%]"
         >
-          <Balloon
-            :rank="rank"
-          />
-        </div>
+          <div
+            v-if="currentType === 'rank'"
+          >
+            <Standings
+              :rank="rank"
+            />
+          </div>
 
-        <div
-          v-if="currentType === 'export'"
-        >
-          <Export
-            :rank="rank"
-          />
+          <div
+            v-if="currentType === 'submissions'"
+            class="w-[88vw]"
+          >
+            <SubmissionsTable
+              w-full
+              :rank="rank"
+              :submissions="rank.getSubmissions()"
+            />
+          </div>
+
+          <div
+            v-if="currentType === 'statistics'"
+          >
+            <Statistics
+              :rank="rank"
+            />
+          </div>
+
+          <div
+            v-if="currentType === 'balloon'"
+          >
+            <Balloon
+              :rank="rank"
+            />
+          </div>
+
+          <div
+            v-if="currentType === 'export'"
+          >
+            <Export
+              :rank="rank"
+            />
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <OptionsModal
-    v-if="!isHiddenOptionsModal"
-    v-model:is-hidden="isHiddenOptionsModal"
-    v-model:rank-options="rankOptions"
-    :rank="rank"
-  />
+    <OptionsModal
+      v-if="!isHiddenOptionsModal"
+      v-model:is-hidden="isHiddenOptionsModal"
+      v-model:rank-options="rankOptions"
+      :rank="rank"
+    />
+  </div>
 </template>
 
 <style scoped>
