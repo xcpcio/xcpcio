@@ -40,7 +40,7 @@ async function toggleLocales() {
       <div i-ri-arrow-up-line />
     </button>
 
-    <nav class="nav xl:fixed" text-xl>
+    <nav class="nav fixed" text-xl>
       <div class="spacer" />
       <div class="right" print:op0>
         <RouterLink

@@ -192,6 +192,9 @@ const setNowIntervalId = setInterval(() => {
 onUnmounted(() => {
   clearInterval(setNowIntervalId);
 });
+
+const wrapperWidthClass = "sm:w-[1280px] xl:w-screen";
+const widthClass = "sm:w-[1260px] xl:w-screen";
 </script>
 
 <template>
@@ -210,15 +213,18 @@ onUnmounted(() => {
 
   <div
     v-if="firstLoaded"
+    :class="[wrapperWidthClass]"
+    flex flex-col justify-center items-center
   >
     <div
       v-if="rank.contest.banner"
     >
       <div
+        :class="[widthClass]"
         mb-4
         flex justify-center items-center
       >
-        <div class="max-w-[92vw]">
+        <div class="max-w-[92%]">
           <img
             :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
             alt="banner"
@@ -229,21 +235,21 @@ onUnmounted(() => {
 
     <div
       class="title"
-      max-w-screen
+      :class="[widthClass]"
       flex justify-center
       text-center text-3xl font-normal font-serif
     >
-      <div class="max-w-[92vw]">
+      <div class="max-w-[92%]">
         {{ rank.contest.name }}
       </div>
     </div>
 
     <div
+      :class="[widthClass]"
       mt-4
-      max-w-screen
       flex flex-row justify-center
     >
-      <div class="w-[92vw]">
+      <div class="w-[92%]">
         <div class="flex font-bold font-mono">
           <div class="float-left">
             {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
@@ -307,11 +313,11 @@ onUnmounted(() => {
 
     <div
       mt-4
-      max-w-screen
+      :class="[widthClass]"
       flex justify-center
     >
       <div
-        class="max-w-[92vw]"
+        class="max-w-[92%]"
       >
         <div
           v-if="currentType === 'rank'"

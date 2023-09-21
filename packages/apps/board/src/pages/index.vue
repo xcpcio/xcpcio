@@ -26,6 +26,7 @@ const {
   <div
     sm:w-248
     lg:w-screen
+    flex flex-col justify-center items-center
   >
     <div>
       <div
@@ -42,7 +43,7 @@ const {
 
       <div
         v-if="isFinished && contestIndexList.length"
-        sm:w-246
+        sm:w-240
         lg:w-screen
         flex flex-col justify-center items-center
       >
