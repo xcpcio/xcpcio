@@ -40,13 +40,15 @@
   <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
   <script>
     try {
-        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
-        var _hmt = _hmt || [];
+        var umamiJSUrl = __UMAMI_JS_URL__;
+        var umamiWebsiteId = __UMAMI_WEBSITE_ID__;
         (function () {
-            var hm = document.createElement("script");
-            hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
+            var script = document.createElement("script");
+            script.src = umamiJSUrl;
+            script.defer = true;
+            script.setAttribute("data-website-id", umamiWebsiteId);
             var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+            s.parentNode.insertBefore(script, s);
         })();
     } catch (e) {}
 
@@ -60,6 +62,17 @@
             script.setAttribute("data-domain", plausibleDataDomain);
             var s = document.getElementsByTagName("script")[0];
             s.parentNode.insertBefore(script, s);
+        })();
+    } catch (e) {}
+
+    try {
+        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
         })();
     } catch (e) {}
 
