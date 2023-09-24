@@ -100,6 +100,7 @@ const maxTeamLength = computed(() => {
               v-for="p in rank.contest.problems"
               :key="p.id"
               class="success"
+              text-center
               style="width: 3rem;"
               :style="{
                 'background-color': p.balloonColor?.background_color,
