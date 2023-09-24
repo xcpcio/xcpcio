@@ -89,6 +89,7 @@ function onConfirm() {
   rankOptions.value.setFilterOrganizations(orgSelectedItems.value);
   rankOptions.value.setFilterTeams(teamsSelectedItems.value);
 
+  // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
 
