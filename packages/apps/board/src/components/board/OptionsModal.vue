@@ -82,15 +82,15 @@ function onCancel() {
   isHidden.value = true;
 }
 
-const filterOrganizations = useLocalStorageForFilterOrganizations();
-const filterTeams = useLocalStorageForFilterTeams();
+const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
+const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
 
 function onConfirm() {
-  filterOrganizations.value = orgSelectedItems.value;
-  filterTeams.value = teamsSelectedItems.value;
-
   rankOptions.value.setFilterOrganizations(orgSelectedItems.value);
   rankOptions.value.setFilterTeams(teamsSelectedItems.value);
+
+  localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
+  localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
 
   onCancel();
 }
