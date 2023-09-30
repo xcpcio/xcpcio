@@ -3,6 +3,7 @@ import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 import type { Problem, TeamProblemStatistics } from "./problem";
 import { calcDict } from "./utils";
 import type { Submissions } from "./submission";
+import type { Award, MedalType } from "./award";
 
 export class PlaceChartPointData {
   timePoint: number;
@@ -48,6 +49,8 @@ export class Team {
 
   placeChartPoints: Array<PlaceChartPointData>;
 
+  awards: MedalType[];
+
   constructor() {
     this.id = "";
     this.name = "";
@@ -75,6 +78,8 @@ export class Team {
     this.submissions = [];
 
     this.placeChartPoints = [];
+
+    this.awards = [];
   }
 
   reset() {
@@ -121,6 +126,18 @@ export class Team {
         this.attemptedProblemNum += p.failedCount + 1;
 
         this.penalty += p.penalty;
+      }
+    }
+  }
+
+  calcAwards(awards?: Award[]) {
+    if (!awards) {
+      return;
+    }
+
+    for (const award of awards) {
+      if (this.rank >= award.minRank && this.rank <= award.maxRank) {
+        this.awards.push(award.medalType);
       }
     }
   }
@@ -203,6 +220,15 @@ export function createTeam(teamJSON: ITeam): Team {
 
   if (Boolean(teamJSON.girl) === true) {
     t.group.push("girl");
+  }
+
+  {
+    const tt: any = teamJSON as any;
+    for (const key of Object.keys(tt)) {
+      if (tt[key] === 1 || tt[key] === true) {
+        t.group.push(key);
+      }
+    }
   }
 
   t.group = [...new Set(t.group)];

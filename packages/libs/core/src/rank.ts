@@ -32,7 +32,7 @@ export class RankOptions {
     this.timestamp = 0;
 
     this.enableFilterTeamsByGroup = false;
-    this.group = "";
+    this.group = "all";
 
     this.filterOrganizations = [];
     this.filterOrganizationMap = new Map<string, SelectOptionItem>();
@@ -62,6 +62,7 @@ export class RankOptions {
 
   disableFilterTeamsByGroup() {
     this.enableFilterTeamsByGroup = false;
+    this.group = "all";
   }
 
   setFilterOrganizations(filterOrganizations: Array<SelectOptionItem>) {
@@ -285,6 +286,7 @@ export class Rank {
       this.buildTeamRank();
       this.buildOrgRank();
 
+      this.teams.forEach(t => t.calcAwards(this.contest.awards?.get(this.options.group)));
       this.teams.forEach(t => t.postProcessPlaceChartPoints());
     })();
 

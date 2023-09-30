@@ -1,3 +1,4 @@
+export * from "./award";
 export * from "./contest-index";
 export * from "./utils";
 export * from "./contest";
