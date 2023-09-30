@@ -3,6 +3,7 @@ import { useFetch } from "@vueuse/core";
 import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
 import type { ContestIndexList } from "@xcpcio/core";
+import SearchInput from "~/components/SearchInput.vue";
 
 const { t } = useI18n();
 
@@ -12,6 +13,7 @@ const refetch = ref(false);
 
 const s = useRouteQuery<string | null>("s", "", { transform: String });
 const searchText = ref<string | null>(s.value);
+const searchInputRef = ref<InstanceType<typeof SearchInput> | null>(null);
 
 const contestIndexAllList = ref([] as ContestIndexList);
 const contestIndexList = ref([] as ContestIndexList);
@@ -54,6 +56,7 @@ watch(searchText, () => {
 
 function clearSearch() {
   searchText.value = null;
+  searchInputRef.value?.focus();
 }
 </script>
 
@@ -83,6 +86,7 @@ function clearSearch() {
       >
         <div w-240>
           <SearchInput
+            ref="searchInputRef"
             v-model="searchText"
           />
         </div>
@@ -106,7 +110,10 @@ function clearSearch() {
             No result found
           </div>
           <div row justify-center>
-            <button btn @click="clearSearch()">
+            <button
+              btn
+              @click="clearSearch()"
+            >
               Clear search
             </button>
           </div>

@@ -10,7 +10,14 @@ const vFocus = {
 
 function clear() {
   modelValue.value = null;
+  inputEl?.focus();
 }
+
+function focus() {
+  inputEl?.focus();
+}
+
+defineExpose({ focus });
 </script>
 
 <template>
