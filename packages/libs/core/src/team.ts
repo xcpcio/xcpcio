@@ -222,6 +222,15 @@ export function createTeam(teamJSON: ITeam): Team {
     t.group.push("girl");
   }
 
+  {
+    const tt: any = teamJSON as any;
+    for (const key of Object.keys(tt)) {
+      if (tt[key] === 1 || tt[key] === true) {
+        t.group.push(key);
+      }
+    }
+  }
+
   t.group = [...new Set(t.group)];
   t.group.sort();
 
