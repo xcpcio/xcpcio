@@ -12,7 +12,6 @@ declare module 'vue' {
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
-    copy: typeof import('./components/board/Balloon copy.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
