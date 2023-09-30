@@ -6,7 +6,7 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
   <footer
     mt-8
     py-4 md:py-8 lg:py-10
-    w-screen
+    w-full
     flex justify-center items-center
   >
     <div
