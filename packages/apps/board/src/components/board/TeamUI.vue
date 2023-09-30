@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { MedalType } from "@xcpcio/core";
 import type { Rank, Team } from "@xcpcio/core";
 
 const props = defineProps<{
@@ -19,9 +20,27 @@ function onClickTeamInfoModal() {
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
-function getStandClassName(t: Team): string {
+function getStandClassName(t: Team, isRankField = false): string {
   if (props.isFilter) {
     return "filter-team";
+  }
+
+  if (isRankField) {
+    if (t.awards.includes(MedalType.GOLD)) {
+      return "gold";
+    }
+
+    if (t.awards.includes(MedalType.SILVER)) {
+      return "silver";
+    }
+
+    if (t.awards.includes(MedalType.BRONZE)) {
+      return "bronze";
+    }
+
+    if (t.awards.includes(MedalType.HONORABLE)) {
+      return "honorable";
+    }
   }
 
   return `stand${(rank.value.rankStatistics.maxSolvedProblems - t.solvedProblemNum) % 2}${(t.rank - 1) % 2}`;
@@ -44,7 +63,7 @@ function isRenderByVisible() {
     <td
       v-if="isRenderByVisible()"
       class="stnd"
-      :class="[getStandClassName(team)]"
+      :class="[getStandClassName(team, true)]"
     >
       {{ team.rank }}
     </td>

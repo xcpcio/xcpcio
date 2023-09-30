@@ -301,7 +301,15 @@ describe("contest", () => {
         "pending": true,
       }
     `);
-    expect(contest.medal).toMatchInlineSnapshot("{}");
+    expect(contest.medal).toMatchInlineSnapshot(`
+      {
+        "official": {
+          "bronze": 4,
+          "gold": 4,
+          "silver": 4,
+        },
+      }
+    `);
 
     expect(contest.getContestDuration()).toMatchInlineSnapshot("\"05:00:00\"");
     expect(contest.getContestElapsedTime()).toMatchInlineSnapshot("\"05:00:00\"");

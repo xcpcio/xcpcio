@@ -15,6 +15,7 @@ describe("contest-index", () => {
       ContestIndex {
         "boardLink": "/provincial-contest/2023/shandong",
         "contest": Contest {
+          "awards": undefined,
           "badge": undefined,
           "banner": undefined,
           "boardLink": undefined,
@@ -59,6 +60,7 @@ describe("contest-index", () => {
       ContestIndex {
         "boardLink": "/icpc/2009/dhu_online",
         "contest": Contest {
+          "awards": undefined,
           "badge": undefined,
           "banner": undefined,
           "boardLink": undefined,

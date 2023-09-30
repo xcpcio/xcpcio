@@ -71,6 +71,7 @@
     "immerable",
     "intlify",
     "metas",
+    "nocheck",
     "noopener",
     "nums",
     "pageview",
@@ -93,5 +94,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }

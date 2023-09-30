@@ -67,6 +67,7 @@ describe("contest", () => {
 
     expect(firstTeam.problemStatistics).matchSnapshot();
     expect(firstTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();
+    expect(firstTeam.awards).toMatchInlineSnapshot("[]");
 
     expect(lastTeam.rank).toMatchInlineSnapshot("129");
     expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
@@ -81,5 +82,6 @@ describe("contest", () => {
 
     expect(lastTeam.problemStatistics).matchSnapshot();
     expect(lastTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();
+    expect(lastTeam.awards).toMatchInlineSnapshot("[]");
   });
 });

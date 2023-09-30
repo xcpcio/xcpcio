@@ -5,6 +5,8 @@ import type { Problem, Problems } from "./problem";
 import { createProblems, createProblemsByProblemIds } from "./problem";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
 import { Group } from "./group";
+import { Award } from "./award";
+import { type Awards, MedalType } from "./award";
 
 export class Contest {
   name = "";
@@ -26,6 +28,7 @@ export class Contest {
 
   badge?: string;
   medal?: Record<string, Record<string, number>>;
+  awards?: Awards;
   organization?: string;
 
   group: Map<string, Group>;
@@ -189,6 +192,49 @@ export function createContest(contestJSON: IContest): Contest {
 
   c.badge = contestJSON.badge;
   c.medal = contestJSON.medal;
+
+  (() => {
+    if (contestJSON.medal === undefined || contestJSON.medal === null) {
+      return;
+    }
+
+    c.awards = new Map<string, Award[]>();
+
+    for (const k in contestJSON.medal) {
+      const v = contestJSON.medal[k];
+
+      {
+        const award: Award[] = [];
+
+        let rank = 1;
+        const work = (key: string, medalType: MedalType) => {
+          if (Object.keys(v).includes(key)) {
+            const a = new Award();
+            a.medalType = medalType;
+            a.minRank = rank;
+            rank += Number(v[key]);
+            a.maxRank = rank - 1;
+            award.push(a);
+          }
+        };
+
+        work("gold", MedalType.GOLD);
+        work("silver", MedalType.SILVER);
+        work("bronze", MedalType.BRONZE);
+
+        {
+          const a = new Award();
+          a.medalType = MedalType.HONORABLE;
+          a.minRank = rank;
+          a.maxRank = 0x3F3F3F3F;
+          award.push(a);
+        }
+
+        c.awards.set(k, award);
+      }
+    }
+  })();
+
   c.organization = contestJSON.organization;
 
   {
