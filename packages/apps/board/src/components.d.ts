@@ -24,6 +24,7 @@ declare module 'vue' {
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchInput: typeof import('./components/SearchInput.vue')['default']
     SecondLevelMenu: typeof import('./components/board/SecondLevelMenu.vue')['default']
     Standings: typeof import('./components/board/Standings.vue')['default']
     StandingsAnnotate: typeof import('./components/board/StandingsAnnotate.vue')['default']

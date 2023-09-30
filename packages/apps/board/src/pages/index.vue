@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { MultiSelect } from "vue-search-select";
 import { useFetch } from "@vueuse/core";
+import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
-import type { ContestIndexList, SelectOptionItem } from "@xcpcio/core";
+import type { ContestIndexList } from "@xcpcio/core";
 
 const { t } = useI18n();
 
 const now = ref(new Date());
 const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${now.value.getTime()}`);
 const refetch = ref(false);
+
+const s = useRouteQuery<string | null>("s", "", { transform: String });
+const searchText = ref<string | null>(s.value);
+
 const contestIndexAllList = ref([] as ContestIndexList);
 const contestIndexList = ref([] as ContestIndexList);
-
-const contestOptions = ref([] as Array<SelectOptionItem>);
-const contestSelectedOptions = ref([] as Array<SelectOptionItem>);
 
 const {
   error,
@@ -23,38 +24,36 @@ const {
   refetch,
   afterFetch: (ctx) => {
     contestIndexAllList.value = createContestIndexList(JSON.parse(ctx.data));
-    contestOptions.value = contestIndexAllList.value.map((c) => {
-      return {
-        value: c.contest.name,
-        text: c.contest.name,
-      };
-    });
-
     contestIndexList.value = contestIndexAllList.value.map(c => c);
 
     return ctx;
   },
 }).get();
 
-function contestOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
-  contestSelectedOptions.value = selectedItems;
-
-  const se = new Set<string>();
-  contestSelectedOptions.value.forEach((c) => {
-    se.add(c.text);
-  });
-
+watch(searchText, () => {
   contestIndexList.value = contestIndexAllList.value.filter((c) => {
-    if (se.size === 0) {
+    if (searchText.value?.length === 0) {
+      searchText.value = null;
+    }
+
+    if (searchText.value === null) {
+      s.value = undefined as unknown as string;
       return true;
     }
 
-    if (se.has(c.contest.name)) {
+    s.value = searchText.value;
+
+    if (c.contest.name.includes(searchText.value)
+        || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())) {
       return true;
     }
 
     return false;
   });
+});
+
+function clearSearch() {
+  searchText.value = null;
 }
 </script>
 
@@ -78,21 +77,18 @@ function contestOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem
       </div>
 
       <div
-        v-if="isFinished && contestIndexList.length"
+        v-if="isFinished"
         class="sm:w-[1000px] lg:w-screen min-h-120"
         flex flex-col items-center
       >
-        <div
-          w-240
-        >
-          <MultiSelect
-            :options="contestOptions"
-            :selected-options="contestSelectedOptions"
-            @select="contestOnSelect"
+        <div w-240>
+          <SearchInput
+            v-model="searchText"
           />
         </div>
 
         <div
+          v-if="contestIndexList.length"
           mt-4
         >
           <template
@@ -103,6 +99,17 @@ function contestOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem
               :data="item"
             />
           </template>
+        </div>
+
+        <div v-else p10>
+          <div op40 italic mb5>
+            No result found
+          </div>
+          <div row justify-center>
+            <button btn @click="clearSearch()">
+              Clear search
+            </button>
+          </div>
         </div>
       </div>
     </div>
