@@ -5,7 +5,7 @@ const props = defineProps<{
   team: Team,
 }>();
 
-// const team = computed(() => props.team);
+const team = computed(() => props.team);
 
 const firstSolvedProblems = computed(() => {
   return props.team.problemStatistics.filter((p) => {
@@ -60,7 +60,18 @@ const medal = computed((): Medal | null => {
     flex flex-col gap-2
     justify-center
   >
+    <div>
+      Team Rank: {{ team.rank }}
+    </div>
+
     <div
+      v-if="team.organization && team.organizationRank !== -1"
+    >
+      School Rank: {{ team.organizationRank }}
+    </div>
+
+    <div
+      v-if="firstSolvedProblems.length"
       flex flex-col gap-2
     >
       <template
@@ -73,7 +84,9 @@ const medal = computed((): Medal | null => {
       </template>
     </div>
 
-    <div v-if="medal">
+    <div
+      v-if="medal"
+    >
       {{ medal.text }} Medal
     </div>
   </div>
