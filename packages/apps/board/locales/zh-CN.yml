@@ -31,6 +31,7 @@ type_menu:
   export: 导出
   resolver: 滚榜
   options: 选项
+  awards: 奖项
 
 standings:
   start_time: 开始时间

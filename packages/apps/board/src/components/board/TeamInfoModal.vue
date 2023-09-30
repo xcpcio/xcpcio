@@ -48,8 +48,8 @@ const headerTitle = computed(() => {
 
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
-const TYPE_BALLOON = "balloon";
-const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_BALLOON];
+const TYPE_AWARDS = "awards";
+const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 </script>
 
 <template>
@@ -116,10 +116,12 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_BALLOON];
       </div>
 
       <div
-        v-if="currentType === TYPE_BALLOON"
+        v-if="currentType === TYPE_AWARDS"
         w-full
       >
-        <Balloon />
+        <TeamAwards
+          :team="team"
+        />
       </div>
     </div>
   </Modal>
