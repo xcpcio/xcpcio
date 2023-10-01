@@ -7,12 +7,11 @@ const props = defineProps<{
   rank: Rank,
 }>();
 
+const { copy, isSupported } = useClipboard();
+
 const rank = computed(() => props.rank);
 
 const currentItem = ref({ value: "cf-dat", text: "Codeforces Gym Ghost(dat)" });
-
-const { copy, isSupported } = useClipboard();
-
 const options = ref([
   { value: "cf-dat", text: "Codeforces Gym Ghost(dat)" },
 ]);
