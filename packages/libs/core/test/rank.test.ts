@@ -87,7 +87,7 @@ describe("contest", () => {
 
     {
       const dat = rankToCodeforcesGymDAT(rank);
-      expect(dat.length).toMatchInlineSnapshot("44295");
+      expect(dat.length).toMatchInlineSnapshot('44292');
     }
   });
 });

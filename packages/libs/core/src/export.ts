@@ -52,7 +52,7 @@ export function rankToCodeforcesGymDAT(rank: Rank) {
   let res = "";
 
   res += `@contest "${rank.contest.name}"
-@contlen ${Math.floor(rank.contest.endTime.diff(rank.contest.startTime) / 60)}
+@contlen ${Math.floor(rank.contest.endTime.diff(rank.contest.startTime) / 1000 / 60)}
 @problems ${rank.contest.problems.length}
 @teams ${rank.teams.length + 100}
 @submissions ${rank.submissions.length}
@@ -74,7 +74,7 @@ export function rankToCodeforcesGymDAT(rank: Rank) {
     }
 
     if (team.members) {
-      name = `${name} (${team.membersToString})`;
+      name = `${name} - ${team.membersToString}`;
     }
 
     res += `@t ${teamIndex},0,1,${name}\n`;
