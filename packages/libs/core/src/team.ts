@@ -114,6 +114,14 @@ export class Team {
     return calcDict(attemptedNum, solvedNum);
   }
 
+  get membersToString() {
+    if (typeof this.members === "string") {
+      return this.members;
+    }
+
+    return this.members?.join(", ");
+  }
+
   calcSolvedData() {
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;

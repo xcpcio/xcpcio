@@ -2,6 +2,7 @@ export * from "./award";
 export * from "./contest-index";
 export * from "./utils";
 export * from "./contest";
+export * from "./export";
 export * from "./image";
 export * from "./problem";
 export * from "./rank-statistics";
