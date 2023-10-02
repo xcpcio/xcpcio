@@ -390,6 +390,8 @@ export class Rank {
       return this.submissions;
     }
 
-    return this.submissions.filter(s => s.timestamp <= this.options.timestamp).sort(Submission.compare);
+    return this.submissions.filter(s =>
+      s.timestamp <= this.options.timestamp,
+    ).sort(Submission.compare);
   }
 }

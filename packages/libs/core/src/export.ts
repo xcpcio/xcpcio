@@ -95,7 +95,7 @@ export function rankToCodeforcesGymDAT(rank: Rank) {
     teamIndex++;
   }
 
-  rank.submissions.forEach((submission) => {
+  rank.getSubmissions().forEach((submission) => {
     const teamId = submission.teamId;
     const problemId = submission.problemId;
     const problem = rank.contest.problemsMap.get(problemId);
