@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { ModelSelect } from "vue-search-select";
 import type { Rank } from "@xcpcio/core";
 import { rankToCodeforcesGymDAT } from "@xcpcio/core";
+import { ModelSelect } from "vue-search-select";
+import { useToast } from "vue-toast-notification";
 
 const props = defineProps<{
   rank: Rank,
 }>();
+
+const $toast = useToast();
 
 const { copy, isSupported } = useClipboard();
 
@@ -22,8 +25,15 @@ function onClickForCfDatDownload() {
 }
 
 function onClickForCfDatCopyToClipboard() {
+  if (!isSupported.value) {
+    $toast.warning("clipboard is not supported");
+    return;
+  }
+
   const dat = rankToCodeforcesGymDAT(rank.value);
   copy(dat);
+
+  $toast.success("Copy Success");
 }
 </script>
 
@@ -55,7 +65,6 @@ function onClickForCfDatCopyToClipboard() {
       </button>
 
       <button
-        v-if="isSupported"
         btn
         @click="onClickForCfDatCopyToClipboard()"
       >
