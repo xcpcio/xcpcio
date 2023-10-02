@@ -69,7 +69,7 @@ function clearSearch() {
     <div>
       <div
         v-if="isFetching"
-        w-screen
+        class="sm:w-[1000px] lg:w-screen"
         flex justify-center
       >
         {{ t("common.loading") }}...
