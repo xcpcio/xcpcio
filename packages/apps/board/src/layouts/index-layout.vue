@@ -8,6 +8,8 @@
     text-gray-700 dark:text-gray-200
   >
     <RouterView />
-    <Footer />
+    <Footer
+      class="sm:w-[1024px] lg:w-screen"
+    />
   </main>
 </template>
