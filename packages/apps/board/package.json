@@ -61,7 +61,8 @@
     "vue-demi": "^0.14.5",
     "vue-i18n": "^9.2.2",
     "vue-router": "^4.2.4",
-    "vue-search-select": "^3.1.2"
+    "vue-search-select": "^3.1.2",
+    "vue-toast-notification": "^3"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.8",
