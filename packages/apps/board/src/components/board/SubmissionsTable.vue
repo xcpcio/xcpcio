@@ -257,7 +257,7 @@ function getProblemLabelColorStyle(s: Submission) {
                     :class="[s.status.toString()]"
                     whitespace-nowrap px-4 py-2
                     flex items-center
-                    font-mono font-bold
+                    font-bold
                   >
                     {{ SubmissionStatusToString[s.status] }}
                   </td>

@@ -8,7 +8,7 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
   }
 
   if ([SubmissionStatus.CORRECT.toString()].includes(status)) {
-    return SubmissionStatus.CORRECT;
+    return SubmissionStatus.ACCEPTED;
   }
 
   if ([SubmissionStatus.PARTIALLY_CORRECT.toString()].includes(status)) {

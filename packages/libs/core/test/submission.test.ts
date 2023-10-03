@@ -15,7 +15,7 @@ describe("submission", () => {
         "id": "0",
         "isIgnore": false,
         "problemId": "4",
-        "status": "CORRECT",
+        "status": "ACCEPTED",
         "teamId": "3000202305140002",
         "timestamp": 240,
       }
@@ -25,7 +25,7 @@ describe("submission", () => {
         "id": "1",
         "isIgnore": false,
         "problemId": "4",
-        "status": "CORRECT",
+        "status": "ACCEPTED",
         "teamId": "3000202305140003",
         "timestamp": 300,
       }
