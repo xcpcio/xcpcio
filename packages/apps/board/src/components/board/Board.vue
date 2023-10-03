@@ -116,17 +116,12 @@ const typeMenuList = ref<Array<Item>>([
     keyword: "statistics",
   },
   {
-    title: "type_menu.balloon",
-    keyword: "balloon",
-  },
-  {
     title: "type_menu.export",
     keyword: "export",
   },
   {
-    title: "type_menu.resolver",
-    keyword: "resolver",
-    link: `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`,
+    title: "type_menu.utility",
+    keyword: "utility",
   },
   {
     title: "type_menu.options",
@@ -361,17 +356,17 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
           </div>
 
           <div
-            v-if="currentType === 'balloon'"
+            v-if="currentType === 'export'"
           >
-            <Balloon
+            <Export
               :rank="rank"
             />
           </div>
 
           <div
-            v-if="currentType === 'export'"
+            v-if="currentType === 'utility'"
           >
-            <Export
+            <Utility
               :rank="rank"
             />
           </div>
