@@ -6,6 +6,7 @@ export enum ContestState {
   RUNNING = "RUNNING",
   FROZEN = "FROZEN",
   FINISHED = "FINISHED",
+  PAUSED = "PAUSED",
 }
 
 export interface Contest {
