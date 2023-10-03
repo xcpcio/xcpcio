@@ -39,5 +39,6 @@ declare module 'vue' {
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
+    Utility: typeof import('./components/board/Utility.vue')['default']
   }
 }
