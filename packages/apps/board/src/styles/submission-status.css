@@ -1,0 +1,123 @@
+.PENDING {
+  color: var(--theme-status-pending)
+}
+
+.WAITING {
+  color: var(--theme-status-waiting)
+}
+
+.PREPARING {
+  color: var(--theme-status-preparing)
+}
+
+.COMPILING {
+  color: var(--theme-status-compiling)
+}
+
+.RUNNING {
+  color: var(--theme-status-running)
+}
+
+.JUDGING {
+  color: var(--theme-status-running)
+}
+
+.FROZEN {
+  color: var(--theme-status-pending)
+}
+
+
+.ACCEPTED {
+  color: var(--theme-status-accepted)
+}
+
+.CORRECT {
+  color: var(--theme-status-accepted)
+}
+
+.PARTIALLY_CORRECT {
+  color: var(--theme-status-partially-correct)
+}
+
+
+.REJECTED {
+  color: var(--theme-status-wrong-answer)
+}
+
+.WRONG_ANSWER {
+  color: var(--theme-status-wrong-answer)
+}
+
+
+.COMPILATION_ERROR {
+  color: var(--theme-status-compilation-error)
+}
+
+.PRESENTATION_ERROR {
+  color: var(--theme-status-compilation-error)
+}
+
+
+.RUNTIME_ERROR {
+  color: var(--theme-status-runtime-error)
+}
+
+.TIME_LIMIT_EXCEEDED {
+  color: var(--theme-status-time-limit-exceeded)
+}
+
+.MEMORY_LIMIT_EXCEEDED {
+  color: var(--theme-status-memory-limit-exceeded)
+}
+
+.OUTPUT_LIMIT_EXCEEDED {
+  color: var(--theme-status-output-limit-exceeded)
+}
+
+.IDLENESS_LIMIT_EXCEEDED {
+  color: var(--theme-status-output-limit-exceeded)
+}
+
+.HACKED {
+  color: var(--theme-status-wrong-answer)
+}
+
+.JUDGEMENT_FAILED {
+  color: var(--theme-status-judgement-failed)
+}
+
+.CONFIGURATION_ERROR {
+  color: var(--theme-status-configuration-error)
+}
+
+.FILE_ERROR {
+  color: var(--theme-status-file-error)
+}
+
+.SYSTEM_ERROR {
+  color: var(--theme-status-system-error)
+}
+
+.CANCELED {
+  color: var(--theme-status-canceled)
+}
+
+.SKIPPED {
+  color: var(--theme-status-skipped)
+}
+
+.SECURITY_VIOLATED {
+  color: var(--theme-status-judgement-failed)
+}
+
+.DENIAL_OF_JUDGEMENT {
+  color: var(--theme-status-judgement-failed)
+}
+
+.UNKNOWN {
+  color: var(--theme-status-unknown)
+}
+
+.UNDEFINED {
+  color: var(--theme-status-undefined)
+}

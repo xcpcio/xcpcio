@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, Submissions } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
+import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
 
@@ -253,10 +254,12 @@ function getProblemLabelColorStyle(s: Submission) {
 
                   <td
                     scope="row"
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                    :class="[s.status.toString()]"
+                    whitespace-nowrap px-4 py-2
                     flex items-center
+                    font-mono font-bold
                   >
-                    {{ s.status }}
+                    {{ SubmissionStatusToString[s.status] }}
                   </td>
 
                   <td
@@ -303,3 +306,7 @@ function getProblemLabelColorStyle(s: Submission) {
     </div>
   </section>
 </template>
+
+<style scoped lang="less">
+@import "../../styles/submission-status.css";
+</style>

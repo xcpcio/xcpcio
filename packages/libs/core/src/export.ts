@@ -39,7 +39,7 @@ function submissionStatusToCodeforcesGymDatStatus(status: SubmissionStatus): str
     return "RT";
   }
 
-  if (status === SubmissionStatus.COMPILE_ERROR || isNotCalculatedPenaltyStatus(status)) {
+  if (status === SubmissionStatus.COMPILATION_ERROR || isNotCalculatedPenaltyStatus(status)) {
     return "CE";
   }
 

@@ -1,7 +1,51 @@
 html {
   --global-background: #fff;
+
+  --theme-status-pending: #6cf;
+  --theme-status-configuration-error: #e28989;
+  --theme-status-system-error: grey;
+  --theme-status-compilation-error: #1679dc;
+  --theme-status-canceled: #676fc1;
+  --theme-status-file-error: darkorchid;
+  --theme-status-runtime-error: darkorchid;
+  --theme-status-time-limit-exceeded: sandybrown;
+  --theme-status-memory-limit-exceeded: sandybrown;
+  --theme-status-output-limit-exceeded: sandybrown;
+  --theme-status-partially-correct: #01bab2;
+  --theme-status-wrong-answer: #ff4545;
+  --theme-status-accepted: #37da58;
+  --theme-status-judgement-failed: #FF5722;
+  --theme-status-waiting: grey;
+  --theme-status-preparing: #de4d9e;
+  --theme-status-compiling: #00b5ad;
+  --theme-status-running: #6cf;
+  --theme-status-skipped: #78909C;
+  --theme-status-unknown: #000;
+  --theme-status-undefined: var(--theme-status-unknown);
 }
 
 html.dark {
   --global-background: #323443;
+
+  --theme-status-pending: #6cf;
+  --theme-status-configuration-error: #e28989;
+  --theme-status-system-error: #a5a5a5;
+  --theme-status-compilation-error: #3387da;
+  --theme-status-canceled: #6770d0;
+  --theme-status-file-error: #bc35ff;
+  --theme-status-runtime-error: #bc35ff;
+  --theme-status-time-limit-exceeded: #ff9840;
+  --theme-status-memory-limit-exceeded: #ff9840;
+  --theme-status-output-limit-exceeded: #ff9840;
+  --theme-status-partially-correct: #01bab2;
+  --theme-status-wrong-answer: #ff4545;
+  --theme-status-accepted: #37da58;
+  --theme-status-judgement-failed: #FF5722;
+  --theme-status-waiting: #a5a5a5;
+  --theme-status-preparing: #de4d9e;
+  --theme-status-compiling: #00b5ad;
+  --theme-status-running: #6cf;
+  --theme-status-skipped: #78909C;
+  --theme-status-unknown: #fff;
+  --theme-status-undefined: var(--theme-status-unknown);
 }
