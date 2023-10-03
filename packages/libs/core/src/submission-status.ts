@@ -8,7 +8,7 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
   }
 
   if ([SubmissionStatus.CORRECT.toString()].includes(status)) {
-    return SubmissionStatus.CORRECT;
+    return SubmissionStatus.ACCEPTED;
   }
 
   if ([SubmissionStatus.PARTIALLY_CORRECT.toString()].includes(status)) {
@@ -39,8 +39,8 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
     return SubmissionStatus.FROZEN;
   }
 
-  if (["CE", SubmissionStatus.COMPILE_ERROR.toString()].includes(status)) {
-    return SubmissionStatus.COMPILE_ERROR;
+  if (["CE", SubmissionStatus.COMPILATION_ERROR.toString()].includes(status)) {
+    return SubmissionStatus.COMPILATION_ERROR;
   }
 
   if (["PE", SubmissionStatus.PRESENTATION_ERROR.toString()].includes(status)) {
@@ -137,7 +137,7 @@ export function isPending(status: SubmissionStatus): boolean {
 
 export function isNotCalculatedPenaltyStatus(status: SubmissionStatus): boolean {
   const isNotCalculatedPenaltyArray = [
-    SubmissionStatus.COMPILE_ERROR,
+    SubmissionStatus.COMPILATION_ERROR,
     SubmissionStatus.PRESENTATION_ERROR,
     SubmissionStatus.CONFIGURATION_ERROR,
     SubmissionStatus.SYSTEM_ERROR,

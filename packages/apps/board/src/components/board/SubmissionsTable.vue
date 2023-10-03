@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, Submissions } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
+import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
 
@@ -47,6 +48,33 @@ function getSubmitTime(
   const f = (x: number) => x.toString().padStart(2, "0");
 
   return `${f(h)}:${f(m)}:${f(s)}`;
+}
+
+function getProblemLabelColorClass(s: Submission) {
+  const defaultClass = "bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300";
+
+  const pId = s.problemId;
+  const p = rank.value.contest.problemsMap.get(pId);
+
+  if (p === null || p === undefined || !p.balloonColor) {
+    return defaultClass;
+  }
+}
+
+function getProblemLabelColorStyle(s: Submission) {
+  const pId = s.problemId;
+  const p = rank.value.contest.problemsMap.get(pId);
+
+  if (p === null || p === undefined || !p.balloonColor) {
+    return undefined;
+  }
+
+  const b = p.balloonColor;
+
+  return {
+    backgroundColor: b.background_color as string,
+    color: b.color as string,
+  };
 }
 </script>
 
@@ -204,7 +232,11 @@ function getSubmitTime(
                   <td
                     px-4 py-2
                   >
-                    <span class="rounded bg-primary-100 px-2 py-0.5 text-xs text-primary-800 dark:bg-primary-900 dark:text-primary-300">
+                    <span
+                      class="rounded px-2 py-0.5 text-sm"
+                      :class="[getProblemLabelColorClass(s)]"
+                      :style="getProblemLabelColorStyle(s)"
+                    >
                       {{ rank.contest.problemsMap.get(s.problemId)?.label }}
                     </span>
                   </td>
@@ -222,10 +254,12 @@ function getSubmitTime(
 
                   <td
                     scope="row"
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                    :class="[s.status.toString()]"
+                    whitespace-nowrap px-4 py-2
                     flex items-center
+                    font-bold
                   >
-                    {{ s.status }}
+                    {{ SubmissionStatusToString[s.status] }}
                   </td>
 
                   <td
@@ -272,3 +306,7 @@ function getSubmitTime(
     </div>
   </section>
 </template>
+
+<style scoped lang="less">
+@import "../../styles/submission-status.css";
+</style>
