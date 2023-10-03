@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
-import { Rank, RankOptions, createContest, createSubmissions, createTeams } from "@xcpcio/core";
+import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
 
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
@@ -185,6 +185,18 @@ const remainingTime = computed(() => {
   return `${t("standings.remaining")}${t("common.colon")}${time}`;
 });
 
+const contestState = computed(() => {
+  if (rank.value.options.enableFilterSubmissionsByTimestamp) {
+    return ContestState.PAUSED;
+  }
+
+  return rank.value.contest.getContestState();
+});
+
+const pausedTime = computed(() => {
+  return getTimeDiff(rank.value.options.timestamp);
+});
+
 const setNowIntervalId = setInterval(() => {
   now.value = new Date();
 }, 1000);
@@ -257,8 +269,9 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             </div>
             <div class="flex-1">
               <ContestStateBadge
-                :state="rank.contest.getContestState(now)"
+                :state="contestState"
                 :pending-time="rank.contest.getContestPendingTime(now)"
+                :paused-time="pausedTime"
               />
             </div>
             <div class="float-right">

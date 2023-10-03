@@ -4,6 +4,7 @@ import { ContestState } from "@xcpcio/types";
 const props = defineProps<{
   state: ContestState,
   pendingTime?: string,
+  pausedTime?: string,
 }>();
 </script>
 
@@ -18,11 +19,19 @@ const props = defineProps<{
     <div>
       {{ props.state }}
     </div>
+
     <div
       v-if="props.pendingTime && props.state === ContestState.PENDING"
       ml-2
     >
       {{ props.pendingTime }}
+    </div>
+
+    <div
+      v-if="props.pausedTime && props.state === ContestState.PAUSED"
+      ml-2
+    >
+      {{ props.pausedTime }}
     </div>
   </div>
 </template>

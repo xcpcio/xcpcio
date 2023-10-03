@@ -8,6 +8,8 @@ import {
   isPending,
 } from "./submission-status";
 
+import dayjs from "./utils/dayjs";
+
 function submissionStatusToCodeforcesGymDatStatus(status: SubmissionStatus): string {
   if (isAccepted(status)) {
     return "OK";
@@ -52,7 +54,7 @@ export function rankToCodeforcesGymDAT(rank: Rank) {
   let res = "";
 
   res += `@contest "${rank.contest.name}"
-@contlen ${Math.floor(rank.contest.endTime.diff(rank.contest.startTime) / 1000 / 60)}
+@contlen ${Math.floor(dayjs.duration(rank.contest.endTime.diff(rank.contest.startTime)).asMinutes())}
 @problems ${rank.contest.problems.length}
 @teams ${rank.teams.length + 100}
 @submissions ${rank.submissions.length}
