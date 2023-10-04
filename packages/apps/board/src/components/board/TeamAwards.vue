@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { MedalType, type Team } from "@xcpcio/core";
+import { MedalType } from "@xcpcio/core";
+import type { Rank, Team } from "@xcpcio/core";
 
 const props = defineProps<{
   team: Team,
+  rank: Rank,
 }>();
 
 const team = computed(() => props.team);
+const rank = computed(() => props.rank);
 
 const firstSolvedProblems = computed(() => {
   return props.team.problemStatistics.filter((p) => {
@@ -14,7 +17,7 @@ const firstSolvedProblems = computed(() => {
     }
 
     return false;
-  });
+  }).map(p => p.problem.label).join(",");
 });
 
 interface Medal {
@@ -67,21 +70,16 @@ const medal = computed((): Medal | null => {
     <div
       v-if="team.organization && team.organizationRank !== -1"
     >
-      School Rank: {{ team.organizationRank }}
+      {{ rank.contest.organization }} Rank: {{ team.organizationRank }}
     </div>
 
     <div
       v-if="firstSolvedProblems.length"
       flex flex-col gap-2
     >
-      <template
-        v-for="p in firstSolvedProblems"
-        :key="p.problem.id"
-      >
-        <div>
-          First Solved Problem {{ p.problem.label }}
-        </div>
-      </template>
+      <div>
+        First Solved Problem {{ firstSolvedProblems }}
+      </div>
     </div>
 
     <div

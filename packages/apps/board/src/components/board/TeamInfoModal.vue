@@ -68,15 +68,26 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
           <div
             flex flex-col items-center justify-between
             md:flex-row
-            space-y-3 md:space-y-0 md:space-x-4
+            space-y-3 md:space-y-0
           >
-            <h3
-              text-gray-900 dark:text-white
-              text-xl
-              font-sans font-semibold italic
+            <div
+              flex flex-row
+              space-x-3
             >
-              {{ headerTitle }}
-            </h3>
+              <Badge
+                v-if="team.badge"
+                :image="team.badge"
+                width-class="h-8 w-8"
+              />
+
+              <h3
+                text-gray-900 dark:text-white
+                text-2xl
+                font-sans font-semibold italic
+              >
+                {{ headerTitle }}
+              </h3>
+            </div>
 
             <ModalMenu
               v-model:current-type="currentType"
@@ -121,6 +132,7 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
       >
         <TeamAwards
           :team="team"
+          :rank="rank"
         />
       </div>
     </div>
