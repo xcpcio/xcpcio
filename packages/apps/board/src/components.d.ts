@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Badge: typeof import('./components/board/Badge.vue')['default']
     Balloon: typeof import('./components/board/Balloon.vue')['default']
     Board: typeof import('./components/board/Board.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']

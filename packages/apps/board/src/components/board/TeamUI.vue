@@ -68,14 +68,13 @@ function isRenderByVisible() {
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.badge && isRenderByVisible()"
+      v-if="rank.contest.badge && team.badge && isRenderByVisible()"
       class="empty flex items-center justify-center"
     >
-      <img
-        :src="['data:image/png;base64,', team.badge?.base64].join('')"
-        alt=""
-        class="h-8 w-8"
-      >
+      <Badge
+        :image="team.badge"
+        width-class="h-8 w-8"
+      />
     </td>
     <td
       v-if="rank.contest.organization && isRenderByVisible()"
