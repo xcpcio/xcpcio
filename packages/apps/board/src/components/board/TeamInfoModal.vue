@@ -132,6 +132,7 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
       >
         <TeamAwards
           :team="team"
+          :rank="rank"
         />
       </div>
     </div>
