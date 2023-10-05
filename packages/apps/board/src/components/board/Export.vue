@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
-import { rankToCodeforcesGymDAT } from "@xcpcio/core";
+import { CodeforcesGymGhostDATConverter } from "@xcpcio/core";
 import { ModelSelect } from "vue-search-select";
 import { useToast } from "vue-toast-notification";
 import FileSaver from "file-saver";
@@ -21,7 +21,8 @@ const options = ref([
 ]);
 
 function onClickForCfDatDownload() {
-  const dat = rankToCodeforcesGymDAT(rank.value);
+  const converter = new CodeforcesGymGhostDATConverter();
+  const dat = converter.convert(rank.value);
   const blob = new Blob([dat], { type: "text/plain;charset=utf-8" });
   FileSaver.saveAs(blob, "contest.dat");
 }
@@ -32,7 +33,8 @@ function onClickForCfDatCopyToClipboard() {
     return;
   }
 
-  const dat = rankToCodeforcesGymDAT(rank.value);
+  const converter = new CodeforcesGymGhostDATConverter();
+  const dat = converter.convert(rank.value);
   copy(dat);
 
   $toast.success("Copy Success");

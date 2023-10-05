@@ -6,7 +6,7 @@ import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
 import { createSubmissions } from "../src/submission";
 import { Rank } from "../src/rank";
-import { rankToCodeforcesGymDAT } from "../src/export";
+import { CodeforcesGymGhostDATConverter } from "../src/export";
 
 describe("contest", () => {
   it("2023_ccpc_final", () => {
@@ -86,7 +86,8 @@ describe("contest", () => {
     expect(lastTeam.awards).toMatchInlineSnapshot("[]");
 
     {
-      const dat = rankToCodeforcesGymDAT(rank);
+      const converter = new CodeforcesGymGhostDATConverter();
+      const dat = converter.convert(rank);
       expect(dat.length).toMatchInlineSnapshot("44292");
     }
   });
