@@ -107,6 +107,9 @@ importers:
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
+      file-saver:
+        specifier: ^2.0.5
+        version: 2.0.5
       floating-vue:
         specifier: 2.0.0-beta.24
         version: 2.0.0-beta.24(vue@3.3.4)
@@ -156,6 +159,9 @@ importers:
       '@intlify/unplugin-vue-i18n':
         specifier: ^0.12.2
         version: 0.12.2(rollup@2.79.1)(vue-i18n@9.2.2)
+      '@types/file-saver':
+        specifier: ^2.0.5
+        version: 2.0.5
       '@types/lodash':
         specifier: ^4.14.195
         version: 4.14.195
@@ -4618,6 +4624,10 @@ packages:
 
   /@types/estree@1.0.1:
     resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
+    dev: true
+
+  /@types/file-saver@2.0.5:
+    resolution: {integrity: sha512-zv9kNf3keYegP5oThGLaPk8E081DFDuwfqjtiTzm6PoxChdJ1raSuADf2YGCVIyrSynLrgc8JWv296s7Q7pQSQ==}
     dev: true
 
   /@types/fs-extra@9.0.13:
@@ -9811,6 +9821,10 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.0.4
+
+  /file-saver@2.0.5:
+    resolution: {integrity: sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==}
+    dev: false
 
   /filelist@1.0.4:
     resolution: {integrity: sha512-w1cEuf3S+DrLCQL7ET6kz+gmlJdbq9J7yXCSjK/OZCPA+qEN1WyF4ZAf0YYJa4/shHJra2t/d/r8SV4Ji+x+8Q==}

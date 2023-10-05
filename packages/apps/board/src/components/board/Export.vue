@@ -3,6 +3,7 @@ import type { Rank } from "@xcpcio/core";
 import { rankToCodeforcesGymDAT } from "@xcpcio/core";
 import { ModelSelect } from "vue-search-select";
 import { useToast } from "vue-toast-notification";
+import FileSaver from "file-saver";
 
 const props = defineProps<{
   rank: Rank,
@@ -21,7 +22,8 @@ const options = ref([
 
 function onClickForCfDatDownload() {
   const dat = rankToCodeforcesGymDAT(rank.value);
-  downloadSingleFile(dat, "contest.dat");
+  const blob = new Blob([dat], { type: "text/plain;charset=utf-8" });
+  FileSaver.saveAs(blob, "contest.dat");
 }
 
 function onClickForCfDatCopyToClipboard() {
