@@ -1,14 +1,14 @@
 import { SubmissionStatus } from "@xcpcio/types";
 
-import type { Rank } from "./rank";
+import type { Rank } from "../rank";
 
 import {
   isAccepted,
   isNotCalculatedPenaltyStatus,
   isPending,
-} from "./submission-status";
+} from "../submission-status";
 
-import dayjs from "./utils/dayjs";
+import dayjs from "../utils/dayjs";
 
 function submissionStatusToCodeforcesGymDatStatus(status: SubmissionStatus): string {
   if (isAccepted(status)) {
