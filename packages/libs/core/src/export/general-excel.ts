@@ -101,6 +101,7 @@ export class GeneralExcelConverter {
       head.push("Rank");
 
       if (rank.contest.organization) {
+        head.push(`${rank.contest.organization} Rank`);
         head.push(rank.contest.organization);
       }
 
@@ -113,6 +114,12 @@ export class GeneralExcelConverter {
 
       arr.push(team.rank.toString());
       if (team.organization) {
+        if (team.organizationRank !== -1) {
+          arr.push(team.organizationRank.toString());
+        } else {
+          arr.push("");
+        }
+
         arr.push(team.organization);
       }
 
