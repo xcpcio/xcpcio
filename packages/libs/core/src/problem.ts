@@ -189,4 +189,12 @@ export class TeamProblemStatistics {
 
     return Math.floor(this.solvedTimestamp / 60) * 60 + this.failedCount * this.contestPenalty;
   }
+
+  get penaltyToMinute() {
+    return Math.floor(this.penalty / 60);
+  }
+
+  get solvedTimestampToMinute() {
+    return Math.floor(this.solvedTimestamp / 60);
+  }
 }

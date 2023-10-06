@@ -51,7 +51,8 @@
     "@xcpcio/types": "workspace:*",
     "dayjs": "^1.11.8",
     "lodash": "^4.17.21",
-    "xlsx": "^0.18.5"
+    "string-width": "^6.1.0",
+    "xlsx-js-style": "^1.2.0"
   },
   "devDependencies": {
     "@babel/types": "^7.22.4",
