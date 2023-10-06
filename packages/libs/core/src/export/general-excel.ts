@@ -2,6 +2,7 @@ import _ from "lodash";
 import * as XLSX from "xlsx-js-style";
 import stringWidth from "string-width";
 
+import { isValidMedalType } from "../award";
 import type { Rank } from "../rank";
 
 export class GeneralExcelConverter {
@@ -35,7 +36,7 @@ export class GeneralExcelConverter {
       });
   }
 
-  private convertToSheet(rank: Rank) {
+  private convertToSheet(rank: Rank): XLSX.WorkSheet {
     const aoa = this.convertToAoa(rank);
     const sheet = XLSX.utils.aoa_to_sheet(aoa);
 
@@ -108,6 +109,8 @@ export class GeneralExcelConverter {
   private convertToAoa(rank: Rank): string[][] {
     const aoa: string[][] = [];
 
+    const enableAwards = rank.contest.isEnableAwards(rank.options.group);
+
     {
       aoa.push([rank.contest.name]);
     }
@@ -122,6 +125,11 @@ export class GeneralExcelConverter {
       }
 
       head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dict");
+
+      if (enableAwards) {
+        head.push("Medal");
+      }
+
       aoa.push(head);
     }
 
@@ -160,6 +168,13 @@ export class GeneralExcelConverter {
       }
 
       arr.push(`${team.dict}%`);
+
+      if (enableAwards) {
+        const medals = team.awards
+          .filter(a => isValidMedalType(a))
+          .map(a => a.toString());
+        arr.push(medals.join(", "));
+      }
 
       aoa.push(arr);
     }
