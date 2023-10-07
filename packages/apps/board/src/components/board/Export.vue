@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import type { Rank } from "@xcpcio/core";
-import { CodeforcesGymGhostDATConverter, GeneralExcelConverter } from "@xcpcio/core";
 import { ModelSelect } from "vue-search-select";
 import { useToast } from "vue-toast-notification";
 import FileSaver from "file-saver";
+import sleep from "sleep-promise";
+
+import type { Rank } from "@xcpcio/core";
+import { CodeforcesGymGhostDATConverter, GeneralExcelConverter } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank,
@@ -33,9 +35,14 @@ const btnDisable = ref({
   GeneralXLSXDownload: false,
 });
 
+async function waitDisabled() {
+  await nextTick();
+  await sleep(16);
+}
+
 async function onClickForCfDatDownload() {
   btnDisable.value.CfDatDownload = true;
-  await nextTick();
+  await waitDisabled();
 
   const converter = new CodeforcesGymGhostDATConverter();
   const dat = converter.convert(rank.value);
@@ -52,7 +59,7 @@ async function onClickForCfDatCopyToClipboard() {
   }
 
   btnDisable.value.CfDatCopy = true;
-  await nextTick();
+  await waitDisabled();
 
   const converter = new CodeforcesGymGhostDATConverter();
   const dat = converter.convert(rank.value);
@@ -64,7 +71,7 @@ async function onClickForCfDatCopyToClipboard() {
 
 async function onClickForGeneralXLSXDownload() {
   btnDisable.value.GeneralXLSXDownload = true;
-  await nextTick();
+  await waitDisabled();
 
   const converter = new GeneralExcelConverter();
   converter.convertAndWrite(rank.value, `${rank.value.contest.name}.xlsx`);
