@@ -18,21 +18,7 @@ const searchInputRef = ref<InstanceType<typeof SearchInput> | null>(null);
 const contestIndexAllList = ref([] as ContestIndexList);
 const contestIndexList = ref([] as ContestIndexList);
 
-const {
-  error,
-  isFetching,
-  isFinished,
-} = useFetch(url, {
-  refetch,
-  afterFetch: (ctx) => {
-    contestIndexAllList.value = createContestIndexList(JSON.parse(ctx.data));
-    contestIndexList.value = contestIndexAllList.value.map(c => c);
-
-    return ctx;
-  },
-}).get();
-
-watch(searchText, () => {
+function onSearch() {
   contestIndexList.value = contestIndexAllList.value.filter((c) => {
     if (searchText.value?.length === 0) {
       searchText.value = null;
@@ -52,12 +38,31 @@ watch(searchText, () => {
 
     return false;
   });
-});
+}
 
 function clearSearch() {
   searchText.value = null;
   searchInputRef.value?.focus();
 }
+
+const {
+  error,
+  isFetching,
+  isFinished,
+} = useFetch(url, {
+  refetch,
+  afterFetch: (ctx) => {
+    contestIndexAllList.value = createContestIndexList(JSON.parse(ctx.data));
+    contestIndexList.value = contestIndexAllList.value.map(c => c);
+    onSearch();
+
+    return ctx;
+  },
+}).get();
+
+watch(searchText, () => {
+  onSearch();
+});
 </script>
 
 <template>
