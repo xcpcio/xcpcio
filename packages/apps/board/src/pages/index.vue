@@ -3,6 +3,7 @@ import { useFetch } from "@vueuse/core";
 import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
 import type { ContestIndexList } from "@xcpcio/core";
+
 import SearchInput from "~/components/SearchInput.vue";
 
 const { t } = useI18n();
