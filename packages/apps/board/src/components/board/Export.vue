@@ -27,29 +27,49 @@ const options = ref([
   },
 ]);
 
-function onClickForCfDatDownload() {
+const btnDisable = ref({
+  CfDatDownload: false,
+  CfDatCopy: false,
+  GeneralXLSXDownload: false,
+});
+
+async function onClickForCfDatDownload() {
+  btnDisable.value.CfDatDownload = true;
+  await nextTick();
+
   const converter = new CodeforcesGymGhostDATConverter();
   const dat = converter.convert(rank.value);
   const blob = new Blob([dat], { type: "text/plain;charset=utf-8" });
   FileSaver.saveAs(blob, "contest.dat");
+
+  btnDisable.value.CfDatDownload = false;
 }
 
-function onClickForCfDatCopyToClipboard() {
+async function onClickForCfDatCopyToClipboard() {
   if (!isSupported.value) {
     $toast.warning("clipboard is not supported");
     return;
   }
 
+  btnDisable.value.CfDatCopy = true;
+  await nextTick();
+
   const converter = new CodeforcesGymGhostDATConverter();
   const dat = converter.convert(rank.value);
   copy(dat);
 
+  btnDisable.value.CfDatCopy = false;
   $toast.success("Copy Success");
 }
 
-function onClickForGeneralXLSXDownload() {
+async function onClickForGeneralXLSXDownload() {
+  btnDisable.value.GeneralXLSXDownload = true;
+  await nextTick();
+
   const converter = new GeneralExcelConverter();
   converter.convertAndWrite(rank.value, `${rank.value.contest.name}.xlsx`);
+
+  btnDisable.value.GeneralXLSXDownload = false;
 }
 </script>
 
@@ -76,15 +96,17 @@ function onClickForGeneralXLSXDownload() {
         flex flex-row justify-center gap-4
       >
         <button
+          :disabled="btnDisable.CfDatDownload"
           btn
-          @click="onClickForCfDatDownload()"
+          @click="onClickForCfDatDownload"
         >
           Download
         </button>
 
         <button
+          :disabled="btnDisable.CfDatCopy"
           btn
-          @click="onClickForCfDatCopyToClipboard()"
+          @click="onClickForCfDatCopyToClipboard"
         >
           Copy to Clipboard
         </button>
@@ -95,8 +117,9 @@ function onClickForGeneralXLSXDownload() {
         flex justify-center
       >
         <button
+          :disabled="btnDisable.GeneralXLSXDownload"
           btn
-          @click="onClickForGeneralXLSXDownload()"
+          @click="onClickForGeneralXLSXDownload"
         >
           Download
         </button>
