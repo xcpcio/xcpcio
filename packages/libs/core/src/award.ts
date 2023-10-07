@@ -1,9 +1,9 @@
 export enum MedalType {
-  UNKNOWN,
-  GOLD,
-  SILVER,
-  BRONZE,
-  HONORABLE,
+  UNKNOWN = "Unknown",
+  GOLD = "Gold",
+  SILVER = "Silver",
+  BRONZE = "Bronze",
+  HONORABLE = "Honorable",
 }
 
 export class Award {
@@ -16,6 +16,17 @@ export class Award {
     this.minRank = 0;
     this.maxRank = 0;
   }
+}
+
+export function isValidMedalType(medal: MedalType): boolean {
+  const validMedalType = [
+    MedalType.GOLD,
+    MedalType.SILVER,
+    MedalType.BRONZE,
+    MedalType.HONORABLE,
+  ];
+
+  return validMedalType.includes(medal);
 }
 
 export type Awards = Map<string, Award[]>;

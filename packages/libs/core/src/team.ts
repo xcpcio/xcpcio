@@ -101,6 +101,8 @@ export class Team {
     this.submissions = [];
 
     this.placeChartPoints = [];
+
+    this.awards = [];
   }
 
   get penaltyToMinute() {

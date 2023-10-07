@@ -136,6 +136,18 @@ export class Contest {
 
     return Math.round((pass * 100) / total);
   }
+
+  isEnableAwards(group: string): boolean {
+    if (!this.awards) {
+      return false;
+    }
+
+    if (!this.awards.has(group)) {
+      return false;
+    }
+
+    return true;
+  }
 }
 
 export function createContest(contestJSON: IContest): Contest {

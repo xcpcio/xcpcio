@@ -2,15 +2,43 @@ import _ from "lodash";
 import * as XLSX from "xlsx-js-style";
 import stringWidth from "string-width";
 
+import { isValidMedalType } from "../award";
 import type { Rank } from "../rank";
 
 export class GeneralExcelConverter {
   constructor() {}
 
-  public convert(rank: Rank): XLSX.WorkBook {
+  public convert(oriRank: Rank): XLSX.WorkBook {
+    const rank = _.cloneDeep(oriRank);
+
+    rank.options.disableFilterTeamsByGroup();
+    rank.options.disableFilterSubmissionByTimestamp();
+
     const workbook = XLSX.utils.book_new();
+
+    for (const [k, v] of rank.contest.group) {
+      rank.options.setGroup(k);
+      rank.buildRank();
+
+      const sheet = this.convertToSheet(rank);
+      XLSX.utils.book_append_sheet(workbook, sheet, v.names.get(v.defaultLang) as string);
+    }
+
+    return workbook;
+  }
+
+  public convertAndWrite(rank: Rank, filename: string): any {
+    return XLSX.writeFile(
+      this.convert(rank),
+      filename,
+      {
+        compression: true,
+      });
+  }
+
+  private convertToSheet(rank: Rank): XLSX.WorkSheet {
     const aoa = this.convertToAoa(rank);
-    const mainWorksheet = XLSX.utils.aoa_to_sheet(aoa);
+    const sheet = XLSX.utils.aoa_to_sheet(aoa);
 
     const cols = [];
     const head = aoa[1];
@@ -25,12 +53,12 @@ export class GeneralExcelConverter {
       });
     }
 
-    mainWorksheet["!cols"] = cols;
+    sheet["!cols"] = cols;
 
     {
       const mergeRange = { s: { r: 0, c: 0 }, e: { r: 0, c: head.length - 1 } };
       const merges = [{ s: mergeRange.s, e: mergeRange.e }];
-      mainWorksheet["!merges"] = merges;
+      sheet["!merges"] = merges;
     }
 
     const font = {
@@ -61,36 +89,27 @@ export class GeneralExcelConverter {
     for (let i = 1; i < aoa.length; i++) {
       for (let j = 0; j < aoa[i].length; j++) {
         const cellAddress = XLSX.utils.encode_cell({ r: i, c: j });
-        const cell = mainWorksheet[cellAddress];
+        const cell = sheet[cellAddress];
         cell.s = cellStyle;
       }
     }
 
     {
       const cellAddress = XLSX.utils.encode_cell({ r: 0, c: 0 });
-      const cell = mainWorksheet[cellAddress];
+      const cell = sheet[cellAddress];
       const titleStyle = _.cloneDeep(cellStyle);
       titleStyle.font.sz = 28;
       titleStyle.font.bold = true;
       cell.s = titleStyle;
     }
 
-    XLSX.utils.book_append_sheet(workbook, mainWorksheet, "Scoreboard");
-
-    return workbook;
-  }
-
-  public convertAndWrite(rank: Rank, filename: string): any {
-    return XLSX.writeFile(
-      this.convert(rank),
-      filename,
-      {
-        compression: true,
-      });
+    return sheet;
   }
 
   private convertToAoa(rank: Rank): string[][] {
     const aoa: string[][] = [];
+
+    const enableAwards = rank.contest.isEnableAwards(rank.options.group);
 
     {
       aoa.push([rank.contest.name]);
@@ -106,6 +125,11 @@ export class GeneralExcelConverter {
       }
 
       head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dict");
+
+      if (enableAwards) {
+        head.push("Medal");
+      }
+
       aoa.push(head);
     }
 
@@ -144,6 +168,13 @@ export class GeneralExcelConverter {
       }
 
       arr.push(`${team.dict}%`);
+
+      if (enableAwards) {
+        const medals = team.awards
+          .filter(a => isValidMedalType(a))
+          .map(a => a.toString());
+        arr.push(medals.join(", "));
+      }
 
       aoa.push(arr);
     }
