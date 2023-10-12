@@ -7,6 +7,7 @@ const contestTypes = [
   "icpc",
   "ccpc",
   "provincial-contest",
+  // TODO: can't use multi <Board /> with vite-ssg
   "board",
 ];
 
