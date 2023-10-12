@@ -16,7 +16,9 @@ const { t } = useI18n();
 </script>
 
 <template>
-  <div>
+  <div
+    flex flex-col justify-center items-center
+  >
     <div text-4xl>
       <div i-carbon-campsite />
     </div>
@@ -31,13 +33,19 @@ const { t } = useI18n();
 
     <div py-4 />
 
-    <TheInput
-      v-model="name"
-      :placeholder="t('intro.whats-your-name')"
-      autocomplete="false"
-      @keydown.enter="go"
-    />
-    <label class="hidden" for="input">{{ t('intro.whats-your-name') }}</label>
+    <div
+      w-48
+    >
+      <TheInput
+        v-model="name"
+        :placeholder="t('intro.whats-your-name')"
+        autocomplete="false"
+        @keydown.enter="go"
+      />
+      <label class="hidden" for="input">
+        {{ t('intro.whats-your-name') }}
+      </label>
+    </div>
 
     <div>
       <button
