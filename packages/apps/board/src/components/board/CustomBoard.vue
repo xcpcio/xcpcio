@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useRouteQuery } from "@vueuse/router";
-import Board from "~/components/board/Board.vue";
 
 const dataSourceUrlFromRouteQuery = useRouteQuery(
   "data-source",
@@ -60,8 +59,3 @@ function go() {
     />
   </div>
 </template>
-
-<route lang="yaml">
-meta:
-  layout: board-layout
-</route>

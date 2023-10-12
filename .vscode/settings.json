@@ -80,12 +80,15 @@
     "pnpm",
     "prettierrc",
     "shiki",
+    "sizecheck",
     "stnd",
     "tailwindcss",
     "tanstack",
     "taze",
+    "typecheck",
     "umami",
     "umijs",
+    "unhead",
     "unocss",
     "unplugin",
     "vite",
@@ -95,5 +98,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }
