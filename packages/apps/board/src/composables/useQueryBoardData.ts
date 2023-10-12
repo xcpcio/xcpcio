@@ -12,7 +12,15 @@ export interface BoardData {
 
 async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
-  const prefix = `${window.DATA_HOST}${endpoint}`;
+  let prefix = `${window.DATA_HOST}${endpoint}`;
+
+  if (target.startsWith("http")) {
+    prefix = target;
+  }
+
+  if (prefix.endsWith("/")) {
+    prefix = prefix.slice(0, -1);
+  }
 
   const contestResp = await fetch(`${prefix}/config.json?t=${timestamp ?? 0}`);
   const teamsResp = await fetch(`${prefix}/team.json?t=${timestamp ?? 0}`);

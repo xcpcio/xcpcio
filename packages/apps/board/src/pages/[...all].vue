@@ -7,9 +7,15 @@ const contestTypes = [
   "icpc",
   "ccpc",
   "provincial-contest",
+  // TODO: can't use multi <Board /> with vite-ssg
+  "board",
 ];
 
 const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
+
+const isBoard = computed(() => {
+  return route.fullPath.startsWith("/board");
+});
 </script>
 
 <template>
@@ -23,6 +29,11 @@ const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
     {{ t('not-found') }}
     <GoBack />
   </div>
+
+  <div v-if="isBoard">
+    <CustomBoard />
+  </div>
+
   <div v-else>
     <Board />
   </div>

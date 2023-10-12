@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
+
 import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
 
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
+
+const props = defineProps<{
+  dataSourceUrl?: string,
+}>();
 
 const route = useRoute();
 const title = useTitle();
@@ -58,7 +63,7 @@ function reBuildRank() {
   rank.value = newRank;
 }
 
-const { data, isError, error } = useQueryBoardData(route.path, now);
+const { data, isError, error } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
@@ -209,9 +214,11 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
     <div v-if="!firstLoaded">
       <div
         :class="[wrapperWidthClass]"
-        flex justify-center items-center
+        flex flex-col gap-4 justify-center items-center
       >
-        {{ t("common.loading") }}...
+        <div>
+          {{ t("common.loading") }}...
+        </div>
 
         <div v-if="isError">
           {{ error }}

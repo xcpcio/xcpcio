@@ -13,6 +13,7 @@ declare module 'vue' {
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndex: typeof import('./components/ContestIndex.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
+    CustomBoard: typeof import('./components/board/CustomBoard.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
