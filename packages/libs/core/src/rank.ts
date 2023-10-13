@@ -7,6 +7,7 @@ import type { Submissions } from "./submission";
 import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
+import { Balloon, type Balloons } from "./balloon";
 
 export interface SelectOptionItem {
   value: string;
@@ -126,6 +127,8 @@ export class Rank {
 
   options: RankOptions;
 
+  balloons: Balloons;
+
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
@@ -142,39 +145,45 @@ export class Rank {
     this.rankStatistics = new RankStatistics();
 
     this.options = new RankOptions();
+
+    this.balloons = [];
+  }
+
+  cleanRank() {
+    (() => {
+      this.teams = [];
+
+      for (const [_k, v] of this.teamsMap) {
+        if (this.filterTeamByOrg(v)) {
+          continue;
+        }
+
+        this.teams.push(v);
+      }
+    })();
+
+    for (const t of this.teams) {
+      t.reset();
+
+      t.problemStatistics = this.contest.problems.map((p) => {
+        const ps = new TeamProblemStatistics();
+        ps.problem = p;
+        ps.contestPenalty = this.contest.penalty;
+
+        return ps;
+      });
+
+      t.problemStatisticsMap = new Map(t.problemStatistics.map(ps => [ps.problem.id, ps]));
+    }
+
+    this.contest.problems.forEach((p) => {
+      p.statistics.reset();
+    });
   }
 
   buildRank() {
     (() => {
-      (() => {
-        this.teams = [];
-
-        for (const [_k, v] of this.teamsMap) {
-          if (this.filterTeamByOrg(v)) {
-            continue;
-          }
-
-          this.teams.push(v);
-        }
-      })();
-
-      for (const t of this.teams) {
-        t.reset();
-
-        t.problemStatistics = this.contest.problems.map((p) => {
-          const ps = new TeamProblemStatistics();
-          ps.problem = p;
-          ps.contestPenalty = this.contest.penalty;
-
-          return ps;
-        });
-
-        t.problemStatisticsMap = new Map(t.problemStatistics.map(ps => [ps.problem.id, ps]));
-      }
-
-      this.contest.problems.forEach((p) => {
-        p.statistics.reset();
-      });
+      this.cleanRank();
 
       this.teams.forEach(t =>
         t.placeChartPoints.push({
@@ -393,5 +402,45 @@ export class Rank {
     return this.submissions.filter(s =>
       s.timestamp <= this.options.timestamp,
     ).sort(Submission.compare);
+  }
+
+  buildBalloons() {
+    this.balloons = [];
+    this.cleanRank();
+
+    const allSubmissions = this.getSubmissions();
+
+    for (let ix = 0; ix < allSubmissions.length; ix++) {
+      const s = allSubmissions[ix];
+
+      const teamId = s.teamId;
+      const problemId = s.problemId;
+      const team = this.teamsMap.get(teamId);
+      const problem = this.contest.problemsMap.get(problemId);
+
+      (() => {
+        if (team === undefined || problem === undefined) {
+          return;
+        }
+
+        const problemStatistics = team.problemStatisticsMap.get(problemId) as TeamProblemStatistics;
+
+        if (problemStatistics.isSolved) {
+          return;
+        }
+
+        if (s.isAccepted()) {
+          problemStatistics.isSolved = true;
+          problemStatistics.solvedTimestamp = s.timestamp;
+
+          const b = new Balloon();
+          b.team = team;
+          b.problem = problem;
+          b.submission = s;
+
+          this.balloons.push(b);
+        }
+      })();
+    }
   }
 }
