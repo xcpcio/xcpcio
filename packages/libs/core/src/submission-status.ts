@@ -128,6 +128,7 @@ export function isPending(status: SubmissionStatus): boolean {
   const pendingArray = [
     SubmissionStatus.PENDING,
     SubmissionStatus.WAITING,
+    SubmissionStatus.COMPILING,
     SubmissionStatus.JUDGING,
     SubmissionStatus.FROZEN,
   ];
