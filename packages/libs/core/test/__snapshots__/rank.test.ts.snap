@@ -6,22 +6,22 @@ Contest {
     "official" => [
       Award {
         "maxRank": 4,
-        "medalType": 1,
+        "medalType": "Gold",
         "minRank": 1,
       },
       Award {
         "maxRank": 8,
-        "medalType": 2,
+        "medalType": "Silver",
         "minRank": 5,
       },
       Award {
         "maxRank": 12,
-        "medalType": 3,
+        "medalType": "Bronze",
         "minRank": 9,
       },
       Award {
         "maxRank": 1061109567,
-        "medalType": 4,
+        "medalType": "Honorable",
         "minRank": 13,
       },
     ],

@@ -393,6 +393,7 @@ ResolverOperation {
     "id": "3000202305140132",
     "lastSolvedProblem": null,
     "lastSolvedProblemTimestamp": 0,
+    "location": undefined,
     "members": [
       "柴榕杉",
       "罗香雨",
@@ -2445,6 +2446,7 @@ ResolverOperation {
       "timeLimit": undefined,
     },
     "lastSolvedProblemTimestamp": 14280,
+    "location": undefined,
     "members": [
       "王展鹏",
       "罗煜翔",

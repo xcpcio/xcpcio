@@ -19,6 +19,8 @@ export interface Team {
   girl?: boolean;
 
   badge?: Image;
+
+  location?: string;
 }
 
 export type Teams = Array<Team> | Record<string, Team>;
