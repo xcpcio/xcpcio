@@ -1,28 +1,23 @@
 <script setup lang="ts">
-import { useRouteQuery } from "@vueuse/router";
-
-const dataSourceUrlFromRouteQuery = useRouteQuery(
-  "data-source",
-  "",
-  { transform: String },
-);
+import { getDataSourceUrl } from "~/composables/query";
 
 const { t } = useI18n();
 
-const dataSourceUrl = ref("");
+const dataSourceUrl = getDataSourceUrl();
 const dataSourceUrlText = "Data Source URL";
 
+const route = useRoute();
 const router = useRouter();
 function go() {
   if (dataSourceUrl.value) {
-    router.push(`/board/?data-source=${dataSourceUrl.value.trim()}`);
+    router.push(`${route.fullPath}/?data-source=${dataSourceUrl.value.trim()}`);
   }
 }
 </script>
 
 <template>
   <div
-    v-if="dataSourceUrlFromRouteQuery.length === 0"
+    v-if="dataSourceUrl.length === 0"
     class="flex flex-col items-center"
   >
     <div
@@ -51,11 +46,5 @@ function go() {
         {{ t('button.go') }}
       </button>
     </div>
-  </div>
-
-  <div v-else>
-    <Board
-      :data-source-url="dataSourceUrlFromRouteQuery"
-    />
   </div>
 </template>

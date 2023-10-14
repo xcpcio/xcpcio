@@ -41,6 +41,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
+  const getDataSourceUrl: typeof import('./composables/query')['getDataSourceUrl']
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']
   const getProblemChart: typeof import('./composables/statistics')['getProblemChart']
@@ -347,6 +348,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
@@ -644,6 +646,7 @@ declare module '@vue/runtime-core' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
+    readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>

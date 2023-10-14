@@ -12,6 +12,10 @@ export class Balloon {
     this.team = new Team();
     this.submission = new Submission();
   }
+
+  get key() {
+    return `balloon-${this.team.id}-${this.problem.id}`;
+  }
 }
 
 export type Balloons = Array<Balloon>;
