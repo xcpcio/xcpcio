@@ -51,6 +51,8 @@ export class Team {
 
   awards: MedalType[];
 
+  location?: string;
+
   constructor() {
     this.id = "";
     this.name = "";
@@ -243,6 +245,10 @@ export function createTeam(teamJSON: ITeam): Team {
 
   t.group = [...new Set(t.group)];
   t.group.sort();
+
+  if (teamJSON.location) {
+    t.location = teamJSON.location;
+  }
 
   return t;
 }
