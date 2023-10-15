@@ -64,7 +64,7 @@ describe("contest", () => {
     expect(firstTeam.organization).toMatchInlineSnapshot("\"北京大学\"");
 
     expect(firstTeam.penaltyToMinute).toMatchInlineSnapshot("1497");
-    expect(firstTeam.dict).toMatchInlineSnapshot("52");
+    expect(firstTeam.dirt).toMatchInlineSnapshot("52");
 
     expect(firstTeam.problemStatistics).matchSnapshot();
     expect(firstTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();
@@ -79,7 +79,7 @@ describe("contest", () => {
     expect(lastTeam.organization).toMatchInlineSnapshot("\"一汽红旗\"");
 
     expect(lastTeam.penaltyToMinute).toMatchInlineSnapshot("0");
-    expect(lastTeam.dict).toMatchInlineSnapshot("0");
+    expect(lastTeam.dirt).toMatchInlineSnapshot("0");
 
     expect(lastTeam.problemStatistics).matchSnapshot();
     expect(lastTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();

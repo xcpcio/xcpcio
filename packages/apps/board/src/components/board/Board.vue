@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
+import { onKeyStroke } from "@vueuse/core";
 
 import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
@@ -23,6 +24,8 @@ const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = ref(new Date());
 const rankOptions = ref(new RankOptions());
+
+const enableAutoScroll = ref(false);
 
 (() => {
   const filterOrganizations = useLocalStorageForFilterOrganizations();
@@ -56,7 +59,11 @@ function onChangeCurrentGroup(nextGroup: string) {
   rankOptions.value.setGroup(currentGroupFromRouteQuery.value);
 })();
 
-function reBuildRank() {
+function reBuildRank(options = { force: false }) {
+  if (enableAutoScroll.value && options.force === false) {
+    return;
+  }
+
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = _.cloneDeep(rankOptions.value);
   newRank.buildRank();
@@ -165,6 +172,61 @@ function onChangeCurrentType(type: string) {
   }
 }
 
+function isPageBottom() {
+  const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+  if (scrollHeight - scrollTop === clientHeight) {
+    return true;
+  }
+
+  return false;
+}
+
+let autoScrollIntervalId: NodeJS.Timeout | null = null;
+let scrollTop = 0;
+let scrollDir: "UP" | "DOWN" = "DOWN";
+
+function clearAutoScrollInterval() {
+  if (autoScrollIntervalId !== null) {
+    clearInterval(autoScrollIntervalId);
+  }
+}
+
+onKeyStroke("s", (_e) => {
+  enableAutoScroll.value = !enableAutoScroll.value;
+
+  if (enableAutoScroll.value === true) {
+    autoScrollIntervalId = setInterval(() => {
+      if (scrollDir === "DOWN") {
+        if (isPageBottom()) {
+          scrollDir = "UP";
+          reBuildRank({ force: true });
+          return;
+        }
+
+        scrollTop += 2;
+      } else {
+        if (scrollTop === 0) {
+          scrollDir = "DOWN";
+          reBuildRank({ force: true });
+          return;
+        }
+
+        scrollTop -= 2;
+      }
+
+      window.scrollTo({
+        top: scrollTop,
+        behavior: "smooth",
+      });
+    }, 64);
+  } else {
+    clearAutoScrollInterval();
+  }
+});
+
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
   return `${t("standings.start_time")}${t("common.colon")}${time}`;
@@ -203,6 +265,7 @@ const setNowIntervalId = setInterval(() => {
 
 onUnmounted(() => {
   clearInterval(setNowIntervalId);
+  clearAutoScrollInterval();
 });
 
 const wrapperWidthClass = "sm:w-[1280px] xl:w-screen";

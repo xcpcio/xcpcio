@@ -1,4 +1,4 @@
-export function calcDict(attemptedNum: number, solvedNum: number) {
+export function calcDirt(attemptedNum: number, solvedNum: number) {
   if (solvedNum === 0) {
     return 0;
   }

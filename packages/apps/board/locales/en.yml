@@ -44,13 +44,13 @@ standings:
   team: Team
   solved: Solved
   penalty: Penalty
-  dict: Dict
+  dirt: Dirt
 
   statistics:
     submitted: Submitted
     attempted: Attempted
     accepted: Accepted
-    dict: Dict
+    dirt: Dirt
     first_solved: First Solved
     last_solved: Last Solved
     head_data:
