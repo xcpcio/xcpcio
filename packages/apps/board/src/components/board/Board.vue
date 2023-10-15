@@ -185,8 +185,6 @@ function isPageBottom() {
 }
 
 let autoScrollIntervalId: NodeJS.Timeout | null = null;
-let scrollTop = 0;
-let scrollDir: "UP" | "DOWN" = "DOWN";
 
 function clearAutoScrollInterval() {
   if (autoScrollIntervalId !== null) {
@@ -198,6 +196,10 @@ onKeyStroke("S", (_e) => {
   enableAutoScroll.value = !enableAutoScroll.value;
 
   if (enableAutoScroll.value === true) {
+    const step = 2;
+    let scrollTop = 0;
+    let scrollDir: "UP" | "DOWN" = "DOWN";
+
     autoScrollIntervalId = setInterval(() => {
       if (scrollDir === "DOWN") {
         if (isPageBottom()) {
@@ -206,7 +208,7 @@ onKeyStroke("S", (_e) => {
           return;
         }
 
-        scrollTop += 2;
+        scrollTop += step;
       } else {
         if (scrollTop === 0) {
           scrollDir = "DOWN";
@@ -214,7 +216,7 @@ onKeyStroke("S", (_e) => {
           return;
         }
 
-        scrollTop -= 2;
+        scrollTop -= step;
       }
 
       window.scrollTo({
