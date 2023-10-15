@@ -103,19 +103,19 @@ export default defineConfig({
         theme_color: "#ffffff",
         icons: [
           {
-            src: "/balloon-192x192.svg",
+            src: "/balloon-192x192.png",
             sizes: "192x192",
-            type: "image/svg+xml",
+            type: "image/png",
           },
           {
-            src: "/balloon-512x512.svg",
+            src: "/balloon-512x512.png",
             sizes: "512x512",
-            type: "image/svg+xml",
+            type: "image/png",
           },
           {
-            src: "/balloon-512x512.svg",
+            src: "/balloon-512x512.png",
             sizes: "512x512",
-            type: "image/svg+xml",
+            type: "image/png",
             purpose: "any maskable",
           },
         ],
