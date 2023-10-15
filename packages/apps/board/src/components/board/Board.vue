@@ -194,7 +194,7 @@ function clearAutoScrollInterval() {
   }
 }
 
-onKeyStroke("s", (_e) => {
+onKeyStroke("S", (_e) => {
   enableAutoScroll.value = !enableAutoScroll.value;
 
   if (enableAutoScroll.value === true) {
@@ -225,7 +225,7 @@ onKeyStroke("s", (_e) => {
   } else {
     clearAutoScrollInterval();
   }
-});
+}, { dedupe: false });
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
