@@ -41,7 +41,7 @@ watch(data, async () => {
 });
 
 const balloons = computed(() => {
-  return rank.value.balloons;
+  return rank.value.balloons.filter(b => b.submission.timestamp < 500);
 });
 
 const setNowIntervalId = setInterval(() => {
@@ -75,8 +75,15 @@ onUnmounted(() => {
       v-else
       flex flex-col justify-center gap-4
     >
-      <template v-for="b in balloons" :key="b.key">
-        <div>
+      <template
+        v-for="(b, ix) in balloons"
+        :key="b.key"
+      >
+        <div
+          flex flex-row gap-x-4 h-24 font-mono text-4xl
+          :class="[ix % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
+          bg-resolver-bg-one
+        >
           {{ b.team.organization }} {{ b.team.name }} {{ b.problem.label }} {{ b.submission.timestampToMinute }}
         </div>
       </template>
