@@ -108,12 +108,12 @@ export default defineConfig({
             type: "image/png",
           },
           {
-            src: "/balloon-512x512.png",
+            src: "/balloon2-512x512.png",
             sizes: "512x512",
             type: "image/png",
           },
           {
-            src: "/balloon-512x512.png",
+            src: "/balloon2-512x512.png",
             sizes: "512x512",
             type: "image/png",
             purpose: "any maskable",
