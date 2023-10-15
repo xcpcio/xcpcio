@@ -1,7 +1,7 @@
 import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
 import type { Problem, TeamProblemStatistics } from "./problem";
-import { calcDict } from "./utils";
+import { calcDirt } from "./utils";
 import type { Submissions } from "./submission";
 import type { Award, MedalType } from "./award";
 
@@ -111,11 +111,11 @@ export class Team {
     return Math.floor(this.penalty / 60);
   }
 
-  get dict() {
+  get dirt() {
     const attemptedNum = this.attemptedProblemNum;
     const solvedNum = this.solvedProblemNum;
 
-    return calcDict(attemptedNum, solvedNum);
+    return calcDirt(attemptedNum, solvedNum);
   }
 
   get membersToString() {

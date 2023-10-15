@@ -150,7 +150,7 @@ function isRenderByVisible() {
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      {{ `${team.dict}%` }}
+      {{ `${team.dirt}%` }}
     </td>
   </tr>
 </template>

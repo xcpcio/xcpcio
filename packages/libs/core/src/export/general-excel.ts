@@ -124,7 +124,7 @@ export class GeneralExcelConverter {
         head.push(rank.contest.organization);
       }
 
-      head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dict");
+      head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
 
       if (enableAwards) {
         head.push("Medal");
@@ -167,7 +167,7 @@ export class GeneralExcelConverter {
         }
       }
 
-      arr.push(`${team.dict}%`);
+      arr.push(`${team.dirt}%`);
 
       if (enableAwards) {
         const medals = team.awards

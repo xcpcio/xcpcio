@@ -1,7 +1,7 @@
 import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 
 import type { Submissions } from "./submission";
-import { calcDict } from "./utils";
+import { calcDirt } from "./utils";
 
 export class ProblemStatistics {
   acceptedNum: number;
@@ -41,12 +41,12 @@ export class ProblemStatistics {
     this.lastSolveSubmissions = [];
   }
 
-  get dict() {
+  get dirt() {
     if (this.acceptedNum === 0) {
       return 0;
     }
 
-    return calcDict(this.attemptedNum, this.acceptedNum);
+    return calcDirt(this.attemptedNum, this.acceptedNum);
   }
 }
 

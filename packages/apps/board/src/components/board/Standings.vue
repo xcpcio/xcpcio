@@ -112,7 +112,7 @@ const maxTeamLength = computed(() => {
               <s>{{ p.statistics.acceptedNum }}</s>
             </th>
             <th class="title" style="width: 2.5rem;">
-              {{ t("standings.dict") }}
+              {{ t("standings.dirt") }}
             </th>
           </tr>
         </thead>

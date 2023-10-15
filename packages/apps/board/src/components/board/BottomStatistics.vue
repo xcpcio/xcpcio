@@ -41,12 +41,12 @@ function getAcceptedRatio(p: ProblemStatistics): string {
   return `${ratio}%`;
 }
 
-function getDict(p: ProblemStatistics): string {
+function getDirt(p: ProblemStatistics): string {
   if (p.attemptedNum === 0) {
     return "NaN";
   }
 
-  return `${p.dict}%`;
+  return `${p.dirt}%`;
 }
 
 function getFirstSolved(p: ProblemStatistics): string {
@@ -116,14 +116,14 @@ function getLastSolved(p: ProblemStatistics): string {
   <tr class="statistics-1">
     <td class="empty" :colspan="getColSpan()" />
     <td class="stnd">
-      <b>{{ t("standings.statistics.dict") }}</b>
+      <b>{{ t("standings.statistics.dirt") }}</b>
     </td>
     <template v-for="p in rank.contest.problems" :key="p.id">
       <td class="stnd">
         <b>{{ p.statistics.attemptedNum - p.statistics.acceptedNum }}</b>
         <br>
         <b>
-          ({{ getDict(p.statistics) }})
+          ({{ getDirt(p.statistics) }})
         </b>
       </td>
     </template>
