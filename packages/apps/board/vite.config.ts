@@ -98,24 +98,24 @@ export default defineConfig({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "safari-pinned-tab.svg"],
       manifest: {
-        name: "Vitesse",
-        short_name: "Vitesse",
+        name: "Board",
+        short_name: "Board",
         theme_color: "#ffffff",
         icons: [
           {
-            src: "/pwa-192x192.png",
+            src: "/balloon-192x192.svg",
             sizes: "192x192",
-            type: "image/png",
+            type: "image/svg+xml",
           },
           {
-            src: "/pwa-512x512.png",
+            src: "/balloon-512x512.svg",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/svg+xml",
           },
           {
-            src: "/pwa-512x512.png",
+            src: "/balloon-512x512.svg",
             sizes: "512x512",
-            type: "image/png",
+            type: "image/svg+xml",
             purpose: "any maskable",
           },
         ],
