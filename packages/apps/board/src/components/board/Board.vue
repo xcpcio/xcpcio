@@ -185,8 +185,6 @@ function isPageBottom() {
 }
 
 let autoScrollIntervalId: NodeJS.Timeout | null = null;
-let scrollTop = 0;
-let scrollDir: "UP" | "DOWN" = "DOWN";
 
 function clearAutoScrollInterval() {
   if (autoScrollIntervalId !== null) {
@@ -194,10 +192,14 @@ function clearAutoScrollInterval() {
   }
 }
 
-onKeyStroke("s", (_e) => {
+onKeyStroke("S", (_e) => {
   enableAutoScroll.value = !enableAutoScroll.value;
 
   if (enableAutoScroll.value === true) {
+    const step = 2;
+    let scrollTop = 0;
+    let scrollDir: "UP" | "DOWN" = "DOWN";
+
     autoScrollIntervalId = setInterval(() => {
       if (scrollDir === "DOWN") {
         if (isPageBottom()) {
@@ -206,7 +208,7 @@ onKeyStroke("s", (_e) => {
           return;
         }
 
-        scrollTop += 2;
+        scrollTop += step;
       } else {
         if (scrollTop === 0) {
           scrollDir = "DOWN";
@@ -214,7 +216,7 @@ onKeyStroke("s", (_e) => {
           return;
         }
 
-        scrollTop -= 2;
+        scrollTop -= step;
       }
 
       window.scrollTo({
@@ -225,7 +227,7 @@ onKeyStroke("s", (_e) => {
   } else {
     clearAutoScrollInterval();
   }
-});
+}, { dedupe: false });
 
 const startTime = computed(() => {
   const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
