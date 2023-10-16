@@ -44,7 +44,12 @@ defineExpose({ focus });
       aria-label="Clear search"
       @click="clear()"
     >
-      <span i-carbon-close ma block aria-hidden="true" />
+      <span
+        i-carbon-close
+        ma
+        block
+        aria-hidden="true"
+      />
     </button>
   </div>
 </template>

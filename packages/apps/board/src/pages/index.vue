@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useFetch } from "@vueuse/core";
 import { useRouteQuery } from "@vueuse/router";
+
 import { createContestIndexList } from "@xcpcio/core";
 import type { ContestIndexList } from "@xcpcio/core";
 
