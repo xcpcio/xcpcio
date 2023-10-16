@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { ContestIndex } from "@xcpcio/core";
-import type { Image } from "@xcpcio/types";
+import { getImageSource } from "@xcpcio/core";
 
 import { useElementVisibility } from "@vueuse/core";
+
+import { getLogoFromPreset } from "./logo";
 
 const props = defineProps<{
   data: ContestIndex
@@ -16,17 +18,13 @@ const now = ref(new Date());
 const el = ref(null);
 const isVisible = useElementVisibility(el);
 
-function getImageSource(image: Image): string {
-  if (image?.url) {
-    return image.url;
+const logo = computed(() => {
+  if (!contest.value.logo) {
+    return undefined;
   }
 
-  if (image?.base64) {
-    return `data:image/${image.type};base64,${image.base64}`;
-  }
-
-  return "";
-}
+  return getLogoFromPreset(contest.value.logo);
+});
 
 const setNowIntervalId = setInterval(() => {
   now.value = new Date();
@@ -53,12 +51,12 @@ onUnmounted(() => {
             w-full flex
           >
             <div
-              v-if="contest.logo !== undefined"
+              v-if="logo !== undefined"
               class="logo"
             >
               <img
                 class="h-10 w-10"
-                :src="getImageSource(contest.logo)"
+                :src="getImageSource(logo)"
                 alt="logo"
               >
             </div>
