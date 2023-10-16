@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Image } from "@xcpcio/types";
+import { getImageSource } from "@xcpcio/core";
 
 const props = defineProps<{
   image: Image
@@ -22,7 +23,7 @@ const widthClass = computed(() => {
 <template>
   <img
     v-if="image.base64"
-    :src="['data:image/png;base64,', image.base64].join('')"
+    :src="getImageSource(image)"
     alt="badge"
     :class="[widthClass]"
   >

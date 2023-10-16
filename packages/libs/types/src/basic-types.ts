@@ -94,6 +94,7 @@ export interface Image {
   url?: string;
   base64?: Base64;
   type?: "png" | "svg" | "jpg" | "jpeg";
+  preset?: string;
   [key: string]: string | undefined;
 }
 

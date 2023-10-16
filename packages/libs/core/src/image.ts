@@ -6,7 +6,7 @@ export function getImageSource(image: Image): string {
   }
 
   if (image?.base64) {
-    return `data:image/${image.type};base64,${image.base64}`;
+    return `data:image/${image.type ?? "png"};base64,${image.base64}`;
   }
 
   return "";
