@@ -14,15 +14,20 @@
       return `${path}/`;
     }
 
-    let DATA_HOST;
     try {
-      // eslint-disable-next-line no-undef
-      DATA_HOST = __DATA_HOST__;
+      let DATA_HOST = __DATA_HOST__;
+      DATA_HOST = normalizePath(DATA_HOST);
+      window.DATA_HOST = DATA_HOST;
     } catch (e) {
-      DATA_HOST = "/data/";
+      window.DATA_HOST = "/data/";
     }
-    DATA_HOST = normalizePath(DATA_HOST);
-    window.DATA_HOST = DATA_HOST;
+
+    try {
+      let DATA_REGION = __DATA_REGION__;
+      window.DATA_REGION = DATA_REGION;
+    } catch (e) {
+      window.DATA_REGION = "CN";
+    }
   </script>
   <script>
     (function () {
