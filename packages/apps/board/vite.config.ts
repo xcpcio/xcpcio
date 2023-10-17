@@ -173,4 +173,11 @@ export default defineConfig({
       },
     },
   },
+
+  experimental: {
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    renderBuiltUrl(filename: string, { hostType }: { hostType: "js" | "css" | "html" }) {
+      return `__CDN_HOST__/${filename}`;
+    },
+  },
 });
