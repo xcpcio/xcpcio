@@ -1,5 +1,13 @@
 <script setup lang="ts">
 import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
+
+const dataRegion = computed(() => {
+  if (!window) {
+    return "";
+  }
+
+  return window.DATA_REGION;
+});
 </script>
 
 <template>
@@ -69,6 +77,7 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
               >
                 <div>Tag: {{ VERSION }}</div>
                 <div>Sha: {{ GITHUB_SHA }}</div>
+                <div>Data Region: {{ dataRegion }}</div>
               </div>
             </template>
           </VTooltip>
