@@ -1,6 +1,22 @@
 <script setup lang="ts">
 import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
 
+const cdnHost = computed(() => {
+  if (!window) {
+    return "";
+  }
+
+  return window.CDN_HOST;
+});
+
+const dataHost = computed(() => {
+  if (!window) {
+    return "";
+  }
+
+  return window.DATA_HOST;
+});
+
 const dataRegion = computed(() => {
   if (!window) {
     return "";
@@ -77,17 +93,33 @@ const dataRegion = computed(() => {
               >
                 <div>Tag: {{ VERSION }}</div>
                 <div>Sha: {{ GITHUB_SHA }}</div>
-                <div>Data Region: {{ dataRegion }}</div>
               </div>
             </template>
           </VTooltip>
         </li>
 
         <li>
-          <a
-            href="mailto:hi@dup4.com"
-            mr-4 md:mr-6 hover:underline
-          >Contact</a>
+          <VTooltip
+            w-inherit
+          >
+            <a
+              href="mailto:hi@dup4.com"
+              mr-4 md:mr-6 hover:underline
+            >
+              Contact
+            </a>
+
+            <template #popper>
+              <div
+                flex justify-center
+                flex-col
+              >
+                <div>CDN Host: {{ cdnHost }}</div>
+                <div>DATA Host: {{ dataHost }}</div>
+                <div>Data Region: {{ dataRegion }}</div>
+              </div>
+            </template>
+          </VTooltip>
         </li>
       </ul>
 

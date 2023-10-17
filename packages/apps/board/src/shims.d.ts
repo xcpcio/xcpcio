@@ -1,4 +1,5 @@
 declare interface Window {
+  CDN_HOST: string;
   DATA_HOST: string;
   DATA_REGION: string;
 }

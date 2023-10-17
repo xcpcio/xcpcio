@@ -9,7 +9,7 @@ if [[ -n "${BOARD_CDN_HOST}" ]]; then
 fi
 
 DATA_HOST="${BOARD_DATA_HOST}"
-
+DATA_REGION="${BOARD_DATA_REGION}"
 BAIDU_ANALYTICS_ID="${BOARD_BAIDU_ANALYTICS_ID}"
 GOOGLE_ANALYTICS_ID="${BOARD_GOOGLE_ANALYTICS_ID}"
 PLAUSIBLE_JS_URL="${BOARD_PLAUSIBLE_JS_URL}"
@@ -21,6 +21,10 @@ sed -i "s|__CDN_HOST__|${CDN_HOST}|g" "${TARGET_FILE}"
 
 if [[ -n "${DATA_HOST}" ]]; then
     sed -i "s|__DATA_HOST__|\"${DATA_HOST}\"|g" "${TARGET_FILE}"
+fi
+
+if [[ -n "${DATA_REGION}" ]]; then
+    sed -i "s|__DATA_REGION__|\"${DATA_REGION}\"|g" "${TARGET_FILE}"
 fi
 
 if [[ -n "${BAIDU_ANALYTICS_ID}" ]]; then
