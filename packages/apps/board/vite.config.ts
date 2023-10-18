@@ -1,4 +1,5 @@
 import path from "node:path";
+
 import { defineConfig } from "vite";
 import Vue from "@vitejs/plugin-vue";
 import Pages from "vite-plugin-pages";
@@ -15,6 +16,8 @@ import Unocss from "unocss/vite";
 import Shiki from "markdown-it-shiki";
 import VueMacros from "unplugin-vue-macros/vite";
 import WebfontDownload from "vite-plugin-webfont-dl";
+
+import packageJSON from "./package.json";
 
 export default defineConfig({
   resolve: {
@@ -177,6 +180,12 @@ export default defineConfig({
   experimental: {
     // eslint-disable-next-line unused-imports/no-unused-vars
     renderBuiltUrl(filename: string, { hostType }: { hostType: "js" | "css" | "html" }) {
+      // eslint-disable-next-line n/prefer-global/process
+      if (process.env.BUILD_MODE === "npm_publish") {
+        const tag = packageJSON.version;
+        return `https://cdn.jsdelivr.net/npm/@xcpcio/board-app@${tag}/dist/${filename}`;
+      }
+
       return `__CDN_HOST__/${filename}`;
     },
   },
