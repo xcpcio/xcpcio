@@ -29,6 +29,9 @@ importers:
       bumpp:
         specifier: ^7.2.0
         version: 7.2.0
+      cross-env:
+        specifier: ^7.0.3
+        version: 7.0.3
       eslint:
         specifier: ^8.47.0
         version: 8.47.0
