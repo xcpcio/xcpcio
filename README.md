@@ -5,7 +5,7 @@
 [![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]](https://mit-license.org/)
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
 
 ## Packages
 
