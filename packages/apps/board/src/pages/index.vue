@@ -7,6 +7,7 @@ import type { ContestIndexList } from "@xcpcio/core";
 
 import { TITLE_SUFFIX } from "~/composables/constant";
 import SearchInput from "~/components/SearchInput.vue";
+import ContestIndexUI from "~/components/ContestIndexUI.vue";
 
 const { t } = useI18n();
 useTitle(TITLE_SUFFIX);
@@ -108,7 +109,7 @@ watch(searchText, () => {
             v-for="item in contestIndexList"
             :key="item.boardLink"
           >
-            <ContestIndex
+            <ContestIndexUI
               :data="item"
             />
           </template>
