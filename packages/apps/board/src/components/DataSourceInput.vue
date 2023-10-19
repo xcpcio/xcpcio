@@ -5,13 +5,12 @@ const { t } = useI18n();
 
 const dataSourceUrl = getDataSourceUrl();
 const dataSourceUrlText = "Data Source URL";
+const dataSourceUrlInput = ref(dataSourceUrl.value);
 
 const route = useRoute();
 const router = useRouter();
 function go() {
-  if (dataSourceUrl.value) {
-    router.push(`${route.fullPath}/?data-source=${dataSourceUrl.value.trim()}`);
-  }
+  router.push(`${route.fullPath}/?data-source=${dataSourceUrlInput.value.trim()}`);
 }
 </script>
 
@@ -24,7 +23,7 @@ function go() {
       w-128
     >
       <TheInput
-        v-model="dataSourceUrl"
+        v-model="dataSourceUrlInput"
         w-full
         :placeholder="dataSourceUrlText"
         autocomplete="false"
@@ -40,7 +39,7 @@ function go() {
     <div>
       <button
         m-3 text-sm btn
-        :disabled="!dataSourceUrl"
+        :disabled="dataSourceUrlInput.length === 0"
         @click="go"
       >
         {{ t('button.go') }}

@@ -5,9 +5,19 @@ const dataSourceUrl = getDataSourceUrl();
 </script>
 
 <template>
-  <DataSourceInput />
+  <div
+    v-if="dataSourceUrl.length === 0"
+  >
+    <div
+      mt-20
+    >
+      <DataSourceInput />
+    </div>
+  </div>
 
-  <div v-if="dataSourceUrl.length > 0">
+  <div
+    v-if="dataSourceUrl.length > 0"
+  >
     <Balloon
       :data-source-url="dataSourceUrl"
     />

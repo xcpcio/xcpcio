@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
-import type { Contest, Submissions, Teams } from "@xcpcio/core";
+import type { Contest, Submissions, Team, Teams } from "@xcpcio/core";
 import { type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
 
 const props = defineProps<{
@@ -41,8 +41,22 @@ watch(data, async () => {
 });
 
 const balloons = computed(() => {
-  return rank.value.balloons.filter(b => b.submission.timestamp < 500);
+  return rank.value.balloons.filter(b => b.submission.timestamp < 1000);
 });
+
+function showTeamName(team: Team) {
+  const left = team.organization;
+  const right = team.name;
+  if (right.length === 0) {
+    return left;
+  }
+
+  if (left.length === 0) {
+    return right;
+  }
+
+  return `${left} - ${right}`;
+}
 
 const setNowIntervalId = setInterval(() => {
   now.value = new Date();
@@ -55,11 +69,16 @@ onUnmounted(() => {
 
 <template>
   <div
-    flex flex-justify-center
+    class="bg-[#323443]"
+    text-gray-200
   >
     <div v-if="!firstLoaded">
       <div
-        flex flex-col gap-4 justify-center items-center
+        flex flex-col
+        justify-center items-center
+        w-screen
+        h-screen
+        text-xl italic
       >
         <div>
           {{ t("common.loading") }}...
@@ -73,20 +92,48 @@ onUnmounted(() => {
 
     <div
       v-else
-      flex flex-col justify-center gap-4
     >
-      <template
-        v-for="(b, ix) in balloons"
-        :key="b.key"
+      <div
+        flex flex-col justify-between
       >
-        <div
-          flex flex-row gap-x-4 h-24 font-mono text-4xl
-          :class="[ix % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
-          bg-resolver-bg-one
+        <template
+          v-for="(b, ix) in balloons"
+          :key="b.key"
         >
-          {{ b.team.organization }} {{ b.team.name }} {{ b.problem.label }} {{ b.submission.timestampToMinute }}
-        </div>
-      </template>
+          <div
+            flex flex-row gap-x-4 h-24
+            font-mono text-4xl
+            :class="[ix % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
+          >
+            <div
+              w-20
+              flex flex-shrink-0 justify-center items-center
+            >
+              {{ b.problem.label }}
+            </div>
+            <div
+              flex flex-1 flex-col justify-center items-start gap-y-3
+            >
+              <div
+                class="resolver-team-name"
+                truncate overflow-hidden
+              >
+                {{ showTeamName(b.team) }}
+              </div>
+              <div
+
+                flex flex-row text-sm items-start gap-x-2
+              />
+            </div>
+
+            <div
+              w-32 flex flex-shrink-0 flex-row justify-start items-center
+            >
+              {{ b.submission.timestampToMinute }}
+            </div>
+          </div>
+        </template>
+      </div>
     </div>
   </div>
 </template>
