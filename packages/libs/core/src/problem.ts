@@ -182,19 +182,19 @@ export class TeamProblemStatistics {
     return this.totalCount === 0;
   }
 
+  get solvedTimestampToMinute() {
+    return Math.floor(this.solvedTimestamp / 60);
+  }
+
   get penalty() {
     if (this.isSolved === false) {
       return 0;
     }
 
-    return Math.floor(this.solvedTimestamp / 60) * 60 + this.failedCount * this.contestPenalty;
+    return this.solvedTimestampToMinute * 60 + this.failedCount * this.contestPenalty;
   }
 
   get penaltyToMinute() {
     return Math.floor(this.penalty / 60);
-  }
-
-  get solvedTimestampToMinute() {
-    return Math.floor(this.solvedTimestamp / 60);
   }
 }
