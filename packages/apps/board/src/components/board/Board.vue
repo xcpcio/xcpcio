@@ -7,6 +7,7 @@ import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTi
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
 
+import { TITLE_SUFFIX } from "~/composables/constant";
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 const props = defineProps<{
@@ -14,7 +15,7 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
-const title = useTitle();
+const title = useTitle(TITLE_SUFFIX);
 const { t } = useI18n();
 
 const firstLoaded = ref(false);
@@ -77,7 +78,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  title.value = `${contestData.value.name} - XCPCIO Board`;
+  title.value = `${contestData.value.name} | ${TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);

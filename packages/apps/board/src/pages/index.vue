@@ -5,9 +5,11 @@ import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
 import type { ContestIndexList } from "@xcpcio/core";
 
+import { TITLE_SUFFIX } from "~/composables/constant";
 import SearchInput from "~/components/SearchInput.vue";
 
 const { t } = useI18n();
+useTitle(TITLE_SUFFIX);
 
 const now = ref(new Date());
 const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${now.value.getTime()}`);
