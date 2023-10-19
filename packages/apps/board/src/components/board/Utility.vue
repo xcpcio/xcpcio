@@ -6,15 +6,21 @@
 const { t } = useI18n();
 
 const route = useRoute();
+const router = useRouter();
 
 const resolverUrl = computed(() => {
   return `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`;
 });
+
+function goBalloon() {
+  router.push(`/balloon/?data-source=${route.path}`);
+}
 </script>
 
 <template>
   <div
-    flex w-full mt-4
+    w-full
+    flex mt-4 gap-4
   >
     <a
       btn
@@ -24,5 +30,13 @@ const resolverUrl = computed(() => {
     >
       {{ t("type_menu.resolver") }}
     </a>
+
+    <button
+      btn
+      title="Balloon"
+      @click="goBalloon"
+    >
+      {{ t('type_menu.balloon') }}
+    </button>
   </div>
 </template>
