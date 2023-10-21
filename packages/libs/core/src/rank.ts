@@ -196,6 +196,7 @@ export class Rank {
       (() => {
         this.rankStatistics.reset();
         this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
+        this.rankStatistics.teamSolvedNumIndex = Array(this.contest.problems.length + 1).fill(0);
       })();
 
       let preSubmissionTimestampToMinute = 0;
@@ -302,6 +303,17 @@ export class Rank {
     (() => {
       for (const t of this.teams) {
         this.rankStatistics.teamSolvedNum[t.solvedProblemNum]++;
+      }
+
+      {
+        let current = 0;
+        const teamSolvedNum = this.rankStatistics.teamSolvedNum;
+        const teamSolvedNumIndex = this.rankStatistics.teamSolvedNumIndex;
+
+        for (let i = teamSolvedNumIndex.length - 1; i >= 0; i--) {
+          current += (teamSolvedNum[i] > 0 ? 1 : 0);
+          teamSolvedNumIndex[i] = current;
+        }
       }
 
       if (this.teams.length > 0) {
