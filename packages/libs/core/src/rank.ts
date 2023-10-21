@@ -307,9 +307,12 @@ export class Rank {
 
       {
         let pre = 0;
-        for (let i = this.rankStatistics.teamSolvedNumIndex.length - 1; i >= 0; i--) {
-          const current = pre + (this.rankStatistics.teamSolvedNum[i] > 0 ? 1 : 0);
-          this.rankStatistics.teamSolvedNumIndex[i] = current;
+        const teamSolvedNum = this.rankStatistics.teamSolvedNum;
+        const teamSolvedNumIndex = this.rankStatistics.teamSolvedNumIndex;
+
+        for (let i = teamSolvedNumIndex.length - 1; i >= 0; i--) {
+          const current = pre + (teamSolvedNum[i] > 0 ? 1 : 0);
+          teamSolvedNumIndex[i] = current;
           pre = current;
         }
       }
