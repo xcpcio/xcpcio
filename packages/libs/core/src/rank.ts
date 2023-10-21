@@ -306,14 +306,13 @@ export class Rank {
       }
 
       {
-        let pre = 0;
+        let current = 0;
         const teamSolvedNum = this.rankStatistics.teamSolvedNum;
         const teamSolvedNumIndex = this.rankStatistics.teamSolvedNumIndex;
 
         for (let i = teamSolvedNumIndex.length - 1; i >= 0; i--) {
-          const current = pre + (teamSolvedNum[i] > 0 ? 1 : 0);
+          current += (teamSolvedNum[i] > 0 ? 1 : 0);
           teamSolvedNumIndex[i] = current;
-          pre = current;
         }
       }
 
