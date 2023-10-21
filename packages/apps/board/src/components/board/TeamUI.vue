@@ -43,7 +43,10 @@ function getStandClassName(t: Team, isRankField = false): string {
     }
   }
 
-  return `stand${(rank.value.rankStatistics.maxSolvedProblems - t.solvedProblemNum) % 2}${(t.rank - 1) % 2}`;
+  const solvedProblemIndex = (rank.value.rankStatistics.getTeamSolvedNumIndex(t.solvedProblemNum) - 1) % 2;
+  const rankIndex = (t.rank - 1) % 2;
+
+  return `stand${solvedProblemIndex}${rankIndex}`;
 }
 
 function isRenderByVisible() {
