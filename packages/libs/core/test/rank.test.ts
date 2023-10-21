@@ -2,6 +2,8 @@ import { resolve } from "node:path";
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 
+import _ from "lodash";
+
 import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
 import { createSubmissions } from "../src/submission";
@@ -89,6 +91,12 @@ describe("contest", () => {
       const converter = new CodeforcesGymGhostDATConverter();
       const dat = converter.convert(rank);
       expect(dat.length).toMatchInlineSnapshot("44292");
+    }
+
+    {
+      const rank_ = _.cloneDeep(rank);
+      rank_.buildBalloons();
+      expect(rank_.balloons.length).toMatchInlineSnapshot("555");
     }
   });
 });

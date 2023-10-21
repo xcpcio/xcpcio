@@ -25,6 +25,17 @@ export default defineConfig({
         900: "#1e3a8a",
         950: "#172554",
       },
+      resolver: {
+        ac: "var(--theme-resolver-ac)",
+        wa: "var(--theme-resolver-wa)",
+        pending: "var(--theme-resolver-pending)",
+        untouched: "var(--theme-resolver-untouched)",
+        selected: "var(--theme-resolver-selected)",
+        bg: {
+          zero: "var(--theme-resolver-bg-0)",
+          one: "var(--theme-resolver-bg-1)",
+        },
+      },
     },
   },
   shortcuts: [

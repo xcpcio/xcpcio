@@ -8,12 +8,15 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Badge: typeof import('./components/board/Badge.vue')['default']
-    Balloon: typeof import('./components/board/Balloon.vue')['default']
+    Balloon: typeof import('./components/Balloon.vue')['default']
+    BalloonBlock: typeof import('./components/BalloonBlock.vue')['default']
     Board: typeof import('./components/board/Board.vue')['default']
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndexUI: typeof import('./components/ContestIndexUI.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
-    CustomBoard: typeof import('./components/board/CustomBoard.vue')['default']
+    CustomBalloon: typeof import('./components/CustomBalloon.vue')['default']
+    CustomBoard: typeof import('./components/CustomBoard.vue')['default']
+    DataSourceInput: typeof import('./components/DataSourceInput.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
