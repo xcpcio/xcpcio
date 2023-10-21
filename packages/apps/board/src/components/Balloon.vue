@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
-import type { Contest, Submissions, Team, Teams } from "@xcpcio/core";
-import { type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
+import type { Contest, Submissions, Teams } from "@xcpcio/core";
+import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+
+import { BALLOON_TITLE_SUFFIX } from "~/composables/constant";
 
 const props = defineProps<{
   dataSourceUrl: string,
 }>();
 
-const title = useTitle();
+const title = useTitle(BALLOON_TITLE_SUFFIX);
 const { t } = useI18n();
 
 const firstLoaded = ref(false);
@@ -30,7 +32,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  title.value = `${contestData.value.name} - XCPCIO Balloon`;
+  title.value = `${contestData.value.name} | ${BALLOON_TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
@@ -41,22 +43,8 @@ watch(data, async () => {
 });
 
 const balloons = computed(() => {
-  return rank.value.balloons.filter(b => b.submission.timestamp < 1000);
+  return rank.value.balloons;
 });
-
-function showTeamName(team: Team) {
-  const left = team.organization;
-  const right = team.name;
-  if (right.length === 0) {
-    return left;
-  }
-
-  if (left.length === 0) {
-    return right;
-  }
-
-  return `${left} - ${right}`;
-}
 
 const setNowIntervalId = setInterval(() => {
   now.value = new Date();
@@ -100,38 +88,10 @@ onUnmounted(() => {
           v-for="(b, ix) in balloons"
           :key="b.key"
         >
-          <div
-            flex flex-row gap-x-4 h-24
-            font-mono text-4xl
-            :class="[ix % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
-          >
-            <div
-              w-20
-              flex flex-shrink-0 justify-center items-center
-            >
-              {{ b.problem.label }}
-            </div>
-            <div
-              flex flex-1 flex-col justify-center items-start gap-y-3
-            >
-              <div
-                class="resolver-team-name"
-                truncate overflow-hidden
-              >
-                {{ showTeamName(b.team) }}
-              </div>
-              <div
-
-                flex flex-row text-sm items-start gap-x-2
-              />
-            </div>
-
-            <div
-              w-32 flex flex-shrink-0 flex-row justify-start items-center
-            >
-              {{ b.submission.timestampToMinute }}
-            </div>
-          </div>
+          <BalloonBlock
+            :index="ix"
+            :balloon="b"
+          />
         </template>
       </div>
     </div>
