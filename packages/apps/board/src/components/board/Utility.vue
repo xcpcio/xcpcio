@@ -38,5 +38,13 @@ function goBalloon() {
     >
       {{ t('type_menu.balloon') }}
     </button>
+
+    <button
+      btn
+      title="Submissions"
+      disabled="true"
+    >
+      {{ t('type_menu.submissions') }}
+    </button>
   </div>
 </template>
