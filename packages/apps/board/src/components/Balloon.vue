@@ -85,11 +85,11 @@ onUnmounted(() => {
         flex flex-col justify-between
       >
         <template
-          v-for="(b, ix) in balloons"
+          v-for="(b, index) in balloons"
           :key="b.key"
         >
           <BalloonBlock
-            :index="ix"
+            :index="index"
             :balloon="b"
           />
         </template>
