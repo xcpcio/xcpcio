@@ -7,9 +7,8 @@ const props = defineProps<{
   balloon: Balloon,
 }>();
 
-const balloon = computed(() => {
-  return props.balloon;
-});
+const index = computed(() => props.index);
+const balloon = computed(() => props.balloon);
 
 const el = ref(null);
 const isVisible = useElementVisibility(el);
@@ -42,18 +41,18 @@ function getColor(c: ThemeColor): string {
       h-24
       flex flex-row gap-x-4
       font-mono text-4xl
-      :class="[props.index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
+      :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
     >
       <div
         w-20
         flex flex-shrink-0 justify-center items-center
         :style="{
-          backgroundColor: getColor(balloon.problem!.balloonColor!.background_color),
+          backgroundColor: getColor(balloon.problem?.balloonColor?.background_color ?? 'rgba(0, 0, 0, 0.5)'),
         }"
       >
         <div
           :style="{
-            color: getColor(balloon.problem!.balloonColor!.color),
+            color: getColor(balloon.problem?.balloonColor?.color ?? '#fff'),
           }"
         >
           {{ balloon.problem.label }}
