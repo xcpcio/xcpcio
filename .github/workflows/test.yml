@@ -13,31 +13,17 @@ jobs:
   build-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: pnpm
 
-      - name: Get Version ID
-        id: get-version-id
-        run: |
-          VERSION_ID=$(cat package.json | grep version | sed 's|  \"version\": \"||g' | sed 's|\",||g')
-          echo "::set-output name=version-id::$(echo $VERSION_ID)"
-          echo $VERSION_ID
-
-      - name: Install and Build 🔧
-        env:
-          VERSION_ID: ${{ steps.get-version-id.outputs.version-id }}
+      - name: Install and Build
         run: |
           pnpm i
           pnpm build
-
-      - name: Minify HTML Index
-        uses: Dup4/minify-html-action@v1
-        with:
-          src: ./packages/apps/board/dist/index.html
 
       - name: Enable 404.html
         run: |
@@ -46,11 +32,11 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: pnpm
 
       - name: Install
