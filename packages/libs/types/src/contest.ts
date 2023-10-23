@@ -9,6 +9,14 @@ export enum ContestState {
   PAUSED = "PAUSED",
 }
 
+export type CalculationOfPenalty = "in-minutes"
+| "in-seconds"
+| "accumulate-in-seconds-and-finally-to-the-minute";
+
+export interface ContestOptions {
+  calculation_of_penalty?: CalculationOfPenalty;
+}
+
 export interface Contest {
   contest_name: string;
 
@@ -37,4 +45,6 @@ export interface Contest {
   board_link?: string;
 
   version?: string;
+
+  options?: ContestOptions;
 }

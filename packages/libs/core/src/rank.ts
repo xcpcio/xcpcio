@@ -273,7 +273,7 @@ export class Rank {
         })();
 
         if (s.timestampToMinute > preSubmissionTimestampToMinute || ix === allSubmissions.length - 1) {
-          this.teams.forEach(t => t.calcSolvedData());
+          this.teams.forEach(t => t.calcSolvedData(this.contest.options));
           this.teams.sort(Team.compare);
           this.buildTeamRank();
 
@@ -291,7 +291,7 @@ export class Rank {
         preSubmissionTimestampToMinute = s.timestampToMinute;
       }
 
-      this.teams.forEach(t => t.calcSolvedData());
+      this.teams.forEach(t => t.calcSolvedData(this.contest.options));
       this.teams.sort(Team.compare);
       this.buildTeamRank();
       this.buildOrgRank();

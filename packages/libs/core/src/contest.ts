@@ -7,6 +7,7 @@ import { createDayJS, dayjs, getTimeDiff } from "./utils";
 import { Group } from "./group";
 import { Award } from "./award";
 import { type Awards, MedalType } from "./award";
+import { type ContestOptions, createContestOptions } from "./contest-options";
 
 export class Contest {
   name = "";
@@ -37,6 +38,8 @@ export class Contest {
   logo?: Image;
   banner?: Image;
   boardLink?: string;
+
+  options?: ContestOptions;
 
   constructor() {
     this.startTime = createDayJS();
@@ -285,5 +288,10 @@ export function createContest(contestJSON: IContest): Contest {
   c.logo = contestJSON.logo;
   c.boardLink = contestJSON.board_link;
 
+  if (contestJSON.options) {
+    c.options = createContestOptions(contestJSON.options);
+  }
+
   return c;
 }
+export { ContestOptions };
