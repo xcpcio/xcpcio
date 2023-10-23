@@ -107,6 +107,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Login to ALiYun Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: registry.cn-beijing.aliyuncs.com
+          username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
+          password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
+
       - name: Build and Push packages/app
         uses: docker/build-push-action@v5
         env:
@@ -114,7 +121,7 @@ jobs:
           tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
           context: ./
-          file: .//docker/Dockerfile
+          file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -122,3 +129,5 @@ jobs:
             xcpcio/${{ env.image_name }}:${{ env.tag }}
             ghcr.io/xcpcio/${{ env.image_name }}:latest
             ghcr.io/xcpcio/${{ env.image_name }}:${{ env.tag }}
+            registry.cn-beijing.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
+            registry.cn-beijing.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
