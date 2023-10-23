@@ -325,9 +325,15 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         </div>
       </div>
 
+      <div mt-1>
+        <BoardTab
+          :rank="rank"
+        />
+      </div>
+
       <div
         :class="[widthClass]"
-        mt-4
+        mt-1
         flex flex-row justify-center
       >
         <div class="w-[92%]">

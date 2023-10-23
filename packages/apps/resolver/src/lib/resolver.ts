@@ -107,7 +107,7 @@ export class Resolver extends ResolverCore {
     }
 
     team.problemStatistics[pIx] = op.afterTeamProblemStatistics;
-    team.calcSolvedData();
+    team.calcSolvedData(this.contest.options);
 
     this.currentProblemIndex = pIx;
     this.currentTeamId = teamId;
@@ -145,7 +145,7 @@ export class Resolver extends ResolverCore {
     const team = this.teamsMap.get(teamId) as Team;
 
     team.problemStatistics[pIx] = op.beforeTeamProblemStatistics;
-    team.calcSolvedData();
+    team.calcSolvedData(this.contest.options);
 
     this.currentProblemIndex = pIx;
     this.currentTeamId = teamId;

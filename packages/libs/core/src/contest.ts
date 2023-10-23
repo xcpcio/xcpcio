@@ -7,6 +7,7 @@ import { createDayJS, dayjs, getTimeDiff } from "./utils";
 import { Group } from "./group";
 import { Award } from "./award";
 import { type Awards, MedalType } from "./award";
+import { ContestOptions, createContestOptions } from "./contest-options";
 
 export class Contest {
   name = "";
@@ -38,6 +39,8 @@ export class Contest {
   banner?: Image;
   boardLink?: string;
 
+  options: ContestOptions;
+
   constructor() {
     this.startTime = createDayJS();
     this.endTime = createDayJS();
@@ -61,6 +64,8 @@ export class Contest {
 
     this.group = new Map<string, Group>();
     this.tag = new Map<string, string>();
+
+    this.options = new ContestOptions();
   }
 
   getContestDuration(timeFormat = "HH:mm:ss"): string {
@@ -285,5 +290,10 @@ export function createContest(contestJSON: IContest): Contest {
   c.logo = contestJSON.logo;
   c.boardLink = contestJSON.board_link;
 
+  if (contestJSON.options) {
+    c.options = createContestOptions(contestJSON.options);
+  }
+
   return c;
 }
+export { ContestOptions };
