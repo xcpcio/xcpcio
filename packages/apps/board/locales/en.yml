@@ -58,5 +58,11 @@ standings:
       teams: Teams
       submissions: Submissions
 
+  options:
+    calculation_of_penalty: Calculation Of Penalty
+    in_minutes: in minutes
+    in_seconds: in seconds
+    accumulate_in_seconds_and_finally_to_the_minute: Accumulate in seconds and finally to the minute
+
 submissions:
   total_submissions: Total Submissions

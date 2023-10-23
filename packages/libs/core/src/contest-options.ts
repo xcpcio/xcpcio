@@ -4,7 +4,7 @@ export class ContestOptions {
   calculationOfPenalty: CalculationOfPenalty;
 
   constructor() {
-    this.calculationOfPenalty = "in-minutes";
+    this.calculationOfPenalty = "in_minutes";
   }
 }
 

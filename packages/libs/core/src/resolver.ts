@@ -100,7 +100,7 @@ export class Resolver extends Rank {
           this.operations.push(op);
 
           team.problemStatistics[problemIx] = afterTeamProblemStatistics;
-          team.calcSolvedData();
+          team.calcSolvedData(this.contest.options);
 
           break;
         }

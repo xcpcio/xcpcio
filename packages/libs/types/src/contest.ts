@@ -9,9 +9,9 @@ export enum ContestState {
   PAUSED = "PAUSED",
 }
 
-export type CalculationOfPenalty = "in-minutes"
-| "in-seconds"
-| "accumulate-in-seconds-and-finally-to-the-minute";
+export type CalculationOfPenalty = "in_minutes"
+| "in_seconds"
+| "accumulate_in_seconds_and_finally_to_the_minute";
 
 export interface ContestOptions {
   calculation_of_penalty?: CalculationOfPenalty;

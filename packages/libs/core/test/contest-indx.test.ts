@@ -39,7 +39,9 @@ describe("contest-index", () => {
           },
           "medal": undefined,
           "name": "第十三届山东省 ICPC 大学生程序设计竞赛（正式赛）",
-          "options": undefined,
+          "options": ContestOptions {
+            "calculationOfPenalty": "in_minutes",
+          },
           "organization": undefined,
           "penalty": undefined,
           "problems": [],
@@ -81,7 +83,9 @@ describe("contest-index", () => {
           "logo": undefined,
           "medal": undefined,
           "name": "ICPC 2009 上海赛区网络赛",
-          "options": undefined,
+          "options": ContestOptions {
+            "calculationOfPenalty": "in_minutes",
+          },
           "organization": undefined,
           "penalty": undefined,
           "problems": [],

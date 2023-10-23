@@ -127,7 +127,7 @@ export class Team {
     return this.members?.join(", ");
   }
 
-  calcSolvedData(options?: ContestOptions) {
+  calcSolvedData(options: ContestOptions) {
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
 
@@ -138,8 +138,8 @@ export class Team {
         this.solvedProblemNum++;
         this.attemptedProblemNum += p.failedCount + 1;
 
-        if (options?.calculationOfPenalty === "in-seconds"
-         || options?.calculationOfPenalty === "accumulate-in-seconds-and-finally-to-the-minute") {
+        if (options?.calculationOfPenalty === "in_seconds"
+         || options?.calculationOfPenalty === "accumulate_in_seconds_and_finally_to_the_minute") {
           this.penalty += p.penaltyInSecond;
         } else {
           this.penalty += p.penalty;
@@ -147,7 +147,7 @@ export class Team {
       }
     }
 
-    if (options?.calculationOfPenalty === "accumulate-in-seconds-and-finally-to-the-minute") {
+    if (options?.calculationOfPenalty === "accumulate_in_seconds_and_finally_to_the_minute") {
       this.penalty = Math.floor(this.penalty / 60) * 60;
     }
   }

@@ -58,5 +58,11 @@ standings:
       teams: 队伍数
       submissions: 提交数
 
+  options:
+    calculation_of_penalty: 罚时计算方式
+    in_minutes: 精确到分钟进行累加
+    in_seconds: 精确到秒进行累加
+    accumulate_in_seconds_and_finally_to_the_minute: 精确到秒进行累加，最后精确到分钟
+
 submissions:
   total_submissions: 总提交数
