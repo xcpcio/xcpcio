@@ -146,13 +146,15 @@ function barWidthInStyle() {
 }
 
 onMounted(() => {
-  scroll.value.onmouseenter = () => {
-    tooltip.value.classList.add("in");
-  };
+  if (props.needScroll === true) {
+    scroll.value.onmouseenter = () => {
+      tooltip.value.classList.add("in");
+    };
 
-  scroll.value.onmouseleave = () => {
-    tooltip.value.classList.remove("in");
-  };
+    scroll.value.onmouseleave = () => {
+      tooltip.value.classList.remove("in");
+    };
+  }
 
   if (progressRatio.value !== -1) {
     pauseUpdate.value = true;
