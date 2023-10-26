@@ -9,15 +9,15 @@ const props = defineProps<{
   rank: Rank,
 }>();
 
-let dropdown: Dropdown | null = null;
-
 const rank = computed(() => props.rank);
 
 const { t } = useI18n();
-
 const $toast = useToast();
-
 const { copy, isSupported } = useClipboard();
+
+let dropdown: Dropdown | null = null;
+const dropdownTargetEl = ref(null);
+const dropdownTriggerEl = ref(null);
 
 function preCheck() {
   if (!window) {
@@ -59,10 +59,7 @@ function copyCode() {
 
 onMounted(() => {
   {
-    const $targetEl: HTMLElement = document.getElementById("dropdown-menu") as HTMLElement;
-    const $triggerEl: HTMLElement = document.getElementById("dropdown-button") as HTMLElement;
-
-    if ($targetEl && $triggerEl) {
+    if (dropdownTargetEl.value && dropdownTriggerEl.value) {
       const options: DropdownOptions = {
         placement: "right",
         triggerType: "click",
@@ -71,7 +68,7 @@ onMounted(() => {
         delay: 300,
       };
 
-      dropdown = new Dropdown($targetEl, $triggerEl, options);
+      dropdown = new Dropdown(dropdownTargetEl.value, dropdownTriggerEl.value, options);
     }
   }
 });
@@ -116,23 +113,20 @@ onMounted(() => {
       flex
     >
       <div
-        id="dropdown-button"
-        data-dropdown-toggle="dropdown-menu"
-        data-dropdown-placement="right"
+        ref="dropdownTriggerEl"
         i-material-symbols-share
         text-lg
         cursor-pointer
       />
 
       <div
-        id="dropdown-menu"
-        class="z-9999 hidden divide-y divide-gray-100 rounded-md shadow w-36"
+        ref="dropdownTargetEl"
+        class="z-9999 hidden divide-y divide-gray-100 rounded shadow w-36"
         bg-white
         dark:bg-gray-700
       >
         <ul
           class="py-2 text-sm text-gray-700 dark:text-gray-200"
-          aria-labelledby="dropdown-button"
         >
           <li>
             <div
