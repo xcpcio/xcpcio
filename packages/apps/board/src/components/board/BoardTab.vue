@@ -118,7 +118,6 @@ onMounted(() => {
       <div
         id="dropdown-button"
         data-dropdown-toggle="dropdown-menu"
-        data-dropdown-placement="right"
         i-material-symbols-share
         text-lg
         cursor-pointer
@@ -126,7 +125,7 @@ onMounted(() => {
 
       <div
         id="dropdown-menu"
-        class="z-9999 hidden divide-y divide-gray-100 rounded-md shadow w-36"
+        class="z-9999 hidden divide-y divide-gray-100 rounded shadow w-36"
         bg-white
         dark:bg-gray-700
       >
