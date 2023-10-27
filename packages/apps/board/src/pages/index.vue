@@ -37,7 +37,8 @@ function onSearch() {
     s.value = searchText.value;
 
     if (c.contest.name.includes(searchText.value)
-        || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())) {
+        || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())
+        || c.boardLink.toLocaleLowerCase().includes(searchText.value.toLowerCase())) {
       return true;
     }
 
