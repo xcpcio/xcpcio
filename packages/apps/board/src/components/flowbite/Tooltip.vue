@@ -31,34 +31,32 @@ onMounted(() => {
 </script>
 
 <template>
-  <client-only>
-    <div>
-      <div
-        ref="tooltipTriggerEl"
-      >
-        <slot />
-      </div>
+  <div>
+    <div
+      ref="tooltipTriggerEl"
+    >
+      <slot />
+    </div>
 
-      <div
-        ref="tooltipTargetEl"
-        role="tooltip"
-        class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
-        z-9999
-        rounded
-        text-base text-white font-medium
-        bg-gray-900 dark:bg-gray-700
-      >
-        <div>
-          <slot
-            name="popper"
-          />
-        </div>
-
-        <div
-          class="tooltip-arrow"
-          data-popper-arrow
+    <div
+      ref="tooltipTargetEl"
+      role="tooltip"
+      class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
+      z-9999
+      rounded
+      text-base text-white font-medium
+      bg-gray-900 dark:bg-gray-700
+    >
+      <div>
+        <slot
+          name="popper"
         />
       </div>
+
+      <div
+        class="tooltip-arrow"
+        data-popper-arrow
+      />
     </div>
-  </client-only>
+  </div>
 </template>
