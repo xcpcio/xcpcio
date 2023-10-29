@@ -61,21 +61,27 @@ onUnmounted(() => {
               >
             </div>
 
-            <VTooltip
+            <div
+              class="title"
               w-inherit
             >
-              <div
-                class="title"
-                overflow-hidden
-                text-2xl truncate
-              >
-                {{ contest.name }}
-              </div>
+              <Tooltip>
+                <div
+                  overflow-hidden
+                  text-2xl truncate
+                >
+                  {{ contest.name }}
+                </div>
 
-              <template #popper>
-                {{ contest.name }}
-              </template>
-            </VTooltip>
+                <template #popper>
+                  <div
+                    text-lg
+                  >
+                    {{ contest.name }}
+                  </div>
+                </template>
+              </Tooltip>
+            </div>
           </div>
 
           <div flex items-end>

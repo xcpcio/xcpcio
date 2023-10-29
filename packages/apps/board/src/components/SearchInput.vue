@@ -26,7 +26,6 @@ defineExpose({ focus });
       ref="inputEl"
       v-model="modelValue"
       v-focus
-      type="text"
       v-bind="$attrs"
       p="x-4 y-2"
       text="left"
