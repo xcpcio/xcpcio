@@ -30,7 +30,7 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "vite-ssg build",
+    "build": "vite build",
     "dev": "vite --port 3333",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",

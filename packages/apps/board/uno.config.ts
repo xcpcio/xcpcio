@@ -73,4 +73,9 @@ export default defineConfig({
     transformerVariantGroup(),
   ],
   safelist: "prose m-auto text-left".split(" "),
+  content: {
+    filesystem: [
+      "./node_modules/flowbite/**/*.js",
+    ],
+  },
 });

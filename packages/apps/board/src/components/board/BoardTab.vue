@@ -79,7 +79,7 @@ onMounted(() => {
     flex
   >
     <div>
-      <VTooltip
+      <Tooltip
         w-inherit
       >
         <div>
@@ -98,7 +98,7 @@ onMounted(() => {
             </div>
           </div>
         </template>
-      </VTooltip>
+      </Tooltip>
     </div>
 
     <div

@@ -73,53 +73,57 @@ const dataRegion = computed(() => {
         </li>
 
         <li>
-          <VTooltip
-            w-inherit
+          <div
+            mr-4 md:mr-6
           >
-            <a
-              :href="GITHUB_URL"
-              class="mr-4 md:mr-6 hover:underline"
-              rel="noreferrer"
-              target="_blank"
-              title="GitHub"
-            >
-              GitHub
-            </a>
-
-            <template #popper>
-              <div
-                flex justify-center
-                flex-col
+            <Tooltip>
+              <a
+                :href="GITHUB_URL"
+                hover:underline
+                rel="noreferrer"
+                target="_blank"
+                title="GitHub"
               >
-                <div>Tag: {{ VERSION }}</div>
-                <div>Sha: {{ GITHUB_SHA }}</div>
-              </div>
-            </template>
-          </VTooltip>
+                GitHub
+              </a>
+
+              <template #popper>
+                <div
+                  flex justify-center items-start
+                  flex-col
+                >
+                  <div>Tag: {{ VERSION }}</div>
+                  <div>Sha: {{ GITHUB_SHA }}</div>
+                </div>
+              </template>
+            </Tooltip>
+          </div>
         </li>
 
         <li>
-          <VTooltip
-            w-inherit
+          <div
+            mr-4 md:mr-6
           >
-            <a
-              href="mailto:hi@dup4.com"
-              mr-4 md:mr-6 hover:underline
-            >
-              Contact
-            </a>
-
-            <template #popper>
-              <div
-                flex justify-center
-                flex-col
+            <Tooltip>
+              <a
+                href="mailto:hi@dup4.com"
+                hover:underline
               >
-                <div>CDN Host: {{ cdnHost }}</div>
-                <div>DATA Host: {{ dataHost }}</div>
-                <div>Data Region: {{ dataRegion }}</div>
-              </div>
-            </template>
-          </VTooltip>
+                Contact
+              </a>
+
+              <template #popper>
+                <div
+                  flex justify-center items-start
+                  flex-col
+                >
+                  <div>CDN Host: {{ cdnHost }}</div>
+                  <div>DATA Host: {{ dataHost }}</div>
+                  <div>Data Region: {{ dataRegion }}</div>
+                </div>
+              </template>
+            </Tooltip>
+          </div>
         </li>
       </ul>
 
