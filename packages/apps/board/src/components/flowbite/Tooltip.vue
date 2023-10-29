@@ -58,3 +58,7 @@ onMounted(() => {
     </div>
   </div>
 </template>
+
+<style scope lang="less">
+@import "./Tooltip.css";
+</style>

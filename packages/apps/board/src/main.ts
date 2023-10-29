@@ -16,8 +16,6 @@ import "@unocss/reset/tailwind.css";
 import "@unocss/reset/tailwind-compat.css";
 import "uno.css";
 
-import "flowbite/dist/flowbite.css";
-
 import "./styles/main.css";
 
 const routes = setupLayouts(generatedRoutes);
