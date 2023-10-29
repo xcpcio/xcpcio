@@ -2,6 +2,8 @@
 import { Tooltip } from "flowbite";
 import type { TooltipInterface, TooltipOptions } from "flowbite";
 
+import "./Tooltip.css";
+
 const props = defineProps<{
   placement?: "left" | "right" | "top" | "bottom",
 }>();
@@ -29,36 +31,34 @@ onMounted(() => {
 </script>
 
 <template>
-  <div>
-    <div
-      ref="tooltipTriggerEl"
-    >
-      <slot />
-    </div>
-
-    <div
-      ref="tooltipTargetEl"
-      role="tooltip"
-      class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
-      z-9999
-      rounded
-      text-base text-white font-medium
-      bg-gray-900 dark:bg-gray-700
-    >
-      <div>
-        <slot
-          name="popper"
-        />
+  <client-only>
+    <div>
+      <div
+        ref="tooltipTriggerEl"
+      >
+        <slot />
       </div>
 
       <div
-        class="tooltip-arrow"
-        data-popper-arrow
-      />
-    </div>
-  </div>
-</template>
+        ref="tooltipTargetEl"
+        role="tooltip"
+        class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
+        z-9999
+        rounded
+        text-base text-white font-medium
+        bg-gray-900 dark:bg-gray-700
+      >
+        <div>
+          <slot
+            name="popper"
+          />
+        </div>
 
-<style scope lang="less">
-@import "./Tooltip.css";
-</style>
+        <div
+          class="tooltip-arrow"
+          data-popper-arrow
+        />
+      </div>
+    </div>
+  </client-only>
+</template>
