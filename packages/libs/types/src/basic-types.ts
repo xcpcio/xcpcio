@@ -103,3 +103,5 @@ export interface StatusTimeDisplay {
   incorrect: boolean;
   pending: boolean;
 }
+
+export type TimeUnit = "second" | "millisecond" | "microsecond" | "nanosecond";

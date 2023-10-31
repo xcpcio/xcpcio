@@ -1,4 +1,4 @@
-import type { Submission as ISubmission, Submissions as ISubmissions } from "@xcpcio/types";
+import type { Submission as ISubmission, Submissions as ISubmissions, TimeUnit } from "@xcpcio/types";
 import { SubmissionStatus } from "@xcpcio/types";
 
 import {
@@ -14,6 +14,10 @@ export class Submission {
   teamId: string;
   problemId: string;
   timestamp: number;
+  timestampUnit: TimeUnit;
+
+  time?: number;
+  language?: string;
 
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
@@ -23,6 +27,7 @@ export class Submission {
     this.teamId = "";
     this.problemId = "";
     this.timestamp = 0;
+    this.timestampUnit = "second";
   }
 
   isAccepted() {
@@ -75,6 +80,14 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
   s.timestamp = submissionJSON.timestamp;
   s.status = stringToSubmissionStatus(submissionJSON.status);
   s.isIgnore = submissionJSON.is_ignore ?? false;
+
+  if (submissionJSON.time) {
+    s.time = submissionJSON.time;
+  }
+
+  if (submissionJSON.language) {
+    s.language = submissionJSON.language;
+  }
 
   return s;
 }

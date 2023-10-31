@@ -1,4 +1,4 @@
-import type { BalloonColor, DateTimeISO8601String, Image } from "./basic-types";
+import type { BalloonColor, DateTimeISO8601String, Image, TimeUnit } from "./basic-types";
 import type { Problem } from "./problem";
 
 export enum ContestState {
@@ -15,6 +15,7 @@ export type CalculationOfPenalty = "in_minutes"
 
 export interface ContestOptions {
   calculation_of_penalty?: CalculationOfPenalty;
+  submission_timestamp_unit?: TimeUnit;
 }
 
 export interface Contest {

@@ -9,6 +9,9 @@ export interface Submission {
   timestamp: number; // unit: seconds
   status: SubmissionStatus | string;
 
+  time?: number;
+  language?: string;
+
   is_ignore?: boolean;
 }
 

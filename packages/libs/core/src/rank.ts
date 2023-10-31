@@ -136,6 +136,21 @@ export class Rank {
     this.teamsMap = new Map(this.teams.map(t => [t.id, t]));
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
+
+    this.submissions.forEach((s) => {
+      const o = this.contest.options;
+
+      s.timestampUnit = o.submissionTimestampUnit;
+
+      if (s.time) {
+        o.submissionHasTimeField = true;
+      }
+
+      if (s.language) {
+        o.submissionHasLanguageField = true;
+      }
+    });
+
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
     this.organizations = this.buildOrganizations();
