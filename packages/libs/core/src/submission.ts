@@ -1,4 +1,4 @@
-import type { Submission as ISubmission, Submissions as ISubmissions } from "@xcpcio/types";
+import type { Submission as ISubmission, Submissions as ISubmissions, TimeUnit } from "@xcpcio/types";
 import { SubmissionStatus } from "@xcpcio/types";
 
 import {
@@ -14,6 +14,10 @@ export class Submission {
   teamId: string;
   problemId: string;
   timestamp: number;
+  timestampUnit: TimeUnit;
+
+  time?: number;
+  language?: string;
 
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
@@ -23,6 +27,7 @@ export class Submission {
     this.teamId = "";
     this.problemId = "";
     this.timestamp = 0;
+    this.timestampUnit = "second";
   }
 
   isAccepted() {
@@ -42,7 +47,60 @@ export class Submission {
   }
 
   get timestampToMinute() {
+    if (this.timestampUnit === "nanosecond") {
+      return Math.floor(this.timestamp / 60 / 1000 / 1000 / 1000);
+    }
+
+    if (this.timestampUnit === "microsecond") {
+      return Math.floor(this.timestamp / 60 / 1000 / 1000);
+    }
+
+    if (this.timestampUnit === "millisecond") {
+      return Math.floor(this.timestamp / 60 / 1000);
+    }
+
     return Math.floor(this.timestamp / 60);
+  }
+
+  get timestampToSecond() {
+    if (this.timestampUnit === "nanosecond") {
+      return Math.floor(this.timestamp / 1000 / 1000 / 1000);
+    }
+
+    if (this.timestampUnit === "microsecond") {
+      return Math.floor(this.timestamp / 1000 / 1000);
+    }
+
+    if (this.timestampUnit === "millisecond") {
+      return Math.floor(this.timestamp / 1000);
+    }
+
+    return this.timestamp;
+  }
+
+  get timestampDisplayFormatWithSecond(): string {
+    const second = this.timestampToSecond;
+
+    const h = Math.floor(second / 3600);
+    const m = Math.floor(second % 3600 / 60);
+    const s = second % 60;
+
+    const f = (x: number) => x.toString().padStart(2, "0");
+
+    const res = `${f(h)}:${f(m)}:${f(s)}`;
+
+    return res;
+  }
+
+  get timestampDisplayFormatWithMilliSecond(): string {
+    let res = this.timestampDisplayFormatWithSecond;
+
+    if (this.timestampUnit === "millisecond") {
+      const fl = (this.timestamp % 1000).toString().padEnd(3, "0");
+      res += `.${fl}`;
+    }
+
+    return res;
   }
 
   static compare(lhs: Submission, rhs: Submission): number {
@@ -75,6 +133,14 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
   s.timestamp = submissionJSON.timestamp;
   s.status = stringToSubmissionStatus(submissionJSON.status);
   s.isIgnore = submissionJSON.is_ignore ?? false;
+
+  if (submissionJSON.time) {
+    s.time = submissionJSON.time;
+  }
+
+  if (submissionJSON.language) {
+    s.language = submissionJSON.language;
+  }
 
   return s;
 }

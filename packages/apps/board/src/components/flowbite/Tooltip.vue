@@ -5,7 +5,7 @@ import type { TooltipInterface, TooltipOptions } from "flowbite";
 import "./Tooltip.css";
 
 const props = defineProps<{
-  placement?: "left" | "right" | "top" | "bottom",
+  placement?: "left" | "right" | "top" | "bottom" | "auto",
 }>();
 
 const tooltipTargetEl = ref(null);
@@ -15,7 +15,7 @@ const tooltipTriggerEl = ref(null);
 let tooltip: TooltipInterface | null = null;
 
 const placement = computed(() => {
-  return props.placement ?? "top";
+  return props.placement ?? "auto";
 });
 
 onMounted(() => {
