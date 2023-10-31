@@ -248,12 +248,12 @@ export class Rank {
           }
 
           problemStatistics.isSubmitted = true;
-          problemStatistics.lastSubmitTimestamp = s.timestamp;
+          problemStatistics.lastSubmitTimestamp = s.timestampToSecond;
           problemStatistics.totalCount++;
 
           if (s.isAccepted()) {
             problemStatistics.isSolved = true;
-            problemStatistics.solvedTimestamp = s.timestamp;
+            problemStatistics.solvedTimestamp = s.timestampToSecond;
 
             problem.statistics.acceptedNum++;
             problem.statistics.attemptedNum += problemStatistics.failedCount + 1;
@@ -273,7 +273,7 @@ export class Rank {
             problem.statistics.lastSolveSubmissions.push(s);
 
             team.lastSolvedProblem = problem;
-            team.lastSolvedProblemTimestamp = s.timestamp;
+            team.lastSolvedProblemTimestamp = s.timestampToSecond;
           }
 
           if (s.isRejected()) {
@@ -427,7 +427,7 @@ export class Rank {
     }
 
     return this.submissions.filter(s =>
-      s.timestamp <= this.options.timestamp,
+      s.timestampToSecond <= this.options.timestamp,
     ).sort(Submission.compare);
   }
 
@@ -458,7 +458,7 @@ export class Rank {
 
         if (s.isAccepted()) {
           problemStatistics.isSolved = true;
-          problemStatistics.solvedTimestamp = s.timestamp;
+          problemStatistics.solvedTimestamp = s.timestampToSecond;
 
           const b = new Balloon();
           b.team = team;

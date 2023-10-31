@@ -38,18 +38,6 @@ const currentSubmissions = computed(() => {
 
 const notShowing = ref(false);
 
-function getSubmitTime(
-  timeDiff: number,
-): string {
-  const h = Math.floor(timeDiff / 3600);
-  const m = Math.floor(timeDiff % 3600 / 60);
-  const s = timeDiff % 60;
-
-  const f = (x: number) => x.toString().padStart(2, "0");
-
-  return `${f(h)}:${f(m)}:${f(s)}`;
-}
-
 function getProblemLabelColorClass(s: Submission) {
   const defaultClass = "bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-300";
 
@@ -289,8 +277,13 @@ function getProblemLabelColorStyle(s: Submission) {
                   </td>
 
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    <div class="flex items-center">
-                      {{ getSubmitTime(s.timestamp) }}
+                    <div flex items-center>
+                      <Tooltip>
+                        {{ s.timestampDisplayFormatWithSecond }}
+                        <template #popper>
+                          {{ s.timestampDisplayFormatWithMilliSecond }}
+                        </template>
+                      </Tooltip>
                     </div>
                   </td>
                 </tr>
