@@ -180,7 +180,7 @@ function getProblemLabelColorStyle(s: Submission) {
                   Status
                 </th>
                 <th
-                  v-if="notShowing"
+                  v-if="rank.contest.options.submissionHasTimeField"
                   scope="col"
                   class="px-4 py-3"
                 >
@@ -194,7 +194,7 @@ function getProblemLabelColorStyle(s: Submission) {
                   Memory
                 </th>
                 <th
-                  v-if="notShowing"
+                  v-if="rank.contest.options.submissionHasLanguageField"
                   scope="col"
                   class="px-4 py-3"
                 >
@@ -251,12 +251,11 @@ function getProblemLabelColorStyle(s: Submission) {
                   </td>
 
                   <td
-                    v-if="notShowing"
+                    v-if="rank.contest.options.submissionHasTimeField"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
-                    <div class="flex items-center">
-                      <div class="mr-2 inline-block h-4 w-4 rounded-full bg-red-700" />
-                      95
+                    <div flex items-center>
+                      {{ `${s.time} ms` }}
                     </div>
                   </td>
 
@@ -268,11 +267,11 @@ function getProblemLabelColorStyle(s: Submission) {
                   </td>
 
                   <td
-                    v-if="notShowing"
+                    v-if="rank.contest.options.submissionHasLanguageField"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
-                    <div class="flex items-center">
-                      <span class="ml-1 text-gray-500 dark:text-gray-400">5.0</span>
+                    <div flex items-center>
+                      {{ s.language }}
                     </div>
                   </td>
 
