@@ -255,7 +255,7 @@ function getProblemLabelColorStyle(s: Submission) {
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
                     <div flex items-center>
-                      {{ `${s.time} ms` }}
+                      {{ `${s.time ?? 0} ms` }}
                     </div>
                   </td>
 
