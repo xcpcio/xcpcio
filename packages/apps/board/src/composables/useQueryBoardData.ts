@@ -26,6 +26,11 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   const teamsResp = await fetch(`${prefix}/team.json?t=${timestamp ?? 0}`);
   const submissionsResp = await fetch(`${prefix}/run.json?t=${timestamp ?? 0}`);
 
+  const { status, statusText } = contestResp;
+  if (status >= 300 || status < 200) {
+    throw new Error(`fetch data failed. [status=${status}] [statusText=${statusText}]`);
+  }
+
   const p = Promise.all([
     contestResp.json(),
     teamsResp.json(),
