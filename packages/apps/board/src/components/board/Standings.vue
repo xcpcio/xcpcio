@@ -96,21 +96,15 @@ const maxTeamLength = computed(() => {
             >
               {{ t("standings.penalty") }}
             </th>
-            <th
+            <template
               v-for="p in rank.contest.problems"
-              :key="p.id"
-              class="success"
-              text-center
-              style="width: 3rem;"
-              :style="{
-                'background-color': p.balloonColor?.background_color,
-                'color': p.balloonColor?.color,
-              }"
+              :key="`problem-block-${p.id}`"
             >
-              {{ p.label }}
-              <br>
-              <s>{{ p.statistics.acceptedNum }}</s>
-            </th>
+              <ProblemBlock
+                :rank="rank"
+                :problem="p"
+              />
+            </template>
             <th class="title" style="width: 2.5rem;">
               {{ t("standings.dirt") }}
             </th>
