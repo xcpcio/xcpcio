@@ -42,7 +42,7 @@ onMounted(() => {
       ref="tooltipTargetEl"
       role="tooltip"
       class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
-      z-9999
+      z-99999
       rounded
       text-base text-white font-medium
       bg-gray-900 dark:bg-gray-700

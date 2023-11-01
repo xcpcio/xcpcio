@@ -80,13 +80,29 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
                 width-class="h-8 w-8"
               />
 
-              <h3
-                text-gray-900 dark:text-white
-                text-2xl
-                font-sans font-semibold italic
-              >
-                {{ headerTitle }}
-              </h3>
+              <Tooltip>
+                <h3
+                  text-gray-900 dark:text-white
+                  text-2xl
+                  font-sans font-semibold italic
+                >
+                  {{ headerTitle }}
+                </h3>
+
+                <template #popper>
+                  <div
+                    flex flex-col
+                    justify-start items-start
+                  >
+                    <div>
+                      TeamID: {{ team.id }}
+                    </div>
+                    <div>
+                      ddd: f22
+                    </div>
+                  </div>
+                </template>
+              </Tooltip>
             </div>
 
             <ModalMenu
