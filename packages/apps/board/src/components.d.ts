@@ -26,6 +26,8 @@ declare module 'vue' {
     ModalMenu: typeof import('./components/board/ModalMenu.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     OptionsModal: typeof import('./components/board/OptionsModal.vue')['default']
+    ProblemBlock: typeof import('./components/board/ProblemBlock.vue')['default']
+    ProblemInfoModal: typeof import('./components/board/ProblemInfoModal.vue')['default']
     Progress: typeof import('./components/board/Progress.vue')['default']
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
