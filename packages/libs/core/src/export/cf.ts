@@ -72,7 +72,7 @@ export class CodeforcesGymGhostDATConverter {
       const status = this.submissionStatusToCodeforcesGymDatStatus(submission.status);
       submissionsIdMap.get(teamId)!.set(problemId, submissionsIdMap.get(teamId)!.get(problemId)! + 1);
 
-      res += `@s ${teamIdMap.get(teamId)},${problem.label},${submissionsIdMap.get(teamId)?.get(problemId)},${submission.timestamp},${status}\n`;
+      res += `@s ${teamIdMap.get(teamId)},${problem.label},${submissionsIdMap.get(teamId)?.get(problemId)},${submission.timestampToSecond},${status}\n`;
     });
 
     return res;
