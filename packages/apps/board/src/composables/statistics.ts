@@ -119,7 +119,7 @@ export function getProblemChart(rank: Rank) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("题目通过数统计", "题目编号", "通过数", cat, series, colors);
+  return getChartObj("题目通过数", "题目编号", "通过数", cat, series, colors);
 }
 
 export function getTeamChart(rank: Rank) {
@@ -151,7 +151,7 @@ export function getTeamChart(rank: Rank) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("队伍过题数统计", "过题数", "队伍数", cat, series, colors);
+  return getChartObj("队伍过题数", "过题数", "队伍数", cat, series, colors);
 }
 
 export function getSubmitChart(rank: Rank) {
@@ -190,7 +190,7 @@ export function getSubmitChart(rank: Rank) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("提交分类统计", "题目编号", "提交数", cat, series, colors);
+  return getChartObj("提交分类", "题目编号", "提交数", cat, series, colors);
 }
 
 export function getTeamPlaceChart(_rank: Rank, team: Team) {
