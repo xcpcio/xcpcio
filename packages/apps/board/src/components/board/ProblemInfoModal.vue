@@ -94,6 +94,12 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
           :submissions="submissions"
           :page-size="8"
           :remove-border="true"
+          :enable-filter="{
+            organization: true,
+            team: true,
+            language: true,
+            status: true,
+          }"
         />
       </div>
 

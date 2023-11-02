@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import type { SubmissionStatus } from "@xcpcio/types";
+
 import type { Contest } from "./contest";
 import type { Teams } from "./team";
 import { Team } from "./team";
@@ -129,6 +131,9 @@ export class Rank {
 
   balloons: Balloons;
 
+  languages: Array<string>;
+  statuses: Array<SubmissionStatus>;
+
   constructor(contest: Contest, teams: Teams, submissions: Submissions) {
     this.contest = contest;
 
@@ -162,6 +167,28 @@ export class Rank {
     this.options = new RankOptions();
 
     this.balloons = [];
+
+    {
+      const se = new Set<string>();
+
+      this.submissions.forEach((s) => {
+        if (s.language) {
+          se.add(s.language);
+        }
+      });
+
+      this.languages = [...se].sort();
+    }
+
+    {
+      const se = new Set<SubmissionStatus>();
+
+      this.submissions.forEach((s) => {
+        se.add(s.status);
+      });
+
+      this.statuses = [...se].sort();
+    }
   }
 
   cleanRank() {

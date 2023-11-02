@@ -423,6 +423,12 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
               w-full
               :rank="rank"
               :submissions="rank.getSubmissions()"
+              :enable-filter="{
+                organization: true,
+                team: true,
+                language: true,
+                status: true,
+              }"
             />
           </div>
 

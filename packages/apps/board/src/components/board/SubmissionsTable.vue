@@ -1,22 +1,209 @@
 <script setup lang="ts">
-import type { Rank, Submissions } from "@xcpcio/core";
+import { MultiSelect } from "vue-search-select";
+
+import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
+import type { SubmissionStatus } from "@xcpcio/types";
 import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
+
+import "~/styles/submission-status-filter.css";
+
+interface FilterOptions {
+  orgNames: string[];
+  teamIds: string[];
+  languages: string[];
+  statuses: SubmissionStatus[];
+}
+
+interface EnableFilterOptions {
+  organization?: boolean,
+  team?: boolean,
+  language?: boolean,
+  status?: boolean,
+}
 
 const props = defineProps<{
   rank: Rank,
   submissions: Submissions,
   pageSize?: number,
   removeBorder?: boolean,
+  enableFilter?: EnableFilterOptions,
 }>();
 
 const rank = computed(() => props.rank);
-const submissions = computed(() => {
-  const s = props.submissions;
-  return s.sort(Submission.compare).reverse();
+const enableFilter = computed(() => props.enableFilter);
+const enableFilterButton = computed(() => {
+  if (!enableFilter.value) {
+    return false;
+  }
+
+  for (const [_k, v] of Object.entries(enableFilter.value)) {
+    if (v === true) {
+      return true;
+    }
+  }
+
+  return false;
 });
+
+const filterOptions = ref<FilterOptions>({
+  orgNames: [],
+  teamIds: [],
+  languages: [],
+  statuses: [],
+});
+
+const orgOptions = computed(() => {
+  const res = rank.value.organizations.map((o) => {
+    return {
+      value: o,
+      text: o,
+    };
+  });
+
+  return res;
+});
+
+const orgSelectedItems = ref<Array<SelectOptionItem>>([]);
+const orgLastSelectItem = ref({});
+
+function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  orgSelectedItems.value = selectedItems;
+  orgLastSelectItem.value = lastSelectItem;
+}
+
+const teamsOptions = computed(() => {
+  const res = rank.value.originTeams.map((t) => {
+    return {
+      value: t.id,
+      text: t.organization ? `${t.name} - ${t.organization}` : t.name,
+    };
+  });
+
+  return res;
+});
+
+const teamsSelectedItems = ref<Array<SelectOptionItem>>([]);
+const teamsLastSelectItem = ref({});
+
+function teamsOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  teamsSelectedItems.value = selectedItems;
+  teamsLastSelectItem.value = lastSelectItem;
+}
+
+const languageOptions = computed(() => {
+  const languages = rank.value.languages;
+
+  const res = languages.map((l) => {
+    return {
+      value: l,
+      text: l,
+    };
+  });
+
+  return res;
+});
+
+const languageSelectedItems = ref<Array<SelectOptionItem>>([]);
+const languageLastSelectItem = ref({});
+
+function languageOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  languageSelectedItems.value = selectedItems;
+  languageLastSelectItem.value = lastSelectItem;
+}
+
+const statusOptions = computed(() => {
+  const statuses = rank.value.statuses;
+
+  const res = statuses.map((s) => {
+    return {
+      value: s,
+      text: SubmissionStatusToString[s],
+    };
+  });
+
+  return res;
+});
+
+const statusSelectedItems = ref<Array<SelectOptionItem>>([]);
+const statusLastSelectItem = ref({});
+
+function statusOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  statusSelectedItems.value = selectedItems;
+  statusLastSelectItem.value = lastSelectItem;
+}
+
+function statusCustomAttr(option: SelectOptionItem) {
+  return option.value.toString();
+}
+
+const submissions = computed(() => {
+  const ss = props.submissions;
+  return ss.filter((s) => {
+    const o = filterOptions.value;
+
+    if (o.orgNames.length === 0
+     && o.teamIds.length === 0
+     && o.languages.length === 0
+     && o.statuses.length === 0
+    ) {
+      return true;
+    }
+
+    if (o.teamIds.length > 0) {
+      for (const t of o.teamIds) {
+        if (t === s.teamId) {
+          return true;
+        }
+      }
+    }
+
+    if (o.orgNames.length > 0) {
+      const team = rank.value.teamsMap.get(s.teamId);
+      for (const n of o.orgNames) {
+        if (n === team?.organization) {
+          return true;
+        }
+      }
+    }
+
+    if (o.languages.length > 0) {
+      for (const l of o.languages) {
+        if (l === s.language) {
+          return true;
+        }
+      }
+    }
+
+    if (o.statuses.length > 0) {
+      for (const sta of o.statuses) {
+        if (sta === s.status) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }).sort(Submission.compare).reverse();
+});
+
+function onFilter() {
+  const newFilterOptions: FilterOptions = {
+    orgNames: [],
+    teamIds: [],
+    languages: [],
+    statuses: [],
+  };
+
+  newFilterOptions.orgNames = orgSelectedItems.value.map(o => o.value);
+  newFilterOptions.teamIds = teamsSelectedItems.value.map(t => t.value);
+  newFilterOptions.languages = languageSelectedItems.value.map(l => l.value);
+  newFilterOptions.statuses = statusSelectedItems.value.map(s => s.value as SubmissionStatus);
+
+  filterOptions.value = newFilterOptions;
+}
 
 const p = ref(new Pagination());
 
@@ -69,79 +256,94 @@ function getProblemLabelColorStyle(s: Submission) {
 <template>
   <section>
     <div
-      class="mx-auto w-full"
+      mx-auto w-full
       px-4
     >
       <div
-        class="relative overflow-hidden bg-white dark:bg-gray-800"
+        relative overflow-hidden
+        bg-white dark:bg-gray-800
         :class="{
           'shadow-md': props.removeBorder !== true,
           'sm:rounded-sm': props.removeBorder !== true,
         }"
       >
         <div
-          class="lg:flex-row lg:items-center lg:justify-between space-y-3 lg:space-x-4 lg:space-y-0"
+          space-y-3
           flex flex-col
           px-4 py-3
+          lg:flex-row lg:items-center lg:justify-between
+          lg:space-x-4 lg:space-y-0
         >
           <div
-            class="flex flex-shrink-0 flex-col md:flex-row md:items-center lg:justify-end space-y-3 md:space-x-3 md:space-y-0"
+            flex flex-shrink-0 flex-col
+            md:flex-row md:items-center
+            lg:justify-end space-y-3
+            md:space-x-3 md:space-y-0
           >
-            <button
-              v-if="notShowing"
-              type="button"
-              class="flex items-center justify-center rounded-lg bg-primary-700 px-4 py-2 text-sm font-medium text-white dark:bg-primary-600 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+            <div
+              v-if="rank.contest.organization && enableFilter?.organization"
+              w-48
             >
-              <svg
-                class="mr-2 h-3.5 w-3.5"
-                fill="currentColor"
-                viewbox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-              >
-                <path
-                  clip-rule="evenodd"
-                  fill-rule="evenodd"
-                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
-                />
-              </svg>
-              Add new product
-            </button>
-
-            <button
-              v-if="notShowing"
-              type="button"
-              class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-            >
-              <svg
-                class="mr-2 h-4 w-4"
-                xmlns="http://www.w3.org/2000/svg"
-                aria-hidden="true"
-                fill="none"
-                viewbox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-                />
-              </svg>
-              Update stocks 1/250
-            </button>
-
-            <button
-              v-if="notShowing"
-              type="button"
-              class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-            >
-              <div
-                i-pajamas-export
-                class="mr-2 h-4 w-4"
+              <MultiSelect
+                :options="orgOptions"
+                :selected-options="orgSelectedItems"
+                :placeholder="rank.contest.organization"
+                @select="orgOnSelect"
               />
-              Export
-            </button>
+            </div>
+
+            <div
+              v-if="enableFilter?.team"
+              w-48
+            >
+              <MultiSelect
+                :options="teamsOptions"
+                :selected-options="teamsSelectedItems"
+                placeholder="Team"
+                @select="teamsOnSelect"
+              />
+            </div>
+
+            <div
+              v-if="enableFilter?.status"
+              w-64
+            >
+              <MultiSelect
+                :options="statusOptions"
+                :selected-options="statusSelectedItems"
+                placeholder="Status"
+                :custom-attr="statusCustomAttr"
+                @select="statusOnSelect"
+              />
+            </div>
+
+            <div
+              v-if="enableFilter?.language && languageOptions.length > 0"
+              w-48
+            >
+              <MultiSelect
+                :options="languageOptions"
+                :selected-options="languageSelectedItems"
+                placeholder="Language"
+                @select="languageOnSelect"
+              />
+            </div>
+
+            <div
+              v-if="enableFilterButton"
+            >
+              <button
+                type="button"
+                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                @click="onFilter"
+              >
+                <div
+                  i-material-symbols-search
+                  mr-1 h-5 w-5
+                />
+                Filter
+              </button>
+            </div>
           </div>
         </div>
 
