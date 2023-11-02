@@ -10,6 +10,15 @@ import { Pagination } from "~/composables/pagination";
 interface FilterOptions {
   orgNames: string[];
   teamIds: string[];
+  languages: string[];
+  statuses: string[];
+}
+
+interface EnableFilterOptions {
+  organization?: boolean,
+  team?: boolean,
+  language?: boolean,
+  status?: boolean,
 }
 
 const props = defineProps<{
@@ -17,11 +26,31 @@ const props = defineProps<{
   submissions: Submissions,
   pageSize?: number,
   removeBorder?: boolean,
+  enableFilter?: EnableFilterOptions,
 }>();
 
 const rank = computed(() => props.rank);
+const enableFilter = computed(() => props.enableFilter);
+const enableFilterButton = computed(() => {
+  if (!enableFilter.value) {
+    return false;
+  }
 
-const filterOptions = ref<FilterOptions>({ orgNames: [], teamIds: [] });
+  for (const [_k, v] of Object.entries(enableFilter.value)) {
+    if (v === true) {
+      return true;
+    }
+  }
+
+  return false;
+});
+
+const filterOptions = ref<FilterOptions>({
+  orgNames: [],
+  teamIds: [],
+  languages: [],
+  statuses: [],
+});
 
 const orgOptions = computed(() => {
   const res = rank.value.organizations.map((o) => {
@@ -95,6 +124,8 @@ function onFilter() {
   const newFilterOptions: FilterOptions = {
     orgNames: [],
     teamIds: [],
+    languages: [],
+    statuses: [],
   };
 
   newFilterOptions.orgNames = orgSelectedItems.value.map(o => o.value);
@@ -179,7 +210,7 @@ function getProblemLabelColorStyle(s: Submission) {
             md:space-x-3 md:space-y-0
           >
             <div
-              v-if="rank.contest.organization"
+              v-if="rank.contest.organization && enableFilter?.organization"
               w-48
             >
               <MultiSelect
@@ -191,6 +222,7 @@ function getProblemLabelColorStyle(s: Submission) {
             </div>
 
             <div
+              v-if="enableFilter?.team"
               w-48
             >
               <MultiSelect
@@ -201,17 +233,21 @@ function getProblemLabelColorStyle(s: Submission) {
               />
             </div>
 
-            <button
-              type="button"
-              class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
-              @click="onFilter"
+            <div
+              v-if="enableFilterButton"
             >
-              <div
-                i-material-symbols-search
-                mr-1 h-5 w-5
-              />
-              Filter
-            </button>
+              <button
+                type="button"
+                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                @click="onFilter"
+              >
+                <div
+                  i-material-symbols-search
+                  mr-1 h-5 w-5
+                />
+                Filter
+              </button>
+            </div>
           </div>
         </div>
 
