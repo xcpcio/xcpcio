@@ -1,0 +1,123 @@
+.item[data-vss-custom-attr="PENDING"] {
+  color: var(--theme-status-pending) !important;
+}
+
+.item[data-vss-custom-attr="WAITING"] {
+  color: var(--theme-status-waiting) !important;
+}
+
+.item[data-vss-custom-attr="PREPARING"] {
+  color: var(--theme-status-preparing) !important;
+}
+
+.item[data-vss-custom-attr="COMPILING"] {
+  color: var(--theme-status-compiling) !important;
+}
+
+.item[data-vss-custom-attr="RUNNING"] {
+  color: var(--theme-status-running) !important;
+}
+
+.item[data-vss-custom-attr="JUDGING"] {
+  color: var(--theme-status-running) !important;
+}
+
+.item[data-vss-custom-attr="FROZEN"] {
+  color: var(--theme-status-pending) !important;
+}
+
+
+.item[data-vss-custom-attr="ACCEPTED"] {
+  color: var(--theme-status-accepted) !important;
+}
+
+.item[data-vss-custom-attr="CORRECT"] {
+  color: var(--theme-status-accepted) !important;
+}
+
+.item[data-vss-custom-attr="PARTIALLY_CORRECT"] {
+  color: var(--theme-status-partially-correct) !important;
+}
+
+
+.item[data-vss-custom-attr="REJECTED"] {
+  color: var(--theme-status-wrong-answer) !important;
+}
+
+.item[data-vss-custom-attr="WRONG_ANSWER"] {
+  color: var(--theme-status-wrong-answer) !important;
+}
+
+
+.item[data-vss-custom-attr="COMPILATION_ERROR"] {
+  color: var(--theme-status-compilation-error) !important;
+}
+
+.item[data-vss-custom-attr="PRESENTATION_ERROR"] {
+  color: var(--theme-status-compilation-error) !important;
+}
+
+
+.item[data-vss-custom-attr="RUNTIME_ERROR"] {
+  color: var(--theme-status-runtime-error) !important;
+}
+
+.item[data-vss-custom-attr="TIME_LIMIT_EXCEEDED"] {
+  color: var(--theme-status-time-limit-exceeded) !important;
+}
+
+.item[data-vss-custom-attr="MEMORY_LIMIT_EXCEEDED"] {
+  color: var(--theme-status-memory-limit-exceeded) !important;
+}
+
+.item[data-vss-custom-attr="OUTPUT_LIMIT_EXCEEDED"] {
+  color: var(--theme-status-output-limit-exceeded) !important;
+}
+
+.item[data-vss-custom-attr="IDLENESS_LIMIT_EXCEEDED"] {
+  color: var(--theme-status-output-limit-exceeded) !important;
+}
+
+.item[data-vss-custom-attr="HACKED"] {
+  color: var(--theme-status-wrong-answer) !important;
+}
+
+.item[data-vss-custom-attr="JUDGEMENT_FAILED"] {
+  color: var(--theme-status-judgement-failed) !important;
+}
+
+.item[data-vss-custom-attr="CONFIGURATION_ERROR"] {
+  color: var(--theme-status-configuration-error) !important;
+}
+
+.item[data-vss-custom-attr="FILE_ERROR"] {
+  color: var(--theme-status-file-error) !important;
+}
+
+.item[data-vss-custom-attr="SYSTEM_ERROR"] {
+  color: var(--theme-status-system-error) !important;
+}
+
+.item[data-vss-custom-attr="CANCELED"] {
+  color: var(--theme-status-canceled) !important;
+}
+
+.item[data-vss-custom-attr="SKIPPED"] {
+  color: var(--theme-status-skipped) !important;
+}
+
+.item[data-vss-custom-attr="SECURITY_VIOLATED"] {
+  color: var(--theme-status-judgement-failed) !important;
+}
+
+.item[data-vss-custom-attr="DENIAL_OF_JUDGEMENT"] {
+  color: var(--theme-status-judgement-failed) !important;
+}
+
+.item[data-vss-custom-attr="UNKNOWN"] {
+  color: var(--theme-status-unknown) !important;
+}
+
+.item[data-vss-custom-attr="UNDEFINED"] {
+  color: var(--theme-status-undefined) !important;
+}

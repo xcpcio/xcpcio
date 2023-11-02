@@ -3,15 +3,18 @@ import { MultiSelect } from "vue-search-select";
 
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
+import type { SubmissionStatus } from "@xcpcio/types";
 import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
+
+import "~/styles/submission-status-filter.css";
 
 interface FilterOptions {
   orgNames: string[];
   teamIds: string[];
   languages: string[];
-  statuses: string[];
+  statuses: SubmissionStatus[];
 }
 
 interface EnableFilterOptions {
@@ -111,6 +114,31 @@ function languageOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem
   languageLastSelectItem.value = lastSelectItem;
 }
 
+const statusOptions = computed(() => {
+  const statuses = rank.value.statuses;
+
+  const res = statuses.map((s) => {
+    return {
+      value: s,
+      text: SubmissionStatusToString[s],
+    };
+  });
+
+  return res;
+});
+
+const statusSelectedItems = ref<Array<SelectOptionItem>>([]);
+const statusLastSelectItem = ref({});
+
+function statusOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  statusSelectedItems.value = selectedItems;
+  statusLastSelectItem.value = lastSelectItem;
+}
+
+function statusCustomAttr(option: SelectOptionItem) {
+  return option.value.toString();
+}
+
 const submissions = computed(() => {
   const ss = props.submissions;
   return ss.filter((s) => {
@@ -143,7 +171,15 @@ const submissions = computed(() => {
 
     if (o.languages.length > 0) {
       for (const l of o.languages) {
-        if (s.language === l) {
+        if (l === s.language) {
+          return true;
+        }
+      }
+    }
+
+    if (o.statuses.length > 0) {
+      for (const sta of o.statuses) {
+        if (sta === s.status) {
           return true;
         }
       }
@@ -164,6 +200,7 @@ function onFilter() {
   newFilterOptions.orgNames = orgSelectedItems.value.map(o => o.value);
   newFilterOptions.teamIds = teamsSelectedItems.value.map(t => t.value);
   newFilterOptions.languages = languageSelectedItems.value.map(l => l.value);
+  newFilterOptions.statuses = statusSelectedItems.value.map(s => s.value as SubmissionStatus);
 
   filterOptions.value = newFilterOptions;
 }
@@ -264,6 +301,19 @@ function getProblemLabelColorStyle(s: Submission) {
                 :selected-options="teamsSelectedItems"
                 placeholder="Team"
                 @select="teamsOnSelect"
+              />
+            </div>
+
+            <div
+              v-if="enableFilter?.status"
+              w-64
+            >
+              <MultiSelect
+                :options="statusOptions"
+                :selected-options="statusSelectedItems"
+                placeholder="Status"
+                :custom-attr="statusCustomAttr"
+                @select="statusOnSelect"
               />
             </div>
 

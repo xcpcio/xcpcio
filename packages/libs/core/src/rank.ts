@@ -187,7 +187,7 @@ export class Rank {
         se.add(s.status);
       });
 
-      this.statuses = [...se];
+      this.statuses = [...se].sort();
     }
   }
 
