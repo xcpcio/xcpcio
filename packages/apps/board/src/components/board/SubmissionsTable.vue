@@ -90,12 +90,37 @@ function teamsOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: S
   teamsLastSelectItem.value = lastSelectItem;
 }
 
+const languageOptions = computed(() => {
+  const languages = rank.value.languages;
+
+  const res = languages.map((l) => {
+    return {
+      value: l,
+      text: l,
+    };
+  });
+
+  return res;
+});
+
+const languageSelectedItems = ref<Array<SelectOptionItem>>([]);
+const languageLastSelectItem = ref({});
+
+function languageOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+  languageSelectedItems.value = selectedItems;
+  languageLastSelectItem.value = lastSelectItem;
+}
+
 const submissions = computed(() => {
   const ss = props.submissions;
   return ss.filter((s) => {
     const o = filterOptions.value;
 
-    if (o.orgNames.length === 0 && o.teamIds.length === 0) {
+    if (o.orgNames.length === 0
+     && o.teamIds.length === 0
+     && o.languages.length === 0
+     && o.statuses.length === 0
+    ) {
       return true;
     }
 
@@ -116,6 +141,14 @@ const submissions = computed(() => {
       }
     }
 
+    if (o.languages.length > 0) {
+      for (const l of o.languages) {
+        if (s.language === l) {
+          return true;
+        }
+      }
+    }
+
     return false;
   }).sort(Submission.compare).reverse();
 });
@@ -130,6 +163,7 @@ function onFilter() {
 
   newFilterOptions.orgNames = orgSelectedItems.value.map(o => o.value);
   newFilterOptions.teamIds = teamsSelectedItems.value.map(t => t.value);
+  newFilterOptions.languages = languageSelectedItems.value.map(l => l.value);
 
   filterOptions.value = newFilterOptions;
 }
@@ -230,6 +264,18 @@ function getProblemLabelColorStyle(s: Submission) {
                 :selected-options="teamsSelectedItems"
                 placeholder="Team"
                 @select="teamsOnSelect"
+              />
+            </div>
+
+            <div
+              v-if="enableFilter?.language && languageOptions.length > 0"
+              w-48
+            >
+              <MultiSelect
+                :options="languageOptions"
+                :selected-options="languageSelectedItems"
+                placeholder="Language"
+                @select="languageOnSelect"
               />
             </div>
 

@@ -426,6 +426,8 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
               :enable-filter="{
                 organization: true,
                 team: true,
+                language: true,
+                status: true,
               }"
             />
           </div>

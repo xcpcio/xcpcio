@@ -97,6 +97,8 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
           :enable-filter="{
             organization: true,
             team: true,
+            language: true,
+            status: true,
           }"
         />
       </div>
