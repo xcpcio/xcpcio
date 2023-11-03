@@ -97,9 +97,6 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
                     <div>
                       TeamID: {{ team.id }}
                     </div>
-                    <div>
-                      ddd: f22
-                    </div>
                   </div>
                 </template>
               </Tooltip>
