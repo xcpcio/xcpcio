@@ -53,6 +53,28 @@ const medal = computed((): Medal | null => {
 
   return null;
 });
+
+const place = computed(() => {
+  let r = team.value.rank;
+
+  if (rank.value.contest.organization) {
+    r = team.value.organizationRank;
+  }
+
+  if (r === 1) {
+    return "1st Place";
+  }
+
+  if (r === 2) {
+    return "2nd Place";
+  }
+
+  if (r === 3) {
+    return "3rd Place";
+  }
+
+  return "";
+});
 </script>
 
 <template>
@@ -61,31 +83,39 @@ const medal = computed((): Medal | null => {
     text-xl
     font-mono font-semibold italic
     flex flex-col gap-2
-    justify-center
+    justify-center items-center
   >
-    <div>
-      Team Rank: {{ team.rank }}
-    </div>
-
     <div
-      v-if="team.organization && team.organizationRank !== -1"
+      flex flex-col
+      items-start
+      gap-y-2
     >
-      {{ rank.contest.organization }} Rank: {{ team.organizationRank }}
-    </div>
-
-    <div
-      v-if="firstSolvedProblems.length"
-      flex flex-col gap-2
-    >
-      <div>
-        First Solved Problem {{ firstSolvedProblems }}
+      <div
+        v-if="medal"
+      >
+        {{ medal.text }} Medalist
       </div>
-    </div>
 
-    <div
-      v-if="medal"
-    >
-      {{ medal.text }} Medal
+      <div
+        v-if="place.length > 0"
+      >
+        {{ place }}
+      </div>
+
+      <div
+        v-if="firstSolvedProblems.length"
+        flex flex-col gap-2
+      >
+        <div>
+          First Solved Problem {{ firstSolvedProblems }}
+        </div>
+      </div>
+
+      <div
+        v-if="team.solvedProblemNum > 0"
+      >
+        Solved {{ team.solvedProblemNum }} {{ team.solvedProblemNum > 1 ? 'Problems' : 'Problem' }}
+      </div>
     </div>
   </div>
 </template>
