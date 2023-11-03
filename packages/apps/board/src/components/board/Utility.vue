@@ -15,6 +15,10 @@ const resolverUrl = computed(() => {
 function goBalloon() {
   router.push(`/balloon/?data-source=${route.path}`);
 }
+
+function goCountdown() {
+  router.push(`/countdown/?data-source=${route.path}`);
+}
 </script>
 
 <template>
@@ -39,6 +43,19 @@ function goBalloon() {
       {{ t('type_menu.balloon') }}
     </button>
 
+    <button
+      btn
+      title="Countdown"
+      @click="goCountdown"
+    >
+      {{ t('type_menu.countdown') }}
+    </button>
+  </div>
+
+  <div
+    w-full
+    flex mt-4 gap-4
+  >
     <button
       btn
       title="Submissions"

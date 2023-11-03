@@ -33,6 +33,7 @@ type_menu:
   options: Options
   awards: Awards
   utility: Utility
+  countdown: Countdown
 
 standings:
   start_time: Start
