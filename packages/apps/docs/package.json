@@ -1,6 +1,6 @@
 {
   "name": "@xcpcio/docs",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "private": true,
   "packageManager": "pnpm@8.6.12",
   "description": "XCPCIO docs",
