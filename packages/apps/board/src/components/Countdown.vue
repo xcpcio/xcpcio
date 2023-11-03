@@ -66,16 +66,17 @@ onUnmounted(() => {
       <div
         flex flex-col
         items-center justify-center
+        font-mono
       >
         <div
           mt-20
-          text-6xl
+          text-5xl
         >
           {{ contest.name }}
         </div>
 
         <div
-          mt-16
+          mt-20
           text-6xl
           :class="[contest.getContestState(now).toString()]"
         >
@@ -83,8 +84,8 @@ onUnmounted(() => {
         </div>
 
         <div
-          mt-16
-          class="text-[360px]"
+          mt-20
+          class="text-[320px]"
           :class="[contest.getContestState(now).toString()]"
         >
           <div
