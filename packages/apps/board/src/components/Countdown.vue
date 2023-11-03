@@ -38,7 +38,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="bg-[#323443]"
+    class="background"
     text-gray-200
     w-screen
     h-screen
@@ -68,26 +68,27 @@ onUnmounted(() => {
         items-center justify-center
       >
         <div
-          mt-16
+          mt-20
           text-6xl
         >
           {{ contest.name }}
         </div>
 
         <div
-          mt-12
+          mt-16
           text-6xl
+          :class="[contest.getContestState(now).toString()]"
         >
           {{ contest.getContestState(now) }}
         </div>
 
         <div
-          mt-12
+          mt-16
           class="text-[360px]"
+          :class="[contest.getContestState(now).toString()]"
         >
           <div
             v-if="contest.getContestState(now) === ContestState.PENDING"
-            text-blue-500
           >
             {{ contest.getContestPendingTime(now) }}
           </div>
@@ -95,10 +96,36 @@ onUnmounted(() => {
           <div
             v-else
           >
-            {{ contest.getContestRemainingTime(now) }}
+            {{ contest.getContestElapsedTime(now) }}
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.background {
+  background-color: #333443;
+}
+
+.PENDING {
+  color: #3bb4f2;
+}
+
+.RUNNING {
+  color: rgb(94, 185, 94);
+}
+
+.FROZEN {
+  color: #dd514c;
+}
+
+.FINISHED {
+  color: #0e90d2;
+}
+
+.PAUSED {
+  color: #3bb4f2;
+}
+</style>
