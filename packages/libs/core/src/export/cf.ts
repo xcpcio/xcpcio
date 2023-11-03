@@ -64,15 +64,20 @@ export class CodeforcesGymGhostDATConverter {
       const teamId = submission.teamId;
       const problemId = submission.problemId;
       const problem = rank.contest.problemsMap.get(problemId);
+      const teamIndex = teamIdMap.get(teamId);
 
       if (!problem) {
+        return;
+      }
+
+      if (!teamIndex) {
         return;
       }
 
       const status = this.submissionStatusToCodeforcesGymDatStatus(submission.status);
       submissionsIdMap.get(teamId)!.set(problemId, submissionsIdMap.get(teamId)!.get(problemId)! + 1);
 
-      res += `@s ${teamIdMap.get(teamId)},${problem.label},${submissionsIdMap.get(teamId)?.get(problemId)},${submission.timestampToSecond},${status}\n`;
+      res += `@s ${teamIndex},${problem.label},${submissionsIdMap.get(teamId)?.get(problemId)},${submission.timestampToSecond},${status}\n`;
     });
 
     return res;
