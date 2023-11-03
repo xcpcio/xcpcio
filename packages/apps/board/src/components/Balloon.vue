@@ -82,7 +82,8 @@ onUnmounted(() => {
       v-else
     >
       <div
-        flex flex-col justify-between
+        flex flex-col
+        justify-between
       >
         <template
           v-for="(b, index) in balloons"

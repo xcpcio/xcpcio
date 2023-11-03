@@ -79,15 +79,22 @@ watch(searchText, () => {
   >
     <div>
       <div
-        v-if="isFetching"
+        v-if="isFetching || error"
+        mt-4 mb-4
         class="sm:w-[1000px] lg:w-screen"
-        flex justify-center
+        flex justify-center items-center
       >
-        {{ t("common.loading") }}...
-      </div>
+        <div
+          v-if="isFetching"
+        >
+          {{ t("common.loading") }}...
+        </div>
 
-      <div v-if="error">
-        {{ error }}
+        <div
+          v-if="error"
+        >
+          {{ error }}
+        </div>
       </div>
 
       <div
