@@ -6,6 +6,7 @@
 export {}
 declare global {
   const BALLOON_TITLE_SUFFIX: typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']
+  const COUNTDOWN_TITLE_SUFFIX: typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']
   const EffectScope: typeof import('vue')['EffectScope']
   const Pagination: typeof import('./composables/pagination')['Pagination']
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']
@@ -320,6 +321,7 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
+    readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
@@ -620,6 +622,7 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
+    readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
