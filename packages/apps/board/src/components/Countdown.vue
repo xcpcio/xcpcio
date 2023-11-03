@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { createContest } from "@xcpcio/core";
 import type { Contest } from "@xcpcio/core";
+import { ContestState } from "@xcpcio/types";
 import type { Contest as IContest } from "@xcpcio/types";
 
 const props = defineProps<{
@@ -25,6 +26,14 @@ watch(data, async () => {
 
   firstLoaded.value = true;
 });
+
+const setNowIntervalId = setInterval(() => {
+  now.value = new Date();
+}, 1000);
+
+onUnmounted(() => {
+  clearInterval(setNowIntervalId);
+});
 </script>
 
 <template>
@@ -38,8 +47,7 @@ watch(data, async () => {
       <div
         flex flex-col
         justify-center items-center
-        w-screen
-        h-screen
+        w-screen h-screen
         text-xl italic
       >
         <div>
@@ -57,9 +65,39 @@ watch(data, async () => {
     >
       <div
         flex flex-col
-        justify-between
+        items-center justify-center
       >
-        {{ contest.name }}
+        <div
+          mt-16
+          text-6xl
+        >
+          {{ contest.name }}
+        </div>
+
+        <div
+          mt-12
+          text-6xl
+        >
+          {{ contest.getContestState(now) }}
+        </div>
+
+        <div
+          mt-12
+          class="text-[360px]"
+        >
+          <div
+            v-if="contest.getContestState(now) === ContestState.PENDING"
+            text-blue-500
+          >
+            {{ contest.getContestPendingTime(now) }}
+          </div>
+
+          <div
+            v-else
+          >
+            {{ contest.getContestRemainingTime(now) }}
+          </div>
+        </div>
       </div>
     </div>
   </div>

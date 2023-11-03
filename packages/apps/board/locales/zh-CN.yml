@@ -33,6 +33,7 @@ type_menu:
   options: 选项
   awards: 奖项
   utility: 工具
+  countdown: 倒计时
 
 standings:
   start_time: 开始时间
