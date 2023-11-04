@@ -41,6 +41,7 @@ declare module 'vue' {
     StandingsAnnotate: typeof import('./components/board/StandingsAnnotate.vue')['default']
     StarIcon: typeof import('./components/icon/StarIcon.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
+    SubmissionsModal: typeof import('./components/board/SubmissionsModal.vue')['default']
     SubmissionsTable: typeof import('./components/board/SubmissionsTable.vue')['default']
     SubmissionsTableModal: typeof import('./components/board/SubmissionsTableModal.vue')['default']
     TablePagination: typeof import('./components/table/TablePagination.vue')['default']

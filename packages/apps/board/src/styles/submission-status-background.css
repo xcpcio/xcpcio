@@ -1,0 +1,123 @@
+.PENDING {
+  background-color: var(--theme-status-pending);
+}
+
+.WAITING {
+  background-color: var(--theme-status-waiting);
+}
+
+.PREPARING {
+  background-color: var(--theme-status-preparing);
+}
+
+.COMPILING {
+  background-color: var(--theme-status-compiling);
+}
+
+.RUNNING {
+  background-color: var(--theme-status-running);
+}
+
+.JUDGING {
+  background-color: var(--theme-status-running);
+}
+
+.FROZEN {
+  background-color: var(--theme-status-pending);
+}
+
+
+.ACCEPTED {
+  background-color: var(--theme-status-accepted);
+}
+
+.CORRECT {
+  background-color: var(--theme-status-accepted);
+}
+
+.PARTIALLY_CORRECT {
+  background-color: var(--theme-status-partially-correct);
+}
+
+
+.REJECTED {
+  background-color: var(--theme-status-wrong-answer);
+}
+
+.WRONG_ANSWER {
+  background-color: var(--theme-status-wrong-answer);
+}
+
+
+.COMPILATION_ERROR {
+  background-color: var(--theme-status-compilation-error);
+}
+
+.PRESENTATION_ERROR {
+  background-color: var(--theme-status-compilation-error);
+}
+
+
+.RUNTIME_ERROR {
+  background-color: var(--theme-status-runtime-error);
+}
+
+.TIME_LIMIT_EXCEEDED {
+  background-color: var(--theme-status-time-limit-exceeded);
+}
+
+.MEMORY_LIMIT_EXCEEDED {
+  background-color: var(--theme-status-memory-limit-exceeded);
+}
+
+.OUTPUT_LIMIT_EXCEEDED {
+  background-color: var(--theme-status-output-limit-exceeded);
+}
+
+.IDLENESS_LIMIT_EXCEEDED {
+  background-color: var(--theme-status-output-limit-exceeded);
+}
+
+.HACKED {
+  background-color: var(--theme-status-wrong-answer);
+}
+
+.JUDGEMENT_FAILED {
+  background-color: var(--theme-status-judgement-failed);
+}
+
+.CONFIGURATION_ERROR {
+  background-color: var(--theme-status-configuration-error);
+}
+
+.FILE_ERROR {
+  background-color: var(--theme-status-file-error);
+}
+
+.SYSTEM_ERROR {
+  background-color: var(--theme-status-system-error);
+}
+
+.CANCELED {
+  background-color: var(--theme-status-canceled);
+}
+
+.SKIPPED {
+  background-color: var(--theme-status-skipped);
+}
+
+.SECURITY_VIOLATED {
+  background-color: var(--theme-status-judgement-failed);
+}
+
+.DENIAL_OF_JUDGEMENT {
+  background-color: var(--theme-status-judgement-failed);
+}
+
+.UNKNOWN {
+  background-color: var(--theme-status-unknown);
+}
+
+.UNDEFINED {
+  background-color: var(--theme-status-undefined);
+}
