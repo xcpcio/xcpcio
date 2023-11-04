@@ -79,3 +79,44 @@ export const SubmissionStatusToString: { [key in SubmissionStatus]: string } = {
   [SubmissionStatus.UNKNOWN]: "Unknown",
   [SubmissionStatus.UNDEFINED]: "Undefined",
 };
+
+export const SubmissionStatusToSimpleString: { [key in SubmissionStatus]: string } = {
+  [SubmissionStatus.PENDING]: "PD",
+  [SubmissionStatus.WAITING]: "PD",
+  [SubmissionStatus.PREPARING]: "PD",
+  [SubmissionStatus.COMPILING]: "PD",
+  [SubmissionStatus.RUNNING]: "PD",
+  [SubmissionStatus.JUDGING]: "PD",
+  [SubmissionStatus.FROZEN]: "PD",
+
+  [SubmissionStatus.ACCEPTED]: "AC",
+  [SubmissionStatus.CORRECT]: "AC",
+  [SubmissionStatus.PARTIALLY_CORRECT]: "RJ",
+
+  [SubmissionStatus.REJECTED]: "RJ",
+  [SubmissionStatus.WRONG_ANSWER]: "WA",
+
+  [SubmissionStatus.COMPILATION_ERROR]: "CE",
+  [SubmissionStatus.PRESENTATION_ERROR]: "PE",
+
+  [SubmissionStatus.RUNTIME_ERROR]: "RE",
+  [SubmissionStatus.TIME_LIMIT_EXCEEDED]: "TL",
+  [SubmissionStatus.MEMORY_LIMIT_EXCEEDED]: "ML",
+  [SubmissionStatus.OUTPUT_LIMIT_EXCEEDED]: "OL",
+  [SubmissionStatus.IDLENESS_LIMIT_EXCEEDED]: "IL",
+
+  [SubmissionStatus.HACKED]: "RJ",
+
+  [SubmissionStatus.JUDGEMENT_FAILED]: "RJ",
+  [SubmissionStatus.CONFIGURATION_ERROR]: "RJ",
+  [SubmissionStatus.FILE_ERROR]: "RJ",
+  [SubmissionStatus.SYSTEM_ERROR]: "RJ",
+  [SubmissionStatus.CANCELED]: "RJ",
+  [SubmissionStatus.SKIPPED]: "RJ",
+
+  [SubmissionStatus.SECURITY_VIOLATED]: "RJ",
+  [SubmissionStatus.DENIAL_OF_JUDGEMENT]: "RJ",
+
+  [SubmissionStatus.UNKNOWN]: "RJ",
+  [SubmissionStatus.UNDEFINED]: "RJ",
+};

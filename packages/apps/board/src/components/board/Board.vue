@@ -458,14 +458,22 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
           </div>
         </div>
       </div>
-    </div>
 
-    <OptionsModal
-      v-if="!isHiddenOptionsModal"
-      v-model:is-hidden="isHiddenOptionsModal"
-      v-model:rank-options="rankOptions"
-      :rank="rank"
-    />
+      <div
+        v-if="rankOptions.enableDynamicSubmissions"
+      >
+        <DynamicSubmissionsModal
+          :rank="rank"
+        />
+      </div>
+
+      <OptionsModal
+        v-if="!isHiddenOptionsModal"
+        v-model:is-hidden="isHiddenOptionsModal"
+        v-model:rank-options="rankOptions"
+        :rank="rank"
+      />
+    </div>
   </div>
 </template>
 
