@@ -54,7 +54,7 @@ function getFirstSolved(p: ProblemStatistics): string {
     return "Null";
   }
 
-  const t = Math.floor(p.firstSolveSubmissions[0].timestamp / 60);
+  const t = p.firstSolveSubmissions[0].timestampToMinute;
   return `${t}`;
 }
 
@@ -63,7 +63,7 @@ function getLastSolved(p: ProblemStatistics): string {
     return "Null";
   }
 
-  const t = Math.floor(p.lastSolveSubmissions[0].timestamp / 60);
+  const t = p.lastSolveSubmissions[0].timestampToMinute;
   return `${t}`;
 }
 </script>
