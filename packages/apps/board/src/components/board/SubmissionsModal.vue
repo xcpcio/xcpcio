@@ -105,7 +105,7 @@ const submissions = computed(() => {
               border-b-4
               flex justify-center
               :style="{
-                'border-color': s.problem.balloonColor?.background_color.toString(),
+                'border-color': s.problem.balloonColor?.background_color.toString() ?? '#fff',
               }"
             >
               {{ s.problem.label }}
