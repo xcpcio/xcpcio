@@ -118,7 +118,13 @@ export class Submission {
       }
     }
 
-    return 0;
+    if (lhs.id < rhs.id) {
+      return -1;
+    } else if (lhs.id === rhs.id) {
+      return 0;
+    } else {
+      return 1;
+    }
   }
 }
 

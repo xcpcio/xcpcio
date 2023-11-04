@@ -29,6 +29,8 @@ export class RankOptions {
   filterTeams: Array<SelectOptionItem>;
   filterTeamMap: Map<string, SelectOptionItem>;
 
+  enableDynamicSubmissions: boolean;
+
   constructor() {
     this.enableFilterSubmissionsByTimestamp = false;
     this.width = 0;
@@ -42,6 +44,8 @@ export class RankOptions {
 
     this.filterTeams = [];
     this.filterTeamMap = new Map<string, SelectOptionItem>();
+
+    this.enableDynamicSubmissions = false;
   }
 
   setWidth(width: number, contest: Contest) {
