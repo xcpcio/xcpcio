@@ -280,7 +280,8 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
     <div v-if="!firstLoaded">
       <div
         :class="[wrapperWidthClass]"
-        flex flex-col gap-4 justify-center items-center
+        flex flex-col gap-4
+        justify-center items-center
       >
         <div>
           {{ t("common.loading") }}...
