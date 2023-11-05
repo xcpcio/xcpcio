@@ -38,6 +38,12 @@ pnpm build
 
 ## :clap:  Our Supporters
 
+### &#8627; Sponsors
+
+| Date | Money | Note |
+| -----------: | -----------: | -----------: |
+|2023-11-05 | 200.00Y | [@Hsueh-Xue](https://github.com/Hsueh-Xue) |
+
 ### &#8627; Stargazers
 
 [![Stargazers repo roster for @xcpcio/xcpcio](https://reporoster.com/stars/xcpcio/xcpcio)](https://github.com/xcpcio/xcpcio/stargazers)
