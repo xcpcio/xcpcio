@@ -107,12 +107,6 @@ importers:
       '@xcpcio/types':
         specifier: workspace:*
         version: link:../../libs/types
-      chroma-js:
-        specifier: ^2.4.2
-        version: 2.4.2
-      color-diff:
-        specifier: ^1.4.0
-        version: 1.4.0
       dayjs:
         specifier: ^1.11.8
         version: 1.11.8
@@ -171,12 +165,6 @@ importers:
       '@intlify/unplugin-vue-i18n':
         specifier: ^0.12.2
         version: 0.12.2(rollup@2.79.1)(vue-i18n@9.2.2)
-      '@types/chroma-js':
-        specifier: ^2.4.2
-        version: 2.4.2
-      '@types/color-diff':
-        specifier: ^1.2.3
-        version: 1.2.3
       '@types/file-saver':
         specifier: ^2.0.5
         version: 2.0.5
