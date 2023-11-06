@@ -29,7 +29,7 @@ export class RankOptions {
   filterTeams: Array<SelectOptionItem>;
   filterTeamMap: Map<string, SelectOptionItem>;
 
-  enableDynamicSubmissions: boolean;
+  enableAnimatedSubmissions: boolean;
 
   constructor() {
     this.enableFilterSubmissionsByTimestamp = false;
@@ -45,7 +45,7 @@ export class RankOptions {
     this.filterTeams = [];
     this.filterTeamMap = new Map<string, SelectOptionItem>();
 
-    this.enableDynamicSubmissions = false;
+    this.enableAnimatedSubmissions = false;
   }
 
   setWidth(width: number, contest: Contest) {

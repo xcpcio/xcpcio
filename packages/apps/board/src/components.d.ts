@@ -7,6 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AnimatedSubmissionsModal: typeof import('./components/board/AnimatedSubmissionsModal.vue')['default']
     Badge: typeof import('./components/board/Badge.vue')['default']
     Balloon: typeof import('./components/Balloon.vue')['default']
     BalloonBlock: typeof import('./components/BalloonBlock.vue')['default']
@@ -20,7 +21,6 @@ declare module 'vue' {
     CustomBoard: typeof import('./components/CustomBoard.vue')['default']
     CustomCountdown: typeof import('./components/CustomCountdown.vue')['default']
     DataSourceInput: typeof import('./components/DataSourceInput.vue')['default']
-    DynamicSubmissionsModal: typeof import('./components/board/DynamicSubmissionsModal.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']

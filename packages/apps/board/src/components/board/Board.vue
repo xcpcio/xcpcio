@@ -460,9 +460,9 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       </div>
 
       <div
-        v-if="rankOptions.enableDynamicSubmissions"
+        v-if="rankOptions.enableAnimatedSubmissions"
       >
-        <DynamicSubmissionsModal
+        <AnimatedSubmissionsModal
           :rank="rank"
         />
       </div>
