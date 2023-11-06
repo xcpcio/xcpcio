@@ -15,7 +15,6 @@ declare module 'vue' {
     BottomStatistics: typeof import('./components/board/BottomStatistics.vue')['default']
     ContestIndexUI: typeof import('./components/ContestIndexUI.vue')['default']
     ContestStateBadge: typeof import('./components/board/ContestStateBadge.vue')['default']
-    copy: typeof import('./components/CustomBalloon copy.vue')['default']
     Countdown: typeof import('./components/Countdown.vue')['default']
     CustomBalloon: typeof import('./components/CustomBalloon.vue')['default']
     CustomBoard: typeof import('./components/CustomBoard.vue')['default']

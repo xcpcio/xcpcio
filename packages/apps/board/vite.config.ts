@@ -16,6 +16,7 @@ import Unocss from "unocss/vite";
 import Shiki from "markdown-it-shiki";
 import VueMacros from "unplugin-vue-macros/vite";
 import WebfontDownload from "vite-plugin-webfont-dl";
+import { createHtmlPlugin } from "vite-plugin-html";
 
 import packageJSON from "./package.json";
 
@@ -138,6 +139,21 @@ export default defineConfig({
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
     VueDevTools(),
+
+    // https://github.com/vbenjs/vite-plugin-html
+    createHtmlPlugin({
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
+    }),
   ],
 
   // https://github.com/vitest-dev/vitest
