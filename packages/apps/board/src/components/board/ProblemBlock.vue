@@ -13,6 +13,14 @@ function onClick() {
 
 const rank = computed(() => props.rank);
 const problem = computed(() => props.problem);
+
+const backgroundColor = computed(() => {
+  return problem.value.balloonColor?.background_color as string ?? "#a0f0a0";
+});
+
+const color = computed(() => {
+  return getWhiteOrBlackColor(backgroundColor.value);
+});
 </script>
 
 <template>
@@ -22,8 +30,8 @@ const problem = computed(() => props.problem);
     text-center
     style="width: 3rem;"
     :style="{
-      'background-color': problem.balloonColor?.background_color,
-      'color': problem.balloonColor?.color,
+      'background-color': backgroundColor,
+      'color': color,
     }"
   >
     <div
