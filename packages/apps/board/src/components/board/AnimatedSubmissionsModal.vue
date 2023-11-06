@@ -3,6 +3,8 @@ import type { Problem, Rank, Team } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
 import { SubmissionStatusToSimpleString } from "@xcpcio/types";
 
+import { getMedalColor } from "~/composables/color";
+
 const props = defineProps<{
   rank: Rank,
 }>();
@@ -78,16 +80,21 @@ const submissions = computed(() => {
             bg-slate-800 text-gray-200
             font-mono
             flex flex-row
-            pl-2
+            justify-center items-center
           >
             <div
-              w-8
+              w-10
+              :style="getMedalColor(s.team)"
+              flex
+              justify-center items-center
             >
-              {{ s.team.rank }}
+              <div>
+                {{ s.team.rank }}
+              </div>
             </div>
 
             <div
-              pl-2
+              pl-1
               w-80
               truncate
             >
@@ -105,7 +112,7 @@ const submissions = computed(() => {
               border-b-4
               flex justify-center
               :style="{
-                'border-color': s.problem.balloonColor?.background_color.toString() ?? '#fff',
+                borderColor: s.problem.balloonColor.background_color,
               }"
             >
               {{ s.problem.label }}
@@ -115,7 +122,9 @@ const submissions = computed(() => {
               w-10
               flex justify-center
               :class="[s.submission.status]"
-              opacity-100
+              :style="{
+                color: '#000',
+              }"
             >
               {{ SubmissionStatusToSimpleString[s.submission.status] }}
             </div>

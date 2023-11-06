@@ -46,6 +46,7 @@ declare global {
   const getDataSourceUrl: typeof import('./composables/query')['getDataSourceUrl']
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']
+  const getMedalColor: typeof import('./composables/color')['getMedalColor']
   const getProblemChart: typeof import('./composables/statistics')['getProblemChart']
   const getSubmitChart: typeof import('./composables/statistics')['getSubmitChart']
   const getTeamChart: typeof import('./composables/statistics')['getTeamChart']
@@ -357,6 +358,7 @@ declare module 'vue' {
     readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
+    readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
@@ -658,6 +660,7 @@ declare module '@vue/runtime-core' {
     readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
+    readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
