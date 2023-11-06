@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
+import { Balloon, Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
 
@@ -43,7 +43,7 @@ watch(data, async () => {
 });
 
 const balloons = computed(() => {
-  return rank.value.balloons;
+  return rank.value.balloons.sort(Balloon.compare).reverse().slice(0, 256);
 });
 
 const setNowIntervalId = setInterval(() => {

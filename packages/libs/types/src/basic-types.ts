@@ -53,7 +53,7 @@ export interface Style {
 }
 
 export interface BalloonColor {
-  color: ThemeColor;
+  color?: ThemeColor;
   background_color: ThemeColor;
 }
 

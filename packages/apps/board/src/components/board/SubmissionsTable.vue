@@ -7,6 +7,7 @@ import type { SubmissionStatus } from "@xcpcio/types";
 import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
+import { getProblemBalloonColor } from "~/composables/color";
 
 import "~/styles/submission-status-filter.css";
 
@@ -244,12 +245,7 @@ function getProblemLabelColorStyle(s: Submission) {
     return undefined;
   }
 
-  const b = p.balloonColor;
-
-  return {
-    backgroundColor: b.background_color as string,
-    color: b.color as string,
-  };
+  return getProblemBalloonColor(p);
 }
 </script>
 

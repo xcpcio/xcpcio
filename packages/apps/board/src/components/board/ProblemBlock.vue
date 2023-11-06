@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Problem, Rank } from "@xcpcio/core";
 
+import { getProblemBalloonColor } from "~/composables/color";
+
 const props = defineProps<{
   rank: Rank,
   problem: Problem
@@ -14,13 +16,7 @@ function onClick() {
 const rank = computed(() => props.rank);
 const problem = computed(() => props.problem);
 
-const backgroundColor = computed(() => {
-  return problem.value.balloonColor?.background_color as string ?? "#a0f0a0";
-});
-
-const color = computed(() => {
-  return getWhiteOrBlackColor(backgroundColor.value);
-});
+const balloonColor = computed(() => getProblemBalloonColor(problem.value));
 </script>
 
 <template>
@@ -30,8 +26,8 @@ const color = computed(() => {
     text-center
     style="width: 3rem;"
     :style="{
-      'background-color': backgroundColor,
-      'color': color,
+      'background-color': balloonColor.backgroundColor,
+      'color': balloonColor.color,
     }"
   >
     <div
