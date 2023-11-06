@@ -21,10 +21,6 @@ const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
 function getStandClassName(t: Team, isRankField = false): string {
-  if (props.isFilter) {
-    return "filter-team";
-  }
-
   if (isRankField) {
     if (t.awards.includes(MedalType.GOLD)) {
       return "gold";
@@ -41,6 +37,10 @@ function getStandClassName(t: Team, isRankField = false): string {
     if (t.awards.includes(MedalType.HONORABLE)) {
       return "honorable";
     }
+  }
+
+  if (props.isFilter) {
+    return "filter-team";
   }
 
   const solvedProblemIndex = (rank.value.rankStatistics.getTeamSolvedNumIndex(t.solvedProblemNum) - 1) % 2;
