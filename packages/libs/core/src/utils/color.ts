@@ -1,8 +1,6 @@
 import { furthest } from "color-diff";
 import chroma from "chroma-js";
 
-import type { Problem } from "@xcpcio/core";
-
 export function getWhiteOrBlackColor(background: string) {
   const [R, G, B] = chroma(background).rgb();
   const color = { R, G, B };
@@ -15,14 +13,4 @@ export function getWhiteOrBlackColor(background: string) {
   } else {
     return "#fff";
   }
-}
-
-export function getProblemBalloonColor(problem: Problem): { backgroundColor: string, color: string } {
-  const backgroundColor = problem.balloonColor?.background_color as string ?? "#a0f0a0";
-  const color = getWhiteOrBlackColor(backgroundColor);
-
-  return {
-    backgroundColor,
-    color,
-  };
 }

@@ -17,7 +17,7 @@ function showTeamName(team: Team) {
   return sections.filter(s => s).join(" - ");
 }
 
-const balloonColor = computed(() => getProblemBalloonColor(balloon.value.problem));
+const balloonColor = computed(() => balloon.value.problem.balloonColor);
 </script>
 
 <template>
@@ -36,7 +36,7 @@ const balloonColor = computed(() => getProblemBalloonColor(balloon.value.problem
         w-20
         flex flex-shrink-0 justify-center items-center
         :style="{
-          backgroundColor: balloonColor.backgroundColor,
+          backgroundColor: balloonColor.background_color,
         }"
       >
         <div

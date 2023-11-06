@@ -1,7 +1,7 @@
 import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 
 import type { Submissions } from "./submission";
-import { calcDirt } from "./utils";
+import { calcDirt, getWhiteOrBlackColor } from "./utils";
 
 export class ProblemStatistics {
   acceptedNum: number;
@@ -59,7 +59,7 @@ export class Problem {
   timeLimit?: string;
   memoryLimit?: string;
 
-  balloonColor?: BalloonColor;
+  balloonColor: BalloonColor;
 
   statistics: ProblemStatistics;
 
@@ -70,6 +70,11 @@ export class Problem {
     this.name = "";
 
     this.statistics = new ProblemStatistics();
+
+    this.balloonColor = {
+      background_color: "#a0f0a0",
+      color: "#000",
+    };
   }
 }
 
@@ -86,27 +91,17 @@ export function createProblem(problemJSON: IProblem): Problem {
   p.timeLimit = problemJSON.time_limit;
   p.memoryLimit = problemJSON.memory_limit;
 
-  p.balloonColor = problemJSON.balloon_color;
+  if (problemJSON.balloon_color) {
+    p.balloonColor = problemJSON.balloon_color;
+  }
+
+  p.balloonColor.color = getWhiteOrBlackColor(p.balloonColor.background_color as string);
 
   return p;
 }
 
 export function createProblems(problemsJSON: IProblems): Problems {
-  return problemsJSON.map((pJSON) => {
-    const p = new Problem();
-
-    p.id = pJSON.id;
-    p.label = pJSON.label;
-
-    p.name = pJSON.name ?? "";
-
-    p.timeLimit = pJSON.time_limit;
-    p.memoryLimit = pJSON.memory_limit;
-
-    p.balloonColor = pJSON.balloon_color;
-
-    return p;
-  });
+  return problemsJSON.map(pJSON => createProblem(pJSON));
 }
 
 export function createProblemsByProblemIds(problemIds: string[], balloonColors?: BalloonColor[]): Problems {
@@ -123,6 +118,10 @@ export function createProblemsByProblemIds(problemIds: string[], balloonColors?:
       problems[index].balloonColor = balloonColors[index];
     }
   }
+
+  problems.forEach((p) => {
+    p.balloonColor.color = getWhiteOrBlackColor(p.balloonColor.background_color as string);
+  });
 
   return problems;
 }
