@@ -244,11 +244,9 @@ function getProblemLabelColorStyle(s: Submission) {
     return undefined;
   }
 
-  const b = p.balloonColor;
-
   return {
-    backgroundColor: b.background_color as string,
-    color: b.color as string,
+    backgroundColor: p.balloonColor.background_color,
+    color: p.balloonColor.color,
   };
 }
 </script>

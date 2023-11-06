@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Balloon, Team } from "@xcpcio/core";
-import type { ThemeColor } from "@xcpcio/types";
 
 const props = defineProps<{
   index: number;
@@ -18,17 +17,7 @@ function showTeamName(team: Team) {
   return sections.filter(s => s).join(" - ");
 }
 
-function getColor(c: ThemeColor): string {
-  if (typeof c === "string") {
-    return c;
-  }
-
-  if (isDark && c?.dark) {
-    return c.dark;
-  }
-
-  return c.light;
-}
+const balloonColor = computed(() => balloon.value.problem.balloonColor);
 </script>
 
 <template>
@@ -47,12 +36,12 @@ function getColor(c: ThemeColor): string {
         w-20
         flex flex-shrink-0 justify-center items-center
         :style="{
-          backgroundColor: getColor(balloon.problem?.balloonColor?.background_color ?? 'rgba(0, 0, 0, 0.5)'),
+          backgroundColor: balloonColor.background_color,
         }"
       >
         <div
           :style="{
-            color: getColor(balloon.problem?.balloonColor?.color ?? '#fff'),
+            color: balloonColor.color,
           }"
         >
           {{ balloon.problem.label }}

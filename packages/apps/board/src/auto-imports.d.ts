@@ -38,7 +38,6 @@ declare global {
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
-  const downloadSingleFile: typeof import('./composables/utils')['downloadSingleFile']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
@@ -47,10 +46,12 @@ declare global {
   const getDataSourceUrl: typeof import('./composables/query')['getDataSourceUrl']
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']
+  const getMedalColor: typeof import('./composables/color')['getMedalColor']
   const getProblemChart: typeof import('./composables/statistics')['getProblemChart']
   const getSubmitChart: typeof import('./composables/statistics')['getSubmitChart']
   const getTeamChart: typeof import('./composables/statistics')['getTeamChart']
   const getTeamPlaceChart: typeof import('./composables/statistics')['getTeamPlaceChart']
+  const getWhiteOrBlackColor: typeof import('./composables/color')['getWhiteOrBlackColor']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
@@ -357,6 +358,7 @@ declare module 'vue' {
     readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
+    readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
@@ -658,6 +660,7 @@ declare module '@vue/runtime-core' {
     readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
+    readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>

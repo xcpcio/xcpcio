@@ -16,6 +16,10 @@ export class Balloon {
   get key() {
     return `balloon-${this.team.id}-${this.problem.id}`;
   }
+
+  static compare(lhs: Balloon, rhs: Balloon): number {
+    return Submission.compare(lhs.submission, rhs.submission);
+  }
 }
 
 export type Balloons = Array<Balloon>;

@@ -70,13 +70,6 @@ onUnmounted(() => {
       >
         <div
           mt-20
-          text-5xl
-        >
-          {{ contest.name }}
-        </div>
-
-        <div
-          mt-20
           text-6xl
           :class="[contest.getContestState(now).toString()]"
         >

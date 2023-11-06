@@ -13,6 +13,8 @@ function onClick() {
 
 const rank = computed(() => props.rank);
 const problem = computed(() => props.problem);
+
+const balloonColor = computed(() => problem.value.balloonColor);
 </script>
 
 <template>
@@ -22,8 +24,8 @@ const problem = computed(() => props.problem);
     text-center
     style="width: 3rem;"
     :style="{
-      'background-color': problem.balloonColor?.background_color,
-      'color': problem.balloonColor?.color,
+      'background-color': balloonColor.background_color,
+      'color': balloonColor.color,
     }"
   >
     <div
