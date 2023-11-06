@@ -35,6 +35,10 @@ const submissions = computed(() => {
       continue;
     }
 
+    if (rank.value.filterTeamByOrg(team)) {
+      continue;
+    }
+
     const problem = rank.value.contest.problemsMap.get(problemId);
     if (!problem) {
       continue;
