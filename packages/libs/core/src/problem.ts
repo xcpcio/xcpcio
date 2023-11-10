@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 
 import type { Submissions } from "./submission";
@@ -92,7 +94,7 @@ export function createProblem(problemJSON: IProblem): Problem {
   p.memoryLimit = problemJSON.memory_limit;
 
   if (problemJSON.balloon_color) {
-    p.balloonColor = problemJSON.balloon_color;
+    p.balloonColor = _.cloneDeep(problemJSON.balloon_color);
   }
 
   p.balloonColor.color = getWhiteOrBlackColor(p.balloonColor.background_color as string);
@@ -115,7 +117,7 @@ export function createProblemsByProblemIds(problemIds: string[], balloonColors?:
 
   if (balloonColors !== undefined && balloonColors !== null) {
     for (const index in balloonColors) {
-      problems[index].balloonColor = balloonColors[index];
+      problems[index].balloonColor = _.cloneDeep(balloonColors[index]);
     }
   }
 
