@@ -1,4 +1,4 @@
-import type { Contest as IContest, Image, StatusTimeDisplay } from "@xcpcio/types";
+import type { Contest as IContest, Image, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
 import { ContestState } from "@xcpcio/types";
 
 import type { Problem, Problems } from "./problem";
@@ -28,7 +28,7 @@ export class Contest {
   statusTimeDisplay: StatusTimeDisplay;
 
   badge?: string;
-  medal?: Record<string, Record<string, number>>;
+  medal?: Record<string, Record<string, number>> | MedalPreset;
   awards?: Awards;
   organization?: string;
 
@@ -217,37 +217,42 @@ export function createContest(contestJSON: IContest): Contest {
 
     c.awards = new Map<string, Award[]>();
 
-    for (const k in contestJSON.medal) {
-      const v = contestJSON.medal[k];
-
-      {
-        const award: Award[] = [];
-
-        let rank = 1;
-        const work = (key: string, medalType: MedalType) => {
-          if (Object.keys(v).includes(key)) {
-            const a = new Award();
-            a.medalType = medalType;
-            a.minRank = rank;
-            rank += Number(v[key]);
-            a.maxRank = rank - 1;
-            award.push(a);
-          }
-        };
-
-        work("gold", MedalType.GOLD);
-        work("silver", MedalType.SILVER);
-        work("bronze", MedalType.BRONZE);
+    if (typeof contestJSON.medal === "string") {
+      // eslint-disable-next-line no-empty
+      {}
+    } else {
+      for (const k in contestJSON.medal) {
+        const v = contestJSON.medal[k];
 
         {
-          const a = new Award();
-          a.medalType = MedalType.HONORABLE;
-          a.minRank = rank;
-          a.maxRank = 0x3F3F3F3F;
-          award.push(a);
-        }
+          const award: Award[] = [];
 
-        c.awards.set(k, award);
+          let rank = 1;
+          const work = (key: string, medalType: MedalType) => {
+            if (Object.keys(v).includes(key)) {
+              const a = new Award();
+              a.medalType = medalType;
+              a.minRank = rank;
+              rank += Number(v[key]);
+              a.maxRank = rank - 1;
+              award.push(a);
+            }
+          };
+
+          work("gold", MedalType.GOLD);
+          work("silver", MedalType.SILVER);
+          work("bronze", MedalType.BRONZE);
+
+          {
+            const a = new Award();
+            a.medalType = MedalType.HONORABLE;
+            a.minRank = rank;
+            a.maxRank = 0x3F3F3F3F;
+            award.push(a);
+          }
+
+          c.awards.set(k, award);
+        }
       }
     }
   })();

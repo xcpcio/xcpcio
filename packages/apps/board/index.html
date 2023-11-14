@@ -34,6 +34,13 @@
     } catch (e) {
       window.DATA_REGION = "CN";
     }
+
+    try {
+      let DEFAULT_LANG = __DEFAULT_LANG__;
+      window.DEFAULT_LANG = DEFAULT_LANG;
+    } catch (e) {
+      window.DEFAULT_LANG = "en";
+    }
   </script>
   <script>
     (function () {

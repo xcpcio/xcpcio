@@ -10,6 +10,7 @@ import { Submission } from "./submission";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 import { Balloon, type Balloons } from "./balloon";
+import { Award, MedalType } from "./award";
 
 export interface SelectOptionItem {
   value: string;
@@ -342,6 +343,9 @@ export class Rank {
       this.buildTeamRank();
       this.buildOrgRank();
 
+      this.rankStatistics.effectiveTeamNum = this.teams.filter(t => t.isEffectiveTeam).length;
+      this.buildAwards();
+
       this.teams.forEach(t => t.calcAwards(this.contest.awards?.get(this.options.group)));
       this.teams.forEach(t => t.postProcessPlaceChartPoints());
     })();
@@ -438,6 +442,48 @@ export class Rank {
     res.sort();
 
     return res;
+  }
+
+  buildAwards() {
+    if (this.contest.medal === "ccpc") {
+      this.contest.awards = new Map<string, Award[]>();
+
+      const tot = this.rankStatistics.effectiveTeamNum;
+      const award: Award[] = [];
+
+      const gold = new Award();
+      const silver = new Award();
+      const bronze = new Award();
+
+      {
+        gold.medalType = MedalType.GOLD;
+        gold.minRank = 1;
+        gold.maxRank = Math.ceil(tot * 0.1);
+        if (gold.maxRank >= gold.minRank) {
+          award.push(gold);
+        }
+      }
+
+      {
+        silver.medalType = MedalType.SILVER;
+        silver.minRank = gold.maxRank + 1;
+        silver.maxRank = Math.ceil(tot * 0.3);
+        if (silver.maxRank >= silver.minRank) {
+          award.push(silver);
+        }
+      }
+
+      {
+        bronze.medalType = MedalType.BRONZE;
+        bronze.minRank = silver.maxRank + 1;
+        bronze.maxRank = Math.ceil(tot * 0.6);
+        if (bronze.maxRank >= bronze.minRank) {
+          award.push(bronze);
+        }
+      }
+
+      this.contest.awards.set("official", award);
+    }
   }
 
   filterTeamByOrg(team: Team) {

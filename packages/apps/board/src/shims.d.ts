@@ -2,6 +2,7 @@ declare interface Window {
   CDN_HOST: string;
   DATA_HOST: string;
   DATA_REGION: string;
+  DEFAULT_LANG: string;
 }
 
 // with vite-plugin-vue-markdown, markdown files can be treated as Vue components

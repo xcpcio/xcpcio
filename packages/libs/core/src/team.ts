@@ -127,6 +127,10 @@ export class Team {
     return this.members?.join(", ");
   }
 
+  get isEffectiveTeam() {
+    return this.solvedProblemNum > 0;
+  }
+
   calcSolvedData(options: ContestOptions) {
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
