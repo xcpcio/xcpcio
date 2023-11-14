@@ -18,6 +18,8 @@ export interface ContestOptions {
   submission_timestamp_unit?: TimeUnit;
 }
 
+export type MedalPreset = "ccpc" | "icpc";
+
 export interface Contest {
   contest_name: string;
 
@@ -35,7 +37,7 @@ export interface Contest {
   status_time_display?: Record<string, boolean>;
 
   badge?: string;
-  medal?: Record<string, Record<string, number>>;
+  medal?: Record<string, Record<string, number>> | MedalPreset;
   balloon_color?: Array<BalloonColor>;
 
   group?: Record<string, string>;
