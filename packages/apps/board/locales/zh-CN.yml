@@ -21,7 +21,7 @@ common:
 
 index:
   start: 开始时间
-  duration: 持续时间
+  duration: 持续时长
 
 type_menu:
   rank: 排名
@@ -38,8 +38,8 @@ type_menu:
 standings:
   start_time: 开始时间
   end_time: 结束时间
-  elapsed: 用时
-  remaining: 剩余
+  elapsed: 当前时间
+  remaining: 剩余时间
 
   place: Place
   team: Team
