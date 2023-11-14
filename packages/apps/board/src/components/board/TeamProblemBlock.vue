@@ -76,6 +76,8 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
   >
     <div
       cursor-pointer
+      flex flex-col
+      justify-center items-center
       @click="onClick"
     >
       {{ getProblemSign(p) }}
