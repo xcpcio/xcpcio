@@ -1,7 +1,7 @@
-import { furthest } from "color-diff";
 import chroma from "chroma-js";
+import { furthest } from "color-diff";
 
-export function getWhiteOrBlackColor(background: string) {
+export function getWhiteOrBlackColorV1(background: string) {
   const [R, G, B] = chroma(background).rgb();
   const color = { R, G, B };
   const palette = [
@@ -16,4 +16,13 @@ export function getWhiteOrBlackColor(background: string) {
   } else {
     return "#fff";
   }
+}
+
+export function getWhiteOrBlackColor(background: string) {
+  const [R, G, B] = chroma(background).rgb();
+
+  const brightness = (R * 299 + G * 587 + B * 114) / 1000;
+  const threshold = 148;
+
+  return brightness <= threshold ? "#fff" : "#000";
 }
