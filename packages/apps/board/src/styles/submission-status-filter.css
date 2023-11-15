@@ -48,6 +48,10 @@
   color: var(--theme-status-wrong-answer) !important;
 }
 
+.item[data-vss-custom-attr="NO_OUTPUT"] {
+  color: var(--theme-status-wrong-answer) !important;
+}
+
 
 .item[data-vss-custom-attr="COMPILATION_ERROR"] {
   color: var(--theme-status-compilation-error) !important;

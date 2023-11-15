@@ -304,7 +304,7 @@ function getProblemLabelColorStyle(s: Submission) {
 
             <div
               v-if="enableFilter?.status"
-              w-64
+              w-68
             >
               <MultiSelect
                 :options="statusOptions"

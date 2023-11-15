@@ -48,6 +48,9 @@
   color: var(--theme-status-wrong-answer)
 }
 
+.NO_OUTPUT {
+  color: var(--theme-status-wrong-answer)
+}
 
 .COMPILATION_ERROR {
   color: var(--theme-status-compilation-error)

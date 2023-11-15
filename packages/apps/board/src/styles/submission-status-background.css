@@ -48,6 +48,10 @@
   background-color: var(--theme-status-wrong-answer);
 }
 
+.NO_OUTPUT {
+  background-color: var(--theme-status-wrong-answer);
+}
+
 
 .COMPILATION_ERROR {
   background-color: var(--theme-status-compilation-error);
