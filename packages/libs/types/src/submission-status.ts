@@ -14,6 +14,8 @@ export enum SubmissionStatus {
   REJECTED = "REJECTED",
   WRONG_ANSWER = "WRONG_ANSWER",
 
+  NO_OUTPUT = "NO_OUTPUT",
+
   COMPILATION_ERROR = "COMPILATION_ERROR",
   PRESENTATION_ERROR = "PRESENTATION_ERROR",
 
@@ -55,6 +57,8 @@ export const SubmissionStatusToString: { [key in SubmissionStatus]: string } = {
   [SubmissionStatus.REJECTED]: "Rejected",
   [SubmissionStatus.WRONG_ANSWER]: "Wrong Answer",
 
+  [SubmissionStatus.NO_OUTPUT]: "No Output",
+
   [SubmissionStatus.COMPILATION_ERROR]: "Compilation Error",
   [SubmissionStatus.PRESENTATION_ERROR]: "Presentation Error",
 
@@ -87,7 +91,7 @@ export const SubmissionStatusToSimpleString: { [key in SubmissionStatus]: string
   [SubmissionStatus.COMPILING]: "PD",
   [SubmissionStatus.RUNNING]: "PD",
   [SubmissionStatus.JUDGING]: "PD",
-  [SubmissionStatus.FROZEN]: "PD",
+  [SubmissionStatus.FROZEN]: "?",
 
   [SubmissionStatus.ACCEPTED]: "AC",
   [SubmissionStatus.CORRECT]: "AC",
@@ -96,14 +100,16 @@ export const SubmissionStatusToSimpleString: { [key in SubmissionStatus]: string
   [SubmissionStatus.REJECTED]: "RJ",
   [SubmissionStatus.WRONG_ANSWER]: "WA",
 
+  [SubmissionStatus.NO_OUTPUT]: "NO",
+
   [SubmissionStatus.COMPILATION_ERROR]: "CE",
   [SubmissionStatus.PRESENTATION_ERROR]: "PE",
 
-  [SubmissionStatus.RUNTIME_ERROR]: "RE",
-  [SubmissionStatus.TIME_LIMIT_EXCEEDED]: "TL",
-  [SubmissionStatus.MEMORY_LIMIT_EXCEEDED]: "ML",
-  [SubmissionStatus.OUTPUT_LIMIT_EXCEEDED]: "OL",
-  [SubmissionStatus.IDLENESS_LIMIT_EXCEEDED]: "IL",
+  [SubmissionStatus.RUNTIME_ERROR]: "RTE",
+  [SubmissionStatus.TIME_LIMIT_EXCEEDED]: "TLE",
+  [SubmissionStatus.MEMORY_LIMIT_EXCEEDED]: "MLE",
+  [SubmissionStatus.OUTPUT_LIMIT_EXCEEDED]: "OLE",
+  [SubmissionStatus.IDLENESS_LIMIT_EXCEEDED]: "ILE",
 
   [SubmissionStatus.HACKED]: "RJ",
 

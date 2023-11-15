@@ -23,6 +23,10 @@ export function stringToSubmissionStatus(status: string): SubmissionStatus {
     return SubmissionStatus.REJECTED;
   }
 
+  if (["NO", SubmissionStatus.NO_OUTPUT.toString()].includes(status)) {
+    return SubmissionStatus.NO_OUTPUT;
+  }
+
   if (["PD", SubmissionStatus.PENDING.toString()].includes(status)) {
     return SubmissionStatus.PENDING;
   }
@@ -117,6 +121,7 @@ export function isRejected(status: SubmissionStatus): boolean {
     SubmissionStatus.IDLENESS_LIMIT_EXCEEDED,
     SubmissionStatus.WRONG_ANSWER,
     SubmissionStatus.REJECTED,
+    SubmissionStatus.NO_OUTPUT,
     SubmissionStatus.JUDGEMENT_FAILED,
     SubmissionStatus.HACKED,
   ];
