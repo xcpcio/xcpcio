@@ -30,9 +30,8 @@ const balloonColor = computed(() => problem.value.balloonColor);
   >
     <div
       cursor-pointer
-      flex
-      flex-col justify-center
-      items-center
+      flex flex-col
+      justify-center items-center
       @click="onClick"
     >
       <div>
