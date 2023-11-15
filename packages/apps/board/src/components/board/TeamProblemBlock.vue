@@ -80,9 +80,12 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
       justify-center items-center
       @click="onClick"
     >
-      {{ getProblemSign(p) }}
-      <br>
-      {{ getProblemShow(p) }}
+      <div>
+        {{ getProblemSign(p) }}
+      </div>
+      <div>
+        {{ getProblemShow(p) }}
+      </div>
     </div>
 
     <div>
