@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
-import { onKeyStroke } from "@vueuse/core";
+import { onKeyStroke, useNow } from "@vueuse/core";
 
 import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
@@ -23,7 +23,7 @@ const contestData = ref({} as Contest);
 const teamsData = ref([] as Teams);
 const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
-const now = ref(new Date());
+const now = useNow();
 const rankOptions = ref(new RankOptions());
 
 const enableAutoScroll = ref(false);
@@ -262,12 +262,7 @@ const pausedTime = computed(() => {
   return getTimeDiff(rank.value.options.timestamp);
 });
 
-const setNowIntervalId = setInterval(() => {
-  now.value = new Date();
-}, 1000);
-
 onUnmounted(() => {
-  clearInterval(setNowIntervalId);
   clearAutoScrollInterval();
 });
 
