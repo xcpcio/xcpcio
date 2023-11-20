@@ -75,16 +75,17 @@ const submissions = computed(() => {
     >
       <div>
         <template
-          v-for="s in submissions"
+          v-for="(s, index) in submissions"
           :key="s.id"
         >
           <div
-            w-104
+            w-128
             h-6
-            bg-slate-800 text-gray-200
+            text-gray-200
             font-mono
             flex flex-row
             justify-center items-center
+            :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
           >
             <div
               w-10
@@ -99,7 +100,7 @@ const submissions = computed(() => {
 
             <div
               pl-1
-              w-80
+              w-108
               truncate
             >
               {{ s.displayName }}
@@ -125,6 +126,7 @@ const submissions = computed(() => {
             <div
               w-10
               flex justify-center
+              font-sans font-medium
               :class="[s.submission.status]"
               :style="{
                 color: '#000',
