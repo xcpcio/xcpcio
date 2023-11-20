@@ -270,6 +270,7 @@ export class Rank {
           problem.statistics.submittedNum++;
 
           if (problemStatistics.isSolved) {
+            s.isFirstSolved = false;
             return;
           }
 
@@ -284,6 +285,8 @@ export class Rank {
           problemStatistics.totalCount++;
 
           if (s.isAccepted()) {
+            s.isFirstSolved = true;
+
             problemStatistics.isSolved = true;
             problemStatistics.solvedTimestamp = s.timestampToSecond;
 

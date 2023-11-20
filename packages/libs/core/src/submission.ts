@@ -21,6 +21,7 @@ export class Submission {
 
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
+  isFirstSolved = false;
 
   constructor() {
     this.id = "";
