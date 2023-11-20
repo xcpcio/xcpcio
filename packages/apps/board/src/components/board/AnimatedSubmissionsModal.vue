@@ -20,11 +20,15 @@ const rank = computed(() => props.rank);
 const submissions = computed(() => {
   const ss = rank.value.getSubmissions().sort(Submission.compare).reverse();
 
-  const res: Item[] = [];
+  let allCnt = 0;
+  const allNeed = 12;
+  const allRes: Item[] = [];
 
-  let cnt = 0;
-  const need = 12;
-  for (let i = 0; i < ss.length && cnt < need; i++) {
+  let acceptedCnt = 0;
+  const acceptedNeed = 8;
+  const acceptedRes: Item[] = [];
+
+  for (let i = 0; i < ss.length && (acceptedCnt < acceptedNeed || allCnt < allNeed); i++) {
     const s = ss[i];
     const teamId = s.teamId;
     const problemId = s.problemId;
@@ -50,17 +54,39 @@ const submissions = computed(() => {
       displayName = `${team.organization} - ${displayName}`;
     }
 
-    res.push({
+    const item: Item = {
       submission: s,
       team,
       problem,
       displayName,
-    });
+    };
 
-    ++cnt;
+    if (allCnt < allNeed) {
+      allRes.push(item);
+      ++allCnt;
+    }
+
+    if (s.isFirstSolved && acceptedCnt < acceptedNeed) {
+      acceptedRes.push(item);
+      ++acceptedCnt;
+    }
   }
 
-  return res.reverse();
+  acceptedRes.reverse();
+  allRes.reverse();
+
+  return {
+    acceptedRes,
+    allRes,
+  };
+});
+
+const acceptedSubmissions = computed(() => {
+  return submissions.value.acceptedRes;
+});
+
+const allSubmissions = computed(() => {
+  return submissions.value.allRes;
 });
 </script>
 
@@ -75,7 +101,7 @@ const submissions = computed(() => {
     >
       <div>
         <template
-          v-for="(s, index) in submissions"
+          v-for="(s, index) in acceptedSubmissions"
           :key="s.id"
         >
           <div
@@ -124,7 +150,77 @@ const submissions = computed(() => {
             </div>
 
             <div
+              w-14
+              flex justify-center
+              font-sans font-medium
+              :class="[s.submission.status]"
+              :style="{
+                color: '#000',
+              }"
+            >
+              {{ s.submission.timestampToMinute }}
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+
+    <div
+      flex flex-col
+      mt-6
+    >
+      <div>
+        <template
+          v-for="(s, index) in allSubmissions"
+          :key="s.id"
+        >
+          <div
+            w-118
+            h-6
+            text-gray-200
+            font-mono
+            flex flex-row
+            justify-center items-center
+            :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
+          >
+            <div
               w-12
+              :style="getMedalColor(s.team)"
+              flex
+              justify-center items-center
+            >
+              <div>
+                {{ s.team.rank }}
+              </div>
+            </div>
+
+            <div
+              pl-1
+              w-108
+              truncate
+            >
+              {{ s.displayName }}
+            </div>
+
+            <div
+              w-5
+            >
+              {{ s.team.solvedProblemNum }}
+            </div>
+
+            <div
+              w-8
+              border-b-4
+              flex justify-center
+              :style="{
+                borderColor: s.problem.balloonColor.background_color,
+              }"
+            >
+              {{ s.problem.label }}
+            </div>
+
+            <div
+              w-14
               flex justify-center
               font-sans font-medium
               :class="[s.submission.status]"
