@@ -168,7 +168,7 @@ describe("contest", () => {
         Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",

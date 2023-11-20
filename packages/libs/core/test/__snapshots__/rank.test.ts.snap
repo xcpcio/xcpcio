@@ -382,7 +382,7 @@ iVBORw0KGgoAAAANSUhEUgAAAL0AAAC9CAMAAADRCYwCAAAB41BMVEVHcEwau034r2WEe974tmmF5Wgn
     Problem {
       "balloonColor": {
         "background_color": "rgba(156, 155, 155, 0.7)",
-        "color": "#fff",
+        "color": "#000",
       },
       "id": "7",
       "label": "H",
@@ -945,7 +945,7 @@ iVBORw0KGgoAAAANSUhEUgAAAL0AAAC9CAMAAADRCYwCAAAB41BMVEVHcEwau034r2WEe974tmmF5Wgn
     "7" => Problem {
       "balloonColor": {
         "background_color": "rgba(156, 155, 155, 0.7)",
-        "color": "#fff",
+        "color": "#000",
       },
       "id": "7",
       "label": "H",
@@ -1227,6 +1227,7 @@ iVBORw0KGgoAAAANSUhEUgAAAL0AAAC9CAMAAADRCYwCAAAB41BMVEVHcEwau034r2WEe974tmmF5Wgn
 
 exports[`contest > 2023_ccpc_final 4`] = `
 RankOptions {
+  "enableAnimatedSubmissions": false,
   "enableFilterSubmissionsByTimestamp": false,
   "enableFilterTeamsByGroup": false,
   "filterOrganizationMap": Map {},
@@ -1717,7 +1718,7 @@ exports[`contest > 2023_ccpc_final 14`] = `
     "problem": Problem {
       "balloonColor": {
         "background_color": "rgba(156, 155, 155, 0.7)",
-        "color": "#fff",
+        "color": "#000",
       },
       "id": "7",
       "label": "H",
@@ -2257,7 +2258,7 @@ exports[`contest > 2023_ccpc_final 15`] = `
     2,
   ],
   [
-    16,
+    17,
     1,
   ],
   [
@@ -2917,7 +2918,7 @@ exports[`contest > 2023_ccpc_final 25`] = `
     "problem": Problem {
       "balloonColor": {
         "background_color": "rgba(156, 155, 155, 0.7)",
-        "color": "#fff",
+        "color": "#000",
       },
       "id": "7",
       "label": "H",

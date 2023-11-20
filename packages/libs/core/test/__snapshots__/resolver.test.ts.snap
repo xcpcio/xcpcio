@@ -1256,7 +1256,7 @@ ResolverOperation {
         "problem": Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",
@@ -2154,7 +2154,7 @@ ResolverOperation {
         "problem": Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",
@@ -2986,7 +2986,7 @@ ResolverOperation {
           "timeLimit": undefined,
         },
         "rank": 1,
-        "timePoint": 16,
+        "timePoint": 17,
       },
       {
         "lastSolvedProblem": Problem {
@@ -3237,7 +3237,7 @@ ResolverOperation {
         "lastSolvedProblem": Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",
@@ -4005,7 +4005,7 @@ ResolverOperation {
         "problem": Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",
@@ -4978,7 +4978,7 @@ ResolverOperation {
         "problem": Problem {
           "balloonColor": {
             "background_color": "rgba(156, 155, 155, 0.7)",
-            "color": "#fff",
+            "color": "#000",
           },
           "id": "7",
           "label": "H",

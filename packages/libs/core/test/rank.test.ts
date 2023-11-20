@@ -34,6 +34,7 @@ describe("contest", () => {
     expect(rank.options).matchSnapshot();
     expect(rank.rankStatistics).toMatchInlineSnapshot(`
       RankStatistics {
+        "effectiveTeamNum": 128,
         "maxSolvedProblems": 11,
         "teamSolvedNum": [
           4,
