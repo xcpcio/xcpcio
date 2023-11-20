@@ -454,6 +454,7 @@ export class Rank {
       const gold = new Award();
       const silver = new Award();
       const bronze = new Award();
+      const honorable = new Award();
 
       {
         gold.medalType = MedalType.GOLD;
@@ -479,6 +480,19 @@ export class Rank {
         bronze.maxRank = Math.ceil(tot * 0.6);
         if (bronze.maxRank >= bronze.minRank) {
           award.push(bronze);
+        }
+      }
+
+      {
+        honorable.medalType = MedalType.HONORABLE;
+        honorable.minRank = bronze.maxRank + 1;
+        this.teams.forEach((t) => {
+          if (t.solvedProblemNum > 0) {
+            honorable.maxRank = Math.max(honorable.maxRank, t.rank);
+          }
+        });
+        if (honorable.maxRank >= honorable.minRank) {
+          award.push(honorable);
         }
       }
 
