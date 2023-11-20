@@ -79,7 +79,7 @@ const submissions = computed(() => {
           :key="s.id"
         >
           <div
-            w-104
+            w-128
             h-6
             bg-slate-800 text-gray-200
             font-mono
@@ -99,7 +99,7 @@ const submissions = computed(() => {
 
             <div
               pl-1
-              w-80
+              w-108
               truncate
             >
               {{ s.displayName }}
