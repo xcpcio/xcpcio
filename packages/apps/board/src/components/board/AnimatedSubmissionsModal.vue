@@ -126,6 +126,7 @@ const submissions = computed(() => {
             <div
               w-10
               flex justify-center
+              font-sans font-medium
               :class="[s.submission.status]"
               :style="{
                 color: '#000',
