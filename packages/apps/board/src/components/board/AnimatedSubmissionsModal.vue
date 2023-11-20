@@ -23,7 +23,7 @@ const submissions = computed(() => {
   const res: Item[] = [];
 
   let cnt = 0;
-  const need = 16;
+  const need = 12;
   for (let i = 0; i < ss.length && cnt < need; i++) {
     const s = ss[i];
     const teamId = s.teamId;
@@ -79,7 +79,7 @@ const submissions = computed(() => {
           :key="s.id"
         >
           <div
-            w-128
+            w-118
             h-6
             text-gray-200
             font-mono
@@ -88,7 +88,7 @@ const submissions = computed(() => {
             :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
           >
             <div
-              w-10
+              w-12
               :style="getMedalColor(s.team)"
               flex
               justify-center items-center
@@ -124,7 +124,7 @@ const submissions = computed(() => {
             </div>
 
             <div
-              w-10
+              w-12
               flex justify-center
               font-sans font-medium
               :class="[s.submission.status]"
