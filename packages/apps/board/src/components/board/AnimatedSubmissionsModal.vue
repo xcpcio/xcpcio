@@ -59,7 +59,7 @@ const submissions = computed(() => {
       ++allCnt;
     }
 
-    if (s.isFirstSolved && acceptedCnt < acceptedNeed) {
+    if (s.isSolved && acceptedCnt < acceptedNeed) {
       acceptedRes.push(item);
       ++acceptedCnt;
     }
