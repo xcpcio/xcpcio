@@ -8,6 +8,7 @@ declare global {
   const BALLOON_TITLE_SUFFIX: typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']
   const COUNTDOWN_TITLE_SUFFIX: typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']
   const EffectScope: typeof import('vue')['EffectScope']
+  const LastBlockDisplayType: typeof import('./composables/type')['LastBlockDisplayType']
   const Pagination: typeof import('./composables/pagination')['Pagination']
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']
   const TITLE_SUFFIX: typeof import('./composables/constant')['TITLE_SUFFIX']
@@ -324,6 +325,7 @@ declare module 'vue' {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
@@ -626,6 +628,7 @@ declare module '@vue/runtime-core' {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
