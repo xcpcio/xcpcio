@@ -1,5 +1,5 @@
 import { MedalType } from "@xcpcio/core";
-import type { Team } from "@xcpcio/core";
+import type { Submission, Team } from "@xcpcio/core";
 
 export function getMedalColor(team: Team): { backgroundColor: string, color: string } | undefined {
   const color = {
@@ -28,4 +28,20 @@ export function getMedalColor(team: Team): { backgroundColor: string, color: str
   }
 
   return undefined;
+}
+
+export function getStandingsStatusColor(submission: Submission) {
+  if (submission.isFirstSolved) {
+    return "#3db03d";
+  }
+
+  if (submission.isAccepted()) {
+    return "#e1ffb5";
+  }
+
+  if (submission.isPending()) {
+    return "#c8d6fa";
+  }
+
+  return "#ffd0d0";
 }

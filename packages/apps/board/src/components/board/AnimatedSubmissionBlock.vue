@@ -74,14 +74,12 @@ function getLastBlockDisplayContent() {
       h-full w-12
       flex justify-center
       font-sans font-medium
-      :class="[item.submission.status]"
       text-zinc-800
+      :style="{
+        backgroundColor: getStandingsStatusColor(item.submission),
+      }"
     >
       {{ getLastBlockDisplayContent() }}
     </div>
   </div>
 </template>
-
-<style scoped lang="less">
-@import "../../styles/submission-status-background.css";
-</style>

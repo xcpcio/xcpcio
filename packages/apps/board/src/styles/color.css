@@ -23,6 +23,11 @@ html {
   --theme-status-unknown: #000;
   --theme-status-undefined: var(--theme-status-unknown);
 
+  --theme-standings-first-solve: #3db03d;
+  --theme-standings-correct: #e1ffb5;
+  --theme-standings-incorrect: #ffd0d0;
+  --theme-standings-pending: #c8d6fa;
+
   --theme-resolver-ac: #5eb95e;
   --theme-resolver-wa: #dd514c;
   --theme-resolver-pending: #607D8B;
@@ -56,4 +61,9 @@ html.dark {
   --theme-status-skipped: #78909C;
   --theme-status-unknown: #fff;
   --theme-status-undefined: var(--theme-status-unknown);
+
+  --theme-standings-first-solve: #3db03d;
+  --theme-standings-correct: #e1ffb5;
+  --theme-standings-incorrect: #ffd0d0;
+  --theme-standings-pending: #c8d6fa;
 }
