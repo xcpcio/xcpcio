@@ -93,15 +93,17 @@ const allSubmissions = computed(() => {
       flex flex-col
     >
       <div>
-        <template
-          v-for="s in acceptedSubmissions"
-          :key="s.id"
-        >
-          <AnimatedSubmissionBlock
-            :item="s"
-            :last-block-display-type="LastBlockDisplayType.SUBMIT_TIMESTAMP"
-          />
-        </template>
+        <TransitionGroup name="list" tag="ul">
+          <div
+            v-for="s in acceptedSubmissions"
+            :key="s.submission.id"
+          >
+            <AnimatedSubmissionBlock
+              :item="s"
+              :last-block-display-type="LastBlockDisplayType.SUBMIT_TIMESTAMP"
+            />
+          </div>
+        </TransitionGroup>
       </div>
     </div>
 
@@ -110,16 +112,36 @@ const allSubmissions = computed(() => {
       mt-6
     >
       <div>
-        <template
-          v-for="s in allSubmissions"
-          :key="s.id"
-        >
-          <AnimatedSubmissionBlock
-            :item="s"
-            :last-block-display-type="LastBlockDisplayType.SUBMISSION_STATUS"
-          />
-        </template>
+        <TransitionGroup name="list" tag="ul">
+          <div
+            v-for="s in allSubmissions"
+            :key="s.submission.id"
+          >
+            <div>
+              <AnimatedSubmissionBlock
+                :item="s"
+                :last-block-display-type="LastBlockDisplayType.SUBMISSION_STATUS"
+              />
+            </div>
+          </div>
+        </TransitionGroup>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+.list-enter-active {
+  transition: all 2s ease;
+}
+
+.list-leave-active {
+  transition: all 0.75s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+</style>
