@@ -117,8 +117,8 @@ function startDrag(event: MouseEvent) {
 }
 
 function getTimeScroll() {
-  const startTime = props.rank!.contest.startTime;
-  const endTime = props.rank!.contest.endTime;
+  const startTime = props.rank!.contest.getStartTime();
+  const endTime = props.rank!.contest.getEndTime();
 
   const gap = endTime.unix() - startTime.unix();
   const target = Math.floor(gap * barWidth.value * 0.01);

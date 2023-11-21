@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
-import { onKeyStroke, useNow } from "@vueuse/core";
+import { onKeyStroke, useIntervalFn, useNow } from "@vueuse/core";
 
 import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
@@ -60,15 +60,28 @@ function onChangeCurrentGroup(nextGroup: string) {
   rankOptions.value.setGroup(currentGroupFromRouteQuery.value);
 })();
 
+const replayStartTime = useRouteQuery("replay-start-time", 0, { transform: Number });
+
+const isReBuildRank = ref(false);
 function reBuildRank(options = { force: false }) {
   if (enableAutoScroll.value && options.force === false) {
     return;
   }
 
+  if (isReBuildRank.value === true) {
+    return;
+  }
+
+  isReBuildRank.value = true;
+
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
   newRank.options = _.cloneDeep(rankOptions.value);
+  newRank.setReplayTime(replayStartTime.value);
+
   newRank.buildRank();
   rank.value = newRank;
+
+  isReBuildRank.value = false;
 }
 
 const { data, isError, error } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
@@ -92,27 +105,37 @@ watch(data, async () => {
   firstLoaded.value = true;
 });
 
-const isReBuildRank = ref(false);
-watch(rankOptions.value, () => {
+function dynamicReBuildRank() {
   if (firstLoaded.value === false) {
     return;
   }
 
+  reBuildRank();
+}
+
+watch(rankOptions.value, () => {
   if (!rank.value.options.isNeedReBuildRank(rankOptions.value)) {
     rank.value.options = _.cloneDeep(rankOptions.value);
     return;
   }
 
-  if (isReBuildRank.value === true) {
-    return;
-  }
-
-  isReBuildRank.value = true;
-
-  reBuildRank();
-
-  isReBuildRank.value = false;
+  dynamicReBuildRank();
 });
+
+{
+  const { pause, resume } = useIntervalFn(() => {
+    dynamicReBuildRank();
+  }, 1000);
+
+  watch(replayStartTime, () => {
+    if (replayStartTime.value === 0) {
+      pause();
+    } else {
+      dynamicReBuildRank();
+      resume();
+    }
+  });
+}
 
 const typeMenuList = ref<Array<Item>>([
   {
@@ -231,12 +254,12 @@ onKeyStroke("S", (_e) => {
 }, { dedupe: false });
 
 const startTime = computed(() => {
-  const time = rank.value.contest.startTime.format("YYYY-MM-DD HH:mm:ss");
+  const time = rank.value.contest.getStartTime().format("YYYY-MM-DD HH:mm:ss");
   return `${t("standings.start_time")}${t("common.colon")}${time}`;
 });
 
 const endTime = computed(() => {
-  const time = rank.value.contest.endTime.format("YYYY-MM-DD HH:mm:ss");
+  const time = rank.value.contest.getEndTime().format("YYYY-MM-DD HH:mm:ss");
   return `${t("standings.end_time")}${t("common.colon")}${time}`;
 });
 
@@ -335,7 +358,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         <div class="w-[92%]">
           <div class="flex font-bold font-mono">
             <div class="float-left">
-              {{ startTime }}<sup class="pl-0.5">{{ rank.contest.startTime.format("z") }}</sup>
+              {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
             </div>
             <div class="flex-1">
               <ContestStateBadge

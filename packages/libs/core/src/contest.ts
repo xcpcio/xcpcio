@@ -16,6 +16,12 @@ export class Contest {
   endTime: dayjs.Dayjs;
   freezeTime: dayjs.Dayjs;
 
+  replayStartTime?: dayjs.Dayjs;
+  replayEndTime?: dayjs.Dayjs;
+  replayFreezeTime?: dayjs.Dayjs;
+  replayNowTime?: dayjs.Dayjs;
+  replayContestStartTimestamp?: number;
+
   totalDurationTimestamp: number;
   freezeDurationTimestamp: number;
   unFreezeDurationTimestamp: number;
@@ -68,22 +74,34 @@ export class Contest {
     this.options = new ContestOptions();
   }
 
+  getStartTime() {
+    return this.replayStartTime ?? this.startTime;
+  }
+
+  getEndTime() {
+    return this.replayEndTime ?? this.endTime;
+  }
+
+  getFreezeTime() {
+    return this.replayFreezeTime ?? this.freezeTime;
+  }
+
   getContestDuration(timeFormat = "HH:mm:ss"): string {
-    return dayjs.duration(this.endTime.diff(this.startTime)).format(timeFormat);
+    return dayjs.duration(this.getEndTime().diff(this.getStartTime())).format(timeFormat);
   }
 
   getContestState(nowTime?: Date): ContestState {
     const now = createDayJS(nowTime);
 
-    if (now.isBefore(this.startTime)) {
+    if (now.isBefore(this.getStartTime())) {
       return ContestState.PENDING;
     }
 
-    if (now.isSameOrAfter(this.endTime)) {
+    if (now.isSameOrAfter(this.getEndTime())) {
       return ContestState.FINISHED;
     }
 
-    if (now.isSameOrAfter(this.freezeTime)) {
+    if (now.isSameOrAfter(this.getFreezeTime())) {
       return ContestState.FROZEN;
     }
 
@@ -92,52 +110,52 @@ export class Contest {
 
   getContestPendingTime(nowTime?: Date): string {
     let baseTime = createDayJS(nowTime);
-    if (baseTime.isAfter(this.startTime)) {
-      baseTime = this.startTime;
+    if (baseTime.isAfter(this.getStartTime())) {
+      baseTime = this.getStartTime();
     }
 
-    return getTimeDiff(Math.floor(dayjs.duration(this.startTime.diff(baseTime)).asSeconds()));
+    return getTimeDiff(Math.floor(dayjs.duration(this.getStartTime().diff(baseTime)).asSeconds()));
   }
 
   getContestElapsedTime(nowTime?: Date): string {
     let baseTime = createDayJS(nowTime);
-    if (baseTime.isAfter(this.endTime)) {
-      baseTime = this.endTime;
+    if (baseTime.isAfter(this.getEndTime())) {
+      baseTime = this.getEndTime();
     }
 
-    if (baseTime.isBefore(this.startTime)) {
-      baseTime = this.startTime;
+    if (baseTime.isBefore(this.getStartTime())) {
+      baseTime = this.getStartTime();
     }
 
-    return getTimeDiff(Math.floor(dayjs.duration(baseTime.diff(this.startTime)).asSeconds()));
+    return getTimeDiff(Math.floor(dayjs.duration(baseTime.diff(this.getStartTime())).asSeconds()));
   }
 
   getContestRemainingTime(nowTime?: Date): string {
     let baseTime = createDayJS(nowTime);
-    if (baseTime.isAfter(this.endTime)) {
-      baseTime = this.endTime;
+    if (baseTime.isAfter(this.getEndTime())) {
+      baseTime = this.getEndTime();
     }
 
-    if (baseTime.isBefore(this.startTime)) {
-      baseTime = this.startTime;
+    if (baseTime.isBefore(this.getStartTime())) {
+      baseTime = this.getStartTime();
     }
 
-    return getTimeDiff(Math.floor(dayjs.duration(this.endTime.diff(baseTime)).asSeconds()));
+    return getTimeDiff(Math.floor(dayjs.duration(this.getEndTime().diff(baseTime)).asSeconds()));
   }
 
   getContestProgressRatio(nowTime?: Date): number {
     const baseTime = createDayJS(nowTime);
 
-    if (this.startTime.isSameOrAfter(baseTime)) {
+    if (this.getStartTime().isSameOrAfter(baseTime)) {
       return 0;
     }
 
-    if (this.endTime.isSameOrBefore(baseTime)) {
+    if (this.getEndTime().isSameOrBefore(baseTime)) {
       return 100;
     }
 
-    const total = this.endTime.diff(this.startTime, "s");
-    const pass = baseTime.diff(this.startTime, "s");
+    const total = this.getEndTime().diff(this.getStartTime(), "s");
+    const pass = baseTime.diff(this.getStartTime(), "s");
 
     return Math.round((pass * 100) / total);
   }
@@ -152,6 +170,30 @@ export class Contest {
     }
 
     return true;
+  }
+
+  resetReplayTime() {
+    this.replayStartTime = undefined;
+    this.replayEndTime = undefined;
+    this.replayFreezeTime = undefined;
+    this.replayNowTime = undefined;
+    this.replayContestStartTimestamp = undefined;
+  }
+
+  setReplayTime(replayStartTimestamp: number) {
+    if (replayStartTimestamp === 0) {
+      this.resetReplayTime();
+      return;
+    }
+
+    const replayStartTime = createDayJS(replayStartTimestamp);
+    const diff = replayStartTime.diff(this.startTime, "s");
+
+    this.replayStartTime = this.startTime.add(diff, "s");
+    this.replayEndTime = this.endTime.add(diff, "s");
+    this.replayFreezeTime = this.freezeTime.add(diff, "s");
+    this.replayNowTime = createDayJS();
+    this.replayContestStartTimestamp = this.replayNowTime.diff(this.replayStartTime, "s");
   }
 }
 

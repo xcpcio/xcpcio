@@ -51,7 +51,7 @@ export class RankOptions {
 
   setWidth(width: number, contest: Contest) {
     this.width = width;
-    this.timestamp = Math.floor((contest.endTime.unix() - contest.startTime.unix()) * this.width * 0.0001);
+    this.timestamp = Math.floor((contest.getEndTime().unix() - contest.getStartTime().unix()) * this.width * 0.0001);
     this.enableFilterSubmissionsByTimestamp = true;
   }
 
@@ -516,13 +516,25 @@ export class Rank {
   }
 
   getSubmissions() {
-    if (this.options.enableFilterSubmissionsByTimestamp === false) {
+    if (this.contest.replayContestStartTimestamp === undefined && this.options.enableFilterSubmissionsByTimestamp === false) {
       return this.submissions;
     }
 
-    return this.submissions.filter(s =>
-      s.timestampToSecond <= this.options.timestamp,
-    ).sort(Submission.compare);
+    return this.submissions.filter((s) => {
+      if (this.contest.replayContestStartTimestamp !== undefined) {
+        if (s.timestampToSecond > this.contest.replayContestStartTimestamp) {
+          return false;
+        }
+      }
+
+      if (this.options.enableFilterSubmissionsByTimestamp) {
+        if (s.timestampToSecond > this.options.timestamp) {
+          return false;
+        }
+      }
+
+      return true;
+    });
   }
 
   buildBalloons() {
@@ -563,5 +575,9 @@ export class Rank {
         }
       })();
     }
+  }
+
+  setReplayTime(replayStartTimestamp: number) {
+    this.contest.setReplayTime(replayStartTimestamp);
   }
 }

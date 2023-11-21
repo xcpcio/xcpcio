@@ -49,6 +49,11 @@ describe("contest-index", () => {
           "penalty": undefined,
           "problems": [],
           "problemsMap": Map {},
+          "replayContestStartTimestamp": undefined,
+          "replayEndTime": undefined,
+          "replayFreezeTime": undefined,
+          "replayNowTime": undefined,
+          "replayStartTime": undefined,
           "startTime": "2023-06-04T01:00:00.000Z",
           "statusTimeDisplay": {
             "correct": true,
@@ -96,6 +101,11 @@ describe("contest-index", () => {
           "penalty": undefined,
           "problems": [],
           "problemsMap": Map {},
+          "replayContestStartTimestamp": undefined,
+          "replayEndTime": undefined,
+          "replayFreezeTime": undefined,
+          "replayNowTime": undefined,
+          "replayStartTime": undefined,
           "startTime": "2009-09-11T01:00:00.000Z",
           "statusTimeDisplay": {
             "correct": true,
