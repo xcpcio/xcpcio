@@ -44,7 +44,7 @@ function getStandClassName(t: Team, isRankField = false): string {
   }
 
   const solvedProblemIndex = (rank.value.rankStatistics.getTeamSolvedNumIndex(t.solvedProblemNum) - 1) % 2;
-  const rankIndex = (t.rank - 1) % 2;
+  const rankIndex = props.ix % 2;
 
   return `stand${solvedProblemIndex}${rankIndex}`;
 }
