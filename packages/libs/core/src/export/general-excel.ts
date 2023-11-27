@@ -110,6 +110,8 @@ export class GeneralExcelConverter {
     const aoa: string[][] = [];
 
     const enableAwards = rank.contest.isEnableAwards(rank.options.group);
+    const enableMembers = (Array.isArray(rank.teams) && rank.teams[0]?.members) ?? false;
+    const enableCoach = rank.teams[0]?.coach ?? false;
 
     {
       aoa.push([rank.contest.name]);
@@ -124,11 +126,22 @@ export class GeneralExcelConverter {
         head.push(rank.contest.organization);
       }
 
-      head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
+      head.push("Team", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
 
       if (enableAwards) {
         head.push("Medal");
       }
+
+      if (enableMembers) {
+        head.push("Member1", "Member2", "Member3");
+      }
+
+      if (enableCoach) {
+        head.push("Coach");
+      }
+
+      head.push("Unofficial");
+      head.push("Girl");
 
       aoa.push(head);
     }
@@ -175,6 +188,28 @@ export class GeneralExcelConverter {
           .map(a => a.toString());
         arr.push(medals.join(", "));
       }
+
+      if (enableMembers) {
+        const members = team.members;
+        if (Array.isArray(members)) {
+          arr.push(members[0] ?? "");
+          arr.push(members[1] ?? "");
+          arr.push(members[2] ?? "");
+        } else {
+          arr.push("", "", "");
+        }
+      }
+
+      if (enableCoach) {
+        if (typeof team.coach === "string") {
+          arr.push(team.coach ?? "");
+        } else {
+          arr.push("");
+        }
+      }
+
+      arr.push(team.isUnofficial ? "Y" : "N");
+      arr.push(team.isGirl ? "Y" : "N");
 
       aoa.push(arr);
     }
