@@ -119,6 +119,24 @@ export class Team {
     return calcDirt(attemptedNum, solvedNum);
   }
 
+  get membersToArray() {
+    if (Array.isArray(this.members)) {
+      return this.members;
+    }
+
+    if (typeof this.members === "string") {
+      if (this.members.includes(", ")) {
+        return this.members.split(", ");
+      }
+
+      if (this.members.includes("、")) {
+        return this.members.split("、");
+      }
+    }
+
+    return [];
+  }
+
   get membersToString() {
     if (typeof this.members === "string") {
       return this.members;

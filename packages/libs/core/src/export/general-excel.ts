@@ -110,6 +110,8 @@ export class GeneralExcelConverter {
     const aoa: string[][] = [];
 
     const enableAwards = rank.contest.isEnableAwards(rank.options.group);
+    const enableMembers = (Array.isArray(rank.teams) && rank.teams[0]?.members) ?? false;
+    const enableCoach = rank.teams[0]?.coach ?? false;
 
     {
       aoa.push([rank.contest.name]);
@@ -128,6 +130,14 @@ export class GeneralExcelConverter {
 
       if (enableAwards) {
         head.push("Medal");
+      }
+
+      if (enableMembers) {
+        head.push("Member1", "Member2", "Member3");
+      }
+
+      if (enableCoach) {
+        head.push("Coach");
       }
 
       aoa.push(head);
@@ -174,6 +184,25 @@ export class GeneralExcelConverter {
           .filter(a => isValidMedalType(a))
           .map(a => a.toString());
         arr.push(medals.join(", "));
+      }
+
+      if (enableMembers) {
+        const members = team.members;
+        if (Array.isArray(members)) {
+          arr.push(members[0] ?? "");
+          arr.push(members[1] ?? "");
+          arr.push(members[2] ?? "");
+        } else {
+          arr.push("", "", "");
+        }
+      }
+
+      if (enableCoach) {
+        if (typeof team.coach === "string") {
+          arr.push(team.coach ?? "");
+        } else {
+          arr.push("");
+        }
       }
 
       aoa.push(arr);
