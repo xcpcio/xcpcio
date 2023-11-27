@@ -119,6 +119,14 @@ export class Team {
     return calcDirt(attemptedNum, solvedNum);
   }
 
+  get isUnofficial() {
+    return this.group.includes("unofficial");
+  }
+
+  get isGirl() {
+    return this.group.includes("girl");
+  }
+
   get membersToArray() {
     if (Array.isArray(this.members)) {
       return this.members;

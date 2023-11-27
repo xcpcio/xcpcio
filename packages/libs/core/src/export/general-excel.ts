@@ -208,8 +208,8 @@ export class GeneralExcelConverter {
         }
       }
 
-      arr.push(team.group.includes("unofficial") ? "Y" : "N");
-      arr.push(team.group.includes("girl") ? "Y" : "N");
+      arr.push(team.isUnofficial ? "Y" : "N");
+      arr.push(team.isGirl ? "Y" : "N");
 
       aoa.push(arr);
     }
