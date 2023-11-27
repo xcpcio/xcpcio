@@ -127,13 +127,19 @@ watch(rankOptions.value, () => {
     dynamicReBuildRank();
   }, 1000);
 
-  watch(replayStartTime, () => {
+  function onChange() {
     if (replayStartTime.value === 0) {
       pause();
     } else {
       dynamicReBuildRank();
       resume();
     }
+  }
+
+  onChange();
+
+  watch(replayStartTime, () => {
+    onChange();
   });
 }
 
