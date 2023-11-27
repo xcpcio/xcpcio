@@ -140,6 +140,9 @@ export class GeneralExcelConverter {
         head.push("Coach");
       }
 
+      head.push("Unofficial");
+      head.push("Girl");
+
       aoa.push(head);
     }
 
@@ -204,6 +207,9 @@ export class GeneralExcelConverter {
           arr.push("");
         }
       }
+
+      arr.push(team.group.includes("unofficial") ? "Y" : "N");
+      arr.push(team.group.includes("girl") ? "Y" : "N");
 
       aoa.push(arr);
     }
