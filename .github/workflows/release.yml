@@ -131,3 +131,5 @@ jobs:
             ghcr.io/xcpcio/${{ env.image_name }}:${{ env.tag }}
             registry.cn-beijing.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
             registry.cn-beijing.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
+            registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
+            registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
