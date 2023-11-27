@@ -126,7 +126,7 @@ export class GeneralExcelConverter {
         head.push(rank.contest.organization);
       }
 
-      head.push("Name", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
+      head.push("Team", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
 
       if (enableAwards) {
         head.push("Medal");
