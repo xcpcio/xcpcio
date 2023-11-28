@@ -40,13 +40,17 @@ pnpm build
 
 ### &#8627; Sponsors
 
-| Date | Money | Note |
-| -----------: | -----------: | -----------: |
-|2023-11-05 | 200.00Y | [@Hsueh-Xue](https://github.com/Hsueh-Xue) |
+This project is made possible by all the sponsors supporting my work:
+
+<p align="center">
+  <a href="https://github.com/sponsors/Dup4">
+    <img src='https://cdn.jsdelivr.net/gh/Dup4/static/sponsors-output/sponsors.svg' alt="Logos from Sponsors" />
+  </a>
+</p>
 
 ### &#8627; Stargazers
 
-[![Stargazers repo roster for @xcpcio/xcpcio](https://reporoster.com/stars/xcpcio/xcpcio)](https://github.com/xcpcio/xcpcio/stargazers)
+[![Stargazers repo roster for @xcpcio/xcpcio](https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=xcpcio&repo=xcpcio)](https://github.com/xcpcio/xcpcio/stargazers)
 
 <br/>
 <br/>
