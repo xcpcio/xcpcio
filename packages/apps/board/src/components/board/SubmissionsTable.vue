@@ -255,7 +255,6 @@ function getProblemLabelColorStyle(s: Submission) {
   <section>
     <div
       mx-auto w-full
-      px-4
     >
       <div
         relative overflow-hidden

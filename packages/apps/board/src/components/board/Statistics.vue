@@ -35,14 +35,32 @@ function getHeadData() {
 
 <template>
   <div
-    class="w-88vw flex flex-col md:w-92vw"
+    class="w-full"
+    flex flex-col
   >
     <section>
-      <div class="mx-auto max-w-screen-xl px-4 py-4 lg:px-6 lg:py-6">
-        <div class="lg:grid lg:grid-cols-3 sm:gap-6 xl:gap-10 space-y-8 lg:space-y-0">
+      <div
+        class="sm:w-full md:w-[92%]"
+        mx-auto px-4 py-4 lg:px-6 lg:py-6
+      >
+        <div
+          grid grid-cols-3
+          gap-10 space-y-0
+        >
           <div v-for="h in getHeadData()" :key="h.title">
-            <div class="mx-auto max-w-[16rem] flex flex-col border border-gray-100 rounded-lg bg-white p-6 text-center text-gray-900 shadow dark:border-gray-600 dark:bg-gray-800 xl:p-8 dark:text-white">
-              <h3 class="mb-4 text-2xl font-semibold">
+            <div
+              class="mx-auto w-[16rem]"
+              p-6 xl:p-8
+              flex flex-col
+              border border-gray-100 dark:border-gray-600
+              text-center test-gray-900
+              bg-white dark:bg-gray-800
+              dark:text-white
+              shadow rounded-md
+            >
+              <h3
+                mb-4 text-2xl font-semibold
+              >
                 {{ t(h.title) }}
               </h3>
               <div class="my-8 flex items-baseline justify-center">
@@ -54,7 +72,10 @@ function getHeadData() {
       </div>
     </section>
 
-    <div class="mt-8 flex flex-col gap-8">
+    <div
+      mt-8 gap-8
+      flex flex-col
+    >
       <div>
         <Chart
           :options="getSubmitChart(rank)"

@@ -430,7 +430,8 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         flex justify-center
       >
         <div
-          class="max-w-[92%]"
+          class="w-[92%]"
+          flex justify-center
         >
           <div
             v-if="currentType === 'rank'"
@@ -442,7 +443,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
 
           <div
             v-if="currentType === 'submissions'"
-            class="w-[88vw]"
+            class="sm:w-full xl:w-[92%]"
           >
             <SubmissionsTable
               w-full
@@ -459,6 +460,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
 
           <div
             v-if="currentType === 'statistics'"
+            class="sm:w-full xl:w-[92%]"
           >
             <Statistics
               :rank="rank"
