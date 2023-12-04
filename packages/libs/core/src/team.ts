@@ -174,7 +174,7 @@ export class Team {
       }
     });
 
-    if (acceptedProblemNums === 0) {
+    if (totalTeams === 0 || acceptedProblemNums === 0) {
       return 0;
     }
 
