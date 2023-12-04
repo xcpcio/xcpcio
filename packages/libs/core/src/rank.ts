@@ -147,19 +147,21 @@ export class Rank {
 
     this.submissions = _.cloneDeep(submissions).sort(Submission.compare);
 
-    this.submissions.forEach((s) => {
+    {
       const o = this.contest.options;
+      const timestampUnit = _.cloneDeep(o.submissionTimestampUnit);
+      this.submissions.forEach((s) => {
+        s.timestampUnit = timestampUnit;
 
-      s.timestampUnit = o.submissionTimestampUnit;
+        if (s.time) {
+          o.submissionHasTimeField = true;
+        }
 
-      if (s.time) {
-        o.submissionHasTimeField = true;
-      }
-
-      if (s.language) {
-        o.submissionHasLanguageField = true;
-      }
-    });
+        if (s.language) {
+          o.submissionHasLanguageField = true;
+        }
+      });
+    }
 
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
