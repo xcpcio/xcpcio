@@ -3,7 +3,7 @@ import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
 import { onKeyStroke, useIntervalFn, useNow } from "@vueuse/core";
 
-import { Rank, RankOptions, createContest, createSubmissions, createTeams, getTimeDiff } from "@xcpcio/core";
+import { Rank, RankOptions, createContest, createSubmissions, createTeams, getImageSource, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
 
@@ -332,7 +332,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         >
           <div class="max-w-[92%]">
             <img
-              :src="['data:image/png;base64,', rank.contest.banner?.base64].join('')"
+              :src="getImageSource(rank.contest.banner, `/data${route.path}`)"
               alt="banner"
             >
           </div>

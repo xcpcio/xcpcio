@@ -1,8 +1,12 @@
 import type { Image } from "@xcpcio/types";
 
-export function getImageSource(image: Image): string {
+export function getImageSource(image: Image, asset_host?: string): string {
   if (image?.url) {
-    return image.url;
+    if (image.url.startsWith("http")) {
+      return image.url;
+    }
+
+    return `${asset_host}/${image.url}`;
   }
 
   if (image?.base64) {
