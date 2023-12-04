@@ -5,12 +5,16 @@ export class RankStatistics {
 
   effectiveTeamNum: number;
 
+  totalTeamNum: number;
+
   constructor() {
     this.teamSolvedNum = [];
     this.teamSolvedNumIndex = [];
     this.maxSolvedProblems = 0;
 
     this.effectiveTeamNum = 0;
+
+    this.totalTeamNum = 0;
   }
 
   reset() {
@@ -19,6 +23,8 @@ export class RankStatistics {
     this.maxSolvedProblems = 0;
 
     this.effectiveTeamNum = 0;
+
+    this.totalTeamNum = 0;
   }
 
   getTeamSolvedNumIndex(solvedNum: number): number {

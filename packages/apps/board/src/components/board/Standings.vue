@@ -105,8 +105,45 @@ const maxTeamLength = computed(() => {
                 :problem="p"
               />
             </template>
+
             <th class="title" style="width: 2.5rem;">
-              {{ t("standings.dirt") }}
+              <Tooltip
+                placement="top"
+              >
+                <div>
+                  {{ t("standings.dirt") }}
+                </div>
+
+                <template #popper>
+                  <div>
+                    number of submits on the
+                    <br>
+                    all solved problems / number
+                    <br>
+                    of the solved problems
+                  </div>
+                </template>
+              </Tooltip>
+            </th>
+
+            <th class="title" style="width: 2.5rem;">
+              <Tooltip
+                placement="top"
+              >
+                <div>
+                  {{ t("standings.se") }}
+                </div>
+
+                <template #popper>
+                  <div>
+                    "average hardness".
+                    <br>
+                    Problem, solved by N teams out of M,
+                    <br>
+                    have hardness (M-N)/M.
+                  </div>
+                </template>
+              </Tooltip>
             </th>
           </tr>
         </thead>

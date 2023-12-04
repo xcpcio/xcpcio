@@ -155,6 +155,13 @@ function isRenderByVisible() {
     >
       {{ `${team.dirt}%` }}
     </td>
+    <td
+      v-if="isRenderByVisible()"
+      class="stnd"
+      :class="[getStandClassName(team)]"
+    >
+      {{ `${team.se}` }}
+    </td>
   </tr>
 </template>
 
