@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  release-npm-and-docker-image:
+  release-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,12 +36,22 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           cache: pnpm
 
-      - name: Publish to NPM
+      - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm i
           pnpm publish:npm
+
+  release-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: pnpm
 
       - name: Get Version ID
         id: get-version-id
@@ -49,6 +59,14 @@ jobs:
           VERSION_ID=$(cat package.json | grep version | sed 's|  \"version\": \"||g' | sed 's|\",||g')
           echo "::set-output name=version-id::$(echo $VERSION_ID)"
           echo $VERSION_ID
+
+      - name: Install Node dependencies
+        run: |
+          pnpm i
+
+      - name: Build
+        run: |
+          pnpm build
 
       - name: Enable 404.html
         run: |
