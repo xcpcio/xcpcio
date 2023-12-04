@@ -160,7 +160,7 @@ function isRenderByVisible() {
       class="stnd"
       :class="[getStandClassName(team)]"
     >
-      {{ `${team.se}` }}
+      {{ `${team.se.toFixed(2)}` }}
     </td>
   </tr>
 </template>

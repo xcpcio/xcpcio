@@ -174,7 +174,11 @@ export class Team {
       }
     });
 
-    const res = (acceptedProblemNums * totalTeams - total) / totalTeams;
+    if (acceptedProblemNums === 0) {
+      return 0;
+    }
+
+    const res = (acceptedProblemNums * totalTeams - total) / totalTeams / acceptedProblemNums;
     this.se = Math.round(res * 100) / 100;
 
     return this.se;
