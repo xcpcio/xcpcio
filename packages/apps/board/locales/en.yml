@@ -46,6 +46,7 @@ standings:
   solved: Solved
   penalty: Penalty
   dirt: Dirt
+  se: SE
 
   statistics:
     submitted: Submitted

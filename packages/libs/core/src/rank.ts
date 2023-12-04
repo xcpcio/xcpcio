@@ -349,6 +349,8 @@ export class Rank {
       this.buildOrgRank();
 
       this.rankStatistics.effectiveTeamNum = this.teams.filter(t => t.isEffectiveTeam).length;
+      this.rankStatistics.totalTeamNum = this.teams.length;
+      this.teams.forEach(t => t.calcSE(this.rankStatistics.totalTeamNum));
       this.buildAwards();
 
       this.teams.forEach(t => t.calcAwards(this.contest.awards?.get(this.options.group)));

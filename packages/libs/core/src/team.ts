@@ -54,6 +54,8 @@ export class Team {
 
   location?: string;
 
+  se: number;
+
   constructor() {
     this.id = "";
     this.name = "";
@@ -83,6 +85,8 @@ export class Team {
     this.placeChartPoints = [];
 
     this.awards = [];
+
+    this.se = 0;
   }
 
   reset() {
@@ -106,17 +110,12 @@ export class Team {
     this.placeChartPoints = [];
 
     this.awards = [];
+
+    this.se = 0;
   }
 
   get penaltyToMinute() {
     return Math.floor(this.penalty / 60);
-  }
-
-  get dirt() {
-    const attemptedNum = this.attemptedProblemNum;
-    const solvedNum = this.solvedProblemNum;
-
-    return calcDirt(attemptedNum, solvedNum);
   }
 
   get isUnofficial() {
@@ -155,6 +154,34 @@ export class Team {
 
   get isEffectiveTeam() {
     return this.solvedProblemNum > 0;
+  }
+
+  get dirt() {
+    const attemptedNum = this.attemptedProblemNum;
+    const solvedNum = this.solvedProblemNum;
+
+    return calcDirt(attemptedNum, solvedNum);
+  }
+
+  calcSE(totalTeams: number) {
+    let acceptedProblemNums = 0;
+    let total = 0;
+
+    this.problemStatistics.forEach((p) => {
+      if (p.isSolved) {
+        acceptedProblemNums += 1;
+        total += p.problem.statistics.acceptedNum;
+      }
+    });
+
+    if (totalTeams === 0 || acceptedProblemNums === 0) {
+      return 0;
+    }
+
+    const res = (acceptedProblemNums * totalTeams - total) / totalTeams / acceptedProblemNums;
+    this.se = Math.round(res * 100) / 100;
+
+    return this.se;
   }
 
   calcSolvedData(options: ContestOptions) {
