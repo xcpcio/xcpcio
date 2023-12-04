@@ -332,7 +332,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         >
           <div class="max-w-[92%]">
             <img
-              :src="getImageSource(rank.contest.banner)"
+              :src="getImageSource(rank.contest.banner, `/data${route.path}`)"
               alt="banner"
             >
           </div>
