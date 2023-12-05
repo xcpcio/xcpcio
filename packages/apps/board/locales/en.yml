@@ -53,6 +53,7 @@ standings:
     attempted: Attempted
     accepted: Accepted
     dirt: Dirt
+    se: SE
     first_solved: First Solved
     last_solved: Last Solved
     head_data:

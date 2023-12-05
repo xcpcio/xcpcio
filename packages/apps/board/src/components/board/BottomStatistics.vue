@@ -132,6 +132,20 @@ function getLastSolved(p: ProblemStatistics): string {
   <tr class="statistics-0">
     <td class="empty" :colspan="getColSpan()" />
     <td class="stnd">
+      <b>{{ t("standings.statistics.se") }}</b>
+    </td>
+    <template v-for="p in rank.contest.problems" :key="p.id">
+      <td class="stnd">
+        <b>
+          {{ p.statistics.se.toFixed(2) }}
+        </b>
+      </td>
+    </template>
+  </tr>
+
+  <tr class="statistics-1">
+    <td class="empty" :colspan="getColSpan()" />
+    <td class="stnd">
       <b>{{ t("standings.statistics.first_solved") }}</b>
     </td>
     <template v-for="p in rank.contest.problems" :key="p.id">
@@ -141,7 +155,7 @@ function getLastSolved(p: ProblemStatistics): string {
     </template>
   </tr>
 
-  <tr class="statistics-1">
+  <tr class="statistics-0">
     <td class="empty" :colspan="getColSpan()" />
     <td class="stnd">
       <b>{{ t("standings.statistics.last_solved") }}</b>
