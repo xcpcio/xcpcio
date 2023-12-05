@@ -17,6 +17,8 @@ export class ProblemStatistics {
   firstSolveSubmissions: Submissions;
   lastSolveSubmissions: Submissions;
 
+  se: number;
+
   constructor() {
     this.acceptedNum = 0;
     this.rejectedNum = 0;
@@ -25,6 +27,8 @@ export class ProblemStatistics {
     this.submittedNum = 0;
     this.attemptedNum = 0;
     this.ignoreNum = 0;
+
+    this.se = 0;
 
     this.firstSolveSubmissions = [];
     this.lastSolveSubmissions = [];
@@ -39,6 +43,8 @@ export class ProblemStatistics {
     this.attemptedNum = 0;
     this.ignoreNum = 0;
 
+    this.se = 0;
+
     this.firstSolveSubmissions = [];
     this.lastSolveSubmissions = [];
   }
@@ -49,6 +55,13 @@ export class ProblemStatistics {
     }
 
     return calcDirt(this.attemptedNum, this.acceptedNum);
+  }
+
+  calcSE(totalTeams: number) {
+    const res = (totalTeams - this.acceptedNum) / totalTeams;
+    this.se = Math.round(res * 100) / 100;
+
+    return this.se;
   }
 }
 
