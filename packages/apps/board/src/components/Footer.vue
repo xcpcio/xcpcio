@@ -1,29 +1,5 @@
 <script setup lang="ts">
 import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
-
-const cdnHost = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.CDN_HOST;
-});
-
-const dataHost = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.DATA_HOST;
-});
-
-const dataRegion = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.DATA_REGION;
-});
 </script>
 
 <template>
@@ -117,9 +93,9 @@ const dataRegion = computed(() => {
                   flex justify-center items-start
                   flex-col
                 >
-                  <div>CDN Host: {{ cdnHost }}</div>
-                  <div>DATA Host: {{ dataHost }}</div>
-                  <div>Data Region: {{ dataRegion }}</div>
+                  <div>CDN Host: {{ CDN_HOST }}</div>
+                  <div>DATA Host: {{ DATA_HOST }}</div>
+                  <div>Data Region: {{ DATA_REGION }}</div>
                 </div>
               </template>
             </Tooltip>
