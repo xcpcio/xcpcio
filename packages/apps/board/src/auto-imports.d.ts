@@ -6,7 +6,10 @@
 export {}
 declare global {
   const BALLOON_TITLE_SUFFIX: typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']
+  const CDN_HOST: typeof import('./composables/constant')['CDN_HOST']
   const COUNTDOWN_TITLE_SUFFIX: typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']
+  const DATA_HOST: typeof import('./composables/constant')['DATA_HOST']
+  const DATA_REGION: typeof import('./composables/constant')['DATA_REGION']
   const EffectScope: typeof import('vue')['EffectScope']
   const LastBlockDisplayType: typeof import('./composables/type')['LastBlockDisplayType']
   const Pagination: typeof import('./composables/pagination')['Pagination']
@@ -324,7 +327,10 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface ComponentCustomProperties {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
+    readonly CDN_HOST: UnwrapRef<typeof import('./composables/constant')['CDN_HOST']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
+    readonly DATA_HOST: UnwrapRef<typeof import('./composables/constant')['DATA_HOST']>
+    readonly DATA_REGION: UnwrapRef<typeof import('./composables/constant')['DATA_REGION']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
@@ -628,7 +634,10 @@ declare module 'vue' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
+    readonly CDN_HOST: UnwrapRef<typeof import('./composables/constant')['CDN_HOST']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
+    readonly DATA_HOST: UnwrapRef<typeof import('./composables/constant')['DATA_HOST']>
+    readonly DATA_REGION: UnwrapRef<typeof import('./composables/constant')['DATA_REGION']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
