@@ -61,6 +61,22 @@ function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: Sel
   orgLastSelectItem.value = lastSelectItem;
 }
 
+const isComposing = ref(false);
+
+function onCompositionStart() {
+  isComposing.value = true;
+}
+
+function onCompositionEnd() {
+  isComposing.value = false;
+}
+
+function onDelete(event: Event) {
+  if (isComposing.value) {
+    event.stopPropagation();
+  }
+}
+
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
     return {
@@ -130,6 +146,9 @@ function onConfirm() {
             :options="orgOptions"
             :selected-options="orgSelectedItems"
             @select="orgOnSelect"
+            @compositionstart="onCompositionStart"
+            @compositionend="onCompositionEnd"
+            @keydown.delete.capture="onDelete"
           />
         </div>
       </div>
