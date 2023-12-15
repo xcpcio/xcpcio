@@ -21,6 +21,7 @@ export interface Team {
   badge?: Image;
 
   location?: string;
+  icpc_id?: string;
 }
 
 export type Teams = Array<Team> | Record<string, Team>;

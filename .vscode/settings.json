@@ -4,10 +4,6 @@
 
   "prettier.enable": false,
   "editor.formatOnSave": false,
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.organizeImports": false
-  },
 
   "eslint.validate": [
     "javascript",
@@ -78,6 +74,7 @@
     "noopener",
     "nums",
     "pageview",
+    "papaparse",
     "pinia",
     "pnpm",
     "prettierrc",

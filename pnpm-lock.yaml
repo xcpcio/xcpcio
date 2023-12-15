@@ -424,6 +424,12 @@ importers:
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
+      ordinal:
+        specifier: ^1.0.3
+        version: 1.0.3
+      papaparse:
+        specifier: ^5.4.1
+        version: 5.4.1
       string-width:
         specifier: ^6.1.0
         version: 6.1.0
@@ -446,6 +452,9 @@ importers:
       '@types/node':
         specifier: ^17.0.45
         version: 17.0.45
+      '@types/papaparse':
+        specifier: ^5.3.14
+        version: 5.3.14
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.9
         version: 5.59.9(@typescript-eslint/parser@5.59.9)(eslint@8.42.0)(typescript@4.9.5)
@@ -4769,6 +4778,12 @@ packages:
 
   /@types/nprogress@0.2.0:
     resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==}
+
+  /@types/papaparse@5.3.14:
+    resolution: {integrity: sha512-LxJ4iEFcpqc6METwp9f6BV6VVc43m6MfH0VqFosHvrUgfXiFe6ww7R3itkOQ+TCK6Y+Iv/+RnnvtRZnkc5Kc9g==}
+    dependencies:
+      '@types/node': 17.0.45
+    dev: true
 
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
@@ -11441,7 +11456,7 @@ packages:
       vanilla-jsoneditor: 0.17.9
       vue: 3.3.4
       vue-demi: 0.14.6(vue@3.3.4)
-      vue-global-config: 0.4.2(vue@3.3.4)
+      vue-global-config: 0.5.0(vue@3.3.4)
     dev: true
 
   /json-parse-better-errors@1.0.2:
@@ -12939,6 +12954,10 @@ packages:
       wcwidth: 1.0.1
     dev: true
 
+  /ordinal@1.0.3:
+    resolution: {integrity: sha512-cMddMgb2QElm8G7vdaa02jhUNbTSrhsgAGUz1OokD83uJTwSUn+nKoNoKVVaRa08yF6sgfO7Maou1+bgLd9rdQ==}
+    dev: false
+
   /ospath@1.2.2:
     resolution: {integrity: sha512-o6E5qJV5zkAbIDNhGSIlyOhScKXgQrSRMilfph0clDfM0nEnBOlKlH4sWDmG95BW/CvwNz0vmm7dJVtU2KlMiA==}
     dev: true
@@ -13015,6 +13034,10 @@ packages:
       - bluebird
       - supports-color
     dev: true
+
+  /papaparse@5.4.1:
+    resolution: {integrity: sha512-HipMsgJkZu8br23pW15uvo6sib6wne/4woLZPlFf3rpDyMe9ywEXUsuD7+6K9PRkJlVT51j/sCOYDKGGS3ZJrw==}
+    dev: false
 
   /param-case@2.1.1:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
@@ -16768,8 +16791,8 @@ packages:
       - supports-color
     dev: true
 
-  /vue-global-config@0.4.2(vue@3.3.4):
-    resolution: {integrity: sha512-wqnawE5VIS9yhjSUmnb9O7Rb0cgSM+he96hOyZCs8HmtiERFRK+SrpMcS+bDOwSx6WoFF77+dNdibrQFDqiqEw==}
+  /vue-global-config@0.5.0(vue@3.3.4):
+    resolution: {integrity: sha512-SYALXGtzUF/2kaHAVKX7WfiGxpaTE3/PUo2oBu07fTKX447ppQ2xulPZtntmfLJpFHcbGBY8cZ/rq8ytydahcw==}
     requiresBuild: true
     peerDependencies:
       '@vue/composition-api': '>=1'
