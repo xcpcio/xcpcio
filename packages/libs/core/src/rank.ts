@@ -312,7 +312,7 @@ export class Rank {
             problem.statistics.lastSolveSubmissions.push(s);
 
             team.lastSolvedProblem = problem;
-            team.lastSolvedProblemTimestamp = s.timestampToSecond;
+            team.lastSolvedProblemStatistics = problemStatistics;
           }
 
           if (s.isRejected()) {

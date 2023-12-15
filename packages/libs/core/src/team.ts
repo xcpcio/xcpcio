@@ -39,7 +39,7 @@ export class Team {
   attemptedProblemNum: number;
 
   lastSolvedProblem: Problem | null;
-  lastSolvedProblemTimestamp: number;
+  lastSolvedProblemStatistics: TeamProblemStatistics | null;
 
   penalty: number;
 
@@ -53,6 +53,7 @@ export class Team {
   awards: MedalType[];
 
   location?: string;
+  icpcID?: string;
 
   se: number;
 
@@ -73,7 +74,7 @@ export class Team {
     this.attemptedProblemNum = 0;
 
     this.lastSolvedProblem = null;
-    this.lastSolvedProblemTimestamp = 0;
+    this.lastSolvedProblemStatistics = null;
 
     this.penalty = 0;
 
@@ -98,7 +99,7 @@ export class Team {
     this.attemptedProblemNum = 0;
 
     this.lastSolvedProblem = null;
-    this.lastSolvedProblemTimestamp = 0;
+    this.lastSolvedProblemStatistics = null;
 
     this.penalty = 0;
 
@@ -258,8 +259,8 @@ export class Team {
       return lhs.penalty - rhs.penalty;
     }
 
-    if (lhs.lastSolvedProblemTimestamp !== rhs.lastSolvedProblemTimestamp) {
-      return lhs.lastSolvedProblemTimestamp - rhs.lastSolvedProblemTimestamp;
+    if (lhs.lastSolvedProblemStatistics && rhs.lastSolvedProblemStatistics) {
+      return lhs.lastSolvedProblemStatistics.solvedTimestampToMinute - rhs.lastSolvedProblemStatistics.solvedTimestampToMinute;
     }
 
     if (lhs.name < rhs.name) {
@@ -315,6 +316,10 @@ export function createTeam(teamJSON: ITeam): Team {
 
   if (teamJSON.location) {
     t.location = teamJSON.location;
+  }
+
+  if (teamJSON.icpc_id) {
+    t.icpcID = teamJSON.icpc_id;
   }
 
   return t;

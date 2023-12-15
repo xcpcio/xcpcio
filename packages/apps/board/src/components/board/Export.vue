@@ -5,7 +5,7 @@ import FileSaver from "file-saver";
 import sleep from "sleep-promise";
 
 import type { Rank } from "@xcpcio/core";
-import { CodeforcesGymGhostDATConverter, GeneralExcelConverter } from "@xcpcio/core";
+import { CodeforcesGymGhostDATConverter, GeneralExcelConverter, ICPCStandingsCsvConverter } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank,
@@ -27,12 +27,17 @@ const options = ref([
     value: "general-xlsx",
     text: "Excel Table(xlsx)",
   },
+  {
+    value: "icpc-standings-csv",
+    text: "ICPC Standings(csv)",
+  },
 ]);
 
 const btnDisable = ref({
   CfDatDownload: false,
   CfDatCopy: false,
   GeneralXLSXDownload: false,
+  ICPCStandingsCsvDownload: false,
 });
 
 async function waitDisabled() {
@@ -77,6 +82,18 @@ async function onClickForGeneralXLSXDownload() {
   converter.convertAndWrite(rank.value, `${rank.value.contest.name}.xlsx`);
 
   btnDisable.value.GeneralXLSXDownload = false;
+}
+
+async function onClickForICPCStandingsCsvDownload() {
+  btnDisable.value.ICPCStandingsCsvDownload = true;
+  await waitDisabled();
+
+  const converter = new ICPCStandingsCsvConverter();
+  const csv = converter.convert(rank.value);
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  FileSaver.saveAs(blob, "standings.csv");
+
+  btnDisable.value.ICPCStandingsCsvDownload = false;
 }
 </script>
 
@@ -127,6 +144,19 @@ async function onClickForGeneralXLSXDownload() {
           :disabled="btnDisable.GeneralXLSXDownload"
           btn
           @click="onClickForGeneralXLSXDownload"
+        >
+          Download
+        </button>
+      </div>
+
+      <div
+        v-if="currentItem.value === 'icpc-standings-csv'"
+        flex justify-center
+      >
+        <button
+          :disabled="btnDisable.ICPCStandingsCsvDownload"
+          btn
+          @click="onClickForICPCStandingsCsvDownload"
         >
           Download
         </button>
