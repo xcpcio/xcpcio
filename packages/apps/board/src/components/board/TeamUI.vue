@@ -85,15 +85,21 @@ function isRenderByVisible() {
       :class="[getStandClassName(team)]"
     >
       <div flex>
-        <div class="float-left pl-2 font-serif">
-          <div v-if="team.organizationRank > -1">
+        <div
+          float-left pl-2 font-serif
+        >
+          <div
+            v-if="team.organizationRank > -1"
+          >
             {{ team.organizationRank }}
           </div>
         </div>
-        <div class="flex-1">
+        <div
+          flex-1
+        >
           {{ team.organization }}
         </div>
-        <div class="float-right" />
+        <div float-right />
       </div>
     </td>
 
