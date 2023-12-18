@@ -41,7 +41,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           pnpm i
-          pnpm publish:npm
+          pnpm build
+          bash packages/apps/board/scripts/replace_jsdelivr_cdn_host.sh
+          pnpm publish
 
   release-docker-image:
     runs-on: ubuntu-latest

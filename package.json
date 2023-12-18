@@ -33,7 +33,8 @@
     "format": "run-p format:*",
     "format:eslint": "eslint --fix .",
     "release": "bumpp package.json packages/**/*/package.json --commit --push --tag",
-    "publish:npm": "cross-env BUILD_MODE=npm_publish pnpm build && pnpm -r publish --no-git-checks --access public"
+    "publish:npm": "cross-env BUILD_MODE=npm_publish pnpm build && pnpm -r publish --no-git-checks --access public",
+    "publish": "pnpm -r publish --no-git-checks --access public"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.39.8",
