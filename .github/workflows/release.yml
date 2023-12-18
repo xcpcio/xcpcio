@@ -43,7 +43,7 @@ jobs:
           pnpm i
           pnpm build
           bash packages/apps/board/scripts/replace_jsdelivr_cdn_host.sh
-          pnpm publish
+          pnpm publish:npm
 
   release-docker-image:
     runs-on: ubuntu-latest
