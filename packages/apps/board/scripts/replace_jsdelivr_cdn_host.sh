@@ -4,7 +4,7 @@ CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 VERSION=$(cat <"${CUR_DIR}/../package.json" | grep version | sed 's|  \"version\": \"||g' | sed 's|\",||g')
 
-echo "$VERSION"
+echo "current package version: $VERSION"
 
 export BOARD_CDN_HOST="https://cdn.jsdelivr.net/npm/@xcpcio/board-app@${VERSION}/dist"
 
