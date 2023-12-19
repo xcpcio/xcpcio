@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  release-npm:
+  release-docker-image-and-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,25 +34,6 @@ jobs:
         with:
           node-version: 18.x
           registry-url: 'https://registry.npmjs.org'
-          cache: pnpm
-
-      - name: Publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          pnpm i
-          pnpm build
-          bash packages/apps/board/scripts/replace_jsdelivr_cdn_host.sh
-          pnpm publish:npm
-
-  release-docker-image:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
           cache: pnpm
 
       - name: Get Version ID
@@ -142,3 +123,10 @@ jobs:
             registry.cn-beijing.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
             registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
             registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
+
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          bash packages/apps/board/scripts/replace_jsdelivr_cdn_host.sh
+          pnpm publish:npm
