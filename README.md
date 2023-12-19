@@ -3,7 +3,7 @@
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
 [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 [![GitHub release][gh-release-badge]][gh-release]
-[![License][license-image-mit]](https://mit-license.org/)
+[![License][license-image-mit]][license-link-mit]
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
 
@@ -68,3 +68,4 @@ This project is made possible by all the sponsors supporting my work:
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
+[license-link-mit]: https://mit-license.org/
