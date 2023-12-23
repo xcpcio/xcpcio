@@ -174,6 +174,17 @@ function onConfirm() {
       </div>
 
       <div
+        flex flex-col w-full
+      >
+        <div
+          flex
+          mb-2
+        >
+          Battle of Giants
+        </div>
+      </div>
+
+      <div
         flex flex-col
         w-full
       >
