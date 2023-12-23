@@ -178,9 +178,95 @@ function onConfirm() {
       >
         <div
           flex
-          mb-2
         >
           Battle of Giants
+        </div>
+
+        <div
+          ml-4 mt-2
+        >
+          <div
+            flex text-sm
+            class="text-[#0000FF]"
+          >
+            Blue Team
+          </div>
+
+          <div
+            ml-4 mt-2
+            grid grid-cols-6 gap-y-4
+          >
+            <div
+              flex items-center
+              text-sm
+            >
+              Name:
+            </div>
+
+            <div
+              flex items-center
+              w-full
+              col-span-5
+            >
+              <TheInput
+                text-align="left"
+              />
+            </div>
+
+            <div
+              v-if="rank.contest.organization"
+              flex items-center
+              text-sm
+            >
+              {{ rank.contest.organization }}:
+            </div>
+
+            <div
+              v-if="rank.contest.organization"
+              flex items-center
+              w-full
+              col-span-5
+            >
+              <MultiSelect
+                :options="orgOptions"
+                :selected-options="orgSelectedItems"
+                @select="orgOnSelect"
+                @compositionstart="onCompositionStart"
+                @compositionend="onCompositionEnd"
+                @keydown.delete.capture="onDelete"
+              />
+            </div>
+
+            <div
+              text-sm
+              flex items-center
+            >
+              Team:
+            </div>
+
+            <div
+              flex items-center
+              w-full
+              col-span-5
+            >
+              <MultiSelect
+                :options="teamsOptions"
+                :selected-options="teamsSelectedItems"
+                @select="teamsOnSelect"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div
+          ml-4 mt-2
+        >
+          <div
+            flex text-sm
+            class="text-[#FF0000]"
+          >
+            Red Team
+          </div>
         </div>
       </div>
 
