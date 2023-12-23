@@ -219,8 +219,8 @@ function onConfirm() {
       <div
         mt-1
         w-full
-        space-x-4
-        flex items-center
+        gap-x-4
+        flex flex-row-reverse items-center
       >
         <button
           type="submit"
