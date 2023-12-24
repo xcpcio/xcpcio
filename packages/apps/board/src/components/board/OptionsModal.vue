@@ -121,7 +121,7 @@ function onConfirm() {
   <Modal
     v-model:isHidden="isHidden"
     :title="title"
-    width="w-180"
+    width="w-200"
   >
     <div
       w-full
@@ -312,10 +312,9 @@ function onConfirm() {
       </div>
 
       <div
-        mt-1
         w-full
-        gap-x-4
         flex flex-row-reverse items-center
+        gap-x-4
       >
         <button
           type="submit"
