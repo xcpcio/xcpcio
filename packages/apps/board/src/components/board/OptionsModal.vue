@@ -295,7 +295,7 @@ function onConfirm() {
         </div>
 
         <div
-          ml-8 mt-2
+          ml-4 mt-2
         >
           <div
             flex flex-row
