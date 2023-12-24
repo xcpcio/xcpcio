@@ -49,6 +49,7 @@ declare module 'vue' {
     TeamInfoModal: typeof import('./components/board/TeamInfoModal.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
+    TheCheckbox: typeof import('./components/TheCheckbox.vue')['default']
     TheCounter: typeof import('./components/TheCounter.vue')['default']
     TheInput: typeof import('./components/TheInput.vue')['default']
     Tooltip: typeof import('./components/flowbite/Tooltip.vue')['default']
