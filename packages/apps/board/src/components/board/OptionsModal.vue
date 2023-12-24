@@ -125,24 +125,36 @@ function onConfirm() {
   >
     <div
       w-full
-      font-bold font-mono
+      font-bold font-mono text-base
       flex flex-col gap-4
       items-center justify-center
     >
       <div
-        v-if="rank.contest.organization"
-        flex flex-col
-        w-full
+        flex flex-col w-full
       >
-        <div>
-          Filter {{ rank.contest.organization }}
+        <div
+          flex
+        >
+          Filter
         </div>
 
         <div
-          ml-4 mt-2
+          ml-8 mt-2
+          grid grid-cols-6 gap-y-4
         >
           <div
+            v-if="rank.contest.organization"
+            flex items-center
+            text-sm
+          >
+            {{ rank.contest.organization }}:
+          </div>
+
+          <div
+            v-if="rank.contest.organization"
+            flex items-center
             w-full
+            col-span-5
           >
             <MultiSelect
               :options="orgOptions"
@@ -153,22 +165,18 @@ function onConfirm() {
               @keydown.delete.capture="onDelete"
             />
           </div>
-        </div>
-      </div>
 
-      <div
-        flex flex-col
-        w-full
-      >
-        <div>
-          Filter Team
-        </div>
-
-        <div
-          ml-4 mt-2
-        >
           <div
+            text-sm
+            flex items-center
+          >
+            Team:
+          </div>
+
+          <div
+            flex items-center
             w-full
+            col-span-5
           >
             <MultiSelect
               :options="teamsOptions"
@@ -287,7 +295,7 @@ function onConfirm() {
         </div>
 
         <div
-          ml-4 mt-2
+          ml-8 mt-2
         >
           <div
             flex flex-row
