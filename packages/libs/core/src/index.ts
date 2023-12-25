@@ -3,6 +3,8 @@ export * from "./utils";
 
 export * from "./award";
 export * from "./balloon";
+export * from "./basic-types";
+export * from "./battle-of-giants";
 export * from "./contest-index";
 export * from "./contest";
 export * from "./image";

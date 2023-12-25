@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import _ from "lodash";
 import { MultiSelect } from "vue-search-select";
 import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 
@@ -13,6 +14,8 @@ const emit = defineEmits([
   "update:isHidden",
   "update:rankOptions",
 ]);
+
+const beforeRankOptions = _.cloneDeep(props.rankOptions);
 
 const { t } = useI18n();
 
@@ -40,27 +43,6 @@ const title = computed(() => {
   return t("type_menu.options");
 });
 
-const enableAnimatedSubmissions = ref(rankOptions.value.enableAnimatedSubmissions);
-
-const orgOptions = computed(() => {
-  const res = rank.value.organizations.map((o) => {
-    return {
-      value: o,
-      text: o,
-    };
-  });
-
-  return res;
-});
-
-const orgSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterOrganizations);
-const orgLastSelectItem = ref({});
-
-function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
-  orgSelectedItems.value = selectedItems;
-  orgLastSelectItem.value = lastSelectItem;
-}
-
 const isComposing = ref(false);
 
 function onCompositionStart() {
@@ -77,6 +59,23 @@ function onDelete(event: Event) {
   }
 }
 
+const orgOptions = computed(() => {
+  const res = rank.value.organizations.map((o) => {
+    return {
+      value: o,
+      text: o,
+    };
+  });
+
+  return res;
+});
+
+const orgSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterOrganizations);
+function orgOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
+  orgSelectedItems.value = selectedItems;
+  rankOptions.value.setFilterOrganizations(selectedItems);
+}
+
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
     return {
@@ -89,14 +88,13 @@ const teamsOptions = computed(() => {
 });
 
 const teamsSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterTeams);
-const teamsLastSelectItem = ref({});
-
-function teamsOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+function teamsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
   teamsSelectedItems.value = selectedItems;
-  teamsLastSelectItem.value = lastSelectItem;
+  rankOptions.value.setFilterTeams(selectedItems);
 }
 
 function onCancel() {
+  rankOptions.value.setSelf(beforeRankOptions);
   isHidden.value = true;
 }
 
@@ -104,16 +102,11 @@ const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganiz
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
 
 function onConfirm() {
-  rankOptions.value.setFilterOrganizations(orgSelectedItems.value);
-  rankOptions.value.setFilterTeams(teamsSelectedItems.value);
-
   // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
 
-  rankOptions.value.enableAnimatedSubmissions = enableAnimatedSubmissions.value;
-
-  onCancel();
+  isHidden.value = true;
 }
 </script>
 
@@ -200,88 +193,48 @@ function onConfirm() {
           ml-4 mt-2
         >
           <div
-            flex text-sm
-            class="text-[#0000FF]"
+            grid grid-cols-10
+            items-center
           >
-            Blue Team
-          </div>
-
-          <div
-            ml-4 mt-2
-            grid grid-cols-6 gap-y-4
-          >
-            <div
-              flex items-center
-              text-sm
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
             >
-              Name:
-            </div>
+              Enable
+            </span>
 
-            <div
-              flex items-center
-              w-full
-              col-span-5
-            >
-              <TheInput
-                text-align="left"
-              />
-            </div>
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.enable"
+            />
 
-            <div
-              v-if="rank.contest.organization"
-              flex items-center
-              text-sm
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
             >
-              {{ rank.contest.organization }}:
-            </div>
+              TopX
+            </span>
 
-            <div
-              v-if="rank.contest.organization"
-              flex items-center
-              w-full
-              col-span-5
-            >
-              <MultiSelect
-                :options="orgOptions"
-                :selected-options="orgSelectedItems"
-                @select="orgOnSelect"
-                @compositionstart="onCompositionStart"
-                @compositionend="onCompositionEnd"
-                @keydown.delete.capture="onDelete"
-              />
-            </div>
-
-            <div
-              text-sm
-              flex items-center
-            >
-              Team:
-            </div>
-
-            <div
-              flex items-center
-              w-full
-              col-span-5
-            >
-              <MultiSelect
-                :options="teamsOptions"
-                :selected-options="teamsSelectedItems"
-                @select="teamsOnSelect"
-              />
-            </div>
+            <TheInput
+              v-model="rankOptions.battleOfGiants.topX"
+              text-align="left"
+              text-type="number"
+            />
           </div>
         </div>
 
-        <div
-          ml-4 mt-2
-        >
-          <div
-            flex text-sm
-            class="text-[#FF0000]"
-          >
-            Red Team
-          </div>
-        </div>
+        <GiantsOptions
+          :rank="rank"
+          :org-options="orgOptions"
+          :teams-options="teamsOptions"
+          :giants="rankOptions.battleOfGiants.blueTeam"
+        />
+
+        <GiantsOptions
+          :rank="rank"
+          :org-options="orgOptions"
+          :teams-options="teamsOptions"
+          :giants="rankOptions.battleOfGiants.redTeam"
+        />
       </div>
 
       <div
@@ -301,7 +254,7 @@ function onConfirm() {
             flex flex-row
           >
             <TheCheckbox
-              v-model="enableAnimatedSubmissions"
+              v-model="rankOptions.enableAnimatedSubmissions"
             >
               <span
                 ml-3

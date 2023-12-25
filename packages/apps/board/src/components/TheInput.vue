@@ -1,10 +1,11 @@
 <script setup lang="ts">
 const props = defineProps<{
   textAlign?: "left" | "center" | "right"
+  textType?: "text" | "number"
 }>();
 
 const { modelValue } = defineModels<{
-  modelValue: string
+  modelValue: string | number
 }>();
 </script>
 
@@ -12,11 +13,11 @@ const { modelValue } = defineModels<{
   <input
     id="input"
     v-model="modelValue"
-    type="text"
     v-bind="$attrs"
+    :type="props.textType ?? 'text'"
+    :text="props.textAlign ?? 'center'"
     p="x-4 y-2"
     w-full
-    :text="props.textAlign ?? 'center'"
     bg="transparent"
     border="~ rounded gray-200 dark:gray-700"
     outline="none active:none"

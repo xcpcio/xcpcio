@@ -24,6 +24,7 @@ declare module 'vue' {
     DataSourceInput: typeof import('./components/DataSourceInput.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
+    GiantsOptions: typeof import('./components/battle-of-giants/GiantsOptions.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     Modal: typeof import('./components/board/Modal.vue')['default']
