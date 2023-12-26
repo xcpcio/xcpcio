@@ -193,7 +193,7 @@ function onConfirm() {
           ml-4 mt-2
         >
           <div
-            grid grid-cols-10
+            grid grid-cols-8
             items-center
           >
             <span
@@ -205,6 +205,17 @@ function onConfirm() {
 
             <TheCheckbox
               v-model="rankOptions.battleOfGiants.enable"
+            />
+
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              Persist
+            </span>
+
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.persist"
             />
 
             <span

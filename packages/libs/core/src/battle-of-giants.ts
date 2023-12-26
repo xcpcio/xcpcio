@@ -48,6 +48,7 @@ export class Giants {
 export class BattleOfGiants {
   enable: boolean;
   topX: number;
+  persist: boolean;
 
   blueTeam: Giants;
   redTeam: Giants;
@@ -55,6 +56,7 @@ export class BattleOfGiants {
   constructor() {
     this.enable = false;
     this.topX = 5;
+    this.persist = false;
 
     this.blueTeam = new Giants(GiantsType.BLUE);
     this.redTeam = new Giants(GiantsType.RED);
