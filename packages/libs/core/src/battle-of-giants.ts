@@ -1,4 +1,5 @@
 import { type SelectOptionItem } from "./basic-types";
+import type { Team } from "./team";
 
 export enum GiantsType {
   BLUE,
@@ -14,9 +15,12 @@ export class Giants {
   filterTeams: Array<SelectOptionItem>;
   filterTeamMap: Map<string, SelectOptionItem>;
 
+  teams: Array<Team>;
+
   constructor(type: GiantsType = GiantsType.BLUE) {
     this.type = type;
     this.name = `${type === GiantsType.BLUE ? "Blue" : "Red"} Team`;
+    this.teams = [];
 
     this.filterOrganizations = [];
     this.filterOrganizationMap = new Map<string, SelectOptionItem>();
@@ -42,6 +46,38 @@ export class Giants {
 
     this.filterTeams = filterTeams;
     this.filterTeamMap = m;
+  }
+
+  get totalSolvedProblemNum(): number {
+    let total = 0;
+    this.teams.forEach((team) => {
+      total += team.solvedProblemNum;
+    });
+    return total;
+  }
+
+  get totalPenalty(): number {
+    let total = 0;
+    this.teams.forEach((team) => {
+      total += team.penaltyToMinute;
+    });
+    return total;
+  }
+
+  get totalPenaltyToString(): string {
+    const penalty = this.totalPenalty;
+    const two = (a: number) => {
+      if (a < 10) {
+        return `0${a}`;
+      }
+
+      return String(a);
+    };
+
+    const h = Math.floor(penalty / 60);
+    const m = Math.floor(penalty % 60);
+
+    return [two(h), two(m)].join(":");
   }
 }
 

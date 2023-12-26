@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { MedalType } from "@xcpcio/core";
 import type { Rank, Team } from "@xcpcio/core";
+import { GiantsType, MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
   ix: number,
   rank: Rank,
   team: Team,
   isFilter?: boolean;
+  giantsType?: GiantsType;
 }>();
 
 const el = ref(null);
@@ -39,6 +40,15 @@ function getStandClassName(t: Team, isRankField = false): string {
     }
   }
 
+  if (props.giantsType !== undefined) {
+    switch (props.giantsType) {
+      case GiantsType.BLUE:
+        return "bg-blue-400";
+      case GiantsType.RED:
+        return "bg-red-400";
+    }
+  }
+
   if (props.isFilter) {
     return "filter-team";
   }
@@ -61,7 +71,10 @@ function isRenderByVisible() {
   <tr
     ref="el"
     class="h-10"
-    :class="[props.isFilter ? 'filter-team' : '']"
+    :class="[
+      props.isFilter ? 'filter-team' : '',
+      props.giantsType !== undefined ? getStandClassName(props.team) : '',
+    ]"
   >
     <td
       v-if="isRenderByVisible()"
