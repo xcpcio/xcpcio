@@ -207,7 +207,7 @@ function onConfirm() {
               v-model="rankOptions.battleOfGiants.enable"
             />
 
-            <span
+            <!-- <span
               text-sm font-medium
               text-gray-900 dark:text-gray-300
             >
@@ -216,7 +216,7 @@ function onConfirm() {
 
             <TheCheckbox
               v-model="rankOptions.battleOfGiants.persist"
-            />
+            /> -->
 
             <span
               text-sm font-medium
