@@ -207,6 +207,17 @@ function onConfirm() {
               v-model="rankOptions.battleOfGiants.enable"
             />
 
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              Equal Teams
+            </span>
+
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.equalTeams"
+            />
+
             <!-- <span
               text-sm font-medium
               text-gray-900 dark:text-gray-300

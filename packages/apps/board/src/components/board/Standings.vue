@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { GiantsType } from "@xcpcio/core";
-import type { Rank, Team } from "@xcpcio/core";
+import type { Rank } from "@xcpcio/core";
+import { GiantsType, Team } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank,
@@ -45,46 +45,38 @@ const giantTeams = computed(() => {
   let blueCnt = 0;
   let redCnt = 0;
 
-  const res: GiantTeam[] = [];
-
   for (const t of props.rank.teams) {
     const giantsType = (() => {
-      if (blueCnt < battleOfGiants.topX) {
-        if (blueTeam.filterOrganizationMap.has(t.organization)) {
-          blueCnt++;
-          return GiantsType.BLUE;
+      if (
+        blueTeam.filterOrganizationMap.has(t.organization)
+     || blueTeam.filterTeamMap.has(t.id)
+      ) {
+        if (blueCnt >= battleOfGiants.topX) {
+          return null;
         }
 
-        if (blueTeam.filterTeamMap.has(t.id)) {
-          blueCnt++;
-          return GiantsType.BLUE;
-        }
+        blueCnt++;
+        return GiantsType.BLUE;
       }
 
-      if (redCnt < battleOfGiants.topX) {
-        if (redTeam.filterOrganizationMap.has(t.organization)) {
-          redCnt++;
-          return GiantsType.RED;
+      if (
+        redTeam.filterOrganizationMap.has(t.organization)
+     || redTeam.filterTeamMap.has(t.id)
+      ) {
+        if (redCnt >= battleOfGiants.topX) {
+          return null;
         }
 
-        if (redTeam.filterTeamMap.has(t.id)) {
-          redCnt++;
-          return GiantsType.RED;
-        }
-
-        return null;
+        redCnt++;
+        return GiantsType.RED;
       }
+
+      return null;
     })();
 
     if (giantsType === null) {
       continue;
     }
-
-    const gt = {
-      team: t,
-      giantsType: giantsType as GiantsType,
-    };
-    res.push(gt);
 
     if (giantsType === GiantsType.BLUE) {
       blueTeam.teams.push(t);
@@ -96,6 +88,31 @@ const giantTeams = computed(() => {
       break;
     }
   }
+
+  if (battleOfGiants.equalTeams) {
+    while (blueTeam.teams.length < redTeam.teams.length) {
+      redTeam.teams.pop();
+    }
+    while (redTeam.teams.length < blueTeam.teams.length) {
+      blueTeam.teams.pop();
+    }
+  }
+
+  const res: GiantTeam[] = [...blueTeam.teams.map((t) => {
+    return {
+      team: t,
+      giantsType: GiantsType.BLUE,
+    };
+  }), ...redTeam.teams.map((t) => {
+    return {
+      team: t,
+      giantsType: GiantsType.RED,
+    };
+  })];
+
+  res.sort((lhs, rhs) => {
+    return Team.compare(lhs.team, rhs.team);
+  });
 
   return res;
 });
