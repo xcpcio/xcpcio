@@ -11,11 +11,8 @@ import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 import { Balloon, type Balloons } from "./balloon";
 import { Award, MedalType } from "./award";
-
-export interface SelectOptionItem {
-  value: string;
-  text: string;
-}
+import { type SelectOptionItem } from "./basic-types";
+import { BattleOfGiants } from "./battle-of-giants";
 
 export class RankOptions {
   enableFilterSubmissionsByTimestamp: boolean;
@@ -32,6 +29,8 @@ export class RankOptions {
 
   enableAnimatedSubmissions: boolean;
 
+  battleOfGiants: BattleOfGiants;
+
   constructor() {
     this.enableFilterSubmissionsByTimestamp = false;
     this.width = 0;
@@ -47,6 +46,27 @@ export class RankOptions {
     this.filterTeamMap = new Map<string, SelectOptionItem>();
 
     this.enableAnimatedSubmissions = false;
+
+    this.battleOfGiants = new BattleOfGiants();
+  }
+
+  setSelf(self: RankOptions) {
+    this.enableFilterSubmissionsByTimestamp = self.enableFilterSubmissionsByTimestamp;
+    this.width = self.width;
+    this.timestamp = self.timestamp;
+
+    this.enableFilterTeamsByGroup = self.enableFilterTeamsByGroup;
+    this.group = self.group;
+
+    this.filterOrganizations = self.filterOrganizations;
+    this.filterOrganizationMap = self.filterOrganizationMap;
+
+    this.filterTeams = self.filterTeams;
+    this.filterTeamMap = self.filterTeamMap;
+
+    this.enableAnimatedSubmissions = self.enableAnimatedSubmissions;
+
+    this.battleOfGiants = self.battleOfGiants;
   }
 
   setWidth(width: number, contest: Contest) {

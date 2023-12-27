@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import _ from "lodash";
 import { MultiSelect } from "vue-search-select";
 import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 
@@ -13,6 +14,8 @@ const emit = defineEmits([
   "update:isHidden",
   "update:rankOptions",
 ]);
+
+const beforeRankOptions = _.cloneDeep(props.rankOptions);
 
 const { t } = useI18n();
 
@@ -40,27 +43,6 @@ const title = computed(() => {
   return t("type_menu.options");
 });
 
-const enableAnimatedSubmissions = ref(rankOptions.value.enableAnimatedSubmissions);
-
-const orgOptions = computed(() => {
-  const res = rank.value.organizations.map((o) => {
-    return {
-      value: o,
-      text: o,
-    };
-  });
-
-  return res;
-});
-
-const orgSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterOrganizations);
-const orgLastSelectItem = ref({});
-
-function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
-  orgSelectedItems.value = selectedItems;
-  orgLastSelectItem.value = lastSelectItem;
-}
-
 const isComposing = ref(false);
 
 function onCompositionStart() {
@@ -77,6 +59,23 @@ function onDelete(event: Event) {
   }
 }
 
+const orgOptions = computed(() => {
+  const res = rank.value.organizations.map((o) => {
+    return {
+      value: o,
+      text: o,
+    };
+  });
+
+  return res;
+});
+
+const orgSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterOrganizations);
+function orgOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
+  orgSelectedItems.value = selectedItems;
+  rankOptions.value.setFilterOrganizations(selectedItems);
+}
+
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
     return {
@@ -89,14 +88,13 @@ const teamsOptions = computed(() => {
 });
 
 const teamsSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterTeams);
-const teamsLastSelectItem = ref({});
-
-function teamsOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+function teamsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
   teamsSelectedItems.value = selectedItems;
-  teamsLastSelectItem.value = lastSelectItem;
+  rankOptions.value.setFilterTeams(selectedItems);
 }
 
 function onCancel() {
+  rankOptions.value.setSelf(beforeRankOptions);
   isHidden.value = true;
 }
 
@@ -104,16 +102,11 @@ const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganiz
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
 
 function onConfirm() {
-  rankOptions.value.setFilterOrganizations(orgSelectedItems.value);
-  rankOptions.value.setFilterTeams(teamsSelectedItems.value);
-
   // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
 
-  rankOptions.value.enableAnimatedSubmissions = enableAnimatedSubmissions.value;
-
-  onCancel();
+  isHidden.value = true;
 }
 </script>
 
@@ -121,56 +114,149 @@ function onConfirm() {
   <Modal
     v-model:isHidden="isHidden"
     :title="title"
-    width="w-180"
+    width="w-200"
   >
     <div
       w-full
-      font-bold font-mono
+      font-bold font-mono text-base
       flex flex-col gap-4
       items-center justify-center
     >
       <div
-        v-if="rank.contest.organization"
-        flex flex-col
-        w-full
+        flex flex-col w-full
       >
-        <div>
-          Filter {{ rank.contest.organization }}
+        <div
+          flex
+        >
+          Filter
         </div>
 
         <div
-          w-full
-          mt-2
+          ml-8 mt-2
+          grid grid-cols-6 gap-y-4
         >
-          <MultiSelect
-            :options="orgOptions"
-            :selected-options="orgSelectedItems"
-            @select="orgOnSelect"
-            @compositionstart="onCompositionStart"
-            @compositionend="onCompositionEnd"
-            @keydown.delete.capture="onDelete"
-          />
+          <div
+            v-if="rank.contest.organization"
+            flex items-center
+            text-sm
+          >
+            {{ rank.contest.organization }}:
+          </div>
+
+          <div
+            v-if="rank.contest.organization"
+            flex items-center
+            w-full
+            col-span-5
+          >
+            <MultiSelect
+              :options="orgOptions"
+              :selected-options="orgSelectedItems"
+              @select="orgOnSelect"
+              @compositionstart="onCompositionStart"
+              @compositionend="onCompositionEnd"
+              @keydown.delete.capture="onDelete"
+            />
+          </div>
+
+          <div
+            text-sm
+            flex items-center
+          >
+            Team:
+          </div>
+
+          <div
+            flex items-center
+            w-full
+            col-span-5
+          >
+            <MultiSelect
+              :options="teamsOptions"
+              :selected-options="teamsSelectedItems"
+              @select="teamsOnSelect"
+            />
+          </div>
         </div>
       </div>
 
       <div
-        flex flex-col
-        w-full
+        flex flex-col w-full
       >
-        <div>
-          Filter Team
+        <div
+          flex
+        >
+          Battle of Giants
         </div>
 
         <div
-          w-full
-          mt-2
+          ml-4 mt-2
         >
-          <MultiSelect
-            :options="teamsOptions"
-            :selected-options="teamsSelectedItems"
-            @select="teamsOnSelect"
-          />
+          <div
+            grid grid-cols-8
+            items-center
+          >
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              Enable
+            </span>
+
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.enable"
+            />
+
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              Equal Teams
+            </span>
+
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.equalTeams"
+            />
+
+            <!-- <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              Persist
+            </span>
+
+            <TheCheckbox
+              v-model="rankOptions.battleOfGiants.persist"
+            /> -->
+
+            <span
+              text-sm font-medium
+              text-gray-900 dark:text-gray-300
+            >
+              TopX
+            </span>
+
+            <TheInput
+              v-model="rankOptions.battleOfGiants.topX"
+              text-align="left"
+              text-type="number"
+            />
+          </div>
         </div>
+
+        <GiantsOptions
+          :rank="rank"
+          :org-options="orgOptions"
+          :teams-options="teamsOptions"
+          :giants="rankOptions.battleOfGiants.blueTeam"
+        />
+
+        <GiantsOptions
+          :rank="rank"
+          :org-options="orgOptions"
+          :teams-options="teamsOptions"
+          :giants="rankOptions.battleOfGiants.redTeam"
+        />
       </div>
 
       <div
@@ -179,30 +265,35 @@ function onConfirm() {
       >
         <div
           flex
-          mb-2
         >
           Feature
         </div>
 
         <div
-          flex flex-row
+          ml-4 mt-2
         >
-          <label class="relative inline-flex items-center cursor-pointer">
-            <input
-              v-model="enableAnimatedSubmissions"
-              type="checkbox"
-              class="sr-only peer"
+          <div
+            flex flex-row
+          >
+            <TheCheckbox
+              v-model="rankOptions.enableAnimatedSubmissions"
             >
-            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
-            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Animated Submissions</span>
-          </label>
+              <span
+                ml-3
+                text-sm font-medium
+                text-gray-900 dark:text-gray-300
+              >
+                Submission Queue
+              </span>
+            </TheCheckbox>
+          </div>
         </div>
       </div>
 
       <div
-        mt-2
         w-full
-        flex items-center space-x-4
+        flex flex-row-reverse items-center
+        gap-x-4
       >
         <button
           type="submit"
