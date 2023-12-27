@@ -76,6 +76,22 @@ const color = computed(() => {
           v-model="giants.name"
           text-align="left"
         />
+
+        <Tooltip>
+          <div
+            i-material-symbols-refresh
+            cursor-pointer btn
+            text-3xl
+            ml-2
+            @click="giants.refreshName()"
+          />
+
+          <template #popper>
+            <div>
+              Refresh Name
+            </div>
+          </template>
+        </Tooltip>
       </div>
 
       <div

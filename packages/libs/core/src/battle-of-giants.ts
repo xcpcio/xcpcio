@@ -48,6 +48,16 @@ export class Giants {
     this.filterTeamMap = m;
   }
 
+  refreshName() {
+    if (this.filterOrganizations.length > 0) {
+      this.name = this.filterOrganizations[0].text;
+    } else {
+      this.name = `${this.type === GiantsType.BLUE ? "Blue" : "Red"} Team`;
+    }
+
+    return this.name;
+  }
+
   get totalSolvedProblemNum(): number {
     let total = 0;
     this.teams.forEach((team) => {
