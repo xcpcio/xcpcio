@@ -100,11 +100,18 @@ function onCancel() {
 
 const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
+const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
 
 function onConfirm() {
   // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
+
+  if (rankOptions.value.battleOfGiants.persist) {
+    routeQueryForBattleOfGiants.value = rankOptions.value.battleOfGiants.ToBase64();
+  } else {
+    routeQueryForBattleOfGiants.value = undefined as unknown as string;
+  }
 
   isHidden.value = true;
 }
@@ -218,7 +225,7 @@ function onConfirm() {
               v-model="rankOptions.battleOfGiants.equalTeams"
             />
 
-            <!-- <span
+            <span
               text-sm font-medium
               text-gray-900 dark:text-gray-300
             >
@@ -227,7 +234,7 @@ function onConfirm() {
 
             <TheCheckbox
               v-model="rankOptions.battleOfGiants.persist"
-            /> -->
+            />
 
             <span
               text-sm font-medium

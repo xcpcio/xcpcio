@@ -41,6 +41,16 @@ const enableAutoScroll = ref(false);
   }
 })();
 
+(() => {
+  const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
+  if (
+    routeQueryForBattleOfGiants.value !== null
+ && routeQueryForBattleOfGiants.value !== undefined
+  ) {
+    rankOptions.value.battleOfGiants.FromBase64(routeQueryForBattleOfGiants.value);
+  }
+})();
+
 const currentGroup = ref("all");
 function onChangeCurrentGroup(nextGroup: string) {
   if (nextGroup === rankOptions.value.group) {
