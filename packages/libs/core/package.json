@@ -52,6 +52,7 @@
     "chroma-js": "^2.4.2",
     "color-diff": "^1.4.0",
     "dayjs": "^1.11.8",
+    "js-base64": "^3.7.5",
     "lodash": "^4.17.21",
     "ordinal": "^1.0.3",
     "papaparse": "^5.4.1",

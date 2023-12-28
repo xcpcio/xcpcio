@@ -1,3 +1,4 @@
+import { Base64 } from "js-base64";
 import { type SelectOptionItem } from "./basic-types";
 import type { Team } from "./team";
 
@@ -89,6 +90,15 @@ export class Giants {
 
     return [two(h), two(m)].join(":");
   }
+
+  toJSON() {
+    return {
+      type: this.type,
+      name: this.name,
+      filterOrganizations: this.filterOrganizations,
+      filterTeams: this.filterTeams,
+    };
+  }
 }
 
 export class BattleOfGiants {
@@ -108,5 +118,36 @@ export class BattleOfGiants {
 
     this.blueTeam = new Giants(GiantsType.BLUE);
     this.redTeam = new Giants(GiantsType.RED);
+  }
+
+  ToBase64(): string {
+    return Base64.encode(JSON.stringify(this));
+  }
+
+  FromBase64(base64: string) {
+    if (base64.length === 0) {
+      return;
+    }
+
+    if (Base64.isValid(base64) === false) {
+      return;
+    }
+
+    const j = JSON.parse(Base64.decode(base64));
+
+    this.enable = j.enable;
+    this.topX = j.topX;
+    this.equalTeams = j.equalTeams;
+    this.persist = j.persist;
+
+    this.blueTeam = new Giants(GiantsType.BLUE);
+    this.blueTeam.name = j.blueTeam.name;
+    this.blueTeam.setFilterOrganizations(j.blueTeam.filterOrganizations);
+    this.blueTeam.setFilterTeams(j.blueTeam.filterTeams);
+
+    this.redTeam = new Giants(GiantsType.RED);
+    this.redTeam.name = j.redTeam.name;
+    this.redTeam.setFilterOrganizations(j.redTeam.filterOrganizations);
+    this.redTeam.setFilterTeams(j.redTeam.filterTeams);
   }
 }
