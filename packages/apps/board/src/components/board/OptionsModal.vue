@@ -93,25 +93,39 @@ function teamsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: 
   rankOptions.value.setFilterTeams(selectedItems);
 }
 
-function onCancel() {
+const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
+function persistBattleOfGiants() {
+  if (rankOptions.value.battleOfGiants.persist) {
+    routeQueryForBattleOfGiants.value = rankOptions.value.battleOfGiants.ToBase64();
+  } else {
+    routeQueryForBattleOfGiants.value = undefined as unknown as string;
+  }
+}
+
+watch(
+  () => rankOptions.value.battleOfGiants.persist,
+  () => {
+    persistBattleOfGiants();
+  },
+);
+
+async function onCancel() {
   rankOptions.value.setSelf(beforeRankOptions);
+  await nextTick();
+  persistBattleOfGiants();
+
   isHidden.value = true;
 }
 
 const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
-const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
 
 function onConfirm() {
   // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
 
-  if (rankOptions.value.battleOfGiants.persist) {
-    routeQueryForBattleOfGiants.value = rankOptions.value.battleOfGiants.ToBase64();
-  } else {
-    routeQueryForBattleOfGiants.value = undefined as unknown as string;
-  }
+  persistBattleOfGiants();
 
   isHidden.value = true;
 }
