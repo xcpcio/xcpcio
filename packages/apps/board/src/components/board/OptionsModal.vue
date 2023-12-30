@@ -102,9 +102,12 @@ function persistBattleOfGiants() {
   }
 }
 
-watch(rankOptions.value.battleOfGiants, () => {
-  persistBattleOfGiants();
-});
+watch(
+  () => rankOptions.value.battleOfGiants.persist,
+  () => {
+    persistBattleOfGiants();
+  },
+);
 
 async function onCancel() {
   rankOptions.value.setSelf(beforeRankOptions);
