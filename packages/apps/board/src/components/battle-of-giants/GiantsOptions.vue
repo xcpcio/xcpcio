@@ -81,7 +81,7 @@ const color = computed(() => {
           <div
             i-material-symbols-refresh
             cursor-pointer btn
-            text-3xl
+            text-2xl
             ml-2
             @click="giants.refreshName()"
           />
