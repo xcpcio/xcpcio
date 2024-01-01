@@ -13,7 +13,10 @@ const { t } = useI18n();
 useTitle(TITLE_SUFFIX);
 
 const now = ref(new Date());
-const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${now.value.getTime()}`);
+const nowMinutes = computed(() => {
+  return Math.floor(now.value.getTime() / 1000 / 60);
+});
+const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${nowMinutes.value}`);
 const refetch = ref(false);
 
 const s = useRouteQuery<string | null>("s", "", { transform: String });
