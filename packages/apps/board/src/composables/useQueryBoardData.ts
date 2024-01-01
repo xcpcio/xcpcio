@@ -46,9 +46,10 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
 }
 
 export function useQueryBoardData(target: string, timestamp?: any) {
+  const timestampSeconds = Math.floor(timestamp.value.getTime() / 1000);
   return useQuery({
-    queryKey: [target, timestamp.value.getTime()],
-    queryFn: () => fetcher(target, timestamp.value.getTime()),
+    queryKey: [target, timestampSeconds],
+    queryFn: () => fetcher(target, timestampSeconds),
     retry: RETRY,
     staleTime: REFETCH_INTERVAL,
     refetchInterval: REFETCH_INTERVAL,
