@@ -17,7 +17,7 @@ const contestData = ref({} as Contest);
 const teamsData = ref([] as Teams);
 const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
-const now = ref(new Date());
+const now = useNow();
 
 function reBuildBalloons() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
@@ -44,14 +44,6 @@ watch(data, async () => {
 
 const balloons = computed(() => {
   return rank.value.balloons.sort(Balloon.compare).reverse().slice(0, 256);
-});
-
-const setNowIntervalId = setInterval(() => {
-  now.value = new Date();
-}, 1000);
-
-onUnmounted(() => {
-  clearInterval(setNowIntervalId);
 });
 </script>
 

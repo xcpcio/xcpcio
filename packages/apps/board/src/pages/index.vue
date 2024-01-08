@@ -12,12 +12,14 @@ import ContestIndexUI from "~/components/ContestIndexUI.vue";
 const { t } = useI18n();
 useTitle(TITLE_SUFFIX);
 
-const now = ref(new Date());
-const nowMinutes = computed(() => {
-  return Math.floor(now.value.getTime() / 1000 / 60);
-});
-const url = ref(`${window.DATA_HOST}index/contest_list.json?t=${nowMinutes.value}`);
-const refetch = ref(false);
+const FETCH_INTERVAL = 1000 * 60 * 5;
+const now = useNow();
+const nowMinutes = computed(() => Math.floor(now.value.getTime() / FETCH_INTERVAL));
+
+function genURL() {
+  return `${window.DATA_HOST}index/contest_list.json?t=${nowMinutes.value}`;
+}
+const url = ref(genURL());
 
 const s = useRouteQuery<string | null>("s", "", { transform: String });
 const searchText = ref<string | null>(s.value);
@@ -59,7 +61,7 @@ const {
   isFetching,
   isFinished,
 } = useFetch(url, {
-  refetch,
+  refetch: true,
   afterFetch: (ctx) => {
     contestIndexAllList.value = createContestIndexList(JSON.parse(ctx.data));
     contestIndexList.value = contestIndexAllList.value.map(c => c);
@@ -71,6 +73,14 @@ const {
 
 watch(searchText, () => {
   onSearch();
+});
+
+const fetchIntervalId = setInterval(() => {
+  url.value = genURL();
+}, FETCH_INTERVAL);
+
+onUnmounted(() => {
+  clearInterval(fetchIntervalId);
 });
 </script>
 
