@@ -136,6 +136,7 @@ function onConfirm() {
     v-model:isHidden="isHidden"
     :title="title"
     width="w-200"
+    mt="mt-4"
   >
     <div
       w-full

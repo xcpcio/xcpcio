@@ -6,6 +6,7 @@ const props = defineProps<{
 
   title?: string,
   width?: string,
+  mt?: string,
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
@@ -34,10 +35,10 @@ watch(Escape, (v) => {
 <template>
   <div
     class="md:inset-0 w-[100%] h-[100%]"
+    :class="[props.mt ?? 'md:mt-32 sm:mt-16']"
     fixed z-9997
     of-x-hidden
     flex justify-center items-start
-    md:mt-32 sm:mt-16
   >
     <!-- background -->
     <div
