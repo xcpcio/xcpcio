@@ -13,7 +13,7 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const contest = computed(() => props.data.contest);
-const now = ref(new Date());
+const now = useNow();
 
 const el = ref(null);
 const isVisible = useElementVisibility(el);
@@ -24,14 +24,6 @@ const logo = computed(() => {
   }
 
   return getLogoFromPreset(contest.value.logo);
-});
-
-const setNowIntervalId = setInterval(() => {
-  now.value = new Date();
-}, 1000);
-
-onUnmounted(() => {
-  clearInterval(setNowIntervalId);
 });
 </script>
 

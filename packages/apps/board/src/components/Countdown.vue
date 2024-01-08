@@ -11,7 +11,7 @@ const props = defineProps<{
 const { t } = useI18n();
 const title = useTitle(COUNTDOWN_TITLE_SUFFIX);
 
-const now = ref(new Date());
+const now = useNow();
 const contest = ref({} as Contest);
 const firstLoaded = ref(false);
 
@@ -25,14 +25,6 @@ watch(data, async () => {
   title.value = `${contest.value.name} | ${COUNTDOWN_TITLE_SUFFIX}`;
 
   firstLoaded.value = true;
-});
-
-const setNowIntervalId = setInterval(() => {
-  now.value = new Date();
-}, 1000);
-
-onUnmounted(() => {
-  clearInterval(setNowIntervalId);
 });
 </script>
 
