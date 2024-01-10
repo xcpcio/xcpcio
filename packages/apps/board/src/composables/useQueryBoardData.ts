@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/vue-query";
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
+import { DATA_REGION } from "./constant";
 
 const RETRY = 3;
-const REFETCH_INTERVAL = 30 * 1000;
 
 export interface BoardData {
   contest: Contest;
@@ -46,12 +46,18 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
 }
 
 export function useQueryBoardData(target: string, timestamp?: any) {
-  const timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000));
+  let refetchInterval = 30 * 1000;
+  let timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000 / 10));
+  if (DATA_REGION.value === "I18N") {
+    refetchInterval = 10 * 1000;
+    timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000));
+  }
+
   return useQuery({
     queryKey: [target, timestampSeconds.value],
     queryFn: () => fetcher(target, timestampSeconds.value),
     retry: RETRY,
-    staleTime: REFETCH_INTERVAL,
-    refetchInterval: REFETCH_INTERVAL,
+    staleTime: refetchInterval,
+    refetchInterval,
   });
 }
