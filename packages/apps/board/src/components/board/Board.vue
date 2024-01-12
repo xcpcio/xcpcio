@@ -337,7 +337,6 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       >
         <div
           :class="[widthClass]"
-          mb-4
           flex justify-center items-center
         >
           <div class="max-w-[92%]">
@@ -350,17 +349,19 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       </div>
 
       <div
+        v-if="!rank.contest.banner || (rank.contest.banner && rank.contest.bannerMode === 'ALL')"
         class="title"
         :class="[widthClass]"
         flex justify-center
         text-center text-3xl font-normal font-serif
+        mb-2
       >
         <div class="max-w-[92%]">
           {{ rank.contest.name }}
         </div>
       </div>
 
-      <div mt-2>
+      <div>
         <BoardTab
           :rank="rank"
         />

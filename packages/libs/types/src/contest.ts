@@ -19,6 +19,7 @@ export interface ContestOptions {
 }
 
 export type MedalPreset = "ccpc" | "icpc";
+export type BannerMode = "ONLY_BANNER" | "ALL";
 
 export interface Contest {
   contest_name: string;
@@ -45,6 +46,7 @@ export interface Contest {
 
   logo?: Image;
   banner?: Image;
+  banner_mode?: BannerMode;
   board_link?: string;
 
   version?: string;
