@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import _ from "lodash";
 import { useRouteQuery } from "@vueuse/router";
-import { onKeyStroke, useIntervalFn, useNow } from "@vueuse/core";
+import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
 
 import { Rank, RankOptions, createContest, createSubmissions, createTeams, getImageSource, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
@@ -94,7 +94,7 @@ function reBuildRank(options = { force: false }) {
   isReBuildRank.value = false;
 }
 
-const { data, isError, error } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
+const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
@@ -299,6 +299,18 @@ const contestState = computed(() => {
 
 const pausedTime = computed(() => {
   return getTimeDiff(rank.value.options.timestamp);
+});
+
+const reFetchThrottleFn = useThrottleFn(() => {
+  refetch();
+}, 30 * 1000);
+const visibility = useDocumentVisibility();
+watch(visibility, () => {
+  if (visibility.value === "hidden") {
+    return;
+  }
+
+  reFetchThrottleFn();
 });
 
 onUnmounted(() => {
