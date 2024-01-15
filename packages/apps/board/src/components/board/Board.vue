@@ -294,7 +294,7 @@ const contestState = computed(() => {
     return ContestState.PAUSED;
   }
 
-  return rank.value.contest.getContestState();
+  return rank.value.contest.getContestState(now.value);
 });
 
 const pausedTime = computed(() => {
