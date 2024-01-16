@@ -42,7 +42,7 @@ export class CodeforcesGymGhostDATConverter {
         name = `${name} - ${team.membersToString}`;
       }
 
-      res += `@t ${teamIndex},0,1,${name}\n`;
+      res += `@t ${teamIndex},0,1,"${name}"\n`;
       teamIdMap.set(team.id, teamIndex);
       teamIndex++;
 
@@ -56,7 +56,7 @@ export class CodeforcesGymGhostDATConverter {
     });
 
     for (let i = 0; i < 100; i++) {
-      res += `@t ${teamIndex},0,1,Пополнить команду\n`;
+      res += `@t ${teamIndex},0,1,"Пополнить команду"\n`;
       teamIndex++;
     }
 
