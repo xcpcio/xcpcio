@@ -9,11 +9,15 @@ export class RatingCalculator {
     this.users = [];
   }
 
-  calcP(userA: RatingUser, userB: RatingUser) {
+  calculate() {
+    this.calculateInternal();
+  }
+
+  private calcP(userA: RatingUser, userB: RatingUser) {
     return 1.0 / (1.0 + 10 ** ((userB.oldRating - userA.oldRating) / 400.0));
   }
 
-  getExSeed(users: RatingUsers, rating: number, ownUser: RatingUser) {
+  private getExSeed(users: RatingUsers, rating: number, ownUser: RatingUser) {
     const exUser = new RatingUser();
     exUser.oldRating = rating;
 
@@ -28,7 +32,7 @@ export class RatingCalculator {
     return res;
   }
 
-  calcRating(users: RatingUsers, rank: number, user: RatingUser) {
+  private calcRating(users: RatingUsers, rank: number, user: RatingUser) {
     let left = 1;
     let right = 8000;
 
@@ -44,7 +48,7 @@ export class RatingCalculator {
     return left;
   }
 
-  calculate() {
+  private calculateInternal() {
     // Calculate seed
     for (let i = 0; i < this.users.length; i++) {
       const u = this.users[i];
@@ -88,7 +92,7 @@ export class RatingCalculator {
     // Calculate new rating
     this.users.forEach((u) => {
       u.delta += inc;
-      u.newRating = u.oldRating + u.delta;
+      u.UpdateRating(u.oldRating + u.delta);
     });
 
     this.users = this.users.sort((a, b) => a.rank - b.rank);

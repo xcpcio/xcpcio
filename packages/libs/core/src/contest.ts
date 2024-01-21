@@ -10,6 +10,7 @@ import { type Awards, MedalType } from "./award";
 import { ContestOptions, createContestOptions } from "./contest-options";
 
 export class Contest {
+  id = "";
   name = "";
 
   startTime: dayjs.Dayjs;

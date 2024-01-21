@@ -40,22 +40,22 @@ describe("contest", () => {
     ratingCalculator.calculate();
     const firstUser = ratingCalculator.users[0];
     expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.newRating).toMatchInlineSnapshot("1714");
+    expect(firstUser.rating).toMatchInlineSnapshot("1714");
 
     const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
     expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.newRating).toMatchInlineSnapshot("1402");
+    expect(lastUser.rating).toMatchInlineSnapshot("1402");
 
     for (const u of ratingCalculator.users) {
-      u.oldRating = u.newRating;
+      u.oldRating = u.rating;
     }
 
     ratingCalculator.calculate();
 
     expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.newRating).toMatchInlineSnapshot("1861");
+    expect(firstUser.rating).toMatchInlineSnapshot("1861");
 
     expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.newRating).toMatchInlineSnapshot("1312");
+    expect(lastUser.rating).toMatchInlineSnapshot("1312");
   });
 });

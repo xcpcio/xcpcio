@@ -608,3 +608,5 @@ export class Rank {
     this.contest.setReplayTime(replayStartTimestamp);
   }
 }
+
+export type Ranks = Array<Rank>;
