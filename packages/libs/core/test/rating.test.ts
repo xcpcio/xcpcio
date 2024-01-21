@@ -2,11 +2,13 @@ import { resolve } from "node:path";
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 
+import _ from "lodash";
+
 import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
 import { createSubmissions } from "../src/submission";
 import { Rank } from "../src/rank";
-import { RatingCalculator, RatingUser } from "../src/rating";
+import { Rating, RatingCalculator, RatingUser } from "../src/rating";
 
 describe("contest", () => {
   it("2023_ccpc_final", () => {
@@ -23,39 +25,117 @@ describe("contest", () => {
     const submissions = createSubmissions(runJSON);
 
     const rank = new Rank(contest, teams, submissions);
+    rank.contest.id = "2023/ccpc/final";
     rank.buildRank();
 
     expect(rank.teams.length).toMatchInlineSnapshot("132");
     expect(rank.originTeams.length).toMatchInlineSnapshot("132");
 
-    const ratingCalculator = new RatingCalculator();
-    for (const t of rank.teams) {
-      const u = new RatingUser();
-      u.id = t.id;
-      u.rank = t.rank;
-      u.oldRating = 1500;
-      ratingCalculator.users.push(u);
+    {
+      const ratingCalculator = new RatingCalculator();
+      for (const t of rank.teams) {
+        const u = new RatingUser();
+        u.id = t.id;
+        u.rank = t.rank;
+        u.oldRating = 1500;
+        ratingCalculator.users.push(u);
+      }
+
+      ratingCalculator.calculate();
+      const firstUser = ratingCalculator.users[0];
+      expect(firstUser.rank).toMatchInlineSnapshot("1");
+      expect(firstUser.rating).toMatchInlineSnapshot("1714");
+
+      const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
+      expect(lastUser.rank).toMatchInlineSnapshot("129");
+      expect(lastUser.rating).toMatchInlineSnapshot("1402");
+
+      for (const u of ratingCalculator.users) {
+        u.oldRating = u.rating;
+      }
+
+      ratingCalculator.calculate();
+
+      expect(firstUser.rank).toMatchInlineSnapshot("1");
+      expect(firstUser.rating).toMatchInlineSnapshot("1861");
+
+      expect(lastUser.rank).toMatchInlineSnapshot("129");
+      expect(lastUser.rating).toMatchInlineSnapshot("1312");
     }
 
-    ratingCalculator.calculate();
-    const firstUser = ratingCalculator.users[0];
-    expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.newRating).toMatchInlineSnapshot("1714");
+    {
+      const rating = new Rating();
+      rating.id = "2023/ccpc/final";
+      rating.name = rating.id;
+      rating.contestIDs.push(rank.contest.id);
 
-    const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
-    expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.newRating).toMatchInlineSnapshot("1402");
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.buildRating();
 
-    for (const u of ratingCalculator.users) {
-      u.oldRating = u.newRating;
+      expect(rating.users.length).toMatchInlineSnapshot("132");
+
+      const firstUser = rating.users[0];
+      const lastUser = rating.users[rating.users.length - 1];
+
+      expect(firstUser.ratingHistories.length).toMatchInlineSnapshot("3");
+      expect(firstUser.rating).toMatchInlineSnapshot("1973");
+      expect(firstUser.minRating).toMatchInlineSnapshot("1500");
+      expect(firstUser.maxRating).toMatchInlineSnapshot("1973");
+
+      expect(lastUser.ratingHistories.length).toMatchInlineSnapshot("3");
+      expect(lastUser.rating).toMatchInlineSnapshot("1227");
+      expect(lastUser.minRating).toMatchInlineSnapshot("1227");
+      expect(lastUser.maxRating).toMatchInlineSnapshot("1500");
+
+      {
+        const newRating = Rating.fromJSON(JSON.stringify(rating));
+        expect(newRating.id).toMatchInlineSnapshot("\"2023/ccpc/final\"");
+        expect(newRating.name).toMatchInlineSnapshot("\"2023/ccpc/final\"");
+        expect(newRating.baseRating).toMatchInlineSnapshot("1500");
+        expect(newRating.contestIDs).toMatchInlineSnapshot(`
+          [
+            "2023/ccpc/final",
+          ]
+        `);
+        expect(newRating.users.length).toMatchInlineSnapshot("132");
+        expect(newRating.users[0]).toMatchInlineSnapshot(`
+          {
+            "id": "王展鹏|罗煜翔|蒋凌宇",
+            "maxRating": 1973,
+            "minRating": 1500,
+            "name": "重生之我是菜狗",
+            "rating": 1973,
+            "ratingHistories": [
+              {
+                "contestID": "2023/ccpc/final",
+                "contestLink": "2023/ccpc/final",
+                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestTime": 2023-05-14T01:10:00.000Z,
+                "rank": 1,
+                "rating": 1714,
+              },
+              {
+                "contestID": "2023/ccpc/final",
+                "contestLink": "2023/ccpc/final",
+                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestTime": 2023-05-14T01:10:00.000Z,
+                "rank": 1,
+                "rating": 1861,
+              },
+              {
+                "contestID": "2023/ccpc/final",
+                "contestLink": "2023/ccpc/final",
+                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestTime": 2023-05-14T01:10:00.000Z,
+                "rank": 1,
+                "rating": 1973,
+              },
+            ],
+          }
+        `);
+      }
     }
-
-    ratingCalculator.calculate();
-
-    expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.newRating).toMatchInlineSnapshot("1861");
-
-    expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.newRating).toMatchInlineSnapshot("1312");
   });
 });
