@@ -2,11 +2,13 @@ import { resolve } from "node:path";
 import fs from "node:fs";
 import { describe, expect, it } from "vitest";
 
+import _ from "lodash";
+
 import { createContest } from "../src/contest";
 import { createTeams } from "../src/team";
 import { createSubmissions } from "../src/submission";
 import { Rank } from "../src/rank";
-import { RatingCalculator, RatingUser } from "../src/rating";
+import { Rating, RatingCalculator, RatingUser } from "../src/rating";
 
 describe("contest", () => {
   it("2023_ccpc_final", () => {
@@ -28,34 +30,59 @@ describe("contest", () => {
     expect(rank.teams.length).toMatchInlineSnapshot("132");
     expect(rank.originTeams.length).toMatchInlineSnapshot("132");
 
-    const ratingCalculator = new RatingCalculator();
-    for (const t of rank.teams) {
-      const u = new RatingUser();
-      u.id = t.id;
-      u.rank = t.rank;
-      u.oldRating = 1500;
-      ratingCalculator.users.push(u);
+    {
+      const ratingCalculator = new RatingCalculator();
+      for (const t of rank.teams) {
+        const u = new RatingUser();
+        u.id = t.id;
+        u.rank = t.rank;
+        u.oldRating = 1500;
+        ratingCalculator.users.push(u);
+      }
+
+      ratingCalculator.calculate();
+      const firstUser = ratingCalculator.users[0];
+      expect(firstUser.rank).toMatchInlineSnapshot("1");
+      expect(firstUser.rating).toMatchInlineSnapshot("1714");
+
+      const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
+      expect(lastUser.rank).toMatchInlineSnapshot("129");
+      expect(lastUser.rating).toMatchInlineSnapshot("1402");
+
+      for (const u of ratingCalculator.users) {
+        u.oldRating = u.rating;
+      }
+
+      ratingCalculator.calculate();
+
+      expect(firstUser.rank).toMatchInlineSnapshot("1");
+      expect(firstUser.rating).toMatchInlineSnapshot("1861");
+
+      expect(lastUser.rank).toMatchInlineSnapshot("129");
+      expect(lastUser.rating).toMatchInlineSnapshot("1312");
     }
 
-    ratingCalculator.calculate();
-    const firstUser = ratingCalculator.users[0];
-    expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.rating).toMatchInlineSnapshot("1714");
+    {
+      const rating = new Rating();
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.ranks.push(_.cloneDeep(rank));
+      rating.buildRating();
 
-    const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
-    expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.rating).toMatchInlineSnapshot("1402");
+      expect(rating.users.length).toMatchInlineSnapshot("132");
 
-    for (const u of ratingCalculator.users) {
-      u.oldRating = u.rating;
+      const firstUser = rating.users[0];
+      const lastUser = rating.users[rating.users.length - 1];
+
+      expect(firstUser.ratingHistories.length).toMatchInlineSnapshot("3");
+      expect(firstUser.rating).toMatchInlineSnapshot("1973");
+      expect(firstUser.minRating).toMatchInlineSnapshot("1500");
+      expect(firstUser.maxRating).toMatchInlineSnapshot("1973");
+
+      expect(lastUser.ratingHistories.length).toMatchInlineSnapshot("3");
+      expect(lastUser.rating).toMatchInlineSnapshot("1227");
+      expect(lastUser.minRating).toMatchInlineSnapshot("1227");
+      expect(lastUser.maxRating).toMatchInlineSnapshot("1500");
     }
-
-    ratingCalculator.calculate();
-
-    expect(firstUser.rank).toMatchInlineSnapshot("1");
-    expect(firstUser.rating).toMatchInlineSnapshot("1861");
-
-    expect(lastUser.rank).toMatchInlineSnapshot("129");
-    expect(lastUser.rating).toMatchInlineSnapshot("1312");
   });
 });
