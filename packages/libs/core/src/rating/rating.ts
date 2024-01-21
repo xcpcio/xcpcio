@@ -1,5 +1,6 @@
 import type { Ranks } from "../rank";
 import type { Team } from "../team";
+
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
 import type { RatingUserMap, RatingUsers } from "./rating-user";
