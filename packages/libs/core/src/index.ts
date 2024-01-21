@@ -1,4 +1,5 @@
 export * from "./export";
+export * from "./rating";
 export * from "./utils";
 
 export * from "./award";
