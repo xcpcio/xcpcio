@@ -83,6 +83,42 @@ describe("contest", () => {
       expect(lastUser.rating).toMatchInlineSnapshot("1227");
       expect(lastUser.minRating).toMatchInlineSnapshot("1227");
       expect(lastUser.maxRating).toMatchInlineSnapshot("1500");
+
+      expect(JSON.parse(JSON.stringify(rating)).users[0]).toMatchInlineSnapshot(`
+        {
+          "id": "王展鹏|罗煜翔|蒋凌宇",
+          "maxRating": 1973,
+          "minRating": 1500,
+          "name": "重生之我是菜狗",
+          "rating": 1973,
+          "ratingHistories": [
+            {
+              "contestID": "",
+              "contestLink": "",
+              "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+              "contestTime": "2023-05-14T01:10:00.000Z",
+              "rank": 1,
+              "rating": 1714,
+            },
+            {
+              "contestID": "",
+              "contestLink": "",
+              "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+              "contestTime": "2023-05-14T01:10:00.000Z",
+              "rank": 1,
+              "rating": 1861,
+            },
+            {
+              "contestID": "",
+              "contestLink": "",
+              "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+              "contestTime": "2023-05-14T01:10:00.000Z",
+              "rank": 1,
+              "rating": 1973,
+            },
+          ],
+        }
+      `);
     }
   });
 });

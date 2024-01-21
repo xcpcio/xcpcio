@@ -1,18 +1,21 @@
+import type { IRating } from "@xcpcio/types/index";
 import type { Ranks } from "../rank";
 import type { Team } from "../team";
 
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
 import type { RatingUserMap, RatingUsers } from "./rating-user";
-import { RatingUser } from "./rating-user";
+import { RatingUser, createRatingUser } from "./rating-user";
 
 export class Rating {
   id: string;
   name: string;
   baseRating: number;
 
-  ranks: Ranks;
+  rankIDs: string[];
   users: RatingUsers;
+
+  ranks: Ranks;
   userMap: RatingUserMap;
 
   constructor() {
@@ -20,8 +23,10 @@ export class Rating {
     this.name = "";
     this.baseRating = 1500;
 
-    this.ranks = [];
+    this.rankIDs = [];
     this.users = [];
+
+    this.ranks = [];
     this.userMap = new Map<string, RatingUser>();
   }
 
@@ -75,4 +80,31 @@ export class Rating {
 
     return `${t.organization}-${t.name}`;
   }
+
+  toJSON(): IRating {
+    return {
+      id: this.id,
+      name: this.name,
+      baseRating: this.baseRating,
+
+      rankIDs: this.rankIDs,
+      users: this.users.map(ratingUser => ratingUser.toJSON()),
+    };
+  }
+}
+
+export function createRating(iRating: IRating): Rating {
+  const rating = new Rating();
+
+  rating.id = iRating.id;
+  rating.name = iRating.name;
+  rating.baseRating = iRating.baseRating;
+
+  rating.rankIDs = iRating.rankIDs;
+
+  for (const iUser of iRating.users) {
+    rating.users.push(createRatingUser(iUser));
+  }
+
+  return rating;
 }
