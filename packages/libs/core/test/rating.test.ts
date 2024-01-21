@@ -45,5 +45,17 @@ describe("contest", () => {
     const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
     expect(lastUser.rank).toMatchInlineSnapshot("129");
     expect(lastUser.newRating).toMatchInlineSnapshot("1402");
+
+    for (const u of ratingCalculator.users) {
+      u.oldRating = u.newRating;
+    }
+
+    ratingCalculator.calculate();
+
+    expect(firstUser.rank).toMatchInlineSnapshot("1");
+    expect(firstUser.newRating).toMatchInlineSnapshot("1861");
+
+    expect(lastUser.rank).toMatchInlineSnapshot("129");
+    expect(lastUser.newRating).toMatchInlineSnapshot("1312");
   });
 });
