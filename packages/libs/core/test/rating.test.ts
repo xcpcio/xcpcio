@@ -67,7 +67,7 @@ describe("contest", () => {
       const rating = new Rating();
       rating.id = "2023/ccpc/final";
       rating.name = rating.id;
-      rating.rankIDs.push(rank.contest.id);
+      rating.contestIDs.push(rank.contest.id);
 
       rating.ranks.push(_.cloneDeep(rank));
       rating.ranks.push(_.cloneDeep(rank));
@@ -94,7 +94,7 @@ describe("contest", () => {
         expect(newRating.id).toMatchInlineSnapshot("\"2023/ccpc/final\"");
         expect(newRating.name).toMatchInlineSnapshot("\"2023/ccpc/final\"");
         expect(newRating.baseRating).toMatchInlineSnapshot("1500");
-        expect(newRating.rankIDs).toMatchInlineSnapshot(`
+        expect(newRating.contestIDs).toMatchInlineSnapshot(`
           [
             "2023/ccpc/final",
           ]

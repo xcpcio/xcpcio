@@ -24,6 +24,6 @@ export interface IRating {
   name: string;
   baseRating: number;
 
-  rankIDs: string[];
+  contestIDs: string[];
   users: IRatingUser[];
 }

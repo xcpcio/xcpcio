@@ -12,7 +12,7 @@ export class Rating {
   name: string;
   baseRating: number;
 
-  rankIDs: string[];
+  contestIDs: string[];
   users: RatingUsers;
 
   ranks: Ranks;
@@ -23,7 +23,7 @@ export class Rating {
     this.name = "";
     this.baseRating = 1500;
 
-    this.rankIDs = [];
+    this.contestIDs = [];
     this.users = [];
 
     this.ranks = [];
@@ -87,7 +87,7 @@ export class Rating {
       name: this.name,
       baseRating: this.baseRating,
 
-      rankIDs: this.rankIDs,
+      contestIDs: this.contestIDs,
       users: this.users.map(ratingUser => ratingUser.toJSON()),
     };
   }
@@ -103,7 +103,7 @@ export class Rating {
     rating.name = iRating.name;
     rating.baseRating = iRating.baseRating;
 
-    rating.rankIDs = iRating.rankIDs;
+    rating.contestIDs = iRating.contestIDs;
 
     for (const iUser of iRating.users) {
       rating.users.push(RatingUser.fromJSON(iUser));
