@@ -15,6 +15,8 @@ export class RatingCalculator {
 
   getExSeed(users: RatingUsers, rating: number, ownUser: RatingUser) {
     const exUser = new RatingUser();
+    exUser.oldRating = rating;
+
     let res = 0;
 
     users.forEach((user) => {

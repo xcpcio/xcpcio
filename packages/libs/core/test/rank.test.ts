@@ -68,6 +68,7 @@ describe("contest", () => {
           0,
           0,
         ],
+        "totalTeamNum": 132,
       }
     `);
 
@@ -107,7 +108,7 @@ describe("contest", () => {
     {
       const converter = new CodeforcesGymGhostDATConverter();
       const dat = converter.convert(rank);
-      expect(dat.length).toMatchInlineSnapshot("44292");
+      expect(dat.length).toMatchInlineSnapshot('44756');
     }
 
     {

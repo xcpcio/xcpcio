@@ -11,7 +11,7 @@ export class RatingUser {
     this.id = "";
 
     this.rank = 0;
-    this.seed = 1;
+    this.seed = 1.0;
     this.delta = 0;
     this.oldRating = 0;
     this.newRating = 0;

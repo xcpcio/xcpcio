@@ -19,9 +19,10 @@ describe("team", () => {
         "group": [
           "official",
         ],
+        "icpcID": undefined,
         "id": "3000202305140115",
         "lastSolvedProblem": null,
-        "lastSolvedProblemTimestamp": 0,
+        "lastSolvedProblemStatistics": null,
         "location": undefined,
         "members": [
           "江骏扬",
@@ -37,6 +38,7 @@ describe("team", () => {
         "problemStatistics": [],
         "problemStatisticsMap": Map {},
         "rank": 0,
+        "se": 0,
         "solvedProblemNum": 0,
         "submissions": [],
         "tag": [],
