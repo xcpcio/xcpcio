@@ -108,7 +108,7 @@ describe("contest", () => {
     {
       const converter = new CodeforcesGymGhostDATConverter();
       const dat = converter.convert(rank);
-      expect(dat.length).toMatchInlineSnapshot('44756');
+      expect(dat.length).toMatchInlineSnapshot("44756");
     }
 
     {
