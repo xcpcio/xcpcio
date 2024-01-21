@@ -42,6 +42,7 @@ jobs:
       - name: Install
         run: |
           pnpm i
+          pnpm build:libs
 
       - name: Lint
         run: |
