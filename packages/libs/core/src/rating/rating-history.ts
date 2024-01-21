@@ -33,19 +33,23 @@ export class RatingHistory {
       contestTime: this.contestTime.toDate(),
     };
   }
+
+  static fromJSON(iRatingHistory: IRatingHistory | string): RatingHistory {
+    if (typeof iRatingHistory === "string") {
+      iRatingHistory = JSON.parse(iRatingHistory) as IRatingHistory;
+    }
+
+    const ratingHistory = new RatingHistory();
+    ratingHistory.rank = iRatingHistory.rank;
+    ratingHistory.rating = iRatingHistory.rating;
+
+    ratingHistory.contestID = iRatingHistory.contestID;
+    ratingHistory.contestName = iRatingHistory.contestName;
+    ratingHistory.contestLink = iRatingHistory.contestLink;
+    ratingHistory.contestTime = createDayJS(iRatingHistory.contestTime);
+
+    return ratingHistory;
+  }
 }
 
 export type RatingHistories = Array<RatingHistory>;
-
-export function createRatingHistory(iRatingHistory: IRatingHistory): RatingHistory {
-  const ratingHistory = new RatingHistory();
-  ratingHistory.rank = iRatingHistory.rank;
-  ratingHistory.rating = iRatingHistory.rating;
-
-  ratingHistory.contestID = iRatingHistory.contestID;
-  ratingHistory.contestName = iRatingHistory.contestName;
-  ratingHistory.contestLink = iRatingHistory.contestLink;
-  ratingHistory.contestTime = createDayJS(iRatingHistory.contestTime);
-
-  return ratingHistory;
-}

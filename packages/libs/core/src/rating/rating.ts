@@ -5,7 +5,7 @@ import type { Team } from "../team";
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
 import type { RatingUserMap, RatingUsers } from "./rating-user";
-import { RatingUser, createRatingUser } from "./rating-user";
+import { RatingUser } from "./rating-user";
 
 export class Rating {
   id: string;
@@ -91,20 +91,24 @@ export class Rating {
       users: this.users.map(ratingUser => ratingUser.toJSON()),
     };
   }
-}
 
-export function createRating(iRating: IRating): Rating {
-  const rating = new Rating();
+  static fromJSON(iRating: IRating | string): Rating {
+    if (typeof iRating === "string") {
+      iRating = JSON.parse(iRating) as IRating;
+    }
 
-  rating.id = iRating.id;
-  rating.name = iRating.name;
-  rating.baseRating = iRating.baseRating;
+    const rating = new Rating();
 
-  rating.rankIDs = iRating.rankIDs;
+    rating.id = iRating.id;
+    rating.name = iRating.name;
+    rating.baseRating = iRating.baseRating;
 
-  for (const iUser of iRating.users) {
-    rating.users.push(createRatingUser(iUser));
+    rating.rankIDs = iRating.rankIDs;
+
+    for (const iUser of iRating.users) {
+      rating.users.push(RatingUser.fromJSON(iUser));
+    }
+
+    return rating;
   }
-
-  return rating;
 }

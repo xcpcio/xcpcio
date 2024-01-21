@@ -1,5 +1,5 @@
 import type { IRatingUser } from "@xcpcio/types/index";
-import { type RatingHistories, createRatingHistory } from "./rating-history";
+import { type RatingHistories, RatingHistory } from "./rating-history";
 
 export class RatingUser {
   id: string;
@@ -52,24 +52,28 @@ export class RatingUser {
       ratingHistories: this.ratingHistories.map(ratingHistory => ratingHistory.toJSON()),
     };
   }
+
+  static fromJSON(iRatingUser: IRatingUser | string): RatingUser {
+    if (typeof iRatingUser === "string") {
+      iRatingUser = JSON.parse(iRatingUser) as IRatingUser;
+    }
+
+    const ratingUser = new RatingUser();
+
+    ratingUser.id = iRatingUser.id;
+    ratingUser.name = iRatingUser.name;
+
+    ratingUser.rating = iRatingUser.rating;
+    ratingUser.minRating = iRatingUser.minRating;
+    ratingUser.maxRating = iRatingUser.maxRating;
+
+    for (const iRatingHistory of iRatingUser.ratingHistories) {
+      ratingUser.ratingHistories.push(RatingHistory.fromJSON(iRatingHistory));
+    }
+
+    return ratingUser;
+  }
 }
 
 export type RatingUsers = Array<RatingUser>;
 export type RatingUserMap = Map<string, RatingUser>;
-
-export function createRatingUser(iRatingUser: IRatingUser): RatingUser {
-  const ratingUser = new RatingUser();
-
-  ratingUser.id = iRatingUser.id;
-  ratingUser.name = iRatingUser.name;
-
-  ratingUser.rating = iRatingUser.rating;
-  ratingUser.minRating = iRatingUser.minRating;
-  ratingUser.maxRating = iRatingUser.maxRating;
-
-  for (const iRatingHistory of iRatingUser.ratingHistories) {
-    ratingUser.ratingHistories.push(createRatingHistory(iRatingHistory));
-  }
-
-  return ratingUser;
-}
