@@ -2,10 +2,18 @@ import type { IRatingHistory } from "@xcpcio/types";
 
 import type { dayjs } from "../utils";
 import { createDayJS } from "../utils";
+import { Person } from "../person";
+import type { Persons } from "../person";
 
 export class RatingHistory {
   rank: number;
   rating: number;
+
+  teamName: string;
+  organization: string;
+
+  members: Persons;
+  coaches: Persons;
 
   contestID: string;
   contestName: string;
@@ -15,6 +23,12 @@ export class RatingHistory {
   constructor() {
     this.rank = 0;
     this.rating = 0;
+
+    this.teamName = "";
+    this.organization = "";
+
+    this.members = [];
+    this.coaches = [];
 
     this.contestID = "";
     this.contestName = "";
@@ -26,6 +40,12 @@ export class RatingHistory {
     return {
       rank: this.rank,
       rating: this.rating,
+
+      teamName: this.teamName,
+      organization: this.organization,
+
+      members: this.members.map(member => member.toJSON()),
+      coaches: this.coaches.map(coach => coach.toJSON()),
 
       contestID: this.contestID,
       contestName: this.contestName,
@@ -42,6 +62,12 @@ export class RatingHistory {
     const ratingHistory = new RatingHistory();
     ratingHistory.rank = iRatingHistory.rank;
     ratingHistory.rating = iRatingHistory.rating;
+
+    ratingHistory.teamName = iRatingHistory.teamName;
+    ratingHistory.organization = iRatingHistory.organization;
+
+    ratingHistory.members = iRatingHistory.members.map(iMember => Person.fromJSON(iMember));
+    ratingHistory.coaches = iRatingHistory.coaches.map(iCoach => Person.fromJSON(iCoach));
 
     ratingHistory.contestID = iRatingHistory.contestID;
     ratingHistory.contestName = iRatingHistory.contestName;

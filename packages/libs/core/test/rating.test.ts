@@ -46,7 +46,7 @@ describe("contest", () => {
       expect(firstUser.rank).toMatchInlineSnapshot("1");
       expect(firstUser.rating).toMatchInlineSnapshot("1714");
 
-      const lastUser = ratingCalculator.users[ratingCalculator.users.length - 1];
+      const lastUser = ratingCalculator.users.at(-1)!;
       expect(lastUser.rank).toMatchInlineSnapshot("129");
       expect(lastUser.rating).toMatchInlineSnapshot("1402");
 
@@ -77,7 +77,7 @@ describe("contest", () => {
       expect(rating.users.length).toMatchInlineSnapshot("132");
 
       const firstUser = rating.users[0];
-      const lastUser = rating.users[rating.users.length - 1];
+      const lastUser = rating.users.at(-1)!;
 
       expect(firstUser.ratingHistories.length).toMatchInlineSnapshot("3");
       expect(firstUser.rating).toMatchInlineSnapshot("1973");
@@ -102,35 +102,90 @@ describe("contest", () => {
         expect(newRating.users.length).toMatchInlineSnapshot("132");
         expect(newRating.users[0]).toMatchInlineSnapshot(`
           {
+            "coaches": [],
             "id": "王展鹏|罗煜翔|蒋凌宇",
             "maxRating": 1973,
+            "members": [
+              {
+                "name": "王展鹏",
+              },
+              {
+                "name": "罗煜翔",
+              },
+              {
+                "name": "蒋凌宇",
+              },
+            ],
             "minRating": 1500,
             "name": "重生之我是菜狗",
+            "organization": "北京大学",
             "rating": 1973,
             "ratingHistories": [
               {
+                "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
                 "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
                 "contestTime": 2023-05-14T01:10:00.000Z,
+                "members": [
+                  {
+                    "name": "王展鹏",
+                  },
+                  {
+                    "name": "罗煜翔",
+                  },
+                  {
+                    "name": "蒋凌宇",
+                  },
+                ],
+                "organization": "北京大学",
                 "rank": 1,
                 "rating": 1714,
+                "teamName": "重生之我是菜狗",
               },
               {
+                "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
                 "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
                 "contestTime": 2023-05-14T01:10:00.000Z,
+                "members": [
+                  {
+                    "name": "王展鹏",
+                  },
+                  {
+                    "name": "罗煜翔",
+                  },
+                  {
+                    "name": "蒋凌宇",
+                  },
+                ],
+                "organization": "北京大学",
                 "rank": 1,
                 "rating": 1861,
+                "teamName": "重生之我是菜狗",
               },
               {
+                "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
                 "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
                 "contestTime": 2023-05-14T01:10:00.000Z,
+                "members": [
+                  {
+                    "name": "王展鹏",
+                  },
+                  {
+                    "name": "罗煜翔",
+                  },
+                  {
+                    "name": "蒋凌宇",
+                  },
+                ],
+                "organization": "北京大学",
                 "rank": 1,
                 "rating": 1973,
+                "teamName": "重生之我是菜狗",
               },
             ],
           }

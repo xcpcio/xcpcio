@@ -9,6 +9,7 @@ export * from "./battle-of-giants";
 export * from "./contest-index";
 export * from "./contest";
 export * from "./image";
+export * from "./person";
 export * from "./problem";
 export * from "./rank-statistics";
 export * from "./rank";

@@ -1,6 +1,8 @@
-import type { IRating } from "@xcpcio/types/index";
+import type { IRating } from "@xcpcio/types";
+
 import type { Ranks } from "../rank";
 import type { Team } from "../team";
+import { createPersons } from "../person";
 
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
@@ -34,48 +36,69 @@ export class Rating {
     for (const rank of this.ranks) {
       rank.buildRank();
 
-      for (const u of this.users) {
-        u.oldRating = u.rating;
-      }
+      const ratingCalculator = new RatingCalculator();
 
       for (const t of rank.teams) {
         const id = this.generateTeamId(t);
 
+        let u = null;
+
         if (!this.userMap.has(id)) {
-          const u = new RatingUser();
+          u = new RatingUser();
           u.id = id;
           u.name = t.name;
+          u.organization = t.organization;
+
+          u.members = createPersons(t.members ?? []);
+          u.coaches = createPersons(t.coach ?? []);
+
           u.rank = t.rank;
           u.oldRating = this.baseRating;
           u.UpdateRating(this.baseRating);
 
           this.userMap.set(id, u);
           this.users.push(u);
+
+          ratingCalculator.users.push(u);
+        } else {
+          u = this.userMap.get(id)!;
+          u.rank = t.rank;
+          u.oldRating = u.rating;
+          ratingCalculator.users.push(u);
+        }
+
+        {
+          const h = new RatingHistory();
+          h.rank = t.rank;
+          h.rating = u.rating;
+
+          h.teamName = t.name;
+          h.organization = t.organization;
+
+          h.members = createPersons(t.members ?? []);
+          h.coaches = createPersons(t.coach ?? []);
+
+          h.contestID = rank.contest.id;
+          h.contestLink = h.contestID;
+          h.contestName = rank.contest.name;
+          h.contestTime = rank.contest.startTime;
+
+          u.ratingHistories.push(h);
         }
       }
 
-      const ratingCalculator = new RatingCalculator();
-      ratingCalculator.users = this.users;
       ratingCalculator.calculate();
 
-      for (const u of this.users) {
-        const h = new RatingHistory();
-        h.rank = u.rank;
-        h.rating = u.rating;
-
-        h.contestID = rank.contest.id;
-        h.contestLink = h.contestID;
-        h.contestName = rank.contest.name;
-        h.contestTime = rank.contest.startTime;
-
-        u.ratingHistories.push(h);
+      for (const u of ratingCalculator.users) {
+        u.ratingHistories.at(-1)!.rating = u.rating;
       }
     }
   }
 
   generateTeamId(t: Team) {
-    if (Array.isArray(t.members) && t.members.length > 0) {
-      return t.members.join("|");
+    const persons = createPersons(t.members ?? []);
+    if (persons.length > 0) {
+      return persons.map(person => person.name).join("|");
     }
 
     return `${t.organization}-${t.name}`;
