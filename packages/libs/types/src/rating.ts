@@ -1,6 +1,14 @@
+import type { IPersons } from "./person";
+
 export interface IRatingHistory {
   rank: number;
   rating: number;
+
+  teamName: string;
+  organization: string;
+
+  members: IPersons;
+  coaches: IPersons;
 
   contestID: string;
   contestName: string;
@@ -11,6 +19,10 @@ export interface IRatingHistory {
 export interface IRatingUser {
   id: string;
   name: string;
+  organization: string;
+
+  members: IPersons;
+  coaches: IPersons;
 
   rating: number;
   minRating: number;

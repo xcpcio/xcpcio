@@ -1,9 +1,16 @@
-import type { IRatingUser } from "@xcpcio/types/index";
+import type { IRatingUser } from "@xcpcio/types";
+
+import type { Persons } from "../person";
+import { Person } from "../person";
 import { type RatingHistories, RatingHistory } from "./rating-history";
 
 export class RatingUser {
   id: string;
   name: string;
+  organization: string;
+
+  members: Persons;
+  coaches: Persons;
 
   rating: number;
   minRating: number;
@@ -20,6 +27,10 @@ export class RatingUser {
   constructor() {
     this.id = "";
     this.name = "";
+    this.organization = "";
+
+    this.members = [];
+    this.coaches = [];
 
     this.rating = 0;
     this.minRating = 0x3F3F3F3F;
@@ -44,6 +55,10 @@ export class RatingUser {
     return {
       id: this.id,
       name: this.name,
+      organization: this.organization,
+
+      members: this.members.map(member => member.toJSON()),
+      coaches: this.coaches.map(coach => coach.toJSON()),
 
       rating: this.rating,
       minRating: this.minRating,
@@ -62,6 +77,10 @@ export class RatingUser {
 
     ratingUser.id = iRatingUser.id;
     ratingUser.name = iRatingUser.name;
+    ratingUser.organization = iRatingUser.organization;
+
+    ratingUser.members = iRatingUser.members.map(member => Person.fromJSON(member));
+    ratingUser.coaches = iRatingUser.coaches.map(coach => Person.fromJSON(coach));
 
     ratingUser.rating = iRatingUser.rating;
     ratingUser.minRating = iRatingUser.minRating;
