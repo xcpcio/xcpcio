@@ -1,5 +1,10 @@
 import type { IPersons } from "./person";
 
+export interface IRatingIndex {
+  id: string;
+  name: string;
+}
+
 export interface IRatingHistory {
   rank: number;
   rating: number;
