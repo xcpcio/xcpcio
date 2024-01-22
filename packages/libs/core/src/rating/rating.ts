@@ -98,7 +98,7 @@ export class Rating {
   generateTeamId(t: Team) {
     const persons = createPersons(t.members ?? []);
     if (persons.length > 0) {
-      return persons.map(person => person.name).join("|");
+      return persons.map(person => person.name.trim()).sort().join("|");
     }
 
     return `${t.organization}-${t.name}`;
