@@ -6,7 +6,8 @@ import type { Rating, SelectOptionItem } from "@xcpcio/core";
 import { Pagination } from "~/composables/pagination";
 
 interface FilterOptions {
-  organization: string[];
+  organizations: string[];
+  members: string[];
 }
 
 const props = defineProps<{
@@ -18,7 +19,8 @@ const props = defineProps<{
 const rating = computed(() => props.rating);
 
 const filterOptions = ref<FilterOptions>({
-  organization: [],
+  organizations: [],
+  members: [],
 });
 
 const orgOptions = computed(() => {
@@ -37,24 +39,57 @@ const orgOptions = computed(() => {
 
 const orgSelectedItems = ref<Array<SelectOptionItem>>([]);
 const orgLastSelectItem = ref({});
-
 function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
   orgSelectedItems.value = selectedItems;
   orgLastSelectItem.value = lastSelectItem;
 }
+
+// const memberOptions = computed(() => {
+//   const se = new Set();
+//   rating.value.users.forEach((u) => {
+//     return u.members.forEach((m) => {
+//       se.add(m.name);
+//     });
+//   });
+//   const res = Array.from(se);
+
+//   return res.map((o) => {
+//     return {
+//       value: o,
+//       text: o,
+//     };
+//   });
+// });
+
+// const memberSelectedItems = ref<Array<SelectOptionItem>>([]);
+// const memberLastSelectItem = ref({});
+
+// function memberOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: SelectOptionItem) {
+//   memberSelectedItems.value = selectedItems;
+//   memberLastSelectItem.value = lastSelectItem;
+// }
 
 const users = computed(() => {
   const us = rating.value.users;
   return us.filter((u) => {
     const o = filterOptions.value;
 
-    if (o.organization.length === 0) {
+    if (o.organizations.length === 0
+    && o.members.length === 0) {
       return true;
     }
 
-    for (const org of o.organization) {
+    for (const org of o.organizations) {
       if (org === u.organization) {
         return true;
+      }
+    }
+
+    for (const member of o.members) {
+      for (const m of u.members) {
+        if (member === m.name) {
+          return true;
+        }
       }
     }
 
@@ -64,10 +99,12 @@ const users = computed(() => {
 
 function onFilter() {
   const newFilterOptions: FilterOptions = {
-    organization: [],
+    organizations: [],
+    members: [],
   };
 
-  newFilterOptions.organization = orgSelectedItems.value.map(o => o.value);
+  newFilterOptions.organizations = orgSelectedItems.value.map(o => o.value);
+  // newFilterOptions.members = memberSelectedItems.value.map(o => o.value);
 
   filterOptions.value = newFilterOptions;
 }
@@ -127,6 +164,17 @@ const currentUsers = computed(() => {
                 @select="orgOnSelect"
               />
             </div>
+
+            <!-- <div
+              w-68
+            >
+              <MultiSelect
+                :options="memberOptions"
+                :selected-options="memberSelectedItems"
+                placeholder="Member"
+                @select="memberOnSelect"
+              />
+            </div> -->
 
             <div>
               <button
