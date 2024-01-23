@@ -264,7 +264,7 @@ const currentUsers = computed(() => {
                     {{ u.name }}
                   </td>
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ u.members.map(m => m.name.trim()).join(",") }}
+                    {{ u.members.map(m => m.name.trim()).join(" ") }}
                   </td>
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
                     {{ u.rating }}
