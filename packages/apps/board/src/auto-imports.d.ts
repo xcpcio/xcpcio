@@ -13,6 +13,8 @@ declare global {
   const EffectScope: typeof import('vue')['EffectScope']
   const LastBlockDisplayType: typeof import('./composables/type')['LastBlockDisplayType']
   const Pagination: typeof import('./composables/pagination')['Pagination']
+  const RATING_DATA_HOST: typeof import('./composables/constant')['RATING_DATA_HOST']
+  const RATING_TITLE_SUFFIX: typeof import('./composables/constant')['RATING_TITLE_SUFFIX']
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']
   const TITLE_SUFFIX: typeof import('./composables/constant')['TITLE_SUFFIX']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -335,6 +337,8 @@ declare module 'vue' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
+    readonly RATING_DATA_HOST: UnwrapRef<typeof import('./composables/constant')['RATING_DATA_HOST']>
+    readonly RATING_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RATING_TITLE_SUFFIX']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -643,6 +647,8 @@ declare module '@vue/runtime-core' {
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
+    readonly RATING_DATA_HOST: UnwrapRef<typeof import('./composables/constant')['RATING_DATA_HOST']>
+    readonly RATING_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RATING_TITLE_SUFFIX']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
