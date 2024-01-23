@@ -8,6 +8,7 @@ const props = defineProps<{
 
 const { t, locale } = useI18n();
 const { y: scroll } = useWindowScroll();
+const route = useRoute();
 
 function toTop() {
   window.scrollTo({
@@ -22,6 +23,14 @@ async function toggleLocales() {
   await loadLanguageAsync(newLocale);
   locale.value = newLocale;
 }
+
+const homeLink = computed(() => {
+  if (route.fullPath.startsWith("/rating")) {
+    return "/rating";
+  }
+
+  return "/";
+});
 </script>
 
 <template>
@@ -63,7 +72,7 @@ async function toggleLocales() {
         <RouterLink
           icon-btn
           :title="t('button.home')"
-          to="/"
+          :to="homeLink"
           focusable="false"
         >
           <div i-ion-balloon-sharp />
