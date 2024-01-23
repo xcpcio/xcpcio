@@ -35,7 +35,7 @@ declare module 'vue' {
     ProblemBlock: typeof import('./components/board/ProblemBlock.vue')['default']
     ProblemInfoModal: typeof import('./components/board/ProblemInfoModal.vue')['default']
     Progress: typeof import('./components/board/Progress.vue')['default']
-    RatingIndexUI: typeof import('./components/RatingIndexUI.vue')['default']
+    RatingIndexUI: typeof import('./components/rating/RatingIndexUI.vue')['default']
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
