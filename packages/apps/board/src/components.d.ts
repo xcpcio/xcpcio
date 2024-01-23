@@ -36,6 +36,7 @@ declare module 'vue' {
     ProblemInfoModal: typeof import('./components/board/ProblemInfoModal.vue')['default']
     Progress: typeof import('./components/board/Progress.vue')['default']
     Rating: typeof import('./components/rating/Rating.vue')['default']
+    RatingBadge: typeof import('./components/rating/RatingBadge.vue')['default']
     RatingIndexUI: typeof import('./components/rating/RatingIndexUI.vue')['default']
     RatingTable: typeof import('./components/rating/RatingTable.vue')['default']
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']

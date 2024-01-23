@@ -2,8 +2,11 @@
 import { MultiSelect } from "vue-search-select";
 
 import type { Rating, SelectOptionItem } from "@xcpcio/core";
+import { RatingUtility } from "@xcpcio/core";
 
 import { Pagination } from "~/composables/pagination";
+
+import "./rating.less";
 
 interface FilterOptions {
   organizations: string[];
@@ -260,20 +263,37 @@ const currentUsers = computed(() => {
                   >
                     {{ u.organization }}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
+                  <td
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                    :class="RatingUtility.getRatingLevelClass(u.rating)"
+                  >
                     {{ u.name }}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
+                  <td
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                  >
                     {{ u.members.map(m => m.name.trim()).join(" ") }}
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ u.rating }}
+                  <td
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                  >
+                    <RatingBadge
+                      :rating="u.rating"
+                    />
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ u.maxRating }}
+                  <td
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                  >
+                    <RatingBadge
+                      :rating="u.maxRating"
+                    />
                   </td>
-                  <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ u.minRating }}
+                  <td
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                  >
+                    <RatingBadge
+                      :rating="u.minRating"
+                    />
                   </td>
                 </tr>
               </template>
