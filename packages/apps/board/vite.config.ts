@@ -20,6 +20,12 @@ import { createHtmlPlugin } from "vite-plugin-html";
 
 import packageJSON from "./package.json";
 
+const proxyConfig = {
+  // target: "https://board.xcpcio.com",
+  target: "http://127.0.0.1:8080",
+  changeOrigin: true,
+};
+
 export default defineConfig({
   resolve: {
     alias: {
@@ -185,11 +191,8 @@ export default defineConfig({
   server: {
     host: true,
     proxy: {
-      "/data": {
-        // target: "https://board.xcpcio.com",
-        target: "http://127.0.0.1:8080",
-        changeOrigin: true,
-      },
+      "/data": proxyConfig,
+      "/rating-data": proxyConfig,
     },
   },
 
