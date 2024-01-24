@@ -2,11 +2,8 @@
 import { MultiSelect } from "vue-search-select";
 
 import type { Rating, SelectOptionItem } from "@xcpcio/core";
-import { RatingUtility } from "@xcpcio/core";
 
 import { Pagination } from "~/composables/pagination";
-
-import "./rating.less";
 
 interface FilterOptions {
   organizations: string[];
@@ -252,50 +249,13 @@ const currentUsers = computed(() => {
 
             <tbody>
               <template
-                v-for="u in currentUsers"
+                v-for="(u, ix) in currentUsers"
                 :key="u.id"
               >
-                <tr
-                  class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-                >
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                  >
-                    {{ u.organization }}
-                  </td>
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                    :class="RatingUtility.getRatingLevelClass(u.rating)"
-                  >
-                    {{ u.name }}
-                  </td>
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                  >
-                    {{ u.members.map(m => m.name.trim()).join(" ") }}
-                  </td>
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                  >
-                    <RatingBadge
-                      :rating="u.rating"
-                    />
-                  </td>
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                  >
-                    <RatingBadge
-                      :rating="u.maxRating"
-                    />
-                  </td>
-                  <td
-                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
-                  >
-                    <RatingBadge
-                      :rating="u.minRating"
-                    />
-                  </td>
-                </tr>
+                <RatingUserUI
+                  :ix="ix"
+                  :rating-user="u"
+                />
               </template>
             </tbody>
           </table>
