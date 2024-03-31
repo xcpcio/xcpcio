@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { GITHUB_URL } from "@xcpcio/types";
+import { GITHUB_URL, XCPCIO_HOME } from "@xcpcio/types";
 import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
 const props = defineProps<{
@@ -102,6 +102,16 @@ const homeLink = computed(() => {
           title="GitHub"
         >
           <div i-carbon-logo-github />
+        </a>
+
+        <a
+          icon-btn
+          rel="noreferrer"
+          :href="XCPCIO_HOME"
+          target="_blank"
+          title="GitHub"
+        >
+          <div i-simple-icons-githubsponsors />
         </a>
       </div>
     </nav>
