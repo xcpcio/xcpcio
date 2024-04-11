@@ -45,7 +45,7 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^4.32.6",
+    "@tanstack/vue-query": "^5.29.0",
     "@unhead/vue": "^1.3.3",
     "@unocss/reset": "^0.53.6",
     "@vueuse/components": "^10.3.0",
@@ -111,7 +111,7 @@
     "vite-plugin-vue-devtools": "^0.5.1",
     "vite-plugin-vue-layouts": "^0.8.0",
     "vite-plugin-vue-markdown": "^0.23.8",
-    "vite-plugin-webfont-dl": "^3.7.6",
+    "vite-plugin-webfont-dl": "^3.9.3",
     "vite-ssg": "^0.23.3",
     "vite-ssg-sitemap": "^0.5.1",
     "vitest": "^0.33.0",
