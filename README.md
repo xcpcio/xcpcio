@@ -44,7 +44,7 @@ This project is made possible by all the sponsors supporting my work:
 
 <p align="center">
   <a href="https://github.com/sponsors/Dup4">
-    <img src='https://cdn.jsdelivr.net/gh/Dup4/static/sponsors-output/sponsors.svg' alt="Logos from Sponsors" />
+    <img src='https://sponsor.dup4.com' alt="Logos from Sponsors" />
   </a>
 </p>
 
