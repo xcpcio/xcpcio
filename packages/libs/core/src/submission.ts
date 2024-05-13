@@ -98,7 +98,7 @@ export class Submission {
     let res = this.timestampDisplayFormatWithSecond;
 
     if (this.timestampUnit === "millisecond") {
-      const fl = (this.timestamp % 1000).toString().padEnd(3, "0");
+      const fl = (this.timestamp % 1000).toString().padStart(3, "0");
       res += `.${fl}`;
     }
 
