@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
 
 import type { Problem, TeamProblemStatistics } from "./problem";
@@ -284,8 +286,8 @@ export function createTeam(teamJSON: ITeam): Team {
   t.organization = teamJSON.organization ?? "";
   t.badge = teamJSON.badge;
 
-  t.group = teamJSON.group ?? [];
-  t.tag = teamJSON.group ?? [];
+  t.group = _.cloneDeep(teamJSON.group ?? []);
+  t.tag = _.cloneDeep(teamJSON.tag ?? []);
 
   t.coach = teamJSON.coach;
   t.members = teamJSON.members;
