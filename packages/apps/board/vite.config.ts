@@ -21,8 +21,8 @@ import { createHtmlPlugin } from "vite-plugin-html";
 import packageJSON from "./package.json";
 
 const proxyConfig = {
-  target: "https://board.xcpcio.com",
-  // target: "http://127.0.0.1:8080",
+  // target: "https://board.xcpcio.com",
+  target: "http://127.0.0.1:8080",
   changeOrigin: true,
 };
 

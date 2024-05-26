@@ -23,9 +23,21 @@ export class Resolver extends Rank {
     let afterFreezeSubmissions = submissions;
 
     {
+      // TODO(Dup4): Remove this block
+      let unFreezeDurationTimestamp = contest.unFreezeDurationTimestamp;
+      if (contest.options.submissionTimestampUnit === "millisecond") {
+        unFreezeDurationTimestamp *= 1000;
+      }
+      if (contest.options.submissionTimestampUnit === "microsecond") {
+        unFreezeDurationTimestamp *= 1000000;
+      }
+      if (contest.options.submissionTimestampUnit === "nanosecond") {
+        unFreezeDurationTimestamp *= 1000000000;
+      }
+
       const ix = _.sortedIndex(
         submissions.map(s => s.timestamp),
-        contest.unFreezeDurationTimestamp,
+        unFreezeDurationTimestamp,
       );
 
       beforeFreezeSubmissions = submissions.slice(0, ix + 1);
@@ -44,6 +56,9 @@ export class Resolver extends Rank {
   buildResolver() {
     this.buildRank();
     this.finalRank.buildRank();
+
+    this.teams.forEach(t => t.rank = t.originalRank);
+    this.finalRank.teams.forEach(t => t.rank = t.originalRank);
 
     for (const s of this.afterFreezeSubmissions) {
       const teamId = s.teamId;
