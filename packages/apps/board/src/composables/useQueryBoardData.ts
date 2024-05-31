@@ -47,10 +47,11 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
 
 export function useQueryBoardData(target: string, timestamp?: any) {
   let refetchInterval = 30 * 1000;
-  let timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000 / 10));
+  const timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000 / 10));
+
   if (DATA_REGION.value === "I18N") {
     refetchInterval = 10 * 1000;
-    timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000));
+    // timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000));
   }
 
   return useQuery({
