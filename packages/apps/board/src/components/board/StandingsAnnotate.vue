@@ -25,7 +25,7 @@
             Attempted problem
           </td>
           <td class="pending">
-            Pending judgement
+            Pending judgement / Frozen
           </td>
         </tr>
       </tbody>
