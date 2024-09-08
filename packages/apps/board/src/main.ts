@@ -18,6 +18,10 @@ import "uno.css";
 
 import "./styles/main.css";
 
+if (typeof window !== "undefined") {
+  import("./pwa");
+}
+
 const routes = setupLayouts(generatedRoutes);
 
 // https://github.com/antfu/vite-ssg
