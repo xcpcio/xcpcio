@@ -133,7 +133,7 @@ function isRenderByVisible() {
       <div>
         <TeamInfoModal
           v-if="!hiddenTeamInfoModal"
-          v-model:isHidden="hiddenTeamInfoModal"
+          v-model:is-hidden="hiddenTeamInfoModal"
           :rank="rank"
           :team="team"
         />
