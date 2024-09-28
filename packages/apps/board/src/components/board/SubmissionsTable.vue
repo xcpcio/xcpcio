@@ -3,7 +3,7 @@ import { MultiSelect } from "vue-search-select";
 
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
 import { Submission } from "@xcpcio/core";
-import type { SubmissionStatus } from "@xcpcio/types";
+import type { SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
 import { SubmissionStatusToString } from "@xcpcio/types";
 
 import { Pagination } from "~/composables/pagination";
@@ -249,6 +249,18 @@ function getProblemLabelColorStyle(s: Submission) {
     color: p.balloonColor.color,
   };
 }
+
+const showVideoModal = ref(false);
+const currentSubmissionReaction = ref(null as unknown as SubmissionReaction);
+
+function openVideoModal(submissionReaction: SubmissionReaction) {
+  currentSubmissionReaction.value = submissionReaction;
+  showVideoModal.value = true;
+}
+
+function closeVideoModal() {
+  showVideoModal.value = false;
+}
 </script>
 
 <template>
@@ -405,6 +417,13 @@ function getProblemLabelColorStyle(s: Submission) {
                 >
                   Submit Time
                 </th>
+                <th
+                  v-if="rank.contest.options.submissionEnableActionField"
+                  scope="col"
+                  class="px-4 py-3"
+                >
+                  Action
+                </th>
               </tr>
             </thead>
 
@@ -483,6 +502,36 @@ function getProblemLabelColorStyle(s: Submission) {
                         </template>
                       </Tooltip>
                     </div>
+                  </td>
+
+                  <td
+                    v-if="rank.contest.options.submissionEnableActionField"
+                    class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
+                  >
+                    <div
+                      v-if="showVideoModal"
+                      flex justify-start items-start
+                    >
+                      <ReactionVideoModal
+                        :is-open="showVideoModal"
+                        :submission-reaction="currentSubmissionReaction"
+                        @close="closeVideoModal"
+                      />
+                    </div>
+
+                    <Tooltip>
+                      <div
+                        v-if="s.reaction"
+                        flex items-center justify-start
+                        text-lg
+                        cursor-pointer
+                        i-material-symbols-slow-motion-video
+                        @click="openVideoModal(s.reaction)"
+                      />
+                      <template #popper>
+                        Reaction Video
+                      </template>
+                    </Tooltip>
                   </td>
                 </tr>
               </template>

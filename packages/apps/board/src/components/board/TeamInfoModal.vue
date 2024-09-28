@@ -54,7 +54,7 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 
 <template>
   <Modal
-    v-model:isHidden="isHidden"
+    v-model:is-hidden="isHidden"
   >
     <template #header>
       <div

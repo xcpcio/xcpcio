@@ -91,7 +91,7 @@ function getProblemColorClass(p: TeamProblemStatistics): string {
     <div>
       <SubmissionsTableModal
         v-if="!hiddenModal"
-        v-model:isHidden="hiddenModal"
+        v-model:is-hidden="hiddenModal"
         :rank="rank"
         :team="team"
         :p="p"

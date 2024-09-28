@@ -133,7 +133,7 @@ function onConfirm() {
 
 <template>
   <Modal
-    v-model:isHidden="isHidden"
+    v-model:is-hidden="isHidden"
     :title="title"
     width="w-200"
     mt="mt-4"

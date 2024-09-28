@@ -36,14 +36,14 @@ watch(Escape, (v) => {
   <div
     class="md:inset-0 w-[100%] h-[100%]"
     :class="[props.mt ?? 'md:mt-32 sm:mt-16']"
-    fixed z-9997
+    fixed z-1997
     of-x-hidden
     flex justify-center items-start
   >
     <!-- background -->
     <div
       class="w-[100%] h-[100%]"
-      fixed left-0 top-0 z-9998
+      fixed left-0 top-0 z-1998
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
@@ -53,7 +53,7 @@ watch(Escape, (v) => {
     <div
       class="relative p-4"
       :class="[props.width ?? 'w-[78%]']"
-      z-9999
+      z-1999
     >
       <div
         class="relative bg-white dark:bg-gray-800 sm:p-4"

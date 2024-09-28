@@ -6,6 +6,7 @@ export class ContestOptions {
 
   submissionHasTimeField: boolean;
   submissionHasLanguageField: boolean;
+  submissionEnableActionField: boolean;
 
   constructor() {
     this.calculationOfPenalty = "in_minutes";
@@ -13,6 +14,7 @@ export class ContestOptions {
 
     this.submissionHasTimeField = false;
     this.submissionHasLanguageField = false;
+    this.submissionEnableActionField = false;
   }
 }
 
@@ -26,6 +28,10 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
 
   if (j.submission_timestamp_unit) {
     o.submissionTimestampUnit = j.submission_timestamp_unit;
+  }
+
+  if (j.submission_has_reaction) {
+    o.submissionEnableActionField = j.submission_has_reaction;
   }
 
   return o;
