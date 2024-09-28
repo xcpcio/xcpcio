@@ -269,6 +269,17 @@ function closeVideoModal() {
       mx-auto w-full
     >
       <div
+        v-if="showVideoModal"
+        flex justify-start items-start
+      >
+        <ReactionVideoModal
+          :is-open="showVideoModal"
+          :submission-reaction="currentSubmissionReaction"
+          @close="closeVideoModal"
+        />
+      </div>
+
+      <div
         relative overflow-hidden
         bg-white dark:bg-gray-800
         :class="{
@@ -508,17 +519,6 @@ function closeVideoModal() {
                     v-if="rank.contest.options.submissionEnableActionField"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
-                    <div
-                      v-if="showVideoModal"
-                      flex justify-start items-start
-                    >
-                      <ReactionVideoModal
-                        :is-open="showVideoModal"
-                        :submission-reaction="currentSubmissionReaction"
-                        @close="closeVideoModal"
-                      />
-                    </div>
-
                     <Tooltip>
                       <div
                         v-if="s.reaction"
