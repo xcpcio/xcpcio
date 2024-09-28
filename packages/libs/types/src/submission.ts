@@ -1,5 +1,9 @@
 import type { SubmissionStatus } from "./submission-status";
 
+export interface SubmissionReaction {
+  url: string;
+}
+
 export interface Submission {
   id?: string;
   submission_id?: string;
@@ -13,6 +17,8 @@ export interface Submission {
   language?: string;
 
   is_ignore?: boolean;
+
+  reaction?: SubmissionReaction;
 }
 
 export type Submissions = Array<Submission> | Record<string, Submission>;

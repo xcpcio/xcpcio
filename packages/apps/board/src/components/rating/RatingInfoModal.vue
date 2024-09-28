@@ -47,7 +47,7 @@ const headerTitle = computed(() => {
 
 <template>
   <Modal
-    v-model:isHidden="isHidden"
+    v-model:is-hidden="isHidden"
     width="w-278"
   >
     <template #header>

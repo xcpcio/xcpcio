@@ -39,7 +39,7 @@ function onClickRatingInfoModal() {
       <div>
         <RatingInfoModal
           v-if="!hiddenRatingInfoModal"
-          v-model:isHidden="hiddenRatingInfoModal"
+          v-model:is-hidden="hiddenRatingInfoModal"
           :rating-user="u"
         />
       </div>

@@ -41,6 +41,7 @@ declare module 'vue' {
     RatingInfoModal: typeof import('./components/rating/RatingInfoModal.vue')['default']
     RatingTable: typeof import('./components/rating/RatingTable.vue')['default']
     RatingUserUI: typeof import('./components/rating/RatingUserUI.vue')['default']
+    ReactionVideoModal: typeof import('./components/board/ReactionVideoModal.vue')['default']
     RightArrowIcon: typeof import('./components/icon/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

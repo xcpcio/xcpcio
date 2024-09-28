@@ -31,7 +31,7 @@ const headerTitle = computed(() => {
 
 <template>
   <Modal
-    v-model:isHidden="isHidden"
+    v-model:is-hidden="isHidden"
     :title="headerTitle"
   >
     <div

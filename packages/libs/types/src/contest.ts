@@ -16,6 +16,7 @@ export type CalculationOfPenalty = "in_minutes"
 export interface ContestOptions {
   calculation_of_penalty?: CalculationOfPenalty;
   submission_timestamp_unit?: TimeUnit;
+  submission_has_reaction?: boolean;
 }
 
 export type MedalPreset = "ccpc" | "icpc";

@@ -43,6 +43,7 @@ describe("contest-index", () => {
           "name": "第十三届山东省 ICPC 大学生程序设计竞赛（正式赛）",
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
+            "submissionEnableActionField": false,
             "submissionHasLanguageField": false,
             "submissionHasTimeField": false,
             "submissionTimestampUnit": "second",
@@ -97,6 +98,7 @@ describe("contest-index", () => {
           "name": "ICPC 2009 上海赛区网络赛",
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
+            "submissionEnableActionField": false,
             "submissionHasLanguageField": false,
             "submissionHasTimeField": false,
             "submissionTimestampUnit": "second",

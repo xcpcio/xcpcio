@@ -1,4 +1,4 @@
-import type { Submission as ISubmission, Submissions as ISubmissions, TimeUnit } from "@xcpcio/types";
+import type { Submission as ISubmission, Submissions as ISubmissions, SubmissionReaction, TimeUnit } from "@xcpcio/types";
 import { SubmissionStatus } from "@xcpcio/types";
 
 import {
@@ -18,6 +18,8 @@ export class Submission {
 
   time?: number;
   language?: string;
+
+  reaction?: SubmissionReaction;
 
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
@@ -148,6 +150,10 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
 
   if (submissionJSON.language) {
     s.language = submissionJSON.language;
+  }
+
+  if (submissionJSON.reaction) {
+    s.reaction = submissionJSON.reaction;
   }
 
   return s;
