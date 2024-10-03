@@ -41,7 +41,7 @@
     "@antfu/ni": "^0.23.0",
     "@babel/types": "^7.25.6",
     "@types/glob": "^7.2.0",
-    "@types/node": "^17.0.45",
+    "@types/node": "^18.19.54",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "bumpp": "^7.2.0",
@@ -59,7 +59,7 @@
     "unocss": "^0.53.6",
     "vite": "^4.5.5",
     "vitepress": "1.0.0-beta.6",
-    "vitest": "^0.32.4",
+    "vitest": "^2.1.2",
     "zx": "^6.2.5"
   }
 }
