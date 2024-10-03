@@ -101,7 +101,7 @@ jobs:
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
       - name: Build and Push packages/app
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         env:
           image_name: xcpcio
           tag: ${{ steps.get-version-id.outputs.version-id }}
