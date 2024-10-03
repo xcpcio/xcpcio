@@ -6,6 +6,9 @@ on:
     tags:
       - 'v*'
 
+env:
+  node-version: 18.x
+
 jobs:
   release-github-packages:
     runs-on: ubuntu-latest
@@ -16,9 +19,9 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: ${{ env.node-version }}
 
       - name: Release
         run: npx changelogithub
@@ -29,11 +32,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-          registry-url: 'https://registry.npmjs.org'
+          node-version: ${{ env.node-version }}
+          registry-url: https://registry.npmjs.org/
           cache: pnpm
 
       - name: Get Version ID
@@ -98,7 +101,7 @@ jobs:
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
       - name: Build and Push packages/app
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         env:
           image_name: xcpcio
           tag: ${{ steps.get-version-id.outputs.version-id }}
