@@ -14,10 +14,6 @@ temp/
 *.log
 *.tgz
 
-# umi
-.umi
-.umi-production
-.umi-test
 .env.local
 
 .next
