@@ -54,8 +54,8 @@ importers:
         specifier: ^4.1.5
         version: 4.1.5
       pnpm:
-        specifier: ^8.15.9
-        version: 8.15.9
+        specifier: ^9.12.0
+        version: 9.12.0
       taze:
         specifier: ^0.10.3
         version: 0.10.3
@@ -222,9 +222,6 @@ importers:
       markdown-it-shiki:
         specifier: ^0.9.0
         version: 0.9.0
-      pnpm:
-        specifier: ^8.15.9
-        version: 8.15.9
       shiki:
         specifier: ^0.14.7
         version: 0.14.7
@@ -14445,9 +14442,9 @@ packages:
     hasBin: true
     dev: true
 
-  /pnpm@8.15.9:
-    resolution: {integrity: sha512-SZQ0ydj90aJ5Tr9FUrOyXApjOrzuW7Fee13pDzL0e1E6ypjNXP0AHDHw20VLw4BO3M1XhQHkyik6aBYWa72fgQ==}
-    engines: {node: '>=16.14'}
+  /pnpm@9.12.0:
+    resolution: {integrity: sha512-Sr9yUITXvLr71yi/x77mHy95H5d/2HVCs1edyyNQTRcNRjN5ReTGZIXNEtWIoMDlcO2cR358zdhQfPBfP5Lqyg==}
+    engines: {node: '>=18.12'}
     hasBin: true
     dev: true
 
