@@ -2,7 +2,7 @@
   "name": "@xcpcio/docs",
   "version": "0.51.1",
   "private": true,
-  "packageManager": "pnpm@8.6.12",
+  "packageManager": "pnpm@8.15.9",
   "description": "XCPCIO docs",
   "author": "Dup4 <lyuzhi.pan@gmail.com>",
   "license": "MIT",
@@ -24,6 +24,6 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.5.11"
   }
 }
