@@ -1,5 +1,7 @@
 <template>
-  <div class="flex items-center justify-center dark:text-black">
+  <div
+    flex items-center justify-center dark:text-black
+  >
     <table>
       <tbody>
         <tr>
@@ -25,7 +27,7 @@
             Attempted problem
           </td>
           <td class="pending">
-            Pending judgement / Frozen
+            Pending judgement/Frozen
           </td>
         </tr>
       </tbody>

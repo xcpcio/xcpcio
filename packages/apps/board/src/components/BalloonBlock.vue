@@ -30,7 +30,7 @@ const balloonColor = computed(() => balloon.value.problem.balloonColor);
       h-24
       flex flex-row gap-x-4
       font-mono text-4xl
-      :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one']"
+      :class="[index % 2 === 0 ? 'bg-resolver-bg-0' : 'bg-resolver-bg-1']"
     >
       <div
         w-20

@@ -1,16 +1,12 @@
 <script  setup lang="ts">
-// const props = defineProps<{
-//   rank: Rank,
-// }>();
-
 const { t } = useI18n();
 
 const route = useRoute();
 const router = useRouter();
 
-const resolverUrl = computed(() => {
-  return `https://resolver.xcpcio.com/resolver?xcpcio-data-source=${route.path}`;
-});
+function goResolver() {
+  router.push(`/resolver/?data-source=${route.path}`);
+}
 
 function goBalloon() {
   router.push(`/balloon/?data-source=${route.path}`);
@@ -47,14 +43,13 @@ function goCountdown() {
     w-full
     flex mt-4 gap-4
   >
-    <a
+    <button
       btn
-      :href="resolverUrl"
-      target="_blank"
       title="Resolver"
+      @click="goResolver"
     >
-      {{ t("type_menu.resolver") }}
-    </a>
+      {{ t('type_menu.resolver') }}
+    </button>
 
     <button
       btn

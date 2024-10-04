@@ -33,7 +33,9 @@ export default defineConfig({
         selected: "var(--theme-resolver-selected)",
         bg: {
           zero: "var(--theme-resolver-bg-0)",
+          0: "var(--theme-resolver-bg-0)",
           one: "var(--theme-resolver-bg-1)",
+          1: "var(--theme-resolver-bg-1)",
         },
       },
     },
