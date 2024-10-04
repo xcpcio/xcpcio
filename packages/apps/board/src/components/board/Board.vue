@@ -45,7 +45,7 @@ const enableAutoScroll = ref(false);
   const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
   if (
     routeQueryForBattleOfGiants.value !== null
- && routeQueryForBattleOfGiants.value !== undefined
+    && routeQueryForBattleOfGiants.value !== undefined
   ) {
     rankOptions.value.battleOfGiants.FromBase64(routeQueryForBattleOfGiants.value);
   }
@@ -212,6 +212,22 @@ function onChangeCurrentType(type: string) {
   }
 }
 
+function handleSearch(event: KeyboardEvent) {
+  if (event.ctrlKey && event.key === "f") {
+    event.preventDefault();
+    currentType.value = "options";
+    isHiddenOptionsModal.value = false;
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleSearch);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleSearch);
+});
+
 function isPageBottom() {
   const scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
   const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -324,11 +340,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
 <template>
   <div>
     <div v-if="!firstLoaded">
-      <div
-        :class="[wrapperWidthClass]"
-        flex flex-col gap-4
-        justify-center items-center
-      >
+      <div :class="[wrapperWidthClass]" flex flex-col gap-4 justify-center items-center>
         <div>
           {{ t("common.loading") }}...
         </div>
@@ -339,34 +351,18 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       </div>
     </div>
 
-    <div
-      v-if="firstLoaded"
-      :class="[wrapperWidthClass]"
-      flex flex-col justify-center items-center
-    >
-      <div
-        v-if="rank.contest.banner"
-      >
-        <div
-          :class="[widthClass]"
-          flex justify-center items-center
-        >
+    <div v-if="firstLoaded" :class="[wrapperWidthClass]" flex flex-col justify-center items-center>
+      <div v-if="rank.contest.banner">
+        <div :class="[widthClass]" flex justify-center items-center>
           <div class="max-w-[92%]">
-            <img
-              :src="getImageSource(rank.contest.banner, `${DATA_HOST}${route.path.slice(1)}`)"
-              alt="banner"
-            >
+            <img :src="getImageSource(rank.contest.banner, `${DATA_HOST}${route.path.slice(1)}`)" alt="banner">
           </div>
         </div>
       </div>
 
       <div
-        v-if="!rank.contest.banner || (rank.contest.banner && rank.contest.bannerMode === 'ALL')"
-        class="title"
-        :class="[widthClass]"
-        flex justify-center
-        text-center text-3xl font-normal font-serif
-        mb-2
+        v-if="!rank.contest.banner || (rank.contest.banner && rank.contest.bannerMode === 'ALL')" class="title"
+        :class="[widthClass]" flex justify-center text-center text-3xl font-normal font-serif mb-2
       >
         <div class="max-w-[92%]">
           {{ rank.contest.name }}
@@ -374,16 +370,10 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       </div>
 
       <div>
-        <BoardTab
-          :rank="rank"
-        />
+        <BoardTab :rank="rank" />
       </div>
 
-      <div
-        :class="[widthClass]"
-        mt-2
-        flex flex-row justify-center
-      >
+      <div :class="[widthClass]" mt-2 flex flex-row justify-center>
         <div class="w-[92%]">
           <div class="flex font-bold font-mono">
             <div class="float-left">
@@ -391,8 +381,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             </div>
             <div class="flex-1">
               <ContestStateBadge
-                :state="contestState"
-                :pending-time="rank.contest.getContestPendingTime(now)"
+                :state="contestState" :pending-time="rank.contest.getContestPendingTime(now)"
                 :paused-time="pausedTime"
               />
             </div>
@@ -403,11 +392,8 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
 
           <div class="mt-2">
             <Progress
-              v-model:rank-options="rankOptions"
-              :width="rank.contest.getContestProgressRatio(now)"
-              :state="rank.contest.getContestState(now)"
-              :need-scroll="true"
-              :rank="rank"
+              v-model:rank-options="rankOptions" :width="rank.contest.getContestProgressRatio(now)"
+              :state="rank.contest.getContestState(now)" :need-scroll="true" :rank="rank"
               :elapsed-time="rank.contest.getContestElapsedTime(now)"
             />
           </div>
@@ -427,52 +413,30 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
           <div class="mt-4 flex">
             <div class="float-left">
               <SecondLevelMenu
-                v-model:current-item="currentGroup"
-                :items="groupMenuList"
-                query-param-name="group"
+                v-model:current-item="currentGroup" :items="groupMenuList" query-param-name="group"
                 :on-change="onChangeCurrentGroup"
               />
             </div>
             <div class="flex-1" />
             <div class="float-right">
               <SecondLevelMenu
-                v-model:current-item="currentType"
-                :items="typeMenuList"
-                :reverse-order="true"
-                query-param-name="type"
-                :on-change="onChangeCurrentType"
+                v-model:current-item="currentType" :items="typeMenuList" :reverse-order="true"
+                query-param-name="type" :on-change="onChangeCurrentType"
               />
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        mt-4
-        :class="[widthClass]"
-        flex justify-center
-      >
-        <div
-          class="w-[92%]"
-          flex justify-center
-        >
-          <div
-            v-if="currentType === 'rank'"
-          >
-            <Standings
-              :rank="rank"
-            />
+      <div mt-4 :class="[widthClass]" flex justify-center>
+        <div class="w-[92%]" flex justify-center>
+          <div v-if="currentType === 'rank'">
+            <Standings :rank="rank" />
           </div>
 
-          <div
-            v-if="currentType === 'submissions'"
-            class="sm:w-full xl:w-[92%]"
-          >
+          <div v-if="currentType === 'submissions'" class="sm:w-full xl:w-[92%]">
             <SubmissionsTable
-              w-full
-              :rank="rank"
-              :submissions="rank.getSubmissions()"
-              :enable-filter="{
+              w-full :rank="rank" :submissions="rank.getSubmissions()" :enable-filter="{
                 organization: true,
                 team: true,
                 language: true,
@@ -481,46 +445,27 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             />
           </div>
 
-          <div
-            v-if="currentType === 'statistics'"
-            class="sm:w-full xl:w-[92%]"
-          >
-            <Statistics
-              :rank="rank"
-            />
+          <div v-if="currentType === 'statistics'" class="sm:w-full xl:w-[92%]">
+            <Statistics :rank="rank" />
           </div>
 
-          <div
-            v-if="currentType === 'export'"
-          >
-            <Export
-              :rank="rank"
-            />
+          <div v-if="currentType === 'export'">
+            <Export :rank="rank" />
           </div>
 
-          <div
-            v-if="currentType === 'utility'"
-          >
-            <Utility
-              :rank="rank"
-            />
+          <div v-if="currentType === 'utility'">
+            <Utility :rank="rank" />
           </div>
         </div>
       </div>
 
-      <div
-        v-if="rankOptions.enableAnimatedSubmissions"
-      >
-        <AnimatedSubmissionsModal
-          :rank="rank"
-        />
+      <div v-if="rankOptions.enableAnimatedSubmissions">
+        <AnimatedSubmissionsModal :rank="rank" />
       </div>
 
       <OptionsModal
-        v-if="!isHiddenOptionsModal"
-        v-model:is-hidden="isHiddenOptionsModal"
-        v-model:rank-options="rankOptions"
-        :rank="rank"
+        v-if="!isHiddenOptionsModal" v-model:is-hidden="isHiddenOptionsModal"
+        v-model:rank-options="rankOptions" :rank="rank"
       />
     </div>
   </div>
