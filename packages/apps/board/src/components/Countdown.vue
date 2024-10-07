@@ -25,15 +25,14 @@ watch(data, async () => {
   title.value = `${contest.value.name} | ${COUNTDOWN_TITLE_SUFFIX}`;
 
   firstLoaded.value = true;
-});
+}, { immediate: true });
 </script>
 
 <template>
   <div
-    class="background"
+    class="bg-[#323443]"
     text-gray-200
-    w-screen
-    h-screen
+    w-screen h-screen
   >
     <div v-if="!firstLoaded">
       <div
@@ -91,10 +90,6 @@ watch(data, async () => {
 </template>
 
 <style scoped>
-.background {
-  background-color: #333443;
-}
-
 .PENDING {
   color: #3bb4f2;
 }

@@ -45,20 +45,26 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   return p;
 }
 
-export function useQueryBoardData(target: string, timestamp?: any) {
-  let refetchInterval = 30 * 1000;
+export function useQueryBoardData(target: string, timestamp?: any, queryOnce = false) {
+  let staleTime = 30 * 1000;
+  let refetchInterval: number | false = staleTime;
   const timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000 / 10));
 
   if (DATA_REGION.value === "I18N") {
-    refetchInterval = 10 * 1000;
-    // timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000));
+    staleTime = 10 * 1000;
+    refetchInterval = staleTime;
+  }
+
+  if (queryOnce) {
+    staleTime = Number.POSITIVE_INFINITY;
+    refetchInterval = false;
   }
 
   return useQuery({
     queryKey: [target, timestampSeconds.value],
     queryFn: () => fetcher(target, timestampSeconds.value),
     retry: RETRY,
-    staleTime: refetchInterval,
+    staleTime,
     refetchInterval,
   });
 }

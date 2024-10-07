@@ -40,7 +40,7 @@ watch(data, async () => {
   reBuildBalloons();
 
   firstLoaded.value = true;
-});
+}, { immediate: true });
 
 const balloons = computed(() => {
   return rank.value.balloons.sort(Balloon.compare).reverse().slice(0, 256);
@@ -51,13 +51,13 @@ const balloons = computed(() => {
   <div
     class="bg-[#323443]"
     text-gray-200
+    w-screen h-screen
   >
     <div v-if="!firstLoaded">
       <div
         flex flex-col
         justify-center items-center
-        w-screen
-        h-screen
+        w-screen h-screen
         text-xl italic
       >
         <div>

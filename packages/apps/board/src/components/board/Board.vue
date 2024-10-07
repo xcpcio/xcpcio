@@ -113,7 +113,7 @@ watch(data, async () => {
   reBuildRank();
 
   firstLoaded.value = true;
-});
+}, { immediate: true });
 
 function dynamicReBuildRank() {
   if (firstLoaded.value === false) {

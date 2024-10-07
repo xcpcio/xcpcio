@@ -14,6 +14,7 @@ export * from "./problem";
 export * from "./rank-statistics";
 export * from "./rank";
 export * from "./resolver";
+export * from "./resolver-vue";
 export * from "./submission-status";
 export * from "./submission";
 export * from "./team";
