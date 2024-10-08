@@ -58,6 +58,7 @@
     "file-saver": "^2.0.5",
     "floating-vue": "2.0.0-beta.24",
     "flowbite": "^1.8.1",
+    "gsap": "^3.12.5",
     "highcharts": "^11.4.8",
     "highcharts-vue": "^1.4.3",
     "lodash": "^4.17.21",

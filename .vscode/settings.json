@@ -68,6 +68,7 @@
     "fortawesome",
     "frontmatter",
     "fsxx",
+    "gsap",
     "highcharts",
     "iconify",
     "icpc",
@@ -100,5 +101,5 @@
     "Webfont",
     "XCPC",
     "XCPCIO"
-  ]
+]
 }
