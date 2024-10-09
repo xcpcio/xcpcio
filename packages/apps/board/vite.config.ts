@@ -11,6 +11,7 @@ import Markdown from "unplugin-vue-markdown/vite";
 import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 import { defineConfig } from "vite";
+import { createHtmlPlugin } from "vite-plugin-html";
 import { VitePWA } from "vite-plugin-pwa";
 import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts";
@@ -151,19 +152,19 @@ export default defineConfig({
     VueDevTools(),
 
     // https://github.com/vbenjs/vite-plugin-html
-    // createHtmlPlugin({
-    //   minify: {
-    //     collapseWhitespace: true,
-    //     keepClosingSlash: true,
-    //     removeComments: true,
-    //     removeRedundantAttributes: true,
-    //     removeScriptTypeAttributes: true,
-    //     removeStyleLinkTypeAttributes: true,
-    //     useShortDoctype: true,
-    //     minifyCSS: true,
-    //     minifyJS: true,
-    //   },
-    // }),
+    createHtmlPlugin({
+      minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
+    }),
   ],
 
   // https://github.com/vitest-dev/vitest
