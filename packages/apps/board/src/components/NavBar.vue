@@ -3,7 +3,7 @@ import { GITHUB_URL, XCPCIO_HOME } from "@xcpcio/types";
 import { availableLocales, loadLanguageAsync } from "~/modules/i18n";
 
 const props = defineProps<{
-  width?: string,
+  width?: string;
 }>();
 
 const { t, locale } = useI18n();

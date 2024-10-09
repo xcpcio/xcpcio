@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { Chart } from "highcharts-vue";
-
 import type { Rank } from "@xcpcio/core";
 
+import { Chart } from "highcharts-vue";
+
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const { t } = useI18n();

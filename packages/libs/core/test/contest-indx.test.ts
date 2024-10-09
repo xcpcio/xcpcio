@@ -1,5 +1,5 @@
-import { resolve } from "node:path";
 import fs from "node:fs";
+import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 import { createContestIndexList } from "../src/index";

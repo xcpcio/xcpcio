@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { MultiSelect } from "vue-search-select";
 import { type Giants, GiantsType, type Rank, type SelectOptionItem } from "@xcpcio/core";
+import { MultiSelect } from "vue-search-select";
 
 const props = defineProps<{
-  rank: Rank,
-  orgOptions: SelectOptionItem[],
-  teamsOptions: SelectOptionItem[],
-  giants: Giants,
+  rank: Rank;
+  orgOptions: SelectOptionItem[];
+  teamsOptions: SelectOptionItem[];
+  giants: Giants;
 }>();
 
 const emit = defineEmits([

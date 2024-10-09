@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { modelValue } = defineModels<{
-  modelValue: boolean
+  modelValue: boolean;
 }>();
 </script>
 

@@ -2,7 +2,7 @@
 import type { BattleOfGiants } from "@xcpcio/core/index";
 
 const props = defineProps<{
-  battleOfGiants: BattleOfGiants
+  battleOfGiants: BattleOfGiants;
 }>();
 
 const battleOfGiants = computed(() => props.battleOfGiants);

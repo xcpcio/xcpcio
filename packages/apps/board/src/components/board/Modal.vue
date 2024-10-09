@@ -2,11 +2,11 @@
 import { useMagicKeys } from "@vueuse/core";
 
 const props = defineProps<{
-  isHidden: boolean,
+  isHidden: boolean;
 
-  title?: string,
-  width?: string,
-  mt?: string,
+  title?: string;
+  width?: string;
+  mt?: string;
 }>();
 
 const emit = defineEmits(["update:isHidden"]);

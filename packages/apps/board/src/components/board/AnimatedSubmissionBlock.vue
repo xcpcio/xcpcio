@@ -6,8 +6,8 @@ import type { AnimatedSubmissionBlockItem } from "~/composables/type";
 import { LastBlockDisplayType } from "~/composables/type";
 
 const props = defineProps<{
-  item: AnimatedSubmissionBlockItem,
-  lastBlockDisplayType: LastBlockDisplayType,
+  item: AnimatedSubmissionBlockItem;
+  lastBlockDisplayType: LastBlockDisplayType;
 }>();
 
 const item = computed(() => props.item);

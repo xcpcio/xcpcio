@@ -2,9 +2,9 @@
 import { ContestState } from "@xcpcio/types";
 
 const props = defineProps<{
-  state: ContestState,
-  pendingTime?: string,
-  pausedTime?: string,
+  state: ContestState;
+  pendingTime?: string;
+  pausedTime?: string;
 }>();
 </script>
 

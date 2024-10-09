@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ModelSelect } from "vue-search-select";
-import { useToast } from "vue-toast-notification";
+import type { Rank } from "@xcpcio/core";
+import { CodeforcesGymGhostDATConverter, GeneralExcelConverter, ICPCStandingsCsvConverter } from "@xcpcio/core";
 import FileSaver from "file-saver";
 import sleep from "sleep-promise";
 
-import type { Rank } from "@xcpcio/core";
-import { CodeforcesGymGhostDATConverter, GeneralExcelConverter, ICPCStandingsCsvConverter } from "@xcpcio/core";
+import { ModelSelect } from "vue-search-select";
+import { useToast } from "vue-toast-notification";
 
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const $toast = useToast();

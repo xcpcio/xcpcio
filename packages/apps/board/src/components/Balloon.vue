@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { Balloon, Rank, createContest, createSubmissions, createTeams } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import { Balloon, createContest, createSubmissions, createTeams, Rank } from "@xcpcio/core";
 
 import { BALLOON_TITLE_SUFFIX } from "~/composables/constant";
 
 const props = defineProps<{
-  dataSourceUrl: string,
+  dataSourceUrl: string;
 }>();
 
 const title = useTitle(BALLOON_TITLE_SUFFIX);
@@ -43,6 +43,7 @@ watch(data, async () => {
 }, { immediate: true });
 
 const balloons = computed(() => {
+  // eslint-disable-next-line vue/no-side-effects-in-computed-properties
   return rank.value.balloons.sort(Balloon.compare).reverse().slice(0, 256);
 });
 </script>

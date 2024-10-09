@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const props = defineProps<{
-  currentType: string,
-  types: Array<string>,
+  currentType: string;
+  types: Array<string>;
 }>();
 
 const emit = defineEmits(["update:currentType"]);

@@ -1,6 +1,6 @@
-import { SubmissionStatus } from "@xcpcio/types";
-
 import type { Rank } from "../rank";
+
+import { SubmissionStatus } from "@xcpcio/types";
 
 import {
   isAccepted,

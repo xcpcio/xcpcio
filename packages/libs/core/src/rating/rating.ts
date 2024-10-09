@@ -1,12 +1,11 @@
 import type { IRating } from "@xcpcio/types";
-
 import type { Ranks } from "../rank";
 import type { Team } from "../team";
-import { createPersons } from "../person";
+import type { RatingUserMap, RatingUsers } from "./rating-user";
 
+import { createPersons } from "../person";
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
-import type { RatingUserMap, RatingUsers } from "./rating-user";
 import { RatingUser } from "./rating-user";
 
 export class Rating {

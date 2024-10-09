@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const props = defineProps<{
-  textAlign?: "left" | "center" | "right"
-  textType?: "text" | "number"
+  textAlign?: "left" | "center" | "right";
+  textType?: "text" | "number";
 }>();
 
 const { modelValue } = defineModels<{
-  modelValue: string | number
+  modelValue: string | number;
 }>();
 </script>
 

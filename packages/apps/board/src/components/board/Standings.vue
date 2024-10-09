@@ -3,7 +3,7 @@ import type { Rank } from "@xcpcio/core";
 import { GiantsType, Team } from "@xcpcio/core";
 
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const { t } = useI18n();
@@ -31,8 +31,8 @@ const filterTeams = computed(() => {
 });
 
 interface GiantTeam {
-  team: Team,
-  giantsType: GiantsType,
+  team: Team;
+  giantsType: GiantsType;
 }
 
 const giantTeams = computed(() => {
@@ -49,7 +49,7 @@ const giantTeams = computed(() => {
     const giantsType = (() => {
       if (
         blueTeam.filterOrganizationMap.has(t.organization)
-     || blueTeam.filterTeamMap.has(t.id)
+        || blueTeam.filterTeamMap.has(t.id)
       ) {
         if (blueCnt >= battleOfGiants.topX) {
           return null;
@@ -61,7 +61,7 @@ const giantTeams = computed(() => {
 
       if (
         redTeam.filterOrganizationMap.has(t.organization)
-     || redTeam.filterTeamMap.has(t.id)
+        || redTeam.filterTeamMap.has(t.id)
       ) {
         if (redCnt >= battleOfGiants.topX) {
           return null;

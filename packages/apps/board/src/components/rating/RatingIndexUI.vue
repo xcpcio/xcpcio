@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useElementVisibility } from "@vueuse/core";
-
 import type { IRatingIndex } from "@xcpcio/types/index";
 
+import { useElementVisibility } from "@vueuse/core";
+
 const props = defineProps<{
-  ratingIndex: IRatingIndex
+  ratingIndex: IRatingIndex;
 }>();
 
 const ratingIndex = computed(() => props.ratingIndex);

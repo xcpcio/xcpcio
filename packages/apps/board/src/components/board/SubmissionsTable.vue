@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { MultiSelect } from "vue-search-select";
-
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
-import { Submission } from "@xcpcio/core";
+
 import type { SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
+import { Submission } from "@xcpcio/core";
 import { SubmissionStatusToString } from "@xcpcio/types";
+import { MultiSelect } from "vue-search-select";
 
 import { Pagination } from "~/composables/pagination";
 
@@ -18,18 +18,18 @@ interface FilterOptions {
 }
 
 interface EnableFilterOptions {
-  organization?: boolean,
-  team?: boolean,
-  language?: boolean,
-  status?: boolean,
+  organization?: boolean;
+  team?: boolean;
+  language?: boolean;
+  status?: boolean;
 }
 
 const props = defineProps<{
-  rank: Rank,
-  submissions: Submissions,
-  pageSize?: number,
-  removeBorder?: boolean,
-  enableFilter?: EnableFilterOptions,
+  rank: Rank;
+  submissions: Submissions;
+  pageSize?: number;
+  removeBorder?: boolean;
+  enableFilter?: EnableFilterOptions;
 }>();
 
 const rank = computed(() => props.rank);
@@ -145,9 +145,9 @@ const submissions = computed(() => {
     const o = filterOptions.value;
 
     if (o.orgNames.length === 0
-     && o.teamIds.length === 0
-     && o.languages.length === 0
-     && o.statuses.length === 0
+      && o.teamIds.length === 0
+      && o.languages.length === 0
+      && o.statuses.length === 0
     ) {
       return true;
     }

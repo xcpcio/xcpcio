@@ -1,9 +1,10 @@
-import _ from "lodash";
-import Papa from "papaparse";
-import ordinal from "ordinal";
-
 import type { Rank } from "../rank";
 import type { Team } from "../team";
+
+import _ from "lodash";
+import ordinal from "ordinal";
+import Papa from "papaparse";
+
 import { isValidMedalType } from "../award";
 
 interface ICPCTeamResult {

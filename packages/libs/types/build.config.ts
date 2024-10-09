@@ -1,5 +1,5 @@
-import { defineBuildConfig } from "unbuild";
 import getGitRepoInfo from "git-repo-info";
+import { defineBuildConfig } from "unbuild";
 import packageJSON from "./package.json";
 
 const gitRepoInfo = getGitRepoInfo();

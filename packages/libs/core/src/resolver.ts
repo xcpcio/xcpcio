@@ -1,13 +1,14 @@
+import type { Contest } from "./contest";
+import type { TeamProblemStatistics } from "./problem";
+import type { Submissions } from "./submission";
+import type { Teams } from "./team";
+
 import _ from "lodash";
 
 import { Rank } from "./rank";
-import type { Contest } from "./contest";
-import type { Teams } from "./team";
-import { Team } from "./team";
-import type { Submissions } from "./submission";
-import { Submission } from "./submission";
-import type { TeamProblemStatistics } from "./problem";
 import { ResolverOperation } from "./resolver-operation";
+import { Submission } from "./submission";
+import { Team } from "./team";
 
 export class Resolver extends Rank {
   finalRank: Rank;

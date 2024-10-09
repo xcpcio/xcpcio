@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import _ from "lodash";
-import { useRouteQuery } from "@vueuse/router";
-import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
-
-import { Rank, RankOptions, createContest, createSubmissions, createTeams, getImageSource, getTimeDiff } from "@xcpcio/core";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
+import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
+import { useRouteQuery } from "@vueuse/router";
 
-import { TITLE_SUFFIX } from "~/composables/constant";
+import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
+import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
+import _ from "lodash";
+
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
+import { TITLE_SUFFIX } from "~/composables/constant";
 
 const props = defineProps<{
-  dataSourceUrl?: string,
+  dataSourceUrl?: string;
 }>();
 
 const route = useRoute();
@@ -45,7 +45,7 @@ const enableAutoScroll = ref(false);
   const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
   if (
     routeQueryForBattleOfGiants.value !== null
- && routeQueryForBattleOfGiants.value !== undefined
+    && routeQueryForBattleOfGiants.value !== undefined
   ) {
     rankOptions.value.battleOfGiants.FromBase64(routeQueryForBattleOfGiants.value);
   }
@@ -187,7 +187,7 @@ const group = computed(() => {
 });
 
 const groupMenuList = computed(() => {
-  const res = Array<Item>();
+  const res = new Array<Item>();
 
   for (const [k, v] of group.value) {
     const item = {

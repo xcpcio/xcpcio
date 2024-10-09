@@ -2,10 +2,10 @@
 import type { Problem, Rank } from "@xcpcio/core";
 
 const props = defineProps<{
-  isHidden: boolean,
+  isHidden: boolean;
 
-  rank: Rank,
-  problem: Problem
+  rank: Rank;
+  problem: Problem;
 }>();
 
 const emit = defineEmits(["update:isHidden"]);

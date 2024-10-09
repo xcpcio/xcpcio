@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { Chart } from "highcharts-vue";
-
 import type { Rank, Team } from "@xcpcio/core";
 
-const props = defineProps<{
-  isHidden: boolean,
+import { Chart } from "highcharts-vue";
 
-  rank: Rank,
-  team: Team,
+const props = defineProps<{
+  isHidden: boolean;
+
+  rank: Rank;
+  team: Team;
 }>();
 
 const emit = defineEmits(["update:isHidden"]);

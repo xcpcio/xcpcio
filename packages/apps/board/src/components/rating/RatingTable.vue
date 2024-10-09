@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { MultiSelect } from "vue-search-select";
-
 import type { Rating, SelectOptionItem } from "@xcpcio/core";
+
+import { MultiSelect } from "vue-search-select";
 
 import { Pagination } from "~/composables/pagination";
 
@@ -11,7 +11,7 @@ interface FilterOptions {
 }
 
 const props = defineProps<{
-  rating: Rating,
+  rating: Rating;
   pageSize?: number;
   removeBorder?: boolean;
 }>();
@@ -75,7 +75,7 @@ const users = computed(() => {
     const o = filterOptions.value;
 
     if (o.organizations.length === 0
-    && o.members.length === 0) {
+      && o.members.length === 0) {
       return true;
     }
 

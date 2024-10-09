@@ -3,9 +3,9 @@ import type { Rank, Team } from "@xcpcio/core";
 import { GiantsType, MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
-  ix: number,
-  rank: Rank,
-  team: Team,
+  ix: number;
+  rank: Rank;
+  team: Team;
   isFilter?: boolean;
   giantsType?: GiantsType;
 }>();

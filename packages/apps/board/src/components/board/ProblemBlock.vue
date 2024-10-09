@@ -2,8 +2,8 @@
 import type { Problem, Rank } from "@xcpcio/core";
 
 const props = defineProps<{
-  rank: Rank,
-  problem: Problem
+  rank: Rank;
+  problem: Problem;
 }>();
 
 const hiddenModal = ref(true);

@@ -20,8 +20,8 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "main": "./dist/index.mjs",
@@ -36,8 +36,8 @@
     }
   },
   "files": [
-    "src",
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "unbuild",
@@ -50,18 +50,18 @@
   "devDependencies": {
     "@babel/types": "^7.25.7",
     "@types/node": "^18.19.55",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "bumpp": "^7.2.0",
-    "eslint": "^8.57.1",
-    "esmo": "^0.14.1",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "bumpp": "^9.7.1",
+    "eslint": "^9.12.0",
+    "esmo": "^4.8.0",
     "git-repo-info": "^2.1.1",
     "npm-run-all": "^4.1.5",
-    "pnpm": "^7.33.7",
-    "taze": "^0.10.3",
-    "typescript": "^4.9.5",
-    "unbuild": "^0.7.6",
-    "vite": "^4.5.5",
+    "pnpm": "^9.12.1",
+    "taze": "^0.17.2",
+    "typescript": "^5.6.3",
+    "unbuild": "^2.0.0",
+    "vite": "^5.4.8",
     "vitest": "^2.1.2"
   }
 }

@@ -1,6 +1,6 @@
 import { Problem } from "./problem";
-import { Team } from "./team";
 import { Submission } from "./submission";
+import { Team } from "./team";
 
 export class Balloon {
   problem: Problem;

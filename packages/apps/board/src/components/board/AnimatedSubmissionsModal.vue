@@ -6,7 +6,7 @@ import type { AnimatedSubmissionBlockItem } from "~/composables/type";
 import { LastBlockDisplayType } from "~/composables/type";
 
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const rank = computed(() => props.rank);

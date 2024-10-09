@@ -6,7 +6,7 @@ import { Dropdown } from "flowbite";
 import { useToast } from "vue-toast-notification";
 
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const rank = computed(() => props.rank);

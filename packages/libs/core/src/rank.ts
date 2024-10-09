@@ -1,18 +1,18 @@
+import type { SubmissionStatus } from "@xcpcio/types";
+import type { SelectOptionItem } from "./basic-types";
+import type { Contest } from "./contest";
+import type { Submissions } from "./submission";
+import type { Teams } from "./team";
+
 import _ from "lodash";
 
-import type { SubmissionStatus } from "@xcpcio/types";
-
-import type { Contest } from "./contest";
-import type { Teams } from "./team";
-import { Team } from "./team";
-import type { Submissions } from "./submission";
-import { Submission } from "./submission";
+import { Award, MedalType } from "./award";
+import { Balloon, type Balloons } from "./balloon";
+import { BattleOfGiants } from "./battle-of-giants";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
-import { Balloon, type Balloons } from "./balloon";
-import { Award, MedalType } from "./award";
-import { type SelectOptionItem } from "./basic-types";
-import { BattleOfGiants } from "./battle-of-giants";
+import { Submission } from "./submission";
+import { Team } from "./team";
 
 export class RankOptions {
   enableFilterSubmissionsByTimestamp: boolean;
@@ -264,8 +264,8 @@ export class Rank {
 
       (() => {
         this.rankStatistics.reset();
-        this.rankStatistics.teamSolvedNum = Array(this.contest.problems.length + 1).fill(0);
-        this.rankStatistics.teamSolvedNumIndex = Array(this.contest.problems.length + 1).fill(0);
+        this.rankStatistics.teamSolvedNum = Array.from({ length: this.contest.problems.length + 1 }).fill(0) as number[];
+        this.rankStatistics.teamSolvedNumIndex = Array.from({ length: this.contest.problems.length + 1 }).fill(0) as number[];
       })();
 
       let preSubmissionTimestampToMinute = 0;

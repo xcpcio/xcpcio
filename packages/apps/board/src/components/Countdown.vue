@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { createContest } from "@xcpcio/core";
 import type { Contest } from "@xcpcio/core";
-import { ContestState } from "@xcpcio/types";
 import type { Contest as IContest } from "@xcpcio/types";
+import { createContest } from "@xcpcio/core";
+import { ContestState } from "@xcpcio/types";
 
 const props = defineProps<{
-  dataSourceUrl: string,
+  dataSourceUrl: string;
 }>();
 
 const { t } = useI18n();

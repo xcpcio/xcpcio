@@ -1,9 +1,9 @@
 import type { IRatingHistory } from "@xcpcio/types";
-
-import type { dayjs } from "../utils";
-import { createDayJS } from "../utils";
-import { Person } from "../person";
 import type { Persons } from "../person";
+import type { dayjs } from "../utils";
+
+import { Person } from "../person";
+import { createDayJS } from "../utils";
 
 export class RatingHistory {
   rank: number;

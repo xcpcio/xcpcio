@@ -4,7 +4,7 @@ import { RatingLevelToString, RatingUtility } from "@xcpcio/core";
 import "./rating.less";
 
 const props = defineProps<{
-  rating: number
+  rating: number;
 }>();
 
 const rating = computed(() => props.rating);

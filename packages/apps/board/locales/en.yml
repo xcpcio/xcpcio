@@ -17,7 +17,7 @@ not-found: Not found
 
 common:
   loading: Loading
-  colon: ':'
+  colon: ":"
 
 index:
   start: StartTime

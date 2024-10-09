@@ -1,9 +1,8 @@
+import type { Contest as IContest, ContestIndex as IContestIndex, Image } from "@xcpcio/types";
 import type dayjs from "dayjs";
 
-import type { Contest as IContest, ContestIndex as IContestIndex, Image } from "@xcpcio/types";
-
-import { createDayJS } from "./utils";
 import { Contest, createContest } from "./contest";
+import { createDayJS } from "./utils";
 
 export class ContestIndexConfig {
   contestName: string;

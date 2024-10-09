@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { modelValue } = defineModels<{
-  modelValue: string | null
+  modelValue: string | null;
 }>();
 
 const inputEl = $ref<HTMLInputElement>();

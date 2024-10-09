@@ -1,13 +1,13 @@
 <script setup lang="ts">
+import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 import _ from "lodash";
 import { MultiSelect } from "vue-search-select";
-import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 
 const props = defineProps<{
-  isHidden: boolean,
+  isHidden: boolean;
 
-  rank: Rank,
-  rankOptions: RankOptions,
+  rank: Rank;
+  rankOptions: RankOptions;
 }>();
 
 const emit = defineEmits([
