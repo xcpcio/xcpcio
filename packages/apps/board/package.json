@@ -45,7 +45,7 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
-    "@tanstack/vue-query": "^5.59.1",
+    "@tanstack/vue-query": "^5.59.6",
     "@unhead/vue": "^1.11.7",
     "@unocss/reset": "^0.63.4",
     "@vueuse/components": "^11.1.0",

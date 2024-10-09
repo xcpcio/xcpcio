@@ -52,7 +52,7 @@
     "@types/node": "^18.19.55",
     "@typescript-eslint/eslint-plugin": "^8.8.1",
     "@typescript-eslint/parser": "^8.8.1",
-    "bumpp": "^9.6.1",
+    "bumpp": "^9.7.1",
     "eslint": "^9.12.0",
     "esmo": "^4.8.0",
     "git-repo-info": "^2.1.1",
