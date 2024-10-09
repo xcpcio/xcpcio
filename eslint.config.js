@@ -26,9 +26,7 @@ module.exports = antfu(
     rules: {
       "curly": ["error", "all"],
       "no-lone-blocks": "off",
-      "style/brace-style": "off",
-      // "ts/brace-style": ["error", "1tbs"],
-      "ts/consistent-type-imports": "off",
+      "style/brace-style": ["error", "1tbs"],
       "@unocss/order": "off",
       "@unocss/order-attributify": "off",
     },

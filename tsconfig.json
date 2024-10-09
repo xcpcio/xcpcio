@@ -31,7 +31,6 @@
   "exclude": [
     "**/dist/**",
     "node_modules",
-    "./packages/**/*.test.ts",
-    "./packages/archived/**"
+    "./packages/**/*.test.ts"
   ]
 }
