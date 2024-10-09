@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { MedalType } from "@xcpcio/core";
 import type { Rank, Team } from "@xcpcio/core";
+import { MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
-  team: Team,
-  rank: Rank,
+  team: Team;
+  rank: Rank;
 }>();
 
 const team = computed(() => props.team);

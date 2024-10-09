@@ -5,8 +5,8 @@ import { RatingUtility } from "@xcpcio/core";
 import "./rating.less";
 
 const props = defineProps<{
-  ix: number,
-  ratingUser: RatingUser,
+  ix: number;
+  ratingUser: RatingUser;
 }>();
 
 const u = computed(() => props.ratingUser);

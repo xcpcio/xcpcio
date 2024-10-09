@@ -1,9 +1,10 @@
+import type { Rank } from "../rank";
+
 import _ from "lodash";
-import * as XLSX from "xlsx-js-style";
 import stringWidth from "string-width";
+import * as XLSX from "xlsx-js-style";
 
 import { isValidMedalType } from "../award";
-import type { Rank } from "../rank";
 
 export class GeneralExcelConverter {
   constructor() {}
@@ -33,7 +34,8 @@ export class GeneralExcelConverter {
       filename,
       {
         compression: true,
-      });
+      },
+    );
   }
 
   private convertToSheet(rank: Rank): XLSX.WorkSheet {

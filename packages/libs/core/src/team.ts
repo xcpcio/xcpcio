@@ -1,12 +1,12 @@
-import _ from "lodash";
+import type { Image, Team as ITeam, Teams as ITeams } from "@xcpcio/types";
 
-import type { Team as ITeam, Teams as ITeams, Image } from "@xcpcio/types";
-
-import type { Problem, TeamProblemStatistics } from "./problem";
-import { calcDirt } from "./utils";
-import type { Submissions } from "./submission";
 import type { Award, MedalType } from "./award";
+
 import type { ContestOptions } from "./contest-options";
+import type { Problem, TeamProblemStatistics } from "./problem";
+import type { Submissions } from "./submission";
+import _ from "lodash";
+import { calcDirt } from "./utils";
 
 export class PlaceChartPointData {
   timePoint: number;
@@ -199,7 +199,7 @@ export class Team {
         this.attemptedProblemNum += p.failedCount + 1;
 
         if (options?.calculationOfPenalty === "in_seconds"
-         || options?.calculationOfPenalty === "accumulate_in_seconds_and_finally_to_the_minute") {
+          || options?.calculationOfPenalty === "accumulate_in_seconds_and_finally_to_the_minute") {
           this.penalty += p.penaltyInSecond;
         } else {
           this.penalty += p.penalty;

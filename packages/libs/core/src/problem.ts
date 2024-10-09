@@ -1,8 +1,8 @@
+import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
+import type { Submissions } from "./submission";
+
 import _ from "lodash";
 
-import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
-
-import type { Submissions } from "./submission";
 import { calcDirt, getWhiteOrBlackColor } from "./utils";
 
 export class ProblemStatistics {

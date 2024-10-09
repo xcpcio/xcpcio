@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useRouteQuery } from "@vueuse/router";
 import type { Lang } from "@xcpcio/types";
+import { useRouteQuery } from "@vueuse/router";
 
 export interface Item {
   title?: string;
@@ -21,7 +21,7 @@ const props = defineProps<{
   currentItem: string;
   queryParamName: string;
   reverseOrder?: boolean;
-  // eslint-disable-next-line unused-imports/no-unused-vars
+
   onChange?: (current: string) => void;
 }>();
 

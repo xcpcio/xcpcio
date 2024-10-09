@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { ContestState } from "@xcpcio/types";
-import { useRouteQuery } from "@vueuse/router";
 import type { Rank, RankOptions } from "@xcpcio/core";
+import { useRouteQuery } from "@vueuse/router";
 import { createDayJS, getTimeDiff } from "@xcpcio/core";
+import { ContestState } from "@xcpcio/types";
 
 const props = defineProps<{
-  width: number,
-  state: ContestState,
-  needScroll?: boolean,
-  rank?: Rank,
-  rankOptions?: RankOptions,
-  elapsedTime?: string,
+  width: number;
+  state: ContestState;
+  needScroll?: boolean;
+  rank?: Rank;
+  rankOptions?: RankOptions;
+  elapsedTime?: string;
 }>();
 const emit = defineEmits(["update:rank-options"]);
 
@@ -33,7 +33,10 @@ const barClass = computed(() => {
       return "am-progress-bar-danger";
     case ContestState.FINISHED:
       return "am-progress-bar-primary";
+    case ContestState.PAUSED:
+      return "am-progress-bar-danger";
   }
+  return "";
 });
 
 const pauseUpdate = ref(false);
@@ -105,7 +108,7 @@ function startDrag(event: MouseEvent) {
       progressRatio.value = dragWidth.value;
       rankOptions.value?.setWidth(dragWidth.value, props.rank!.contest);
     } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // eslint-disable-next-line ts/ban-ts-comment
       // @ts-expect-error
       progressRatio.value = undefined;
       rankOptions.value?.disableFilterSubmissionByTimestamp();

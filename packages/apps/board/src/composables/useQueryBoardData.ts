@@ -1,5 +1,5 @@
-import { useQuery } from "@tanstack/vue-query";
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
+import { useQuery } from "@tanstack/vue-query";
 import { DATA_REGION } from "./constant";
 
 const RETRY = 3;
@@ -34,7 +34,8 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   const p = Promise.all([
     contestResp.json(),
     teamsResp.json(),
-    submissionsResp.json()]).then((res) => {
+    submissionsResp.json(),
+  ]).then((res) => {
     return {
       contest: res[0],
       teams: res[1],

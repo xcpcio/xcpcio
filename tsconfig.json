@@ -1,21 +1,11 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
     "lib": [
       "ESNext"
     ],
+    "module": "ESNext",
     "moduleResolution": "node",
-    "esModuleInterop": true,
-    "strict": true,
-    "strictNullChecks": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "importHelpers": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": true,
-    "outDir": "dist",
     "paths": {
       "@xcpcio/types": [
         "./packages/libs/types/src/index.ts"
@@ -23,7 +13,17 @@
       "@xcpcio/core": [
         "./packages/libs/core/src/index.ts"
       ]
-    }
+    },
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "importHelpers": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "include": [
     "./packages/**/*.ts"

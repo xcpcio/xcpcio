@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { useFetch } from "@vueuse/core";
-import { useRouteQuery } from "@vueuse/router";
-
-import { createContestIndexList } from "@xcpcio/core";
 import type { ContestIndexList } from "@xcpcio/core";
 
-import { TITLE_SUFFIX } from "~/composables/constant";
-import SearchInput from "~/components/SearchInput.vue";
+import { useFetch } from "@vueuse/core";
+import { useRouteQuery } from "@vueuse/router";
+import { createContestIndexList } from "@xcpcio/core";
+
 import ContestIndexUI from "~/components/ContestIndexUI.vue";
+import SearchInput from "~/components/SearchInput.vue";
+import { TITLE_SUFFIX } from "~/composables/constant";
 
 const { t } = useI18n();
 useTitle(TITLE_SUFFIX);
@@ -42,8 +42,8 @@ function onSearch() {
     s.value = searchText.value;
 
     if (c.contest.name.includes(searchText.value)
-        || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())
-        || c.boardLink.toLocaleLowerCase().includes(searchText.value.toLowerCase())) {
+      || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())
+      || c.boardLink.toLocaleLowerCase().includes(searchText.value.toLowerCase())) {
       return true;
     }
 

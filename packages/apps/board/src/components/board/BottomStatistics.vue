@@ -2,7 +2,7 @@
 import type { ProblemStatistics, Rank } from "@xcpcio/core";
 
 const props = defineProps<{
-  rank: Rank,
+  rank: Rank;
 }>();
 
 const { t } = useI18n();

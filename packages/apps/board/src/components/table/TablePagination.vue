@@ -2,7 +2,7 @@
 import type { Pagination } from "~/composables/pagination";
 
 const props = defineProps<{
-  pagination: Pagination,
+  pagination: Pagination;
 }>();
 const emit = defineEmits(["update:pagination"]);
 

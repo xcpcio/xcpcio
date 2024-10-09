@@ -3,7 +3,7 @@ import { useFetch } from "@vueuse/core";
 import { Rating } from "@xcpcio/core";
 
 const props = defineProps<{
-  id: string
+  id: string;
 }>();
 
 const id = computed(() => props.id);

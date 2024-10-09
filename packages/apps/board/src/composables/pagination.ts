@@ -56,8 +56,8 @@ export class Pagination {
   }
 
   onPageChange(options: {
-    to?: number,
-    diff?: number,
+    to?: number;
+    diff?: number;
   }) {
     const totalPage = this.totalPage;
 

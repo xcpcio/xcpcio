@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Tooltip } from "flowbite";
 import type { TooltipInterface, TooltipOptions } from "flowbite";
+import { Tooltip } from "flowbite";
 
 import "./Tooltip.css";
 
 const props = defineProps<{
-  placement?: "left" | "right" | "top" | "bottom" | "auto",
+  placement?: "left" | "right" | "top" | "bottom" | "auto";
 }>();
 
 const tooltipTargetEl = ref(null);

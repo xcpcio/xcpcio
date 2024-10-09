@@ -3,7 +3,7 @@ import type { Balloon, Team } from "@xcpcio/core";
 
 const props = defineProps<{
   index: number;
-  balloon: Balloon,
+  balloon: Balloon;
 }>();
 
 const index = computed(() => props.index);

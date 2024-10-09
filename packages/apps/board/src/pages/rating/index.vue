@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useFetch } from "@vueuse/core";
-
 import type { IRatingIndex } from "@xcpcio/types";
+
+import { useFetch } from "@vueuse/core";
 
 const { t } = useI18n();
 useTitle(RATING_TITLE_SUFFIX);

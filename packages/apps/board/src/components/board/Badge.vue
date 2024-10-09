@@ -3,8 +3,8 @@ import type { Image } from "@xcpcio/types";
 import { getImageSource } from "@xcpcio/core";
 
 const props = defineProps<{
-  image: Image
-  widthClass?: string
+  image: Image;
+  widthClass?: string;
 }>();
 
 const image = computed(() => {

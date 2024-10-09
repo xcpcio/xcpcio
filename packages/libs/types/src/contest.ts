@@ -10,8 +10,8 @@ export enum ContestState {
 }
 
 export type CalculationOfPenalty = "in_minutes"
-| "in_seconds"
-| "accumulate_in_seconds_and_finally_to_the_minute";
+  | "in_seconds"
+  | "accumulate_in_seconds_and_finally_to_the_minute";
 
 export interface ContestOptions {
   calculation_of_penalty?: CalculationOfPenalty;

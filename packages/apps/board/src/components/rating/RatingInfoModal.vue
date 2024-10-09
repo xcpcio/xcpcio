@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { Chart } from "highcharts-vue";
-
 import type { RatingUser } from "@xcpcio/core";
+
+import { Chart } from "highcharts-vue";
 
 import "./rating.less";
 
 const props = defineProps<{
-  isHidden: boolean,
+  isHidden: boolean;
 
-  ratingUser: RatingUser,
+  ratingUser: RatingUser;
 }>();
 
 const emit = defineEmits(["update:isHidden"]);

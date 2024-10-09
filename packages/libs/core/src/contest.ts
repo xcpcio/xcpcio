@@ -1,13 +1,13 @@
 import type { BannerMode, Contest as IContest, Image, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
-import { ContestState } from "@xcpcio/types";
-
+import type { Awards } from "./award";
 import type { Problem, Problems } from "./problem";
+
+import { ContestState } from "@xcpcio/types";
+import { Award, MedalType } from "./award";
+import { ContestOptions, createContestOptions } from "./contest-options";
+import { Group } from "./group";
 import { createProblems, createProblemsByProblemIds } from "./problem";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
-import { Group } from "./group";
-import { Award } from "./award";
-import { type Awards, MedalType } from "./award";
-import { ContestOptions, createContestOptions } from "./contest-options";
 
 export class Contest {
   id = "";
