@@ -10,6 +10,8 @@ const props = defineProps<{
   dataSourceUrl: string;
 }>();
 
+const K_TEAM_HEIGHT = 96;
+
 gsap.registerPlugin(ScrollToPlugin);
 
 const title = useTitle(RESOLVER_TITLE_SUFFIX);
@@ -18,6 +20,7 @@ const { t } = useI18n();
 const firstLoaded = ref(false);
 const startFirstScroll = ref(false);
 const finishedFirstScroll = ref(false);
+const duringFirstScroll = ref(false);
 const contest = ref({} as Contest);
 const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
@@ -77,6 +80,10 @@ const currentRowRef = ref<HTMLElement | null>(null);
 
 onMounted(() => {
   watch(() => startFirstScroll.value, async () => {
+    if (!resolverRef.value) {
+      return;
+    }
+
     if (finishedFirstScroll.value) {
       return;
     }
@@ -85,19 +92,52 @@ onMounted(() => {
       return;
     }
 
-    if (resolverRef.value) {
-      const scrollHeight = resolverRef.value.scrollHeight;
-      const clientHeight = resolverRef.value.clientHeight;
+    if (duringFirstScroll.value) {
+      return;
+    }
+    duringFirstScroll.value = true;
+
+    const scrollHeight = resolverRef.value.scrollHeight;
+    const clientHeight = resolverRef.value.clientHeight;
+    const totalScroll = scrollHeight - clientHeight;
+    let currentScroll = resolverRef.value.scrollTop;
+
+    const step = K_TEAM_HEIGHT * 12;
+
+    const scroll = () => {
+      const remindScroll = totalScroll - currentScroll;
+      let needScroll = step;
+      if (remindScroll % step !== 0) {
+        needScroll = remindScroll % step;
+      }
+      if (remindScroll <= 0) {
+        finishedFirstScroll.value = true;
+        return;
+      }
+      currentScroll += needScroll;
+      let duration = 0.48;
+      if (remindScroll <= step * 2) {
+        duration = 5;
+      }
+      if (remindScroll <= step) {
+        duration = 10;
+      }
+      console.log(remindScroll, duration);
 
       gsap.to(resolverRef.value, {
-        duration: Math.round(resolver.value.teams.length * 0.5),
-        scrollTop: scrollHeight - clientHeight,
-        ease: "power1.inOut",
-        onComplete: () => {
-          finishedFirstScroll.value = true;
+        duration,
+        scrollTo: {
+          y: `+=${needScroll}`,
+          autoKill: true,
         },
+        ease: "linear",
+        overwrite: true,
+        lazy: false,
+        onComplete: scroll,
       });
-    }
+    };
+
+    scroll();
   }, { immediate: true });
 
   watch(() => resolver.value.currentIndex, async () => {
@@ -121,8 +161,8 @@ onMounted(() => {
       const scrollDistance = (currentPosition - targetPosition);
 
       gsap.to(resolverRef.value, {
-        duration: 2.5,
-        ease: "power1.out",
+        duration: 1,
+        ease: "linear",
         scrollTop: `+=${scrollDistance}`,
       });
     }
@@ -162,7 +202,7 @@ onMounted(() => {
           flex flex-col justify-between
           font-mono
           w-screen h-screen
-          overflow-hidden
+          overflow-y-hidden
         >
           <div
             ref="resolverRef"
@@ -189,6 +229,16 @@ onMounted(() => {
                   />
                 </div>
               </template>
+              <div
+                key="placeholder-0"
+                h-24 w-screen
+                class="bg-resolver-bg-one"
+              />
+              <div
+                key="placeholder-1"
+                h-24 w-screen
+                class="bg-resolver-bg-one"
+              />
             </TransitionGroup>
           </div>
         </div>
@@ -202,6 +252,7 @@ onMounted(() => {
 .resolver-enter-active,
 .resolver-leave-active {
   transition: all 2s ease;
+  /* transition: all 2s cubic-bezier(0.3, 0.1, 0.7, 0.1); // 开始慢后面快 */
 }
 
 .resolver-enter-from,
@@ -213,4 +264,35 @@ onMounted(() => {
 .resolver-leave-active {
   position: absolute;
 }
+
+/*
+.resolver-move {
+  transition: all 2s ease;
+  transform-origin: top center;
+}
+
+.resolver-enter-active {
+  transition: all 2s ease;
+  transform-origin: top center;
+}
+
+.resolver-leave-active {
+  transition: all 2s ease;
+  transform-origin: top center;
+  position: absolute;
+  width: 100%;
+}
+
+/* 从上方进入
+.resolver-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+/* 向上离开
+.resolver-leave-to {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+*/
 </style>
