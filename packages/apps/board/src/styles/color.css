@@ -35,6 +35,11 @@ html {
   --theme-resolver-selected: #406b82;
   --theme-resolver-bg-0: #3e3e3e;
   --theme-resolver-bg-1: #030712;
+
+  --theme-standings-00: #e0e0ff;
+  --theme-standings-01: #e8e8ff;
+  --theme-standings-10: #f8f8f8;
+  --theme-standings-11: #f2f2f2;
 }
 
 html.dark {
@@ -66,4 +71,9 @@ html.dark {
   --theme-standings-correct: #e1ffb5;
   --theme-standings-incorrect: #ffd0d0;
   --theme-standings-pending: #c8d6fa;
+
+  --theme-standings-00: #e0e0ff;
+  --theme-standings-01: #e8e8ff;
+  --theme-standings-10: #f8f8f8;
+  --theme-standings-11: #f2f2f2;
 }
