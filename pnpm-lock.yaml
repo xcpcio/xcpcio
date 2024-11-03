@@ -119,9 +119,6 @@ importers:
       gsap:
         specifier: ^3.12.5
         version: 3.12.5
-      he:
-        specifier: ^1.2.0
-        version: 1.2.0
       highcharts:
         specifier: ^11.4.8
         version: 11.4.8
