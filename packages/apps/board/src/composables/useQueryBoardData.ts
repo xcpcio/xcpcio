@@ -1,6 +1,5 @@
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
 import { useQuery } from "@tanstack/vue-query";
-import he from "he";
 import { DATA_REGION } from "./constant";
 
 const RETRY = 3;
