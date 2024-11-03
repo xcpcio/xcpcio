@@ -5,9 +5,10 @@ import { useRouteQuery } from "@vueuse/router";
 
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
 import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
-import _ from "lodash";
 
+import _ from "lodash";
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
+
 import { TITLE_SUFFIX } from "~/composables/constant";
 
 const props = defineProps<{
@@ -27,6 +28,10 @@ const now = useNow();
 const rankOptions = ref(new RankOptions());
 
 const enableAutoScroll = ref(false);
+
+function fixPath(path: string) {
+  return path.replaceAll("%2F", "/");
+}
 
 (() => {
   const filterOrganizations = useLocalStorageForFilterOrganizations();
@@ -61,8 +66,8 @@ function onChangeCurrentGroup(nextGroup: string) {
 }
 (() => {
   const currentGroupFromRouteQuery = useRouteQuery(
-    "group",
-    "all",
+    /* name */ "group",
+    /* defaultValue */ "all",
     { transform: String },
   );
 
@@ -94,7 +99,7 @@ function reBuildRank(options = { force: false }) {
   isReBuildRank.value = false;
 }
 
-const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
+const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? fixPath(route.path), now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
@@ -353,7 +358,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         >
           <div class="max-w-[92%]">
             <img
-              :src="getImageSource(rank.contest.banner, `${DATA_HOST}${route.path.slice(1)}`)"
+              :src="getImageSource(rank.contest.banner, `${DATA_HOST}${fixPath(route.path).slice(1)}`)"
               alt="banner"
             >
           </div>
