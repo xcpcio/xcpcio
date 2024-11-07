@@ -1,19 +1,34 @@
 <script  setup lang="ts">
+import { useRouteQuery } from "@vueuse/router";
+
 const { t } = useI18n();
 
 const route = useRoute();
 const router = useRouter();
+const component = useRouteQuery("component", "board", { transform: String });
 
 function goResolver() {
-  router.push(`/resolver/?data-source=${route.path}`);
+  if (window.DATA_SOURCE) {
+    component.value = "resolver";
+  } else {
+    router.push(`/resolver/?data-source=${route.path}`);
+  }
 }
 
 function goBalloon() {
-  router.push(`/balloon/?data-source=${route.path}`);
+  if (window.DATA_SOURCE) {
+    component.value = "balloon";
+  } else {
+    router.push(`/balloon/?data-source=${route.path}`);
+  }
 }
 
 function goCountdown() {
-  router.push(`/countdown/?data-source=${route.path}`);
+  if (window.DATA_SOURCE) {
+    component.value = "countdown";
+  } else {
+    router.push(`/countdown/?data-source=${route.path}`);
+  }
 }
 </script>
 
