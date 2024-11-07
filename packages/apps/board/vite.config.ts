@@ -18,8 +18,6 @@ import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
 import generateSitemap from "vite-ssg-sitemap";
 
-import packageJSON from "./package.json";
-
 const proxyConfig = {
   // target: "https://board.xcpcio.com",
   target: "http://127.0.0.1:8080",
@@ -199,12 +197,14 @@ export default defineConfig({
   },
 
   experimental: {
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    renderBuiltUrl(filename: string, { hostType }: { hostType: "js" | "css" | "html" }) {
-      // eslint-disable-next-line node/prefer-global/process
-      if (process.env.BUILD_MODE === "npm_publish") {
-        const tag = packageJSON.version;
-        return `https://cdn.jsdelivr.net/npm/@xcpcio/board-app@${tag}/dist/${filename}`;
+    renderBuiltUrl(filename: string, { hostType, type }: { hostId: string; hostType: "js" | "css" | "html"; type: "public" | "asset" }) {
+      if (type === "public") {
+        return `__CDN_HOST__/${filename}`;
+      }
+      if (hostType === "js") {
+        return {
+          runtime: `window.__toAssetUrl(${JSON.stringify(filename)})`,
+        };
       }
 
       return `__CDN_HOST__/${filename}`;

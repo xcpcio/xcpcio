@@ -18,6 +18,7 @@
       let CDN_HOST = "__CDN_HOST__";
       CDN_HOST = normalizePath(CDN_HOST);
       window.CDN_HOST = CDN_HOST;
+      window.__toAssetUrl = url => window.CDN_HOST + url
     }
 
     try {
