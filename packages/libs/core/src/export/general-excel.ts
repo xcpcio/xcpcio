@@ -144,6 +144,8 @@ export class GeneralExcelConverter {
 
       head.push("Unofficial");
       head.push("Girl");
+      head.push("TeamId");
+      head.push("LastSolvedTimestamp");
 
       aoa.push(head);
     }
@@ -212,6 +214,8 @@ export class GeneralExcelConverter {
 
       arr.push(team.isUnofficial ? "Y" : "N");
       arr.push(team.isGirl ? "Y" : "N");
+      arr.push(team.id);
+      arr.push(team.lastSolvedProblemStatistics?.solvedTimestampToMinute.toString() ?? "NaN");
 
       aoa.push(arr);
     }
