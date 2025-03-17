@@ -77,6 +77,12 @@ function getHeadData() {
       flex flex-col
     >
       <div>
+        <SubmitHeatMap
+          :rank="rank"
+        />
+      </div>
+
+      <div>
         <Chart
           :options="getSubmitChart(rank)"
         />
