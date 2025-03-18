@@ -142,10 +142,10 @@ export class Rank {
   readonly contest: Contest;
 
   teams: Teams;
-  teamsMap: Map<string, Team>;
+  teamsMap: Map<string /* teamId */, Team>;
 
   submissions: Submissions;
-  submissionsMap: Map<string, Submission>;
+  submissionsMap: Map<string /* submissionId */, Submission>;
 
   organizations: Array<string>;
   originTeams: Teams;
