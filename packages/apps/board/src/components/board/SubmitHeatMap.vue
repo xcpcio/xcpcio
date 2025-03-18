@@ -6,6 +6,8 @@ const props = defineProps<{
   rank: Rank;
 }>();
 
+const { t } = useI18n();
+
 const mapTimeDiffLength = 20;
 const rank = computed(() => props.rank);
 const startTime = rank.value.contest.getStartTime();
@@ -156,7 +158,7 @@ const heatMapData = computed(() => {
       font-semibold
       mb-8
     >
-      提交热力图
+      {{ t("standings.statistics.submit_heatmap") }}
     </span>
 
     <div
@@ -166,11 +168,11 @@ const heatMapData = computed(() => {
     >
       <div
         v-for="heatMap in heatMapData" :key="heatMap.label"
+        class="w-350px h-100px"
         flex flex-col
         items-center justify-center
-        w-350px h-100px
-        rounded-md
         border border-gray-100 dark:border-gray-600
+        rounded-md
         shadow
       >
         <div
@@ -186,14 +188,17 @@ const heatMapData = computed(() => {
           </span>
         </div>
         <div>
-          <div flex flex-row gap-1 mb-2>
+          <div
+            flex flex-row
+            gap-1 mb-2
+          >
             <Tooltip
               v-for="(acItem, index) in heatMap.acHeatMap" :key="`ac-${index}`"
               w-inherit
             >
               <div
-                class="accept-heat"
                 :data-level="acItem.level"
+                class="accept-heat"
                 size-12px
                 rounded-1
                 shadow
@@ -211,11 +216,17 @@ const heatMapData = computed(() => {
             </Tooltip>
           </div>
 
-          <div flex flex-row gap-1>
-            <Tooltip v-for="(waItem, index) in heatMap.waHeatMap" :key="`wa-${index}`" w-inherit>
+          <div
+            flex flex-row
+            gap-1
+          >
+            <Tooltip
+              v-for="(waItem, index) in heatMap.waHeatMap" :key="`wa-${index}`"
+              w-inherit
+            >
               <div
-                class="rejected-heat"
                 :data-level="waItem.level"
+                class="rejected-heat"
                 size-12px
                 rounded-1
                 shadow

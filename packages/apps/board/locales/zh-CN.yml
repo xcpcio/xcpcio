@@ -60,6 +60,7 @@ standings:
       problems: 题目数
       teams: 队伍数
       submissions: 提交数
+    submit_heatmap: 提交热力图
 
   options:
     calculation_of_penalty: 罚时计算方式

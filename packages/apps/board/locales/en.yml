@@ -60,6 +60,7 @@ standings:
       problems: Problems
       teams: Teams
       submissions: Submissions
+    submit_heatmap: Submit Heatmap
 
   options:
     calculation_of_penalty: Calculation Of Penalty
