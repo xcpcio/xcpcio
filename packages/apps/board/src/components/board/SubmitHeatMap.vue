@@ -8,8 +8,9 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const mapTimeDiffLength = 20;
 const rank = computed(() => props.rank);
+
+const mapTimeDiffLength = 20;
 const startTime = rank.value.contest.getStartTime();
 const endTime = rank.value.contest.getEndTime();
 const totalDuration = endTime.diff(startTime, "minute");
@@ -32,122 +33,94 @@ const incorrectStatus = [
 ];
 
 const submissions = computed(() => rank.value.getSubmissions());
+
+const intervalDescriptions = Array.from({ length: mapTimeDiffLength }, (_, index) => {
+  const start = index * intervalSize;
+  const end = (index + 1) * intervalSize;
+  return `Between ${start} and ${end} minutes: `;
+});
+
 const submissionsByProblemId = computed(() => {
   const result = new Map();
-  for (const p of rank.value.contest.problems) {
-    result.set(p.id, {
-      accepted: submissions.value.filter(s => s.problemId === p.id && correctStatus.includes(s.status)),
-      rejected: submissions.value.filter(s => s.problemId === p.id && incorrectStatus.includes(s.status)),
-    });
-  }
+
+  rank.value.contest.problems.forEach((p) => {
+    result.set(p.id, { accepted: [], rejected: [] });
+  });
+
+  submissions.value.forEach((s) => {
+    const entry = result.get(s.problemId);
+    if (!entry) {
+      return;
+    }
+
+    if (correctStatus.includes(s.status)) {
+      entry.accepted.push(s);
+    } else if (incorrectStatus.includes(s.status)) {
+      entry.rejected.push(s);
+    }
+  });
+
   return result;
 });
 
-const intervalDescriptions = computed(() => {
-  return Array.from({ length: mapTimeDiffLength }, (_, index) => {
-    const start = index * intervalSize;
-    const end = (index + 1) * intervalSize;
-    return `Between ${start} and ${end} minutes: `;
+function generateHeatMap(submissions: Map<any, any>, type: "correct" | "incorrect") {
+  const counts = Array.from<number>({ length: mapTimeDiffLength }).fill(0);
+
+  submissions.forEach((s) => {
+    const index = Math.min(Math.floor(s.timestampToMinute / intervalSize), mapTimeDiffLength - 1);
+    counts[index]++;
   });
-});
 
-const heatMapData = computed(() => {
-  const h = [];
+  return counts.map((count, i) => ({
+    count,
+    level: 0,
+    description: `${intervalDescriptions[i]}${count} ${type} submissions`,
+  }));
+}
 
-  for (const p of rank.value.contest.problems) {
-    const problemSubmissions = submissionsByProblemId.value.get(p.id);
-    const acSubmits = problemSubmissions.accepted;
-    const waSubmits = problemSubmissions.rejected;
+function calculateThresholds(counts: number[]) {
+  const sorted = [...counts].sort((a, b) => b - a);
+  return [
+    0,
+    sorted[Math.floor(mapTimeDiffLength * 0.2)] || 0,
+    sorted[Math.floor(mapTimeDiffLength * 0.4)] || 0,
+    sorted[Math.floor(mapTimeDiffLength * 0.6)] || 0,
+    sorted[Math.floor(mapTimeDiffLength * 0.8)] || 0,
+  ];
+}
 
-    const acHeatMap = Array.from({ length: mapTimeDiffLength }, (_, index) => ({
-      count: 0,
-      level: 0,
-      description: `${intervalDescriptions.value[index]}0 correct submissions`,
-    }));
+function getHeatLevel(thresholds: number[], count: number) {
+  return count <= thresholds[0]
+    ? 0
+    : count <= thresholds[1]
+      ? 1
+      : count <= thresholds[2]
+        ? 2
+        : count <= thresholds[3] ? 3 : 4;
+}
 
-    const waHeatMap = Array.from({ length: mapTimeDiffLength }, (_, index) => ({
-      count: 0,
-      level: 0,
-      description: `${intervalDescriptions.value[index]}0 incorrect submissions`,
-    }));
+const heatMapData = computed(() =>
+  rank.value.contest.problems.map((p) => {
+    const { accepted, rejected } = submissionsByProblemId.value.get(p.id)!;
 
-    for (const s of acSubmits) {
-      const duration = s.timestampToMinute;
-      const index = Math.min(Math.floor(duration / intervalSize), mapTimeDiffLength - 1);
-      acHeatMap[index].count++;
-    }
+    const correctHeatMap = generateHeatMap(accepted, "correct");
+    const incorrectHeatMap = generateHeatMap(rejected, "incorrect");
 
-    for (const s of waSubmits) {
-      const duration = s.timestampToMinute;
-      const index = Math.min(Math.floor(duration / intervalSize), mapTimeDiffLength - 1);
-      waHeatMap[index].count++;
-    }
+    const correctThresholds = calculateThresholds(correctHeatMap.map(i => i.count));
+    const incorrectThresholds = calculateThresholds(incorrectHeatMap.map(i => i.count));
 
-    for (let i = 0; i < mapTimeDiffLength; i++) {
-      if (acHeatMap[i].count > 0) {
-        acHeatMap[i].description = `${intervalDescriptions.value[i] + acHeatMap[i].count} correct submissions`;
-      }
-    }
+    correctHeatMap.forEach(i => i.level = getHeatLevel(correctThresholds, i.count));
+    incorrectHeatMap.forEach(i => i.level = getHeatLevel(incorrectThresholds, i.count));
 
-    for (let i = 0; i < mapTimeDiffLength; i++) {
-      if (waHeatMap[i].count > 0) {
-        waHeatMap[i].description = `${intervalDescriptions.value[i] + waHeatMap[i].count} incorrect submissions`;
-      }
-    }
-
-    const sortedAcHeatMap = acHeatMap.slice().sort((a, b) => b.count - a.count);
-    const sortedWaHeatMap = waHeatMap.slice().sort((a, b) => b.count - a.count);
-
-    const heatLevelThresholds = computed(() => {
-      const correctLevelThresholds = [
-        0,
-        sortedAcHeatMap[Math.floor(mapTimeDiffLength * 0.2)].count,
-        sortedAcHeatMap[Math.floor(mapTimeDiffLength * 0.4)].count,
-        sortedAcHeatMap[Math.floor(mapTimeDiffLength * 0.6)].count,
-        sortedAcHeatMap[Math.floor(mapTimeDiffLength * 0.8)].count,
-      ];
-      const incorrectLevelThresholds = [
-        0,
-        sortedWaHeatMap[Math.floor(mapTimeDiffLength * 0.2)].count,
-        sortedWaHeatMap[Math.floor(mapTimeDiffLength * 0.4)].count,
-        sortedWaHeatMap[Math.floor(mapTimeDiffLength * 0.6)].count,
-        sortedWaHeatMap[Math.floor(mapTimeDiffLength * 0.8)].count,
-      ];
-      return { correctLevelThresholds, incorrectLevelThresholds };
-    });
-
-    function getHeatLevel(thresholds: number[], count: number) {
-      if (count <= thresholds[0]) {
-        return 0;
-      } else if (count <= thresholds[1]) {
-        return 1;
-      } else if (count <= thresholds[2]) {
-        return 2;
-      } else if (count <= thresholds[3]) {
-        return 3;
-      } else {
-        return 4;
-      }
-    }
-
-    acHeatMap.forEach((h) => {
-      h.level = getHeatLevel(heatLevelThresholds.value.correctLevelThresholds, h.count);
-    });
-
-    waHeatMap.forEach((h) => {
-      h.level = getHeatLevel(heatLevelThresholds.value.incorrectLevelThresholds, h.count);
-    });
-
-    h.push({
+    return {
       id: p.id,
       label: p.label,
       balloonColor: p.balloonColor,
-      acHeatMap,
-      waHeatMap,
-    });
-  }
-  return h;
-});
+      correctHeatMap,
+      incorrectHeatMap,
+    };
+  }),
+);
 </script>
 
 <template>
@@ -193,11 +166,11 @@ const heatMapData = computed(() => {
             gap-1 mb-2
           >
             <Tooltip
-              v-for="(acItem, index) in heatMap.acHeatMap" :key="`ac-${index}`"
+              v-for="(corretcItem, index) in heatMap.correctHeatMap" :key="`ac-${index}`"
               w-inherit
             >
               <div
-                :data-level="acItem.level"
+                :data-level="corretcItem.level"
                 class="accept-heat"
                 size-12px
                 rounded-1
@@ -209,7 +182,7 @@ const heatMapData = computed(() => {
                   flex
                 >
                   <div>
-                    {{ acItem.description }}
+                    {{ corretcItem.description }}
                   </div>
                 </div>
               </template>
@@ -221,11 +194,11 @@ const heatMapData = computed(() => {
             gap-1
           >
             <Tooltip
-              v-for="(waItem, index) in heatMap.waHeatMap" :key="`wa-${index}`"
+              v-for="(incorrectItem, index) in heatMap.incorrectHeatMap" :key="`wa-${index}`"
               w-inherit
             >
               <div
-                :data-level="waItem.level"
+                :data-level="incorrectItem.level"
                 class="rejected-heat"
                 size-12px
                 rounded-1
@@ -237,7 +210,7 @@ const heatMapData = computed(() => {
                   flex
                 >
                   <div>
-                    {{ waItem.description }}
+                    {{ incorrectItem.description }}
                   </div>
                 </div>
               </template>
