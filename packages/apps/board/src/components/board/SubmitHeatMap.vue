@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import type { Rank } from "@xcpcio/core";
-import { SubmissionStatus } from "@xcpcio/types";
+import { isAccepted, isRejected, type Rank } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
@@ -16,22 +15,6 @@ const endTime = rank.value.contest.getEndTime();
 const totalDuration = endTime.diff(startTime, "minute");
 const intervalSize = totalDuration / mapTimeDiffLength;
 
-const correctStatus = [
-  SubmissionStatus.ACCEPTED,
-  SubmissionStatus.CORRECT,
-];
-
-const incorrectStatus = [
-  SubmissionStatus.REJECTED,
-  SubmissionStatus.WRONG_ANSWER,
-  SubmissionStatus.PARTIALLY_CORRECT,
-  SubmissionStatus.PRESENTATION_ERROR,
-  SubmissionStatus.MEMORY_LIMIT_EXCEEDED,
-  SubmissionStatus.TIME_LIMIT_EXCEEDED,
-  SubmissionStatus.OUTPUT_LIMIT_EXCEEDED,
-  SubmissionStatus.RUNTIME_ERROR,
-];
-
 const submissions = computed(() => rank.value.getSubmissions());
 
 const intervalDescriptions = Array.from({ length: mapTimeDiffLength }, (_, index) => {
@@ -44,7 +27,7 @@ const submissionsByProblemId = computed(() => {
   const result = new Map();
 
   rank.value.contest.problems.forEach((p) => {
-    result.set(p.id, { accepted: [], rejected: [] });
+    result.set(p.id, { correct: [], incorrect: [] });
   });
 
   submissions.value.forEach((s) => {
@@ -53,10 +36,10 @@ const submissionsByProblemId = computed(() => {
       return;
     }
 
-    if (correctStatus.includes(s.status)) {
-      entry.accepted.push(s);
-    } else if (incorrectStatus.includes(s.status)) {
-      entry.rejected.push(s);
+    if (isAccepted(s.status)) {
+      entry.correct.push(s);
+    } else if (isRejected(s.status)) {
+      entry.incorrect.push(s);
     }
   });
 
@@ -101,10 +84,10 @@ function getHeatLevel(thresholds: number[], count: number) {
 
 const heatMapData = computed(() =>
   rank.value.contest.problems.map((p) => {
-    const { accepted, rejected } = submissionsByProblemId.value.get(p.id)!;
+    const { correct, incorrect } = submissionsByProblemId.value.get(p.id)!;
 
-    const correctHeatMap = generateHeatMap(accepted, "correct");
-    const incorrectHeatMap = generateHeatMap(rejected, "incorrect");
+    const correctHeatMap = generateHeatMap(correct, "correct");
+    const incorrectHeatMap = generateHeatMap(incorrect, "incorrect");
 
     const correctThresholds = calculateThresholds(correctHeatMap.map(i => i.count));
     const incorrectThresholds = calculateThresholds(incorrectHeatMap.map(i => i.count));
@@ -113,7 +96,6 @@ const heatMapData = computed(() =>
     incorrectHeatMap.forEach(i => i.level = getHeatLevel(incorrectThresholds, i.count));
 
     return {
-      id: p.id,
       label: p.label,
       balloonColor: p.balloonColor,
       correctHeatMap,
@@ -166,7 +148,7 @@ const heatMapData = computed(() =>
             gap-1 mb-2
           >
             <Tooltip
-              v-for="(corretcItem, index) in heatMap.correctHeatMap" :key="`ac-${index}`"
+              v-for="(corretcItem, index) in heatMap.correctHeatMap" :key="`correct-${index}`"
               w-inherit
             >
               <div
@@ -194,7 +176,7 @@ const heatMapData = computed(() =>
             gap-1
           >
             <Tooltip
-              v-for="(incorrectItem, index) in heatMap.incorrectHeatMap" :key="`wa-${index}`"
+              v-for="(incorrectItem, index) in heatMap.incorrectHeatMap" :key="`incorrect-${index}`"
               w-inherit
             >
               <div
