@@ -153,7 +153,7 @@ const heatMapData = computed(() =>
             >
               <div
                 :data-level="corretcItem.level"
-                class="accept-heat"
+                class="correct-heat"
                 size-12px
                 rounded-1
                 shadow
@@ -181,7 +181,7 @@ const heatMapData = computed(() =>
             >
               <div
                 :data-level="incorrectItem.level"
-                class="rejected-heat"
+                class="incorrect-heat"
                 size-12px
                 rounded-1
                 shadow
