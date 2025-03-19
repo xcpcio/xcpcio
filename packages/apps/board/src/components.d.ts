@@ -29,6 +29,7 @@ declare module 'vue' {
     GiantsScoreBoard: typeof import('./components/battle-of-giants/GiantsScoreBoard.vue')['default']
     GirlIcon: typeof import('./components/icon/GirlIcon.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
+    HeatMapTooltip: typeof import('./components/board/HeatMapTooltip.vue')['default']
     Modal: typeof import('./components/board/Modal.vue')['default']
     ModalMenu: typeof import('./components/board/ModalMenu.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
