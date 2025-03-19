@@ -131,7 +131,7 @@ const heatMapData = computed(() =>
         shadow
       >
         <div
-          mb-3
+          mb-1
           size-30px
           flex
           justify-center items-center
@@ -142,17 +142,20 @@ const heatMapData = computed(() =>
             {{ heatMap.label }}
           </span>
         </div>
-        <div>
+
+        <div
+          flex flex-row
+          gap-1
+        >
           <div
-            flex flex-row
-            gap-1 mb-2
+            v-for="(correctItem, index) in heatMap.correctHeatMap" :key="`correct-${index}`"
           >
-            <Tooltip
-              v-for="(corretcItem, index) in heatMap.correctHeatMap" :key="`correct-${index}`"
-              w-inherit
+            <HeatMapTooltip
+              :content="correctItem.description"
+              position="top"
             >
               <div
-                :data-level="corretcItem.level"
+                :data-level="correctItem.level"
                 class="correct-heat"
                 size-12px
                 rounded-1
@@ -164,20 +167,24 @@ const heatMapData = computed(() =>
                   flex
                 >
                   <div>
-                    {{ corretcItem.description }}
+                    {{ correctItem.description }}
                   </div>
                 </div>
               </template>
-            </Tooltip>
+            </HeatMapTooltip>
           </div>
+        </div>
 
+        <div
+          flex flex-row
+          gap-1
+        >
           <div
-            flex flex-row
-            gap-1
+            v-for="(incorrectItem, index) in heatMap.incorrectHeatMap" :key="`incorrect-${index}`"
           >
-            <Tooltip
-              v-for="(incorrectItem, index) in heatMap.incorrectHeatMap" :key="`incorrect-${index}`"
-              w-inherit
+            <HeatMapTooltip
+              :content="incorrectItem.description"
+              position="top"
             >
               <div
                 :data-level="incorrectItem.level"
@@ -196,7 +203,7 @@ const heatMapData = computed(() =>
                   </div>
                 </div>
               </template>
-            </Tooltip>
+            </HeatMapTooltip>
           </div>
         </div>
       </div>
