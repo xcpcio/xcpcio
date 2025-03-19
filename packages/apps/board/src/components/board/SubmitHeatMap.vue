@@ -61,25 +61,49 @@ function generateHeatMap(submissions: Map<any, any>, type: "correct" | "incorrec
   }));
 }
 
-function calculateThresholds(counts: number[]) {
-  const sorted = [...counts].sort((a, b) => b - a);
+function calcPreciseQuan(sortedValues: number[], p: number): number {
+  if (sortedValues.length === 0) {
+    return 0;
+  }
+
+  const position = (sortedValues.length - 1) * p;
+  const index = Math.floor(position);
+  const fraction = position - index;
+
+  if (sortedValues[index + 1] !== undefined) {
+    return sortedValues[index] + fraction * (sortedValues[index + 1] - sortedValues[index]);
+  }
+
+  return sortedValues[index];
+}
+
+function calcStaticThresholds(counts: number[]) {
+  const nonZeroCounts = counts.filter(c => c > 0);
+
+  if (nonZeroCounts.length === 0) {
+    return [0, 0, 0, 0, 0];
+  }
+
+  const sorted = [...nonZeroCounts].sort((a, b) => a - b);
+
   return [
     0,
-    sorted[Math.floor(mapTimeDiffLength * 0.2)] || 0,
-    sorted[Math.floor(mapTimeDiffLength * 0.4)] || 0,
-    sorted[Math.floor(mapTimeDiffLength * 0.6)] || 0,
-    sorted[Math.floor(mapTimeDiffLength * 0.8)] || 0,
+    calcPreciseQuan(sorted, 0.2),
+    calcPreciseQuan(sorted, 0.4),
+    calcPreciseQuan(sorted, 0.6),
+    calcPreciseQuan(sorted, 0.8),
   ];
 }
 
-function getHeatLevel(thresholds: number[], count: number) {
-  return count <= thresholds[0]
-    ? 0
-    : count <= thresholds[1]
-      ? 1
-      : count <= thresholds[2]
-        ? 2
-        : count <= thresholds[3] ? 3 : 4;
+function getDynamicHeatLevel(value: number, thresholds: number[]): number {
+  for (let i = thresholds.length - 1; i >= 0; i--) {
+    if (value === 0) {
+      return 0;
+    } else if (value >= thresholds[i]) {
+      return i;
+    }
+  }
+  return 0;
 }
 
 const heatMapData = computed(() =>
@@ -89,11 +113,14 @@ const heatMapData = computed(() =>
     const correctHeatMap = generateHeatMap(correct, "correct");
     const incorrectHeatMap = generateHeatMap(incorrect, "incorrect");
 
-    const correctThresholds = calculateThresholds(correctHeatMap.map(i => i.count));
-    const incorrectThresholds = calculateThresholds(incorrectHeatMap.map(i => i.count));
+    const correctCounts = correctHeatMap.map(i => i.count);
+    const correctThresholds = calcStaticThresholds(correctCounts);
 
-    correctHeatMap.forEach(i => i.level = getHeatLevel(correctThresholds, i.count));
-    incorrectHeatMap.forEach(i => i.level = getHeatLevel(incorrectThresholds, i.count));
+    const incorrectCounts = incorrectHeatMap.map(i => i.count);
+    const incorrectThresholds = calcStaticThresholds(incorrectCounts);
+
+    correctHeatMap.forEach(i => i.level = getDynamicHeatLevel(i.count, correctThresholds));
+    incorrectHeatMap.forEach(i => i.level = getDynamicHeatLevel(i.count, incorrectThresholds));
 
     return {
       label: p.label,
