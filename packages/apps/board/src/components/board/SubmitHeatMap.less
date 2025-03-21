@@ -1,0 +1,13 @@
+@correct-colors: #9be9a8, #40c463, #30a14e, #216e39;
+@incorrect-colors: #ff8c8c, #ff4d4f, #ff1a1a, #d40d0d;
+
+.generate-heat-rules(@class, @colors) {
+  each(@colors, {
+    .@{class}[data-level="@{index}"] {
+      background-color: @value;
+    }
+  });
+}
+
+.generate-heat-rules(correct-heat, @correct-colors);
+.generate-heat-rules(incorrect-heat, @incorrect-colors);
