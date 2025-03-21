@@ -189,15 +189,6 @@ const heatMapData = computed(() =>
                 shadow
                 border border-gray-100 dark:border-gray-600
               />
-              <template #popper>
-                <div
-                  flex
-                >
-                  <div>
-                    {{ correctItem.description }}
-                  </div>
-                </div>
-              </template>
             </HeatMapTooltip>
           </div>
         </div>
@@ -221,15 +212,6 @@ const heatMapData = computed(() =>
                 shadow
                 border border-gray-100 dark:border-gray-600
               />
-              <template #popper>
-                <div
-                  flex
-                >
-                  <div>
-                    {{ incorrectItem.description }}
-                  </div>
-                </div>
-              </template>
             </HeatMapTooltip>
           </div>
         </div>
