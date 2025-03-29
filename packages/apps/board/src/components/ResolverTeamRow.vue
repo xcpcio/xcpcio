@@ -49,20 +49,12 @@ function showTeamName(team: Team) {
       <div
         flex flex-1 flex-col justify-center items-start gap-y-3
       >
-        <Tooltip>
-          <div
-            class="resolver-team-name"
-            truncate overflow-hidden
-          >
-            {{ showTeamName(team) }}
-          </div>
-          <template #popper>
-            <div>
-              {{ showTeamName(team) }}
-            </div>
-          </template>
-        </Tooltip>
-
+        <div
+          class="resolver-team-name"
+          truncate overflow-hidden
+        >
+          {{ showTeamName(team) }}
+        </div>
         <div
           flex flex-row text-sm items-start gap-x-2
         >

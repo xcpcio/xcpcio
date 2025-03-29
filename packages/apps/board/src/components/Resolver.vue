@@ -90,7 +90,7 @@ onMounted(() => {
       const clientHeight = resolverRef.value.clientHeight;
 
       gsap.to(resolverRef.value, {
-        duration: Math.round(resolver.value.teams.length * 0.5),
+        duration: Math.round(resolver.value.teams.length * 0.2),
         scrollTop: scrollHeight - clientHeight,
         ease: "power1.inOut",
         onComplete: () => {
