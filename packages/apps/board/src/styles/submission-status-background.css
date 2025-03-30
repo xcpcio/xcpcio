@@ -26,7 +26,6 @@
   background-color: var(--theme-status-pending);
 }
 
-
 .ACCEPTED {
   background-color: var(--theme-status-accepted);
 }
@@ -38,7 +37,6 @@
 .PARTIALLY_CORRECT {
   background-color: var(--theme-status-partially-correct);
 }
-
 
 .REJECTED {
   background-color: var(--theme-status-wrong-answer);
@@ -52,7 +50,6 @@
   background-color: var(--theme-status-wrong-answer);
 }
 
-
 .COMPILATION_ERROR {
   background-color: var(--theme-status-compilation-error);
 }
@@ -60,7 +57,6 @@
 .PRESENTATION_ERROR {
   background-color: var(--theme-status-compilation-error);
 }
-
 
 .RUNTIME_ERROR {
   background-color: var(--theme-status-runtime-error);

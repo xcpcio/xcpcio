@@ -1,13 +1,14 @@
 import type { SubmissionStatus } from "@xcpcio/types";
+import type { Balloons } from "./balloon";
 import type { SelectOptionItem } from "./basic-types";
 import type { Contest } from "./contest";
 import type { Submissions } from "./submission";
+
 import type { Teams } from "./team";
 
 import _ from "lodash";
-
 import { Award, MedalType } from "./award";
-import { Balloon, type Balloons } from "./balloon";
+import { Balloon } from "./balloon";
 import { BattleOfGiants } from "./battle-of-giants";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";

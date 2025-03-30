@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { isAccepted, isRejected, type Rank } from "@xcpcio/core";
+import type { Rank } from "@xcpcio/core";
+import { isAccepted, isRejected } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
