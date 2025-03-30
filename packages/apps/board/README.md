@@ -9,8 +9,8 @@
 
 ## Preview
 
-* [board.xcpcio.com](https://board.xcpcio.com)
-* [board-xcpcio.vercel.app](https://board-xcpcio.vercel.app/)
+- [board.xcpcio.com](https://board.xcpcio.com)
+- [board-xcpcio.vercel.app](https://board-xcpcio.vercel.app/)
 
 ## Development
 
@@ -26,7 +26,7 @@ pnpm dev
 
 [MIT](../../../LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
 
-## :clap:  Our Supporters
+## :clap: Our Supporters
 
 ### &#8627; Sponsors
 

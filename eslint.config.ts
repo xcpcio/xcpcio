@@ -1,10 +1,12 @@
-const antfu = require("@antfu/eslint-config").default;
+import antfu from "@antfu/eslint-config";
 
-module.exports = antfu(
+export default antfu(
   {
     vue: true,
-    html: true,
     yaml: true,
+    unocss: true,
+    formatters: true,
+    pnpm: true,
     typescript: true,
     stylistic: {
       indent: 2,
@@ -27,8 +29,8 @@ module.exports = antfu(
       "curly": ["error", "all"],
       "no-lone-blocks": "off",
       "style/brace-style": ["error", "1tbs"],
-      "@unocss/order": "off",
-      "@unocss/order-attributify": "off",
+      "unocss/order": "off",
+      "unocss/order-attributify": "off",
     },
   },
 );

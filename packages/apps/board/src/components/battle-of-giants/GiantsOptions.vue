@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type Giants, GiantsType, type Rank, type SelectOptionItem } from "@xcpcio/core";
+import type { Giants, Rank, SelectOptionItem } from "@xcpcio/core";
+import { GiantsType } from "@xcpcio/core";
 import { MultiSelect } from "vue-search-select";
 
 const props = defineProps<{

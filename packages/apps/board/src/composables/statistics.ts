@@ -1,4 +1,5 @@
-import { getTimeDiff, type Rank, type Team } from "@xcpcio/core";
+import type { Rank, Team } from "@xcpcio/core";
+import { getTimeDiff } from "@xcpcio/core";
 
 function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any) {
   return {

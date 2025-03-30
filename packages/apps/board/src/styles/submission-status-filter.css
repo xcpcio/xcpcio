@@ -26,7 +26,6 @@
   color: var(--theme-status-pending) !important;
 }
 
-
 .item[data-vss-custom-attr="ACCEPTED"] {
   color: var(--theme-status-accepted) !important;
 }
@@ -38,7 +37,6 @@
 .item[data-vss-custom-attr="PARTIALLY_CORRECT"] {
   color: var(--theme-status-partially-correct) !important;
 }
-
 
 .item[data-vss-custom-attr="REJECTED"] {
   color: var(--theme-status-wrong-answer) !important;
@@ -52,7 +50,6 @@
   color: var(--theme-status-wrong-answer) !important;
 }
 
-
 .item[data-vss-custom-attr="COMPILATION_ERROR"] {
   color: var(--theme-status-compilation-error) !important;
 }
@@ -60,7 +57,6 @@
 .item[data-vss-custom-attr="PRESENTATION_ERROR"] {
   color: var(--theme-status-compilation-error) !important;
 }
-
 
 .item[data-vss-custom-attr="RUNTIME_ERROR"] {
   color: var(--theme-status-runtime-error) !important;

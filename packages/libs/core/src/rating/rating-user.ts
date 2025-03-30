@@ -1,8 +1,9 @@
 import type { IRatingUser } from "@xcpcio/types";
 
 import type { Persons } from "../person";
+import type { RatingHistories } from "./rating-history";
 import { Person } from "../person";
-import { type RatingHistories, RatingHistory } from "./rating-history";
+import { RatingHistory } from "./rating-history";
 
 export class RatingUser {
   id: string;

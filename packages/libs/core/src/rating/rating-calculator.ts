@@ -68,7 +68,7 @@ export class RatingCalculator {
       u.delta = Math.floor(
         (this.calcRating(this.users, Math.sqrt(u.rank * u.seed), u)
           - u.oldRating)
-          / 2,
+        / 2,
       );
       sumDelta += u.delta;
     }

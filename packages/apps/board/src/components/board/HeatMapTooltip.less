@@ -12,7 +12,9 @@
   text-align: center;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition:
+    opacity 0.3s,
+    visibility 0.3s;
   white-space: nowrap;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   pointer-events: none;
@@ -29,7 +31,7 @@
 }
 
 .tooltip::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 0;

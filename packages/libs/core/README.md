@@ -11,7 +11,7 @@
 
 [MIT](../../../LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
 
-## :clap:  Our Supporters
+## :clap: Our Supporters
 
 ### &#8627; Sponsors
 

@@ -1,133 +1,126 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-  <link rel="apple-touch-icon" href="/balloon-192x192.png">
-  <link rel="mask-icon" href="/balloon-512x512.svg" color="#00aba9">
-  <meta name="msapplication-TileColor" content="#00aba9">
-  <script>
-    function normalizePath(path) {
-      while (path.endsWith("/")) {
-        path = path.slice(0, -1);
-      }
-      return `${path}/`;
-    }
-
-    {
-      let CDN_HOST = "__CDN_HOST__";
-      CDN_HOST = normalizePath(CDN_HOST);
-      window.CDN_HOST = CDN_HOST;
-      window.__toAssetUrl = url => window.CDN_HOST + url
-    }
-
-    try {
-      let DATA_HOST = __DATA_HOST__;
-      DATA_HOST = normalizePath(DATA_HOST);
-      window.DATA_HOST = DATA_HOST;
-    } catch (e) {
-      window.DATA_HOST = "/data/";
-    }
-
-    try {
-      let DATA_REGION = __DATA_REGION__;
-      window.DATA_REGION = DATA_REGION;
-    } catch (e) {
-      window.DATA_REGION = "CN";
-    }
-
-    try {
-      let DEFAULT_LANG = __DEFAULT_LANG__;
-      window.DEFAULT_LANG = DEFAULT_LANG;
-    } catch (e) {
-      window.DEFAULT_LANG = "en";
-    }
-  </script>
-  <script>
-    (function () {
-      if (!localStorage.getItem("vueuse-color-scheme")) {
-        localStorage.setItem("vueuse-color-scheme", "light");
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <link rel="apple-touch-icon" href="/balloon-192x192.png" />
+    <link rel="mask-icon" href="/balloon-512x512.svg" color="#00aba9" />
+    <meta name="msapplication-TileColor" content="#00aba9" />
+    <script>
+      function normalizePath(path) {
+        while (path.endsWith("/")) {
+          path = path.slice(0, -1);
+        }
+        return `${path}/`;
       }
 
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const setting = localStorage.getItem("vueuse-color-scheme") || "auto";
-      if (setting === "dark" || (prefersDark && setting !== "light")) {
-        document.documentElement.classList.toggle("dark", true);
+      {
+        let CDN_HOST = "__CDN_HOST__";
+        CDN_HOST = normalizePath(CDN_HOST);
+        window.CDN_HOST = CDN_HOST;
+        window.__toAssetUrl = (url) => window.CDN_HOST + url;
       }
-    })();
-  </script>
-</head>
-<body class="font-sans">
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
-  <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
-  <script>
-    try {
+
+      try {
+        let DATA_HOST = __DATA_HOST__;
+        DATA_HOST = normalizePath(DATA_HOST);
+        window.DATA_HOST = DATA_HOST;
+      } catch (e) {
+        window.DATA_HOST = "/data/";
+      }
+
+      try {
+        let DATA_REGION = __DATA_REGION__;
+        window.DATA_REGION = DATA_REGION;
+      } catch (e) {
+        window.DATA_REGION = "CN";
+      }
+
+      try {
+        let DEFAULT_LANG = __DEFAULT_LANG__;
+        window.DEFAULT_LANG = DEFAULT_LANG;
+      } catch (e) {
+        window.DEFAULT_LANG = "en";
+      }
+    </script>
+    <script>
+      (function () {
+        if (!localStorage.getItem("vueuse-color-scheme")) {
+          localStorage.setItem("vueuse-color-scheme", "light");
+        }
+
+        const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const setting = localStorage.getItem("vueuse-color-scheme") || "auto";
+        if (setting === "dark" || (prefersDark && setting !== "light")) {
+          document.documentElement.classList.toggle("dark", true);
+        }
+      })();
+    </script>
+  </head>
+  <body class="font-sans">
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+    <script>
+      try {
         var umamiJSUrl = __UMAMI_JS_URL__;
         var umamiWebsiteId = __UMAMI_WEBSITE_ID__;
         (function () {
-            var script = document.createElement("script");
-            script.src = umamiJSUrl;
-            script.defer = true;
-            script.setAttribute("data-website-id", umamiWebsiteId);
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(script, s);
+          var script = document.createElement("script");
+          script.src = umamiJSUrl;
+          script.defer = true;
+          script.setAttribute("data-website-id", umamiWebsiteId);
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(script, s);
         })();
-    } catch (e) {}
+      } catch (e) {}
 
-    try {
+      try {
         var plausibleJSUrl = __PLAUSIBLE_JS_URL__;
         var plausibleDataDomain = __PLAUSIBLE_DATA_DOMAIN__;
         (function () {
-            var script = document.createElement("script");
-            script.src = plausibleJSUrl;
-            script.defer = true;
-            script.setAttribute("data-domain", plausibleDataDomain);
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(script, s);
+          var script = document.createElement("script");
+          script.src = plausibleJSUrl;
+          script.defer = true;
+          script.setAttribute("data-domain", plausibleDataDomain);
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(script, s);
         })();
-    } catch (e) {}
+      } catch (e) {}
 
-    try {
+      try {
         var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
         var _hmt = _hmt || [];
         (function () {
-            var hm = document.createElement("script");
-            hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
+          var hm = document.createElement("script");
+          hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
         })();
-    } catch (e) {}
+      } catch (e) {}
 
-    try {
+      try {
         var googleAnalyticsId = __GOOGLE_ANALYTICS_ID__;
         (function () {
-            if (!location.port) {
-                (function (i, s, o, g, r, a, m) {
-                    i["GoogleAnalyticsObject"] = r;
-                    (i[r] =
-                    i[r] ||
-                    function () {
-                        (i[r].q = i[r].q || []).push(arguments);
-                    }),
-                    (i[r].l = 1 * new Date());
-                    (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-                    a.async = 1;
-                    a.src = g;
-                    m.parentNode.insertBefore(a, m);
-                })(
-                    window,
-                    document,
-                    "script",
-                    "//www.google-analytics.com/analytics.js",
-                    "ga"
-                );
-                ga("create", `${googleAnalyticsId}`, "auto");
-                ga("send", "pageview");
-            }
+          if (!location.port) {
+            (function (i, s, o, g, r, a, m) {
+              i["GoogleAnalyticsObject"] = r;
+              (i[r] =
+                i[r] ||
+                function () {
+                  (i[r].q = i[r].q || []).push(arguments);
+                }),
+                (i[r].l = 1 * new Date());
+              (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
+              a.async = 1;
+              a.src = g;
+              m.parentNode.insertBefore(a, m);
+            })(window, document, "script", "//www.google-analytics.com/analytics.js", "ga");
+            ga("create", `${googleAnalyticsId}`, "auto");
+            ga("send", "pageview");
+          }
         })();
-    } catch (e) {}
-  </script>
-
-</body>
+      } catch (e) {}
+    </script>
+  </body>
 </html>
