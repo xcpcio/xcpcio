@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { SubmissionStatusToSimpleString } from "@xcpcio/types";
-
-import { getMedalColor } from "~/composables/color";
 import type { AnimatedSubmissionBlockItem } from "~/composables/type";
+
+import { SubmissionStatusToSimpleString } from "@xcpcio/types";
+import { getMedalColor } from "~/composables/color";
 import { LastBlockDisplayType } from "~/composables/type";
 
 const props = defineProps<{

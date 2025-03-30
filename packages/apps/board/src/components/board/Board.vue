@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
-import { useRouteQuery } from "@vueuse/router";
-
-import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
-import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
-
-import _ from "lodash";
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
+import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
+
+import { useRouteQuery } from "@vueuse/router";
+import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
+
+import { ContestState, type Contest as IContest, type Submissions as ISubmissions, type Teams as ITeams } from "@xcpcio/types";
+import _ from "lodash";
 
 import { TITLE_SUFFIX } from "~/composables/constant";
 

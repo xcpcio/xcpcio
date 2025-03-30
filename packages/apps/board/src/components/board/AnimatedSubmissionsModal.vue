@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
-import { Submission } from "@xcpcio/core";
-
 import type { AnimatedSubmissionBlockItem } from "~/composables/type";
+
+import { Submission } from "@xcpcio/core";
 import { LastBlockDisplayType } from "~/composables/type";
 
 const props = defineProps<{

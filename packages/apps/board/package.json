@@ -97,7 +97,7 @@
     "markdown-it-link-attributes": "^4.0.1",
     "rollup": "^4.38.0",
     "shiki": "^1.29.2",
-    "taze": "^0.17.2",
+    "taze": "^19.0.4",
     "typescript": "^5.8.2",
     "unocss": "^0.63.6",
     "unplugin-auto-import": "^0.18.6",
