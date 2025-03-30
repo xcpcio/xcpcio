@@ -7,16 +7,6 @@
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
 
-## Packages
-
-- [apps](./packages/apps/)
-  - [docs](./packages/apps/docs/README.md)
-  - [board](./packages/apps/board/README.md)
-  - [resolver](./packages/apps/resolver/README.md)
-- [libs](./packages/libs/)
-  - [types](./packages/libs/types/README.md)
-  - [core](./packages/libs/core/README.md)
-
 ## Development
 
 ```bash
