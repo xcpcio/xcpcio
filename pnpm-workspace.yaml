@@ -1,44 +1,44 @@
 packages:
   - "packages/**/*"
 catalog:
-  "@antfu/eslint-config": ^4.11.0
+  "@antfu/eslint-config": ^4.12.0
   "@antfu/ni": ^24.3.0
   "@babel/types": ^7.27.0
-  "@iconify/json": ^2.2.321
+  "@iconify/json": ^2.2.326
   "@intlify/unplugin-vue-i18n": ^6.0.5
-  "@shikijs/markdown-it": ^3.2.1
-  "@tanstack/vue-query": ^5.70.0
+  "@shikijs/markdown-it": ^3.2.2
+  "@tanstack/vue-query": ^5.73.0
   "@types/chroma-js": ^3.1.1
   "@types/color-diff": ^1.2.5
   "@types/file-saver": ^2.0.7
   "@types/glob": ^8.1.0
   "@types/lodash": ^4.17.16
   "@types/markdown-it-link-attributes": ^3.0.5
-  "@types/node": ^18.19.84
+  "@types/node": ^18.19.86
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.3.15
-  "@typescript-eslint/eslint-plugin": ^8.28.0
-  "@typescript-eslint/parser": ^8.28.0
-  "@unhead/vue": ^2.0.2
-  "@unocss/eslint-config": ^66.1.0-beta.7
-  "@unocss/reset": ^66.1.0-beta.7
+  "@typescript-eslint/eslint-plugin": ^8.29.1
+  "@typescript-eslint/parser": ^8.29.1
+  "@unhead/vue": ^2.0.5
+  "@unocss/eslint-config": ^66.1.0-beta.11
+  "@unocss/reset": ^66.1.0-beta.11
   "@vitejs/plugin-vue": ^5.2.3
-  "@vue-macros/volar": ^3.0.0-beta.7
+  "@vue-macros/volar": ^3.0.0-beta.8
   "@vue/test-utils": ^2.4.6
-  "@vueuse/components": ^13.0.0
-  "@vueuse/core": ^13.0.0
+  "@vueuse/components": ^13.1.0
+  "@vueuse/core": ^13.1.0
   "@vueuse/head": ^2.0.0
-  "@vueuse/router": ^13.0.0
+  "@vueuse/router": ^13.1.0
   bumpp: ^10.1.0
   chroma-js: ^3.1.2
   color-diff: ^1.4.0
   critters: ^0.0.25
   cross-env: ^7.0.3
-  cypress: ^14.2.1
+  cypress: ^14.3.0
   cypress-vite: ^1.6.0
   dayjs: ^1.11.13
-  eslint: ^9.23.0
-  eslint-plugin-cypress: ^4.2.0
+  eslint: ^9.24.0
+  eslint-plugin-cypress: ^4.2.1
   eslint-plugin-format: ^1.0.1
   esmo: ^4.8.0
   file-saver: ^2.0.5
@@ -48,33 +48,33 @@ catalog:
   git-repo-info: ^2.1.1
   glob: ^11.0.1
   gsap: ^3.12.7
-  highcharts: ^12.1.2
+  highcharts: ^12.2.0
   highcharts-vue: ^2.0.1
   https-localhost: ^4.7.1
   js-base64: ^3.7.7
-  less: ^4.2.2
+  less: ^4.3.0
   lodash: ^4.17.21
   markdown-it-link-attributes: ^4.0.1
   npm-run-all: ^4.1.5
   nprogress: ^0.2.0
   ordinal: ^1.0.3
   papaparse: ^5.5.2
-  pinia: ^3.0.1
-  pnpm: ^10.7.0
-  rollup: ^4.38.0
-  shiki: ^3.2.1
+  pinia: ^3.0.2
+  pnpm: ^10.8.0
+  rollup: ^4.39.0
+  shiki: ^3.2.2
   sleep-promise: ^9.1.0
   string-width: ^7.2.0
   taze: ^19.0.4
-  typescript: ^5.8.2
+  typescript: ^5.8.3
   unbuild: ^3.5.0
-  unocss: ^66.1.0-beta.7
+  unocss: ^66.1.0-beta.11
   unplugin-auto-import: ^19.1.2
   unplugin-vue-components: ^28.4.1
   unplugin-vue-macros: ^2.14.5
   unplugin-vue-markdown: ^28.3.1
   unplugin-vue-router: ^0.12.0
-  vite: ^6.2.3
+  vite: ^6.2.6
   vite-bundle-visualizer: ^1.2.1
   vite-plugin-html: ^3.2.2
   vite-plugin-inspect: ^11.0.0
@@ -84,10 +84,10 @@ catalog:
   vite-plugin-webfont-dl: ^3.10.4
   vite-ssg: ^26.1.1
   vite-ssg-sitemap: ^0.8.1
-  vitest: ^3.0.9
+  vitest: ^3.1.1
   vue: ^3.5.13
   vue-demi: ^0.14.10
-  vue-i18n: ^11.1.2
+  vue-i18n: ^11.1.3
   vue-router: ^4.5.0
   vue-search-select: ^3.2.0
   vue-toast-notification: ^3.1.3
@@ -95,4 +95,4 @@ catalog:
   workbox-build: ^7.3.0
   workbox-window: ^7.3.0
   xlsx-js-style: ^1.2.0
-  zx: ^8.4.1
+  zx: ^8.5.2
