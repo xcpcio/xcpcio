@@ -6,8 +6,23 @@ import * as XLSX from "xlsx-js-style";
 
 import { isValidMedalType } from "../award";
 
+enum SpecialCellType {
+  FIRST_SOLVED = "firstSolved",
+}
+
+interface SpecialCell {
+  row: number;
+  col: number;
+  type: SpecialCellType;
+}
+
+interface AoaConvertResult {
+  aoa: string[][];
+  specialCells: SpecialCell[];
+}
+
 export class GeneralExcelConverter {
-  constructor() {}
+  constructor() { }
 
   public convert(oriRank: Rank): XLSX.WorkBook {
     const rank = _.cloneDeep(oriRank);
@@ -40,14 +55,14 @@ export class GeneralExcelConverter {
 
   private convertToSheet(rank: Rank): XLSX.WorkSheet {
     const aoa = this.convertToAoa(rank);
-    const sheet = XLSX.utils.aoa_to_sheet(aoa);
+    const sheet = XLSX.utils.aoa_to_sheet(aoa.aoa);
 
     const cols = [];
-    const head = aoa[1];
+    const head = aoa.aoa[1];
     for (let j = 0; j < head.length; j++) {
       let wch = 10;
-      for (let i = 1; i < aoa.length; i++) {
-        wch = Math.max(wch, stringWidth(aoa[i][j]) + 2);
+      for (let i = 1; i < aoa.aoa.length; i++) {
+        wch = Math.max(wch, stringWidth(aoa.aoa[i][j]) + 2);
       }
 
       cols.push({
@@ -88,11 +103,23 @@ export class GeneralExcelConverter {
       font,
     };
 
-    for (let i = 1; i < aoa.length; i++) {
-      for (let j = 0; j < aoa[i].length; j++) {
+    const firstSolvedCellStyle = {
+      ...cellStyle,
+      fill: {
+        fgColor: { rgb: "009900" },
+      },
+    };
+
+    for (let i = 1; i < aoa.aoa.length; i++) {
+      for (let j = 0; j < aoa.aoa[i].length; j++) {
         const cellAddress = XLSX.utils.encode_cell({ r: i, c: j });
         const cell = sheet[cellAddress];
-        cell.s = cellStyle;
+        const specialCell = aoa.specialCells.find(sc => sc.row === i && sc.col === j);
+        if (specialCell?.type === SpecialCellType.FIRST_SOLVED) {
+          cell.s = firstSolvedCellStyle;
+        } else {
+          cell.s = cellStyle;
+        }
       }
     }
 
@@ -108,8 +135,9 @@ export class GeneralExcelConverter {
     return sheet;
   }
 
-  private convertToAoa(rank: Rank): string[][] {
+  private convertToAoa(rank: Rank): AoaConvertResult {
     const aoa: string[][] = [];
+    const specialCells: SpecialCell[] = [];
 
     const enableAwards = rank.contest.isEnableAwards(rank.options.group);
     const enableMembers = (Array.isArray(rank.teams) && rank.teams[0]?.members) ?? false;
@@ -152,6 +180,7 @@ export class GeneralExcelConverter {
       const arr: string[] = [];
 
       arr.push(team.rank.toString());
+
       if (team.organization) {
         if (team.organizationRank !== -1) {
           arr.push(team.organizationRank.toString());
@@ -171,6 +200,13 @@ export class GeneralExcelConverter {
 
         if (p.isSolved) {
           arr.push(`+${p.totalCount}(${p.solvedTimestampToMinute})`);
+          if (p.isFirstSolved) {
+            specialCells.push({
+              row: aoa.length,
+              col: arr.length - 1,
+              type: SpecialCellType.FIRST_SOLVED,
+            });
+          }
         }
 
         if (p.isWrongAnswer) {
@@ -216,6 +252,6 @@ export class GeneralExcelConverter {
       aoa.push(arr);
     }
 
-    return aoa;
+    return { aoa, specialCells };
   }
 }
