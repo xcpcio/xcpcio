@@ -239,6 +239,15 @@ function clearAutoScrollInterval() {
 }
 
 onKeyStroke("S", (_e) => {
+  if (!isHiddenOptionsModal.value) {
+    return;
+  }
+
+  const activeElement = document.activeElement;
+  if (activeElement?.matches("input, textarea, select, [contenteditable]")) {
+    return;
+  }
+
   enableAutoScroll.value = !enableAutoScroll.value;
 
   if (enableAutoScroll.value === true) {
