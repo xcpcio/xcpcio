@@ -7,19 +7,19 @@ on:
       - "v*"
 
 env:
-  node-version: 18.x
+  node-version: 20.x
 
 jobs:
   release-github-packages:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: ${{ env.node-version }}
 
@@ -31,9 +31,9 @@ jobs:
   release-docker-image-and-npm:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ env.node-version }}
           registry-url: https://registry.npmjs.org/

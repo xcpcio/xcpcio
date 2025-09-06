@@ -68,7 +68,7 @@ function startDrag(event: MouseEvent) {
     barLeft = Math.min(barLeft, scroll.value.offsetWidth - bar.value.offsetWidth);
 
     const maskWidth
-            = scroll.value.offsetWidth * Number.parseInt(mask.value.style?.width) * 0.01;
+      = scroll.value.offsetWidth * Number.parseInt(mask.value.style?.width) * 0.01;
 
     // When dragging beyond the current time bar,
     // then automatic updating resumes
