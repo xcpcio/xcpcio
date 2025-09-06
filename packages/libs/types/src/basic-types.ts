@@ -31,12 +31,12 @@ export type ColorRGBA = string;
 /** General color format. */
 export type Color = ColorHEX | ColorRGB | ColorRGBA;
 
-export type ThemeColor =
-  | Color
-  | {
-    light: Color;
-    dark: Color;
-  };
+export type ThemeColor
+  = | Color
+    | {
+      light: Color;
+      dark: Color;
+    };
 
 export interface Style {
   /**

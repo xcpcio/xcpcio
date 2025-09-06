@@ -2,7 +2,7 @@
   "name": "@xcpcio/xcpcio",
   "version": "0.56.0",
   "private": true,
-  "packageManager": "pnpm@10.8.0",
+  "packageManager": "pnpm@10.15.1",
   "description": "XCPCIO",
   "author": "Dup4 <lyuzhi.pan@gmail.com>",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "CCPC"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "build": "pnpm -r --filter=./packages/**/* run build",
