@@ -22,7 +22,7 @@ describe("contest", () => {
 
     const contest = createContest(contestJSON);
     const teams = createTeams(teamJSON);
-    const submissions = createSubmissions(runJSON);
+    const submissions = createSubmissions(runJSON, contest);
 
     const rank = new Rank(contest, teams, submissions);
     rank.contest.id = "2023/ccpc/final";

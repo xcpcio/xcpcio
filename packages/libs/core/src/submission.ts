@@ -1,4 +1,6 @@
 import type { Submission as ISubmission, Submissions as ISubmissions, SubmissionReaction, TimeUnit } from "@xcpcio/types";
+import type { Contest } from "./contest";
+
 import { SubmissionStatus } from "@xcpcio/types";
 
 import {
@@ -134,7 +136,7 @@ export class Submission {
 
 export type Submissions = Array<Submission>;
 
-export function createSubmission(submissionJSON: ISubmission): Submission {
+export function createSubmission(submissionJSON: ISubmission, contest?: Contest): Submission {
   const s = new Submission();
 
   s.id = String(submissionJSON.id ?? submissionJSON.submission_id ?? "");
@@ -154,19 +156,22 @@ export function createSubmission(submissionJSON: ISubmission): Submission {
 
   if (submissionJSON.reaction) {
     s.reaction = submissionJSON.reaction;
+  } else if (contest?.options.reactionVideoUrlTemplate) {
+    s.reaction = {
+      url: contest.options.reactionVideoUrlTemplate.replace(/\$\{submission_id\}/, s.id),
+    };
   }
 
   return s;
 }
 
-export function createSubmissions(submissionsJSON: ISubmissions): Submissions {
+export function createSubmissions(submissionsJSON: ISubmissions, contest?: Contest): Submissions {
   if (Array.isArray(submissionsJSON)) {
-    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }));
+    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }, contest));
   } else {
     const submissions = Object.entries(submissionsJSON).map(([submissionId, s]) =>
-      createSubmission({ ...s, id: s.submission_id ?? submissionId }),
+      createSubmission({ ...s, id: s.submission_id ?? submissionId }, contest),
     );
-
     return submissions;
   }
 }

@@ -40,7 +40,7 @@ watch(data, async () => {
   title.value = `${contest.value.name} | ${RESOLVER_TITLE_SUFFIX}`;
 
   teams.value = createTeams(data.value?.teams as ITeams);
-  submissions.value = createSubmissions(data.value?.submissions as ISubmissions);
+  submissions.value = createSubmissions(data.value?.submissions as ISubmissions, contest.value);
 
   reBuildResolver();
 

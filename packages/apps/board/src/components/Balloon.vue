@@ -35,7 +35,7 @@ watch(data, async () => {
   title.value = `${contestData.value.name} | ${BALLOON_TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
-  submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions);
+  submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions, contestData.value);
 
   reBuildBalloons();
 
