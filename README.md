@@ -32,6 +32,8 @@ pnpm build
 
 This project is made possible by all the sponsors supporting my work:
 
+<!-- markdownlint-disable MD033 -->
+
 <p align="center">
   <a href="https://github.com/sponsors/Dup4">
     <img src='https://sponsor.dup4.com' alt="Logos from Sponsors" />
