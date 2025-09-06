@@ -1,11 +1,11 @@
 packages:
   - "packages/**/*"
 catalog:
-  "@antfu/eslint-config": ^4.19.0
-  "@antfu/ni": ^24.4.0
+  "@antfu/eslint-config": ^5.2.2
+  "@antfu/ni": ^25.0.0
   "@babel/types": ^7.28.4
   "@iconify/json": ^2.2.381
-  "@intlify/unplugin-vue-i18n": ^6.0.8
+  "@intlify/unplugin-vue-i18n": ^11.0.0
   "@shikijs/markdown-it": ^3.12.2
   "@tanstack/vue-query": ^5.87.1
   "@types/chroma-js": ^3.1.1
@@ -14,7 +14,7 @@ catalog:
   "@types/glob": ^8.1.0
   "@types/lodash": ^4.17.20
   "@types/markdown-it-link-attributes": ^3.0.5
-  "@types/node": ^18.19.124
+  "@types/node": ^20.19.13
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.3.16
   "@typescript-eslint/eslint-plugin": ^8.42.0
@@ -22,7 +22,7 @@ catalog:
   "@unhead/vue": ^2.0.14
   "@unocss/eslint-config": ^66.5.0
   "@unocss/reset": ^66.5.0
-  "@vitejs/plugin-vue": ^5.2.4
+  "@vitejs/plugin-vue": ^6.0.1
   "@vue-macros/volar": ^3.0.0-beta.23
   "@vue/test-utils": ^2.4.6
   "@vueuse/components": ^13.9.0
@@ -33,12 +33,12 @@ catalog:
   chroma-js: ^3.1.2
   color-diff: ^1.4.0
   critters: ^0.0.25
-  cross-env: ^7.0.3
-  cypress: ^14.5.4
+  cross-env: ^10.0.0
+  cypress: ^15.1.0
   cypress-vite: ^1.7.0
   dayjs: ^1.11.18
   eslint: ^9.35.0
-  eslint-plugin-cypress: ^4.3.0
+  eslint-plugin-cypress: ^5.1.1
   eslint-plugin-format: ^1.0.1
   esmo: ^4.8.0
   file-saver: ^2.0.5
@@ -64,26 +64,26 @@ catalog:
   rollup: ^4.50.0
   shiki: ^3.12.2
   sleep-promise: ^9.1.0
-  string-width: ^7.2.0
+  string-width: ^8.1.0
   taze: ^19.5.0
   typescript: ^5.9.2
   unbuild: ^3.6.1
   unocss: ^66.5.0
-  unplugin-auto-import: ^19.3.0
-  unplugin-vue-components: ^28.8.0
+  unplugin-auto-import: ^20.1.0
+  unplugin-vue-components: ^29.0.0
   unplugin-vue-macros: ^2.14.5
-  unplugin-vue-markdown: ^28.3.1
-  unplugin-vue-router: ^0.12.0
-  vite: ^6.3.5
+  unplugin-vue-markdown: ^29.1.0
+  unplugin-vue-router: ^0.15.0
+  vite: ^7.1.4
   vite-bundle-visualizer: ^1.2.1
   vite-plugin-html: ^3.2.2
   vite-plugin-inspect: ^11.3.3
   vite-plugin-pwa: ^1.0.3
-  vite-plugin-vue-devtools: ^7.7.7
+  vite-plugin-vue-devtools: ^8.0.1
   vite-plugin-vue-layouts: ^0.11.0
   vite-plugin-webfont-dl: ^3.11.1
-  vite-ssg: ^26.1.1
-  vite-ssg-sitemap: ^0.8.1
+  vite-ssg: ^28.1.0
+  vite-ssg-sitemap: ^0.10.0
   vitest: ^3.2.4
   vue: ^3.5.21
   vue-demi: ^0.14.10
@@ -91,7 +91,7 @@ catalog:
   vue-router: ^4.5.1
   vue-search-select: ^3.2.0
   vue-toast-notification: ^3.1.3
-  vue-tsc: ^2.2.12
+  vue-tsc: ^3.0.6
   workbox-build: ^7.3.0
   workbox-window: ^7.3.0
   xlsx-js-style: ^1.2.0

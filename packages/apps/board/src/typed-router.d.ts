@@ -30,4 +30,72 @@ declare module 'vue-router/auto-routes' {
     '/resolver/': RouteRecordInfo<'/resolver/', '/resolver', Record<never, never>, Record<never, never>>,
     '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
   }
+
+  /**
+   * Route file to route info map by unplugin-vue-router.
+   * Used by the volar plugin to automatically type useRoute()
+   *
+   * Each key is a file path relative to the project root with 2 properties:
+   * - routes: union of route names of the possible routes when in this page (passed to useRoute<...>())
+   * - views: names of nested views (can be passed to <RouterView name="...">)
+   *
+   * @internal
+   */
+  export interface _RouteFileInfoMap {
+    'src/pages/index.vue': {
+      routes: '/'
+      views: never
+    }
+    'src/pages/[...all].vue': {
+      routes: '/[...all]'
+      views: never
+    }
+    'src/pages/about.md': {
+      routes: '/about'
+      views: never
+    }
+    'src/pages/balloon/index.vue': {
+      routes: '/balloon/'
+      views: never
+    }
+    'src/pages/board.vue': {
+      routes: '/board'
+      views: never
+    }
+    'src/pages/countdown/index.vue': {
+      routes: '/countdown/'
+      views: never
+    }
+    'src/pages/hi/[name].vue': {
+      routes: '/hi/[name]'
+      views: never
+    }
+    'src/pages/rating/index.vue': {
+      routes: '/rating/'
+      views: never
+    }
+    'src/pages/rating/[...all].vue': {
+      routes: '/rating/[...all]'
+      views: never
+    }
+    'src/pages/resolver/index.vue': {
+      routes: '/resolver/'
+      views: never
+    }
+    'src/pages/test.vue': {
+      routes: '/test'
+      views: never
+    }
+  }
+
+  /**
+   * Get a union of possible route names in a certain route component file.
+   * Used by the volar plugin to automatically type useRoute()
+   *
+   * @internal
+   */
+  export type _RouteNamesForFilePath<FilePath extends string> =
+    _RouteFileInfoMap extends Record<FilePath, infer Info>
+      ? Info['routes']
+      : keyof RouteNamedMap
 }
