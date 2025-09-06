@@ -19,7 +19,7 @@ describe("contest", () => {
 
     const contest = createContest(contestJSON);
     const teams = createTeams(teamJSON);
-    const submissions = createSubmissions(runJSON);
+    const submissions = createSubmissions(runJSON, contest);
 
     const resolver = new Resolver(contest, teams, submissions);
     resolver.buildResolver();

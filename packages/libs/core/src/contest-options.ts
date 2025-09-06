@@ -6,7 +6,11 @@ export class ContestOptions {
 
   submissionHasTimeField: boolean;
   submissionHasLanguageField: boolean;
+
   submissionEnableActionField: boolean;
+  submissionHasReactionField: boolean;
+
+  reactionVideoUrlTemplate?: string;
 
   constructor() {
     this.calculationOfPenalty = "in_minutes";
@@ -14,7 +18,11 @@ export class ContestOptions {
 
     this.submissionHasTimeField = false;
     this.submissionHasLanguageField = false;
+
     this.submissionEnableActionField = false;
+    this.submissionHasReactionField = false;
+
+    this.reactionVideoUrlTemplate = undefined;
   }
 }
 
@@ -30,9 +38,12 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
     o.submissionTimestampUnit = j.submission_timestamp_unit;
   }
 
-  if (j.submission_has_reaction) {
-    o.submissionEnableActionField = j.submission_has_reaction;
+  if (j.submission_has_reaction || j.has_reaction_videos) {
+    o.submissionHasReactionField = true;
   }
+
+  o.submissionEnableActionField = o.submissionHasReactionField;
+  o.reactionVideoUrlTemplate = j.reaction_video_url_template;
 
   return o;
 }
