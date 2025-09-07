@@ -11,6 +11,7 @@ import App from "./App.vue";
 
 import "floating-vue/dist/style.css";
 import "vue-search-select/dist/VueSearchSelect.css";
+import "./styles/vue-search-select-dark.css";
 
 import "@unocss/reset/tailwind.css";
 import "@unocss/reset/tailwind-compat.css";
