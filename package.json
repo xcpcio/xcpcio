@@ -41,7 +41,6 @@
     "@antfu/eslint-config": "catalog:",
     "@antfu/ni": "catalog:",
     "@babel/types": "catalog:",
-    "@types/glob": "catalog:",
     "@types/node": "catalog:",
     "@typescript-eslint/eslint-plugin": "catalog:",
     "@typescript-eslint/parser": "catalog:",
