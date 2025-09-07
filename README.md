@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 # xcpcio
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
@@ -31,8 +33,6 @@ pnpm build
 ### &#8627; Sponsors
 
 This project is made possible by all the sponsors supporting my work:
-
-<!-- markdownlint-disable MD033 -->
 
 <p align="center">
   <a href="https://github.com/sponsors/Dup4">

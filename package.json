@@ -26,6 +26,7 @@
     "build:libs": "pnpm -r --filter=./packages/libs/**/* run build",
     "dev": "pnpm -r --parallel --filter=./packages/**/* run dev",
     "start": "pnpm -r --parallel --filter=./packages/**/* run start",
+    "board": "npm -C packages/apps/board run dev",
     "test": "vitest",
     "lint": "run-p lint:*",
     "lint:build": "pnpm -r --parallel --filter=./packages/**/* run lint:build",
