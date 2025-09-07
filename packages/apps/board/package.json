@@ -1,7 +1,7 @@
 {
   "name": "@xcpcio/board-app",
   "type": "module",
-  "version": "0.57.0",
+  "version": "0.57.1",
   "description": "XCPCIO Board App",
   "author": "Dup4 <lyuzhi.pan@gmail.com>",
   "license": "MIT",

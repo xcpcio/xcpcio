@@ -1,6 +1,6 @@
 {
   "name": "@xcpcio/xcpcio",
-  "version": "0.57.0",
+  "version": "0.57.1",
   "private": true,
   "packageManager": "pnpm@10.15.1",
   "description": "XCPCIO",
