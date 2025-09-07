@@ -30,6 +30,7 @@ type_menu:
   balloon: 气球
   export: 导出
   resolver: 滚榜
+  filter: 筛选
   options: 选项
   awards: 奖项
   utility: 工具

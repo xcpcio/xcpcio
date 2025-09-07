@@ -4,11 +4,13 @@ import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams 
 import type { Item } from "~/components/board/SecondLevelMenu.vue";
 
 import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
-import { useRouteQuery } from "@vueuse/router";
 
+import { useRouteQuery } from "@vueuse/router";
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
+
 import { ContestState } from "@xcpcio/types";
 import _ from "lodash";
+import FilterModal from "~/components/board/FilterModal.vue";
 
 import { TITLE_SUFFIX } from "~/composables/constant";
 
@@ -182,6 +184,11 @@ const typeMenuList = ref<Array<Item>>([
     keyword: "utility",
   },
   {
+    title: "type_menu.filter",
+    keyword: "filter",
+    isModal: true,
+  },
+  {
     title: "type_menu.options",
     keyword: "options",
     isModal: true,
@@ -211,10 +218,13 @@ const groupMenuList = computed(() => {
 
 const currentType = ref("rank");
 const isHiddenOptionsModal = ref(true);
+const isHiddenFilterModal = ref(true);
 
 function onChangeCurrentType(type: string) {
   if (type === "options") {
     isHiddenOptionsModal.value = false;
+  } else if (type === "filter") {
+    isHiddenFilterModal.value = false;
   }
 }
 
@@ -238,13 +248,21 @@ function clearAutoScrollInterval() {
   }
 }
 
+function isAnyModalOpen(): boolean {
+  return !(isHiddenOptionsModal.value && isHiddenFilterModal.value);
+}
+
+function isUserTyping(): boolean {
+  const activeElement = document.activeElement;
+  return activeElement?.matches("input, textarea, select, [contenteditable]") ?? false;
+}
+
 onKeyStroke("S", (_e) => {
-  if (!isHiddenOptionsModal.value) {
+  if (isAnyModalOpen()) {
     return;
   }
 
-  const activeElement = document.activeElement;
-  if (activeElement?.matches("input, textarea, select, [contenteditable]")) {
+  if (isUserTyping()) {
     return;
   }
 
@@ -283,6 +301,31 @@ onKeyStroke("S", (_e) => {
     clearAutoScrollInterval();
   }
 }, { dedupe: false });
+
+onKeyStroke("f", (e) => {
+  // Check for Command+F (Meta+F on macOS, Ctrl+F on other platforms)
+  if (!e.metaKey && !e.ctrlKey) {
+    return;
+  }
+
+  // Prevent browser's default find functionality
+  e.preventDefault();
+
+  if (isUserTyping()) {
+    return;
+  }
+
+  if (!isHiddenFilterModal.value) {
+    isHiddenFilterModal.value = true;
+    return;
+  }
+
+  if (isAnyModalOpen()) {
+    return;
+  }
+
+  isHiddenFilterModal.value = false;
+}, { dedupe: false, target: window });
 
 const startTime = computed(() => {
   const time = rank.value.contest.getStartTime().format("YYYY-MM-DD HH:mm:ss");
@@ -531,6 +574,13 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
           :rank="rank"
         />
       </div>
+
+      <FilterModal
+        v-if="!isHiddenFilterModal"
+        v-model:is-hidden="isHiddenFilterModal"
+        v-model:rank-options="rankOptions"
+        :rank="rank"
+      />
 
       <OptionsModal
         v-if="!isHiddenOptionsModal"

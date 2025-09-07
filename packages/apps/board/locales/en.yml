@@ -30,6 +30,7 @@ type_menu:
   balloon: Balloon
   export: Export
   resolver: Resolver
+  filter: Filter
   options: Options
   awards: Awards
   utility: Utility
