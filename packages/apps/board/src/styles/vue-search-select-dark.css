@@ -1,0 +1,162 @@
+/* Vue Search Select Dark Mode Styles */
+
+/* Dark mode overrides for vue-search-select when html.dark is applied */
+html.dark .ui.dropdown {
+  background: var(--global-background);
+  color: #e0e0e0;
+}
+
+html.dark .ui.selection.dropdown {
+  background: transparent;
+  color: #e0e0e0;
+  border-color: #4a5568;
+}
+
+html.dark .ui.selection.dropdown:hover {
+  border-color: #6b7280;
+}
+
+html.dark .ui.selection.active.dropdown,
+html.dark .ui.selection.active.dropdown .menu {
+  border-color: #96c8da;
+}
+
+html.dark .ui.selection.dropdown:focus {
+  border-color: #96c8da;
+}
+
+/* Dropdown menu dark styles */
+html.dark .ui.dropdown .menu {
+  background: #2a2d3a;
+  border-color: #4a5568;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .ui.dropdown .menu > .item {
+  color: #e0e0e0;
+  border-top-color: #4a5568;
+}
+
+html.dark .ui.dropdown .menu > .item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f0f0f0;
+}
+
+html.dark .ui.dropdown .menu .active.item {
+  background: rgba(150, 200, 218, 0.2);
+  color: #f0f0f0;
+}
+
+html.dark .ui.selection.dropdown .menu > .item {
+  border-top-color: #4a5568;
+}
+
+/* Multiple dropdown labels */
+html.dark .ui.multiple.dropdown > .label {
+  background: #4a5568;
+  color: #e0e0e0;
+  border-color: #6b7280;
+  box-shadow: 0 0 0 1px #4a5568 inset;
+}
+
+html.dark .ui.multiple.dropdown > .label i.icon.delete:before,
+html.dark .ui.multiple.dropdown > .label i.icon.delete:after {
+  background-color: #e0e0e0;
+}
+
+/* Dropdown icon */
+html.dark .ui.dropdown > .dropdown.icon {
+  color: #e0e0e0;
+}
+
+/* Search input in search dropdown */
+html.dark .ui.search.dropdown > input.search {
+  color: #e0e0e0;
+  background: transparent !important;
+}
+
+html.dark .ui.search.dropdown > input.search::placeholder {
+  color: #9ca3af;
+}
+
+/* Default/placeholder text */
+html.dark .ui.dropdown:not(.button) > .default.text,
+html.dark .ui.default.dropdown:not(.button) > .text {
+  color: #9ca3af;
+}
+
+/* Text color for dropdown */
+html.dark .ui.dropdown > .text {
+  color: #e0e0e0;
+}
+
+/* Menu headers */
+html.dark .ui.dropdown .menu > .header {
+  color: #d1d5db;
+}
+
+/* Menu dividers */
+html.dark .ui.dropdown .menu > .divider {
+  border-top-color: #4a5568;
+}
+
+/* Loading state */
+html.dark .ui.loading.dropdown > i.icon:after {
+  border-color: #e0e0e0 transparent transparent;
+}
+
+/* Error state */
+html.dark .ui.dropdown.error,
+html.dark .ui.dropdown.error > .text,
+html.dark .ui.dropdown.error > .default.text {
+  color: #f87171;
+}
+
+html.dark .ui.selection.dropdown.error {
+  background: #3f1f1f;
+  border-color: #dc2626;
+}
+
+html.dark .ui.selection.dropdown.error:hover {
+  border-color: #dc2626;
+}
+
+html.dark .ui.dropdown.error > .menu,
+html.dark .ui.dropdown.error > .menu .menu {
+  border-color: #dc2626;
+}
+
+html.dark .ui.dropdown.error > .menu > .item {
+  color: #f87171;
+}
+
+html.dark .ui.multiple.selection.error.dropdown > .label {
+  border-color: #dc2626;
+}
+
+html.dark .ui.dropdown.error > .menu > .item:hover {
+  background-color: #3f1f1f;
+}
+
+html.dark .ui.dropdown.error > .menu .active.item {
+  background-color: #7f1d1d;
+}
+
+/* Disabled state */
+html.dark .ui.disabled.dropdown,
+html.dark .ui.dropdown .menu > .disabled.item {
+  color: #6b7280;
+}
+
+/* Scrollbar styling for dropdown menus */
+html.dark .ui.dropdown .menu::-webkit-scrollbar-track {
+  background: #374151;
+}
+
+html.dark .ui.dropdown .menu::-webkit-scrollbar-thumb {
+  background: #6b7280;
+}
+
+html.dark .ui.dropdown .menu::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
