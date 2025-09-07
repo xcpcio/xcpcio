@@ -30,18 +30,17 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "vite build",
     "dev": "vite --port 3333",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
+    "build": "vite build",
     "preview": "vite preview",
     "preview-https": "serve dist",
     "start": "npm run preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
     "test": "vitest",
     "test:e2e": "cypress open",
     "test:unit": "vitest",
     "typecheck": "vue-tsc --noEmit",
-    "up": "taze major -I",
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {

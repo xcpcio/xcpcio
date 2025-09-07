@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD033 -->
+
 # xcpcio/libs/types
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
