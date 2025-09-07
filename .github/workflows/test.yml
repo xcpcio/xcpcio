@@ -10,7 +10,7 @@ on:
       - main
 
 env:
-  node-version: 20.x
+  node-version: 24.x
 
 jobs:
   build-test:
