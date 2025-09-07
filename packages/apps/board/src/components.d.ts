@@ -25,6 +25,8 @@ declare module 'vue' {
     CustomResolver: typeof import('./components/CustomResolver.vue')['default']
     DataSourceInput: typeof import('./components/DataSourceInput.vue')['default']
     Export: typeof import('./components/board/Export.vue')['default']
+    FilterModal: typeof import('./components/board/FilterModal.vue')['default']
+    FilterModel: typeof import('./components/board/FilterModel.vue')['default']
     Footer: typeof import('./components/Footer.vue')['default']
     GiantsOptions: typeof import('./components/battle-of-giants/GiantsOptions.vue')['default']
     GiantsScoreBoard: typeof import('./components/battle-of-giants/GiantsScoreBoard.vue')['default']
