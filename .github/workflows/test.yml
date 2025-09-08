@@ -53,7 +53,7 @@ jobs:
           enable-cache: true
 
       - name: Sync
-        run: uv sync
+        run: uv sync --group dev
 
       - name: Lint
         run: uv run ruff check
