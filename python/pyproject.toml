@@ -1,0 +1,29 @@
+[project]
+name = "xcpcio"
+version = "0.58.0"
+description = "xcpcio python lib"
+readme = "README.md"
+authors = [ { name = "Dup4", email = "hi@dup4.com" } ]
+license = "MIT"
+keywords = [ "xcpcio" ]
+classifiers = [
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.11"
+dependencies = [ "pydantic>=2.11.7", ]
+
+[project.urls]
+homepage = "https://github.com/xcpcio/xcpcio"
+documentation = "https://github.com/xcpcio/xcpcio"
+repository = "https://github.com/xcpcio/xcpcio"
+
+[tool.ruff]
+line-length = 120
+
+[dependency-groups]
+dev = [ "pytest>=8.4.2", ]

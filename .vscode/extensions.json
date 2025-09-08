@@ -7,6 +7,9 @@
     "dbaeumer.vscode-eslint",
     "vue.volar",
     "lokalise.i18n-ally",
-    "streetsidesoftware.code-spell-checker"
+    "streetsidesoftware.code-spell-checker",
+    "ms-python.vscode-pylance",
+    "ms-python.python",
+    "charliermarsh.ruff"
   ]
 }

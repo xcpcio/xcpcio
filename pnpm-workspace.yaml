@@ -1,5 +1,6 @@
 packages:
   - "packages/**/*"
+
 catalog:
   "@antfu/eslint-config": ^5.2.2
   "@antfu/ni": ^25.0.0
