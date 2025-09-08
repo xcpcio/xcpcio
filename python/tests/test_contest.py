@@ -1,6 +1,4 @@
-import json
 
-import pytest
 
 from xcpcio import constants
 from xcpcio.types import Color, Contest, ContestOptions, Image

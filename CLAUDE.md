@@ -225,7 +225,7 @@ git checkout -b <type>/<description>
 # Make changes, format, and commit with proper format and signoff
 pnpm run format
 git add .
-git commit -m "<type>: <description>" --signoff
+git commit --signoff -m "<type>: <description>"
 # Examples:
 # feat: add dark mode support for search components
 # fix: resolve search filter not working with special characters
