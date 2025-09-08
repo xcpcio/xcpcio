@@ -24,10 +24,6 @@ pnpm start
 pnpm build
 ```
 
-## License
-
-[MIT](./LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
-
 ## :clap: Our Supporters
 
 ### &#8627; Sponsors
@@ -56,7 +52,10 @@ This project is made possible by all the sponsors supporting my work:
   </a>
 </p>
 
-[xcpcio]: https://github.com/xcpcio
+## License
+
+[MIT](./LICENSE) License &copy; 2020-PRESENT [Dup4](https://github.com/Dup4)
+
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
