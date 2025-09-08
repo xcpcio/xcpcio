@@ -52,10 +52,8 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Install
-        run: |
-          uv python install
-          uv install
+      - name: Sync
+        run: uv sync
 
       - name: Lint
         run: uv run ruff check
