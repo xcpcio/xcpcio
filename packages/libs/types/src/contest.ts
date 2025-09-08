@@ -35,10 +35,10 @@ export interface Contest {
 
   start_time: number | DateTimeISO8601String;
   end_time: number | DateTimeISO8601String;
-  freeze_time?: number | DateTimeISO8601String;
-
-  frozen_time?: number; // unit: seconds
   penalty: number; // unit: seconds
+
+  freeze_time?: number | DateTimeISO8601String;
+  frozen_time?: number; // unit: seconds
 
   problems?: Array<Problem>;
   problem_id?: Array<string>;

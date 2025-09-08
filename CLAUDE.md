@@ -13,12 +13,19 @@ This is a pnpm monorepo with the following structure:
 - **packages/libs/types**: TypeScript type definitions for the entire project
 - **packages/libs/core**: Core business logic, utilities, and algorithms for contest processing
 - **packages/apps/board**: Vue 3 frontend application for displaying contest leaderboards
+- **python/**: Python library providing the same type definitions and data models as the TypeScript packages
 
 The project follows a layered architecture where:
+
+### npm
 
 - `@xcpcio/types` provides shared type definitions
 - `@xcpcio/core` contains contest logic, ranking algorithms, and data processing
 - `@xcpcio/board-app` is the main Vue application consuming the core libraries
+
+### python
+
+- `xcpcio` (Python) provides equivalent type definitions and data models for Python environments
 
 ## Development Commands
 
@@ -101,24 +108,62 @@ pnpm build
 pnpm dev
 ```
 
+#### Python Library (python/)
+
+```bash
+# Install dependencies with uv
+uv install
+
+# Run tests
+uv run pytest
+
+# Run specific test file
+uv run pytest tests/test_types.py
+
+# Run with coverage
+uv run pytest --cov=xcpcio
+
+# Format code with ruff
+uv run ruff format
+
+# Lint code with ruff
+uv run ruff check
+```
+
 ## Technology Stack
 
 - **Frontend**: Vue 3, TypeScript, Vite, UnoCSS, Pinia for state management
 - **Build System**: Vite for apps, unbuild for libraries
-- **Testing**: Vitest for unit tests, Cypress for E2E
-- **Linting**: ESLint with @antfu/eslint-config
-- **Package Management**: pnpm with workspace configuration
+- **Testing**: Vitest for unit tests, Cypress for E2E, pytest for Python
+- **Linting**: ESLint with @antfu/eslint-config, Ruff for Python
+- **Package Management**: pnpm with workspace configuration, uv for Python
+- **Python**: Pydantic for data validation and serialization
 
 ## Key Concepts
 
 ### Contest Data Structure
 
-The core revolves around contest data represented by the `Contest` interface in `packages/libs/types/src/contest.ts`. This includes:
+The core revolves around contest data represented by the `Contest` interface in `packages/libs/types/src/contest.ts` and the equivalent Pydantic model in `python/xcpcio/types.py`. This includes:
 
 - Contest metadata (name, times, organization)
 - Problems and balloon colors
 - Team rankings and submissions
 - Medal configurations and groupings
+
+### Python Library
+
+The Python library (`python/xcpcio/`) provides:
+
+- **Type Definitions**: Pydantic models mirroring the TypeScript types for contests, teams, submissions
+- **Constants**: Shared constants for submission statuses, time units, penalty calculations
+- **Data Validation**: Built-in validation and serialization using Pydantic
+- **Cross-Language Compatibility**: Ensures data consistency between Python and TypeScript environments
+
+Key models include:
+
+- `Contest`: Contest configuration and metadata
+- `Team`: Team information with groups, tags, and extra fields
+- `Submission`: Individual submission data with status and timing
 
 ### Ranking System
 

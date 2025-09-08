@@ -85,6 +85,8 @@ export type Base64 = string;
 
 export type LinkString = string;
 
+export type ImagePreset = "ICPC" | "CCPC" | "HUNAN_CPC";
+
 export interface Link {
   link: LinkString;
   title?: string;
@@ -94,7 +96,7 @@ export interface Image {
   url?: string;
   base64?: Base64;
   type?: "png" | "svg" | "jpg" | "jpeg";
-  preset?: string;
+  preset?: ImagePreset;
   [key: string]: string | undefined;
 }
 
