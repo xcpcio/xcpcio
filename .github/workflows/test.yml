@@ -13,7 +13,7 @@ env:
   node-version: 24.x
 
 jobs:
-  build-test:
+  node-lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -33,28 +33,32 @@ jobs:
         run: |
           cp ./packages/apps/board/dist/index.html ./packages/apps/board/dist/404.html
 
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v5
-        with:
-          node-version: ${{ env.node-version }}
-          registry-url: https://registry.npmjs.org/
-          cache: pnpm
-
-      - name: Install
-        run: |
-          pnpm i
-          pnpm build:libs
-
       - name: Lint
         run: |
           pnpm run lint
 
-      - name: Test Core
+      - name: Test
         run: |
-          pushd ./packages/libs/core
-          npx vitest run
-          popd
+          pnpm run test
+
+  python-lint-and-test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./python
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Install
+        run: |
+          uv python install
+          uv install
+
+      - name: Lint
+        run: uv run ruff check
+
+      - name: Test
+        run: uv run pytest
