@@ -33,7 +33,7 @@
     "lint:eslint": "eslint .",
     "format": "run-p format:*",
     "format:eslint": "eslint --fix .",
-    "release": "bumpp package.json packages/**/*/package.json --execute \"bash scripts/sync-python-version.sh\"",
+    "release": "bumpp package.json packages/**/*/package.json --all --commit --tag --push --execute \"bash scripts/sync-python-version.sh\"",
     "publish:npm": "pnpm -r publish --no-git-checks --access public",
     "publish:npm_with_build": "cross-env BUILD_MODE=npm_publish pnpm build && pnpm -r publish --no-git-checks --access public"
   },
