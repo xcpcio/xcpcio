@@ -233,7 +233,7 @@ git commit --signoff -m "<type>: <description>"
 # docs: add API documentation for ranking system
 
 # Push branch and create PR
-git push -u origin <branch-name>
+git push --set-upstream origin <branch-name>
 gh pr create --title "<type>: <description>" --body "Brief summary of changes"
 
 # Merge and cleanup
