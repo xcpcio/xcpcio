@@ -61,7 +61,7 @@ jobs:
       - name: Get Version ID
         id: get-version-id
         run: |
-          VERSION_ID=$(cat package.json | grep version | sed 's|  \"version\": \"||g' | sed 's|\",||g')
+          VERSION_ID=$(node -p "require('./package.json').version")
           echo "::set-output name=version-id::$(echo $VERSION_ID)"
           echo $VERSION_ID
 
