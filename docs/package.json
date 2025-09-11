@@ -1,0 +1,22 @@
+{
+  "name": "@xcpcio/docs",
+  "type": "module",
+  "version": "0.58.3",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "@iconify/json": "catalog:",
+    "@unocss/reset": "catalog:",
+    "unocss": "catalog:",
+    "unplugin-vue-components": "catalog:",
+    "vite": "catalog:",
+    "vitepress": "catalog:",
+    "vitepress-plugin-group-icons": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  }
+}

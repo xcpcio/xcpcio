@@ -6,7 +6,7 @@
   "files.trimFinalNewlines": true,
 
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "sashkapb.shfmt",
     "editor.formatOnSave": true
   },
 
@@ -92,6 +92,7 @@
     "Delivr",
     "demi",
     "DOCKERHUB",
+    "domjudge",
     "esmo",
     "flowbite",
     "fontawesome",
