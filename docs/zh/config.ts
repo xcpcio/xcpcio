@@ -10,6 +10,7 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
 
 const Sponsors: DefaultTheme.NavItemWithLink[] = [
   { text: "赞助我们", link: "/zh/sponsor/" },
+  { text: "杭师 Coder", link: "/zh/sponsor/hznu-coder" },
 ];
 
 const Nav: DefaultTheme.NavItem[] = [

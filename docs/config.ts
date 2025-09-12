@@ -10,6 +10,7 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
 
 const Sponsors: DefaultTheme.NavItemWithLink[] = [
   { text: "Sponsor us", link: "/sponsor/" },
+  { text: "Hznu Coder", link: "/sponsor/hznu-coder" },
 ];
 
 const Nav: DefaultTheme.NavItem[] = [
