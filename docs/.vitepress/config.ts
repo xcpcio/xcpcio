@@ -8,7 +8,7 @@ const description = "The ICPC Series Competition Leaderboard Visualization Engin
 
 export default defineConfig({
   title,
-  titleTemplate: title,
+  titleTemplate: `:title - ${title}`,
 
   rewrites: {
     "en/:rest*": ":rest*",

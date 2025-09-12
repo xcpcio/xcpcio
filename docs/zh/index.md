@@ -1,5 +1,6 @@
 ---
 layout: home
+title: "XCPCIO: ICPC 系列竞赛的榜单可视化引擎"
 
 hero:
   image:
@@ -15,9 +16,11 @@ hero:
     - theme: alt
       text: 榜单
       link: https://board.xcpcio.com
+      target: _blank
     - theme: alt
       text: GitHub
       link: https://github.com/xcpcio/xcpcio
+      target: _blank
 
 features:
   - icon: <span class="i-oui-app-management"></span>

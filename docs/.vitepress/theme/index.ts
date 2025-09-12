@@ -1,7 +1,7 @@
 import type { Theme } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { h } from "vue";
-import UnoCSSLayout from "./UnoCSSLayout.vue";
+import BasicLayout from "./BasicLayout.vue";
 
 import "./vars.css";
 import "./overrides.css";
@@ -11,7 +11,7 @@ import "uno.css";
 export default {
   extends: DefaultTheme,
   Layout: () => {
-    return h(UnoCSSLayout);
+    return h(BasicLayout);
   },
 } satisfies Theme;
 

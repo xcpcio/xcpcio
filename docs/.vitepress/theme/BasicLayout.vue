@@ -2,6 +2,7 @@
 import { useData } from "vitepress";
 import DefaultTheme from "vitepress/theme";
 import { nextTick, provide } from "vue";
+import HomePage from "./components/HomePage.vue";
 
 const { isDark } = useData();
 
@@ -42,9 +43,8 @@ provide("toggle-appearance", async ({ clientX: x, clientY: y }: MouseEvent) => {
 
 <template>
   <DefaultTheme.Layout>
-    <template #home-features-after />
-    <div>
-      ddd
-    </div>
+    <template #home-features-after>
+      <HomePage />
+    </template>
   </DefaultTheme.Layout>
 </template>

@@ -1,5 +1,6 @@
 ---
 layout: home
+title: "XCPCIO: The ICPC Series Competition Leaderboard Visualization Engine"
 
 hero:
   image:
@@ -15,9 +16,11 @@ hero:
     - theme: alt
       text: Go to Board
       link: https://board.xcpcio.com
+      target: _blank
     - theme: alt
       text: View on GitHub
       link: https://github.com/xcpcio/xcpcio
+      target: _blank
 
 features:
   - icon: <span class="i-oui-app-management"></span>
