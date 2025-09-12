@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { Rating, SelectOptionItem } from "@xcpcio/core";
 
-import { MultiSelect } from "vue-search-select";
+import { Pagination } from "@board/composables/pagination";
 
-import { Pagination } from "~/composables/pagination";
+import { MultiSelect } from "vue-search-select";
 
 interface FilterOptions {
   organizations: string[];

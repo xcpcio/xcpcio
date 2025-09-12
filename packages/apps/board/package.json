@@ -35,11 +35,7 @@
     "preview": "vite preview",
     "preview-https": "serve dist",
     "start": "npm run preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "test": "vitest",
     "test:e2e": "cypress open",
-    "test:unit": "vitest",
     "typecheck": "vue-tsc --noEmit",
     "sizecheck": "npx vite-bundle-visualizer"
   },

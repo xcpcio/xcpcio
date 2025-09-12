@@ -1,4 +1,4 @@
-import type { UserModule } from "~/types";
+import type { UserModule } from "@board/types";
 import { createPinia } from "pinia";
 
 // Setup Pinia

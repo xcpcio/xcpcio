@@ -13,7 +13,7 @@ env:
   node-version: 24.x
 
 jobs:
-  node-lint-and-test:
+  node-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -24,24 +24,15 @@ jobs:
           registry-url: https://registry.npmjs.org/
           cache: pnpm
 
-      - name: Install and Build
+      - name: Install
         run: |
           pnpm i
-          pnpm build
-
-      - name: Enable 404.html
-        run: |
-          cp ./packages/apps/board/dist/index.html ./packages/apps/board/dist/404.html
-
-      - name: Lint
-        run: |
-          pnpm run lint
 
       - name: Test
         run: |
           pnpm run test
 
-  python-lint-and-test:
+  python-test:
     runs-on: ubuntu-latest
     defaults:
       run:

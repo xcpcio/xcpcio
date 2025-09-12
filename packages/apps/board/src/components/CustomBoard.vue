@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getDataSourceUrl } from "~/composables/query";
+import { getDataSourceUrl } from "@board/composables/query";
 
 const dataSourceUrl = getDataSourceUrl();
 </script>

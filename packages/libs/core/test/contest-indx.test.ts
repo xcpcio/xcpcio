@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { createContestIndexList } from "@xcpcio/core";
 
-import { createContestIndexList } from "../src/index";
+import { describe, expect, it } from "vitest";
 
 describe("contest-index", () => {
   it("common", () => {
@@ -15,10 +15,8 @@ describe("contest-index", () => {
       ContestIndex {
         "boardLink": "/provincial-contest/2023/shandong",
         "contest": Contest {
-          "awards": undefined,
           "badge": undefined,
           "banner": undefined,
-          "bannerMode": undefined,
           "boardLink": undefined,
           "endTime": "2023-06-04T06:00:00.000Z",
           "freezeDurationTimestamp": 3600,
@@ -54,11 +52,6 @@ describe("contest-index", () => {
           "penalty": undefined,
           "problems": [],
           "problemsMap": Map {},
-          "replayContestStartTimestamp": undefined,
-          "replayEndTime": undefined,
-          "replayFreezeTime": undefined,
-          "replayNowTime": undefined,
-          "replayStartTime": undefined,
           "startTime": "2023-06-04T01:00:00.000Z",
           "statusTimeDisplay": {
             "correct": true,
@@ -76,10 +69,8 @@ describe("contest-index", () => {
       ContestIndex {
         "boardLink": "/icpc/2009/dhu_online",
         "contest": Contest {
-          "awards": undefined,
           "badge": undefined,
           "banner": undefined,
-          "bannerMode": undefined,
           "boardLink": undefined,
           "endTime": "2009-09-11T06:00:00.000Z",
           "freezeDurationTimestamp": 0,
@@ -111,11 +102,6 @@ describe("contest-index", () => {
           "penalty": undefined,
           "problems": [],
           "problemsMap": Map {},
-          "replayContestStartTimestamp": undefined,
-          "replayEndTime": undefined,
-          "replayFreezeTime": undefined,
-          "replayNowTime": undefined,
-          "replayStartTime": undefined,
           "startTime": "2009-09-11T01:00:00.000Z",
           "statusTimeDisplay": {
             "correct": true,

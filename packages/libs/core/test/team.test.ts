@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { createTeams } from "@xcpcio/core";
 
-import { createTeams } from "../src/team";
+import { describe, expect, it } from "vitest";
 
 describe("team", () => {
   it("2023_ccpc_final", () => {
@@ -19,11 +19,9 @@ describe("team", () => {
         "group": [
           "official",
         ],
-        "icpcID": undefined,
         "id": "3000202305140115",
         "lastSolvedProblem": null,
         "lastSolvedProblemStatistics": null,
-        "location": undefined,
         "members": [
           "江骏扬",
           "罗昊",

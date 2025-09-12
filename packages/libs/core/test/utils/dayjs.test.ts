@@ -1,6 +1,6 @@
-import { describe, expect, it } from "vitest";
+import { createDayJS, dayjs, getTimestamp } from "@xcpcio/core";
 
-import { createDayJS, dayjs, getTimestamp } from "../../src/utils";
+import { describe, expect, it } from "vitest";
 
 describe("dayjs", () => {
   dayjs.tz.setDefault("Asia/Shanghai");

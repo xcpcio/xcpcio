@@ -1,5 +1,3 @@
-<!-- markdownlint-disable MD033 -->
-
 # xcpcio
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)

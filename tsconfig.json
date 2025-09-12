@@ -1,26 +1,32 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "es2018",
+    "jsx": "preserve",
     "lib": [
-      "ESNext"
+      "esnext"
     ],
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "baseUrl": ".",
+    "module": "esnext",
+    "moduleResolution": "Bundler",
     "paths": {
       "@xcpcio/types": [
-        "./packages/libs/types/src/index.ts"
+        "./packages/libs/types/src/"
       ],
       "@xcpcio/core": [
-        "./packages/libs/core/src/index.ts"
+        "./packages/libs/core/src/"
+      ],
+      "@board/*": [
+        "./packages/apps/board/src/*"
       ]
     },
     "resolveJsonModule": true,
+    "types": [
+      "node",
+      "vite/client",
+      "vitest/importMeta"
+    ],
     "strict": true,
     "strictNullChecks": true,
-    "importHelpers": true,
-    "outDir": "dist",
-    "sourceMap": true,
-    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
@@ -30,7 +36,8 @@
   ],
   "exclude": [
     "**/dist/**",
-    "node_modules",
+    "**/cache/**",
+    "**/node_modules/**",
     "./packages/**/*.test.ts"
   ]
 }

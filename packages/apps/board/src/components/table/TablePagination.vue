@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Pagination } from "~/composables/pagination";
+import type { Pagination } from "@board/composables/pagination";
 
 const props = defineProps<{
   pagination: Pagination;

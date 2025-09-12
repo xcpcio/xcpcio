@@ -1,5 +1,5 @@
+import type { UserModule } from "@board/types";
 import type { Locale } from "vue-i18n";
-import type { UserModule } from "~/types";
 import { createI18n } from "vue-i18n";
 
 // Import i18n resources
