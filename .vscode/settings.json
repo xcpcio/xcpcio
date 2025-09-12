@@ -6,8 +6,12 @@
   "files.trimFinalNewlines": true,
 
   "[shellscript]": {
-    "editor.defaultFormatter": "foxundermoon.shell-format",
+    "editor.defaultFormatter": "sashkapb.shfmt",
     "editor.formatOnSave": true
+  },
+
+  "markdownlint.config": {
+    "MD033": false
   },
 
   "i18n-ally.sourceLanguage": "en",
@@ -92,6 +96,7 @@
     "Delivr",
     "demi",
     "DOCKERHUB",
+    "domjudge",
     "esmo",
     "flowbite",
     "fontawesome",
