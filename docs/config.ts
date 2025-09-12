@@ -8,6 +8,10 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
   { text: "Data Format", link: "/guide/data-format" },
 ];
 
+const Sponsors: DefaultTheme.NavItemWithLink[] = [
+  { text: "Sponsor us", link: "/sponsor/" },
+];
+
 const Nav: DefaultTheme.NavItem[] = [
   {
     text: "Guide",
@@ -18,6 +22,16 @@ const Nav: DefaultTheme.NavItem[] = [
       },
     ],
     activeMatch: "^/guide/",
+  },
+  {
+    text: "Sponsor",
+    items: [
+      {
+        text: "Sponsor",
+        items: Sponsors,
+      },
+    ],
+    activeMatch: "^/sponsor/",
   },
   { text: "Board", link: "https://board.xcpcio.com" },
   {
@@ -31,20 +45,25 @@ const Nav: DefaultTheme.NavItem[] = [
   },
 ];
 
-const SidebarGuide: DefaultTheme.SidebarItem[] = [
-  {
-    text: "Guides",
-    items: Guides,
-  },
-];
+const Sidebar: DefaultTheme.Sidebar = {
+  "/guide/": [
+    {
+      text: "Guides",
+      items: Guides,
+    },
+  ],
+  "/sponsor/": [
+    {
+      text: "Sponsor",
+      items: Sponsors,
+    },
+  ],
+};
 
 export default defineAdditionalConfig({
   themeConfig: {
     nav: Nav,
-
-    sidebar: {
-      "/guide/": SidebarGuide,
-    },
+    sidebar: Sidebar,
 
     editLink: {
       pattern: "https://github.com/xcpcio/xcpcio/edit/main/docs/:path",

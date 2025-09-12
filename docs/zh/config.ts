@@ -8,6 +8,10 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
   { text: "数据格式", link: "/zh/guide/data-format" },
 ];
 
+const Sponsors: DefaultTheme.NavItemWithLink[] = [
+  { text: "赞助我们", link: "/zh/sponsor/" },
+];
+
 const Nav: DefaultTheme.NavItem[] = [
   {
     text: "指南",
@@ -18,6 +22,16 @@ const Nav: DefaultTheme.NavItem[] = [
       },
     ],
     activeMatch: "^/zh/guide/",
+  },
+  {
+    text: "赞助",
+    items: [
+      {
+        text: "赞助",
+        items: Sponsors,
+      },
+    ],
+    activeMatch: "^/zh/sponsor/",
   },
   { text: "榜单", link: "https://board.xcpcio.com" },
   {
@@ -31,20 +45,25 @@ const Nav: DefaultTheme.NavItem[] = [
   },
 ];
 
-const SidebarGuide: DefaultTheme.SidebarItem[] = [
-  {
-    text: "指南",
-    items: Guides,
-  },
-];
+const Sidebar: DefaultTheme.Sidebar = {
+  "/zh/guide/": [
+    {
+      text: "指南",
+      items: Guides,
+    },
+  ],
+  "/zh/sponsor/": [
+    {
+      text: "赞助",
+      items: Sponsors,
+    },
+  ],
+};
 
 export default defineAdditionalConfig({
   themeConfig: {
     nav: Nav,
-
-    sidebar: {
-      "/zh/guide/": SidebarGuide,
-    },
+    sidebar: Sidebar,
 
     editLink: {
       pattern: "https://github.com/xcpcio/xcpcio/edit/main/docs/:path",
