@@ -2,7 +2,7 @@
   "name": "@xcpcio/core",
   "type": "module",
   "version": "0.58.3",
-  "description": "Core lib for XCPCIO",
+  "description": "The core library for XCPCIO",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/Dup4",

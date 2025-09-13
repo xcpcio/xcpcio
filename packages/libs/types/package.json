@@ -2,7 +2,7 @@
   "name": "@xcpcio/types",
   "type": "module",
   "version": "0.58.3",
-  "description": "Types lib for XCPCIO",
+  "description": "Types for XCPCIO",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/Dup4",
