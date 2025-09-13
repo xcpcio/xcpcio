@@ -17,7 +17,7 @@
     "test": "vitest",
     "test:update": "vitest -u",
     "test:ci": "nr build && nr lint && nr test",
-    "docs": "npm -C docs run docs:dev",
+    "docs": "npm -C docs run dev",
     "board": "npm -C packages/apps/board run dev",
     "release": "bumpp package.json docs/package.json packages/**/*/package.json --all --commit --tag --push --execute \"bash scripts/sync-python-version.sh\"",
     "publish:npm": "pnpm -r publish --no-git-checks --access public",
