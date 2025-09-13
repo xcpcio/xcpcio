@@ -11,7 +11,7 @@ export const aliasLibs: Record<string, string> = {
 };
 
 export const aliasApps: Record<string, string> = {
-  "@board": r("./packages/apps/board/src/"),
+  "@board/": `${r("./packages/apps/board/src")}/`,
 };
 
 export const alias: Record<string, string> = {
