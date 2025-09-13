@@ -1,41 +1,25 @@
 {
-  "name": "@xcpcio/xcpcio",
+  "name": "@xcpcio/monorepo",
+  "type": "module",
   "version": "0.58.3",
   "private": true,
   "packageManager": "pnpm@10.15.1",
-  "description": "XCPCIO",
-  "author": "Dup4 <hi@dup4.com>",
-  "license": "MIT",
-  "homepage": "https://github.com/xcpcio/xcpcio",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/xcpcio/xcpcio.git"
-  },
-  "bugs": {
-    "url": "https://github.com/xcpcio/xcpcio/issues"
-  },
-  "keywords": [
-    "ICPC",
-    "CCPC"
-  ],
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "build": "pnpm -r --filter=./packages/**/* run build",
+    "build": "pnpm -r --filter=./packages/**/* run build && nr build:docs",
     "build:libs": "pnpm -r --filter=./packages/libs/**/* run build",
-    "build:docs": "pnpm -C docs run docs:build",
-    "dev": "pnpm -r --parallel --filter=./packages/**/* run dev",
-    "start": "pnpm -r --parallel --filter=./packages/**/* run start",
-    "board": "npm -C packages/apps/board run dev",
+    "build:docs": "npm -C docs run build",
+    "build:board": "npm -C packages/apps/board run build",
+    "lint": "eslint --cache .",
+    "lint:fix": "nr lint --fix",
+    "test": "vitest",
+    "test:update": "vitest -u",
+    "test:ci": "nr build && nr lint && nr test",
     "docs": "npm -C docs run docs:dev",
-    "test": "pnpm -r --filter=./packages/libs/**/* run test",
-    "lint": "run-p lint:*",
-    "lint:build": "pnpm -r --parallel --filter=./packages/**/* run lint:build",
-    "lint:eslint": "eslint .",
-    "format": "run-p format:*",
-    "format:eslint": "eslint --fix .",
-    "release": "bumpp package.json packages/**/*/package.json --all --commit --tag --push --execute \"bash scripts/sync-python-version.sh\"",
+    "board": "npm -C packages/apps/board run dev",
+    "release": "bumpp package.json docs/package.json packages/**/*/package.json --all --commit --tag --push --execute \"bash scripts/sync-python-version.sh\"",
     "publish:npm": "pnpm -r publish --no-git-checks --access public",
     "publish:npm_with_build": "cross-env BUILD_MODE=npm_publish pnpm build && pnpm -r publish --no-git-checks --access public"
   },

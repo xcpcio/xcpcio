@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { createContest } from "@xcpcio/core";
 
-import { createContest } from "../src/contest";
+import { describe, expect, it } from "vitest";
 
 describe("contest", () => {
   it("2023_ccpc_final", () => {
@@ -25,7 +25,6 @@ describe("contest", () => {
           },
           "id": "0",
           "label": "A",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -38,7 +37,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -47,7 +45,6 @@ describe("contest", () => {
           },
           "id": "1",
           "label": "B",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -60,7 +57,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -69,7 +65,6 @@ describe("contest", () => {
           },
           "id": "2",
           "label": "C",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -82,7 +77,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -91,7 +85,6 @@ describe("contest", () => {
           },
           "id": "3",
           "label": "D",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -104,7 +97,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -113,7 +105,6 @@ describe("contest", () => {
           },
           "id": "4",
           "label": "E",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -126,7 +117,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -135,7 +125,6 @@ describe("contest", () => {
           },
           "id": "5",
           "label": "F",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -148,7 +137,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -157,7 +145,6 @@ describe("contest", () => {
           },
           "id": "6",
           "label": "G",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -170,7 +157,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -179,7 +165,6 @@ describe("contest", () => {
           },
           "id": "7",
           "label": "H",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -192,7 +177,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -201,7 +185,6 @@ describe("contest", () => {
           },
           "id": "8",
           "label": "I",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -214,7 +197,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -223,7 +205,6 @@ describe("contest", () => {
           },
           "id": "9",
           "label": "J",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -236,7 +217,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -245,7 +225,6 @@ describe("contest", () => {
           },
           "id": "10",
           "label": "K",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -258,7 +237,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -267,7 +245,6 @@ describe("contest", () => {
           },
           "id": "11",
           "label": "L",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -280,7 +257,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
         Problem {
           "balloonColor": {
@@ -289,7 +265,6 @@ describe("contest", () => {
           },
           "id": "12",
           "label": "M",
-          "memoryLimit": undefined,
           "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
@@ -302,7 +277,6 @@ describe("contest", () => {
             "se": 0,
             "submittedNum": 0,
           },
-          "timeLimit": undefined,
         },
       ]
     `);

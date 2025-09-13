@@ -2,13 +2,13 @@
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
 
 import type { SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
+import { Pagination } from "@board/composables/pagination";
 import { Submission } from "@xcpcio/core";
 import { SubmissionStatusToString } from "@xcpcio/types";
+
 import { MultiSelect } from "vue-search-select";
 
-import { Pagination } from "~/composables/pagination";
-
-import "~/styles/submission-status-filter.css";
+import "@board/styles/submission-status-filter.css";
 
 interface FilterOptions {
   orgNames: string[];

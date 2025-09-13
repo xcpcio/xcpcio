@@ -1,11 +1,8 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { createContest, createSubmissions, createTeams, Resolver } from "@xcpcio/core";
 
-import { createContest } from "../src/contest";
-import { Resolver } from "../src/resolver";
-import { createSubmissions } from "../src/submission";
-import { createTeams } from "../src/team";
+import { describe, expect, it } from "vitest";
 
 describe("contest", () => {
   it("2023_ccpc_final", () => {

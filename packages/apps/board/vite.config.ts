@@ -20,6 +20,7 @@ import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
 import generateSitemap from "vite-ssg-sitemap";
+import { alias } from "../../../alias";
 import "vitest/config";
 
 const proxyConfig = {
@@ -29,9 +30,7 @@ const proxyConfig = {
 
 export default defineConfig({
   resolve: {
-    alias: {
-      "~/": `${path.resolve(__dirname, "src")}/`,
-    },
+    alias,
   },
 
   plugins: [

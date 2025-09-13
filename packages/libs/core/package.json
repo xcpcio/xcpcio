@@ -1,13 +1,16 @@
 {
   "name": "@xcpcio/core",
+  "type": "module",
   "version": "0.58.3",
-  "description": "XCPCIO Core",
+  "description": "The core library for XCPCIO",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
-  "homepage": "https://github.com/xcpcio/xcpcio",
+  "funding": "https://github.com/sponsors/Dup4",
+  "homepage": "https://xcpcio.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xcpcio/xcpcio.git"
+    "url": "git+https://github.com/xcpcio/xcpcio.git",
+    "directory": "packages/libs/core"
   },
   "bugs": {
     "url": "https://github.com/xcpcio/xcpcio/issues"
@@ -19,32 +22,18 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
   },
-  "main": "./dist/index.mjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "build": "unbuild",
     "dev": "unbuild --stub",
-    "start": "esmo src/index.ts",
-    "test": "vitest",
-    "lint": "run-p lint:*",
     "lint:build": "# tsc --noEmit"
   },
   "dependencies": {

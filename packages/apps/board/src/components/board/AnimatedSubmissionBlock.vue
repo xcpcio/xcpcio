@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { AnimatedSubmissionBlockItem } from "~/composables/type";
+import type { AnimatedSubmissionBlockItem } from "@board/composables/type";
 
+import { getMedalColor } from "@board/composables/color";
+import { LastBlockDisplayType } from "@board/composables/type";
 import { SubmissionStatusToSimpleString } from "@xcpcio/types";
-import { getMedalColor } from "~/composables/color";
-import { LastBlockDisplayType } from "~/composables/type";
 
 const props = defineProps<{
   item: AnimatedSubmissionBlockItem;

@@ -1,4 +1,4 @@
-import type { UserModule } from "~/types";
+import type { UserModule } from "@board/types";
 import NProgress from "nprogress";
 
 export const install: UserModule = ({ isClient, router }) => {

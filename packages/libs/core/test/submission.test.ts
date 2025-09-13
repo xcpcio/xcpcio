@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { describe, expect, it } from "vitest";
+import { createSubmissions } from "@xcpcio/core";
 
-import { createSubmissions } from "../src/submission";
+import { describe, expect, it } from "vitest";
 
 describe("submission", () => {
   it("2023_ccpc_final", () => {
@@ -16,12 +16,9 @@ describe("submission", () => {
         "isFirstSolved": false,
         "isIgnore": false,
         "isSolved": false,
-        "language": undefined,
         "problemId": "4",
-        "reaction": undefined,
         "status": "ACCEPTED",
         "teamId": "3000202305140002",
-        "time": undefined,
         "timestamp": 240,
         "timestampUnit": "second",
       }
@@ -32,12 +29,9 @@ describe("submission", () => {
         "isFirstSolved": false,
         "isIgnore": false,
         "isSolved": false,
-        "language": undefined,
         "problemId": "4",
-        "reaction": undefined,
         "status": "ACCEPTED",
         "teamId": "3000202305140003",
-        "time": undefined,
         "timestamp": 300,
         "timestampUnit": "second",
       }
@@ -48,12 +42,9 @@ describe("submission", () => {
         "isFirstSolved": false,
         "isIgnore": false,
         "isSolved": false,
-        "language": undefined,
         "problemId": "0",
-        "reaction": undefined,
         "status": "REJECTED",
         "teamId": "3000202305140116",
-        "time": undefined,
         "timestamp": 17940,
         "timestampUnit": "second",
       }

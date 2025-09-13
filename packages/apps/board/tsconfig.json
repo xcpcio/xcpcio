@@ -1,15 +1,7 @@
 {
+  "extends": "../../../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
-    "jsx": "preserve",
-    "lib": ["DOM", "ESNext"],
-    "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "paths": {
-      "~/*": ["src/*"]
-    },
-    "resolveJsonModule": true,
+    "lib": ["dom", "esnext"],
     "types": [
       "vitest",
       "vite/client",
@@ -19,14 +11,10 @@
       "unplugin-vue-router/client"
     ],
     "allowJs": true,
-    "strict": true,
-    "strictNullChecks": true,
     "noUnusedLocals": true,
     "noEmit": true,
-    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "skipLibCheck": true
+    "isolatedModules": true
   },
   "vueCompilerOptions": {
     "plugins": [
