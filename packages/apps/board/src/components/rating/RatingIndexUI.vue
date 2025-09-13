@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IRatingIndex } from "@xcpcio/types/index";
+import type { IRatingIndex } from "@xcpcio/types";
 
 import { useElementVisibility } from "@vueuse/core";
 
