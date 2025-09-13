@@ -2,7 +2,7 @@ import { defineConfig } from "vitepress";
 
 const hostname = "https://xcpcio.com/";
 const ogUrl = hostname;
-const ogImage = `${ogUrl}og.png#1`;
+const ogImage = `${ogUrl}og.png`;
 const title = "XCPCIO";
 const description = "The ICPC Series Competition Leaderboard Visualization Engine.";
 
