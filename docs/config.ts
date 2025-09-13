@@ -9,27 +9,19 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
 ];
 
 const Sponsors: DefaultTheme.NavItemWithLink[] = [
-  { text: "Sponsor us", link: "/sponsor/" },
+  { text: "Sponsor Us", link: "/sponsor/" },
   { text: "Hznu Coder", link: "/sponsor/hznu-coder" },
 ];
 
 const Nav: DefaultTheme.NavItem[] = [
   {
     text: "Guide",
-    items: [
-      {
-        items: Guides,
-      },
-    ],
+    items: [{ items: Guides }],
     activeMatch: "^/guide/",
   },
   {
     text: "Sponsor",
-    items: [
-      {
-        items: Sponsors,
-      },
-    ],
+    items: [{ items: Sponsors }],
     activeMatch: "^/sponsor/",
   },
   { text: "Board", link: "https://board.xcpcio.com" },

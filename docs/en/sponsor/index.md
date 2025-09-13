@@ -1,4 +1,4 @@
-# Sponsor us
+# Sponsor Us
 
 Because the [xcpcio][gh-xcpcio] project requires annual expenses for domain, server, and labor costs, we welcome support through various methods.
 
