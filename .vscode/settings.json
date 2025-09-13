@@ -6,8 +6,22 @@
   "files.trimFinalNewlines": true,
 
   "[shellscript]": {
-    "editor.defaultFormatter": "sashkapb.shfmt",
+    "editor.defaultFormatter": "mkhl.shfmt",
     "editor.formatOnSave": true
+  },
+
+  "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
   },
 
   "markdownlint.config": {
@@ -67,20 +81,6 @@
     "pcss",
     "postcss"
   ],
-
-  "[python]": {
-    "editor.formatOnSave": true,
-    "editor.codeActionsOnSave": {
-      "source.fixAll": "explicit",
-      "source.organizeImports": "explicit"
-    },
-    "editor.defaultFormatter": "charliermarsh.ruff"
-  },
-  "notebook.formatOnSave.enabled": true,
-  "notebook.codeActionsOnSave": {
-    "notebook.source.fixAll": "explicit",
-    "notebook.source.organizeImports": "explicit"
-  },
 
   "cSpell.words": [
     "antd",

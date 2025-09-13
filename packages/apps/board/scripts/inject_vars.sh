@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash
 
 TARGET_FILE="${1}"
 

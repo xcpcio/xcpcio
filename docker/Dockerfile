@@ -1,4 +1,4 @@
-FROM node:24
+FROM ubuntu:24.04
 
 USER root
 WORKDIR /app
