@@ -18,7 +18,6 @@ const Nav: DefaultTheme.NavItem[] = [
     text: "Guide",
     items: [
       {
-        text: "Guide",
         items: Guides,
       },
     ],
@@ -28,7 +27,6 @@ const Nav: DefaultTheme.NavItem[] = [
     text: "Sponsor",
     items: [
       {
-        text: "Sponsor",
         items: Sponsors,
       },
     ],

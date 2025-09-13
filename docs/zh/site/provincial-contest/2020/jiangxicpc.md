@@ -1,0 +1,21 @@
+# 2020 江西省省赛
+
+- 江西师范大学承办的ICPC江西省省赛群: 1025935124
+- [如何评价2020icpc江西省赛?](https://www.zhihu.com/question/430246316)
+- [热身赛题面](https://upload-file.xcpcio.com/provincial-contest/2020/2020（ICPC）江西省大学生程序设计竞赛热身赛题目.pdf)
+- [正式赛题面](https://upload-file.xcpcio.com/provincial-contest/2020/2020（ICPC）江西省大学生程序设计竞赛正式赛题目.pdf)
+- [官方榜单](https://upload-file.xcpcio.com/provincial-contest/2020/2020ICPC江西省大学生程序设计竞赛榜单.pdf)
+- 正式赛题解
+  - [A、一个简单的数学题题解.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/A、一个简单的数学题题解.pdf)
+  - [B、苹果.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/B、苹果.pdf)
+  - [C、充电.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/C、充电.pdf)
+  - [D、柳DP的七夕.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/D、柳DP的七夕.pdf)
+  - [E、颜色序列.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/E、颜色序列.pdf)
+  - [F、火柴棒.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/F、火柴棒.pdf)
+  - [G、数学练习.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/G、数学练习.pdf)
+  - [H、序列.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/H、序列.pdf)
+  - [I、简单的数学题.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/I、简单的数学题.pdf)
+  - [J、剪纸游戏.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/J、剪纸游戏.pdf)
+  - [K、运费问题.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/K、运费问题.pdf)
+  - [L、N皇后.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/L、N皇后.pdf)
+  - [M、动物编码.pdf](https://upload-file.xcpcio.com/provincial-contest/2020/江西省省赛题解/M、动物编码.pdf)
