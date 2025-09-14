@@ -8,7 +8,7 @@ if [[ -d "${EXPORT_PATH}" ]]; then
 fi
 
 if [[ "${APP}" = "board" ]]; then
-  exec bash "${CUR_DIR}/../packages/apps/board/scripts/inject_vars_all.sh"
+  bash bash "${CUR_DIR}/../packages/apps/board/scripts/inject_vars_all.sh"
   APP_PATH="${CUR_DIR}/../packages/apps/board/dist"
 elif [[ "${APP}" = "docs" ]]; then
   APP_PATH="${CUR_DIR}/../docs/dist"
