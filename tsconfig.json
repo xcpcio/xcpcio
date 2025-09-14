@@ -31,13 +31,9 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "include": [
-    "./packages/**/*.ts"
-  ],
   "exclude": [
     "**/dist/**",
     "**/cache/**",
-    "**/node_modules/**",
-    "./packages/**/*.test.ts"
+    "**/node_modules/**"
   ]
 }

@@ -3,6 +3,7 @@
     "antfu.iconify",
     "antfu.unocss",
     "antfu.vite",
+    "antfu.goto-alias",
     "vitest.explorer",
     "dbaeumer.vscode-eslint",
     "vue.volar",
