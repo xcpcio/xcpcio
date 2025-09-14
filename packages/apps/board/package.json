@@ -84,6 +84,7 @@
     "eslint": "catalog:",
     "eslint-plugin-cypress": "catalog:",
     "eslint-plugin-format": "catalog:",
+    "git-repo-info": "catalog:",
     "https-localhost": "catalog:",
     "less": "catalog:",
     "markdown-it-link-attributes": "catalog:",

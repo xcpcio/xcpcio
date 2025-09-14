@@ -1,5 +1,4 @@
 export * from "./basic-types";
-export * from "./constant";
 export * from "./contest";
 export * from "./contest-index";
 export * from "./lang";

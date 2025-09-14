@@ -1,7 +1,3 @@
-<script setup lang="ts">
-import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
-</script>
-
 <template>
   <footer
     mt-8
@@ -68,7 +64,7 @@ import { GITHUB_SHA, GITHUB_URL, VERSION } from "@xcpcio/types";
                   flex justify-center items-start
                   flex-col
                 >
-                  <div>Tag: {{ VERSION }}</div>
+                  <div>Tag: {{ APP_VERSION }}</div>
                   <div>Sha: {{ GITHUB_SHA }}</div>
                 </div>
               </template>

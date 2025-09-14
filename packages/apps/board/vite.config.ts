@@ -4,13 +4,14 @@ import VueI18n from "@intlify/unplugin-vue-i18n/vite";
 import Shiki from "@shikijs/markdown-it";
 import { unheadVueComposablesImports } from "@unhead/vue";
 import Vue from "@vitejs/plugin-vue";
+import getGitRepoInfo from "git-repo-info";
 import LinkAttributes from "markdown-it-link-attributes";
 import Unocss from "unocss/vite";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import VueMacros from "unplugin-vue-macros/vite";
-import Markdown from "unplugin-vue-markdown/vite";
 
+import Markdown from "unplugin-vue-markdown/vite";
 import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 import { defineConfig } from "vite";
@@ -21,7 +22,10 @@ import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
 import generateSitemap from "vite-ssg-sitemap";
 import { alias } from "../../../alias";
+import { homepage, version } from "./package.json";
 import "vitest/config";
+
+const gitRepoInfo = getGitRepoInfo();
 
 const proxyConfig = {
   target: process.env.PROXY_TARGET || "https://board.xcpcio.com",
@@ -31,6 +35,13 @@ const proxyConfig = {
 export default defineConfig({
   resolve: {
     alias,
+  },
+
+  define: {
+    __APP_VERSION__: JSON.stringify(version),
+    __GITHUB_URL__: JSON.stringify("https://github.com/xcpcio/xcpcio"),
+    __GITHUB_SHA__: JSON.stringify(gitRepoInfo.abbreviatedSha),
+    __XCPCIO_HOME__: JSON.stringify(homepage),
   },
 
   plugins: [

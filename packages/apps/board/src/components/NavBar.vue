@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { availableLocales, loadLanguageAsync } from "@board/modules/i18n";
-import { GITHUB_URL, XCPCIO_HOME } from "@xcpcio/types";
 
 const props = defineProps<{
   width?: string;
