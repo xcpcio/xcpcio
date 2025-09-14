@@ -20,7 +20,7 @@ catalog:
   "@types/papaparse": ^5.3.16
   "@typescript-eslint/eslint-plugin": ^8.43.0
   "@typescript-eslint/parser": ^8.43.0
-  "@unhead/vue": 2.0.14
+  "@unhead/vue": ^2.0.14
   "@unocss/eslint-config": ^66.5.1
   "@unocss/reset": ^66.5.1
   "@vitejs/plugin-vue": ^6.0.1
