@@ -6,12 +6,15 @@
 // biome-ignore lint: disable
 export {}
 declare global {
+  const APP_VERSION: typeof import('./composables/constant')['APP_VERSION']
   const BALLOON_TITLE_SUFFIX: typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']
   const CDN_HOST: typeof import('./composables/constant')['CDN_HOST']
   const COUNTDOWN_TITLE_SUFFIX: typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']
   const DATA_HOST: typeof import('./composables/constant')['DATA_HOST']
   const DATA_REGION: typeof import('./composables/constant')['DATA_REGION']
   const EffectScope: typeof import('vue')['EffectScope']
+  const GITHUB_SHA: typeof import('./composables/constant')['GITHUB_SHA']
+  const GITHUB_URL: typeof import('./composables/constant')['GITHUB_URL']
   const LastBlockDisplayType: typeof import('./composables/type')['LastBlockDisplayType']
   const Pagination: typeof import('./composables/pagination')['Pagination']
   const RATING_DATA_HOST: typeof import('./composables/constant')['RATING_DATA_HOST']
@@ -19,6 +22,7 @@ declare global {
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']
   const SUBMISSION_TITLE_SUFFIX: typeof import('./composables/constant')['SUBMISSION_TITLE_SUFFIX']
   const TITLE_SUFFIX: typeof import('./composables/constant')['TITLE_SUFFIX']
+  const XCPCIO_HOME: typeof import('./composables/constant')['XCPCIO_HOME']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const computed: typeof import('vue')['computed']
@@ -356,12 +360,15 @@ import { UnwrapRef } from 'vue'
 declare module 'vue' {
   interface GlobalComponents {}
   interface ComponentCustomProperties {
+    readonly APP_VERSION: UnwrapRef<typeof import('./composables/constant')['APP_VERSION']>
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
     readonly CDN_HOST: UnwrapRef<typeof import('./composables/constant')['CDN_HOST']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly DATA_HOST: UnwrapRef<typeof import('./composables/constant')['DATA_HOST']>
     readonly DATA_REGION: UnwrapRef<typeof import('./composables/constant')['DATA_REGION']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly GITHUB_SHA: UnwrapRef<typeof import('./composables/constant')['GITHUB_SHA']>
+    readonly GITHUB_URL: UnwrapRef<typeof import('./composables/constant')['GITHUB_URL']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
     readonly RATING_DATA_HOST: UnwrapRef<typeof import('./composables/constant')['RATING_DATA_HOST']>
@@ -369,6 +376,7 @@ declare module 'vue' {
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly SUBMISSION_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['SUBMISSION_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
+    readonly XCPCIO_HOME: UnwrapRef<typeof import('./composables/constant')['XCPCIO_HOME']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
