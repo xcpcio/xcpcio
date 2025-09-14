@@ -22,5 +22,12 @@
       "@vue-macros/volar/define-slots"
     ]
   },
+  "include": [
+    "./*.ts",
+    // in .vue files, also include the <script setup>
+    "./src",
+    "./test",
+    "../../libs/**/*.ts"
+  ],
   "exclude": ["dist", "node_modules", "cypress"]
 }
