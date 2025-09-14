@@ -126,8 +126,8 @@ function isRenderByVisible() {
         @click="onClickTeamInfoModal"
       >
         <span>{{ team.name }}</span>
-        <StarIcon v-if="team.group.includes('unofficial')" inline-block />
-        <GirlIcon v-if="team.group.includes('girl')" inline-block />
+        <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
+        <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
       </div>
 
       <div>
