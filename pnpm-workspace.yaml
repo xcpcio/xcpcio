@@ -28,7 +28,6 @@ catalog:
   "@vue/test-utils": ^2.4.6
   "@vueuse/components": ^13.9.0
   "@vueuse/core": ^13.9.0
-  "@vueuse/head": ^2.0.0
   "@vueuse/router": ^13.9.0
   bumpp: ^10.2.3
   chroma-js: ^3.1.2

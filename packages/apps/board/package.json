@@ -45,7 +45,6 @@
     "@unocss/reset": "catalog:",
     "@vueuse/components": "catalog:",
     "@vueuse/core": "catalog:",
-    "@vueuse/head": "catalog:",
     "@vueuse/router": "catalog:",
     "@xcpcio/core": "workspace:*",
     "@xcpcio/types": "workspace:*",
