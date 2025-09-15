@@ -1,5 +1,5 @@
 from . import constants, types
 
-__version__ = "0.61.2"
+__version__ = "0.62.0"
 
 __all__ = [constants, types]
