@@ -5,6 +5,7 @@ const ogUrl = hostname;
 const ogImage = `${ogUrl}og.png`;
 const title = "XCPCIO";
 const description = "The ICPC Series Competition Leaderboard Visualization Engine.";
+const googleTagId = "GTM-WHLF55BJ";
 
 export default defineConfig({
   title,
@@ -34,6 +35,18 @@ export default defineConfig({
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:image", content: ogImage }],
     ["meta", { name: "twitter:url", content: ogUrl }],
+    [
+      "script",
+      { async: "", src: `https://www.googletagmanager.com/gtag/js?id=${googleTagId}` },
+    ],
+    [
+      "script",
+      {},
+      `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${googleTagId}');`,
+    ],
   ],
 
   locales: {
