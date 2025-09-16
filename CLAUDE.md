@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-XCPCIO is a comprehensive platform for ICPC/CCPC competitive programming contests. It provides ranking systems and scoreboard visualization for programming competitions.
+**XCPCIO** is "The ICPC Series Competition Leaderboard Visualization Engine" - a comprehensive platform for ICPC competitive programming contests. It provides professional ranking systems, real-time leaderboard visualization, and hosting services for programming competitions.
 
 ## Architecture
 
@@ -41,24 +41,41 @@ pnpm build
 # Build only libraries (types and core)
 pnpm build:libs
 
-# Start development servers for all packages
-pnpm dev
+# Build docs app
+pnpm build:docs
 
-# Start production servers
-pnpm start
+# Build board app
+pnpm build:board
 
 # Run tests
 pnpm test
-vitest
+
+# Update test snapshots
+pnpm test:update
+
+# Run full CI pipeline (build, lint, test)
+pnpm test:ci
 
 # Lint all code
 pnpm lint
 
-# Format code
-pnpm format
+# Fix lint issues automatically
+pnpm lint:fix
 
-# Release new version
+# Start docs development server
+pnpm docs
+
+# Start board development server
+pnpm board
+
+# Release new version (bumps version, commits, tags, pushes)
 pnpm release
+
+# Publish to npm (requires build first)
+pnpm publish:npm
+
+# Build and publish to npm
+pnpm publish:npm_with_build
 ```
 
 ### Package-Specific Commands
@@ -72,16 +89,22 @@ pnpm dev
 # Build for production
 pnpm build
 
+# Preview production build
+pnpm preview
+
+# Preview with HTTPS
+pnpm preview-https
+
+# Start production server
+pnpm start
+
 # Type checking
 pnpm typecheck
 
-# Run unit tests
-pnpm test:unit
-
-# Run E2E tests
+# Run E2E tests with Cypress
 pnpm test:e2e
 
-# Bundle analysis
+# Bundle size analysis
 pnpm sizecheck
 ```
 
@@ -133,11 +156,16 @@ uv run ruff check
 ## Technology Stack
 
 - **Frontend**: Vue 3, TypeScript, Vite, UnoCSS, Pinia for state management
-- **Build System**: Vite for apps, unbuild for libraries
+- **UI Components**: Floating Vue for tooltips, Flowbite for components, Vue Search Select
+- **Data Visualization**: Highcharts with Vue integration, GSAP for animations
+- **State Management**: Pinia, Vue Query (@tanstack/vue-query) for server state
+- **Utilities**: VueUse composables, Day.js for dates, Lodash for utilities
+- **Build System**: Vite for apps, unbuild for libraries, Vite SSG for static generation
 - **Testing**: Vitest for unit tests, Cypress for E2E, pytest for Python
 - **Linting**: ESLint with @antfu/eslint-config, Ruff for Python
-- **Package Management**: pnpm with workspace configuration, uv for Python
+- **Package Management**: pnpm with workspace configuration and catalog, uv for Python
 - **Python**: Pydantic for data validation and serialization
+- **Documentation**: VitePress for documentation site
 
 ## Key Concepts
 
@@ -203,11 +231,25 @@ Libraries export both ESM and CommonJS formats with proper TypeScript declaratio
 ## Development Workflow
 
 1. Install dependencies: `pnpm install`
-2. Start development: `pnpm dev` (starts all packages in parallel)
+2. Start development:
+   - All packages: `pnpm dev` (not available - use specific commands below)
+   - Board app: `pnpm board` (runs on port 3333)
+   - Documentation: `pnpm docs`
 3. Make changes to libraries first, then applications
-4. Run tests: `pnpm test`
-5. Lint before committing: `pnpm lint`
-6. Build for production: `pnpm build`
+4. Build libraries before testing apps: `pnpm build:libs`
+5. Run tests: `pnpm test` or `pnpm test:ci` for full pipeline
+6. Type check: `pnpm typecheck` (from board app directory)
+7. Lint before committing: `pnpm lint` or `pnpm lint:fix`
+8. Build for production: `pnpm build`
+
+### Package Development Order
+
+Due to dependencies, develop in this order:
+
+1. **types** package first (base types)
+2. **core** package second (uses types)
+3. **board** app last (uses both types and core)
+4. **python** package (independent, mirrors TypeScript types)
 
 ## Git Workflow
 
@@ -251,3 +293,22 @@ git branch -d <branch-name>
 - `refactor`: Code refactoring without functional changes
 - `test`: Adding or updating tests
 - `style`: Code formatting, white-space fixes
+- `perf`: Performance improvements
+- `ci`: Changes to CI configuration files and scripts
+
+## Additional Information
+
+### Package Manager Configuration
+
+- Uses pnpm with catalog feature for centralized dependency management
+- Workspace configuration in `pnpm-workspace.yaml`
+- Node.js version requirement: >=20
+- Package manager version: pnpm@10.16.0
+
+### Key Development Tools
+
+- **@antfu/ni**: Smart package manager command shortcuts
+- **bumpp**: Version bumping utility for releases
+- **unbuild**: Zero-config build tool for libraries
+- **taze**: Keep dependencies up-to-date
+- **esmo**: TypeScript/ESM execution engine
