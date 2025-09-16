@@ -1,7 +1,7 @@
 <!-- markdownlint-disable MD041 -->
 
 <p align='center'>
-  <img src='./docs/public/logo.svg' alt='XCPCIO - The ICPC Series Competition Leaderboard Visualization Engine' width='600'/>
+  <img src='./docs/public/logo.svg' alt='XCPCIO - The ICPC Series Competition Leaderboard Visualization Engine' width='240'/>
 </p>
 
 <p align='center'>
