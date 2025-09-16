@@ -5,10 +5,8 @@
 </p>
 
 <p align='center'>
-The ICPC Series Competition Leaderboard Visualization Engine<br>
+<b>The ICPC Series Competition Leaderboard Visualization Engine</b><br>
 </p>
-
-<p align='center'>
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
 [![GitHub release][gh-release-badge]][gh-release]
@@ -16,8 +14,6 @@ The ICPC Series Competition Leaderboard Visualization Engine<br>
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
 [![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
-
-</p>
 
 ## Development
 
