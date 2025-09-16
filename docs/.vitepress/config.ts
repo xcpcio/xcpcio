@@ -9,6 +9,7 @@ const googleTagId = "GTM-WHLF55BJ";
 
 export default defineConfig({
   title,
+  description,
   titleTemplate: `:title - ${title}`,
 
   rewrites: {

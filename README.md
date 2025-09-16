@@ -1,11 +1,23 @@
-# xcpcio
+<!-- markdownlint-disable MD041 -->
+
+<p align='center'>
+  <img src='./docs/public/logo.svg' alt='XCPCIO - The ICPC Series Competition Leaderboard Visualization Engine' width='600'/>
+</p>
+
+<p align='center'>
+The ICPC Series Competition Leaderboard Visualization Engine<br>
+</p>
+
+<p align='center'>
 
 [![Test](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml/badge.svg)](https://github.com/xcpcio/xcpcio/actions/workflows/test.yml)
-[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
 [![GitHub release][gh-release-badge]][gh-release]
 [![License][license-image-mit]][license-link-mit]
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
+[![code style](https://antfu.me/badge-code-style.svg)](https://github.com/antfu/eslint-config)
+
+</p>
 
 ## Development
 
@@ -15,11 +27,23 @@ git clone https://github.com/xcpcio/xcpcio.git
 # Installation dependencies
 pnpm install
 
-# start http server
-pnpm start
-
 # build the project
 pnpm build
+
+# Start docs development server
+pnpm docs
+
+# Start board development server
+pnpm board
+
+# Run tests
+pnpm test
+
+# Lint all code
+pnpm lint
+
+# Fix lint issues automatically
+pnpm lint:fix
 ```
 
 ## :clap: Our Supporters
