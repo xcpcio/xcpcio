@@ -26,4 +26,8 @@ repository = "https://github.com/xcpcio/xcpcio"
 line-length = 120
 
 [dependency-groups]
-dev = [ "pytest>=8.4.2", "ruff>=0.4.0", ]
+dev = [
+ "datamodel-code-generator[http]>=0.33.0",
+ "pytest>=8.4.2",
+ "ruff>=0.4.0",
+]
