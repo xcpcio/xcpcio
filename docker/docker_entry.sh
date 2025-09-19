@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Load nvm if available
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+
 CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 EXPORT_PATH="/app/export"
@@ -19,7 +22,7 @@ if [[ -n "${APP_PATH}" ]]; then
   echo "Exported ${APP_PATH} to ${EXPORT_PATH}"
 fi
 
-if [[ X"${1}" = X"primary" ]]; then
+if [[ "${1}" = "primary" ]]; then
   echo "Done"
 else
   exec "${@}"
