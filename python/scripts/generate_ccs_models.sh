@@ -5,7 +5,7 @@ set -euo pipefail
 CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 PYTHON_DIR="$(dirname "${CUR_DIR}")"
 CCS_SPECS_DIR="${PYTHON_DIR}/ccs-specs"
-CCS_MODELS_DIR="${PYTHON_DIR}/xcpcio/ccs_specs"
+CCS_MODELS_DIR="${PYTHON_DIR}/xcpcio/ccs/model"
 
 BRANCH="${1:-2023-06}"
 CCS_REPO_URL="https://github.com/icpc/ccs-specs.git"
@@ -44,6 +44,8 @@ echo "Generating Python models using datamodel-codegen..."
 uv run datamodel-codegen \
   --input "${ENTRY_POINT}" \
   --input-file-type jsonschema \
+  --output-model-type pydantic_v2.BaseModel \
+  --target-python-version "3.11" \
   --output "${OUTPUT_DIR}/model.py"
 
 echo "Creating __init__.py file..."
