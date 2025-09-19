@@ -8,7 +8,7 @@ WORKDIR /app/xcpcio
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NVM_DIR=/root/.nvm
 ENV PATH="/root/.local/bin:$PATH"
-ENV NVM_VERSION="0.40.3"
+ENV NVM_VERSION="v0.40.3"
 
 # Install system dependencies, uv, nvm, and build project
 RUN apt-get update && apt-get install -y \
@@ -31,6 +31,5 @@ RUN apt-get update && apt-get install -y \
 
 
 EXPOSE 3000
-
 ENTRYPOINT ["/app/xcpcio/docker/docker_entry.sh"]
 CMD ["primary"]
