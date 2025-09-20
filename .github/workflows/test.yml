@@ -43,11 +43,14 @@ jobs:
         with:
           enable-cache: true
 
-      - name: Sync
-        run: uv sync --group dev
+      - name: Install
+        run: uv sync --dev
 
       - name: Lint
         run: uv run ruff check
 
       - name: Test
         run: uv run pytest
+
+      - name: Build
+        run: uv build

@@ -568,7 +568,7 @@ wheels = [
 [[package]]
 name = "xcpcio"
 version = "0.63.3"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
 ]
