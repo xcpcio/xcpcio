@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y \
     && corepack enable pnpm \
     && pnpm install --force \
     && curl -LsSf https://astral.sh/uv/install.sh | sh \
-    && cd python && uv install \
+    && cd python && uv sync \
     && cd ..
 
 

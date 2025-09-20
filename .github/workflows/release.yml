@@ -119,7 +119,7 @@ jobs:
           username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
-      - name: Build and Push packages/app
+      - name: Build and Push
         uses: docker/build-push-action@v6
         env:
           image_name: xcpcio
