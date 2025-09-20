@@ -15,12 +15,23 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
 ]
 requires-python = ">=3.11"
-dependencies = [ "pydantic>=2.11.7", ]
+dependencies = [
+  "pydantic>=2.11.7",
+  "aiohttp>=3.8.0",
+  "aiofiles>=23.0.0",
+  "click>=8.0.0",
+  "pyyaml>=6.0.0",
+  "semver>=3.0.0",
+  "tenacity>=8.0.0",
+]
 
 [project.urls]
 homepage = "https://github.com/xcpcio/xcpcio"
 documentation = "https://github.com/xcpcio/xcpcio"
 repository = "https://github.com/xcpcio/xcpcio"
+
+[project.scripts]
+ccs-archiver = "cli.ccs_archiver_cli:main"
 
 [tool.ruff]
 line-length = 120

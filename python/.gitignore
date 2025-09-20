@@ -3,3 +3,6 @@
 .ruff_cache/
 __pycache__/
 ccs-specs/
+output/
+
+.env
