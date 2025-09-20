@@ -1,3 +1,3 @@
-from . import ccs, model
+from . import model
 
-__all__ = [model, ccs]
+__all__ = [model]
