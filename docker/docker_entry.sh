@@ -3,6 +3,9 @@
 # Load nvm if available
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
+# shellcheck disable=SC1091
+[ -s "/app/xcpcio/python/.venv/bin/activate" ] && source "/app/xcpcio/python/.venv/bin/activate"
+
 CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 
 EXPORT_PATH="/app/export"
