@@ -26,8 +26,8 @@ def setup_logging(level: str = "INFO"):
 @click.option("--password", "-p", help="HTTP Basic Auth password")
 @click.option("--token", "-t", help="Bearer token for authentication")
 @click.option("--no-files", is_flag=True, help="Skip downloading files")
+@click.option("--no-event-feed", is_flag=True, help="Skip dump event-feed(large aggregated data)")
 @click.option("--endpoints", "-e", multiple=True, help="Specific endpoints to dump (can be used multiple times)")
-@click.option("--include-event-feed", is_flag=True, help="Include event-feed endpoint (large aggregated data)")
 @click.option("--timeout", default=30, type=int, help="Request timeout in seconds")
 @click.option("--max-concurrent", default=10, type=int, help="Max concurrent requests")
 @click.option(
@@ -45,8 +45,8 @@ def main(
     password: Optional[str],
     token: Optional[str],
     no_files: bool,
+    no_event_feed: bool,
     endpoints: tuple,
-    include_event_feed: bool,
     timeout: int,
     max_concurrent: int,
     log_level: str,
@@ -94,7 +94,7 @@ def main(
         endpoints=list(endpoints) if endpoints else None,
         timeout=timeout,
         max_concurrent=max_concurrent,
-        include_event_feed=include_event_feed,
+        include_event_feed=not no_event_feed,
     )
 
     click.echo(f"Archiving contest '{contest_id}' from {base_url}")
