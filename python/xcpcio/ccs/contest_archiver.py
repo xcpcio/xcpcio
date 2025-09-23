@@ -59,6 +59,7 @@ class ContestArchiver:
 
     # Known endpoints that can be fetched
     KNOWN_ENDPOINTS = [
+        "access",
         "contests",
         "judgement-types",
         "languages",
@@ -79,6 +80,7 @@ class ContestArchiver:
     ]
 
     DOMJUDGE_KNOWN_ENDPOINTS = [
+        "access",
         "contests",
         "judgement-types",
         "languages",
@@ -294,7 +296,7 @@ class ContestArchiver:
         # Parse provider information
         if "provider" in data:
             provider: Dict = data.get("provider", {})
-            self._provider_name = provider.get("name", "").lower()
+            self._provider_name = provider.get("name", "")
 
             # Parse version string to semver.VersionInfo
             version_str: str = provider.get("version", "")
