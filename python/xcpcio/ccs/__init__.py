@@ -1,3 +1,3 @@
-from . import contest_archiver, model
+from . import api_server, contest_archiver, model
 
-__all__ = [model, contest_archiver]
+__all__ = [model, contest_archiver, api_server]
