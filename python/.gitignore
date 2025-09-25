@@ -6,3 +6,5 @@ ccs-specs/
 output/
 
 .env
+
+xcpcio/__version__.py
