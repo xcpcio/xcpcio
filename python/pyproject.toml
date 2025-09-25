@@ -1,6 +1,5 @@
 [project]
 name = "xcpcio"
-version = "0.63.3"
 description = "xcpcio python lib"
 readme = "README.md"
 authors = [ { name = "Dup4", email = "hi@dup4.com" } ]
@@ -24,6 +23,7 @@ dependencies = [
   "semver>=3.0.0",
   "tenacity>=8.0.0",
 ]
+dynamic = ["version"]
 
 [project.urls]
 homepage = "https://github.com/xcpcio/xcpcio"
@@ -40,9 +40,13 @@ line-length = 120
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+[tool.hatch.version]
+path = "xcpcio/__version__.py"
+
 [dependency-groups]
 dev = [
  "datamodel-code-generator[http]>=0.33.0",
+ "hatch>=1.14.2",
  "pytest>=8.4.2",
  "ruff>=0.4.0",
 ]
