@@ -12,15 +12,7 @@ echo "📦 Syncing Python package to version: $VERSION"
 
 pushd "$BASE_DIR/python"
 
-uv version "$VERSION"
-python -c "
-import re
-with open('$BASE_DIR/python/xcpcio/__init__.py', 'r') as f:
-    content = f.read()
-updated = re.sub(r'__version__ = \"[^\"]*\"', f'__version__ = \"$VERSION\"', content)
-with open('$BASE_DIR/python/xcpcio/__init__.py', 'w') as f:
-    f.write(updated)
-"
+hatch version "$VERSION"
 
 popd
 
