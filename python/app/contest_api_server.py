@@ -3,6 +3,7 @@ from pathlib import Path
 
 import click
 
+from xcpcio import __version__
 from xcpcio.ccs.api_server.server import ContestAPIServer
 
 
@@ -15,6 +16,7 @@ def setup_logging(level: str = "INFO"):
 
 
 @click.command()
+@click.version_option(__version__)
 @click.option(
     "--contest-dir",
     "-d",

@@ -5,6 +5,7 @@ from typing import Optional
 
 import click
 
+from xcpcio import __version__
 from xcpcio.ccs.contest_archiver import APICredentials, ArchiveConfig, ContestArchiver
 
 
@@ -17,6 +18,7 @@ def setup_logging(level: str = "INFO"):
 
 
 @click.command()
+@click.version_option(__version__)
 @click.option("--base-url", required=True, help="Base URL of the CCS API (e.g., https://example.com/api)")
 @click.option("--contest-id", required=True, help="Contest ID to dump")
 @click.option(
