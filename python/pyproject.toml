@@ -39,10 +39,14 @@ ccs-archiver = "cli.ccs_archiver_cli:main"
 line-length = 120
 
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-nodejs-version"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
+source = "nodejs"
+path = "../package.json"
+
+[tool.hatch.build.hooks.version]
 path = "xcpcio/__version__.py"
 
 [dependency-groups]

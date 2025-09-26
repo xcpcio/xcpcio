@@ -19,7 +19,7 @@
     "test:ci": "nr build && nr lint && nr test",
     "docs": "npm -C docs run dev",
     "board": "npm -C packages/apps/board run dev",
-    "release": "bumpp package.json docs/package.json packages/**/*/package.json --all --commit --tag --push --execute \"bash scripts/sync-python-version.sh\"",
+    "release": "bumpp package.json docs/package.json packages/**/*/package.json --all --commit --tag --push",
     "publish:npm": "pnpm -r publish --no-git-checks --access public",
     "publish:npm_with_build": "cross-env BUILD_MODE=npm_publish pnpm build && pnpm -r publish --no-git-checks --access public"
   },
