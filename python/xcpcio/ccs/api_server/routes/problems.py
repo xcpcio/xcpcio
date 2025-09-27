@@ -6,7 +6,6 @@ from fastapi import APIRouter, HTTPException
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
-from ...model import Problem, Problems
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -17,7 +16,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/problems",
     summary="Get Problems",
     description="Get all problems in the contest",
-    response_model=Problems,
+    response_model=List[Dict[str, Any]],
 )
 async def get_problems(
     contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
@@ -30,7 +29,7 @@ async def get_problems(
     "/contests/{contest_id}/problems/{problem_id}",
     summary="Get Problem",
     description="Get specific problem information",
-    response_model=Problem,
+    response_model=Dict[str, Any],
 )
 async def get_problem(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -60,7 +59,6 @@ async def get_problem_statement(
     if not problem:
         raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")
 
-    # Expected href pattern for this endpoint
     expected_href = f"contests/{contest_id}/problems/{problem_id}/statement"
 
     try:

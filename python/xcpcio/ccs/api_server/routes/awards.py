@@ -3,7 +3,6 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter, Path
 
-from ...model import Award, Awards
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -14,7 +13,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/awards",
     summary="Get Awards",
     description="Get all awards in the contest",
-    response_model=Awards,
+    response_model=List[Dict[str, Any]],
 )
 async def get_awards(
     contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
@@ -27,7 +26,7 @@ async def get_awards(
     "/contests/{contest_id}/awards/{award_id}",
     summary="Get Award",
     description="Get specific award information",
-    response_model=Award,
+    response_model=Dict[str, Any],
 )
 async def get_award(
     contest_id: str = Path(..., description="Contest identifier"),

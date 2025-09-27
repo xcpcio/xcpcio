@@ -6,10 +6,6 @@ from fastapi import APIRouter, HTTPException
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
-from ...model import (
-    Organization,
-    Organizations,
-)
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -20,7 +16,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/organizations",
     summary="Get Organizations",
     description="Get all organizations in the contest",
-    response_model=Organizations,
+    response_model=List[Dict[str, Any]],
 )
 async def get_organizations(
     contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
@@ -33,7 +29,7 @@ async def get_organizations(
     "/contests/{contest_id}/organizations/{organization_id}",
     summary="Get Organization",
     description="Get specific organization information",
-    response_model=Organization,
+    response_model=Dict[str, Any],
 )
 async def get_organization(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -63,7 +59,6 @@ async def get_organization_logo(
     if not org:
         raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
 
-    # Expected href pattern for this endpoint
     expected_href = f"contests/{contest_id}/organizations/{organization_id}/logo"
 
     try:

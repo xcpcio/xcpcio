@@ -6,10 +6,6 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
-from ...model import (
-    Team,
-    Teams,
-)
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -20,7 +16,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/teams",
     summary="Get Teams",
     description="Get all teams, optionally filtered by group",
-    response_model=Teams,
+    response_model=List[Dict[str, Any]],
 )
 async def get_teams(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -35,7 +31,7 @@ async def get_teams(
     "/contests/{contest_id}/teams/{team_id}",
     summary="Get Team",
     description="Get specific team information",
-    response_model=Team,
+    response_model=Dict[str, Any],
 )
 async def get_team(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -65,7 +61,6 @@ async def get_team_photo(
     if not team:
         raise HTTPException(status_code=404, detail=f"Team {team_id} not found")
 
-    # Expected href pattern for this endpoint
     expected_href = f"contests/{contest_id}/teams/{team_id}/photo"
 
     try:
@@ -73,7 +68,7 @@ async def get_team_photo(
         for photo in photos:
             href = photo["href"]
             if href == expected_href:
-                filename = ["filename"]
+                filename = photo["filename"]
                 photo_file: Path = service.contest_package_dir / "teams" / team_id / filename
                 if photo_file.exists():
                     mime_type = photo["mime"]

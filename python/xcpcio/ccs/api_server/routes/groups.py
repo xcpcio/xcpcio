@@ -3,10 +3,6 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter, Path
 
-from ...model import (
-    Group,
-    Groups,
-)
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -17,7 +13,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/groups",
     summary="Get Groups",
     description="Get all team groups in the contest",
-    response_model=Groups,
+    response_model=List[Dict[str, Any]],
 )
 async def get_groups(
     contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
@@ -30,7 +26,7 @@ async def get_groups(
     "/contests/{contest_id}/groups/{group_id}",
     summary="Get Group",
     description="Get specific group information",
-    response_model=Group,
+    response_model=Dict[str, Any],
 )
 async def get_group(
     contest_id: str = Path(..., description="Contest identifier"),

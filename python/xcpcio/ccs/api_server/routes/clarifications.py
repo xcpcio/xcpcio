@@ -3,7 +3,6 @@ from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Path, Query
 
-from ...model import Clarification, Clarifications
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -14,7 +13,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/clarifications",
     summary="Get Clarifications",
     description="Get all clarifications, optionally filtered",
-    response_model=Clarifications,
+    response_model=List[Dict[str, Any]],
 )
 async def get_clarifications(
     contest_id: str = Path(..., description="Contest identifier"),
@@ -31,7 +30,7 @@ async def get_clarifications(
     "/contests/{contest_id}/clarifications/{clarification_id}",
     summary="Get Clarification",
     description="Get specific clarification information",
-    response_model=Clarification,
+    response_model=Dict[str, Any],
 )
 async def get_clarification(
     contest_id: str = Path(..., description="Contest identifier"),
