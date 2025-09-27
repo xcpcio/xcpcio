@@ -3,10 +3,6 @@ from typing import Any, Dict, List
 
 from fastapi import APIRouter, Path
 
-from ...model import (
-    Language,
-    Languages,
-)
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -17,7 +13,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/languages",
     summary="Get Languages",
     description="Get all programming languages available for submission",
-    response_model=Languages,
+    response_model=List[Dict[str, Any]],
 )
 async def get_languages(
     contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
@@ -30,7 +26,7 @@ async def get_languages(
     "/contests/{contest_id}/languages/{language_id}",
     summary="Get Language",
     description="Get specific language information",
-    response_model=Language,
+    response_model=Dict[str, Any],
 )
 async def get_language(
     contest_id: str = Path(..., description="Contest identifier"),

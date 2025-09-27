@@ -6,7 +6,6 @@ from fastapi import APIRouter, HTTPException, Query
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
-from ...model import Submission, Submissions
 from ..dependencies import ContestServiceDep
 
 router = APIRouter()
@@ -17,7 +16,7 @@ logger = logging.getLogger(__name__)
     "/contests/{contest_id}/submissions",
     summary="Get Submissions",
     description="Get all submissions, optionally filtered by team or problem",
-    response_model=Submissions,
+    response_model=List[Dict[str, Any]],
 )
 async def get_submissions(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -33,7 +32,7 @@ async def get_submissions(
     "/contests/{contest_id}/submissions/{submission_id}",
     summary="Get Submission",
     description="Get specific submission information",
-    response_model=Submission,
+    response_model=Dict[str, Any],
 )
 async def get_submission(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
@@ -63,7 +62,6 @@ async def get_submission_files(
     if not submission:
         raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
 
-    # Expected href pattern for this endpoint
     expected_href = f"contests/{contest_id}/submissions/{submission_id}/files"
 
     try:

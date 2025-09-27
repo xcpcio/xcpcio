@@ -11,8 +11,6 @@ from typing import Any, Dict, List, Optional, Union
 
 from fastapi import HTTPException
 
-from xcpcio.__version__ import __version__
-
 
 class ContestService:
     """Service class for contest-related operations"""
@@ -101,74 +99,12 @@ class ContestService:
     # API Information
     def get_api_info(self) -> Dict[str, Any]:
         """Get API information"""
-        return {
-            "version": "2023-06",
-            "version_url": "https://ccs-specs.icpc.io/2023-06/contest_api",
-            "name": "XCPCIO",
-            "provider": {
-                "name": "XCPCIO",
-                "version": __version__,
-            },
-        }
+        return self.load_json_file("api.json")
 
     def get_access_info(self, contest_id: str) -> Dict[str, Any]:
         """Get access information for current client"""
         self.validate_contest_id(contest_id)
-        return {
-            "capabilities": [],
-            "endpoints": [
-                {
-                    "type": "contest",
-                    "properties": [
-                        "id",
-                        "name",
-                        "formal_name",
-                        "start_time",
-                        "duration",
-                        "scoreboard_type",
-                        "penalty_time",
-                    ],
-                },
-                {
-                    "type": "problems",
-                    "properties": ["id", "label", "name", "ordinal", "color", "rgb", "time_limit", "test_data_count"],
-                },
-                {"type": "teams", "properties": ["id", "name", "label", "organization_id", "group_ids", "hidden"]},
-                {"type": "organizations", "properties": ["id", "name", "formal_name"]},
-                {"type": "groups", "properties": ["id", "name"]},
-                {"type": "judgement-types", "properties": ["id", "name", "penalty", "solved"]},
-                {"type": "languages", "properties": ["id", "name", "extensions"]},
-                {
-                    "type": "state",
-                    "properties": ["started", "ended", "frozen", "thawed", "finalized", "end_of_updates"],
-                },
-                {
-                    "type": "submissions",
-                    "properties": ["id", "team_id", "problem_id", "language_id", "time", "contest_time"],
-                },
-                {
-                    "type": "judgements",
-                    "properties": ["id", "submission_id", "judgement_type_id", "start_time", "start_contest_time"],
-                },
-                {
-                    "type": "runs",
-                    "properties": [
-                        "id",
-                        "judgement_id",
-                        "ordinal",
-                        "judgement_type_id",
-                        "time",
-                        "contest_time",
-                        "run_time",
-                    ],
-                },
-                {
-                    "type": "clarifications",
-                    "properties": ["id", "from_team_id", "to_team_id", "problem_id", "text", "time", "contest_time"],
-                },
-                {"type": "awards", "properties": ["id", "citation", "team_ids"]},
-            ],
-        }
+        return self.load_json_file("access.json")
 
     # Contest operations
     def get_contests(self) -> List[Dict[str, Any]]:

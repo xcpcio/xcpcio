@@ -59,7 +59,6 @@ class ContestArchiver:
 
     # Known endpoints that can be fetched
     KNOWN_ENDPOINTS = [
-        "access",
         "contests",
         "judgement-types",
         "languages",
@@ -80,7 +79,6 @@ class ContestArchiver:
     ]
 
     DOMJUDGE_KNOWN_ENDPOINTS = [
-        "access",
         "contests",
         "judgement-types",
         "languages",
@@ -289,7 +287,7 @@ class ContestArchiver:
 
         data = await self.fetch_json("/")
         if not data:
-            raise RuntimeError("Failed to fetch API information from root endpoint")
+            raise RuntimeError("Failed to fetch API information")
 
         self._api_info = data  # Store API info for later use
 
@@ -401,6 +399,7 @@ class ContestArchiver:
         # Always dump API and contest info
         await self.dump_api_info()
         await self.dump_contest_info()
+        await self.dump_endpoint_single("access")
 
         # Get list of endpoints to dump
         if self._config.endpoints:
