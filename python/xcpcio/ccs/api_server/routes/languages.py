@@ -16,9 +16,9 @@ logger = logging.getLogger(__name__)
     response_model=List[Dict[str, Any]],
 )
 async def get_languages(
-    contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = Path(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all programming languages"""
     return service.get_languages(contest_id)
 
 
@@ -33,5 +33,4 @@ async def get_language(
     language_id: str = Path(..., description="Language identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific language information"""
     return service.get_language(contest_id, language_id)

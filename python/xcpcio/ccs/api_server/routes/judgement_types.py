@@ -16,9 +16,9 @@ logger = logging.getLogger(__name__)
     response_model=List[Dict[str, Any]],
 )
 async def get_judgement_types(
-    contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = Path(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all judgement types"""
     return service.get_judgement_types(contest_id)
 
 
@@ -33,5 +33,4 @@ async def get_judgement_type(
     judgement_type_id: str = Path(..., description="Judgement type identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific judgement type information"""
     return service.get_judgement_type(contest_id, judgement_type_id)

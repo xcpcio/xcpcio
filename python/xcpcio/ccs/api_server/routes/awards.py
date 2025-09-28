@@ -18,7 +18,6 @@ logger = logging.getLogger(__name__)
 async def get_awards(
     contest_id: str = Path(..., description="Contest identifier"), service: ContestServiceDep = None
 ) -> List[Dict[str, Any]]:
-    """Get all awards"""
     return service.get_awards(contest_id)
 
 
@@ -33,5 +32,4 @@ async def get_award(
     award_id: str = Path(..., description="Award identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific award information"""
     return service.get_award(contest_id, award_id)

@@ -19,9 +19,9 @@ logger = logging.getLogger(__name__)
     response_model=List[Dict[str, Any]],
 )
 async def get_organizations(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all organizations"""
     return service.get_organizations(contest_id)
 
 
@@ -36,7 +36,6 @@ async def get_organization(
     organization_id: str = FastAPIPath(..., description="Organization identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific organization information"""
     return service.get_organization(contest_id, organization_id)
 
 
@@ -51,10 +50,8 @@ async def get_organization_logo(
     organization_id: str = FastAPIPath(..., description="Organization identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get organization logo file"""
     service.validate_contest_id(contest_id)
 
-    # Get organization from indexed data
     org = service.organizations_by_id.get(organization_id)
     if not org:
         raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
