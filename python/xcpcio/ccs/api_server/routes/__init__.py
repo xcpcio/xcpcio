@@ -8,6 +8,7 @@ from fastapi import APIRouter
 
 from . import (
     access,
+    accounts,
     awards,
     clarifications,
     contests,
@@ -30,6 +31,7 @@ def create_router() -> APIRouter:
 
     # Include all route modules
     router.include_router(access.router, tags=["Access"])
+    router.include_router(accounts.router, tags=["Accounts"])
     router.include_router(awards.router, tags=["Awards"])
     router.include_router(clarifications.router, tags=["Clarifications"])
     router.include_router(contests.router, tags=["Contests"])

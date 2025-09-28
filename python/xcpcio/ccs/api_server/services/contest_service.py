@@ -31,24 +31,48 @@ class ContestService:
 
     def _load_indexes(self) -> None:
         """Load and index commonly accessed data for faster lookups"""
-        # Load contest data
-        self.contest_data = self.load_json_file("contest.json")
+        self.access = self.load_json_file("access.json")
 
-        # Load organizations and create index
-        organizations_data = self.load_json_file("organizations.json")
-        self.organizations_by_id = {org["id"]: org for org in organizations_data}
+        self.accounts = self.load_json_file("accounts.json")
+        self.accounts_by_id = {account["id"] for account in self.accounts}
 
-        # Load teams and create index
-        teams_data = self.load_json_file("teams.json")
-        self.teams_by_id = {team["id"]: team for team in teams_data}
+        self.api_info = self.load_json_file("api.json")
 
-        # Load problems and create index
-        problems_data = self.load_json_file("problems.json")
-        self.problems_by_id = {problem["id"]: problem for problem in problems_data}
+        self.awards = self.load_json_file("awards.json")
+        self.awards_by_id = {award["id"] for award in self.awards}
 
-        # Load submissions and create index
-        submissions_data = self.load_json_file("submissions.json")
-        self.submissions_by_id = {submission["id"]: submission for submission in submissions_data}
+        self.clarifications = self.load_json_file("clarifications.json")
+        self.clarifications_by_id = {clarification["id"] for clarification in self.clarifications}
+
+        self.contest = self.load_json_file("contest.json")
+        self.contest_state = self.load_json_file("state.json")
+
+        self.groups = self.load_json_file("groups.json")
+        self.groups_by_id = {group["id"]: group for group in self.groups}
+
+        self.judgement_types = self.load_json_file("judgement-types.json")
+        self.judgement_types_by_id = {judgement_type["id"] for judgement_type in self.judgement_types}
+
+        self.judgements = self.load_json_file("judgements.json")
+        self.judgements_by_id = {judgement["id"] for judgement in self.judgements}
+
+        self.languages = self.load_json_file("languages.json")
+        self.languages_by_id = {language["id"] for language in self.languages}
+
+        self.organizations = self.load_json_file("organizations.json")
+        self.organizations_by_id = {org["id"]: org for org in self.organizations}
+
+        self.problems = self.load_json_file("problems.json")
+        self.problems_by_id = {problem["id"]: problem for problem in self.problems}
+
+        self.runs = self.load_json_file("runs.json")
+        self.runs_by_id = {run["id"] for run in self.runs}
+
+        self.submissions = self.load_json_file("submissions.json")
+        self.submissions_by_id = {submission["id"]: submission for submission in self.submissions}
+
+        self.teams = self.load_json_file("teams.json")
+        self.teams_by_id = {team["id"]: team for team in self.teams}
 
     def load_json_file(self, filepath: str) -> Union[Dict[str, Any], List[Any]]:
         """
@@ -98,247 +122,155 @@ class ContestService:
 
     # API Information
     def get_api_info(self) -> Dict[str, Any]:
-        """Get API information"""
-        return self.load_json_file("api.json")
+        return self.api_info
 
-    def get_access_info(self, contest_id: str) -> Dict[str, Any]:
-        """Get access information for current client"""
+    def get_access(self, contest_id: str) -> Dict[str, Any]:
         self.validate_contest_id(contest_id)
-        return self.load_json_file("access.json")
+        return self.access
+
+    # Account operations
+    def get_accounts(self, contest_id: str) -> List[Dict[str, Any]]:
+        self.validate_contest_id(contest_id)
+        return self.accounts
+
+    def get_account(self, contest_id: str, account_id: str) -> Dict[str, Any]:
+        self.validate_contest_id(contest_id)
+        if account_id not in self.accounts_by_id:
+            raise HTTPException(status_code=404, detail=f"Account {account_id} not found")
+        return self.accounts_by_id[account_id]
 
     # Contest operations
     def get_contests(self) -> List[Dict[str, Any]]:
-        """Get all contests"""
-        contest_data = self.load_json_file("contest.json")
-        return [contest_data]
+        return [self.contest]
 
     def get_contest(self, contest_id: str) -> Dict[str, Any]:
-        """Get specific contest"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("contest.json")
+        return self.contest
 
     def get_contest_state(self, contest_id: str) -> Dict[str, Any]:
-        """Get contest state"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("state.json")
+        return self.contest_state
 
     # Problem operations
     def get_problems(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all problems"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("problems.json")
+        return self.problems
 
     def get_problem(self, contest_id: str, problem_id: str) -> Dict[str, Any]:
-        """Get specific problem"""
         self.validate_contest_id(contest_id)
-        problems = self.load_json_file("problems.json")
-        for problem in problems:
-            if problem["id"] == problem_id:
-                return problem
-        raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")
+        if problem_id not in self.problems_by_id:
+            raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")
+        return self.problems_by_id[problem_id]
 
     # Team operations
-    def get_teams(self, contest_id: str, group_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Get all teams, optionally filtered by group"""
+    def get_teams(self, contest_id: str) -> List[Dict[str, Any]]:
         self.validate_contest_id(contest_id)
-        teams = self.load_json_file("teams.json")
-
-        if group_id:
-            filtered_teams = []
-            for team in teams:
-                if group_id in team.get("group_ids", []):
-                    filtered_teams.append(team)
-            return filtered_teams
-
-        return teams
+        return self.teams
 
     def get_team(self, contest_id: str, team_id: str) -> Dict[str, Any]:
-        """Get specific team"""
         self.validate_contest_id(contest_id)
-        teams = self.load_json_file("teams.json")
-        for team in teams:
-            if team["id"] == team_id:
-                return team
-        raise HTTPException(status_code=404, detail=f"Team {team_id} not found")
+        if team_id not in self.teams_by_id:
+            raise HTTPException(status_code=404, detail=f"Team {team_id} not found")
+        return self.teams_by_id[team_id]
 
     # Organization operations
     def get_organizations(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all organizations"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("organizations.json")
+        return self.organizations
 
     def get_organization(self, contest_id: str, organization_id: str) -> Dict[str, Any]:
-        """Get specific organization"""
         self.validate_contest_id(contest_id)
-        organizations = self.load_json_file("organizations.json")
-        for org in organizations:
-            if org["id"] == organization_id:
-                return org
-        raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
+        if organization_id not in self.organizations_by_id:
+            raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
+        return self.organizations_by_id[organization_id]
 
     # Group operations
     def get_groups(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all groups"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("groups.json")
+        return self.groups
 
     def get_group(self, contest_id: str, group_id: str) -> Dict[str, Any]:
-        """Get specific group"""
         self.validate_contest_id(contest_id)
-        groups = self.load_json_file("groups.json")
-        for group in groups:
-            if group["id"] == group_id:
-                return group
-        raise HTTPException(status_code=404, detail=f"Group {group_id} not found")
+        if group_id not in self.groups_by_id:
+            raise HTTPException(status_code=404, detail=f"Group {group_id} not found")
+        return self.groups_by_id[group_id]
 
     # Language operations
     def get_languages(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all languages"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("languages.json")
+        return self.languages
 
     def get_language(self, contest_id: str, language_id: str) -> Dict[str, Any]:
-        """Get specific language"""
         self.validate_contest_id(contest_id)
-        languages = self.load_json_file("languages.json")
-        for lang in languages:
-            if lang["id"] == language_id:
-                return lang
-        raise HTTPException(status_code=404, detail=f"Language {language_id} not found")
+        if language_id not in self.languages_by_id:
+            raise HTTPException(status_code=404, detail=f"Language {language_id} not found")
+        return self.languages_by_id[language_id]
 
     # Judgement type operations
     def get_judgement_types(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all judgement types"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("judgement-types.json")
+        return self.judgement_types
 
     def get_judgement_type(self, contest_id: str, judgement_type_id: str) -> Dict[str, Any]:
-        """Get specific judgement type"""
         self.validate_contest_id(contest_id)
-        judgement_types = self.load_json_file("judgement-types.json")
-        for jt in judgement_types:
-            if jt["id"] == judgement_type_id:
-                return jt
-        raise HTTPException(status_code=404, detail=f"Judgement type {judgement_type_id} not found")
+        if judgement_type_id not in self.judgement_types_by_id:
+            raise HTTPException(status_code=404, detail=f"Judgement type {judgement_type_id} not found")
+        return self.judgement_types_by_id[judgement_type_id]
 
     # Submission operations
-    def get_submissions(
-        self, contest_id: str, team_id: Optional[str] = None, problem_id: Optional[str] = None
-    ) -> List[Dict[str, Any]]:
-        """Get all submissions, optionally filtered"""
+    def get_submissions(self, contest_id: str) -> List[Dict[str, Any]]:
         self.validate_contest_id(contest_id)
-        submissions = self.load_json_file("submissions.json")
-
-        # Apply filters
-        if team_id:
-            submissions = [s for s in submissions if s.get("team_id") == team_id]
-        if problem_id:
-            submissions = [s for s in submissions if s.get("problem_id") == problem_id]
-
-        return submissions
+        return self.submissions
 
     def get_submission(self, contest_id: str, submission_id: str) -> Dict[str, Any]:
-        """Get specific submission"""
         self.validate_contest_id(contest_id)
-        submissions = self.load_json_file("submissions.json")
-        for submission in submissions:
-            if submission["id"] == submission_id:
-                return submission
-        raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
+        if submission_id not in self.submissions_by_id:
+            raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
+        return self.submissions_by_id[submission_id]
 
     # Judgement operations
-    def get_judgements(self, contest_id: str, submission_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Get all judgements, optionally filtered by submission"""
+    def get_judgements(self, contest_id: str) -> List[Dict[str, Any]]:
         self.validate_contest_id(contest_id)
-        judgements = self.load_json_file("judgements.json")
-
-        if submission_id:
-            judgements = [j for j in judgements if j.get("submission_id") == submission_id]
-
-        return judgements
+        return self.judgements
 
     def get_judgement(self, contest_id: str, judgement_id: str) -> Dict[str, Any]:
-        """Get specific judgement"""
         self.validate_contest_id(contest_id)
-        judgements = self.load_json_file("judgements.json")
-        for judgement in judgements:
-            if judgement["id"] == judgement_id:
-                return judgement
-        raise HTTPException(status_code=404, detail=f"Judgement {judgement_id} not found")
+        if judgement_id not in self.judgements_by_id:
+            raise HTTPException(status_code=404, detail=f"Judgement {judgement_id} not found")
+        return self.judgements_by_id[judgement_id]
 
     # Run operations
     def get_runs(self, contest_id: str, judgement_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Get all runs, optionally filtered by judgement"""
         self.validate_contest_id(contest_id)
-        runs = self.load_json_file("runs.json")
-
-        if judgement_id:
-            runs = [r for r in runs if r.get("judgement_id") == judgement_id]
-
-        return runs
+        return self.runs
 
     def get_run(self, contest_id: str, run_id: str) -> Dict[str, Any]:
-        """Get specific run"""
         self.validate_contest_id(contest_id)
-        runs = self.load_json_file("runs.json")
-        for run in runs:
-            if run["id"] == run_id:
-                return run
-        raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+        if run_id not in self.runs_by_id:
+            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
+        return self.runs_by_id[run_id]
 
     # Clarification operations
     def get_clarifications(
         self,
         contest_id: str,
-        from_team_id: Optional[str] = None,
-        to_team_id: Optional[str] = None,
-        problem_id: Optional[str] = None,
     ) -> List[Dict[str, Any]]:
-        """Get all clarifications, optionally filtered"""
         self.validate_contest_id(contest_id)
-        clarifications = self.load_json_file("clarifications.json")
-
-        # Apply filters (empty string means null)
-        if from_team_id is not None:
-            if from_team_id == "":
-                clarifications = [c for c in clarifications if c.get("from_team_id") is None]
-            else:
-                clarifications = [c for c in clarifications if c.get("from_team_id") == from_team_id]
-
-        if to_team_id is not None:
-            if to_team_id == "":
-                clarifications = [c for c in clarifications if c.get("to_team_id") is None]
-            else:
-                clarifications = [c for c in clarifications if c.get("to_team_id") == to_team_id]
-
-        if problem_id is not None:
-            if problem_id == "":
-                clarifications = [c for c in clarifications if c.get("problem_id") is None]
-            else:
-                clarifications = [c for c in clarifications if c.get("problem_id") == problem_id]
-
-        return clarifications
+        return self.clarifications
 
     def get_clarification(self, contest_id: str, clarification_id: str) -> Dict[str, Any]:
-        """Get specific clarification"""
         self.validate_contest_id(contest_id)
-        clarifications = self.load_json_file("clarifications.json")
-        for clarification in clarifications:
-            if clarification["id"] == clarification_id:
-                return clarification
-        raise HTTPException(status_code=404, detail=f"Clarification {clarification_id} not found")
+        if clarification_id not in self.clarifications_by_id:
+            raise HTTPException(status_code=404, detail=f"Clarification {clarification_id} not found")
+        return self.clarifications_by_id[clarification_id]
 
     # Award operations
     def get_awards(self, contest_id: str) -> List[Dict[str, Any]]:
-        """Get all awards"""
         self.validate_contest_id(contest_id)
-        return self.load_json_file("awards.json")
+        return self.awards
 
     def get_award(self, contest_id: str, award_id: str) -> Dict[str, Any]:
-        """Get specific award"""
         self.validate_contest_id(contest_id)
-        awards = self.load_json_file("awards.json")
-        for award in awards:
-            if award["id"] == award_id:
-                return award
-        raise HTTPException(status_code=404, detail=f"Award {award_id} not found")
+        if award_id not in self.awards_by_id:
+            raise HTTPException(status_code=404, detail=f"Award {award_id} not found")
+        return self.awards_by_id[award_id]

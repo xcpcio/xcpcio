@@ -19,7 +19,8 @@ logger = logging.getLogger(__name__)
     response_model=List[Dict[str, Any]],
 )
 async def get_problems(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
     """Get all problems in the contest"""
     return service.get_problems(contest_id)
@@ -36,7 +37,6 @@ async def get_problem(
     problem_id: str = FastAPIPath(..., description="Problem identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific problem information"""
     return service.get_problem(contest_id, problem_id)
 
 
@@ -51,10 +51,8 @@ async def get_problem_statement(
     problem_id: str = FastAPIPath(..., description="Problem identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get problem statement file"""
     service.validate_contest_id(contest_id)
 
-    # Get problem from indexed data
     problem: Dict = service.problems_by_id.get(problem_id)
     if not problem:
         raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")

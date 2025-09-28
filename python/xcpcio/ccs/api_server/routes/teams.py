@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -20,11 +20,9 @@ logger = logging.getLogger(__name__)
 )
 async def get_teams(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
-    group_id: Optional[str] = Query(None, description="Filter teams by group ID"),
     service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all teams, optionally filtered by group"""
-    return service.get_teams(contest_id, group_id)
+    return service.get_teams(contest_id)
 
 
 @router.get(
@@ -38,7 +36,6 @@ async def get_team(
     team_id: str = FastAPIPath(..., description="Team identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific team information"""
     return service.get_team(contest_id, team_id)
 
 
@@ -53,10 +50,8 @@ async def get_team_photo(
     team_id: str = FastAPIPath(..., description="Team identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get team photo file"""
     service.validate_contest_id(contest_id)
 
-    # Get team from indexed data
     team = service.teams_by_id.get(team_id)
     if not team:
         raise HTTPException(status_code=404, detail=f"Team {team_id} not found")

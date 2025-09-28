@@ -19,7 +19,6 @@ logger = logging.getLogger(__name__)
     response_model=List[Dict[str, Any]],
 )
 async def get_contests(service: ContestServiceDep) -> List[Dict[str, Any]]:
-    """Get all contests"""
     return service.get_contests()
 
 
@@ -30,9 +29,9 @@ async def get_contests(service: ContestServiceDep) -> List[Dict[str, Any]]:
     response_model=Dict[str, Any],
 )
 async def get_contest(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific contest information"""
     return service.get_contest(contest_id)
 
 
@@ -43,9 +42,9 @@ async def get_contest(
     response_model=Dict[str, Any],
 )
 async def get_state(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get contest state"""
     return service.get_contest_state(contest_id)
 
 
@@ -56,15 +55,15 @@ async def get_state(
     response_class=FileResponse,
 )
 async def get_contest_banner(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get contest banner file"""
     service.validate_contest_id(contest_id)
 
     expected_href = f"contests/{contest_id}/banner"
 
     try:
-        banners = service.contest_data.get("banner", [])
+        banners = service.contest.get("banner", [])
         for banner in banners:
             href = banner["href"]
             if href == expected_href:
@@ -84,15 +83,15 @@ async def get_contest_banner(
     response_class=FileResponse,
 )
 async def get_contest_problem_set(
-    contest_id: str = FastAPIPath(..., description="Contest identifier"), service: ContestServiceDep = None
+    contest_id: str = FastAPIPath(..., description="Contest identifier"),
+    service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get contest problem set pdf file"""
     service.validate_contest_id(contest_id)
 
     expected_href = f"contests/{contest_id}/problemset"
 
     try:
-        problem_set_list = service.contest_data.get("problemset", [])
+        problem_set_list = service.contest.get("problemset", [])
         for problem_set in problem_set_list:
             href = problem_set["href"]
             if href == expected_href:

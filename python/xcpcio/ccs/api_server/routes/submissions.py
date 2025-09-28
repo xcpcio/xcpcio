@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, HTTPException
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -20,12 +20,9 @@ logger = logging.getLogger(__name__)
 )
 async def get_submissions(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
-    team_id: Optional[str] = Query(None, description="Filter submissions by team ID"),
-    problem_id: Optional[str] = Query(None, description="Filter submissions by problem ID"),
     service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all submissions, optionally filtered by team or problem"""
-    return service.get_submissions(contest_id, team_id, problem_id)
+    return service.get_submissions(contest_id)
 
 
 @router.get(
@@ -39,7 +36,6 @@ async def get_submission(
     submission_id: str = FastAPIPath(..., description="Submission identifier"),
     service: ContestServiceDep = None,
 ) -> Dict[str, Any]:
-    """Get specific submission information"""
     return service.get_submission(contest_id, submission_id)
 
 
@@ -54,10 +50,8 @@ async def get_submission_files(
     submission_id: str = FastAPIPath(..., description="Submission identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    """Get submission files"""
     service.validate_contest_id(contest_id)
 
-    # Get submission from indexed data
     submission = service.submissions_by_id.get(submission_id)
     if not submission:
         raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
