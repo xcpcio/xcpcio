@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/judgement-types",
-    summary="Get Judgement Types",
-    description="Get all judgement types available in the contest",
+    summary="Get all the judgement types for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_judgement_types(
@@ -24,8 +23,7 @@ async def get_judgement_types(
 
 @router.get(
     "/contests/{contest_id}/judgement-types/{judgement_type_id}",
-    summary="Get Judgement Type",
-    description="Get specific judgement type information",
+    summary="Get the given judgement type for this contest",
     response_model=Dict[str, Any],
 )
 async def get_judgement_type(

@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/groups",
-    summary="Get Groups",
+    summary="Get all the groups for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_groups(
@@ -23,7 +23,7 @@ async def get_groups(
 
 @router.get(
     "/contests/{contest_id}/groups/{group_id}",
-    summary="Get Group",
+    summary="Get the given group for this contest",
     response_model=Dict[str, Any],
 )
 async def get_group(

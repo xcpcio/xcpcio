@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/submissions",
-    summary="Get Submissions",
-    description="Get all submissions, optionally filtered by team or problem",
+    summary="Get all the submissions for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_submissions(
@@ -27,8 +26,7 @@ async def get_submissions(
 
 @router.get(
     "/contests/{contest_id}/submissions/{submission_id}",
-    summary="Get Submission",
-    description="Get specific submission information",
+    summary="Get the given submission for this contest",
     response_model=Dict[str, Any],
 )
 async def get_submission(
@@ -42,7 +40,6 @@ async def get_submission(
 @router.get(
     "/contests/{contest_id}/submissions/{submission_id}/files",
     summary="Get Submission Files",
-    description="Get files for a specific submission",
     response_class=FileResponse,
 )
 async def get_submission_files(

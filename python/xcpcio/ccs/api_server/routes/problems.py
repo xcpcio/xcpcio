@@ -14,22 +14,19 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/problems",
-    summary="Get Problems",
-    description="Get all problems in the contest",
+    summary="Get all the problems for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_problems(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
     service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    """Get all problems in the contest"""
     return service.get_problems(contest_id)
 
 
 @router.get(
     "/contests/{contest_id}/problems/{problem_id}",
-    summary="Get Problem",
-    description="Get specific problem information",
+    summary="Get the given problem for this contest",
     response_model=Dict[str, Any],
 )
 async def get_problem(
@@ -43,7 +40,6 @@ async def get_problem(
 @router.get(
     "/contests/{contest_id}/problems/{problem_id}/statement",
     summary="Get Problem Statement",
-    description="Get problem statement file",
     response_class=FileResponse,
 )
 async def get_problem_statement(

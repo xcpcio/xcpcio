@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/awards",
-    summary="Get Awards",
-    description="Get all awards in the contest",
+    summary="Get all the awards standings for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_awards(
@@ -23,8 +22,7 @@ async def get_awards(
 
 @router.get(
     "/contests/{contest_id}/awards/{award_id}",
-    summary="Get Award",
-    description="Get specific award information",
+    summary="Get the specific award for this contest",
     response_model=Dict[str, Any],
 )
 async def get_award(

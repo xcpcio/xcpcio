@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/teams",
-    summary="Get Teams",
-    description="Get all teams, optionally filtered by group",
+    summary="Get all the teams for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_teams(
@@ -27,8 +26,7 @@ async def get_teams(
 
 @router.get(
     "/contests/{contest_id}/teams/{team_id}",
-    summary="Get Team",
-    description="Get specific team information",
+    summary="Get the given team for this contest",
     response_model=Dict[str, Any],
 )
 async def get_team(
@@ -42,7 +40,6 @@ async def get_team(
 @router.get(
     "/contests/{contest_id}/teams/{team_id}/photo",
     summary="Get Team Photo",
-    description="Get photo file for a specific team",
     response_class=FileResponse,
 )
 async def get_team_photo(

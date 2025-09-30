@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/clarifications",
-    summary="Get Clarifications",
+    summary="Get all the clarifications for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_clarifications(
@@ -23,7 +23,7 @@ async def get_clarifications(
 
 @router.get(
     "/contests/{contest_id}/clarifications/{clarification_id}",
-    summary="Get Clarification",
+    summary="Get the given clarifications for this contest",
     response_model=Dict[str, Any],
 )
 async def get_clarification(
