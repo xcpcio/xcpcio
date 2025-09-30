@@ -6,6 +6,7 @@ Handles file reading, data validation, and business operations.
 """
 
 import json
+from collections import defaultdict
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
@@ -28,6 +29,12 @@ class ContestService:
 
         # Initialize data indexes for faster lookups
         self._load_indexes()
+
+    def _create_index_by_id(self, data: List[Dict[str, Any]], id_name: str) -> Dict[str, List[Dict]]:
+        res = defaultdict(list)
+        for item in data:
+            res[item[id_name]].append(item)
+        return res
 
     def _load_indexes(self) -> None:
         """Load and index commonly accessed data for faster lookups"""
@@ -55,6 +62,7 @@ class ContestService:
 
         self.judgements = self.load_json_file("judgements.json")
         self.judgements_by_id = {judgement["id"] for judgement in self.judgements}
+        self.judgements_by_submission_id = self._create_index_by_id(self.judgements, "submission_id")
 
         self.languages = self.load_json_file("languages.json")
         self.languages_by_id = {language["id"] for language in self.languages}
@@ -67,6 +75,7 @@ class ContestService:
 
         self.runs = self.load_json_file("runs.json")
         self.runs_by_id = {run["id"] for run in self.runs}
+        self.runs_by_judgement_id = self._create_index_by_id(self.runs, "judgement_id")
 
         self.submissions = self.load_json_file("submissions.json")
         self.submissions_by_id = {submission["id"]: submission for submission in self.submissions}
@@ -229,8 +238,14 @@ class ContestService:
         return self.submissions_by_id[submission_id]
 
     # Judgement operations
-    def get_judgements(self, contest_id: str) -> List[Dict[str, Any]]:
+    def get_judgements(self, contest_id: str, submission_id: Optional[str] = None) -> List[Dict[str, Any]]:
         self.validate_contest_id(contest_id)
+
+        if submission_id is not None:
+            if submission_id not in self.judgements_by_submission_id:
+                raise HTTPException(status_code=404, detail=f"Submission id not found: {submission_id}")
+            return self.judgements_by_submission_id[submission_id]
+
         return self.judgements
 
     def get_judgement(self, contest_id: str, judgement_id: str) -> Dict[str, Any]:
@@ -242,6 +257,12 @@ class ContestService:
     # Run operations
     def get_runs(self, contest_id: str, judgement_id: Optional[str] = None) -> List[Dict[str, Any]]:
         self.validate_contest_id(contest_id)
+
+        if judgement_id is not None:
+            if judgement_id not in self.runs_by_judgement_id:
+                raise HTTPException(status_code=404, detail=f"Judgement id not found: {judgement_id}")
+            return self.runs_by_judgement_id[judgement_id]
+
         return self.runs
 
     def get_run(self, contest_id: str, run_id: str) -> Dict[str, Any]:

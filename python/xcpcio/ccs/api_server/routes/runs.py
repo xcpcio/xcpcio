@@ -1,7 +1,7 @@
 import logging
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, Path
+from fastapi import APIRouter, Path, Query
 
 from ..dependencies import ContestServiceDep
 
@@ -16,9 +16,10 @@ logger = logging.getLogger(__name__)
 )
 async def get_runs(
     contest_id: str = Path(..., description="Contest identifier"),
+    judgement_id: Optional[str] = Query(None, description="Filter runs by judgement ID"),
     service: ContestServiceDep = None,
 ) -> List[Dict[str, Any]]:
-    return service.get_runs(contest_id)
+    return service.get_runs(contest_id, judgement_id)
 
 
 @router.get(
