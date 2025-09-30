@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/runs",
-    summary="Get Runs",
-    description="Get all test case runs, optionally filtered by judgement",
+    summary="Get all the runs for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_runs(
@@ -24,8 +23,7 @@ async def get_runs(
 
 @router.get(
     "/contests/{contest_id}/runs/{run_id}",
-    summary="Get Run",
-    description="Get specific test case run information",
+    summary="Get the given run for this contest",
     response_model=Dict[str, Any],
 )
 async def get_run(

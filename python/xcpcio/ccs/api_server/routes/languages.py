@@ -11,8 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/languages",
-    summary="Get Languages",
-    description="Get all programming languages available for submission",
+    summary="Get all the languages for this contest",
     response_model=List[Dict[str, Any]],
 )
 async def get_languages(
@@ -24,8 +23,7 @@ async def get_languages(
 
 @router.get(
     "/contests/{contest_id}/languages/{language_id}",
-    summary="Get Language",
-    description="Get specific language information",
+    summary="Get the given language for this contest",
     response_model=Dict[str, Any],
 )
 async def get_language(

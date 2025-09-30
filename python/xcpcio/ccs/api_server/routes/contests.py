@@ -14,8 +14,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests",
-    summary="Get Contests",
-    description="Get list of all contests",
+    summary="Get all the contests",
     response_model=List[Dict[str, Any]],
 )
 async def get_contests(service: ContestServiceDep) -> List[Dict[str, Any]]:
@@ -24,8 +23,7 @@ async def get_contests(service: ContestServiceDep) -> List[Dict[str, Any]]:
 
 @router.get(
     "/contests/{contest_id}",
-    summary="Get Contest",
-    description="Get specific contest information",
+    summary="Get the given contest",
     response_model=Dict[str, Any],
 )
 async def get_contest(
@@ -37,8 +35,7 @@ async def get_contest(
 
 @router.get(
     "/contests/{contest_id}/state",
-    summary="Get Contest State",
-    description="Get current contest state (started, ended, frozen, etc.)",
+    summary="Get the current contest state",
     response_model=Dict[str, Any],
 )
 async def get_state(
@@ -50,8 +47,7 @@ async def get_state(
 
 @router.get(
     "/contests/{contest_id}/banner",
-    summary="Get Contest Banner",
-    description="Get banner image for the contest",
+    summary="Get the banner for the given contest",
     response_class=FileResponse,
 )
 async def get_contest_banner(
@@ -78,8 +74,7 @@ async def get_contest_banner(
 
 @router.get(
     "/contests/{contest_id}/problemset",
-    summary="Get Contest ProblemSet",
-    description="Get problem set pdf for the contest",
+    summary="Get the problemset document for the given contest",
     response_class=FileResponse,
 )
 async def get_contest_problem_set(

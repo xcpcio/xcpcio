@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 @router.get(
     "/contests/{contest_id}/access",
-    summary="Get Access Information",
+    summary="Get access information",
     response_model=Dict[str, Any],
 )
 async def get_access(contest_id: str, service: ContestServiceDep) -> Dict[str, Any]:

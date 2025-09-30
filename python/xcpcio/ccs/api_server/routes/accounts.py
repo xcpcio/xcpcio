@@ -23,7 +23,7 @@ async def get_accounts(
 
 
 @router.get(
-    "/contests/{contest_id}/accounts/{id}",
+    "/contests/{contest_id}/accounts/{account_id}",
     summary="Get the given account",
     response_model=Dict[str, Any],
 )
