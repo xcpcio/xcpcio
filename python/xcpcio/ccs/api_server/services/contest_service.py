@@ -5,6 +5,7 @@ Business logic layer for Contest API operations.
 Handles file reading, data validation, and business operations.
 """
 
+import bisect
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -83,6 +84,9 @@ class ContestService:
         self.teams = self.load_json_file("teams.json")
         self.teams_by_id = {team["id"]: team for team in self.teams}
 
+        self.event_feed = self.load_ndjson_file("event-feed.ndjson")
+        self.event_feed_tokens = [event["token"] for event in self.event_feed]
+
     def load_json_file(self, filepath: str) -> Union[Dict[str, Any], List[Any]]:
         """
         Load JSON data from contest package directory.
@@ -96,10 +100,24 @@ class ContestService:
         Raises:
             HTTPException: If file not found or invalid JSON
         """
+
         full_path = self.contest_package_dir / filepath
         try:
             with open(full_path, "r", encoding="utf-8") as f:
                 return json.load(f)
+        except FileNotFoundError:
+            raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
+        except json.JSONDecodeError as e:
+            raise HTTPException(status_code=500, detail=f"Invalid JSON in file {filepath}: {e}")
+
+    def load_ndjson_file(self, filepath: str) -> List[Dict[str, Any]]:
+        full_path = self.contest_package_dir / filepath
+        try:
+            data = list()
+            with open(full_path, "r", encoding="utf-8") as f:
+                for line in f.readlines():
+                    data.append(json.loads(line))
+            return data
         except FileNotFoundError:
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
@@ -295,3 +313,13 @@ class ContestService:
         if award_id not in self.awards_by_id:
             raise HTTPException(status_code=404, detail=f"Award {award_id} not found")
         return self.awards_by_id[award_id]
+
+    # Event Feed operations
+    def get_event_feed(self, contest_id: str, since_token: Optional[str] = None) -> List[Dict[str, Any]]:
+        self.validate_contest_id(contest_id)
+
+        if since_token is None:
+            return self.event_feed
+
+        idx = bisect.bisect_left(self.event_feed_tokens, since_token)
+        return self.event_feed[idx:]
