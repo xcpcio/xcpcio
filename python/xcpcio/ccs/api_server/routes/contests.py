@@ -1,9 +1,8 @@
 import json
 import logging
-from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Query
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse, StreamingResponse
 
@@ -55,22 +54,8 @@ async def get_contest_banner(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    expected_href = f"contests/{contest_id}/banner"
-
-    try:
-        banners = service.contest.get("banner", [])
-        for banner in banners:
-            href = banner["href"]
-            if href == expected_href:
-                filename = banner["filename"]
-                banner_file: Path = service.contest_package_dir / "contest" / filename
-                if banner_file.exists():
-                    mime_type = banner["mime"]
-                    return FileResponse(path=banner_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Banner not found. [contest_id={contest_id}] [err={e}]")
+    file_attr = service.get_contest_banner(contest_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)
 
 
 @router.get(
@@ -82,22 +67,8 @@ async def get_contest_problem_set(
     contest_id: str = FastAPIPath(..., description="Contest identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    expected_href = f"contests/{contest_id}/problemset"
-
-    try:
-        problem_set_list = service.contest.get("problemset", [])
-        for problem_set in problem_set_list:
-            href = problem_set["href"]
-            if href == expected_href:
-                filename = problem_set["filename"]
-                problem_set_file: Path = service.contest_package_dir / "contest" / filename
-                if problem_set_file.exists():
-                    mime_type = problem_set["mime"]
-                    return FileResponse(path=problem_set_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Problem set not found. [contest_id={contest_id}] [err={e}]")
+    file_attr = service.get_contest_problemset(contest_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)
 
 
 @router.get(
