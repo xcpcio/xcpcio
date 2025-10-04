@@ -25,6 +25,10 @@ class BaseCCSReader(ABC):
 
     # Contest operations
     @abstractmethod
+    def get_contest_id(self) -> str:
+        pass
+
+    @abstractmethod
     def get_contest(self) -> Dict[str, Any]:
         pass
 

@@ -130,6 +130,9 @@ class ContestPackageReader(BaseCCSReader):
         return self.accounts_by_id[account_id]
 
     # Contest operations
+    def get_contest_id(self) -> str:
+        return self.contest["id"]
+
     def get_contest(self) -> Dict[str, Any]:
         return self.contest
 
