@@ -5,16 +5,14 @@ Business logic layer for Contest API operations.
 Handles file reading, data validation, and business operations.
 """
 
-import bisect
-import json
 import logging
-from collections import defaultdict
-from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from fastapi import HTTPException
 
+from xcpcio.__version__ import __version__
 from xcpcio.ccs.base.types import FileAttr
+from xcpcio.ccs.reader.base_ccs_reader import BaseCCSReader
 
 logger = logging.getLogger(__name__)
 
@@ -22,392 +20,175 @@ logger = logging.getLogger(__name__)
 class ContestService:
     """Service class for contest-related operations"""
 
-    def __init__(self, contest_package_dir: Path):
-        """
-        Initialize the contest service.
+    def __init__(self, reader_dict: Dict[str, BaseCCSReader]):
+        self.reader_dict = reader_dict
 
-        Args:
-            contest_package_dir: Path to the contest package directory
-        """
-        self.contest_package_dir = contest_package_dir
-        if not self.contest_package_dir.exists():
-            raise ValueError(f"Contest package directory does not exist: {contest_package_dir}")
-
-        # Initialize data indexes for faster lookups
-        self._load_indexes()
-
-    def _create_index_by_id(self, data: List[Dict[str, Any]], id_name: str) -> Dict[str, List[Dict]]:
-        res = defaultdict(list)
-        for item in data:
-            res[item[id_name]].append(item)
-        return res
-
-    def _load_json_file(self, filepath: str) -> Union[Dict[str, Any], List[Any]]:
-        """
-        Load JSON data from contest package directory.
-
-        Args:
-            filepath: Relative path to JSON file within contest package
-
-        Returns:
-            Parsed JSON data
-
-        Raises:
-            HTTPException: If file not found or invalid JSON
-        """
-
-        full_path = self.contest_package_dir / filepath
-        try:
-            with open(full_path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except FileNotFoundError:
-            raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
-        except json.JSONDecodeError as e:
-            raise HTTPException(status_code=500, detail=f"Invalid JSON in file {filepath}: {e}")
-
-    def _load_ndjson_file(self, filepath: str) -> List[Dict[str, Any]]:
-        full_path = self.contest_package_dir / filepath
-        try:
-            data = list()
-            with open(full_path, "r", encoding="utf-8") as f:
-                for line in f.readlines():
-                    data.append(json.loads(line))
-            return data
-        except FileNotFoundError:
-            raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
-        except json.JSONDecodeError as e:
-            raise HTTPException(status_code=500, detail=f"Invalid JSON in file {filepath}: {e}")
-
-    def _load_indexes(self) -> None:
-        """Load and index commonly accessed data for faster lookups"""
-        self.access = self._load_json_file("access.json")
-
-        self.accounts = self._load_json_file("accounts.json")
-        self.accounts_by_id = {account["id"] for account in self.accounts}
-
-        self.api_info = self._load_json_file("api.json")
-
-        self.awards = self._load_json_file("awards.json")
-        self.awards_by_id = {award["id"] for award in self.awards}
-
-        self.clarifications = self._load_json_file("clarifications.json")
-        self.clarifications_by_id = {clarification["id"] for clarification in self.clarifications}
-
-        self.contest = self._load_json_file("contest.json")
-        self.contest_state = self._load_json_file("state.json")
-
-        self.groups = self._load_json_file("groups.json")
-        self.groups_by_id = {group["id"]: group for group in self.groups}
-
-        self.judgement_types = self._load_json_file("judgement-types.json")
-        self.judgement_types_by_id = {judgement_type["id"] for judgement_type in self.judgement_types}
-
-        self.judgements = self._load_json_file("judgements.json")
-        self.judgements_by_id = {judgement["id"] for judgement in self.judgements}
-        self.judgements_by_submission_id = self._create_index_by_id(self.judgements, "submission_id")
-
-        self.languages = self._load_json_file("languages.json")
-        self.languages_by_id = {language["id"] for language in self.languages}
-
-        self.organizations = self._load_json_file("organizations.json")
-        self.organizations_by_id = {org["id"]: org for org in self.organizations}
-
-        self.problems = self._load_json_file("problems.json")
-        self.problems_by_id = {problem["id"]: problem for problem in self.problems}
-
-        self.runs = self._load_json_file("runs.json")
-        self.runs_by_id = {run["id"] for run in self.runs}
-        self.runs_by_judgement_id = self._create_index_by_id(self.runs, "judgement_id")
-
-        self.submissions = self._load_json_file("submissions.json")
-        self.submissions_by_id = {submission["id"]: submission for submission in self.submissions}
-
-        self.teams = self._load_json_file("teams.json")
-        self.teams_by_id = {team["id"]: team for team in self.teams}
-
-        self.event_feed = self._load_ndjson_file("event-feed.ndjson")
-        self.event_feed_tokens = [event["token"] for event in self.event_feed]
-
-    def _get_file(self, expected_href: str, base_path: Path, files: List[Dict]) -> FileAttr:
-        for file in files:
-            href = file["href"]
-            if href == expected_href:
-                filename = file["filename"]
-                mime_type = file["mime"]
-                filepath: Path = base_path / filename
-                if not filepath.exists():
-                    raise FileNotFoundError(f"File not found: {filepath}")
-                return FileAttr(path=filepath, media_type=mime_type, name=filename)
-        raise KeyError(f"Href not found: {expected_href}")
-
-    def get_contest_id(self) -> str:
-        """
-        Get contest ID from contest.json.
-
-        Returns:
-            Contest ID string
-        """
-        return self.contest["id"]
-
-    def validate_contest_id(self, contest_id: str) -> None:
-        """
-        Validate that the provided contest ID matches the expected one.
-
-        Args:
-            contest_id: Contest ID to validate
-
-        Raises:
-            HTTPException: If contest ID doesn't match
-        """
-        expected_id = self.get_contest_id()
-        if contest_id != expected_id:
+    def _get_reader(self, contest_id: str) -> BaseCCSReader:
+        if contest_id not in self.reader_dict:
             raise HTTPException(status_code=404, detail=f"Contest {contest_id} not found")
+        return self.reader_dict[contest_id]
 
     # API Information
     def get_api_info(self) -> Dict[str, Any]:
-        return self.api_info
+        return {
+            "version": "2023-06",
+            "version_url": "https://ccs-specs.icpc.io/2023-06/contest_api",
+            "name": "XCPCIO",
+            "provider": {
+                "name": "XCPCIO",
+                "version": __version__,
+            },
+        }
 
     def get_access(self, contest_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        return self.access
+        reader = self._get_reader(contest_id)
+        return reader.get_access()
 
     # Account operations
     def get_accounts(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.accounts
+        reader = self._get_reader(contest_id)
+        return reader.get_accounts()
 
     def get_account(self, contest_id: str, account_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if account_id not in self.accounts_by_id:
-            raise HTTPException(status_code=404, detail=f"Account {account_id} not found")
-        return self.accounts_by_id[account_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_account(account_id)
 
     # Contest operations
     def get_contests(self) -> List[Dict[str, Any]]:
-        return [self.contest]
+        return [reader.get_contest() for reader in self.reader_dict.values()]
 
     def get_contest(self, contest_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        return self.contest
+        reader = self._get_reader(contest_id)
+        return reader.get_contest()
 
     def get_contest_state(self, contest_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        return self.contest_state
+        reader = self._get_reader(contest_id)
+        return reader.get_contest_state()
 
     def get_contest_banner(self, contest_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/banner"
-        base_path = self.contest_package_dir / "contest"
-        files = self.contest.get("banner", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(status_code=404, detail=f"Banner not found. [contest_id={contest_id}] [err={e}]")
+        reader = self._get_reader(contest_id)
+        return reader.get_contest_banner()
 
     def get_contest_problemset(self, contest_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/problemset"
-        base_path = self.contest_package_dir / "contest"
-        files = self.contest.get("problemset", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(status_code=404, detail=f"Problemset not found. [contest_id={contest_id}] [err={e}]")
+        reader = self._get_reader(contest_id)
+        return reader.get_contest_problemset()
 
     # Problem operations
     def get_problems(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.problems
+        reader = self._get_reader(contest_id)
+        return reader.get_problems()
 
     def get_problem(self, contest_id: str, problem_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if problem_id not in self.problems_by_id:
-            raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")
-        return self.problems_by_id[problem_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_problem(problem_id)
 
     def get_problem_statement(self, contest_id: str, problem_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/problems/{problem_id}/statement"
-        base_path = self.contest_package_dir / "problems" / problem_id
-        files = self.get_problem(contest_id, problem_id).get("statement", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(
-                status_code=404, detail=f"Problem statement not found. [problem_id={problem_id}] [err={e}]"
-            )
+        reader = self._get_reader(contest_id)
+        return reader.get_problem_statement(problem_id)
 
     # Team operations
     def get_teams(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.teams
+        reader = self._get_reader(contest_id)
+        return reader.get_teams()
 
     def get_team(self, contest_id: str, team_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if team_id not in self.teams_by_id:
-            raise HTTPException(status_code=404, detail=f"Team {team_id} not found")
-        return self.teams_by_id[team_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_team(team_id)
 
     def get_team_photo(self, contest_id: str, team_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/teams/{team_id}/photo"
-        base_path = self.contest_package_dir / "teams" / team_id
-        files = self.get_team(contest_id, team_id).get("photo", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(status_code=404, detail=f"Team photo not found. [team_id={team_id}] [err={e}]")
+        reader = self._get_reader(contest_id)
+        return reader.get_team_photo(team_id)
 
     # Organization operations
     def get_organizations(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.organizations
+        reader = self._get_reader(contest_id)
+        return reader.get_organizations()
 
     def get_organization(self, contest_id: str, organization_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if organization_id not in self.organizations_by_id:
-            raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
-        return self.organizations_by_id[organization_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_organization(organization_id)
 
     def get_organization_logo(self, contest_id: str, organization_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/organizations/{organization_id}/logo"
-        base_path = self.contest_package_dir / "organizations" / organization_id
-        files = self.get_organization(contest_id, organization_id).get("logo", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(
-                status_code=404, detail=f"Organization logo not found. [organization_id={organization_id}] [err={e}]"
-            )
+        reader = self._get_reader(contest_id)
+        return reader.get_organization_logo(organization_id)
 
     # Group operations
     def get_groups(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.groups
+        reader = self._get_reader(contest_id)
+        return reader.get_groups()
 
     def get_group(self, contest_id: str, group_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if group_id not in self.groups_by_id:
-            raise HTTPException(status_code=404, detail=f"Group {group_id} not found")
-        return self.groups_by_id[group_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_group(group_id)
 
     # Language operations
     def get_languages(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.languages
+        reader = self._get_reader(contest_id)
+        return reader.get_languages()
 
     def get_language(self, contest_id: str, language_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if language_id not in self.languages_by_id:
-            raise HTTPException(status_code=404, detail=f"Language {language_id} not found")
-        return self.languages_by_id[language_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_language(language_id)
 
     # Judgement type operations
     def get_judgement_types(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.judgement_types
+        reader = self._get_reader(contest_id)
+        return reader.get_judgement_types()
 
     def get_judgement_type(self, contest_id: str, judgement_type_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if judgement_type_id not in self.judgement_types_by_id:
-            raise HTTPException(status_code=404, detail=f"Judgement type {judgement_type_id} not found")
-        return self.judgement_types_by_id[judgement_type_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_judgement_type(judgement_type_id)
 
     # Submission operations
     def get_submissions(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.submissions
+        reader = self._get_reader(contest_id)
+        return reader.get_submissions()
 
     def get_submission(self, contest_id: str, submission_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if submission_id not in self.submissions_by_id:
-            raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
-        return self.submissions_by_id[submission_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_submission(submission_id)
 
     def get_submission_file(self, contest_id: str, submission_id: str) -> FileAttr:
-        self.validate_contest_id(contest_id)
-        expected_href = f"contests/{contest_id}/submissions/{submission_id}/files"
-        base_path = self.contest_package_dir / "submissions" / submission_id
-        files = self.get_submission(contest_id, submission_id).get("files", [])
-
-        try:
-            return self._get_file(expected_href, base_path, files)
-        except Exception as e:
-            raise HTTPException(
-                status_code=404, detail=f"Submission file not found. [submission_id={submission_id}] [err={e}]"
-            )
+        reader = self._get_reader(contest_id)
+        return reader.get_submission_file(submission_id)
 
     # Judgement operations
     def get_judgements(self, contest_id: str, submission_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-
-        if submission_id is not None:
-            if submission_id not in self.judgements_by_submission_id:
-                raise HTTPException(status_code=404, detail=f"Submission id not found: {submission_id}")
-            return self.judgements_by_submission_id[submission_id]
-
-        return self.judgements
+        reader = self._get_reader(contest_id)
+        return reader.get_judgements(submission_id)
 
     def get_judgement(self, contest_id: str, judgement_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if judgement_id not in self.judgements_by_id:
-            raise HTTPException(status_code=404, detail=f"Judgement {judgement_id} not found")
-        return self.judgements_by_id[judgement_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_judgement(judgement_id)
 
     # Run operations
     def get_runs(self, contest_id: str, judgement_id: Optional[str] = None) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-
-        if judgement_id is not None:
-            if judgement_id not in self.runs_by_judgement_id:
-                raise HTTPException(status_code=404, detail=f"Judgement id not found: {judgement_id}")
-            return self.runs_by_judgement_id[judgement_id]
-
-        return self.runs
+        reader = self._get_reader(contest_id)
+        return reader.get_runs(judgement_id)
 
     def get_run(self, contest_id: str, run_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if run_id not in self.runs_by_id:
-            raise HTTPException(status_code=404, detail=f"Run {run_id} not found")
-        return self.runs_by_id[run_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_run(run_id)
 
     # Clarification operations
-    def get_clarifications(
-        self,
-        contest_id: str,
-    ) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.clarifications
+    def get_clarifications(self, contest_id: str) -> List[Dict[str, Any]]:
+        reader = self._get_reader(contest_id)
+        return reader.get_clarifications()
 
     def get_clarification(self, contest_id: str, clarification_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if clarification_id not in self.clarifications_by_id:
-            raise HTTPException(status_code=404, detail=f"Clarification {clarification_id} not found")
-        return self.clarifications_by_id[clarification_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_clarification(clarification_id)
 
     # Award operations
     def get_awards(self, contest_id: str) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-        return self.awards
+        reader = self._get_reader(contest_id)
+        return reader.get_awards()
 
     def get_award(self, contest_id: str, award_id: str) -> Dict[str, Any]:
-        self.validate_contest_id(contest_id)
-        if award_id not in self.awards_by_id:
-            raise HTTPException(status_code=404, detail=f"Award {award_id} not found")
-        return self.awards_by_id[award_id]
+        reader = self._get_reader(contest_id)
+        return reader.get_award(award_id)
 
     # Event Feed operations
     def get_event_feed(self, contest_id: str, since_token: Optional[str] = None) -> List[Dict[str, Any]]:
-        self.validate_contest_id(contest_id)
-
-        if since_token is None:
-            return self.event_feed
-
-        idx = bisect.bisect_left(self.event_feed_tokens, since_token)
-        return self.event_feed[idx:]
+        reader = self._get_reader(contest_id)
+        return reader.get_event_feed(since_token)

@@ -5,13 +5,15 @@ Dependency injection system for Contest API Server.
 """
 
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, Dict
 
 from fastapi import Depends
 
+from xcpcio.ccs.reader.base_ccs_reader import BaseCCSReader
+from xcpcio.ccs.reader.contest_package_reader import ContestPackageReader
+
 from .services.contest_service import ContestService
 
-# Global contest service instance cache
 _contest_service_instance = None
 
 
@@ -41,7 +43,10 @@ def configure_dependencies(contest_package_dir: Path) -> None:
         contest_package_dir: Path to contest package directory
     """
     global _contest_service_instance
-    _contest_service_instance = ContestService(contest_package_dir)
+    reader_dict: Dict[str, BaseCCSReader] = {}
+    contest_package_reader = ContestPackageReader(contest_package_dir)
+    reader_dict[contest_package_reader.get_contest_id()] = contest_package_reader
+    _contest_service_instance = ContestService(reader_dict)
 
 
 # Type alias for dependency injection
