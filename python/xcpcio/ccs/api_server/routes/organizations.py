@@ -1,8 +1,7 @@
 import logging
-from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -47,25 +46,5 @@ async def get_organization_logo(
     organization_id: str = FastAPIPath(..., description="Organization identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    org = service.organizations_by_id.get(organization_id)
-    if not org:
-        raise HTTPException(status_code=404, detail=f"Organization {organization_id} not found")
-
-    expected_href = f"contests/{contest_id}/organizations/{organization_id}/logo"
-
-    try:
-        logos = org["logo"]
-        for logo in logos:
-            href = logo["href"]
-            if href == expected_href:
-                filename = logo["filename"]
-                logo_file: Path = service.contest_package_dir / "organizations" / organization_id / filename
-                if logo_file.exists():
-                    mime_type = logo["mime"]
-                    return FileResponse(path=logo_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(
-            status_code=404, detail=f"Logo file not found. [organization_id={organization_id}] [err={e}]"
-        )
+    file_attr = service.get_organization_logo(contest_id, organization_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)

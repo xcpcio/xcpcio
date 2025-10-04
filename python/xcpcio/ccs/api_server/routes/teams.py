@@ -1,8 +1,7 @@
 import logging
-from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -47,23 +46,5 @@ async def get_team_photo(
     team_id: str = FastAPIPath(..., description="Team identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    team = service.teams_by_id.get(team_id)
-    if not team:
-        raise HTTPException(status_code=404, detail=f"Team {team_id} not found")
-
-    expected_href = f"contests/{contest_id}/teams/{team_id}/photo"
-
-    try:
-        photos = team["photo"]
-        for photo in photos:
-            href = photo["href"]
-            if href == expected_href:
-                filename = photo["filename"]
-                photo_file: Path = service.contest_package_dir / "teams" / team_id / filename
-                if photo_file.exists():
-                    mime_type = photo["mime"]
-                    return FileResponse(path=photo_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Photo not found. [team_id={team_id}] [err={e}]")
+    file_attr = service.get_team_photo(contest_id, team_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)

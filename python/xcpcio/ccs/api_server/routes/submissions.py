@@ -1,8 +1,7 @@
 import logging
-from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -47,25 +46,5 @@ async def get_submission_files(
     submission_id: str = FastAPIPath(..., description="Submission identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    submission = service.submissions_by_id.get(submission_id)
-    if not submission:
-        raise HTTPException(status_code=404, detail=f"Submission {submission_id} not found")
-
-    expected_href = f"contests/{contest_id}/submissions/{submission_id}/files"
-
-    try:
-        files: List[Dict] = submission["files"]
-        for file_info in files:
-            href = file_info["href"]
-            if href == expected_href:
-                filename = file_info["filename"]
-                submission_file: Path = service.contest_package_dir / "submissions" / submission_id / filename
-                if submission_file.exists():
-                    mime_type = file_info["mime"]
-                    return FileResponse(path=submission_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(
-            status_code=404, detail=f"Submission files not found. [submission_id={submission_id}] [err={e}]"
-        )
+    file_attr = service.get_submission_file(contest_id, submission_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)

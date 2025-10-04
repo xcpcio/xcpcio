@@ -1,8 +1,7 @@
 import logging
-from pathlib import Path
 from typing import Any, Dict, List
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter
 from fastapi import Path as FastAPIPath
 from fastapi.responses import FileResponse
 
@@ -47,23 +46,5 @@ async def get_problem_statement(
     problem_id: str = FastAPIPath(..., description="Problem identifier"),
     service: ContestServiceDep = None,
 ) -> FileResponse:
-    service.validate_contest_id(contest_id)
-
-    problem: Dict = service.problems_by_id.get(problem_id)
-    if not problem:
-        raise HTTPException(status_code=404, detail=f"Problem {problem_id} not found")
-
-    expected_href = f"contests/{contest_id}/problems/{problem_id}/statement"
-
-    try:
-        statements = problem.get("statement", [])
-        for statement in statements:
-            href = statement["href"]
-            filename = statement["filename"]
-            if href == expected_href and filename:
-                statement_file: Path = service.contest_package_dir / "problems" / problem_id / filename
-                if statement_file.exists():
-                    mime_type = statement["mime"]
-                    return FileResponse(path=statement_file, media_type=mime_type, filename=filename)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Statement not found. [problem_id={problem_id}] [err={e}]")
+    file_attr = service.get_problem_statement(contest_id, problem_id)
+    return FileResponse(path=file_attr.path, media_type=file_attr.media_type, filename=file_attr.name)
