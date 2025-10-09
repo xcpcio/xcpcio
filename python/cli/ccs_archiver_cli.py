@@ -1,9 +1,15 @@
 import asyncio
+import hashlib
 import logging
+import shutil
+import tarfile
+import tempfile
+import zipfile
 from pathlib import Path
 from typing import Optional
 
 import click
+import zstandard as zstd
 
 from xcpcio import __version__
 from xcpcio.ccs.contest_archiver import APICredentials, ArchiveConfig, ContestArchiver
@@ -17,12 +23,38 @@ def setup_logging(level: str = "INFO"):
     )
 
 
+def calculate_checksums(file_path: Path) -> dict:
+    """Calculate MD5, SHA1, SHA256, SHA512 checksums for a file"""
+    md5 = hashlib.md5()
+    sha1 = hashlib.sha1()
+    sha256 = hashlib.sha256()
+    sha512 = hashlib.sha512()
+
+    with open(file_path, "rb") as f:
+        while chunk := f.read(8192):
+            md5.update(chunk)
+            sha1.update(chunk)
+            sha256.update(chunk)
+            sha512.update(chunk)
+
+    return {
+        "md5": md5.hexdigest(),
+        "sha1": sha1.hexdigest(),
+        "sha256": sha256.hexdigest(),
+        "sha512": sha512.hexdigest(),
+    }
+
+
 @click.command()
 @click.version_option(__version__)
 @click.option("--base-url", required=True, help="Base URL of the CCS API (e.g., https://example.com/api)")
 @click.option("--contest-id", required=True, help="Contest ID to dump")
 @click.option(
-    "--output-dir", required=True, type=click.Path(path_type=Path), help="Output directory for contest package"
+    "--output",
+    "-o",
+    required=True,
+    type=click.Path(path_type=Path),
+    help="Output path: directory, or archive file (.zip, .tar.gz, .tar.zst)",
 )
 @click.option("--username", "-u", help="HTTP Basic Auth username")
 @click.option("--password", "-p", help="HTTP Basic Auth password")
@@ -42,7 +74,7 @@ def setup_logging(level: str = "INFO"):
 def main(
     base_url: str,
     contest_id: str,
-    output_dir: Path,
+    output: Path,
     username: Optional[str],
     password: Optional[str],
     token: Optional[str],
@@ -62,17 +94,23 @@ def main(
 
     Examples:
 
-        # Basic usage with authentication
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 --output-dir ./output --username admin --password secret
+        # Output to directory
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
 
-        # Use bearer token authentication
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 --output-dir ./output --token abc123
+        # Output to ZIP archive
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+
+        # Output to tar.gz archive
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+
+        # Output to tar.zst archive
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 
         # Only archive specific endpoints
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 --output-dir ./output -u admin -p secret -e teams -e problems
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret -e teams -e problems
 
         # Skip file downloads
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 --output-dir ./output --no-files
+        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output --no-files
     """
 
     if verbose:
@@ -80,15 +118,32 @@ def main(
 
     setup_logging(log_level)
 
-    # Validate authentication
     if not (username and password) and not token:
         click.echo("Warning: No authentication provided. Some endpoints may not be accessible.", err=True)
 
-    # Setup configuration
+    output_str = str(output)
+    is_archive = output_str.endswith((".zip", ".tar.gz", ".tar.zst"))
+    archive_format = None
+    temp_dir = None
+
+    if is_archive:
+        if output_str.endswith(".zip"):
+            archive_format = "zip"
+        elif output_str.endswith(".tar.gz"):
+            archive_format = "tar.gz"
+        elif output_str.endswith(".tar.zst"):
+            archive_format = "tar.zst"
+
     credentials = APICredentials(username=username, password=password, token=token)
 
+    if is_archive:
+        temp_dir = Path(tempfile.mkdtemp(prefix="ccs_archive_"))
+        output_dir = temp_dir
+    else:
+        output_dir = output
+
     config = ArchiveConfig(
-        base_url=base_url.rstrip("/"),  # Remove trailing slash
+        base_url=base_url.rstrip("/"),
         contest_id=contest_id,
         credentials=credentials,
         output_dir=output_dir,
@@ -100,24 +155,61 @@ def main(
     )
 
     click.echo(f"Archiving contest '{contest_id}' from {base_url}")
-    click.echo(f"Output directory: {output_dir}")
+    if is_archive:
+        click.echo(f"Output archive: {output} (format: {archive_format})")
+    else:
+        click.echo(f"Output directory: {output}")
     if config.endpoints:
         click.echo(f"Endpoints: {', '.join(config.endpoints)}")
 
-    # Run the archiver
     async def run_archive():
         async with ContestArchiver(config) as archiver:
             await archiver.dump_all()
 
     try:
         asyncio.run(run_archive())
-        click.echo(click.style(f"Contest package created successfully in: {config.output_dir}", fg="green"))
+
+        if is_archive:
+            click.echo(f"Creating {archive_format} archive...")
+            output.parent.mkdir(parents=True, exist_ok=True)
+
+            if archive_format == "zip":
+                with zipfile.ZipFile(output, "w", zipfile.ZIP_DEFLATED) as zipf:
+                    for file_path in output_dir.rglob("*"):
+                        if file_path.is_file():
+                            arcname = file_path.relative_to(output_dir)
+                            zipf.write(file_path, arcname)
+
+            elif archive_format == "tar.gz":
+                with tarfile.open(output, "w:gz") as tarf:
+                    tarf.add(output_dir, arcname=".")
+
+            elif archive_format == "tar.zst":
+                with open(output, "wb") as f:
+                    cctx = zstd.ZstdCompressor()
+                    with cctx.stream_writer(f) as compressor:
+                        with tarfile.open(fileobj=compressor, mode="w") as tarf:
+                            tarf.add(output_dir, arcname=".")
+
+            click.echo(click.style(f"Contest package created successfully: {output}", fg="green"))
+            click.echo("\nChecksums:")
+            checksums = calculate_checksums(output)
+            click.echo(f"  MD5:    {checksums['md5']}")
+            click.echo(f"  SHA1:   {checksums['sha1']}")
+            click.echo(f"  SHA256: {checksums['sha256']}")
+            click.echo(f"  SHA512: {checksums['sha512']}")
+        else:
+            click.echo(click.style(f"Contest package created successfully in: {config.output_dir}", fg="green"))
+
     except KeyboardInterrupt:
         click.echo(click.style("Archive interrupted by user", fg="yellow"), err=True)
         raise click.Abort()
     except Exception as e:
         click.echo(click.style(f"Error during archive: {e}", fg="red"), err=True)
         raise click.ClickException(str(e))
+    finally:
+        if temp_dir and temp_dir.exists():
+            shutil.rmtree(temp_dir)
 
 
 if __name__ == "__main__":
