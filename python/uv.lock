@@ -1408,6 +1408,7 @@ dependencies = [
     { name = "semver" },
     { name = "tenacity" },
     { name = "uvicorn" },
+    { name = "zstandard" },
 ]
 
 [package.dev-dependencies]
@@ -1429,6 +1430,7 @@ requires-dist = [
     { name = "semver", specifier = ">=3.0.0" },
     { name = "tenacity", specifier = ">=8.0.0" },
     { name = "uvicorn", specifier = ">=0.36.0" },
+    { name = "zstandard", specifier = ">=0.25.0" },
 ]
 
 [package.metadata.requires-dev]
