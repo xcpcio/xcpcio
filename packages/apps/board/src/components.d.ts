@@ -33,6 +33,7 @@ declare module 'vue' {
     HeatMapTooltip: typeof import('./components/board/HeatMapTooltip.vue')['default']
     Modal: typeof import('./components/board/Modal.vue')['default']
     ModalMenu: typeof import('./components/board/ModalMenu.vue')['default']
+    MultiSelectEnhanced: typeof import('./components/common/MultiSelectEnhanced.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']
     OptionsModal: typeof import('./components/board/OptionsModal.vue')['default']
     ProblemBlock: typeof import('./components/board/ProblemBlock.vue')['default']

@@ -6,8 +6,6 @@ import { Pagination } from "@board/composables/pagination";
 import { Submission } from "@xcpcio/core";
 import { SubmissionStatusToString } from "@xcpcio/types";
 
-import { MultiSelect } from "vue-search-select";
-
 import "@board/styles/submission-status-filter.css";
 
 interface FilterOptions {
@@ -302,9 +300,9 @@ function closeVideoModal() {
           >
             <div
               v-if="rank.contest.organization && enableFilter?.organization"
-              w-48
+              w-64
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="orgOptions"
                 :selected-options="orgSelectedItems"
                 :placeholder="rank.contest.organization"
@@ -314,9 +312,9 @@ function closeVideoModal() {
 
             <div
               v-if="enableFilter?.team"
-              w-48
+              w-64
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="teamsOptions"
                 :selected-options="teamsSelectedItems"
                 placeholder="Team"
@@ -326,9 +324,9 @@ function closeVideoModal() {
 
             <div
               v-if="enableFilter?.status"
-              w-68
+              w-64
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="statusOptions"
                 :selected-options="statusSelectedItems"
                 placeholder="Status"
@@ -341,7 +339,7 @@ function closeVideoModal() {
               v-if="enableFilter?.language && languageOptions.length > 0"
               w-48
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="languageOptions"
                 :selected-options="languageSelectedItems"
                 placeholder="Language"

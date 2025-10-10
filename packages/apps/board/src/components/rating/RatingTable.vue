@@ -3,8 +3,6 @@ import type { Rating, SelectOptionItem } from "@xcpcio/core";
 
 import { Pagination } from "@board/composables/pagination";
 
-import { MultiSelect } from "vue-search-select";
-
 interface FilterOptions {
   organizations: string[];
   members: string[];
@@ -157,7 +155,7 @@ const currentUsers = computed(() => {
             <div
               w-108
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="orgOptions"
                 :selected-options="orgSelectedItems"
                 placeholder="Organization"
@@ -168,7 +166,7 @@ const currentUsers = computed(() => {
             <!-- <div
               w-68
             >
-              <MultiSelect
+              <MultiSelectEnhanced
                 :options="memberOptions"
                 :selected-options="memberSelectedItems"
                 placeholder="Member"

@@ -1,5 +1,16 @@
 /* Vue Search Select Dark Mode Styles */
 
+/* Fix for IME (Chinese input method) width issue - applies to all modes */
+.ui.multiple.search.dropdown > input.search {
+  flex: 1 1 auto !important;
+  transition: width 0.2s ease;
+}
+
+/* Expand input width when composing (Chinese/Japanese/Korean input) */
+.is-composing.ui.multiple.search.dropdown > input.search {
+  width: 96% !important;
+}
+
 /* Dark mode overrides for vue-search-select when html.dark is applied */
 html.dark .ui.dropdown {
   background: var(--global-background);
