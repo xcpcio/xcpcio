@@ -1,7 +1,14 @@
+import atexit
 import logging
+import shutil
+import tarfile
+import tempfile
+import zipfile
 from pathlib import Path
+from typing import Optional
 
 import click
+import zstandard as zstd
 
 from xcpcio import __version__
 from xcpcio.ccs.api_server.server import ContestAPIServer
@@ -15,14 +22,36 @@ def setup_logging(level: str = "INFO"):
     )
 
 
+def extract_archive(archive_path: Path, dest_dir: Path) -> None:
+    """Extract archive to destination directory"""
+    archive_str = str(archive_path)
+
+    if archive_str.endswith(".zip"):
+        with zipfile.ZipFile(archive_path, "r") as zipf:
+            zipf.extractall(dest_dir)
+    elif archive_str.endswith(".tar.gz"):
+        with tarfile.open(archive_path, "r:gz") as tarf:
+            tarf.extractall(dest_dir, filter="data")
+    elif archive_str.endswith(".tar.zst"):
+        with tempfile.NamedTemporaryFile(suffix=".tar") as tmp_tar:
+            with open(archive_path, "rb") as f:
+                dctx = zstd.ZstdDecompressor()
+                dctx.copy_stream(f, tmp_tar)
+            tmp_tar.seek(0)
+            with tarfile.open(fileobj=tmp_tar, mode="r") as tarf:
+                tarf.extractall(dest_dir, filter="data")
+    else:
+        raise ValueError(f"Unsupported archive format: {archive_path}")
+
+
 @click.command()
 @click.version_option(__version__)
 @click.option(
-    "--contest-dir",
-    "-d",
+    "--contest-package",
+    "-p",
     required=True,
-    type=click.Path(exists=True, file_okay=False, dir_okay=True, path_type=Path),
-    help="Contest package directory path",
+    type=click.Path(exists=True, path_type=Path),
+    help="Contest package directory or archive file (.zip, .tar.gz, .tar.zst)",
 )
 @click.option("--host", default="0.0.0.0", help="Host to bind to")
 @click.option("--port", default=8000, type=int, help="Port to bind to")
@@ -34,37 +63,71 @@ def setup_logging(level: str = "INFO"):
     help="Log level",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose logging (same as --log-level debug)")
-def main(contest_dir: Path, host: str, port: int, reload: bool, log_level: str, verbose: bool):
+def main(contest_package: Path, host: str, port: int, reload: bool, log_level: str, verbose: bool):
     """
     Start the Contest API Server.
 
     Examples:
 
         # Start server with contest directory
-        contest-api-server -d /path/to/contest
+        contest-api-server -p /path/to/contest
+
+        # Start server with archive file
+        contest-api-server -p /path/to/contest.zip
+        contest-api-server -p /path/to/contest.tar.gz
+        contest-api-server -p /path/to/contest.tar.zst
 
         # Custom host and port
-        contest-api-server -d /path/to/contest --host 127.0.0.1 --port 9000
+        contest-api-server -p /path/to/contest --host 127.0.0.1 --port 9000
 
         # Enable reload for development
-        contest-api-server -d /path/to/contest --reload
+        contest-api-server -p /path/to/contest --reload
     """
-    # Setup logging
     if verbose:
         log_level = "debug"
     setup_logging(log_level.upper())
 
-    # Display configuration
+    temp_dir: Optional[Path] = None
+
+    def cleanup_temp_dir():
+        if temp_dir and temp_dir.exists():
+            click.echo(f"Cleaning up temporary directory: {temp_dir}")
+            shutil.rmtree(temp_dir)
+
+    atexit.register(cleanup_temp_dir)
+
+    actual_contest_dir: Path = contest_package
+    is_archive = str(contest_package).endswith((".zip", ".tar.gz", ".tar.zst"))
+
+    if is_archive:
+        if not contest_package.is_file():
+            click.echo(f"Error: Archive file not found: {contest_package}", err=True)
+            raise click.Abort()
+
+        click.echo(f"Extracting archive: {contest_package}")
+        temp_dir = Path(tempfile.mkdtemp(prefix="ccs_package_"))
+
+        try:
+            extract_archive(contest_package, temp_dir)
+            actual_contest_dir = temp_dir
+            click.echo(f"Archive extracted to: {temp_dir}")
+        except Exception as e:
+            click.echo(f"Error extracting archive: {e}", err=True)
+            raise click.Abort()
+    else:
+        if not contest_package.is_dir():
+            click.echo(f"Error: Contest directory not found: {contest_package}", err=True)
+            raise click.Abort()
+
     click.echo("Starting Contest API Server...")
-    click.echo(f"Contest directory: {contest_dir}")
+    click.echo(f"Contest directory: {actual_contest_dir}")
     click.echo(f"Host: {host}")
     click.echo(f"Port: {port}")
     click.echo(f"Reload: {reload}")
     click.echo(f"Log level: {log_level}")
 
-    # Create and run server
     try:
-        server = ContestAPIServer(contest_dir)
+        server = ContestAPIServer(actual_contest_dir)
         server.run(host=host, port=port, reload=reload, log_level=log_level.lower())
     except KeyboardInterrupt:
         click.echo("\nServer stopped by user")
