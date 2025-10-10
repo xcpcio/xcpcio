@@ -28,6 +28,7 @@ dependencies = [
   "tenacity>=8.0.0",
   "fastapi>=0.117.1",
   "uvicorn>=0.36.0",
+  "zstandard>=0.25.0",
 ]
 dynamic = ["version"]
 

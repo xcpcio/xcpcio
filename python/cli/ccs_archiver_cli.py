@@ -1,4 +1,5 @@
 import asyncio
+import atexit
 import hashlib
 import logging
 import shutil
@@ -124,7 +125,14 @@ def main(
     output_str = str(output)
     is_archive = output_str.endswith((".zip", ".tar.gz", ".tar.zst"))
     archive_format = None
-    temp_dir = None
+    temp_dir: Optional[Path] = None
+
+    def cleanup_temp_dir():
+        if temp_dir and temp_dir.exists():
+            click.echo(f"Cleaning up temporary directory: {temp_dir}")
+            shutil.rmtree(temp_dir)
+
+    atexit.register(cleanup_temp_dir)
 
     if is_archive:
         if output_str.endswith(".zip"):
@@ -207,9 +215,6 @@ def main(
     except Exception as e:
         click.echo(click.style(f"Error during archive: {e}", fg="red"), err=True)
         raise click.ClickException(str(e))
-    finally:
-        if temp_dir and temp_dir.exists():
-            shutil.rmtree(temp_dir)
 
 
 if __name__ == "__main__":
