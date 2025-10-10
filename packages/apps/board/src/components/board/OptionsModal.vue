@@ -88,6 +88,10 @@ async function onCancel() {
   isHidden.value = true;
 }
 
+async function onBeforeClose() {
+  await onCancel();
+}
+
 function onConfirm() {
   persistBattleOfGiants();
   isHidden.value = true;
@@ -100,6 +104,7 @@ function onConfirm() {
     :title="title"
     width="w-200"
     mt="mt-4"
+    @on-before-close="onBeforeClose"
   >
     <div
       w-full

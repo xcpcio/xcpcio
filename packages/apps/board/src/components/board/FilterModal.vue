@@ -81,6 +81,10 @@ async function onCancel() {
   isHidden.value = true;
 }
 
+async function onBeforeClose() {
+  await onCancel();
+}
+
 const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
 
@@ -99,6 +103,7 @@ function onConfirm() {
     :title="title"
     width="w-200"
     mt="mt-4"
+    @on-before-close="onBeforeClose"
   >
     <div
       w-full

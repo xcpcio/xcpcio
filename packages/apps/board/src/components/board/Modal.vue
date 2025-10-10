@@ -9,7 +9,7 @@ const props = defineProps<{
   mt?: string;
 }>();
 
-const emit = defineEmits(["update:isHidden"]);
+const emit = defineEmits(["update:isHidden", "onBeforeClose"]);
 
 const isHidden = computed({
   get() {
@@ -21,6 +21,7 @@ const isHidden = computed({
 });
 
 function onClose() {
+  emit("onBeforeClose");
   isHidden.value = true;
 }
 
