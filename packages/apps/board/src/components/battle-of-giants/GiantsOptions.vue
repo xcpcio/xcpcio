@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Giants, Rank, SelectOptionItem } from "@xcpcio/core";
 import { GiantsType } from "@xcpcio/core";
-import { MultiSelect } from "vue-search-select";
 
 const props = defineProps<{
   rank: Rank;
@@ -109,7 +108,7 @@ const color = computed(() => {
         w-full
         col-span-5
       >
-        <MultiSelect
+        <MultiSelectEnhanced
           :options="orgOptions"
           :selected-options="orgSelectedItems"
           @select="orgOnSelect"
@@ -128,7 +127,7 @@ const color = computed(() => {
         w-full
         col-span-5
       >
-        <MultiSelect
+        <MultiSelectEnhanced
           :options="teamsOptions"
           :selected-options="teamsSelectedItems"
           @select="teamsOnSelect"

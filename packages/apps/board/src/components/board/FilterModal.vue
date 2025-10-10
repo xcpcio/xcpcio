@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 import _ from "lodash";
-import { MultiSelect } from "vue-search-select";
 
 const props = defineProps<{
   isHidden: boolean;
@@ -41,22 +40,6 @@ const title = computed(() => {
 });
 
 const rank = computed(() => props.rank);
-
-const isComposing = ref(false);
-
-function onCompositionStart() {
-  isComposing.value = true;
-}
-
-function onCompositionEnd() {
-  isComposing.value = false;
-}
-
-function onDelete(event: Event) {
-  if (isComposing.value) {
-    event.stopPropagation();
-  }
-}
 
 const orgOptions = computed(() => {
   const res = rank.value.organizations.map((o) => {
@@ -143,13 +126,10 @@ function onConfirm() {
             w-full
             col-span-6
           >
-            <MultiSelect
+            <MultiSelectEnhanced
               :options="orgOptions"
               :selected-options="orgSelectedItems"
               @select="orgOnSelect"
-              @compositionstart="onCompositionStart"
-              @compositionend="onCompositionEnd"
-              @keydown.delete.capture="onDelete"
             />
           </div>
 
@@ -165,7 +145,7 @@ function onConfirm() {
             w-full
             col-span-6
           >
-            <MultiSelect
+            <MultiSelectEnhanced
               :options="teamsOptions"
               :selected-options="teamsSelectedItems"
               @select="teamsOnSelect"
