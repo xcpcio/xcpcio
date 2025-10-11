@@ -17,15 +17,15 @@ const { copy, isSupported } = useClipboard();
 
 const rank = computed(() => props.rank);
 
-const currentItem = ref({ value: "cf-dat", text: "Codeforces Gym Ghost(dat)" });
+const currentItem = ref({ value: "general-xlsx", text: "Excel Table(xlsx)" });
 const options = ref([
-  {
-    value: "cf-dat",
-    text: "Codeforces Gym Ghost(dat)",
-  },
   {
     value: "general-xlsx",
     text: "Excel Table(xlsx)",
+  },
+  {
+    value: "cf-dat",
+    text: "Codeforces Gym Ghost(dat)",
   },
   {
     value: "icpc-standings-csv",

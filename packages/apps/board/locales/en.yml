@@ -28,13 +28,16 @@ type_menu:
   submissions: Submissions
   statistics: Statistics
   balloon: Balloon
-  export: Export
   resolver: Resolver
   filter: Filter
   options: Options
   awards: Awards
   utility: Utility
   countdown: Countdown
+
+utility:
+  tools: Tools
+  export: Export
 
 standings:
   start_time: Start

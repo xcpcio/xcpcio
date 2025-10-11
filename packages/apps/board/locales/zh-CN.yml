@@ -28,13 +28,16 @@ type_menu:
   submissions: 提交
   statistics: 统计
   balloon: 气球
-  export: 导出
   resolver: 滚榜
   filter: 筛选
   options: 选项
   awards: 奖项
   utility: 工具
   countdown: 倒计时
+
+utility:
+  tools: 工具集
+  export: 导出
 
 standings:
   start_time: 开始时间
