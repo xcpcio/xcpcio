@@ -176,10 +176,6 @@ const typeMenuList = ref<Array<Item>>([
     keyword: "statistics",
   },
   {
-    title: "type_menu.export",
-    keyword: "export",
-  },
-  {
     title: "type_menu.utility",
     keyword: "utility",
   },
@@ -545,14 +541,6 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             class="sm:w-full xl:w-[92%]"
           >
             <Statistics
-              :rank="rank"
-            />
-          </div>
-
-          <div
-            v-if="currentType === 'export'"
-          >
-            <Export
               :rank="rank"
             />
           </div>
