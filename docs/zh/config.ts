@@ -6,6 +6,7 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
   { text: "快速开始", link: "/zh/guide/" },
   { text: "榜单集成", link: "/zh/guide/board" },
   { text: "数据格式", link: "/zh/guide/data-format" },
+  { text: "CCS 工具", link: "/zh/guide/ccs-utility" },
 ];
 
 const Sponsors: DefaultTheme.NavItemWithLink[] = [
