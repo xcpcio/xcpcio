@@ -302,7 +302,7 @@ function closeVideoModal() {
               v-if="rank.contest.organization && enableFilter?.organization"
               w-64
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="orgOptions"
                 :selected-options="orgSelectedItems"
                 :placeholder="rank.contest.organization"
@@ -314,7 +314,7 @@ function closeVideoModal() {
               v-if="enableFilter?.team"
               w-64
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="teamsOptions"
                 :selected-options="teamsSelectedItems"
                 placeholder="Team"
@@ -326,7 +326,7 @@ function closeVideoModal() {
               v-if="enableFilter?.status"
               w-64
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="statusOptions"
                 :selected-options="statusSelectedItems"
                 placeholder="Status"
@@ -339,7 +339,7 @@ function closeVideoModal() {
               v-if="enableFilter?.language && languageOptions.length > 0"
               w-48
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="languageOptions"
                 :selected-options="languageSelectedItems"
                 placeholder="Language"

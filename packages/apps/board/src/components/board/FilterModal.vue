@@ -131,7 +131,7 @@ function onConfirm() {
             w-full
             col-span-6
           >
-            <MultiSelectEnhanced
+            <TheMultiSelect
               :options="orgOptions"
               :selected-options="orgSelectedItems"
               @select="orgOnSelect"
@@ -150,7 +150,7 @@ function onConfirm() {
             w-full
             col-span-6
           >
-            <MultiSelectEnhanced
+            <TheMultiSelect
               :options="teamsOptions"
               :selected-options="teamsSelectedItems"
               @select="teamsOnSelect"

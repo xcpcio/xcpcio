@@ -26,7 +26,7 @@
         w-full
         flex justify-center
       >
-        Open-source project of ICPC/CCPC Standings.
+        The ICPC Series Competition Leaderboard Visualization Engine.
       </p>
 
       <ul
