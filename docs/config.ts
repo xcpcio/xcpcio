@@ -6,6 +6,8 @@ const Guides: DefaultTheme.NavItemWithLink[] = [
   { text: "Getting Started", link: "/guide/" },
   { text: "Leaderboard Integration", link: "/guide/board" },
   { text: "Data Format", link: "/guide/data-format" },
+  { text: "CCS Utility", link: "/guide/ccs-utility" },
+
 ];
 
 const Sponsors: DefaultTheme.NavItemWithLink[] = [
