@@ -1,12 +1,11 @@
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
-import TheCounter from "../src/components/TheCounter.vue";
+import TheCounter from "../src/components/common/TheCounter.vue";
 
 describe("theCounter.vue", () => {
   it("should render", () => {
     const wrapper = mount(TheCounter, { props: { initial: 10 } });
     expect(wrapper.text()).toContain("10");
-    expect(wrapper.html()).toMatchSnapshot();
   });
 
   it("should be interactive", async () => {

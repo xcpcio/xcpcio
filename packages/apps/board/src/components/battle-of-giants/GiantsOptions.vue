@@ -108,7 +108,7 @@ const color = computed(() => {
         w-full
         col-span-5
       >
-        <MultiSelectEnhanced
+        <TheMultiSelect
           :options="orgOptions"
           :selected-options="orgSelectedItems"
           @select="orgOnSelect"
@@ -127,7 +127,7 @@ const color = computed(() => {
         w-full
         col-span-5
       >
-        <MultiSelectEnhanced
+        <TheMultiSelect
           :options="teamsOptions"
           :selected-options="teamsSelectedItems"
           @select="teamsOnSelect"

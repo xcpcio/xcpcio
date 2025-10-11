@@ -155,7 +155,7 @@ const currentUsers = computed(() => {
             <div
               w-108
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="orgOptions"
                 :selected-options="orgSelectedItems"
                 placeholder="Organization"
@@ -166,7 +166,7 @@ const currentUsers = computed(() => {
             <!-- <div
               w-68
             >
-              <MultiSelectEnhanced
+              <TheMultiSelect
                 :options="memberOptions"
                 :selected-options="memberSelectedItems"
                 placeholder="Member"
