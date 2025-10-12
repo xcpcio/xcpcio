@@ -9,10 +9,6 @@
 ![Repo Size](https://img.shields.io/github/repo-size/xcpcio/xcpcio.svg)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@xcpcio/board-app/badge)](https://www.jsdelivr.com/package/npm/@xcpcio/board-app)
 
-## License
-
-[MIT](../../../LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
-
 ## :clap: Our Supporters
 
 ### &#8627; Sponsors
@@ -40,6 +36,10 @@ This project is made possible by all the sponsors supporting my work:
     />
   </a>
 </p>
+
+## License
+
+[MIT](../../../LICENSE) License &copy; 2020 - PRESENT [XCPCIO][xcpcio]
 
 [xcpcio]: https://github.com/xcpcio
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg

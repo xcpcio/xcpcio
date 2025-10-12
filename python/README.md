@@ -53,4 +53,6 @@ For detailed documentation, visit:
 
 ## License
 
-MIT License &copy; 2020-PRESENT [Dup4](https://github.com/Dup4)
+[MIT](../LICENSE) License &copy; 2020 - PRESENT [XCPCIO][xcpcio]
+
+[xcpcio]: https://xcpcio.com
