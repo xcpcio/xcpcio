@@ -12,21 +12,6 @@
 ## Preview
 
 - [board.xcpcio.com](https://board.xcpcio.com)
-- [board-xcpcio.vercel.app](https://board-xcpcio.vercel.app/)
-
-## Development
-
-```bash
-# Installation dependencies
-pnpm install
-
-# Run the development server
-pnpm dev
-```
-
-## License
-
-[MIT](../../../LICENSE) License © 2020 - PRESENT [XCPCIO][xcpcio]
 
 ## :clap: Our Supporters
 
@@ -56,7 +41,11 @@ This project is made possible by all the sponsors supporting my work:
   </a>
 </p>
 
-[xcpcio]: https://github.com/xcpcio
+## License
+
+[MIT](../../../LICENSE) License &copy; 2020 - PRESENT [XCPCIO][xcpcio]
+
+[xcpcio]: https://xcpcio.com
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333

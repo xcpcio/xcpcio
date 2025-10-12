@@ -72,8 +72,9 @@ This project is made possible by all the sponsors supporting my work:
 
 ## License
 
-[MIT](./LICENSE) License &copy; 2020-PRESENT [Dup4](https://github.com/Dup4)
+[MIT](./LICENSE) License &copy; 2020-PRESENT [XCPCIO][xcpcio]
 
+[xcpcio]: https://xcpcio.com
 [gh-release-badge]: https://img.shields.io/github/release/xcpcio/xcpcio.svg
 [gh-release]: https://GitHub.com/xcpcio/xcpcio/releases/
 [license-image-mit]: https://img.shields.io/badge/license-MIT-blue.svg?labelColor=333333
