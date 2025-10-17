@@ -10,7 +10,7 @@ XCPCIO 提供了两个强大的 Python CLI 工具，用于处理 CCS（Contest C
 pip install xcpcio
 ```
 
-## ccs-archiver
+## clics-archiver
 
 将 CCS 比赛 API 数据归档为标准的比赛包格式。
 
@@ -18,16 +18,16 @@ pip install xcpcio
 
 ```bash
 # 归档到目录
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
 
 # 归档为 ZIP 文件
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
 
 # 归档为 tar.gz
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
 # 归档为 tar.zst (Zstandard 压缩)
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 ```
 
 ### 选项
@@ -53,7 +53,7 @@ ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o c
 **仅归档特定端点:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   -e teams -e problems -e submissions
@@ -62,7 +62,7 @@ ccs-archiver --base-url https://api.example.com/api \
 **跳过文件下载以加快归档速度:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o contest.zip --no-files -u admin -p secret
 ```
@@ -70,7 +70,7 @@ ccs-archiver --base-url https://api.example.com/api \
 **调整性能设置:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   --timeout 60 --max-concurrent 20
@@ -96,7 +96,7 @@ ccs-archiver --base-url https://api.example.com/api \
 
 如果不提供认证信息，某些端点可能无法访问。
 
-## contest-api-server
+## clics-server
 
 从比赛包启动本地 CCS API 服务器。
 
@@ -104,12 +104,12 @@ ccs-archiver --base-url https://api.example.com/api \
 
 ```bash
 # 使用比赛目录启动服务器
-contest-api-server -p /path/to/contest
+clics-server -p /path/to/contest
 
 # 使用归档文件启动服务器
-contest-api-server -p /path/to/contest.zip
-contest-api-server -p /path/to/contest.tar.gz
-contest-api-server -p /path/to/contest.tar.zst
+clics-server -p /path/to/contest.zip
+clics-server -p /path/to/contest.tar.gz
+clics-server -p /path/to/contest.tar.zst
 ```
 
 ### 选项
@@ -128,19 +128,19 @@ contest-api-server -p /path/to/contest.tar.zst
 **自定义主机和端口:**
 
 ```bash
-contest-api-server -p /path/to/contest --host 127.0.0.1 --port 9000
+clics-server -p /path/to/contest --host 127.0.0.1 --port 9000
 ```
 
 **开发模式（自动重载）:**
 
 ```bash
-contest-api-server -p /path/to/contest --reload --verbose
+clics-server -p /path/to/contest --reload --verbose
 ```
 
 **生产环境部署:**
 
 ```bash
-contest-api-server -p /path/to/contest.tar.zst --host 0.0.0.0 --port 8000
+clics-server -p /path/to/contest.tar.zst --host 0.0.0.0 --port 8000
 ```
 
 ### 支持的归档格式
@@ -173,14 +173,14 @@ contest-api-server -p /path/to/contest.tar.zst --host 0.0.0.0 --port 8000
 
 ```bash
 # 1. 从实时 CCS API 归档比赛数据
-ccs-archiver \
+clics-archiver \
   --base-url https://contest.example.com/api \
   --contest-id icpc2024 \
   -o icpc2024.tar.zst \
   --token your-api-token
 
 # 2. 从归档数据启动本地 API 服务器
-contest-api-server -p icpc2024.tar.zst --port 8000
+clics-server -p icpc2024.tar.zst --port 8000
 
 # 3. 通过 http://localhost:8000 访问 API
 ```
