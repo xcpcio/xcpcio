@@ -8,13 +8,8 @@ import logging
 from pathlib import Path
 
 import uvicorn
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-
-from xcpcio.__version__ import __version__
 
 from .dependencies import configure_dependencies
-from .routes import create_router
 
 logger = logging.getLogger(__name__)
 
@@ -35,35 +30,15 @@ class ContestAPIServer:
             contest_packages: Dictionary mapping contest_id to contest package directory
         """
         self.contest_package_dir = contest_package_dir
-
-        # Configure dependency injection for multi-contest mode
-        # This might need adjustment based on how dependencies work
         configure_dependencies(contest_package_dir)
 
-        # Create FastAPI application
-        self.app = FastAPI(
-            title="Contest API Server",
-            description="REST API for Contest Control System specifications",
-            version=__version__,
-            docs_url="/docs",
-            redoc_url="/redoc",
-            openapi_url="/openapi.json",
-        )
-
-        # Add CORS middleware
-        self.app.add_middleware(
-            CORSMiddleware,
-            allow_origins=["*"],
-            allow_credentials=True,
-            allow_methods=["*"],
-            allow_headers=["*"],
-        )
-
-        # Include all routes
-        router = create_router()
-        self.app.include_router(router)
-
-    def run(self, host: str = "0.0.0.0", port: int = 8000, reload: bool = True, log_level: str = "info"):
+    def run(
+        self,
+        host: str = "0.0.0.0",
+        port: int = 8000,
+        reload: bool = False,
+        log_level: str = "info",
+    ):
         """
         Run the contest API server.
 
@@ -80,4 +55,10 @@ class ContestAPIServer:
         logger.info(f"Interactive docs at: http://{host}:{port}/docs")
         logger.info(f"ReDoc at: http://{host}:{port}/redoc")
 
-        uvicorn.run(self.app, host=host, port=port, reload=reload, log_level=log_level)
+        uvicorn.run(
+            "xcpcio.ccs.api_server.app:app",
+            host=host,
+            port=port,
+            reload=reload,
+            log_level=log_level,
+        )
