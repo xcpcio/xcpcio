@@ -9,10 +9,9 @@ from typing import Annotated, Dict
 
 from fastapi import Depends
 
-from xcpcio.ccs.reader.base_ccs_reader import BaseCCSReader
-from xcpcio.ccs.reader.contest_package_reader import ContestPackageReader
+from xcpcio.clics.reader import BaseContestReader, ContestPackageReader
 
-from .services.contest_service import ContestService
+from .services import ContestService
 
 _contest_service_instance = None
 
@@ -43,7 +42,7 @@ def configure_dependencies(contest_package_dir: Path) -> None:
         contest_package_dir: Path to contest package directory
     """
     global _contest_service_instance
-    reader_dict: Dict[str, BaseCCSReader] = {}
+    reader_dict: Dict[str, BaseContestReader] = {}
     contest_package_reader = ContestPackageReader(contest_package_dir)
     reader_dict[contest_package_reader.get_contest_id()] = contest_package_reader
     _contest_service_instance = ContestService(reader_dict)

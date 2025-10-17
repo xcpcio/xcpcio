@@ -18,7 +18,7 @@ from typing import Any, List, Optional
 
 import aiofiles
 
-from xcpcio.ccs.clics_api_client import APICredentials, ClicsApiClient, ClicsApiConfig
+from xcpcio.clics.clics_api_client import APICredentials, ClicsApiClient, ClicsApiConfig
 
 logger = logging.getLogger(__name__)
 

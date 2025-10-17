@@ -49,4 +49,4 @@ def create_router() -> APIRouter:
     return router
 
 
-__all__ = ["create_router"]
+__all__ = [create_router]

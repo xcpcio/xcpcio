@@ -7,13 +7,13 @@ from typing import Any, Dict, List, Optional, Union
 
 from fastapi import HTTPException
 
-from xcpcio.ccs.base.types import FileAttr
-from xcpcio.ccs.reader.base_ccs_reader import BaseCCSReader
+from xcpcio.clics.base.types import FileAttr
+from xcpcio.clics.reader.interface import BaseContestReader
 
 logger = logging.getLogger(__name__)
 
 
-class ContestPackageReader(BaseCCSReader):
+class ContestPackageReader(BaseContestReader):
     def __init__(self, contest_package_dir: Path):
         self.contest_package_dir = contest_package_dir
         if not self.contest_package_dir.exists():
