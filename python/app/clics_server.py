@@ -55,7 +55,7 @@ def extract_archive(archive_path: Path, dest_dir: Path) -> None:
 )
 @click.option("--host", default="0.0.0.0", help="Host to bind to")
 @click.option("--port", default=8000, type=int, help="Port to bind to")
-@click.option("--reload", is_flag=True, help="Enable auto-reload for development")
+@click.option("--reload", is_flag=True, default=False, help="Enable auto-reload for development")
 @click.option(
     "--log-level",
     default="info",
