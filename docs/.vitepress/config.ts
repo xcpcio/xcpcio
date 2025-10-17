@@ -52,6 +52,15 @@ export default defineConfig({
     ],
   ],
 
+  transformHead: ({ pageData }) => {
+    const canonicalUrl = `${hostname}${pageData.relativePath}`
+      .replace(/\/index\.md$/, "/")
+      .replace(/\.md$/, "");
+    return [
+      ["link", { rel: "canonical", href: canonicalUrl }],
+    ];
+  },
+
   // TODO: add noscript google tag frame
 
   locales: {
