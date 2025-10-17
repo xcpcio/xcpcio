@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "The ICPC Series Competition Leaderboard Visualization Engine"
+title: "XCPCIO"
 
 hero:
   image:
