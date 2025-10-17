@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 
-from xcpcio.ccs.base.types import FileAttr
+from xcpcio.clics.base.types import FileAttr
 
 
-class BaseCCSReader(ABC):
+class BaseContestReader(ABC):
     # API Information
     @abstractmethod
     def get_api_info(self) -> Dict[str, Any]:

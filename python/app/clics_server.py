@@ -11,7 +11,7 @@ import click
 import zstandard as zstd
 
 from xcpcio import __version__
-from xcpcio.ccs.api_server.server import ContestAPIServer
+from xcpcio.clics.api_server.server import ContestAPIServer
 
 
 def setup_logging(level: str = "INFO"):
@@ -55,7 +55,6 @@ def extract_archive(archive_path: Path, dest_dir: Path) -> None:
 )
 @click.option("--host", default="0.0.0.0", help="Host to bind to")
 @click.option("--port", default=8000, type=int, help="Port to bind to")
-@click.option("--reload", is_flag=True, default=False, help="Enable auto-reload for development")
 @click.option(
     "--log-level",
     default="info",
@@ -63,7 +62,7 @@ def extract_archive(archive_path: Path, dest_dir: Path) -> None:
     help="Log level",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose logging (same as --log-level debug)")
-def main(contest_package: Path, host: str, port: int, reload: bool, log_level: str, verbose: bool):
+def main(contest_package: Path, host: str, port: int, log_level: str, verbose: bool):
     """
     Start the Contest API Server.
 
@@ -79,9 +78,6 @@ def main(contest_package: Path, host: str, port: int, reload: bool, log_level: s
 
         # Custom host and port
         clics-server -p /path/to/contest --host 127.0.0.1 --port 9000
-
-        # Enable reload for development
-        clics-server -p /path/to/contest --reload
     """
     if verbose:
         log_level = "debug"
@@ -105,7 +101,7 @@ def main(contest_package: Path, host: str, port: int, reload: bool, log_level: s
             raise click.Abort()
 
         click.echo(f"Extracting archive: {contest_package}")
-        temp_dir = Path(tempfile.mkdtemp(prefix="ccs_package_"))
+        temp_dir = Path(tempfile.mkdtemp(prefix="clics_package_"))
 
         try:
             extract_archive(contest_package, temp_dir)
@@ -123,12 +119,11 @@ def main(contest_package: Path, host: str, port: int, reload: bool, log_level: s
     click.echo(f"Contest directory: {actual_contest_dir}")
     click.echo(f"Host: {host}")
     click.echo(f"Port: {port}")
-    click.echo(f"Reload: {reload}")
     click.echo(f"Log level: {log_level}")
 
     try:
         server = ContestAPIServer(actual_contest_dir)
-        server.run(host=host, port=port, reload=reload, log_level=log_level.lower())
+        server.run(host=host, port=port, log_level=log_level.lower())
     except KeyboardInterrupt:
         click.echo("\nServer stopped by user")
     except Exception as e:

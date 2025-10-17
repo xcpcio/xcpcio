@@ -5,7 +5,7 @@ set -euo pipefail
 CUR_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 PYTHON_DIR="$(dirname "${CUR_DIR}")"
 CCS_SPECS_DIR="${PYTHON_DIR}/ccs-specs"
-CCS_MODELS_DIR="${PYTHON_DIR}/xcpcio/ccs/model"
+CCS_MODELS_DIR="${PYTHON_DIR}/xcpcio/clics/model"
 
 BRANCH="${1:-2023-06}"
 CCS_REPO_URL="https://github.com/icpc/ccs-specs.git"

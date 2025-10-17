@@ -13,7 +13,7 @@ import click
 import zstandard as zstd
 
 from xcpcio import __version__
-from xcpcio.ccs.contest_archiver import APICredentials, ArchiveConfig, ContestArchiver
+from xcpcio.clics.contest_archiver import APICredentials, ArchiveConfig, ContestArchiver
 
 
 def setup_logging(level: str = "INFO"):
@@ -145,7 +145,7 @@ def main(
     credentials = APICredentials(username=username, password=password, token=token)
 
     if is_archive:
-        temp_dir = Path(tempfile.mkdtemp(prefix="ccs_archive_"))
+        temp_dir = Path(tempfile.mkdtemp(prefix="clics_archive_"))
         output_dir = temp_dir
     else:
         output_dir = output

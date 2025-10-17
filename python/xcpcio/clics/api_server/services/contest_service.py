@@ -11,8 +11,8 @@ from typing import Any, Dict, List, Optional
 from fastapi import HTTPException
 
 from xcpcio.__version__ import __version__
-from xcpcio.ccs.base.types import FileAttr
-from xcpcio.ccs.reader.base_ccs_reader import BaseCCSReader
+from xcpcio.clics.base.types import FileAttr
+from xcpcio.clics.reader.interface import BaseContestReader
 
 logger = logging.getLogger(__name__)
 
@@ -20,10 +20,10 @@ logger = logging.getLogger(__name__)
 class ContestService:
     """Service class for contest-related operations"""
 
-    def __init__(self, reader_dict: Dict[str, BaseCCSReader]):
+    def __init__(self, reader_dict: Dict[str, BaseContestReader]):
         self.reader_dict = reader_dict
 
-    def _get_reader(self, contest_id: str) -> BaseCCSReader:
+    def _get_reader(self, contest_id: str) -> BaseContestReader:
         if contest_id not in self.reader_dict:
             raise HTTPException(status_code=404, detail=f"Contest {contest_id} not found")
         return self.reader_dict[contest_id]

@@ -9,6 +9,7 @@ from pathlib import Path
 
 import uvicorn
 
+from .app import create_app
 from .dependencies import configure_dependencies
 
 logger = logging.getLogger(__name__)
@@ -31,12 +32,12 @@ class ContestAPIServer:
         """
         self.contest_package_dir = contest_package_dir
         configure_dependencies(contest_package_dir)
+        self.app = create_app()
 
     def run(
         self,
         host: str = "0.0.0.0",
         port: int = 8000,
-        reload: bool = False,
         log_level: str = "info",
     ):
         """
@@ -45,7 +46,6 @@ class ContestAPIServer:
         Args:
             host: Host to bind to
             port: Port to bind to
-            reload: Enable auto-reload for development
             log_level: Log level (debug, info, warning, error, critical)
         """
 
@@ -56,9 +56,8 @@ class ContestAPIServer:
         logger.info(f"ReDoc at: http://{host}:{port}/redoc")
 
         uvicorn.run(
-            "xcpcio.ccs.api_server.app:app",
+            self.app,
             host=host,
             port=port,
-            reload=reload,
             log_level=log_level,
         )
