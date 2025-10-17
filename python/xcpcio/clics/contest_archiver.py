@@ -91,6 +91,7 @@ class ContestArchiver:
         "runs",
         "clarifications",
         "awards",
+        "scoreboard",
     ]
 
     def __init__(self, config: ArchiveConfig):
