@@ -14,24 +14,13 @@ import json
 import logging
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
-from urllib.parse import urljoin
+from typing import Any, List, Optional
 
 import aiofiles
-import aiohttp
-import semver
-from tenacity import before_sleep_log, retry, retry_if_exception_type, stop_after_attempt, wait_exponential
+
+from xcpcio.ccs.clics_api_client import APICredentials, ClicsApiClient, ClicsApiConfig
 
 logger = logging.getLogger(__name__)
-
-
-@dataclass
-class APICredentials:
-    """API authentication credentials"""
-
-    username: Optional[str] = None
-    password: Optional[str] = None
-    token: Optional[str] = None
 
 
 @dataclass
@@ -47,6 +36,15 @@ class ArchiveConfig:
     timeout: int = 30
     max_concurrent: int = 10
     include_event_feed: bool = False
+
+    def to_api_config(self) -> ClicsApiConfig:
+        """Convert to ClicsApiConfig"""
+        return ClicsApiConfig(
+            base_url=self.base_url,
+            credentials=self.credentials,
+            timeout=self.timeout,
+            max_concurrent=self.max_concurrent,
+        )
 
 
 class ContestArchiver:
@@ -93,134 +91,22 @@ class ContestArchiver:
         "runs",
         "clarifications",
         "awards",
-        "scoreboard",
     ]
 
     def __init__(self, config: ArchiveConfig):
         self._config = config
-        self._session: Optional[aiohttp.ClientSession] = None
-        self._semaphore = asyncio.Semaphore(config.max_concurrent)
-        self._api_info: Optional[Dict[str, Any]] = None
-        self._provider_name: Optional[str] = None
-        self._provider_version: Optional[semver.VersionInfo] = None
+        self._client = ClicsApiClient(config.to_api_config())
 
-        # Create output directory
         self._config.output_dir.mkdir(parents=True, exist_ok=True)
-
-    def _build_url(self, endpoint: str) -> str:
-        """Build API URL ensuring proper path joining"""
-        # Ensure base_url ends with / and endpoint doesn't start with /
-        base = self._config.base_url.rstrip("/") + "/"
-        endpoint = endpoint.lstrip("/")
-        return urljoin(base, endpoint)
 
     async def __aenter__(self):
         """Async context manager entry"""
-        await self.start_session()
+        await self._client.__aenter__()
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
         """Async context manager exit"""
-        await self.close_session()
-
-    async def start_session(self):
-        """Initialize the HTTP session with authentication"""
-        # Setup authentication
-        auth = None
-        headers = {}
-
-        if self._config.credentials.username and self._config.credentials.password:
-            auth = aiohttp.BasicAuth(self._config.credentials.username, self._config.credentials.password)
-        elif self._config.credentials.token:
-            headers["Authorization"] = f"Bearer {self._config.credentials.token}"
-
-        self._session = aiohttp.ClientSession(auth=auth, headers=headers)
-
-    async def close_session(self):
-        """Close the HTTP session"""
-        if self._session:
-            await self._session.close()
-
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=1, max=10),
-        retry=retry_if_exception_type((asyncio.TimeoutError, aiohttp.ClientError)),
-        before_sleep=before_sleep_log(logger, logging.WARNING),
-        reraise=True,
-    )
-    async def _fetch_json_internal(self, url: str, override_timeout: Optional[int] = None) -> Optional[Dict[str, Any]]:
-        """Internal fetch method with retry logic"""
-        logger.info(f"Fetching {url}")
-        timeout = aiohttp.ClientTimeout(total=override_timeout or self._config.timeout)
-        async with self._session.get(url, timeout=timeout) as response:
-            if response.status == 404:
-                logger.warning(f"Endpoint not found: {url}")
-                return None
-            elif response.status != 200:
-                raise aiohttp.ClientResponseError(
-                    request_info=response.request_info, history=response.history, status=response.status
-                )
-
-            data = await response.json()
-            logger.debug(f"Fetched {len(str(data))} bytes from {url}")
-            return data
-
-    async def fetch_json(self, endpoint: str, override_timeout: Optional[int] = None) -> Optional[Dict[str, Any]]:
-        """Fetch JSON data from an API endpoint"""
-        url = self._build_url(endpoint)
-
-        async with self._semaphore:
-            try:
-                return await self._fetch_json_internal(url, override_timeout)
-            except Exception as e:
-                logger.error(f"Failed to fetch. [url={url}] [err={e}]")
-                return None
-
-    @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=1, max=10),
-        retry=retry_if_exception_type((asyncio.TimeoutError, aiohttp.ClientError)),
-        before_sleep=before_sleep_log(logger, logging.WARNING),
-        reraise=True,
-    )
-    async def _fetch_file_internal(
-        self, file_url: str, output_path: Path, override_timeout: Optional[int] = None
-    ) -> bool:
-        """Internal file download method with retry logic"""
-        logger.info(f"Downloading {file_url} -> {output_path}")
-        output_path.parent.mkdir(parents=True, exist_ok=True)
-
-        timeout = aiohttp.ClientTimeout(total=override_timeout or self._config.timeout)
-        async with self._session.get(file_url, timeout=timeout) as response:
-            if response.status != 200:
-                raise aiohttp.ClientResponseError(
-                    request_info=response.request_info, history=response.history, status=response.status
-                )
-
-            async with aiofiles.open(output_path, "wb") as f:
-                async for chunk in response.content.iter_chunked(8192):
-                    await f.write(chunk)
-
-        logger.debug(f"Downloaded {output_path}")
-        return True
-
-    async def fetch_file(
-        self, file_url: Optional[str], output_path: Path, override_timeout: Optional[int] = None
-    ) -> bool:
-        """Download a file from URL to local path"""
-        if not file_url:
-            return False
-
-        # Handle relative URLs
-        if not file_url.startswith(("http://", "https://")):
-            file_url = self._build_url(file_url)
-
-        async with self._semaphore:
-            try:
-                return await self._fetch_file_internal(file_url, output_path, override_timeout)
-            except Exception as e:
-                logger.error(f"Failed to download {file_url} after retries: {e}")
-                return False
+        await self._client.__aexit__(exc_type, exc_val, exc_tb)
 
     def _get_file_output_path(
         self, filename: str, base_path: Optional[str] = None, object_id: Optional[str] = None
@@ -265,8 +151,7 @@ class ContestArchiver:
         if not file_refs:
             return
 
-        # Download all files in parallel (controlled by self.semaphore)
-        download_tasks = [self.fetch_file(href, output_path) for href, output_path in file_refs]
+        download_tasks = [self._client.fetch_file(href, output_path) for href, output_path in file_refs]
 
         if download_tasks:
             await asyncio.gather(*download_tasks, return_exceptions=True)
@@ -285,36 +170,9 @@ class ContestArchiver:
         """Dump API root endpoint information"""
         logger.info("Dumping API information...")
 
-        data = await self.fetch_json("/")
+        data = await self._client.fetch_api_info()
         if not data:
             raise RuntimeError("Failed to fetch API information")
-
-        self._api_info = data  # Store API info for later use
-
-        # Parse provider information
-        if "provider" in data:
-            provider: Dict = data.get("provider", {})
-            self._provider_name = provider.get("name", "")
-
-            # Parse version string to semver.VersionInfo
-            version_str: str = provider.get("version", "")
-            if version_str:
-                try:
-                    # Clean version string: "8.3.1/3324986cd" -> "8.3.1", "9.0.0DEV/26e89f701" -> "9.0.0-dev"
-                    version_clean = version_str.split("/")[0]
-                    # Convert DEV suffix to semver prerelease format
-                    if version_clean.endswith("DEV"):
-                        version_clean = version_clean[:-3] + "-dev"
-
-                    self._provider_version = semver.VersionInfo.parse(version_clean)
-                    logger.info(
-                        f"Detected API provider: {self._provider_name} version {version_str} (parsed: {self._provider_version})"
-                    )
-                except (ValueError, TypeError) as e:
-                    logger.warning(f"Could not parse version string: {version_str}, error: {e}")
-                    self._provider_version = None
-            else:
-                logger.info(f"Detected API provider: {self._provider_name} (no version)")
 
         await self.save_data("api.json", data)
         await self._download_file_references(data, "api")
@@ -324,7 +182,7 @@ class ContestArchiver:
         logger.info("Dumping contest information...")
 
         endpoint = f"contests/{self._config.contest_id}"
-        data = await self.fetch_json(endpoint)
+        data = await self._client.fetch_json(endpoint)
         if data:
             await self.save_data("contest.json", data)
             await self._download_file_references(data, "contest")
@@ -334,7 +192,7 @@ class ContestArchiver:
         logger.info(f"Dumping {endpoint}...")
 
         api_endpoint = f"contests/{self._config.contest_id}/{endpoint}"
-        data = await self.fetch_json(api_endpoint)
+        data = await self._client.fetch_json(api_endpoint)
 
         if data is None:
             return
@@ -352,7 +210,7 @@ class ContestArchiver:
         logger.info(f"Dumping {endpoint}...")
 
         api_endpoint = f"contests/{self._config.contest_id}/{endpoint}"
-        data = await self.fetch_json(api_endpoint)
+        data = await self._client.fetch_json(api_endpoint)
 
         if data is None:
             return
@@ -365,8 +223,7 @@ class ContestArchiver:
         logger.info("Dumping event-feed...")
 
         api_endpoint = f"contests/{self._config.contest_id}/event-feed?stream=false"
-        # Use extended timeout for event-feed as it may contain large amounts of data
-        await self.fetch_file(
+        await self._client.fetch_file(
             api_endpoint,
             output_path=self._get_file_output_path("event-feed.ndjson"),
             override_timeout=self._config.timeout * 10,
@@ -374,13 +231,14 @@ class ContestArchiver:
 
     async def get_available_endpoints(self) -> List[str]:
         """Get list of available endpoints based on API provider and version"""
-        # Check if it's DOMjudge with version < 9.0.0
-        if self._provider_name == "DOMjudge" and self._provider_version and self._provider_version.major < 9:
-            logger.info(f"Using DOMjudge known endpoints for version < 9.0.0 (detected: {self._provider_version})")
+        provider_name = self._client.provider_name
+        provider_version = self._client.provider_version
+
+        if provider_name == "DOMjudge" and provider_version and provider_version.major < 9:
+            logger.info(f"Using DOMjudge known endpoints for version < 9.0.0 (detected: {provider_version})")
             return self.DOMJUDGE_KNOWN_ENDPOINTS
 
-        # For other providers or DOMjudge >= 9.0.0, try to get from access endpoint
-        access_data = await self.fetch_json(f"contests/{self._config.contest_id}/access")
+        access_data = await self._client.fetch_json(f"contests/{self._config.contest_id}/access")
 
         if not access_data or "endpoints" not in access_data:
             logger.warning("Could not fetch access info, using default endpoints")
