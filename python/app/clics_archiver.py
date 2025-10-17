@@ -96,22 +96,22 @@ def main(
     Examples:
 
         # Output to directory
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
 
         # Output to ZIP archive
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
 
         # Output to tar.gz archive
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
         # Output to tar.zst archive
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 
         # Only archive specific endpoints
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret -e teams -e problems
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret -e teams -e problems
 
         # Skip file downloads
-        ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output --no-files
+        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output --no-files
     """
 
     if verbose:
@@ -208,7 +208,6 @@ def main(
             click.echo(f"  SHA512: {checksums['sha512']}")
         else:
             click.echo(click.style(f"Contest package created successfully in: {config.output_dir}", fg="green"))
-
     except KeyboardInterrupt:
         click.echo(click.style("Archive interrupted by user", fg="yellow"), err=True)
         raise click.Abort()

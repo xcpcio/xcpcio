@@ -70,18 +70,18 @@ def main(contest_package: Path, host: str, port: int, reload: bool, log_level: s
     Examples:
 
         # Start server with contest directory
-        contest-api-server -p /path/to/contest
+        clics-server -p /path/to/contest
 
         # Start server with archive file
-        contest-api-server -p /path/to/contest.zip
-        contest-api-server -p /path/to/contest.tar.gz
-        contest-api-server -p /path/to/contest.tar.zst
+        clics-server -p /path/to/contest.zip
+        clics-server -p /path/to/contest.tar.gz
+        clics-server -p /path/to/contest.tar.zst
 
         # Custom host and port
-        contest-api-server -p /path/to/contest --host 127.0.0.1 --port 9000
+        clics-server -p /path/to/contest --host 127.0.0.1 --port 9000
 
         # Enable reload for development
-        contest-api-server -p /path/to/contest --reload
+        clics-server -p /path/to/contest --reload
     """
     if verbose:
         log_level = "debug"

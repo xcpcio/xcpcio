@@ -10,7 +10,7 @@ XCPCIO provides two powerful Python CLI tools for working with CCS (Contest Cont
 pip install xcpcio
 ```
 
-## ccs-archiver
+## clics-archiver
 
 Archive CCS Contest API data to the standard contest package format.
 
@@ -18,16 +18,16 @@ Archive CCS Contest API data to the standard contest package format.
 
 ```bash
 # Archive to a directory
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
 
 # Archive to a ZIP file
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
 
 # Archive to tar.gz
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
 # Archive to tar.zst (Zstandard compression)
-ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 ```
 
 ### Options
@@ -53,7 +53,7 @@ ccs-archiver --base-url https://api.example.com/api --contest-id contest123 -o c
 **Archive specific endpoints only:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   -e teams -e problems -e submissions
@@ -62,7 +62,7 @@ ccs-archiver --base-url https://api.example.com/api \
 **Skip file downloads for faster archiving:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o contest.zip --no-files -u admin -p secret
 ```
@@ -70,7 +70,7 @@ ccs-archiver --base-url https://api.example.com/api \
 **Adjust performance settings:**
 
 ```bash
-ccs-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://api.example.com/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   --timeout 60 --max-concurrent 20
@@ -96,7 +96,7 @@ The tool supports two authentication methods:
 
 If no authentication is provided, some endpoints may not be accessible.
 
-## contest-api-server
+## clics-server
 
 Start a local CCS API server from a contest package.
 
@@ -104,12 +104,12 @@ Start a local CCS API server from a contest package.
 
 ```bash
 # Start server with a contest directory
-contest-api-server -p /path/to/contest
+clics-server -p /path/to/contest
 
 # Start server with an archive file
-contest-api-server -p /path/to/contest.zip
-contest-api-server -p /path/to/contest.tar.gz
-contest-api-server -p /path/to/contest.tar.zst
+clics-server -p /path/to/contest.zip
+clics-server -p /path/to/contest.tar.gz
+clics-server -p /path/to/contest.tar.zst
 ```
 
 ### Options
@@ -128,19 +128,19 @@ contest-api-server -p /path/to/contest.tar.zst
 **Custom host and port:**
 
 ```bash
-contest-api-server -p /path/to/contest --host 127.0.0.1 --port 9000
+clics-server -p /path/to/contest --host 127.0.0.1 --port 9000
 ```
 
 **Development mode with auto-reload:**
 
 ```bash
-contest-api-server -p /path/to/contest --reload --verbose
+clics-server -p /path/to/contest --reload --verbose
 ```
 
 **Production deployment:**
 
 ```bash
-contest-api-server -p /path/to/contest.tar.zst --host 0.0.0.0 --port 8000
+clics-server -p /path/to/contest.tar.zst --host 0.0.0.0 --port 8000
 ```
 
 ### Supported Archive Formats
@@ -173,14 +173,14 @@ A typical workflow for archiving and serving contest data:
 
 ```bash
 # 1. Archive contest data from a live CCS API
-ccs-archiver \
+clics-archiver \
   --base-url https://contest.example.com/api \
   --contest-id icpc2024 \
   -o icpc2024.tar.zst \
   --token your-api-token
 
 # 2. Start a local API server from the archived data
-contest-api-server -p icpc2024.tar.zst --port 8000
+clics-server -p icpc2024.tar.zst --port 8000
 
 # 3. Access the API at http://localhost:8000
 ```
