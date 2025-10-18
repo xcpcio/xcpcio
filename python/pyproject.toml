@@ -40,6 +40,7 @@ repository = "https://github.com/xcpcio/xcpcio"
 [project.scripts]
 clics-archiver = "app.clics_archiver:main"
 clics-server = "app.clics_server:main"
+clics-uploader = "app.clics_uploader:main"
 
 [tool.ruff]
 line-length = 120
