@@ -1,6 +1,6 @@
 ---
 layout: home
-title: "XCPCIO: ICPC 系列竞赛的榜单可视化引擎"
+title: "XCPCIO"
 
 hero:
   image:

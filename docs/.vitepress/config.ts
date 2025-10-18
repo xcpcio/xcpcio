@@ -1,16 +1,28 @@
-import { defineConfig } from "vitepress";
+import { defineConfig, resolveSiteDataByRoute } from "vitepress";
 
 const hostname = "https://xcpcio.com/";
-const ogUrl = hostname;
-const ogImage = `${ogUrl}og.png`;
+const ogImage = `${hostname}og.png`;
 const title = "XCPCIO";
 const description = "The ICPC Series Competition Leaderboard Visualization Engine.";
 const googleTagId = "GTM-WHLF55BJ";
 
+function getOgTitle(pageTitle: string) {
+  if (pageTitle === title) {
+    return pageTitle;
+  }
+  return `${pageTitle} - ${title}`;
+}
+
+function getOgDescription(pageDescription: string) {
+  if (pageDescription.length > 0) {
+    return pageDescription;
+  }
+  return description;
+}
+
 export default defineConfig({
   title,
   description,
-  titleTemplate: `:title - ${title}`,
 
   rewrites: {
     "en/:rest*": ":rest*",
@@ -26,16 +38,17 @@ export default defineConfig({
 
   head: [
     ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
-    ["link", { rel: "alternate icon", href: "/favicon.ico", type: "image/png", sizes: "16x16" }],
     ["meta", { name: "author", content: "Dup4" }],
+    ["meta", { name: "keywords", content: "ICPC, Rank, Board, Leaderboard, ScoreBoard, Standings" }],
+    ["meta", { property: "og:site_name", content: title }],
     ["meta", { property: "og:type", content: "website" }],
-    ["meta", { name: "og:title", content: title }],
-    ["meta", { name: "og:description", content: description }],
     ["meta", { property: "og:image", content: ogImage }],
-    ["meta", { name: "twitter:title", content: title }],
+    ["meta", { property: "og:image:type", content: "image/png" }],
+    ["meta", { property: "og:image:width", content: "1200" }],
+    ["meta", { property: "og:image:height", content: "630" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:image", content: ogImage }],
-    ["meta", { name: "twitter:url", content: ogUrl }],
+
     [
       "script",
       {},
@@ -50,18 +63,45 @@ export default defineConfig({
         f.parentNode.insertBefore(j, f);
       })(window, document, "script", "dataLayer", "${googleTagId}");`,
     ],
+    [
+      "noscript",
+      {},
+      `<iframe
+        src="https://www.googletagmanager.com/ns.html?id=${googleTagId}"
+        height="0" width="0"
+        style="display: none; visibility: hidden"
+      ></iframe>`,
+    ],
   ],
 
-  transformHead: ({ pageData }) => {
+  transformHead: ({ pageData, siteConfig }) => {
+    const title = getOgTitle(pageData.title);
+    const description = getOgDescription(pageData.description);
     const canonicalUrl = `${hostname}${pageData.relativePath}`
       .replace(/\/index\.md$/, "/")
       .replace(/\.md$/, "");
+
+    const site = resolveSiteDataByRoute(
+      siteConfig.site,
+      pageData.relativePath,
+    );
+
     return [
+      ["meta", { name: "title", content: title }],
+      ["meta", { name: "description", content: description }],
+      ["meta", { property: "og:title", content: title }],
+      ["meta", { property: "og:description", content: description }],
+      ["meta", { property: "og:locale", content: site.lang }],
+      ["meta", { name: "twitter:title", content: title }],
+      ["meta", { name: "twitter:description", content: description }],
       ["link", { rel: "canonical", href: canonicalUrl }],
+      ["meta", { property: "og:url", content: canonicalUrl }],
+      ["meta", { name: "twitter:url", content: canonicalUrl }],
     ];
   },
 
-  // TODO: add noscript google tag frame
+  // TODO: add text-autospace
+  // TODO: add umami script
 
   locales: {
     root: { label: "English", lang: "en-US", dir: "ltr" },
