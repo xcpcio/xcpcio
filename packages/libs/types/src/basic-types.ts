@@ -107,3 +107,5 @@ export interface StatusTimeDisplay {
 }
 
 export type TimeUnit = "second" | "millisecond" | "microsecond" | "nanosecond";
+
+export type Lang = "en" | "zh-CN";

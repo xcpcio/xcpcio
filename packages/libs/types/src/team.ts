@@ -24,4 +24,4 @@ export interface Team {
   icpc_id?: string;
 }
 
-export type Teams = Array<Team> | Record<string, Team>;
+export type Teams = Array<Team> | Record<string /* team_id */, Team>;

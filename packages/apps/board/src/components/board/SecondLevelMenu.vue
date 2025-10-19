@@ -1,19 +1,15 @@
 <script setup lang="ts">
+import type { I18nText } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 import { useRouteQuery } from "@vueuse/router";
 
 export interface Item {
-  title?: string;
-
-  titles?: Map<Lang, string>;
-  defaultLang?: Lang;
-
+  title: string | I18nText;
   keyword: string;
-  isDefault?: boolean;
 
   link?: string;
-
   isModal?: boolean;
+  isDefault?: boolean;
 }
 
 const props = defineProps<{
@@ -55,15 +51,11 @@ const currentItem = computed({
 const { t, locale } = useI18n();
 
 function getTitle(item: Item) {
-  if (item.title) {
+  if (typeof item.title === "string") {
     return t(item.title);
   }
 
-  if (item.titles) {
-    return item.titles.get(locale.value as unknown as Lang) ?? item.titles.get(item.defaultLang!);
-  }
-
-  return "";
+  return item.title?.getOrDefault(locale.value as unknown as Lang);
 }
 
 function isCurrent(item: Item): boolean {

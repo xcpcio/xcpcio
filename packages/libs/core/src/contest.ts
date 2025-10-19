@@ -305,8 +305,8 @@ export function createContest(contestJSON: IContest): Contest {
 
   {
     const g = new Group();
-    g.names.set("en", "All");
-    g.names.set("zh-CN", "所有队伍");
+    g.name.set("en", "All");
+    g.name.set("zh-CN", "所有队伍");
     g.isDefault = true;
 
     c.group.set("all", g);
@@ -316,18 +316,18 @@ export function createContest(contestJSON: IContest): Contest {
     let key = k;
 
     const g = new Group();
-    g.names.set("zh-CN", v);
+    g.name.set("zh-CN", v);
 
     if (k === "official") {
-      g.names.set("en", "Official");
+      g.name.set("en", "Official");
     }
 
     if (k === "unofficial") {
-      g.names.set("en", "Unofficial");
+      g.name.set("en", "Unofficial");
     }
 
     if (k === "girl" || k === "girls") {
-      g.names.set("en", "Girls");
+      g.name.set("en", "Girls");
       key = "girl";
     }
 
