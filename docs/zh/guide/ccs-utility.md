@@ -8,6 +8,9 @@ XCPCIO 提供了两个强大的 Python CLI 工具，用于处理 CCS（Contest C
 
 ```bash
 pip install xcpcio
+
+# 中国大陆用户推荐使用清华大学镜像源以获得更快的安装速度：
+pip install xcpcio -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## clics-archiver
@@ -18,16 +21,16 @@ pip install xcpcio
 
 ```bash
 # 归档到目录
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o ./output -u admin -p secret
 
 # 归档为 ZIP 文件
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.zip --token abc123
 
 # 归档为 tar.gz
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
 # 归档为 tar.zst (Zstandard 压缩)
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 ```
 
 ### 选项
@@ -53,7 +56,7 @@ clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o
 **仅归档特定端点:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   -e teams -e problems -e submissions
@@ -62,7 +65,7 @@ clics-archiver --base-url https://api.example.com/api \
 **跳过文件下载以加快归档速度:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o contest.zip --no-files -u admin -p secret
 ```
@@ -70,7 +73,7 @@ clics-archiver --base-url https://api.example.com/api \
 **调整性能设置:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   --timeout 60 --max-concurrent 20
