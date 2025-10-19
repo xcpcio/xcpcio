@@ -8,6 +8,9 @@ XCPCIO provides two powerful Python CLI tools for working with CCS (Contest Cont
 
 ```bash
 pip install xcpcio
+
+# For users in Mainland China, use Tsinghua mirror for faster installation:
+pip install xcpcio -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
 ## clics-archiver
@@ -18,16 +21,16 @@ Archive CCS Contest API data to the standard contest package format.
 
 ```bash
 # Archive to a directory
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o ./output -u admin -p secret
 
 # Archive to a ZIP file
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.zip --token abc123
 
 # Archive to tar.gz
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
 # Archive to tar.zst (Zstandard compression)
-clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 ```
 
 ### Options
@@ -53,7 +56,7 @@ clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o
 **Archive specific endpoints only:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   -e teams -e problems -e submissions
@@ -62,7 +65,7 @@ clics-archiver --base-url https://api.example.com/api \
 **Skip file downloads for faster archiving:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o contest.zip --no-files -u admin -p secret
 ```
@@ -70,7 +73,7 @@ clics-archiver --base-url https://api.example.com/api \
 **Adjust performance settings:**
 
 ```bash
-clics-archiver --base-url https://api.example.com/api \
+clics-archiver --base-url https://domjudge/api \
   --contest-id contest123 \
   -o ./output -u admin -p secret \
   --timeout 60 --max-concurrent 20

@@ -96,22 +96,22 @@ def main(
     Examples:
 
         # Output to directory
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o ./output -u admin -p secret
 
         # Output to ZIP archive
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.zip --token abc123
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.zip --token abc123
 
         # Output to tar.gz archive
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.gz -u admin -p secret
 
         # Output to tar.zst archive
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o contest.tar.zst -u admin -p secret
 
         # Only archive specific endpoints
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output -u admin -p secret -e teams -e problems
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o ./output -u admin -p secret -e teams -e problems
 
         # Skip file downloads
-        clics-archiver --base-url https://api.example.com/api --contest-id contest123 -o ./output --no-files
+        clics-archiver --base-url https://domjudge/api --contest-id contest123 -o ./output --no-files
     """
 
     if verbose:
