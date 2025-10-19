@@ -1,7 +1,6 @@
 export * from "./basic-types";
 export * from "./contest";
 export * from "./contest-index";
-export * from "./lang";
 export * from "./person";
 export * from "./problem";
 export * from "./rating";

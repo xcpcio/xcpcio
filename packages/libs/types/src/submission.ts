@@ -21,4 +21,4 @@ export interface Submission {
   reaction?: SubmissionReaction;
 }
 
-export type Submissions = Array<Submission> | Record<string, Submission>;
+export type Submissions = Array<Submission> | Record<string /* submission_id */, Submission>;

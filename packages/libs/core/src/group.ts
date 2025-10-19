@@ -1,13 +1,11 @@
-import type { Lang } from "@xcpcio/types";
+import { I18nText } from "./basic-types";
 
 export class Group {
-  names: Map<Lang, string>;
-  defaultLang: Lang;
+  name: I18nText;
   isDefault: boolean;
 
   constructor() {
-    this.names = new Map<Lang, string>();
-    this.defaultLang = "zh-CN";
+    this.name = new I18nText();
     this.isDefault = false;
   }
 }

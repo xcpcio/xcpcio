@@ -23,11 +23,13 @@ describe("contest-index", () => {
           "freezeTime": "2023-06-04T05:00:00.000Z",
           "group": Map {
             "all" => Group {
-              "defaultLang": "zh-CN",
               "isDefault": true,
-              "names": Map {
-                "en" => "All",
-                "zh-CN" => "所有队伍",
+              "name": I18nText {
+                "defaultLang": "zh-CN",
+                "texts": Map {
+                  "en" => "All",
+                  "zh-CN" => "所有队伍",
+                },
               },
             },
           },
@@ -77,11 +79,13 @@ describe("contest-index", () => {
           "freezeTime": "2009-09-11T06:00:00.000Z",
           "group": Map {
             "all" => Group {
-              "defaultLang": "zh-CN",
               "isDefault": true,
-              "names": Map {
-                "en" => "All",
-                "zh-CN" => "所有队伍",
+              "name": I18nText {
+                "defaultLang": "zh-CN",
+                "texts": Map {
+                  "en" => "All",
+                  "zh-CN" => "所有队伍",
+                },
               },
             },
           },
