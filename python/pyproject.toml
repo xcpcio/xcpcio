@@ -38,8 +38,8 @@ documentation = "https://github.com/xcpcio/xcpcio"
 repository = "https://github.com/xcpcio/xcpcio"
 
 [project.scripts]
-clics-archiver = "app.clics_archiver:main"
-clics-server = "app.clics_server:main"
+clics-archiver = "xcpcio.app.clics_archiver:main"
+clics-server = "xcpcio.app.clics_server:main"
 
 [tool.ruff]
 line-length = 120
