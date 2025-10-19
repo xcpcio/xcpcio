@@ -88,7 +88,10 @@ def main(contest_package: Path, host: str, port: int, log_level: str, verbose: b
     def cleanup_temp_dir():
         if temp_dir and temp_dir.exists():
             click.echo(f"Cleaning up temporary directory: {temp_dir}")
-            shutil.rmtree(temp_dir)
+            try:
+                shutil.rmtree(temp_dir)
+            except Exception as e:
+                click.echo(f"Warning: Failed to cleanup temporary directory: {e}", err=True)
 
     atexit.register(cleanup_temp_dir)
 
