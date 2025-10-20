@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ContestIndexList } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 import ContestIndexUI from "@board/components/ContestIndexUI.vue";
 import SearchInput from "@board/components/SearchInput.vue";
@@ -9,7 +10,9 @@ import { useFetch } from "@vueuse/core";
 import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
+
 useTitle(TITLE_SUFFIX);
 
 const FETCH_INTERVAL = 1000 * 60 * 5;
@@ -41,8 +44,8 @@ function onSearch() {
 
     s.value = searchText.value;
 
-    if (c.contest.name.includes(searchText.value)
-      || c.contest.name.toLowerCase().includes(searchText.value.toLowerCase())
+    if (c.contest.name.getOrDefault(lang.value).includes(searchText.value)
+      || c.contest.name.getOrDefault(lang.value).toLowerCase().includes(searchText.value.toLowerCase())
       || c.boardLink.toLocaleLowerCase().includes(searchText.value.toLowerCase())) {
       return true;
     }

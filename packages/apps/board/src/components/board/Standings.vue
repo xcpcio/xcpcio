@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import { GiantsType, Team } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const teams = computed(() => props.rank.teams);
@@ -129,7 +131,7 @@ const maxOrgLength = computed(() => {
 const maxTeamLength = computed(() => {
   let res = 0;
   rank.value.teams.forEach((t) => {
-    res = Math.max(res, t.name.length);
+    res = Math.max(res, t.name.getOrDefault(lang.value).length);
   });
 
   return res;
