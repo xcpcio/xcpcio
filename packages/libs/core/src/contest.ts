@@ -36,9 +36,10 @@ export class Contest {
   statusTimeDisplay: StatusTimeDisplay;
 
   badge?: string;
+  organization?: string;
+
   medal?: Record<string, Record<string, number>> | MedalPreset;
   awards?: Awards;
-  organization?: string;
 
   group: Map<string, Group>;
   tag: Map<string, string>;
@@ -255,6 +256,8 @@ export function createContest(contestJSON: IContest): Contest {
   }
 
   c.badge = contestJSON.badge;
+  c.organization = contestJSON.organization;
+
   c.medal = contestJSON.medal;
 
   (() => {
@@ -303,8 +306,6 @@ export function createContest(contestJSON: IContest): Contest {
       }
     }
   })();
-
-  c.organization = contestJSON.organization;
 
   {
     const g = new Group();

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank, RankOptions } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import _ from "lodash";
 
 const props = defineProps<{
@@ -16,7 +17,8 @@ const emit = defineEmits([
 
 const beforeRankOptions = _.cloneDeep(props.rankOptions);
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const isHidden = computed({
   get() {
@@ -57,7 +59,7 @@ const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
     return {
       value: t.id,
-      text: t.organization ? `${t.name} - ${t.organization}` : t.name,
+      text: t.organization ? `${t.name.getOrDefault(lang.value)} - ${t.organization}` : t.name.getOrDefault(lang.value),
     };
   });
 

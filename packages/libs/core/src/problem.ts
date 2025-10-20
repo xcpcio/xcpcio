@@ -123,7 +123,7 @@ export function createProblems(problemsJSON: IProblems): Problems {
 export function createProblemsByProblemIds(problemIds: string[], balloonColors?: BalloonColor[]): Problems {
   const problems = problemIds.map((label: string, index: number) => {
     const p = new Problem();
-    p.id = String(index);
+    p.id = index.toString();
     p.label = label;
 
     return p;

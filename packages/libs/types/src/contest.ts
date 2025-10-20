@@ -1,4 +1,4 @@
-import type { BalloonColor, DateTimeISO8601String, Image, Text, TimeUnit } from "./basic-types";
+import type { BalloonColor, DateTimeISO8601String, Image, StatusTimeDisplay, Text, TimeUnit } from "./basic-types";
 import type { Problem } from "./problem";
 
 export enum ContestState {
@@ -41,14 +41,16 @@ export interface Contest {
   frozen_time?: number; // unit: seconds
 
   problems?: Array<Problem>;
-  problem_id?: Array<string>;
 
-  organization?: string;
-  status_time_display?: Record<string, boolean>;
+  problem_id?: Array<string>; // Array of problem identifiers (e.g., ["A", "B", "C"])
+  balloon_color?: Array<BalloonColor>; // Array of balloon colors corresponding to each problem
+
+  status_time_display?: StatusTimeDisplay;
 
   badge?: string;
+  organization?: string;
+
   medal?: Record<string, Record<string, number>> | MedalPreset;
-  balloon_color?: Array<BalloonColor>;
 
   group?: Record<string, string>;
   tag?: Record<string, string>;
