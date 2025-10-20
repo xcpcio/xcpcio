@@ -1,4 +1,4 @@
-import type { IPersons } from "./person";
+import type { Persons } from "./person";
 
 export interface IRatingIndex {
   id: string;
@@ -12,8 +12,8 @@ export interface IRatingHistory {
   teamName: string;
   organization: string;
 
-  members: IPersons;
-  coaches: IPersons;
+  members: Persons;
+  coaches: Persons;
 
   contestID: string;
   contestName: string;
@@ -26,8 +26,8 @@ export interface IRatingUser {
   name: string;
   organization: string;
 
-  members: IPersons;
-  coaches: IPersons;
+  members: Persons;
+  coaches: Persons;
 
   rating: number;
   minRating: number;

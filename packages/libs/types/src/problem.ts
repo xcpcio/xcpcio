@@ -1,10 +1,10 @@
-import type { BalloonColor } from "./basic-types";
+import type { BalloonColor, Text } from "./basic-types";
 
 export interface Problem {
   id: string;
   label: string;
 
-  name?: string;
+  name?: Text;
 
   time_limit?: string;
   memory_limit?: string;

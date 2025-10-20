@@ -1,11 +1,12 @@
 import type { Contest as IContest, ContestIndex as IContestIndex, Image } from "@xcpcio/types";
 import type dayjs from "dayjs";
 
+import { I18nText } from "./basic-types";
 import { Contest, createContest } from "./contest";
 import { createDayJS } from "./utils";
 
 export class ContestIndexConfig {
-  contestName: string;
+  contestName: I18nText;
 
   startTime: dayjs.Dayjs;
   endTime: dayjs.Dayjs;
@@ -18,7 +19,7 @@ export class ContestIndexConfig {
   logo?: Image;
 
   constructor() {
-    this.contestName = "";
+    this.contestName = new I18nText();
 
     this.startTime = createDayJS();
     this.endTime = createDayJS();

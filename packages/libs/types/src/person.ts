@@ -1,5 +1,10 @@
-export interface IPerson {
-  name: string;
+import type { Text } from "./basic-types";
+
+export interface Person {
+  name: Text;
+
+  cf_id?: string;
+  icpc_id?: string;
 }
 
-export type IPersons = Array<IPerson>;
+export type Persons = Array<Person>;

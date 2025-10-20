@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 import { Chart } from "highcharts-vue";
 
@@ -11,6 +12,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
+
+const { locale } = useI18n();
 
 const isHidden = computed({
   get() {
@@ -33,14 +36,14 @@ const headerTitle = computed(() => {
     res += `${team.value.organization} - `;
   }
 
-  res += `${team.value.name}`;
+  res += `${team.value.name.getOrDefault(locale as unknown as Lang)}`;
 
-  if (team.value.members) {
-    res += ` - ${team.value.members}`;
+  if (team.value.members && team.value.members.length > 0) {
+    res += ` - ${team.value.membersToString(locale.value as unknown as Lang)}`;
   }
 
-  if (team.value.coach) {
-    res += ` - ${team.value.coach}(coach)`;
+  if (team.value.coaches && team.value.coaches.length > 0) {
+    res += ` - ${team.value.coachesToString(locale.value as unknown as Lang)}(coach)`;
   }
 
   return res;

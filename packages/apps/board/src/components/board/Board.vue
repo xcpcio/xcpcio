@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
 import FilterModal from "@board/components/board/FilterModal.vue";
 
@@ -20,7 +20,7 @@ const props = defineProps<{
 
 const route = useRoute();
 const title = useTitle(TITLE_SUFFIX);
-const { t } = useI18n();
+const { t, locale } = useI18n();
 
 const firstLoaded = ref(false);
 const contestData = ref({} as Contest);
@@ -29,6 +29,7 @@ const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
 const now = useNow();
 const rankOptions = ref(new RankOptions());
+const contestName = ref("");
 
 const enableAutoScroll = ref(false);
 
@@ -109,7 +110,8 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  title.value = `${contestData.value.name} | ${TITLE_SUFFIX}`;
+  contestName.value = contestData.value.name.getOrDefault(locale.value as unknown as Lang);
+  title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions, contestData.value);
@@ -423,7 +425,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         mb-2
       >
         <div class="max-w-[92%]">
-          {{ rank.contest.name }}
+          {{ contestName }}
         </div>
       </div>
 

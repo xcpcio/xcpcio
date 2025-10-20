@@ -1,7 +1,7 @@
-import type { Image } from "./basic-types";
+import type { Image, Text } from "./basic-types";
 
 export interface ContestIndexConfig {
-  contest_name: string;
+  contest_name: Text;
   start_time: number;
   end_time: number;
   frozen_time: number;

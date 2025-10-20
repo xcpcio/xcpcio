@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Problem, Rank } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 const props = defineProps<{
   isHidden: boolean;
@@ -9,6 +10,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
+
+const { locale } = useI18n();
 
 const isHidden = computed({
   get() {
@@ -25,7 +28,11 @@ const rank = computed(() => props.rank);
 const problem = computed(() => props.problem);
 
 const headerTitle = computed(() => {
-  return `Problem ${problem.value.label}`;
+  let title = `Problem ${problem.value.label}`;
+  if (problem.value.name) {
+    title += ` - ${problem.value.name.getOrDefault(locale.value as unknown as Lang)}`;
+  }
+  return title;
 });
 
 const submissions = computed(() => {

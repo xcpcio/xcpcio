@@ -1,11 +1,14 @@
-import type { Image, Team as ITeam, Teams as ITeams } from "@xcpcio/types";
+import type { Image, Team as ITeam, Teams as ITeams, Lang } from "@xcpcio/types";
 
 import type { Award, MedalType } from "./award";
-
 import type { ContestOptions } from "./contest-options";
+import type { Persons } from "./person";
 import type { Problem, TeamProblemStatistics } from "./problem";
+
 import type { Submissions } from "./submission";
 import _ from "lodash";
+import { I18nText } from "./basic-types";
+import { createPersons } from "./person";
 import { calcDirt } from "./utils";
 
 export class PlaceChartPointData {
@@ -22,7 +25,7 @@ export class PlaceChartPointData {
 
 export class Team {
   id: string;
-  name: string;
+  name: I18nText;
 
   organization: string;
   badge?: Image;
@@ -30,8 +33,8 @@ export class Team {
   group: Array<string>;
   tag: Array<string>;
 
-  coach?: string | Array<string>;
-  members?: string | Array<string>;
+  coaches: Persons;
+  members: Persons;
 
   rank: number;
   originalRank: number;
@@ -61,12 +64,15 @@ export class Team {
 
   constructor() {
     this.id = "";
-    this.name = "";
+    this.name = new I18nText();
 
     this.organization = "";
 
     this.group = [];
     this.tag = [];
+
+    this.coaches = [];
+    this.members = [];
 
     this.rank = 0;
     this.originalRank = 0;
@@ -129,32 +135,6 @@ export class Team {
     return this.group.includes("girl");
   }
 
-  get membersToArray() {
-    if (Array.isArray(this.members)) {
-      return this.members;
-    }
-
-    if (typeof this.members === "string") {
-      if (this.members.includes(", ")) {
-        return this.members.split(", ");
-      }
-
-      if (this.members.includes("、")) {
-        return this.members.split("、");
-      }
-    }
-
-    return [];
-  }
-
-  get membersToString() {
-    if (typeof this.members === "string") {
-      return this.members;
-    }
-
-    return this.members?.join(", ");
-  }
-
   get isEffectiveTeam() {
     return this.solvedProblemNum > 0;
   }
@@ -164,6 +144,14 @@ export class Team {
     const solvedNum = this.solvedProblemNum;
 
     return calcDirt(attemptedNum, solvedNum);
+  }
+
+  membersToString(lang?: Lang): string {
+    return this.members.map(member => member.name.getOrDefault(lang)).join(", ");
+  }
+
+  coachesToString(lang?: Lang): string {
+    return this.coaches.map(member => member.name.getOrDefault(lang)).join(", ");
   }
 
   calcSE(totalTeams: number) {
@@ -281,7 +269,7 @@ export function createTeam(teamJSON: ITeam): Team {
   const t = new Team();
 
   t.id = teamJSON.id ?? teamJSON.team_id ?? "";
-  t.name = teamJSON.name ?? teamJSON.team_name ?? "";
+  t.name = I18nText.fromIText(teamJSON.name ?? teamJSON.team_name ?? "");
 
   t.organization = teamJSON.organization ?? "";
   t.badge = teamJSON.badge;
@@ -289,8 +277,8 @@ export function createTeam(teamJSON: ITeam): Team {
   t.group = _.cloneDeep(teamJSON.group ?? []);
   t.tag = _.cloneDeep(teamJSON.tag ?? []);
 
-  t.coach = teamJSON.coach;
-  t.members = teamJSON.members;
+  t.coaches = createPersons(teamJSON.coach);
+  t.members = createPersons(teamJSON.members);
 
   if (Boolean(teamJSON.official) === true) {
     t.group.push("official");

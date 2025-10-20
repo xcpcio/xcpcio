@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team, TeamProblemStatistics } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 const props = defineProps<{
   isHidden: boolean;
@@ -10,6 +11,8 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
+
+const { locale } = useI18n();
 
 const isHidden = computed({
   get() {
@@ -23,9 +26,10 @@ const isHidden = computed({
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 const p = computed(() => props.p);
+const teamName = computed(() => team.value.name.getOrDefault(locale.value as unknown as Lang));
 
 const headerTitle = computed(() => {
-  return `${team.value.name} - ${p.value.problem.label}`;
+  return `${teamName.value} - ${p.value.problem.label}`;
 });
 </script>
 

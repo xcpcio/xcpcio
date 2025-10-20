@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import { GiantsType, MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
@@ -18,8 +19,11 @@ function onClickTeamInfoModal() {
   hiddenTeamInfoModal.value = false;
 }
 
+const { locale } = useI18n();
+
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
+const teamName = computed(() => team.value.name.getOrDefault(locale.value as unknown as Lang));
 
 function getStandClassName(t: Team, isRankField = false): string {
   if (isRankField) {
@@ -125,7 +129,7 @@ function isRenderByVisible() {
         cursor-pointer
         @click="onClickTeamInfoModal"
       >
-        <span>{{ team.name }}</span>
+        <span>{{ teamName }}</span>
         <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
         <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
       </div>

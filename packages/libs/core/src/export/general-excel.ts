@@ -37,7 +37,7 @@ export class GeneralExcelConverter {
       rank.buildRank();
 
       const sheet = this.convertToSheet(rank);
-      XLSX.utils.book_append_sheet(workbook, sheet, v.names.get(v.defaultLang) as string);
+      XLSX.utils.book_append_sheet(workbook, sheet, v.name.getOrDefault());
     }
 
     return workbook;
@@ -140,11 +140,11 @@ export class GeneralExcelConverter {
     const specialCells: SpecialCell[] = [];
 
     const enableAwards = rank.contest.isEnableAwards(rank.options.group);
-    const enableMembers = (Array.isArray(rank.teams) && rank.teams[0]?.members) ?? false;
-    const enableCoach = rank.teams[0]?.coach ?? false;
+    const enableMembers = rank.teams[0]?.members.length > 0;
+    const enableCoach = rank.teams[0]?.coaches.length > 0;
 
     {
-      aoa.push([rank.contest.name]);
+      aoa.push([rank.contest.name.getOrDefault()]);
     }
 
     {
@@ -167,7 +167,7 @@ export class GeneralExcelConverter {
       }
 
       if (enableCoach) {
-        head.push("Coach");
+        head.push("Coaches");
       }
 
       head.push("Unofficial");
@@ -191,7 +191,7 @@ export class GeneralExcelConverter {
         arr.push(team.organization);
       }
 
-      arr.push(team.name, team.solvedProblemNum.toString(), team.penaltyToMinute.toString());
+      arr.push(team.name.getOrDefault(), team.solvedProblemNum.toString(), team.penaltyToMinute.toString());
 
       for (const p of team.problemStatistics) {
         if (p.isUnSubmitted) {
@@ -230,20 +230,16 @@ export class GeneralExcelConverter {
       if (enableMembers) {
         const members = team.members;
         if (Array.isArray(members)) {
-          arr.push(members[0] ?? "");
-          arr.push(members[1] ?? "");
-          arr.push(members[2] ?? "");
+          arr.push(members[0]?.name.getOrDefault() ?? "");
+          arr.push(members[1]?.name.getOrDefault() ?? "");
+          arr.push(members[2]?.name.getOrDefault() ?? "");
         } else {
           arr.push("", "", "");
         }
       }
 
       if (enableCoach) {
-        if (typeof team.coach === "string") {
-          arr.push(team.coach ?? "");
-        } else {
-          arr.push("");
-        }
+        arr.push(team.coachesToString());
       }
 
       arr.push(team.isUnofficial ? "Y" : "N");

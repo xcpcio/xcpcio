@@ -1,17 +1,18 @@
 import type { BannerMode, Contest as IContest, Image, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
 import type { Awards } from "./award";
 import type { Problem, Problems } from "./problem";
-
 import { ContestState } from "@xcpcio/types";
+
 import { Award, MedalType } from "./award";
+import { I18nText } from "./basic-types";
 import { ContestOptions, createContestOptions } from "./contest-options";
 import { Group } from "./group";
 import { createProblems, createProblemsByProblemIds } from "./problem";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
 
 export class Contest {
-  id = "";
-  name = "";
+  id: string = "";
+  name: I18nText;
 
   startTime: dayjs.Dayjs;
   endTime: dayjs.Dayjs;
@@ -50,6 +51,8 @@ export class Contest {
   options: ContestOptions;
 
   constructor() {
+    this.name = new I18nText();
+
     this.startTime = createDayJS();
     this.endTime = createDayJS();
     this.freezeTime = createDayJS();
@@ -202,7 +205,7 @@ export class Contest {
 export function createContest(contestJSON: IContest): Contest {
   const c = new Contest();
 
-  c.name = contestJSON.contest_name;
+  c.name = I18nText.fromIText(contestJSON.contest_name);
 
   c.startTime = createDayJS(contestJSON.start_time);
   c.endTime = createDayJS(contestJSON.end_time);
@@ -305,6 +308,7 @@ export function createContest(contestJSON: IContest): Contest {
 
   {
     const g = new Group();
+    g.name.fallbackLang = "zh-CN";
     g.name.set("en", "All");
     g.name.set("zh-CN", "所有队伍");
     g.isDefault = true;
@@ -316,6 +320,7 @@ export function createContest(contestJSON: IContest): Contest {
     let key = k;
 
     const g = new Group();
+    g.name.fallbackLang = "zh-CN";
     g.name.set("zh-CN", v);
 
     if (k === "official") {

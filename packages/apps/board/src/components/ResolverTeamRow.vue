@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ResolverVue, Team } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 const props = defineProps<{
   index: number;
@@ -12,12 +13,14 @@ const team = computed(() => props.team);
 const resolver = computed(() => props.resolver);
 const el = ref(null);
 
+const { locale } = useI18n();
+
 // TODO(Dup4): Optimizing performance with useElementVisibility
 // const isVisible = useElementVisibility(el);
 const isVisible = true;
 
 function showTeamName(team: Team) {
-  const sections = [team.organization, team.name];
+  const sections = [team.organization, team.name.getOrDefault(locale as unknown as Lang)];
   return sections.filter(s => s).join(" - ");
 }
 </script>
