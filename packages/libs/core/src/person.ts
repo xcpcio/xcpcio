@@ -11,6 +11,14 @@ export class Person {
     this.name = name ?? new I18nText();
   }
 
+  toIPerson(): IPerson {
+    return {
+      name: this.name.toI18NStringSet(),
+      cf_id: this.cfID,
+      icpc_id: this.icpcID,
+    };
+  }
+
   static fromIPerson(iPerson: IPerson): Person {
     const person = new Person();
     person.name = I18nText.fromIText(iPerson.name);

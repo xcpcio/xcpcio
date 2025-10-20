@@ -50,4 +50,25 @@ export class I18nText {
     }
     return I18nText.fromI18NStringSet(text);
   }
+
+  toI18NStringSet(): I18NStringSet {
+    const result: I18NStringSet = {};
+
+    if (this.fallback !== undefined) {
+      result.fallback = this.fallback;
+    }
+
+    if (this.fallbackLang !== undefined) {
+      result.fallback_lang = this.fallbackLang;
+    }
+
+    if (this.texts.size > 0) {
+      result.texts = {};
+      for (const [lang, text] of this.texts.entries()) {
+        result.texts[lang] = text;
+      }
+    }
+
+    return result;
+  }
 }

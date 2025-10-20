@@ -1,3 +1,4 @@
+import type { Text } from "./basic-types";
 import type { Persons } from "./person";
 
 export interface IRatingIndex {
@@ -9,21 +10,21 @@ export interface IRatingHistory {
   rank: number;
   rating: number;
 
-  teamName: string;
+  teamName: Text;
   organization: string;
 
   members: Persons;
   coaches: Persons;
 
   contestID: string;
-  contestName: string;
+  contestName: Text;
   contestLink: string;
   contestTime: Date;
 }
 
 export interface IRatingUser {
   id: string;
-  name: string;
+  name: Text;
   organization: string;
 
   members: Persons;
@@ -38,7 +39,7 @@ export interface IRatingUser {
 
 export interface IRating {
   id: string;
-  name: string;
+  name: Text;
   baseRating: number;
 
   contestIDs: string[];

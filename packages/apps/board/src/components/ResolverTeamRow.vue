@@ -14,13 +14,14 @@ const resolver = computed(() => props.resolver);
 const el = ref(null);
 
 const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 // TODO(Dup4): Optimizing performance with useElementVisibility
 // const isVisible = useElementVisibility(el);
 const isVisible = true;
 
 function showTeamName(team: Team) {
-  const sections = [team.organization, team.name.getOrDefault(locale as unknown as Lang)];
+  const sections = [team.organization, team.name.getOrDefault(lang.value)];
   return sections.filter(s => s).join(" - ");
 }
 </script>

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RatingUser } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import { RatingUtility } from "@xcpcio/core";
 
 import "./rating.less";
@@ -10,6 +11,8 @@ const props = defineProps<{
 }>();
 
 const u = computed(() => props.ratingUser);
+const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const hiddenRatingInfoModal = ref(true);
 function onClickRatingInfoModal() {
@@ -33,7 +36,7 @@ function onClickRatingInfoModal() {
         :class="RatingUtility.getRatingLevelClass(u.rating)"
         @click="onClickRatingInfoModal"
       >
-        {{ u.name }}
+        {{ u.name.getOrDefault(lang) }}
       </div>
 
       <div>
@@ -47,7 +50,7 @@ function onClickRatingInfoModal() {
     <td
       class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
     >
-      {{ u.members.map(m => m.name.trim()).join(" ") }}
+      {{ u.members.map(m => m.name.getOrDefault(lang).trim()).join(" ") }}
     </td>
     <td
       class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"

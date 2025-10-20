@@ -31,6 +31,7 @@ const props = defineProps<{
 }>();
 
 const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const enableFilter = computed(() => props.enableFilter);
@@ -76,7 +77,7 @@ function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: Sel
 
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
-    const teamName = t.name.getOrDefault(locale.value as unknown as Lang);
+    const teamName = t.name.getOrDefault(lang.value);
     return {
       value: t.id,
       text: t.organization ? `${teamName} - ${t.organization}` : teamName,
@@ -467,7 +468,7 @@ function closeVideoModal() {
                   </td>
 
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ rank.teamsMap.get(s.teamId)?.name.getOrDefault(locale as unknown as Lang) }}
+                    {{ rank.teamsMap.get(s.teamId)?.name.getOrDefault(lang) }}
                   </td>
 
                   <td

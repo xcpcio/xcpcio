@@ -14,6 +14,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:isHidden"]);
 
 const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const isHidden = computed({
   get() {
@@ -36,14 +37,14 @@ const headerTitle = computed(() => {
     res += `${team.value.organization} - `;
   }
 
-  res += `${team.value.name.getOrDefault(locale as unknown as Lang)}`;
+  res += `${team.value.name.getOrDefault(lang.value)}`;
 
   if (team.value.members && team.value.members.length > 0) {
-    res += ` - ${team.value.membersToString(locale.value as unknown as Lang)}`;
+    res += ` - ${team.value.membersToString(lang.value)}`;
   }
 
   if (team.value.coaches && team.value.coaches.length > 0) {
-    res += ` - ${team.value.coachesToString(locale.value as unknown as Lang)}(coach)`;
+    res += ` - ${team.value.coachesToString(lang.value)}(coach)`;
   }
 
   return res;

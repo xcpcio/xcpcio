@@ -20,10 +20,11 @@ function onClickTeamInfoModal() {
 }
 
 const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
-const teamName = computed(() => team.value.name.getOrDefault(locale.value as unknown as Lang));
+const teamName = computed(() => team.value.name.getOrDefault(lang.value));
 
 function getStandClassName(t: Team, isRankField = false): string {
   if (isRankField) {

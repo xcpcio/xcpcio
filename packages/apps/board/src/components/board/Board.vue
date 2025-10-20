@@ -21,6 +21,7 @@ const props = defineProps<{
 const route = useRoute();
 const title = useTitle(TITLE_SUFFIX);
 const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const firstLoaded = ref(false);
 const contestData = ref({} as Contest);
@@ -110,7 +111,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  contestName.value = contestData.value.name.getOrDefault(locale.value as unknown as Lang);
+  contestName.value = contestData.value.name.getOrDefault(lang.value);
   title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);

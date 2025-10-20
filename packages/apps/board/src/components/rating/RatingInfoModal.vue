@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RatingUser } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 import { Chart } from "highcharts-vue";
 
@@ -22,6 +23,9 @@ const isHidden = computed({
   },
 });
 
+const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
+
 const ratingUser = computed(() => props.ratingUser);
 
 const headerTitle = computed(() => {
@@ -31,14 +35,14 @@ const headerTitle = computed(() => {
     res += `${ratingUser.value.organization} - `;
   }
 
-  res += `${ratingUser.value.name}`;
+  res += `${ratingUser.value.name.getOrDefault(lang.value)}`;
 
   if (ratingUser.value.members.length > 0) {
-    res += ` - ${ratingUser.value.members.map(m => m.name).join(",")}`;
+    res += ` - ${ratingUser.value.members.map(m => m.name.getOrDefault(lang.value)).join(", ")}`;
   }
 
   if (ratingUser.value.coaches.length > 0) {
-    res += ` - ${ratingUser.value.coaches.map(c => c.name).join(",")}(coach)`;
+    res += ` - ${ratingUser.value.coaches.map(c => c.name.getOrDefault(lang.value)).join(", ")}(coach)`;
   }
 
   return res;

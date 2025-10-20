@@ -12,6 +12,7 @@ const props = defineProps<{
 const emit = defineEmits(["update:isHidden"]);
 
 const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const isHidden = computed({
   get() {
@@ -30,7 +31,7 @@ const problem = computed(() => props.problem);
 const headerTitle = computed(() => {
   let title = `Problem ${problem.value.label}`;
   if (problem.value.name) {
-    title += ` - ${problem.value.name.getOrDefault(locale.value as unknown as Lang)}`;
+    title += ` - ${problem.value.name.getOrDefault(lang.value)}`;
   }
   return title;
 });

@@ -12,9 +12,10 @@ const props = defineProps<{
 }>();
 
 const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const contest = computed(() => props.data.contest);
-const contestName = computed(() => contest.value.name.getOrDefault(locale.value as unknown as Lang));
+const contestName = computed(() => contest.value.name.getOrDefault(lang.value));
 const now = useNow();
 
 const el = ref(null);

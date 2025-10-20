@@ -77,7 +77,7 @@ export interface I18NStringSet {
   /**
    * Language-specific text mappings.
    */
-  texts?: Record<Lang, string>;
+  texts?: Partial<Record<Lang, string>>;
 }
 
 /**
