@@ -16,7 +16,7 @@ export class CodeforcesGymGhostDATConverter {
   public convert(rank: Rank): string {
     let res = "";
 
-    res += `@contest "${rank.contest.name}"
+    res += `@contest "${rank.contest.name.getOrDefault()}"
 @contlen ${Math.floor(dayjs.duration(rank.contest.endTime.diff(rank.contest.startTime)).asMinutes())}
 @problems ${rank.contest.problems.length}
 @teams ${rank.teams.length + 100}
@@ -32,14 +32,14 @@ export class CodeforcesGymGhostDATConverter {
     const submissionsIdMap = new Map<string, Map<string, number>>();
 
     rank.teams.forEach((team) => {
-      let name = team.name;
+      let name = team.name.getOrDefault();
 
       if (team.organization) {
         name = `${team.organization} - ${name}`;
       }
 
       if (team.members) {
-        name = `${name} - ${team.membersToString}`;
+        name = `${name} - ${team.membersToString()}`;
       }
 
       res += `@t ${teamIndex},0,1,"${name}"\n`;

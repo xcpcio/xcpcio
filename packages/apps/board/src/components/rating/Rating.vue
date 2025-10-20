@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import type { Lang } from "@xcpcio/types";
 import { useFetch } from "@vueuse/core";
 import { Rating } from "@xcpcio/core";
 
@@ -14,7 +15,9 @@ function genURL() {
 const url = ref(genURL());
 const rating = ref({} as Rating);
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
+
 useTitle(RATING_TITLE_SUFFIX);
 
 const {
@@ -65,7 +68,7 @@ const {
           text-4xl
           font-medium font-serif
         >
-          {{ rating.name }}
+          {{ rating.name.getOrDefault(lang) }}
         </div>
 
         <div

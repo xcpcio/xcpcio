@@ -42,9 +42,9 @@ export class ICPCStandingsCsvConverter {
         problemsSolved: team.solvedProblemNum,
         totalTime: team.penaltyToMinute,
         lastProblemTime: team.lastSolvedProblemStatistics?.solvedTimestampToMinute ?? 0,
-        siteCitation: rank.contest.name,
+        siteCitation: rank.contest.name.getOrDefault(),
         citation: ordinal(team.rank),
-        teamName: team.name,
+        teamName: team.name.getOrDefault(),
         institution: team.organization,
       };
 

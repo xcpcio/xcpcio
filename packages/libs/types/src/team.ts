@@ -1,18 +1,20 @@
-import type { Image } from "./basic-types";
+import type { Image, Text } from "./basic-types";
+import type { Persons } from "./person";
 
 export interface Team {
   id?: string;
   team_id?: string;
 
-  name?: string;
-  team_name?: string;
+  name?: Text;
+  team_name?: Text;
 
   organization?: string;
   group?: Array<string>;
   tag?: Array<string>;
 
-  coach?: string | Array<string>;
-  members?: string | Array<string>;
+  coach?: Text | Array<Text> | Persons;
+  coaches?: Text | Array<Text> | Persons;
+  members?: Text | Array<Text> | Persons;
 
   official?: boolean;
   unofficial?: boolean;

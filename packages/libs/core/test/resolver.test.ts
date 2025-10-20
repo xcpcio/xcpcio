@@ -25,11 +25,21 @@ describe("contest", () => {
 
     expect(resolver.operations[0].id).toMatchInlineSnapshot("0");
     expect(resolver.operations[0].problemIx).toMatchInlineSnapshot("4");
-    expect(resolver.operations[0].team.name).toMatchInlineSnapshot("\"红旗精英\"");
+    expect(resolver.operations[0].team.name).toMatchInlineSnapshot(`
+      I18nText {
+        "fallback": "红旗精英",
+        "texts": Map {},
+      }
+    `);
     expect(resolver.operations[0]).toMatchSnapshot();
 
-    expect(resolver.operations.slice(-1)[0].id).toMatchInlineSnapshot("202");
-    expect(resolver.operations.slice(-1)[0].team.name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
+    expect(resolver.operations.slice(-1)[0].id).toMatchInlineSnapshot(`202`);
+    expect(resolver.operations.slice(-1)[0].team.name).toMatchInlineSnapshot(`
+      I18nText {
+        "fallback": "重生之我是菜狗",
+        "texts": Map {},
+      }
+    `);
     expect(resolver.operations.slice(-1)[0].problemIx).toMatchInlineSnapshot("8");
     expect(resolver.operations.slice(-1)[0].beforeTeamProblemStatistics.pendingCount).toMatchInlineSnapshot("2");
     expect(resolver.operations.slice(-1)[0].afterTeamProblemStatistics.isAccepted).toMatchInlineSnapshot("true");

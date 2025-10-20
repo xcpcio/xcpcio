@@ -1,4 +1,4 @@
-import type { BalloonColor, DateTimeISO8601String, Image, TimeUnit } from "./basic-types";
+import type { BalloonColor, DateTimeISO8601String, Image, Text, TimeUnit } from "./basic-types";
 import type { Problem } from "./problem";
 
 export enum ContestState {
@@ -31,7 +31,7 @@ export type MedalPreset = "ccpc" | "icpc";
 export type BannerMode = "ONLY_BANNER" | "ALL";
 
 export interface Contest {
-  contest_name: string;
+  contest_name: Text;
 
   start_time: number | DateTimeISO8601String;
   end_time: number | DateTimeISO8601String;

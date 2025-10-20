@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
+import type { Lang, SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
 
-import type { SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
 import { Pagination } from "@board/composables/pagination";
 import { Submission } from "@xcpcio/core";
 import { SubmissionStatusToString } from "@xcpcio/types";
@@ -29,6 +29,9 @@ const props = defineProps<{
   removeBorder?: boolean;
   enableFilter?: EnableFilterOptions;
 }>();
+
+const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const enableFilter = computed(() => props.enableFilter);
@@ -74,9 +77,10 @@ function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: Sel
 
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
+    const teamName = t.name.getOrDefault(lang.value);
     return {
       value: t.id,
-      text: t.organization ? `${t.name} - ${t.organization}` : t.name,
+      text: t.organization ? `${teamName} - ${t.organization}` : teamName,
     };
   });
 
@@ -464,7 +468,7 @@ function closeVideoModal() {
                   </td>
 
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">
-                    {{ rank.teamsMap.get(s.teamId)?.name }}
+                    {{ rank.teamsMap.get(s.teamId)?.name.getOrDefault(lang) }}
                   </td>
 
                   <td

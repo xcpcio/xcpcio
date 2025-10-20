@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import { resolve } from "node:path";
-import { createContest, createSubmissions, createTeams, Rank, Rating, RatingCalculator, RatingUser } from "@xcpcio/core";
+import { createContest, createSubmissions, createTeams, I18nText, Rank, Rating, RatingCalculator, RatingUser } from "@xcpcio/core";
 
 import _ from "lodash";
 
@@ -62,7 +62,7 @@ describe("contest", () => {
     {
       const rating = new Rating();
       rating.id = "2023/ccpc/final";
-      rating.name = rating.id;
+      rating.name = I18nText.fromIText(rating.id);
       rating.contestIDs.push(rank.contest.id);
 
       rating.ranks.push(_.cloneDeep(rank));
@@ -88,7 +88,13 @@ describe("contest", () => {
       {
         const newRating = Rating.fromJSON(JSON.stringify(rating));
         expect(newRating.id).toMatchInlineSnapshot("\"2023/ccpc/final\"");
-        expect(newRating.name).toMatchInlineSnapshot("\"2023/ccpc/final\"");
+        expect(newRating.name).toMatchInlineSnapshot(`
+          I18nText {
+            "fallback": "2023/ccpc/final",
+            "fallbackLang": undefined,
+            "texts": Map {},
+          }
+        `);
         expect(newRating.baseRating).toMatchInlineSnapshot("1500");
         expect(newRating.contestIDs).toMatchInlineSnapshot(`
           [
@@ -103,17 +109,31 @@ describe("contest", () => {
             "maxRating": 1973,
             "members": [
               {
-                "name": "王展鹏",
+                "cf_id": undefined,
+                "icpc_id": undefined,
+                "name": {
+                  "fallback": "王展鹏",
+                },
               },
               {
-                "name": "罗煜翔",
+                "cf_id": undefined,
+                "icpc_id": undefined,
+                "name": {
+                  "fallback": "罗煜翔",
+                },
               },
               {
-                "name": "蒋凌宇",
+                "cf_id": undefined,
+                "icpc_id": undefined,
+                "name": {
+                  "fallback": "蒋凌宇",
+                },
               },
             ],
             "minRating": 1500,
-            "name": "重生之我是菜狗",
+            "name": {
+              "fallback": "重生之我是菜狗",
+            },
             "organization": "北京大学",
             "rating": 1973,
             "ratingHistories": [
@@ -121,67 +141,115 @@ describe("contest", () => {
                 "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
-                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestName": {
+                  "fallback": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                },
                 "contestTime": 2023-05-14T01:10:00.000Z,
                 "members": [
                   {
-                    "name": "王展鹏",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "王展鹏",
+                    },
                   },
                   {
-                    "name": "罗煜翔",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "罗煜翔",
+                    },
                   },
                   {
-                    "name": "蒋凌宇",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "蒋凌宇",
+                    },
                   },
                 ],
                 "organization": "北京大学",
                 "rank": 1,
                 "rating": 1714,
-                "teamName": "重生之我是菜狗",
+                "teamName": {
+                  "fallback": "重生之我是菜狗",
+                },
               },
               {
                 "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
-                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestName": {
+                  "fallback": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                },
                 "contestTime": 2023-05-14T01:10:00.000Z,
                 "members": [
                   {
-                    "name": "王展鹏",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "王展鹏",
+                    },
                   },
                   {
-                    "name": "罗煜翔",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "罗煜翔",
+                    },
                   },
                   {
-                    "name": "蒋凌宇",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "蒋凌宇",
+                    },
                   },
                 ],
                 "organization": "北京大学",
                 "rank": 1,
                 "rating": 1861,
-                "teamName": "重生之我是菜狗",
+                "teamName": {
+                  "fallback": "重生之我是菜狗",
+                },
               },
               {
                 "coaches": [],
                 "contestID": "2023/ccpc/final",
                 "contestLink": "2023/ccpc/final",
-                "contestName": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                "contestName": {
+                  "fallback": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+                },
                 "contestTime": 2023-05-14T01:10:00.000Z,
                 "members": [
                   {
-                    "name": "王展鹏",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "王展鹏",
+                    },
                   },
                   {
-                    "name": "罗煜翔",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "罗煜翔",
+                    },
                   },
                   {
-                    "name": "蒋凌宇",
+                    "cf_id": undefined,
+                    "icpc_id": undefined,
+                    "name": {
+                      "fallback": "蒋凌宇",
+                    },
                   },
                 ],
                 "organization": "北京大学",
                 "rank": 1,
                 "rating": 1973,
-                "teamName": "重生之我是菜狗",
+                "teamName": {
+                  "fallback": "重生之我是菜狗",
+                },
               },
             ],
           }

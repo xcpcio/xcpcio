@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ContestIndex } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 import { getLogoFromPreset } from "@board/composables/logo";
 import { useElementVisibility } from "@vueuse/core";
@@ -10,9 +11,11 @@ const props = defineProps<{
   data: ContestIndex;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const contest = computed(() => props.data.contest);
+const contestName = computed(() => contest.value.name.getOrDefault(lang.value));
 const now = useNow();
 
 const el = ref(null);
@@ -62,14 +65,14 @@ const logo = computed(() => {
                   overflow-hidden
                   text-2xl truncate
                 >
-                  {{ contest.name }}
+                  {{ contestName }}
                 </div>
 
                 <template #popper>
                   <div
                     text-lg
                   >
-                    {{ contest.name }}
+                    {{ contestName }}
                   </div>
                 </template>
               </Tooltip>

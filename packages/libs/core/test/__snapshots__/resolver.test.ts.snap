@@ -18,7 +18,6 @@ ResolverOperation {
       },
       "id": "4",
       "label": "E",
-      "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 126,
         "attemptedNum": 148,
@@ -285,7 +284,6 @@ ResolverOperation {
       },
       "id": "4",
       "label": "E",
-      "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 126,
         "attemptedNum": 148,
@@ -498,7 +496,7 @@ ResolverOperation {
     "attemptedProblemNum": 0,
     "awards": [],
     "badge": undefined,
-    "coach": undefined,
+    "coaches": [],
     "group": [
       "unofficial",
     ],
@@ -506,11 +504,29 @@ ResolverOperation {
     "lastSolvedProblem": null,
     "lastSolvedProblemStatistics": null,
     "members": [
-      "柴榕杉",
-      "罗香雨",
-      "邹卓雅",
+      Person {
+        "name": I18nText {
+          "fallback": "柴榕杉",
+          "texts": Map {},
+        },
+      },
+      Person {
+        "name": I18nText {
+          "fallback": "罗香雨",
+          "texts": Map {},
+        },
+      },
+      Person {
+        "name": I18nText {
+          "fallback": "邹卓雅",
+          "texts": Map {},
+        },
+      },
     ],
-    "name": "红旗精英",
+    "name": I18nText {
+      "fallback": "红旗精英",
+      "texts": Map {},
+    },
     "organization": "一汽红旗",
     "organizationRank": -1,
     "originalRank": 132,
@@ -709,7 +725,6 @@ ResolverOperation {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
             "attemptedNum": 56,
@@ -766,7 +781,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -823,7 +837,6 @@ ResolverOperation {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
             "attemptedNum": 184,
@@ -880,7 +893,6 @@ ResolverOperation {
           },
           "id": "3",
           "label": "D",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 1,
@@ -937,7 +949,6 @@ ResolverOperation {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
             "attemptedNum": 148,
@@ -1160,7 +1171,6 @@ ResolverOperation {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
             "attemptedNum": 255,
@@ -1217,7 +1227,6 @@ ResolverOperation {
           },
           "id": "6",
           "label": "G",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -1250,7 +1259,6 @@ ResolverOperation {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
             "attemptedNum": 12,
@@ -1307,7 +1315,6 @@ ResolverOperation {
           },
           "id": "8",
           "label": "I",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
             "attemptedNum": 6,
@@ -1364,7 +1371,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -1421,7 +1427,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -1478,7 +1483,6 @@ ResolverOperation {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
             "attemptedNum": 183,
@@ -1535,7 +1539,6 @@ ResolverOperation {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
             "attemptedNum": 8,
@@ -1594,7 +1597,6 @@ ResolverOperation {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
             "attemptedNum": 56,
@@ -1651,7 +1653,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -1708,7 +1709,6 @@ ResolverOperation {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
             "attemptedNum": 184,
@@ -1765,7 +1765,6 @@ ResolverOperation {
           },
           "id": "3",
           "label": "D",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 1,
@@ -1822,7 +1821,6 @@ ResolverOperation {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
             "attemptedNum": 148,
@@ -2045,7 +2043,6 @@ ResolverOperation {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
             "attemptedNum": 255,
@@ -2102,7 +2099,6 @@ ResolverOperation {
           },
           "id": "6",
           "label": "G",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -2135,7 +2131,6 @@ ResolverOperation {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
             "attemptedNum": 12,
@@ -2192,7 +2187,6 @@ ResolverOperation {
           },
           "id": "8",
           "label": "I",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
             "attemptedNum": 6,
@@ -2249,7 +2243,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -2306,7 +2299,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -2363,7 +2355,6 @@ ResolverOperation {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
             "attemptedNum": 183,
@@ -2420,7 +2411,6 @@ ResolverOperation {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
             "attemptedNum": 8,
@@ -2655,7 +2645,6 @@ ResolverOperation {
       },
       "id": "8",
       "label": "I",
-      "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 2,
         "attemptedNum": 6,
@@ -2735,7 +2724,6 @@ ResolverOperation {
       },
       "id": "8",
       "label": "I",
-      "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 2,
         "attemptedNum": 6,
@@ -2782,7 +2770,7 @@ ResolverOperation {
     "attemptedProblemNum": 21,
     "awards": [],
     "badge": undefined,
-    "coach": undefined,
+    "coaches": [],
     "group": [
       "official",
     ],
@@ -2794,7 +2782,6 @@ ResolverOperation {
       },
       "id": "10",
       "label": "K",
-      "name": "",
       "statistics": ProblemStatistics {
         "acceptedNum": 1,
         "attemptedNum": 4,
@@ -2847,7 +2834,6 @@ ResolverOperation {
         },
         "id": "10",
         "label": "K",
-        "name": "",
         "statistics": ProblemStatistics {
           "acceptedNum": 1,
           "attemptedNum": 4,
@@ -2934,11 +2920,29 @@ ResolverOperation {
       "totalCount": 4,
     },
     "members": [
-      "王展鹏",
-      "罗煜翔",
-      "蒋凌宇",
+      Person {
+        "name": I18nText {
+          "fallback": "王展鹏",
+          "texts": Map {},
+        },
+      },
+      Person {
+        "name": I18nText {
+          "fallback": "罗煜翔",
+          "texts": Map {},
+        },
+      },
+      Person {
+        "name": I18nText {
+          "fallback": "蒋凌宇",
+          "texts": Map {},
+        },
+      },
     ],
-    "name": "重生之我是菜狗",
+    "name": I18nText {
+      "fallback": "重生之我是菜狗",
+      "texts": Map {},
+    },
     "organization": "北京大学",
     "organizationRank": 1,
     "originalRank": 1,
@@ -2967,7 +2971,6 @@ ResolverOperation {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
             "attemptedNum": 148,
@@ -3015,7 +3018,6 @@ ResolverOperation {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
             "attemptedNum": 56,
@@ -3063,7 +3065,6 @@ ResolverOperation {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
             "attemptedNum": 255,
@@ -3111,7 +3112,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -3159,7 +3159,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -3207,7 +3206,6 @@ ResolverOperation {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
             "attemptedNum": 184,
@@ -3255,7 +3253,6 @@ ResolverOperation {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
             "attemptedNum": 183,
@@ -3303,7 +3300,6 @@ ResolverOperation {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
             "attemptedNum": 12,
@@ -3351,7 +3347,6 @@ ResolverOperation {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
             "attemptedNum": 8,
@@ -3399,7 +3394,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -3447,7 +3441,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -3495,7 +3488,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -3543,7 +3535,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -3601,7 +3592,6 @@ ResolverOperation {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
             "attemptedNum": 56,
@@ -3670,7 +3660,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -3761,7 +3750,6 @@ ResolverOperation {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
             "attemptedNum": 184,
@@ -3830,7 +3818,6 @@ ResolverOperation {
           },
           "id": "3",
           "label": "D",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 1,
@@ -3887,7 +3874,6 @@ ResolverOperation {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
             "attemptedNum": 148,
@@ -3956,7 +3942,6 @@ ResolverOperation {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
             "attemptedNum": 255,
@@ -4025,7 +4010,6 @@ ResolverOperation {
           },
           "id": "6",
           "label": "G",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -4058,7 +4042,6 @@ ResolverOperation {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
             "attemptedNum": 12,
@@ -4138,7 +4121,6 @@ ResolverOperation {
           },
           "id": "8",
           "label": "I",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
             "attemptedNum": 6,
@@ -4195,7 +4177,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -4275,7 +4256,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -4377,7 +4357,6 @@ ResolverOperation {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
             "attemptedNum": 183,
@@ -4490,7 +4469,6 @@ ResolverOperation {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
             "attemptedNum": 8,
@@ -4561,7 +4539,6 @@ ResolverOperation {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 29,
             "attemptedNum": 56,
@@ -4630,7 +4607,6 @@ ResolverOperation {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 3,
             "attemptedNum": 9,
@@ -4721,7 +4697,6 @@ ResolverOperation {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 99,
             "attemptedNum": 184,
@@ -4790,7 +4765,6 @@ ResolverOperation {
           },
           "id": "3",
           "label": "D",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 1,
@@ -4847,7 +4821,6 @@ ResolverOperation {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 126,
             "attemptedNum": 148,
@@ -4916,7 +4889,6 @@ ResolverOperation {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 125,
             "attemptedNum": 255,
@@ -4985,7 +4957,6 @@ ResolverOperation {
           },
           "id": "6",
           "label": "G",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -5018,7 +4989,6 @@ ResolverOperation {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 6,
             "attemptedNum": 12,
@@ -5098,7 +5068,6 @@ ResolverOperation {
           },
           "id": "8",
           "label": "I",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 2,
             "attemptedNum": 6,
@@ -5155,7 +5124,6 @@ ResolverOperation {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 108,
             "attemptedNum": 337,
@@ -5235,7 +5203,6 @@ ResolverOperation {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 1,
             "attemptedNum": 4,
@@ -5337,7 +5304,6 @@ ResolverOperation {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 48,
             "attemptedNum": 183,
@@ -5450,7 +5416,6 @@ ResolverOperation {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 7,
             "attemptedNum": 8,

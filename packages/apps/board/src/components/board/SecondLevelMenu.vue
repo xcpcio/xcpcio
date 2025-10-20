@@ -49,13 +49,14 @@ const currentItem = computed({
 });
 
 const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 function getTitle(item: Item) {
   if (typeof item.title === "string") {
     return t(item.title);
   }
 
-  return item.title?.getOrDefault(locale.value as unknown as Lang);
+  return item.title?.getOrDefault(lang.value);
 }
 
 function isCurrent(item: Item): boolean {

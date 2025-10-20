@@ -3,14 +3,14 @@ import type { Ranks } from "../rank";
 import type { Team } from "../team";
 import type { RatingUserMap, RatingUsers } from "./rating-user";
 
-import { createPersons } from "../person";
+import { I18nText } from "../basic-types";
 import { RatingCalculator } from "./rating-calculator";
 import { RatingHistory } from "./rating-history";
 import { RatingUser } from "./rating-user";
 
 export class Rating {
   id: string;
-  name: string;
+  name: I18nText;
   baseRating: number;
 
   contestIDs: string[];
@@ -21,7 +21,7 @@ export class Rating {
 
   constructor() {
     this.id = "";
-    this.name = "";
+    this.name = new I18nText();
     this.baseRating = 1500;
 
     this.contestIDs = [];
@@ -48,8 +48,8 @@ export class Rating {
           u.name = t.name;
           u.organization = t.organization;
 
-          u.members = createPersons(t.members ?? []);
-          u.coaches = createPersons(t.coach ?? []);
+          u.members = t.members;
+          u.coaches = t.coaches;
 
           u.rank = t.rank;
           u.oldRating = this.baseRating;
@@ -74,8 +74,8 @@ export class Rating {
           h.teamName = t.name;
           h.organization = t.organization;
 
-          h.members = createPersons(t.members ?? []);
-          h.coaches = createPersons(t.coach ?? []);
+          h.members = t.members;
+          h.coaches = t.coaches;
 
           h.contestID = rank.contest.id;
           h.contestLink = h.contestID;
@@ -95,9 +95,9 @@ export class Rating {
   }
 
   generateTeamId(t: Team) {
-    const persons = createPersons(t.members ?? []);
+    const persons = t.members;
     if (persons.length > 0) {
-      return persons.map(person => person.name.trim()).sort().join("|");
+      return persons.map(person => person.name.getOrDefault().trim()).sort().join("|");
     }
 
     return `${t.organization}-${t.name}`;
@@ -106,7 +106,7 @@ export class Rating {
   toJSON(): IRating {
     return {
       id: this.id,
-      name: this.name,
+      name: this.name.toI18NStringSet(),
       baseRating: this.baseRating,
 
       contestIDs: this.contestIDs,
@@ -122,7 +122,7 @@ export class Rating {
     const rating = new Rating();
 
     rating.id = iRating.id;
-    rating.name = iRating.name;
+    rating.name = I18nText.fromIText(iRating.name);
     rating.baseRating = iRating.baseRating;
 
     rating.contestIDs = iRating.contestIDs;

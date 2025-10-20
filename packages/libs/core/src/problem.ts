@@ -1,7 +1,8 @@
 import type { BalloonColor, Problem as IProblem, Problems as IProblems } from "@xcpcio/types";
 import type { Submissions } from "./submission";
-
 import _ from "lodash";
+
+import { I18nText } from "./basic-types";
 
 import { calcDirt, getWhiteOrBlackColor } from "./utils";
 
@@ -69,7 +70,7 @@ export class Problem {
   id: string;
   label: string;
 
-  name: string;
+  name?: I18nText;
 
   timeLimit?: string;
   memoryLimit?: string;
@@ -81,8 +82,6 @@ export class Problem {
   constructor() {
     this.id = "";
     this.label = "";
-
-    this.name = "";
 
     this.statistics = new ProblemStatistics();
 
@@ -101,7 +100,9 @@ export function createProblem(problemJSON: IProblem): Problem {
   p.id = String(problemJSON.id);
   p.label = problemJSON.label;
 
-  p.name = problemJSON.name ?? "";
+  if (problemJSON.name) {
+    p.name = I18nText.fromIText(problemJSON.name);
+  }
 
   p.timeLimit = problemJSON.time_limit;
   p.memoryLimit = problemJSON.memory_limit;

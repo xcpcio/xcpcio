@@ -79,7 +79,7 @@ async function onClickForGeneralXLSXDownload() {
   await waitDisabled();
 
   const converter = new GeneralExcelConverter();
-  converter.convertAndWrite(rank.value, `${rank.value.contest.name}.xlsx`);
+  converter.convertAndWrite(rank.value, `${rank.value.contest.name.getOrDefault()}.xlsx`);
 
   btnDisable.value.GeneralXLSXDownload = false;
 }

@@ -10,8 +10,13 @@ describe("contest", () => {
     const contestJSON = JSON.parse(data.toString());
     const contest = createContest(contestJSON);
 
-    expect(contest.name).toMatchInlineSnapshot("\"第八届中国大学生程序设计竞赛总决赛（正式赛）\"");
-    expect(contest.startTime).toMatchInlineSnapshot("\"2023-05-14T01:10:00.000Z\"");
+    expect(contest.name).toMatchInlineSnapshot(`
+      I18nText {
+        "fallback": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+        "texts": Map {},
+      }
+    `);
+    expect(contest.startTime).toMatchInlineSnapshot(`"2023-05-14T01:10:00.000Z"`);
     expect(contest.endTime).toMatchInlineSnapshot("\"2023-05-14T06:10:00.000Z\"");
     expect(contest.freezeTime).toMatchInlineSnapshot("\"2023-05-14T05:10:00.000Z\"");
     expect(contest.penalty).toMatchInlineSnapshot("1200");
@@ -25,7 +30,6 @@ describe("contest", () => {
           },
           "id": "0",
           "label": "A",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -45,7 +49,6 @@ describe("contest", () => {
           },
           "id": "1",
           "label": "B",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -65,7 +68,6 @@ describe("contest", () => {
           },
           "id": "2",
           "label": "C",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -85,7 +87,6 @@ describe("contest", () => {
           },
           "id": "3",
           "label": "D",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -105,7 +106,6 @@ describe("contest", () => {
           },
           "id": "4",
           "label": "E",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -125,7 +125,6 @@ describe("contest", () => {
           },
           "id": "5",
           "label": "F",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -145,7 +144,6 @@ describe("contest", () => {
           },
           "id": "6",
           "label": "G",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -165,7 +163,6 @@ describe("contest", () => {
           },
           "id": "7",
           "label": "H",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -185,7 +182,6 @@ describe("contest", () => {
           },
           "id": "8",
           "label": "I",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -205,7 +201,6 @@ describe("contest", () => {
           },
           "id": "9",
           "label": "J",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -225,7 +220,6 @@ describe("contest", () => {
           },
           "id": "10",
           "label": "K",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -245,7 +239,6 @@ describe("contest", () => {
           },
           "id": "11",
           "label": "L",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,
@@ -265,7 +258,6 @@ describe("contest", () => {
           },
           "id": "12",
           "label": "M",
-          "name": "",
           "statistics": ProblemStatistics {
             "acceptedNum": 0,
             "attemptedNum": 0,

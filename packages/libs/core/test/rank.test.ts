@@ -75,7 +75,12 @@ describe("contest", () => {
 
     expect(firstTeam.solvedProblemNum).toMatchInlineSnapshot("11");
     expect(firstTeam.penalty).toMatchInlineSnapshot("89820");
-    expect(firstTeam.name).toMatchInlineSnapshot("\"重生之我是菜狗\"");
+    expect(firstTeam.name).toMatchInlineSnapshot(`
+      I18nText {
+        "fallback": "重生之我是菜狗",
+        "texts": Map {},
+      }
+    `);
     expect(firstTeam.organization).toMatchInlineSnapshot("\"北京大学\"");
 
     expect(firstTeam.penaltyToMinute).toMatchInlineSnapshot("1497");
@@ -85,12 +90,17 @@ describe("contest", () => {
     expect(firstTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();
     expect(firstTeam.awards).toMatchInlineSnapshot("[]");
 
-    expect(lastTeam.rank).toMatchInlineSnapshot("129");
+    expect(lastTeam.rank).toMatchInlineSnapshot(`129`);
     expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
 
     expect(lastTeam.solvedProblemNum).toMatchInlineSnapshot("0");
     expect(lastTeam.penalty).toMatchInlineSnapshot("0");
-    expect(lastTeam.name).toMatchInlineSnapshot("\"红旗精英\"");
+    expect(lastTeam.name).toMatchInlineSnapshot(`
+      I18nText {
+        "fallback": "红旗精英",
+        "texts": Map {},
+      }
+    `);
     expect(lastTeam.organization).toMatchInlineSnapshot("\"一汽红旗\"");
 
     expect(lastTeam.penaltyToMinute).toMatchInlineSnapshot("0");
