@@ -108,7 +108,6 @@ export interface Image {
   base64?: Base64;
   type?: "png" | "svg" | "jpg" | "jpeg";
   preset?: ImagePreset;
-  [key: string]: string | undefined;
 }
 
 export interface StatusTimeDisplay {
