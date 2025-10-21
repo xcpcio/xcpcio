@@ -93,14 +93,21 @@ class TestTeamSerialization:
         assert team_dict["coaches"] == "Dr. Smith"
         assert team_dict["location"] == "Building A"
         assert team_dict["group"] == ["undergraduate", "local"]
-        assert team_dict["extra"] == {"room": "101", "contact": "alice@test.edu"}
+        assert "extra" not in team_dict  # extra field is excluded from serialization
 
     def test_model_validate(self, sample_team: Team):
         """Test Team model_validate method"""
         team_dict = sample_team.model_dump()
         reconstructed_team = Team.model_validate(team_dict)
 
-        assert reconstructed_team == sample_team
+        assert reconstructed_team.id == sample_team.id
+        assert reconstructed_team.name == sample_team.name
+        assert reconstructed_team.organization == sample_team.organization
+        assert reconstructed_team.members == sample_team.members
+        assert reconstructed_team.coaches == sample_team.coaches
+        assert reconstructed_team.location == sample_team.location
+        assert reconstructed_team.group == sample_team.group
+        assert reconstructed_team.extra == {}  # extra is not serialized
 
     def test_model_dump_json(self, sample_team: Team):
         """Test Team model_dump_json method"""
@@ -117,21 +124,42 @@ class TestTeamSerialization:
         team_json = sample_team.model_dump_json()
         reconstructed_team = Team.model_validate_json(team_json)
 
-        assert reconstructed_team == sample_team
+        assert reconstructed_team.id == sample_team.id
+        assert reconstructed_team.name == sample_team.name
+        assert reconstructed_team.organization == sample_team.organization
+        assert reconstructed_team.members == sample_team.members
+        assert reconstructed_team.coaches == sample_team.coaches
+        assert reconstructed_team.location == sample_team.location
+        assert reconstructed_team.group == sample_team.group
+        assert reconstructed_team.extra == {}  # extra is not serialized
 
     def test_round_trip_dict(self, sample_team: Team):
         """Test complete round-trip through dict serialization"""
         team_dict = sample_team.model_dump()
         reconstructed_team = Team.model_validate(team_dict)
 
-        assert reconstructed_team == sample_team
+        assert reconstructed_team.id == sample_team.id
+        assert reconstructed_team.name == sample_team.name
+        assert reconstructed_team.organization == sample_team.organization
+        assert reconstructed_team.members == sample_team.members
+        assert reconstructed_team.coaches == sample_team.coaches
+        assert reconstructed_team.location == sample_team.location
+        assert reconstructed_team.group == sample_team.group
+        assert reconstructed_team.extra == {}  # extra is excluded and won't round-trip
 
     def test_round_trip_json(self, sample_team: Team):
         """Test complete round-trip through JSON serialization"""
         team_json = sample_team.model_dump_json()
         reconstructed_team = Team.model_validate_json(team_json)
 
-        assert reconstructed_team == sample_team
+        assert reconstructed_team.id == sample_team.id
+        assert reconstructed_team.name == sample_team.name
+        assert reconstructed_team.organization == sample_team.organization
+        assert reconstructed_team.members == sample_team.members
+        assert reconstructed_team.coaches == sample_team.coaches
+        assert reconstructed_team.location == sample_team.location
+        assert reconstructed_team.group == sample_team.group
+        assert reconstructed_team.extra == {}  # extra is excluded and won't round-trip
 
     def test_minimal_team_serialization(self):
         """Test serialization of team with default/minimal values"""
