@@ -15,8 +15,7 @@ class TestContest:
         assert contest.frozen_time == 60 * 60  # 1 hour
         assert contest.unfrozen_time == 0x3F3F3F3F3F3F3F3F
         assert contest.penalty == 20 * 60  # 20 minutes
-        assert contest.problem_quantity == 0
-        assert contest.problem_id == []
+        assert contest.problem_id is None
         assert contest.organization == "School"
         assert contest.medal is None
         assert contest.balloon_color is None
@@ -55,7 +54,6 @@ class TestContest:
         assert contest.contest_name == "ICPC World Finals 2024"
         assert contest.start_time == 1234567890
         assert contest.end_time == 1234567890 + 5 * 60 * 60
-        assert contest.problem_quantity == 12
         assert len(contest.problem_id) == 12
         assert contest.problem_id[0] == "A"
         assert contest.problem_id[-1] == "L"
@@ -69,7 +67,6 @@ class TestContest:
             contest_name="Test Contest",
             start_time=1000000000,
             end_time=1000000000 + 60 * 60 * 5,
-            problem_quantity=5,
             problem_id=["A", "B", "C", "D", "E"],
             organization="Test Org",
         )
@@ -78,7 +75,6 @@ class TestContest:
         contest_dict = contest.model_dump()
         assert contest_dict["contest_name"] == "Test Contest"
         assert contest_dict["start_time"] == 1000000000
-        assert contest_dict["problem_quantity"] == 5
         assert contest_dict["organization"] == "Test Org"
 
         # Test JSON round-trip
@@ -97,7 +93,6 @@ class TestContest:
 
         contest = Contest(
             contest_name="Contest with Media",
-            problem_quantity=2,
             balloon_color=colors,
             logo=logo,
             banner=banner,
@@ -135,32 +130,32 @@ class TestContest:
 
     def test_fill_problem_id(self):
         """Test fill_problem_id method"""
-        contest = Contest(problem_quantity=5)
+        contest = Contest()
 
         # Initially empty
-        assert contest.problem_id == []
+        assert contest.problem_id is None
 
         # Fill with A-E
-        contest.fill_problem_id()
+        contest.fill_problem_id(5)
 
         assert len(contest.problem_id) == 5
         assert contest.problem_id == ["A", "B", "C", "D", "E"]
 
         # Test with larger quantity
-        contest.problem_quantity = 10
-        contest.fill_problem_id()
+        contest.fill_problem_id(10)
 
         assert len(contest.problem_id) == 10
         assert contest.problem_id == ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
 
     def test_fill_balloon_color(self):
         """Test fill_balloon_color method"""
-        contest = Contest(problem_quantity=3)
+        contest = Contest()
 
         # Initially no colors
         assert contest.balloon_color is None
 
-        # Fill with default colors
+        # Fill problem IDs first, then balloon colors
+        contest.fill_problem_id(3)
         contest.fill_balloon_color()
 
         assert contest.balloon_color is not None
@@ -180,13 +175,12 @@ class TestContest:
             contest_name="Complex Contest",
             start_time=1234567890,
             end_time=1234567890 + 5 * 60 * 60,
-            problem_quantity=3,
             organization="Complex Org",
             medal="ccpc",  # Use preset instead of dict
         )
 
         # Add problem IDs and colors
-        contest.fill_problem_id()
+        contest.fill_problem_id(3)
         contest.fill_balloon_color()
 
         # Add logo

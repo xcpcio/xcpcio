@@ -101,8 +101,8 @@ class TestSubmissionReaction:
 
     def test_reaction_empty(self):
         """Test SubmissionReaction with default values"""
-        reaction = SubmissionReaction()
-        assert reaction.url is None
+        reaction = SubmissionReaction(url="")
+        assert reaction.url == ""
 
     def test_reaction_with_url(self):
         """Test SubmissionReaction with URL"""
@@ -124,10 +124,10 @@ class TestSubmissionReaction:
 
     def test_reaction_no_url_serialization(self):
         """Test SubmissionReaction serialization with no URL"""
-        reaction = SubmissionReaction()
+        reaction = SubmissionReaction(url="")
 
         reaction_dict = reaction.model_dump()
-        assert reaction_dict["url"] is None
+        assert reaction_dict["url"] == ""
 
         # Test JSON round-trip
         reaction_json = reaction.model_dump_json()
