@@ -61,7 +61,26 @@ SubmissionStatus = Literal[
 ImagePreset = Literal["ICPC", "CCPC", "HUNAN_CPC"]
 MedalPreset = Literal["ccpc", "icpc"]
 BannerMode = Literal["ONLY_BANNER", "ALL"]
+Lang = Literal["en", "zh-CN"]
 DateTimeISO8601String = str
+
+
+class I18NStringSet(BaseModel):
+    fallback: Optional[str] = None
+    fallback_lang: Optional[Lang] = None
+    texts: Optional[Dict[Lang, str]] = None
+
+
+Text = Union[str, I18NStringSet]
+
+
+class Person(BaseModel):
+    name: Text
+    cf_id: Optional[str] = None
+    icpc_id: Optional[str] = None
+
+
+Persons = List[Person]
 
 
 class Image(BaseModel):
@@ -71,20 +90,33 @@ class Image(BaseModel):
     preset: Optional[ImagePreset] = None
 
 
-class Color(BaseModel):
+class BalloonColor(BaseModel):
     color: str
     background_color: str
 
 
-class Reaction(BaseModel):
+class Problem(BaseModel):
+    id: str
+    label: str
+    name: Optional[Text] = None
+    time_limit: Optional[str] = None
+    memory_limit: Optional[str] = None
+    balloon_color: Optional[BalloonColor] = None
+
+
+Problems = List[Problem]
+
+
+class SubmissionReaction(BaseModel):
     url: Optional[str] = None
 
 
 class Submission(BaseModel):
-    id: str = ""
+    id: Optional[str] = None
+    submission_id: Optional[str] = None
 
     team_id: str = ""
-    problem_id: int = 0
+    problem_id: Union[int, str] = 0
     timestamp: int = 0  # unit: seconds
     status: SubmissionStatus = constants.SUBMISSION_STATUS_UNKNOWN
 
@@ -93,7 +125,7 @@ class Submission(BaseModel):
 
     is_ignore: Optional[bool] = None
 
-    reaction: Optional[Reaction] = None
+    reaction: Optional[SubmissionReaction] = None
 
 
 class Submissions(RootModel[List[Submission]]):
@@ -102,14 +134,14 @@ class Submissions(RootModel[List[Submission]]):
 
 class Team(BaseModel):
     id: str = ""
-    name: str = ""
+    name: Text = ""
 
     organization: str = ""
     group: List[str] = Field(default_factory=list)
     tag: List[str] = Field(default_factory=list)
 
-    coach: Optional[str] = None
-    members: Optional[List[str]] = None
+    coaches: Optional[Union[Text, List[Text], Persons]] = None
+    members: Optional[Union[Text, List[Text], Persons]] = None
 
     badge: Optional[Image] = None
 
@@ -139,7 +171,7 @@ class ContestOptions(BaseModel):
 
 
 class Contest(BaseModel):
-    contest_name: str = ""
+    contest_name: Text = ""
 
     start_time: Union[int, DateTimeISO8601String] = 0
     end_time: Union[int, DateTimeISO8601String] = 0
@@ -149,15 +181,17 @@ class Contest(BaseModel):
     frozen_time: int = 60 * 60  # unit: seconds
     unfrozen_time: int = 0x3F3F3F3F3F3F3F3F
 
+    problems: Optional[Problems] = None
     problem_quantity: int = 0
     problem_id: List[str] = Field(default_factory=list)
+    balloon_color: Optional[List[BalloonColor]] = None
 
-    organization: str = "School"
     status_time_display: Optional[Dict[str, bool]] = constants.FULL_STATUS_TIME_DISPLAY
 
     badge: Optional[str] = None
+    organization: str = "School"
+
     medal: Optional[Union[Dict[str, Dict[str, int]], MedalPreset]] = None
-    balloon_color: Optional[List[Color]] = None
 
     group: Optional[Dict[str, str]] = None
     tag: Optional[Dict[str, str]] = None
@@ -171,7 +205,7 @@ class Contest(BaseModel):
 
     options: ContestOptions = Field(default_factory=ContestOptions)
 
-    def append_balloon_color(self, color: Color):
+    def append_balloon_color(self, color: BalloonColor):
         if self.balloon_color is None:
             self.balloon_color = []
         self.balloon_color.append(color)
@@ -183,20 +217,20 @@ class Contest(BaseModel):
 
     def fill_balloon_color(self):
         default_balloon_color_list = [
-            Color(background_color="rgba(189, 14, 14, 0.7)", color="#fff"),
-            Color(background_color="rgba(149, 31, 217, 0.7)", color="#fff"),
-            Color(background_color="rgba(16, 32, 96, 0.7)", color="#fff"),
-            Color(background_color="rgba(38, 185, 60, 0.7)", color="#000"),
-            Color(background_color="rgba(239, 217, 9, 0.7)", color="#000"),
-            Color(background_color="rgba(243, 88, 20, 0.7)", color="#fff"),
-            Color(background_color="rgba(12, 76, 138, 0.7)", color="#fff"),
-            Color(background_color="rgba(156, 155, 155, 0.7)", color="#000"),
-            Color(background_color="rgba(4, 154, 115, 0.7)", color="#000"),
-            Color(background_color="rgba(159, 19, 236, 0.7)", color="#fff"),
-            Color(background_color="rgba(42, 197, 202, 0.7)", color="#000"),
-            Color(background_color="rgba(142, 56, 54, 0.7)", color="#fff"),
-            Color(background_color="rgba(144, 238, 144, 0.7)", color="#000"),
-            Color(background_color="rgba(77, 57, 0, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(189, 14, 14, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(149, 31, 217, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(16, 32, 96, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(38, 185, 60, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(239, 217, 9, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(243, 88, 20, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(12, 76, 138, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(156, 155, 155, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(4, 154, 115, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(159, 19, 236, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(42, 197, 202, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(142, 56, 54, 0.7)", color="#fff"),
+            BalloonColor(background_color="rgba(144, 238, 144, 0.7)", color="#000"),
+            BalloonColor(background_color="rgba(77, 57, 0, 0.7)", color="#fff"),
         ]
 
         self.balloon_color = default_balloon_color_list[: self.problem_quantity]

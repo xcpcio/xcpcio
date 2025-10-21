@@ -1,5 +1,5 @@
 from xcpcio import constants
-from xcpcio.types import Color, ContestOptions, Image, Reaction
+from xcpcio.types import BalloonColor, ContestOptions, Image, SubmissionReaction
 
 
 class TestImage:
@@ -35,18 +35,18 @@ class TestImage:
         assert reconstructed_image == image
 
 
-class TestColor:
-    """Test cases for Color Pydantic model"""
+class TestBalloonColor:
+    """Test cases for BalloonColor Pydantic model"""
 
     def test_color_creation(self):
-        """Test Color creation"""
-        color = Color(color="#ffffff", background_color="#000000")
+        """Test BalloonColor creation"""
+        color = BalloonColor(color="#ffffff", background_color="#000000")
         assert color.color == "#ffffff"
         assert color.background_color == "#000000"
 
     def test_color_serialization(self):
-        """Test Color serialization and deserialization"""
-        color = Color(color="red", background_color="blue")
+        """Test BalloonColor serialization and deserialization"""
+        color = BalloonColor(color="red", background_color="blue")
 
         # Test model_dump
         color_dict = color.model_dump()
@@ -55,7 +55,7 @@ class TestColor:
 
         # Test JSON round-trip
         color_json = color.model_dump_json()
-        reconstructed_color = Color.model_validate_json(color_json)
+        reconstructed_color = BalloonColor.model_validate_json(color_json)
         assert reconstructed_color == color
 
 
@@ -96,22 +96,22 @@ class TestContestOptions:
         assert reconstructed_options == options
 
 
-class TestReaction:
-    """Test cases for Reaction Pydantic model"""
+class TestSubmissionReaction:
+    """Test cases for SubmissionReaction Pydantic model"""
 
     def test_reaction_empty(self):
-        """Test Reaction with default values"""
-        reaction = Reaction()
+        """Test SubmissionReaction with default values"""
+        reaction = SubmissionReaction()
         assert reaction.url is None
 
     def test_reaction_with_url(self):
-        """Test Reaction with URL"""
-        reaction = Reaction(url="https://reaction.com/video.mp4")
+        """Test SubmissionReaction with URL"""
+        reaction = SubmissionReaction(url="https://reaction.com/video.mp4")
         assert reaction.url == "https://reaction.com/video.mp4"
 
     def test_reaction_serialization(self):
-        """Test Reaction serialization"""
-        reaction = Reaction(url="https://test.com/reaction.mp4")
+        """Test SubmissionReaction serialization"""
+        reaction = SubmissionReaction(url="https://test.com/reaction.mp4")
 
         # Test model_dump
         reaction_dict = reaction.model_dump()
@@ -119,17 +119,17 @@ class TestReaction:
 
         # Test JSON round-trip
         reaction_json = reaction.model_dump_json()
-        reconstructed_reaction = Reaction.model_validate_json(reaction_json)
+        reconstructed_reaction = SubmissionReaction.model_validate_json(reaction_json)
         assert reconstructed_reaction == reaction
 
     def test_reaction_no_url_serialization(self):
-        """Test Reaction serialization with no URL"""
-        reaction = Reaction()
+        """Test SubmissionReaction serialization with no URL"""
+        reaction = SubmissionReaction()
 
         reaction_dict = reaction.model_dump()
         assert reaction_dict["url"] is None
 
         # Test JSON round-trip
         reaction_json = reaction.model_dump_json()
-        reconstructed_reaction = Reaction.model_validate_json(reaction_json)
+        reconstructed_reaction = SubmissionReaction.model_validate_json(reaction_json)
         assert reconstructed_reaction == reaction
