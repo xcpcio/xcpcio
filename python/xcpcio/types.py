@@ -74,15 +74,6 @@ class I18NStringSet(BaseModel):
 Text = Union[str, I18NStringSet]
 
 
-class Person(BaseModel):
-    name: Text
-    cf_id: Optional[str] = None
-    icpc_id: Optional[str] = None
-
-
-Persons = List[Person]
-
-
 class Image(BaseModel):
     url: Optional[str] = None
     base64: Optional[str] = None
@@ -93,6 +84,15 @@ class Image(BaseModel):
 class BalloonColor(BaseModel):
     color: str
     background_color: str
+
+
+class Person(BaseModel):
+    name: Text
+    cf_id: Optional[str] = None
+    icpc_id: Optional[str] = None
+
+
+Persons = List[Person]
 
 
 class Problem(BaseModel):
@@ -108,7 +108,7 @@ Problems = List[Problem]
 
 
 class SubmissionReaction(BaseModel):
-    url: Optional[str] = None
+    url: str
 
 
 class Submission(BaseModel):
@@ -129,7 +129,7 @@ class Submission(BaseModel):
 
 
 class Submissions(RootModel[List[Submission]]):
-    root: List[Submission]
+    pass
 
 
 class Team(BaseModel):
@@ -138,7 +138,7 @@ class Team(BaseModel):
 
     organization: str = ""
     group: List[str] = Field(default_factory=list)
-    tag: List[str] = Field(default_factory=list)
+    tag: Optional[List[str]] = None
 
     coaches: Optional[Union[Text, List[Text], Persons]] = None
     members: Optional[Union[Text, List[Text], Persons]] = None
@@ -179,14 +179,13 @@ class Contest(BaseModel):
 
     freeze_time: Optional[Union[int, DateTimeISO8601String]] = None
     frozen_time: int = 60 * 60  # unit: seconds
-    unfrozen_time: int = 0x3F3F3F3F3F3F3F3F
 
     problems: Optional[Problems] = None
-    problem_quantity: int = 0
-    problem_id: List[str] = Field(default_factory=list)
+
+    problem_id: Optional[List[str]] = None
     balloon_color: Optional[List[BalloonColor]] = None
 
-    status_time_display: Optional[Dict[str, bool]] = constants.FULL_STATUS_TIME_DISPLAY
+    status_time_display: Dict[str, bool] = constants.FULL_STATUS_TIME_DISPLAY
 
     badge: Optional[str] = None
     organization: str = "School"
@@ -205,14 +204,16 @@ class Contest(BaseModel):
 
     options: ContestOptions = Field(default_factory=ContestOptions)
 
+    unfrozen_time: int = 0x3F3F3F3F3F3F3F3F
+
     def append_balloon_color(self, color: BalloonColor):
         if self.balloon_color is None:
             self.balloon_color = []
         self.balloon_color.append(color)
         return self
 
-    def fill_problem_id(self):
-        self.problem_id = [chr(ord("A") + i) for i in range(self.problem_quantity)]
+    def fill_problem_id(self, problem_quantity: int):
+        self.problem_id = [chr(ord("A") + i) for i in range(problem_quantity)]
         return self
 
     def fill_balloon_color(self):
@@ -232,7 +233,6 @@ class Contest(BaseModel):
             BalloonColor(background_color="rgba(144, 238, 144, 0.7)", color="#000"),
             BalloonColor(background_color="rgba(77, 57, 0, 0.7)", color="#fff"),
         ]
-
-        self.balloon_color = default_balloon_color_list[: self.problem_quantity]
+        self.balloon_color = default_balloon_color_list[: len(self.problem_id)]
 
         return self
