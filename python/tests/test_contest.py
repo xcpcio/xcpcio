@@ -1,5 +1,5 @@
 from xcpcio import constants
-from xcpcio.types import Color, Contest, ContestOptions, Image
+from xcpcio.types import BalloonColor, Contest, ContestOptions, Image
 
 
 class TestContest:
@@ -89,8 +89,8 @@ class TestContest:
     def test_contest_with_colors_and_images(self):
         """Test Contest with balloon colors, logo, and banner"""
         colors = [
-            Color(color="#fff", background_color="rgba(255, 0, 0, 0.7)"),
-            Color(color="#000", background_color="rgba(0, 255, 0, 0.7)"),
+            BalloonColor(color="#fff", background_color="rgba(255, 0, 0, 0.7)"),
+            BalloonColor(color="#000", background_color="rgba(0, 255, 0, 0.7)"),
         ]
         logo = Image(url="https://example.com/logo.png", type="png")
         banner = Image(url="https://example.com/banner.jpg", type="jpg")
@@ -119,7 +119,7 @@ class TestContest:
         assert contest.balloon_color is None
 
         # Add first color
-        red_color = Color(color="#fff", background_color="red")
+        red_color = BalloonColor(color="#fff", background_color="red")
         contest.append_balloon_color(red_color)
 
         assert contest.balloon_color is not None
@@ -127,7 +127,7 @@ class TestContest:
         assert contest.balloon_color[0] == red_color
 
         # Add second color
-        blue_color = Color(color="#fff", background_color="blue")
+        blue_color = BalloonColor(color="#fff", background_color="blue")
         contest.append_balloon_color(blue_color)
 
         assert len(contest.balloon_color) == 2
@@ -165,7 +165,7 @@ class TestContest:
 
         assert contest.balloon_color is not None
         assert len(contest.balloon_color) == 3
-        assert all(isinstance(color, Color) for color in contest.balloon_color)
+        assert all(isinstance(color, BalloonColor) for color in contest.balloon_color)
 
         # Check first few default colors
         assert contest.balloon_color[0].background_color == "rgba(189, 14, 14, 0.7)"

@@ -15,7 +15,7 @@ class TestTeam:
         assert team.name == ""
         assert team.organization == ""
         assert team.members is None
-        assert team.coach is None
+        assert team.coaches is None
         assert team.location is None
         assert team.group == []
         assert team.extra == {}
@@ -27,7 +27,7 @@ class TestTeam:
             name="Test Team",
             organization="Test University",
             members=["Alice", "Bob", "Charlie"],
-            coach="Dr. Smith",
+            coaches="Dr. Smith",
             location="Building A",
         )
 
@@ -35,7 +35,7 @@ class TestTeam:
         assert team.name == "Test Team"
         assert team.organization == "Test University"
         assert team.members == ["Alice", "Bob", "Charlie"]
-        assert team.coach == "Dr. Smith"
+        assert team.coaches == "Dr. Smith"
         assert team.location == "Building A"
 
     def test_group_management(self):
@@ -75,7 +75,7 @@ class TestTeamSerialization:
             name="Alpha Team",
             organization="University A",
             members=["Alice", "Bob", "Charlie"],
-            coach="Dr. Smith",
+            coaches="Dr. Smith",
             location="Building A",
             group=["undergraduate", "local"],
             extra={"room": "101", "contact": "alice@test.edu"},
@@ -90,7 +90,7 @@ class TestTeamSerialization:
         assert team_dict["name"] == "Alpha Team"
         assert team_dict["organization"] == "University A"
         assert team_dict["members"] == ["Alice", "Bob", "Charlie"]
-        assert team_dict["coach"] == "Dr. Smith"
+        assert team_dict["coaches"] == "Dr. Smith"
         assert team_dict["location"] == "Building A"
         assert team_dict["group"] == ["undergraduate", "local"]
         assert team_dict["extra"] == {"room": "101", "contact": "alice@test.edu"}
@@ -161,7 +161,7 @@ class TestTeamList:
                     name="Alpha Team",
                     organization="University A",
                     members=["Alice", "Bob"],
-                    coach="Coach A",
+                    coaches="Coach A",
                 ),
                 Team(
                     id="team002",

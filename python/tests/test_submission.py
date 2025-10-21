@@ -3,7 +3,7 @@ import json
 import pytest
 
 from xcpcio import constants
-from xcpcio.types import Reaction, Submission, Submissions
+from xcpcio.types import SubmissionReaction, Submission, Submissions
 
 
 class TestSubmission:
@@ -12,7 +12,8 @@ class TestSubmission:
     def test_submission_creation_defaults(self):
         """Test Submission creation with default values"""
         submission = Submission()
-        assert submission.id == ""
+        assert submission.id is None
+        assert submission.submission_id is None
         assert submission.team_id == ""
         assert submission.problem_id == 0
         assert submission.timestamp == 0
@@ -24,7 +25,7 @@ class TestSubmission:
 
     def test_submission_creation_with_values(self):
         """Test Submission creation with provided values"""
-        reaction = Reaction(url="https://reaction.com/video.mp4")
+        reaction = SubmissionReaction(url="https://reaction.com/video.mp4")
         submission = Submission(
             id="sub_001",
             status=constants.SUBMISSION_STATUS_ACCEPTED,
@@ -79,7 +80,7 @@ class TestSubmission:
 
     def test_submission_with_reaction_serialization(self):
         """Test Submission with Reaction serialization"""
-        reaction = Reaction(url="https://example.com/reaction.mp4")
+        reaction = SubmissionReaction(url="https://example.com/reaction.mp4")
         submission = Submission(
             id="sub_003",
             status=constants.SUBMISSION_STATUS_ACCEPTED,
@@ -125,7 +126,7 @@ class TestSubmissions:
                     timestamp=1234567891,
                     time=300,
                     language="C++",
-                    reaction=Reaction(url="https://reaction.com/video.mp4"),
+                    reaction=SubmissionReaction(url="https://reaction.com/video.mp4"),
                 ),
                 Submission(
                     id="sub_003",
