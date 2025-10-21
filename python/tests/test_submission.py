@@ -13,7 +13,6 @@ class TestSubmission:
         """Test Submission creation with default values"""
         submission = Submission()
         assert submission.id is None
-        assert submission.submission_id is None
         assert submission.team_id == ""
         assert submission.problem_id == 0
         assert submission.timestamp == 0
@@ -215,7 +214,7 @@ class TestSubmissions:
                     problem_id=1,
                     timestamp=123,
                 ),
-                Submission(),  # All defaults
+                Submission(id="sub_default"),  # All other defaults
             ]
         )
 

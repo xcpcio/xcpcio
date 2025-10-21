@@ -30,7 +30,7 @@ class TestContest:
 
         # Check default values
         assert contest.status_time_display == constants.FULL_STATUS_TIME_DISPLAY
-        assert isinstance(contest.options, ContestOptions)
+        assert contest.options is None
 
     def test_contest_creation_with_values(self):
         """Test Contest creation with provided values"""

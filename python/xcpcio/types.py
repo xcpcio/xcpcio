@@ -1,4 +1,4 @@
-from typing import Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, Field, RootModel
 
@@ -88,6 +88,7 @@ class BalloonColor(BaseModel):
 
 class Person(BaseModel):
     name: Text
+
     cf_id: Optional[str] = None
     icpc_id: Optional[str] = None
 
@@ -98,9 +99,12 @@ Persons = List[Person]
 class Problem(BaseModel):
     id: str
     label: str
+
     name: Optional[Text] = None
+
     time_limit: Optional[str] = None
     memory_limit: Optional[str] = None
+
     balloon_color: Optional[BalloonColor] = None
 
 
@@ -112,8 +116,7 @@ class SubmissionReaction(BaseModel):
 
 
 class Submission(BaseModel):
-    id: Optional[str] = None
-    submission_id: Optional[str] = None
+    id: str = None
 
     team_id: str = ""
     problem_id: Union[int, str] = 0
@@ -148,7 +151,7 @@ class Team(BaseModel):
     location: Optional[str] = None
     icpc_id: Optional[str] = None
 
-    extra: Dict[str, str] = Field(default_factory=dict)
+    extra: Dict[str, Any] = Field(default_factory=dict, exclude=True)
 
     def add_group(self, group: str):
         if group not in self.group:
@@ -202,9 +205,9 @@ class Contest(BaseModel):
 
     version: Optional[str] = None
 
-    options: ContestOptions = Field(default_factory=ContestOptions)
+    options: Optional[ContestOptions] = None
 
-    unfrozen_time: int = 0x3F3F3F3F3F3F3F3F
+    unfrozen_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
 
     def append_balloon_color(self, color: BalloonColor):
         if self.balloon_color is None:
