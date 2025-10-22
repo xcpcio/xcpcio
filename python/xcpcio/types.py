@@ -76,9 +76,15 @@ Text = Union[str, I18NStringSet]
 
 class Image(BaseModel):
     url: Optional[str] = None
+    mime: Optional[str] = None
+
     base64: Optional[str] = None
     type: Optional[Literal["png", "svg", "jpg", "jpeg"]] = None
+
     preset: Optional[ImagePreset] = None
+
+    width: Optional[int] = None
+    height: Optional[int] = None
 
 
 class BalloonColor(BaseModel):
