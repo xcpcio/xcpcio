@@ -42,6 +42,7 @@ describe("team", () => {
             },
           },
         ],
+        "missingPhoto": false,
         "name": I18nText {
           "fallback": "前面的题目以后再来探索吧？",
           "texts": Map {},
@@ -50,6 +51,7 @@ describe("team", () => {
         "organizationRank": -1,
         "originalRank": 0,
         "penalty": 0,
+        "photo": undefined,
         "placeChartPoints": [],
         "problemStatistics": [],
         "problemStatisticsMap": Map {},
