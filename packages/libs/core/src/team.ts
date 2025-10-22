@@ -213,7 +213,9 @@ export class Team {
   }
 
   isEqualRank(otherTeam: Team) {
-    return this.solvedProblemNum === otherTeam.solvedProblemNum && this.penalty === otherTeam.penalty;
+    return this.solvedProblemNum === otherTeam.solvedProblemNum
+      && this.penalty === otherTeam.penalty
+      && this.lastSolvedProblemStatistics?.solvedTimestampToMinute === otherTeam.lastSolvedProblemStatistics?.solvedTimestampToMinute;
   }
 
   postProcessPlaceChartPoints() {
