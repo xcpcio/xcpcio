@@ -104,6 +104,11 @@ function reBuildRank(options = { force: false }) {
   isReBuildRank.value = false;
 }
 
+function updateContestName() {
+  contestName.value = contestData.value.name.getOrDefault(lang.value);
+  title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
+}
+
 const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? fixPath(route.path), now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
@@ -111,8 +116,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  contestName.value = contestData.value.name.getOrDefault(lang.value);
-  title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
+  updateContestName();
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions, contestData.value);
@@ -125,6 +129,13 @@ watch(data, async () => {
 
   firstLoaded.value = true;
 }, { immediate: true });
+
+watch(lang, () => {
+  if (!firstLoaded.value) {
+    return;
+  }
+  updateContestName();
+});
 
 function dynamicReBuildRank() {
   if (firstLoaded.value === false) {
