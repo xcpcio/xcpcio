@@ -54,15 +54,15 @@ class ContestPackageReader(BaseContestReader):
         self.access = self._load_json_file("access.json")
 
         self.accounts = self._load_json_file("accounts.json")
-        self.accounts_by_id = {account["id"] for account in self.accounts}
+        self.accounts_by_id = {account["id"]: account for account in self.accounts}
 
         self.api_info = self._load_json_file("api.json")
 
         self.awards = self._load_json_file("awards.json")
-        self.awards_by_id = {award["id"] for award in self.awards}
+        self.awards_by_id = {award["id"]: award for award in self.awards}
 
         self.clarifications = self._load_json_file("clarifications.json")
-        self.clarifications_by_id = {clarification["id"] for clarification in self.clarifications}
+        self.clarifications_by_id = {clarification["id"]: clarification for clarification in self.clarifications}
 
         self.contest = self._load_json_file("contest.json")
         self.contest_state = self._load_json_file("state.json")
@@ -71,14 +71,14 @@ class ContestPackageReader(BaseContestReader):
         self.groups_by_id = {group["id"]: group for group in self.groups}
 
         self.judgement_types = self._load_json_file("judgement-types.json")
-        self.judgement_types_by_id = {judgement_type["id"] for judgement_type in self.judgement_types}
+        self.judgement_types_by_id = {judgement_type["id"]: judgement_type for judgement_type in self.judgement_types}
 
         self.judgements = self._load_json_file("judgements.json")
-        self.judgements_by_id = {judgement["id"] for judgement in self.judgements}
+        self.judgements_by_id = {judgement["id"]: judgement for judgement in self.judgements}
         self.judgements_by_submission_id = self._create_index_by_id(self.judgements, "submission_id")
 
         self.languages = self._load_json_file("languages.json")
-        self.languages_by_id = {language["id"] for language in self.languages}
+        self.languages_by_id = {language["id"]: language for language in self.languages}
 
         self.organizations = self._load_json_file("organizations.json")
         self.organizations_by_id = {org["id"]: org for org in self.organizations}
@@ -87,7 +87,7 @@ class ContestPackageReader(BaseContestReader):
         self.problems_by_id = {problem["id"]: problem for problem in self.problems}
 
         self.runs = self._load_json_file("runs.json")
-        self.runs_by_id = {run["id"] for run in self.runs}
+        self.runs_by_id = {run["id"]: run for run in self.runs}
         self.runs_by_judgement_id = self._create_index_by_id(self.runs, "judgement_id")
 
         self.submissions = self._load_json_file("submissions.json")
