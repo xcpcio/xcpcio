@@ -1,7 +1,7 @@
 {
   "name": "@xcpcio/board-app",
   "type": "module",
-  "version": "0.66.1",
+  "version": "0.66.2",
   "description": "The ICPC Series Competition Leaderboard Visualization Engine",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
