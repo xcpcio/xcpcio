@@ -1,4 +1,4 @@
-import type { CalculationOfPenalty, ContestOptions as IContestOptions, TimeUnit } from "@xcpcio/types";
+import type { CalculationOfPenalty, ContestOptions as IContestOptions, Image, TimeUnit } from "@xcpcio/types";
 
 export class ContestOptions {
   calculationOfPenalty: CalculationOfPenalty;
@@ -12,6 +12,8 @@ export class ContestOptions {
 
   reactionVideoUrlTemplate?: string;
 
+  teamPhotoTemplate?: Image;
+
   constructor() {
     this.calculationOfPenalty = "in_minutes";
     this.submissionTimestampUnit = "second";
@@ -21,8 +23,6 @@ export class ContestOptions {
 
     this.submissionEnableActionField = false;
     this.submissionHasReactionField = false;
-
-    this.reactionVideoUrlTemplate = undefined;
   }
 }
 
@@ -44,6 +44,7 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
 
   o.submissionEnableActionField = o.submissionHasReactionField;
   o.reactionVideoUrlTemplate = j.reaction_video_url_template;
+  o.teamPhotoTemplate = j.team_photo_url_template;
 
   return o;
 }

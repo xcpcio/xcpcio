@@ -523,6 +523,7 @@ ResolverOperation {
         },
       },
     ],
+    "missingPhoto": false,
     "name": I18nText {
       "fallback": "红旗精英",
       "texts": Map {},
@@ -531,6 +532,7 @@ ResolverOperation {
     "organizationRank": -1,
     "originalRank": 132,
     "penalty": 0,
+    "photo": undefined,
     "placeChartPoints": [
       {
         "lastSolvedProblem": null,
@@ -2939,6 +2941,7 @@ ResolverOperation {
         },
       },
     ],
+    "missingPhoto": false,
     "name": I18nText {
       "fallback": "重生之我是菜狗",
       "texts": Map {},
@@ -2947,6 +2950,7 @@ ResolverOperation {
     "organizationRank": 1,
     "originalRank": 1,
     "penalty": 71160,
+    "photo": undefined,
     "placeChartPoints": [
       {
         "lastSolvedProblem": null,
