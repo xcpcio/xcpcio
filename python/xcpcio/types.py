@@ -147,6 +147,7 @@ class Team(BaseModel):
     members: Optional[Union[Text, List[Text], Persons]] = None
 
     badge: Optional[Image] = None
+    photo: Optional[Image] = None
 
     location: Optional[str] = None
     icpc_id: Optional[str] = None
@@ -169,8 +170,12 @@ class Teams(RootModel[List[Team]]):
 class ContestOptions(BaseModel):
     calculation_of_penalty: Optional[CalculationOfPenalty] = None
     submission_timestamp_unit: Optional[TimeUnit] = None
+
     has_reaction_videos: Optional[bool] = None
     reaction_video_url_template: Optional[str] = None
+
+    has_team_photos: Optional[bool] = None
+    team_photo_url_template: Optional[Image] = None
 
 
 class Contest(BaseModel):
