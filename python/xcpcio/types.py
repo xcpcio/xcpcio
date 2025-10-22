@@ -153,6 +153,8 @@ class Team(BaseModel):
     members: Optional[Union[Text, List[Text], Persons]] = None
 
     badge: Optional[Image] = None
+
+    missing_photo: Optional[bool] = None
     photo: Optional[Image] = None
 
     location: Optional[str] = None
@@ -180,7 +182,6 @@ class ContestOptions(BaseModel):
     has_reaction_videos: Optional[bool] = None
     reaction_video_url_template: Optional[str] = None
 
-    has_team_photos: Optional[bool] = None
     team_photo_url_template: Optional[Image] = None
 
 

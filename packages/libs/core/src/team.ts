@@ -28,7 +28,6 @@ export class Team {
   name: I18nText;
 
   organization: string;
-  badge?: Image;
 
   group: Array<string>;
   tag: Array<string>;
@@ -56,6 +55,11 @@ export class Team {
   placeChartPoints: Array<PlaceChartPointData>;
 
   awards: MedalType[];
+
+  badge?: Image;
+
+  missingPhoto: boolean;
+  photo?: Image;
 
   location?: string;
   icpcID?: string;
@@ -94,6 +98,8 @@ export class Team {
     this.placeChartPoints = [];
 
     this.awards = [];
+
+    this.missingPhoto = false;
 
     this.se = 0;
   }
@@ -274,7 +280,6 @@ export function createTeam(teamJSON: ITeam): Team {
   t.name = I18nText.fromIText(teamJSON.name ?? teamJSON.team_name ?? "");
 
   t.organization = teamJSON.organization ?? "";
-  t.badge = teamJSON.badge;
 
   t.group = _.cloneDeep(teamJSON.group ?? []);
   t.tag = _.cloneDeep(teamJSON.tag ?? []);
@@ -305,6 +310,13 @@ export function createTeam(teamJSON: ITeam): Team {
 
   t.group = [...new Set(t.group)];
   t.group.sort();
+
+  t.badge = teamJSON.badge;
+
+  if (teamJSON.missing_photo) {
+    t.missingPhoto = true;
+  }
+  t.photo = teamJSON.photo;
 
   if (teamJSON.location) {
     t.location = teamJSON.location;

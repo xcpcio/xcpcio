@@ -21,6 +21,8 @@ export interface Team {
   girl?: boolean;
 
   badge?: Image;
+
+  missing_photo?: boolean;
   photo?: Image;
 
   location?: string;

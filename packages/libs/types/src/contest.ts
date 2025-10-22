@@ -24,7 +24,8 @@ export interface ContestOptions {
   // ${submission_id} will be replaced with the submission id
   reaction_video_url_template?: string;
 
-  has_team_photos?: boolean;
+  // example: https://your.image.cdn/wf/2025/${team_id}.jpg
+  // ${team_id} will be replaced with the team id
   team_photo_url_template?: Image;
 }
 
