@@ -105,9 +105,15 @@ export interface Link {
 
 export interface Image {
   url?: string;
+  mime?: string;
+
   base64?: Base64;
   type?: "png" | "svg" | "jpg" | "jpeg";
+
   preset?: ImagePreset;
+
+  width?: number;
+  height?: number;
 }
 
 export interface StatusTimeDisplay {

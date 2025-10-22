@@ -21,6 +21,7 @@ export interface Team {
   girl?: boolean;
 
   badge?: Image;
+  photo?: Image;
 
   location?: string;
   icpc_id?: string;
