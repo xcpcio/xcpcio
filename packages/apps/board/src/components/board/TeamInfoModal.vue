@@ -68,13 +68,13 @@ const types = [TYPE_INFO, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
             space-y-3 md:space-y-0
           >
             <div
-              flex flex-row
-              space-x-3
+              flex flex-row items-center justify-center
+              space-x-4
             >
               <Badge
                 v-if="team.badge"
                 :image="team.badge"
-                width-class="h-8 w-8"
+                width-class="h-16 w-16"
               />
 
               <Tooltip>
