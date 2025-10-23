@@ -25,6 +25,7 @@ index:
 
 type_menu:
   rank: Rank
+  info: Info
   submissions: Submissions
   statistics: Statistics
   balloon: Balloon
@@ -74,3 +75,12 @@ standings:
 
 submissions:
   total_submissions: Total Submissions
+
+team_info:
+  rank: Rank
+  team_name: Team Name
+  organization: Organization
+  group: Group
+  members: Members
+  coaches: Coaches
+  location: Location

@@ -302,6 +302,9 @@ export function createTeam(teamJSON: ITeam): Team {
   {
     const tt: any = teamJSON as any;
     for (const key of Object.keys(tt)) {
+      if (key === "missing_photo") {
+        continue;
+      }
       if (tt[key] === 1 || tt[key] === true) {
         t.group.push(key);
       }

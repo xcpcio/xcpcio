@@ -25,6 +25,7 @@ index:
 
 type_menu:
   rank: 排名
+  info: 简介
   submissions: 提交
   statistics: 统计
   balloon: 气球
@@ -74,3 +75,12 @@ standings:
 
 submissions:
   total_submissions: 总提交数
+
+team_info:
+  rank: 排名
+  team_name: 队名
+  organization: 组织
+  group: 组别
+  members: 队员
+  coaches: 教练
+  location: 位置
