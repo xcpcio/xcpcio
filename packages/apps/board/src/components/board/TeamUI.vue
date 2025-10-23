@@ -91,10 +91,11 @@ function isRenderByVisible() {
     <td
       v-if="rank.contest.badge && team.badge && isRenderByVisible()"
       class="empty flex items-center justify-center"
+      style="padding: 0px !important; margin: 0px !important;"
     >
       <Badge
         :image="team.badge"
-        width-class="h-8 w-8"
+        width-class="w-full h-full"
       />
     </td>
     <td
