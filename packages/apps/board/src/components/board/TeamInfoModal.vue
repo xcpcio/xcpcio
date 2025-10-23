@@ -25,7 +25,7 @@ const isHidden = computed({
   },
 });
 
-const currentType = ref("submissions");
+const currentType = ref("info");
 
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
@@ -39,21 +39,14 @@ const headerTitle = computed(() => {
 
   res += `${team.value.name.getOrDefault(lang.value)}`;
 
-  if (team.value.members && team.value.members.length > 0) {
-    res += ` - ${team.value.membersToString(lang.value)}`;
-  }
-
-  if (team.value.coaches && team.value.coaches.length > 0) {
-    res += ` - ${team.value.coachesToString(lang.value)}(coach)`;
-  }
-
   return res;
 });
 
+const TYPE_INFO = "info";
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
 const TYPE_AWARDS = "awards";
-const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
+const types = [TYPE_INFO, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 </script>
 
 <template>
@@ -120,6 +113,16 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
       font-bold font-mono
       flex items-center justify-center
     >
+      <div
+        v-if="currentType === TYPE_INFO"
+        w-full
+      >
+        <TeamInfo
+          :rank="rank"
+          :team="team"
+        />
+      </div>
+
       <div
         v-if="currentType === TYPE_SUBMISSIONS"
         w-full
