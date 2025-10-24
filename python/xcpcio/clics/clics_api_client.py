@@ -168,6 +168,42 @@ class ClicsApiClient:
                 logger.error(f"Failed to download {file_url} after retries: {e}")
                 return False
 
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        retry=retry_if_exception_type((asyncio.TimeoutError, aiohttp.ClientError)),
+        before_sleep=before_sleep_log(logger, logging.WARNING),
+        reraise=True,
+    )
+    async def _fetch_file_content_internal(self, file_url: str, override_timeout: Optional[int] = None) -> bytes:
+        """Internal method to fetch file content as bytes with retry logic"""
+        logger.info(f"Fetching file content from {file_url}")
+        timeout = aiohttp.ClientTimeout(total=override_timeout or self._config.timeout)
+        async with self._session.get(file_url, timeout=timeout) as response:
+            if response.status != 200:
+                raise aiohttp.ClientResponseError(
+                    request_info=response.request_info, history=response.history, status=response.status
+                )
+
+            content = await response.read()
+            logger.debug(f"Fetched {len(content)} bytes from {file_url}")
+            return content
+
+    async def fetch_file_content(self, file_url: Optional[str], override_timeout: Optional[int] = None) -> Optional[bytes]:
+        """Fetch file content as bytes from URL"""
+        if not file_url:
+            return None
+
+        if not file_url.startswith(("http://", "https://")):
+            file_url = self._build_url(file_url)
+
+        async with self._semaphore:
+            try:
+                return await self._fetch_file_content_internal(file_url, override_timeout)
+            except Exception as e:
+                logger.error(f"Failed to fetch file content from {file_url} after retries: {e}")
+                return None
+
     async def fetch_api_info(self) -> Optional[Dict[str, Any]]:
         """Fetch API root endpoint information and parse provider details"""
         data = await self.fetch_json("/")

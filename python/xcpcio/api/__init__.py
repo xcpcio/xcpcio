@@ -1,5 +1,6 @@
 from .client import ApiClient
 from .models import (
+    FileData,
     HTTPValidationError,
     UploadBoardDataReq,
     UploadBoardDataResp,
@@ -8,6 +9,7 @@ from .models import (
 
 __all__ = [
     ApiClient,
+    FileData,
     HTTPValidationError,
     UploadBoardDataReq,
     UploadBoardDataResp,
