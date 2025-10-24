@@ -2,7 +2,7 @@ from typing import Any, Dict, Optional
 
 import aiohttp
 
-from .models import UploadBoardDataReq, UploadBoardDataResp
+from .models import FileData, UploadBoardDataReq, UploadBoardDataResp
 
 
 class ApiClient:
@@ -51,7 +51,7 @@ class ApiClient:
         config: Optional[str] = None,
         teams: Optional[str] = None,
         submissions: Optional[str] = None,
-        extra_files: Optional[Dict[str, str]] = None,
+        extra_files: Optional[Dict[str, FileData]] = None,
     ) -> UploadBoardDataResp:
         await self._ensure_session()
         await self._ensure_token()
