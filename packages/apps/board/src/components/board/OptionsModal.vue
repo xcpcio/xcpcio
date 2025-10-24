@@ -66,7 +66,7 @@ const teamsOptions = computed(() => {
   return res;
 });
 
-const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
+const routeQueryForBattleOfGiants = useQueryForBattleOfGiants();
 function persistBattleOfGiants() {
   if (rankOptions.value.battleOfGiants.persist) {
     routeQueryForBattleOfGiants.value = rankOptions.value.battleOfGiants.ToBase64();

@@ -7,7 +7,6 @@ import SearchInput from "@board/components/SearchInput.vue";
 import { TITLE_SUFFIX } from "@board/composables/constant";
 
 import { useFetch } from "@vueuse/core";
-import { useRouteQuery } from "@vueuse/router";
 import { createContestIndexList } from "@xcpcio/core";
 
 const { t, locale } = useI18n();
@@ -24,7 +23,7 @@ function genURL() {
 }
 const url = ref(genURL());
 
-const s = useRouteQuery<string | null>("s", "", { transform: String });
+const s = useQueryForSearch();
 const searchText = ref<string | null>(s.value);
 const searchInputRef = ref<InstanceType<typeof SearchInput> | null>(null);
 

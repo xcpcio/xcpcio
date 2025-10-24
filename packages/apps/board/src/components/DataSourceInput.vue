@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { getDataSourceUrl } from "@board/composables/query";
-
 const { t } = useI18n();
 
-const dataSourceUrl = getDataSourceUrl();
+const dataSourceUrl = useQueryForDataSourceUrl();
 const dataSourceUrlText = "Data Source URL";
 const dataSourceUrlInput = ref(dataSourceUrl.value);
 

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { useRouteQuery } from "@vueuse/router";
-
 const { t } = useI18n();
 const route = useRoute();
 
@@ -12,11 +10,7 @@ const contestTypes = [
 ];
 
 const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
-const component = useRouteQuery(
-  "component",
-  "board",
-  { transform: String },
-);
+const component = useQueryForComponent();
 const dataSource = window.DATA_SOURCE;
 </script>
 

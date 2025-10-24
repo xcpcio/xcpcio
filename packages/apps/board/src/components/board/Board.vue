@@ -3,12 +3,6 @@ import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
-import FilterModal from "@board/components/board/FilterModal.vue";
-
-import { TITLE_SUFFIX } from "@board/composables/constant";
-import { onKeyStroke, useDocumentVisibility, useIntervalFn, useNow } from "@vueuse/core";
-
-import { useRouteQuery } from "@vueuse/router";
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
 import { ContestState } from "@xcpcio/types";
 
@@ -34,10 +28,6 @@ const contestName = ref("");
 
 const enableAutoScroll = ref(false);
 
-function fixPath(path: string) {
-  return path.replaceAll("%2F", "/");
-}
-
 (() => {
   const filterOrganizations = useLocalStorageForFilterOrganizations();
   const filterTeams = useLocalStorageForFilterTeams();
@@ -52,7 +42,7 @@ function fixPath(path: string) {
 })();
 
 (() => {
-  const routeQueryForBattleOfGiants = useRouteQueryForBattleOfGiants();
+  const routeQueryForBattleOfGiants = useQueryForBattleOfGiants();
   if (
     routeQueryForBattleOfGiants.value !== null
     && routeQueryForBattleOfGiants.value !== undefined
@@ -70,17 +60,12 @@ function onChangeCurrentGroup(nextGroup: string) {
   rankOptions.value.setGroup(nextGroup);
 }
 (() => {
-  const currentGroupFromRouteQuery = useRouteQuery(
-    /* name */ "group",
-    /* defaultValue */ "all",
-    { transform: String },
-  );
-
+  const currentGroupFromRouteQuery = useQueryForGroup();
   currentGroup.value = currentGroupFromRouteQuery.value;
   rankOptions.value.setGroup(currentGroupFromRouteQuery.value);
 })();
 
-const replayStartTime = useRouteQuery("replay-start-time", 0, { transform: Number });
+const replayStartTime = useQueryForReplayStartTime();
 
 const isReBuildRank = ref(false);
 function reBuildRank(options = { force: false }) {
@@ -109,7 +94,7 @@ function updateContestName() {
   title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
 }
 
-const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? fixPath(route.path), now);
+const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
@@ -420,7 +405,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
         >
           <div class="max-w-[92%]">
             <img
-              :src="getImageSource(rank.contest.banner, `${DATA_HOST}${fixPath(route.path).slice(1)}`)"
+              :src="getImageSource(rank.contest.banner, `${DATA_HOST}${route.path.slice(1)}`)"
               class="w-screen"
               alt="banner"
             >
