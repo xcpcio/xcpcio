@@ -51,7 +51,7 @@ def main(
     verbose: bool,
 ):
     """
-    Upload CLICS Contest API data to Board Admin with polling support.
+    Upload CLICS Contest API data to XCPCIO with polling support.
 
     This tool fetches contest data from a CLICS API and uploads raw JSON data to the xcpcio board-admin service.
     It continuously polls every 5 seconds and uses SHA256 checksums to avoid uploading unchanged files.

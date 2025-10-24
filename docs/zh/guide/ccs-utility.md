@@ -13,6 +13,107 @@ pip install xcpcio
 pip install xcpcio -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
+## clics-uploader
+
+将 CLICS 比赛 API 数据上传到 XCPCIO，支持持续轮询。
+
+### 基本用法
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN
+```
+
+### 选项
+
+| 选项                 | 简写 | 描述                                               |
+| -------------------- | ---- | -------------------------------------------------- |
+| `--base-url`         |      | CLICS API 的基础 URL (必需)                        |
+| `--contest-id`       |      | 要上传的比赛 ID (必需)                             |
+| `--username`         | `-u` | CLICS API 的 HTTP 基本认证用户名 (必需)            |
+| `--password`         | `-p` | CLICS API 的 HTTP 基本认证密码 (必需)              |
+| `--xcpcio-api-url`   |      | XCPCIO API URL                                     |
+| `--xcpcio-api-token` |      | XCPCIO API token (必需)                            |
+| `--cache-dir`        |      | 校验和缓存文件目录 (默认: ~/.xcpcio/)              |
+| `--timeout`          |      | 请求超时时间（秒）(默认: 30)                       |
+| `--max-concurrent`   |      | CLICS API 的最大并发请求数 (默认: 10)              |
+| `--log-level`        |      | 日志级别: DEBUG, INFO, WARNING, ERROR (默认: INFO) |
+| `--verbose`          | `-v` | 启用详细日志 (等同于 --log-level DEBUG)            |
+
+### 工作原理
+
+上传器会:
+
+1. 从 CLICS API 获取比赛数据
+2. 计算所有数据的 SHA256 校验和
+3. 仅上传变更的数据到 XCPCIO
+4. 每 5 秒轮询一次更新
+5. 持续运行直到中断 (Ctrl+C)
+
+### 高级用法
+
+**自定义 XCPCIO API 端点:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-url https://your-instance.com/api \
+  --xcpcio-api-token YOUR_TOKEN
+```
+
+**自定义缓存目录:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN \
+  --cache-dir /path/to/cache
+```
+
+**启用详细日志用于调试:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN \
+  --verbose
+```
+
+### 集成工作流
+
+上传器专为实时比赛数据同步设计:
+
+```bash
+# 在实时比赛期间启动上传器
+clics-uploader \
+  --base-url https://contest.example.com/api \
+  --contest-id icpc2024 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN
+
+# 上传器将会:
+# - 持续监控 CLICS API
+# - 上传新的提交、判题结果和更新
+# - 使用校验和跳过未变更的数据
+# - 运行直到手动停止
+```
+
+这使您可以:
+
+- 在 XCPCIO 上实时更新排行榜
+- 高效使用带宽 (仅上传变更)
+- 实时比赛期间自动同步
+- 与 XCPCIO 托管服务集成
+
 ## clics-archiver
 
 将 CCS 比赛 API 数据归档为标准的比赛包格式。

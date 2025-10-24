@@ -239,7 +239,7 @@ class ContestUploader:
         if not api_files:
             return None
 
-        logger.info(f"Uploading {len(api_files)} API file(s) to Board Admin...")
+        logger.info(f"Uploading {len(api_files)} API file(s) to XCPCIO...")
         response = await self._api_client.upload_board_data(extra_files=api_files)
         logger.info(f"API upload successful! ({len(api_files)} files)")
 
