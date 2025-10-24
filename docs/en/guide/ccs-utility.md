@@ -13,6 +13,107 @@ pip install xcpcio
 pip install xcpcio -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
+## clics-uploader
+
+Upload CLICS Contest API data to XCPCIO with continuous polling support.
+
+### Basic Usage
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN
+```
+
+### Options
+
+| Option               | Short | Description                                              |
+| -------------------- | ----- | -------------------------------------------------------- |
+| `--base-url`         |       | Base URL of the CLICS API (required)                     |
+| `--contest-id`       |       | Contest ID to upload (required)                          |
+| `--username`         | `-u`  | HTTP Basic Auth username for CLICS API (required)        |
+| `--password`         | `-p`  | HTTP Basic Auth password for CLICS API (required)        |
+| `--xcpcio-api-url`   |       | XCPCIO API URL                                           |
+| `--xcpcio-api-token` |       | XCPCIO API token (required)                              |
+| `--cache-dir`        |       | Directory for checksum cache files (default: ~/.xcpcio/) |
+| `--timeout`          |       | Request timeout in seconds (default: 30)                 |
+| `--max-concurrent`   |       | Max concurrent requests for CLICS API (default: 10)      |
+| `--log-level`        |       | Log level: DEBUG, INFO, WARNING, ERROR (default: INFO)   |
+| `--verbose`          | `-v`  | Enable verbose logging (same as --log-level DEBUG)       |
+
+### How It Works
+
+The uploader:
+
+1. Fetches contest data from the CLICS API
+2. Computes SHA256 checksums for all data
+3. Uploads only changed data to XCPCIO
+4. Polls every 5 seconds for updates
+5. Continues until interrupted (Ctrl+C)
+
+### Advanced Usage
+
+**Custom XCPCIO API endpoint:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-url https://your-instance.com/api \
+  --xcpcio-api-token YOUR_TOKEN
+```
+
+**Custom cache directory:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN \
+  --cache-dir /path/to/cache
+```
+
+**Verbose logging for debugging:**
+
+```bash
+clics-uploader \
+  --base-url https://domjudge/api \
+  --contest-id contest123 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN \
+  --verbose
+```
+
+### Integration Workflow
+
+The uploader is designed for real-time contest data synchronization:
+
+```bash
+# Start the uploader during a live contest
+clics-uploader \
+  --base-url https://contest.example.com/api \
+  --contest-id icpc2024 \
+  -u admin -p secret \
+  --xcpcio-api-token YOUR_TOKEN
+
+# The uploader will:
+# - Continuously monitor the CLICS API
+# - Upload new submissions, judgements, and updates
+# - Skip unchanged data using checksums
+# - Run until manually stopped
+```
+
+This enables:
+
+- Real-time leaderboard updates on XCPCIO
+- Efficient bandwidth usage (only uploads changes)
+- Automatic synchronization during live contests
+- Integration with XCPCIO hosting services
+
 ## clics-archiver
 
 Archive CCS Contest API data to the standard contest package format.
