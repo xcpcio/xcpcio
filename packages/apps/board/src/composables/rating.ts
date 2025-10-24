@@ -1,4 +1,5 @@
 import type { RatingUser } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import { RatingLevelToString, RatingUtility } from "@xcpcio/core";
 
 interface RatingGraphData {
@@ -27,6 +28,9 @@ export function getRatingGraphOptions(
 ) {
   const data: RatingGraphData[] = [];
 
+  const { locale } = useI18n();
+  const lang = locale.value as unknown as Lang;
+
   {
     let oldRating = 0;
     for (const h of ratingUser.ratingHistories) {
@@ -35,10 +39,10 @@ export function getRatingGraphOptions(
       d.y = h.rating;
       d.diffRating = getDiffRating(oldRating, h.rating);
       d.rank = h.rank;
-      d.contestName = h.contestName;
+      d.contestName = h.contestName.getOrDefault(lang);
       d.link = `/board/${h.contestID}`;
       d.contestTime = h.contestTime.format("YYYY-MM-DD HH:mm:ss");
-      d.teamName = h.teamName;
+      d.teamName = h.teamName.getOrDefault(lang);
       d.ratingTitle = RatingLevelToString[RatingUtility.getRatingLevel(h.rating)];
       data.push(d);
 
