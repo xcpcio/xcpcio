@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import { getDataSourceUrl } from "@board/composables/query";
-
-const dataSourceUrl = getDataSourceUrl();
+const dataSourceUrl = useQueryForDataSourceUrl();
 </script>
 
 <template>

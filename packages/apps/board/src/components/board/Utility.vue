@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
-import { useRouteQuery } from "@vueuse/router";
 
 const props = defineProps<{
   rank: Rank;
@@ -10,7 +9,7 @@ const { t } = useI18n();
 
 const route = useRoute();
 const router = useRouter();
-const component = useRouteQuery("component", "board", { transform: String });
+const component = useQueryForComponent();
 
 function goResolver() {
   if (window.DATA_SOURCE) {

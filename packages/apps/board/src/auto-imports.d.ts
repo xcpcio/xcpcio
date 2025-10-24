@@ -53,7 +53,6 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const getCurrentWatcher: typeof import('vue')['getCurrentWatcher']
-  const getDataSourceUrl: typeof import('./composables/query')['getDataSourceUrl']
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']
   const getMedalColor: typeof import('./composables/color')['getMedalColor']
@@ -260,11 +259,18 @@ declare global {
   const usePreferredReducedTransparency: typeof import('@vueuse/core')['usePreferredReducedTransparency']
   const usePrevious: typeof import('@vueuse/core')['usePrevious']
   const useQueryBoardData: typeof import('./composables/useQueryBoardData')['useQueryBoardData']
+  const useQueryForBattleOfGiants: typeof import('./composables/query')['useQueryForBattleOfGiants']
+  const useQueryForComponent: typeof import('./composables/query')['useQueryForComponent']
+  const useQueryForDataSourceUrl: typeof import('./composables/query')['useQueryForDataSourceUrl']
+  const useQueryForGroup: typeof import('./composables/query')['useQueryForGroup']
+  const useQueryForProgressRatio: typeof import('./composables/query')['useQueryForProgressRatio']
+  const useQueryForReplayStartTime: typeof import('./composables/query')['useQueryForReplayStartTime']
+  const useQueryForSearch: typeof import('./composables/query')['useQueryForSearch']
   const useRafFn: typeof import('@vueuse/core')['useRafFn']
   const useRefHistory: typeof import('@vueuse/core')['useRefHistory']
   const useResizeObserver: typeof import('@vueuse/core')['useResizeObserver']
   const useRoute: typeof import('vue-router')['useRoute']
-  const useRouteQueryForBattleOfGiants: typeof import('./composables/query')['useRouteQueryForBattleOfGiants']
+  const useRouteQueryWithoutParam: typeof import('./composables/useRouteQueryWithoutParam')['useRouteQueryWithoutParam']
   const useRouter: typeof import('vue-router')['useRouter']
   const useSSRWidth: typeof import('@vueuse/core')['useSSRWidth']
   const useScreenOrientation: typeof import('@vueuse/core')['useScreenOrientation']
@@ -353,6 +359,9 @@ declare global {
   // @ts-ignore
   export type { BoardData } from './composables/useQueryBoardData'
   import('./composables/useQueryBoardData')
+  // @ts-ignore
+  export type { RouteQueryValueRaw, RouteHashValueRaw, ReactiveRouteOptions, ReactiveRouteOptionsWithTransform } from './composables/useRouteQueryWithoutParam'
+  import('./composables/useRouteQueryWithoutParam')
 }
 
 // for vue template auto import
@@ -407,7 +416,6 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
-    readonly getDataSourceUrl: UnwrapRef<typeof import('./composables/query')['getDataSourceUrl']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
     readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
@@ -614,11 +622,18 @@ declare module 'vue' {
     readonly usePreferredReducedTransparency: UnwrapRef<typeof import('@vueuse/core')['usePreferredReducedTransparency']>
     readonly usePrevious: UnwrapRef<typeof import('@vueuse/core')['usePrevious']>
     readonly useQueryBoardData: UnwrapRef<typeof import('./composables/useQueryBoardData')['useQueryBoardData']>
+    readonly useQueryForBattleOfGiants: UnwrapRef<typeof import('./composables/query')['useQueryForBattleOfGiants']>
+    readonly useQueryForComponent: UnwrapRef<typeof import('./composables/query')['useQueryForComponent']>
+    readonly useQueryForDataSourceUrl: UnwrapRef<typeof import('./composables/query')['useQueryForDataSourceUrl']>
+    readonly useQueryForGroup: UnwrapRef<typeof import('./composables/query')['useQueryForGroup']>
+    readonly useQueryForProgressRatio: UnwrapRef<typeof import('./composables/query')['useQueryForProgressRatio']>
+    readonly useQueryForReplayStartTime: UnwrapRef<typeof import('./composables/query')['useQueryForReplayStartTime']>
+    readonly useQueryForSearch: UnwrapRef<typeof import('./composables/query')['useQueryForSearch']>
     readonly useRafFn: UnwrapRef<typeof import('@vueuse/core')['useRafFn']>
     readonly useRefHistory: UnwrapRef<typeof import('@vueuse/core')['useRefHistory']>
     readonly useResizeObserver: UnwrapRef<typeof import('@vueuse/core')['useResizeObserver']>
     readonly useRoute: UnwrapRef<typeof import('vue-router')['useRoute']>
-    readonly useRouteQueryForBattleOfGiants: UnwrapRef<typeof import('./composables/query')['useRouteQueryForBattleOfGiants']>
+    readonly useRouteQueryWithoutParam: UnwrapRef<typeof import('./composables/useRouteQueryWithoutParam')['useRouteQueryWithoutParam']>
     readonly useRouter: UnwrapRef<typeof import('vue-router')['useRouter']>
     readonly useSSRWidth: UnwrapRef<typeof import('@vueuse/core')['useSSRWidth']>
     readonly useScreenOrientation: UnwrapRef<typeof import('@vueuse/core')['useScreenOrientation']>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { I18nText } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
-import { useRouteQuery } from "@vueuse/router";
 
 export interface Item {
   title: string | I18nText;
@@ -33,7 +32,7 @@ const defaultType = computed(() => {
   return props.items?.[0].keyword;
 });
 
-const currentItemFromRouteQuery = useRouteQuery(
+const currentItemFromRouteQuery = useRouteQueryWithoutParam(
   props.queryParamName,
   defaultType.value,
   { transform: String },

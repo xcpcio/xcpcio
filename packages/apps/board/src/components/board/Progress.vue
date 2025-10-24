@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Rank, RankOptions } from "@xcpcio/core";
-import { useRouteQuery } from "@vueuse/router";
 import { createDayJS, getTimeDiff } from "@xcpcio/core";
 import { ContestState } from "@xcpcio/types";
 
@@ -44,7 +43,7 @@ const isDragging = ref(false);
 const dragWidth = ref(0);
 const barWidth = ref(props.width);
 const barWidthPX = ref(0);
-const progressRatio = useRouteQuery("progress-ratio", -1, { transform: Number });
+const progressRatio = useQueryForProgressRatio();
 
 const scroll = ref<HTMLElement>(null as unknown as HTMLElement);
 const mask = ref<HTMLElement>(null as unknown as HTMLElement);
