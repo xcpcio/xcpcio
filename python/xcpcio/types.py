@@ -219,7 +219,7 @@ class Contest(BaseModel):
 
     options: Optional[ContestOptions] = None
 
-    unfrozen_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
+    thaw_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
 
     def append_balloon_color(self, color: BalloonColor):
         if self.balloon_color is None:
