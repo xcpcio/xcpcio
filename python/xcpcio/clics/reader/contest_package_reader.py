@@ -38,7 +38,7 @@ class ContestPackageReader(BaseContestReader):
                 return json.load(f)
         except FileNotFoundError:
             if default_value is not None:
-                logger.warning("File not found, will return default value. [filepath={}]", filepath)
+                logger.warning(f"File not found, will return default value. [full_path={full_path}]")
                 return default_value
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
@@ -56,7 +56,7 @@ class ContestPackageReader(BaseContestReader):
             return data
         except FileNotFoundError:
             if default_value is not None:
-                logger.warning("File not found, will load default value. [filepath={}]", filepath)
+                logger.warning(f"File not found, will load default value. [full_path={full_path}]")
                 return default_value
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
@@ -111,7 +111,7 @@ class ContestPackageReader(BaseContestReader):
         self.event_feed = self._load_ndjson_file("event-feed.ndjson", default_value=[])
         self.event_feed_tokens = [event["token"] for event in self.event_feed]
 
-        self.contest_id = self.contest["id"]
+        self.contest_id = self.contest.get("id", "")
 
     def _get_file_attr(self, expected_href: str, base_path: Path, files: List[Dict]) -> FileAttr:
         for file in files:
