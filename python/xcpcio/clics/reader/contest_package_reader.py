@@ -27,17 +27,26 @@ class ContestPackageReader(BaseContestReader):
             res[item[id_name]].append(item)
         return res
 
-    def _load_json_file(self, filepath: str) -> Union[Dict[str, Any], List[Any]]:
+    def _load_json_file(
+        self,
+        filepath: str,
+        default_value: Optional[Union[Dict[str, Any], List[Any]]] = None,
+    ) -> Union[Dict[str, Any], List[Any]]:
         full_path = self.contest_package_dir / filepath
         try:
             with open(full_path, "r", encoding="utf-8") as f:
                 return json.load(f)
         except FileNotFoundError:
+            if default_value is not None:
+                logger.warning("File not found, will return default value. [filepath={}]", filepath)
+                return default_value
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
             raise HTTPException(status_code=500, detail=f"Invalid JSON in file {filepath}: {e}")
 
-    def _load_ndjson_file(self, filepath: str) -> List[Dict[str, Any]]:
+    def _load_ndjson_file(
+        self, filepath: str, default_value: Optional[List[Dict[str, Any]]] = None
+    ) -> List[Dict[str, Any]]:
         full_path = self.contest_package_dir / filepath
         try:
             data = list()
@@ -46,57 +55,60 @@ class ContestPackageReader(BaseContestReader):
                     data.append(json.loads(line))
             return data
         except FileNotFoundError:
+            if default_value is not None:
+                logger.warning("File not found, will load default value. [filepath={}]", filepath)
+                return default_value
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
             raise HTTPException(status_code=500, detail=f"Invalid JSON in file {filepath}: {e}")
 
     def _load_indexes(self) -> None:
-        self.access = self._load_json_file("access.json")
+        self.access = self._load_json_file("access.json", default_value={})
 
-        self.accounts = self._load_json_file("accounts.json")
+        self.accounts = self._load_json_file("accounts.json", default_value=[])
         self.accounts_by_id = {account["id"]: account for account in self.accounts}
 
-        self.api_info = self._load_json_file("api.json")
+        self.api_info = self._load_json_file("api.json", default_value={})
 
-        self.awards = self._load_json_file("awards.json")
+        self.awards = self._load_json_file("awards.json", default_value=[])
         self.awards_by_id = {award["id"]: award for award in self.awards}
 
-        self.clarifications = self._load_json_file("clarifications.json")
+        self.clarifications = self._load_json_file("clarifications.json", default_value=[])
         self.clarifications_by_id = {clarification["id"]: clarification for clarification in self.clarifications}
 
-        self.contest = self._load_json_file("contest.json")
-        self.contest_state = self._load_json_file("state.json")
+        self.contest = self._load_json_file("contest.json", default_value={})
+        self.contest_state = self._load_json_file("state.json", default_value={})
 
-        self.groups = self._load_json_file("groups.json")
+        self.groups = self._load_json_file("groups.json", default_value=[])
         self.groups_by_id = {group["id"]: group for group in self.groups}
 
-        self.judgement_types = self._load_json_file("judgement-types.json")
+        self.judgement_types = self._load_json_file("judgement-types.json", default_value=[])
         self.judgement_types_by_id = {judgement_type["id"]: judgement_type for judgement_type in self.judgement_types}
 
-        self.judgements = self._load_json_file("judgements.json")
+        self.judgements = self._load_json_file("judgements.json", default_value=[])
         self.judgements_by_id = {judgement["id"]: judgement for judgement in self.judgements}
         self.judgements_by_submission_id = self._create_index_by_id(self.judgements, "submission_id")
 
-        self.languages = self._load_json_file("languages.json")
+        self.languages = self._load_json_file("languages.json", default_value=[])
         self.languages_by_id = {language["id"]: language for language in self.languages}
 
-        self.organizations = self._load_json_file("organizations.json")
+        self.organizations = self._load_json_file("organizations.json", default_value=[])
         self.organizations_by_id = {org["id"]: org for org in self.organizations}
 
-        self.problems = self._load_json_file("problems.json")
+        self.problems = self._load_json_file("problems.json", default_value=[])
         self.problems_by_id = {problem["id"]: problem for problem in self.problems}
 
-        self.runs = self._load_json_file("runs.json")
+        self.runs = self._load_json_file("runs.json", default_value=[])
         self.runs_by_id = {run["id"]: run for run in self.runs}
         self.runs_by_judgement_id = self._create_index_by_id(self.runs, "judgement_id")
 
-        self.submissions = self._load_json_file("submissions.json")
+        self.submissions = self._load_json_file("submissions.json", default_value=[])
         self.submissions_by_id = {submission["id"]: submission for submission in self.submissions}
 
-        self.teams = self._load_json_file("teams.json")
+        self.teams = self._load_json_file("teams.json", default_value=[])
         self.teams_by_id = {team["id"]: team for team in self.teams}
 
-        self.event_feed = self._load_ndjson_file("event-feed.ndjson")
+        self.event_feed = self._load_ndjson_file("event-feed.ndjson", default_value=[])
         self.event_feed_tokens = [event["token"] for event in self.event_feed]
 
         self.contest_id = self.contest["id"]
