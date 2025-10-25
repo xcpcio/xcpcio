@@ -13,7 +13,7 @@ class TestContest:
         assert contest.start_time == 0
         assert contest.end_time == 0
         assert contest.frozen_time == 60 * 60  # 1 hour
-        assert contest.unfrozen_time == 0x3F3F3F3F3F3F3F3F
+        assert contest.thaw_time == 0x3F3F3F3F3F3F3F3F
         assert contest.penalty == 20 * 60  # 20 minutes
         assert contest.problem_id is None
         assert contest.organization == "School"
