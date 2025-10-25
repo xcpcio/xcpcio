@@ -38,7 +38,7 @@ class ContestPackageReader(BaseContestReader):
                 return json.load(f)
         except FileNotFoundError:
             if default_value is not None:
-                logger.warning(f"File not found, will return default value. [full_path={full_path}]")
+                logger.warning(f"File not found, will load default value. [full_path={full_path}]")
                 return default_value
             raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
         except json.JSONDecodeError as e:
