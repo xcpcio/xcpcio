@@ -193,6 +193,24 @@ class ContestUploader:
                 else:
                     logger.warning(f"No validation result for {file_key}, will retry on next poll")
 
+    async def _fetch_api_data(
+        self,
+        api_files: Dict[str, FileData],
+        changed_api_files: list[str],
+        unchanged_files: list[str],
+    ):
+        api_data = await self._clics_client.fetch_api_info()
+        if api_data:
+            filename = "api.json"
+            content = json.dumps(api_data, ensure_ascii=False)
+
+            if self._cache.has_changed(filename, content):
+                checksum = self._cache.calculate_checksum(content)
+                api_files[filename] = FileData(content=content, checksum=checksum)
+                changed_api_files.append(filename)
+            else:
+                unchanged_files.append(filename)
+
     async def _fetch_contest_data(
         self,
     ) -> tuple[Dict[str, FileData], list[str], list[str]]:
@@ -248,9 +266,15 @@ class ContestUploader:
         return response
 
     async def fetch_and_upload(self) -> Optional[Dict]:
-        await self._clics_client.fetch_api_info()
+        api_files, changed_api_files, unchanged_files = ({}, [], [])
 
-        api_files, changed_api_files, unchanged_files = await self._fetch_contest_data()
+        await self._fetch_api_data(api_files, changed_api_files, unchanged_files)
+
+        contest_files, contest_changed, contest_unchanged = await self._fetch_contest_data()
+        api_files.update(contest_files)
+        changed_api_files.extend(contest_changed)
+        unchanged_files.extend(contest_unchanged)
+
         await self._fetch_endpoint_data(api_files, changed_api_files, unchanged_files)
 
         if changed_api_files:
