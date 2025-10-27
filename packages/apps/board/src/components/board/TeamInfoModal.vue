@@ -10,8 +10,12 @@ const props = defineProps<{
   rank: Rank;
   team: Team;
 }>();
-
 const emit = defineEmits(["update:isHidden"]);
+const TYPE_OVERVIEW = "overview";
+const TYPE_SUBMISSIONS = "submissions";
+const TYPE_STATISTICS = "statistics";
+const TYPE_AWARDS = "awards";
+const types = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -25,7 +29,7 @@ const isHidden = computed({
   },
 });
 
-const currentType = ref("info");
+const currentType = ref(TYPE_OVERVIEW);
 
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
@@ -41,12 +45,6 @@ const headerTitle = computed(() => {
 
   return res;
 });
-
-const TYPE_INFO = "info";
-const TYPE_SUBMISSIONS = "submissions";
-const TYPE_STATISTICS = "statistics";
-const TYPE_AWARDS = "awards";
-const types = [TYPE_INFO, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 </script>
 
 <template>
@@ -114,7 +112,7 @@ const types = [TYPE_INFO, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
       flex items-center justify-center
     >
       <div
-        v-if="currentType === TYPE_INFO"
+        v-if="currentType === TYPE_OVERVIEW"
         w-full
       >
         <TeamInfo
