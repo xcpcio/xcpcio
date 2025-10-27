@@ -61,7 +61,7 @@ declare module 'vue' {
     TablePagination: typeof import('./components/table/TablePagination.vue')['default']
     TeamAwards: typeof import('./components/board/TeamAwards.vue')['default']
     TeamInfo: typeof import('./components/board/TeamInfo.vue')['default']
-    TeamInfoModal: typeof import('./components/board/TeamInfoModal.vue')['default']
+    TeamModal: typeof import('./components/board/TeamModal.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCheckbox: typeof import('./components/common/TheCheckbox.vue')['default']
