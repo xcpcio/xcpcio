@@ -10,7 +10,7 @@ export function useQueryForSearch() {
 
 export function useQueryForDataSourceUrl() {
   return useRouteQueryWithoutParam(
-    "data-source-url",
+    "data-source",
     "",
     { transform: String },
   );
