@@ -14,9 +14,9 @@ const props = defineProps<{
 const el = ref(null);
 const isVisible = useElementVisibility(el);
 
-const hiddenTeamInfoModal = ref(true);
-function onClickTeamInfoModal() {
-  hiddenTeamInfoModal.value = false;
+const hiddenTeamModal = ref(true);
+function onClickTeamModal() {
+  hiddenTeamModal.value = false;
 }
 
 const { locale } = useI18n();
@@ -129,7 +129,7 @@ function isRenderByVisible() {
     >
       <div
         cursor-pointer
-        @click="onClickTeamInfoModal"
+        @click="onClickTeamModal"
       >
         <span>{{ teamName }}</span>
         <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
@@ -137,9 +137,9 @@ function isRenderByVisible() {
       </div>
 
       <div>
-        <TeamInfoModal
-          v-if="!hiddenTeamInfoModal"
-          v-model:is-hidden="hiddenTeamInfoModal"
+        <TeamModal
+          v-if="!hiddenTeamModal"
+          v-model:is-hidden="hiddenTeamModal"
           :rank="rank"
           :team="team"
         />
