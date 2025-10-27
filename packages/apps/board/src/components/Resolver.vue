@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 import { onKeyUp } from "@vueuse/core";
 import { createContest, createSubmissions, createTeams, ResolverVue } from "@xcpcio/core";
 import { gsap } from "gsap";
@@ -13,7 +13,8 @@ const props = defineProps<{
 gsap.registerPlugin(ScrollToPlugin);
 
 const title = useTitle(RESOLVER_TITLE_SUFFIX);
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const firstLoaded = ref(false);
 const startFirstScroll = ref(false);
@@ -37,7 +38,7 @@ watch(data, async () => {
   }
 
   contest.value = createContest(data.value?.contest as IContest);
-  title.value = `${contest.value.name} | ${RESOLVER_TITLE_SUFFIX}`;
+  title.value = `${contest.value.name.getOrDefault(lang.value)} | ${RESOLVER_TITLE_SUFFIX}`;
 
   teams.value = createTeams(data.value?.teams as ITeams);
   submissions.value = createSubmissions(data.value?.submissions as ISubmissions, contest.value);

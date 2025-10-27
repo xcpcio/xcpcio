@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Contest } from "@xcpcio/core";
-import type { Contest as IContest } from "@xcpcio/types";
+import type { Contest as IContest, Lang } from "@xcpcio/types";
 import { createContest } from "@xcpcio/core";
 import { ContestState } from "@xcpcio/types";
 
@@ -8,7 +8,8 @@ const props = defineProps<{
   dataSourceUrl: string;
 }>();
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 const title = useTitle(COUNTDOWN_TITLE_SUFFIX);
 
 const now = useNow();
@@ -22,7 +23,7 @@ watch(data, async () => {
   }
 
   contest.value = createContest(data.value?.contest as IContest);
-  title.value = `${contest.value.name} | ${COUNTDOWN_TITLE_SUFFIX}`;
+  title.value = `${contest.value.name.getOrDefault(lang.value)} | ${COUNTDOWN_TITLE_SUFFIX}`;
 
   firstLoaded.value = true;
 }, { immediate: true });
