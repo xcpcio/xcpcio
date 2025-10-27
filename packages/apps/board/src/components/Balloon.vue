@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
-import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams } from "@xcpcio/types";
+import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 import { BALLOON_TITLE_SUFFIX } from "@board/composables/constant";
 
 import { Balloon, createContest, createSubmissions, createTeams, Rank } from "@xcpcio/core";
@@ -10,7 +10,8 @@ const props = defineProps<{
 }>();
 
 const title = useTitle(BALLOON_TITLE_SUFFIX);
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const firstLoaded = ref(false);
 const contestData = ref({} as Contest);
@@ -32,7 +33,7 @@ watch(data, async () => {
   }
 
   contestData.value = createContest(data.value?.contest as IContest);
-  title.value = `${contestData.value.name} | ${BALLOON_TITLE_SUFFIX}`;
+  title.value = `${contestData.value.name.getOrDefault(lang.value)} | ${BALLOON_TITLE_SUFFIX}`;
 
   teamsData.value = createTeams(data.value?.teams as ITeams);
   submissionsData.value = createSubmissions(data.value?.submissions as ISubmissions, contestData.value);
