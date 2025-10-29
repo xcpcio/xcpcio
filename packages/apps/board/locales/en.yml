@@ -84,3 +84,10 @@ team_info:
   members: Members
   coaches: Coaches
   location: Location
+  award: Award
+
+medal:
+  gold: Gold Medal
+  silver: Silver Medal
+  bronze: Bronze Medal
+  honorable: Honorable Medal
