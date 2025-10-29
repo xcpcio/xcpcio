@@ -59,7 +59,6 @@ declare module 'vue' {
     SubmissionsTableModal: typeof import('./components/board/SubmissionsTableModal.vue')['default']
     SubmitHeatMap: typeof import('./components/board/SubmitHeatMap.vue')['default']
     TablePagination: typeof import('./components/table/TablePagination.vue')['default']
-    TeamAwards: typeof import('./components/board/TeamAwards.vue')['default']
     TeamModal: typeof import('./components/board/TeamModal.vue')['default']
     TeamOverview: typeof import('./components/board/TeamOverview.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']

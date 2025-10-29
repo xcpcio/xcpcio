@@ -32,7 +32,6 @@ type_menu:
   resolver: Resolver
   filter: Filter
   options: Options
-  awards: Awards
   utility: Utility
   countdown: Countdown
 

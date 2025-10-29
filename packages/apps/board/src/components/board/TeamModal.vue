@@ -14,8 +14,7 @@ const emit = defineEmits(["update:isHidden"]);
 const TYPE_OVERVIEW = "overview";
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
-const TYPE_AWARDS = "awards";
-const types = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
+const types = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS];
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -141,16 +140,6 @@ const headerTitle = computed(() => {
       >
         <Chart
           :options="getTeamPlaceChart(rank, team)"
-        />
-      </div>
-
-      <div
-        v-if="currentType === TYPE_AWARDS"
-        w-full
-      >
-        <TeamAwards
-          :team="team"
-          :rank="rank"
         />
       </div>
     </div>
