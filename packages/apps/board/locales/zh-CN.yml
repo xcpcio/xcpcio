@@ -84,3 +84,10 @@ team_info:
   members: 队员
   coaches: 教练
   location: 位置
+  award: 奖项
+
+medal:
+  gold: 金奖
+  silver: 银奖
+  bronze: 铜奖
+  honorable: 优胜奖

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, Team } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
+import { MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
@@ -56,6 +57,37 @@ const groupNames = computed(() => {
     .join(", ");
 });
 
+const medal = computed(() => {
+  if (team.value.awards.includes(MedalType.GOLD)) {
+    return {
+      emoji: "i-twemoji-1st-place-medal",
+      text: t("medal.gold"),
+    };
+  }
+
+  if (team.value.awards.includes(MedalType.SILVER)) {
+    return {
+      emoji: "i-twemoji-2nd-place-medal",
+      text: t("medal.silver"),
+    };
+  }
+
+  if (team.value.awards.includes(MedalType.BRONZE)) {
+    return {
+      emoji: "i-twemoji-3rd-place-medal",
+      text: t("medal.bronze"),
+    };
+  }
+
+  if (team.value.awards.includes(MedalType.HONORABLE)) {
+    return {
+      text: t("medal.honorable"),
+    };
+  }
+
+  return null;
+});
+
 const tableRows = computed(() => {
   const rows = [
     { label: t("team_info.rank"), value: team.value.rank, show: true },
@@ -65,6 +97,7 @@ const tableRows = computed(() => {
     { label: t("team_info.members"), value: team.value.membersToString(lang.value), show: team.value.members.length > 0 },
     { label: t("team_info.coaches"), value: team.value.coachesToString(lang.value), show: team.value.coaches.length > 0 },
     { label: t("team_info.location"), value: team.value.location, show: !!team.value.location },
+    { label: t("team_info.award"), value: medal.value?.text, emoji: medal.value?.emoji, show: !!medal.value },
   ];
   return rows.filter(row => row.show);
 });
@@ -90,6 +123,11 @@ const tableRows = computed(() => {
               {{ row.label }}
             </td>
             <td px-4 py-2>
+              <span
+                v-if="!!row.emoji"
+                :class="row.emoji"
+                text-xl
+              />
               {{ row.value }}
             </td>
           </tr>

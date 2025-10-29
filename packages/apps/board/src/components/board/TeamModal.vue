@@ -115,7 +115,7 @@ const headerTitle = computed(() => {
         v-if="currentType === TYPE_OVERVIEW"
         w-full
       >
-        <TeamInfo
+        <TeamOverview
           :rank="rank"
           :team="team"
         />
