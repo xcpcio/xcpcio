@@ -32,7 +32,6 @@ type_menu:
   resolver: 滚榜
   filter: 筛选
   options: 选项
-  awards: 奖项
   utility: 工具
   countdown: 倒计时
 
