@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD024 -->
 
-# CCS Utility
+# Clics Utility
 
-XCPCIO 提供了两个强大的 Python CLI 工具，用于处理 CCS（Contest Control System）比赛数据。
+XCPCIO 提供了 3 个强大的 Python CLI 工具，用于处理 CCS（Contest Control System）比赛数据。
 
 ## 安装
 
