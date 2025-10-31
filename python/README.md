@@ -49,7 +49,7 @@ uv run pytest tests/test_types.py
 
 For detailed documentation, visit:
 
-- [CCS Utility Guide](https://xcpcio.com/guide/ccs-utility)
+- [Clics Utility Guide](https://xcpcio.com/guide/clics-utility)
 
 ## License
 

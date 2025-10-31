@@ -1,8 +1,8 @@
 <!-- markdownlint-disable MD024 -->
 
-# CCS Utility
+# Clics Utility
 
-XCPCIO provides two powerful Python CLI tools for working with CCS (Contest Control System) contest data.
+XCPCIO provides 3 powerful Python CLI tools for working with CCS (Contest Control System) contest data.
 
 ## Installation
 
