@@ -48,7 +48,6 @@ export default defineConfig({
     ["meta", { property: "og:image:height", content: "630" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:image", content: ogImage }],
-
     [
       "script",
       {},
@@ -71,6 +70,24 @@ export default defineConfig({
         height="0" width="0"
         style="display: none; visibility: hidden"
       ></iframe>`,
+    ],
+    [
+      "script",
+      {},
+      `
+      try {
+        var umamiJSUrl = "https://umami.h.dup4.cn/script.js";
+        var umamiWebsiteId = "7a1a32ad-1684-4613-a7a4-589ba62f9b57";
+        (function () {
+          var script = document.createElement("script");
+          script.src = umamiJSUrl;
+          script.defer = true;
+          script.setAttribute("data-website-id", umamiWebsiteId);
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(script, s);
+        })();
+      } catch (e) {}
+      `,
     ],
   ],
 
@@ -101,7 +118,6 @@ export default defineConfig({
   },
 
   // TODO: add text-autospace
-  // TODO: add umami script
 
   locales: {
     root: { label: "English", lang: "en-US", dir: "ltr" },
