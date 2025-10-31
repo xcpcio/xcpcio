@@ -62,6 +62,10 @@ export default defineAdditionalConfig({
       text: "Edit this page on GitHub",
     },
 
+    socialLinks: [
+      { icon: "github", link: "https://github.com/xcpcio/xcpcio" },
+    ],
+
     footer: {
       message: "Released under the MIT License.",
       copyright: "Copyright © 2020-PRESENT <a href='https://github.com/Dup4' target='_blank'>Dup4</a> <a href='https://beian.miit.gov.cn/' target='_blank'>浙ICP备20011170号</a>",
