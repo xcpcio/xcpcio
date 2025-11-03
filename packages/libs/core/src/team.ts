@@ -284,8 +284,13 @@ export function createTeam(teamJSON: ITeam): Team {
   t.group = _.cloneDeep(teamJSON.group ?? []);
   t.tag = _.cloneDeep(teamJSON.tag ?? []);
 
-  t.coaches = createPersons(teamJSON.coach);
   t.members = createPersons(teamJSON.members);
+
+  if (teamJSON.coach) {
+    t.coaches = createPersons(teamJSON.coach);
+  } else {
+    t.coaches = createPersons(teamJSON.coaches);
+  }
 
   if (Boolean(teamJSON.official) === true) {
     t.group.push("official");
