@@ -91,6 +91,9 @@ const headerTitle = computed(() => {
                     <div>
                       TeamID: {{ team.id }}
                     </div>
+                    <div v-if="team.icpcID && team.icpcID.length > 0">
+                      ICPC ID: {{ team.icpcID }}
+                    </div>
                   </div>
                 </template>
               </Tooltip>
