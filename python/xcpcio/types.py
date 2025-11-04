@@ -63,6 +63,7 @@ MedalPreset = Literal["ccpc", "icpc"]
 BannerMode = Literal["ONLY_BANNER", "ALL"]
 Lang = Literal["en", "zh-CN"]
 DateTimeISO8601String = str
+UrlString = str
 
 
 class I18NStringSet(BaseModel):
@@ -85,6 +86,21 @@ class Image(BaseModel):
 
     width: Optional[int] = None
     height: Optional[int] = None
+
+
+class DataItem(BaseModel):
+    url: UrlString
+    version: Optional[str] = None
+
+
+class Organization(BaseModel):
+    id: str
+    name: Text
+
+    logo: Optional[Image] = None
+
+
+Organizations = List[Organization]
 
 
 class BalloonColor(BaseModel):
@@ -146,6 +162,8 @@ class Team(BaseModel):
     name: Text = ""
 
     organization: str = ""
+    organization_id: Optional[str] = None
+
     group: List[str] = Field(default_factory=list)
     tag: Optional[List[str]] = None
 
@@ -218,6 +236,8 @@ class Contest(BaseModel):
     version: Optional[str] = None
 
     options: Optional[ContestOptions] = None
+
+    organizations: Optional[Union[DataItem, Organizations]] = None
 
     thaw_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
 

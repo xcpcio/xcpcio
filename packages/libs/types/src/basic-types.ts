@@ -95,6 +95,7 @@ export type Contributor = string;
 export type Base64 = string;
 
 export type LinkString = string;
+export type UrlString = string;
 
 export type ImagePreset = "ICPC" | "CCPC" | "HUNAN_CPC";
 
@@ -123,3 +124,17 @@ export interface StatusTimeDisplay {
 }
 
 export type TimeUnit = "second" | "millisecond" | "microsecond" | "nanosecond";
+
+export interface DataItem {
+  url: UrlString;
+  version?: string;
+}
+
+export interface Organization {
+  id: string;
+  name: Text;
+
+  logo?: Image;
+}
+
+export type Organizations = Array<Organization>;

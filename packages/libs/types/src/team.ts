@@ -9,6 +9,8 @@ export interface Team {
   team_name?: Text;
 
   organization?: string;
+  organization_id?: string;
+
   group?: Array<string>;
   tag?: Array<string>;
 
