@@ -1,4 +1,4 @@
-import type { BalloonColor, DateTimeISO8601String, Image, StatusTimeDisplay, Text, TimeUnit } from "./basic-types";
+import type { BalloonColor, DataItem, DateTimeISO8601String, Image, Organizations, StatusTimeDisplay, Text, TimeUnit } from "./basic-types";
 import type { Problem } from "./problem";
 
 export enum ContestState {
@@ -65,4 +65,6 @@ export interface Contest {
   version?: string;
 
   options?: ContestOptions;
+
+  organizations?: DataItem | Organizations;
 }
