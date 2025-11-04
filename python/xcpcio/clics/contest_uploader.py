@@ -15,8 +15,6 @@ from xcpcio.clics.clics_api_client import APICredentials, ClicsApiClient, ClicsA
 
 logger = logging.getLogger(__name__)
 
-POLL_INTERVAL = 5
-
 
 class FileChecksumEntry(BaseModel):
     checksum: str
@@ -129,6 +127,7 @@ class UploaderConfig:
     cache_dir: Optional[Path] = None
     timeout: int = 30
     max_concurrent: int = 10
+    poll_interval: int = 5
     version: Optional[str] = None
 
     def to_clics_api_config(self) -> ClicsApiConfig:
@@ -291,7 +290,7 @@ class ContestUploader:
         logger.info(f"All uploads completed! ({len(api_files)} files)")
         return response.model_dump() if response else None
 
-    async def run_loop(self, poll_interval: int = POLL_INTERVAL):
+    async def run_loop(self):
         iteration = 0
         while True:
             iteration += 1
@@ -301,5 +300,5 @@ class ContestUploader:
             except Exception as e:
                 logger.exception(f"Error during fetch and upload: {e}", exc_info=True)
 
-            logger.info(f"Waiting {poll_interval} seconds until next poll...")
-            await asyncio.sleep(poll_interval)
+            logger.info(f"Waiting {self._config.poll_interval} seconds until next poll...")
+            await asyncio.sleep(self._config.poll_interval)

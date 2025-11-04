@@ -30,6 +30,7 @@ def setup_logging(level: str = "INFO"):
 )
 @click.option("--timeout", default=30, type=int, help="Request timeout in seconds")
 @click.option("--max-concurrent", default=10, type=int, help="Max concurrent requests for CLICS API")
+@click.option("--interval", default=5, type=int, help="Polling interval in seconds")
 @click.option(
     "--log-level",
     default="INFO",
@@ -47,6 +48,7 @@ def main(
     cache_dir: Optional[Path],
     timeout: int,
     max_concurrent: int,
+    interval: int,
     log_level: str,
     verbose: bool,
 ):
@@ -76,6 +78,7 @@ def main(
         cache_dir=cache_dir,
         timeout=timeout,
         max_concurrent=max_concurrent,
+        poll_interval=interval,
         version=__version__,
     )
 
