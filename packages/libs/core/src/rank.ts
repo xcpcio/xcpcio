@@ -2,6 +2,7 @@ import type { SubmissionStatus } from "@xcpcio/types";
 import type { Balloons } from "./balloon";
 import type { SelectOptionItem } from "./basic-types";
 import type { Contest } from "./contest";
+import type { Organizations } from "./organization";
 import type { Submissions } from "./submission";
 
 import type { Teams } from "./team";
@@ -9,7 +10,9 @@ import type { Teams } from "./team";
 import _ from "lodash";
 import { Award, MedalType } from "./award";
 import { Balloon } from "./balloon";
+import { I18nText } from "./basic-types";
 import { BattleOfGiants } from "./battle-of-giants";
+import { Organization } from "./organization";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 import { Submission } from "./submission";
@@ -148,7 +151,9 @@ export class Rank {
   submissions: Submissions;
   submissionsMap: Map<string /* submissionId */, Submission>;
 
-  organizations: Array<string>;
+  organizations: Organizations;
+  organizationsMap: Map<string /* organizationId */, Organization>;
+
   originTeams: Teams;
 
   rankStatistics: RankStatistics;
@@ -186,7 +191,10 @@ export class Rank {
 
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
-    this.organizations = this.buildOrganizations();
+    this.organizationsMap = this.buildOrganizationsMap();
+    this.organizations = [...this.organizationsMap.values()];
+    this.organizations.sort(Organization.compare);
+
     this.originTeams = this.teams.map(t => t);
     this.originTeams.sort(Team.compare);
 
@@ -219,6 +227,40 @@ export class Rank {
     }
   }
 
+  buildOrganizationsMap() {
+    if (!this.contest.organization) {
+      return new Map<string, Organization>();
+    }
+
+    const res = new Map<string, Organization>();
+
+    this.teams.forEach((t) => {
+      if (!t.organizationId) {
+        return;
+      }
+
+      if (res.has(t.organizationId)) {
+        const org = res.get(t.organizationId);
+        org?.teams.push(t);
+        t.organization = org;
+
+        return;
+      }
+
+      const org = new Organization();
+      org.id = t.organizationId;
+      org.name = new I18nText();
+      org.name.fallback = t.organizationName;
+
+      org.teams.push(t);
+      t.organization = org;
+
+      res.set(org.id, org);
+    });
+
+    return res;
+  }
+
   cleanRank() {
     (() => {
       this.teams = [];
@@ -231,6 +273,10 @@ export class Rank {
         this.teams.push(v);
       }
     })();
+
+    for (const o of this.organizations) {
+      o.reset();
+    }
 
     for (const t of this.teams) {
       t.reset();
@@ -431,48 +477,23 @@ export class Rank {
     let rank = 1;
     let preTeam = null;
 
-    const se = new Set<string>();
-
     for (const t of this.teams) {
       const org = t.organization;
-      if (se.has(org)) {
+      if (!org || org.rank > -1) {
         continue;
       }
 
-      se.add(org);
-      t.organizationRank = rank++;
+      org.rank = rank++;
+      t.isFirstRankOfOrganization = true;
 
-      if (preTeam !== null) {
+      if (preTeam) {
         if (t.isEqualRank(preTeam)) {
-          t.organizationRank = preTeam.organizationRank;
+          org.rank = preTeam.organization!.rank;
         }
       }
 
       preTeam = t;
     }
-  }
-
-  buildOrganizations() {
-    if (!this.contest.organization) {
-      return [];
-    }
-
-    const res = new Array<string>();
-    const se = new Set<string>();
-
-    this.teams.forEach((t) => {
-      const org = t.organization;
-      if (se.has(org)) {
-        return;
-      }
-
-      res.push(org);
-      se.add(org);
-    });
-
-    res.sort();
-
-    return res;
   }
 
   buildAwards() {

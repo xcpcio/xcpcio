@@ -45,7 +45,7 @@ export class ICPCStandingsCsvConverter {
         siteCitation: rank.contest.name.getOrDefault(),
         citation: ordinal(team.rank),
         teamName: team.name.getOrDefault(),
-        institution: team.organization,
+        institution: team.organization?.name.getOrDefault() ?? "",
       };
 
       resList.push(res);

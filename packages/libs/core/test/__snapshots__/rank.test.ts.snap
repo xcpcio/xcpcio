@@ -1220,7 +1220,7 @@ RankOptions {
 }
 `;
 
-exports[`contest > 2023_ccpc_final 14`] = `
+exports[`contest > 2023_ccpc_final 16`] = `
 [
   TeamProblemStatistics {
     "contestPenalty": 1200,
@@ -2193,7 +2193,7 @@ exports[`contest > 2023_ccpc_final 14`] = `
 ]
 `;
 
-exports[`contest > 2023_ccpc_final 15`] = `
+exports[`contest > 2023_ccpc_final 17`] = `
 [
   [
     0,
@@ -2266,7 +2266,7 @@ exports[`contest > 2023_ccpc_final 15`] = `
 ]
 `;
 
-exports[`contest > 2023_ccpc_final 25`] = `
+exports[`contest > 2023_ccpc_final 28`] = `
 [
   TeamProblemStatistics {
     "contestPenalty": 1200,
@@ -3185,7 +3185,7 @@ exports[`contest > 2023_ccpc_final 25`] = `
 ]
 `;
 
-exports[`contest > 2023_ccpc_final 26`] = `
+exports[`contest > 2023_ccpc_final 29`] = `
 [
   [
     0,

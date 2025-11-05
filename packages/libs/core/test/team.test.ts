@@ -20,6 +20,7 @@ describe("team", () => {
           "official",
         ],
         "id": "3000202305140115",
+        "isFirstRankOfOrganization": false,
         "lastSolvedProblem": null,
         "lastSolvedProblemStatistics": null,
         "members": [
@@ -47,8 +48,8 @@ describe("team", () => {
           "fallback": "前面的题目以后再来探索吧？",
           "texts": Map {},
         },
-        "organization": "重庆邮电大学",
-        "organizationRank": -1,
+        "organizationId": "重庆邮电大学",
+        "organizationName": "重庆邮电大学",
         "originalRank": 0,
         "penalty": 0,
         "photo": undefined,

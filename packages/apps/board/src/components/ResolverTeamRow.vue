@@ -21,7 +21,7 @@ const lang = computed(() => locale.value as unknown as Lang);
 const isVisible = true;
 
 function showTeamName(team: Team) {
-  const sections = [team.organization, team.name.getOrDefault(lang.value)];
+  const sections = [team.organization?.name.getOrDefault(lang.value), team.name.getOrDefault(lang.value)];
   return sections.filter(s => s).join(" - ");
 }
 </script>
