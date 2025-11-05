@@ -11,26 +11,41 @@ const { t } = useI18n();
 
 const rank = computed(() => props.rank);
 
-function getHeadData() {
-  const l = [];
+const headData = computed(() => {
+  const res = [];
 
-  l.push({
+  res.push({
     title: "standings.statistics.head_data.problems",
     data: rank.value.contest.problems.length,
   });
 
-  l.push({
+  if (rank.value.organizations.length > 0) {
+    res.push({
+      title: "standings.statistics.head_data.organizations",
+      data: rank.value.organizations.length,
+    });
+  }
+
+  res.push({
     title: "standings.statistics.head_data.teams",
     data: rank.value.teams.length,
   });
 
-  l.push({
+  res.push({
     title: "standings.statistics.head_data.submissions",
     data: rank.value.getSubmissions().length,
   });
 
-  return l;
-}
+  return res;
+});
+
+const headDataGap = computed(() => {
+  if (headData.value.length === 4) {
+    return "gap-20";
+  }
+
+  return "gap-32";
+});
 </script>
 
 <template>
@@ -44,12 +59,12 @@ function getHeadData() {
         mx-auto px-4 py-4 lg:px-6 lg:py-6
       >
         <div
-          grid grid-cols-3
-          gap-10 space-y-0
+          flex flex-nowrap justify-center items-center
+          :class="headDataGap"
         >
-          <div v-for="h in getHeadData()" :key="h.title">
+          <div v-for="h in headData" :key="h.title" class="w-[16rem]">
             <div
-              class="mx-auto w-[16rem]"
+              w-full
               p-6 xl:p-8
               flex flex-col
               border border-gray-100 dark:border-gray-600
