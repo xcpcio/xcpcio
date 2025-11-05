@@ -62,6 +62,7 @@ standings:
     last_solved: Last Solved
     head_data:
       problems: 题目数
+      organizations: 组织数
       teams: 队伍数
       submissions: 提交数
     submit_heatmap: 提交热力图

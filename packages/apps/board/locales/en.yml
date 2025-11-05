@@ -62,6 +62,7 @@ standings:
     last_solved: Last Solved
     head_data:
       problems: Problems
+      organizations: Organizations
       teams: Teams
       submissions: Submissions
     submit_heatmap: Submit Heatmap
