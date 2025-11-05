@@ -71,4 +71,8 @@ export class I18nText {
 
     return result;
   }
+
+  valueOf(): string {
+    return this.getOrDefault();
+  }
 }
