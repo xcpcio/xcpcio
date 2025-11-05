@@ -17,7 +17,7 @@ const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
 function showTeamName(team: Team) {
-  const sections = [team.location, team.organization, team.name.getOrDefault(lang.value)];
+  const sections = [team.location, team.organization?.name.getOrDefault(lang.value), team.name.getOrDefault(lang.value)];
   return sections.filter(s => s).join(" - ");
 }
 

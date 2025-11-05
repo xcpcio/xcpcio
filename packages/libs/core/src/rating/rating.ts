@@ -46,7 +46,7 @@ export class Rating {
           u = new RatingUser();
           u.id = id;
           u.name = t.name;
-          u.organization = t.organization;
+          u.organization = t.organizationName ?? "";
 
           u.members = t.members;
           u.coaches = t.coaches;
@@ -72,7 +72,7 @@ export class Rating {
           h.rating = u.rating;
 
           h.teamName = t.name;
-          h.organization = t.organization;
+          h.organization = t.organizationName ?? "";
 
           h.members = t.members;
           h.coaches = t.coaches;
@@ -100,7 +100,7 @@ export class Rating {
       return persons.map(person => person.name.getOrDefault().trim()).sort().join("|");
     }
 
-    return `${t.organization}-${t.name}`;
+    return `${t.organizationName ?? ""}-${t.name}`;
   }
 
   toJSON(): IRating {

@@ -47,8 +47,8 @@ const title = computed(() => {
 const orgOptions = computed(() => {
   const res = rank.value.organizations.map((o) => {
     return {
-      value: o,
-      text: o,
+      value: o.id,
+      text: o.name.getOrDefault(lang.value),
     };
   });
 
@@ -57,9 +57,11 @@ const orgOptions = computed(() => {
 
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
+    const teamName = t.name.getOrDefault(lang.value);
+    const orgName = t.organization?.name.getOrDefault(lang.value);
     return {
       value: t.id,
-      text: t.organization ? `${t.name.getOrDefault(lang.value)} - ${t.organization}` : t.name.getOrDefault(lang.value),
+      text: orgName ? `${teamName} - ${orgName}` : teamName,
     };
   });
 

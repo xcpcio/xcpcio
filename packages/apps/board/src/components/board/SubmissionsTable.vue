@@ -9,7 +9,7 @@ import { SubmissionStatusToString } from "@xcpcio/types";
 import "@board/styles/submission-status-filter.css";
 
 interface FilterOptions {
-  orgNames: string[];
+  orgIds: string[];
   teamIds: string[];
   languages: string[];
   statuses: SubmissionStatus[];
@@ -50,7 +50,7 @@ const enableFilterButton = computed(() => {
 });
 
 const filterOptions = ref<FilterOptions>({
-  orgNames: [],
+  orgIds: [],
   teamIds: [],
   languages: [],
   statuses: [],
@@ -59,8 +59,8 @@ const filterOptions = ref<FilterOptions>({
 const orgOptions = computed(() => {
   const res = rank.value.organizations.map((o) => {
     return {
-      value: o,
-      text: o,
+      value: o.id,
+      text: o.name.getOrDefault(lang.value),
     };
   });
 
@@ -78,9 +78,10 @@ function orgOnSelect(selectedItems: Array<SelectOptionItem>, lastSelectItem: Sel
 const teamsOptions = computed(() => {
   const res = rank.value.originTeams.map((t) => {
     const teamName = t.name.getOrDefault(lang.value);
+    const orgName = t.organization?.name.getOrDefault(lang.value);
     return {
       value: t.id,
-      text: t.organization ? `${teamName} - ${t.organization}` : teamName,
+      text: orgName ? `${teamName} - ${orgName}` : teamName,
     };
   });
 
@@ -146,7 +147,7 @@ const submissions = computed(() => {
   return ss.filter((s) => {
     const o = filterOptions.value;
 
-    if (o.orgNames.length === 0
+    if (o.orgIds.length === 0
       && o.teamIds.length === 0
       && o.languages.length === 0
       && o.statuses.length === 0
@@ -162,10 +163,10 @@ const submissions = computed(() => {
       }
     }
 
-    if (o.orgNames.length > 0) {
+    if (o.orgIds.length > 0) {
       const team = rank.value.teamsMap.get(s.teamId);
-      for (const n of o.orgNames) {
-        if (n === team?.organization) {
+      for (const n of o.orgIds) {
+        if (n === team?.organization?.id) {
           return true;
         }
       }
@@ -193,13 +194,13 @@ const submissions = computed(() => {
 
 function onFilter() {
   const newFilterOptions: FilterOptions = {
-    orgNames: [],
+    orgIds: [],
     teamIds: [],
     languages: [],
     statuses: [],
   };
 
-  newFilterOptions.orgNames = orgSelectedItems.value.map(o => o.value);
+  newFilterOptions.orgIds = orgSelectedItems.value.map(o => o.value);
   newFilterOptions.teamIds = teamsSelectedItems.value.map(t => t.value);
   newFilterOptions.languages = languageSelectedItems.value.map(l => l.value);
   newFilterOptions.statuses = statusSelectedItems.value.map(s => s.value as SubmissionStatus);
@@ -464,7 +465,7 @@ function closeVideoModal() {
                     v-if="rank.contest.organization"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
-                    {{ rank.teamsMap.get(s.teamId)?.organization }}
+                    {{ rank.teamsMap.get(s.teamId)?.organization?.name.getOrDefault(lang) }}
                   </td>
 
                   <td class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white">

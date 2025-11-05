@@ -2,6 +2,7 @@ import type { Image, Team as ITeam, Teams as ITeams, Lang } from "@xcpcio/types"
 
 import type { Award, MedalType } from "./award";
 import type { ContestOptions } from "./contest-options";
+import type { Organization } from "./organization";
 import type { Persons } from "./person";
 import type { Problem, TeamProblemStatistics } from "./problem";
 
@@ -27,7 +28,10 @@ export class Team {
   id: string;
   name: I18nText;
 
-  organization: string;
+  organizationId?: string;
+  organizationName?: string;
+  organization?: Organization;
+  isFirstRankOfOrganization: boolean;
 
   group: Array<string>;
   tag: Array<string>;
@@ -37,7 +41,6 @@ export class Team {
 
   rank: number;
   originalRank: number;
-  organizationRank: number;
 
   solvedProblemNum: number;
   attemptedProblemNum: number;
@@ -70,7 +73,7 @@ export class Team {
     this.id = "";
     this.name = new I18nText();
 
-    this.organization = "";
+    this.isFirstRankOfOrganization = false;
 
     this.group = [];
     this.tag = [];
@@ -80,7 +83,6 @@ export class Team {
 
     this.rank = 0;
     this.originalRank = 0;
-    this.organizationRank = -1;
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
@@ -105,9 +107,10 @@ export class Team {
   }
 
   reset() {
+    this.isFirstRankOfOrganization = false;
+
     this.rank = 0;
     this.originalRank = 0;
-    this.organizationRank = -1;
 
     this.solvedProblemNum = 0;
     this.attemptedProblemNum = 0;
@@ -279,7 +282,12 @@ export function createTeam(teamJSON: ITeam): Team {
   t.id = teamJSON.id ?? teamJSON.team_id ?? "";
   t.name = I18nText.fromIText(teamJSON.name ?? teamJSON.team_name ?? "");
 
-  t.organization = teamJSON.organization ?? "";
+  if (teamJSON.organization) {
+    t.organizationId = teamJSON.organization;
+    t.organizationName = teamJSON.organization;
+  } else {
+    t.organizationId = teamJSON.organization_id;
+  }
 
   t.group = _.cloneDeep(teamJSON.group ?? []);
   t.tag = _.cloneDeep(teamJSON.tag ?? []);

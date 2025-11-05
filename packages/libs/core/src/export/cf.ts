@@ -35,7 +35,7 @@ export class CodeforcesGymGhostDATConverter {
       let name = team.name.getOrDefault();
 
       if (team.organization) {
-        name = `${team.organization} - ${name}`;
+        name = `${team.organization.name.getOrDefault()} - ${name}`;
       }
 
       if (team.members) {

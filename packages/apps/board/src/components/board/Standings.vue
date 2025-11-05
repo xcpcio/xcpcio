@@ -16,8 +16,8 @@ const rankOptions = computed(() => props.rank.options);
 
 const filterTeams = computed(() => {
   const res = props.rank.teams.filter((t) => {
-    if (props.rank.organizations) {
-      if (props.rank.options.filterOrganizationMap.has(t.organization)) {
+    if (props.rank.organizations && t.organization) {
+      if (props.rank.options.filterOrganizationMap.has(t.organization.id)) {
         return true;
       }
     }
@@ -50,7 +50,7 @@ const giantTeams = computed(() => {
   for (const t of props.rank.teams) {
     const giantsType = (() => {
       if (
-        blueTeam.filterOrganizationMap.has(t.organization)
+        (!!t.organization && blueTeam.filterOrganizationMap.has(t.organization.id))
         || blueTeam.filterTeamMap.has(t.id)
       ) {
         if (blueCnt >= battleOfGiants.topX) {
@@ -62,7 +62,7 @@ const giantTeams = computed(() => {
       }
 
       if (
-        redTeam.filterOrganizationMap.has(t.organization)
+        (!!t.organization && redTeam.filterOrganizationMap.has(t.organization.id))
         || redTeam.filterTeamMap.has(t.id)
       ) {
         if (redCnt >= battleOfGiants.topX) {
@@ -122,7 +122,9 @@ const giantTeams = computed(() => {
 const maxOrgLength = computed(() => {
   let res = 0;
   rank.value.teams.forEach((t) => {
-    res = Math.max(res, t.organization.length);
+    if (t.organization) {
+      res = Math.max(res, t.organization.name.getOrDefault(lang.value).length);
+    }
   });
 
   return res;

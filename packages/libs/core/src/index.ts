@@ -6,6 +6,7 @@ export * from "./contest";
 export * from "./contest-index";
 export * from "./export";
 export * from "./image";
+export * from "./organization";
 export * from "./person";
 export * from "./problem";
 export * from "./rank";

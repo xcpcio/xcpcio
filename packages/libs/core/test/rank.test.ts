@@ -71,7 +71,8 @@ describe("contest", () => {
     const lastTeam = rank.teams[rank.teams.length - 1];
 
     expect(firstTeam.rank).toMatchInlineSnapshot("1");
-    expect(firstTeam.organizationRank).toMatchInlineSnapshot("1");
+    expect(firstTeam.organization?.rank).toMatchInlineSnapshot(`1`);
+    expect(firstTeam.isFirstRankOfOrganization).toMatchInlineSnapshot(`true`);
 
     expect(firstTeam.solvedProblemNum).toMatchInlineSnapshot("11");
     expect(firstTeam.penalty).toMatchInlineSnapshot("89820");
@@ -81,7 +82,8 @@ describe("contest", () => {
         "texts": Map {},
       }
     `);
-    expect(firstTeam.organization).toMatchInlineSnapshot("\"北京大学\"");
+    expect(firstTeam.organizationId).toMatchInlineSnapshot("\"北京大学\"");
+    expect(firstTeam.organization?.name.getOrDefault()).toMatchInlineSnapshot("\"北京大学\"");
 
     expect(firstTeam.penaltyToMinute).toMatchInlineSnapshot("1497");
     expect(firstTeam.dirt).toMatchInlineSnapshot("52");
@@ -91,7 +93,7 @@ describe("contest", () => {
     expect(firstTeam.awards).toMatchInlineSnapshot("[]");
 
     expect(lastTeam.rank).toMatchInlineSnapshot(`129`);
-    expect(lastTeam.organizationRank).toMatchInlineSnapshot("-1");
+    expect(lastTeam.organization?.rank).toMatchInlineSnapshot(`114`);
 
     expect(lastTeam.solvedProblemNum).toMatchInlineSnapshot("0");
     expect(lastTeam.penalty).toMatchInlineSnapshot("0");
@@ -101,7 +103,8 @@ describe("contest", () => {
         "texts": Map {},
       }
     `);
-    expect(lastTeam.organization).toMatchInlineSnapshot("\"一汽红旗\"");
+    expect(lastTeam.organizationId).toMatchInlineSnapshot("\"一汽红旗\"");
+    expect(lastTeam.organization?.name.getOrDefault()).toMatchInlineSnapshot("\"一汽红旗\"");
 
     expect(lastTeam.penaltyToMinute).toMatchInlineSnapshot("0");
     expect(lastTeam.dirt).toMatchInlineSnapshot("0");
@@ -113,7 +116,7 @@ describe("contest", () => {
     {
       const converter = new CodeforcesGymGhostDATConverter();
       const dat = converter.convert(rank);
-      expect(dat.length).toMatchInlineSnapshot("44756");
+      expect(dat.length).toMatchInlineSnapshot(`44756`);
     }
 
     {

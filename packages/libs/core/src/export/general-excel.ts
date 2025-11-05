@@ -182,13 +182,13 @@ export class GeneralExcelConverter {
       arr.push(team.rank.toString());
 
       if (team.organization) {
-        if (team.organizationRank !== -1) {
-          arr.push(team.organizationRank.toString());
+        if (team.isFirstRankOfOrganization) {
+          arr.push(team.organization.rank.toString());
         } else {
           arr.push("");
         }
 
-        arr.push(team.organization);
+        arr.push(team.organization.name.getOrDefault());
       }
 
       arr.push(team.name.getOrDefault(), team.solvedProblemNum.toString(), team.penaltyToMinute.toString());

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AnimatedSubmissionBlockItem } from "@board/composables/type";
+import type { AnimatedSubmissionBlockItem, Lang } from "@board/composables/type";
 import type { Rank } from "@xcpcio/core";
 
 import { LastBlockDisplayType } from "@board/composables/type";
@@ -8,6 +8,9 @@ import { Submission } from "@xcpcio/core";
 const props = defineProps<{
   rank: Rank;
 }>();
+
+const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const submissions = computed(() => {
@@ -44,7 +47,7 @@ const submissions = computed(() => {
     let displayName = team.name;
 
     if (team.organization) {
-      displayName = `${team.organization} - ${displayName}`;
+      displayName = `${team.organization.name.getOrDefault(lang.value)} - ${displayName}`;
     }
 
     const item: AnimatedSubmissionBlockItem = {

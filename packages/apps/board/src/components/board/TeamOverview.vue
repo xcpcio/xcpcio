@@ -92,7 +92,7 @@ const tableRows = computed(() => {
   const rows = [
     { label: t("team_info.rank"), value: team.value.rank, show: true },
     { label: t("team_info.team_name"), value: team.value.name.getOrDefault(lang.value), show: true },
-    { label: t("team_info.organization"), value: team.value.organization, show: !!team.value.organization },
+    { label: t("team_info.organization"), value: team.value.organization?.name.getOrDefault(lang.value), show: !!team.value.organization },
     { label: t("team_info.group"), value: groupNames.value, show: team.value.group.length > 0 },
     { label: t("team_info.members"), value: team.value.membersToString(lang.value), show: team.value.members.length > 0 },
     { label: t("team_info.coaches"), value: team.value.coachesToString(lang.value), show: team.value.coaches.length > 0 },
