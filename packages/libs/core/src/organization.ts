@@ -31,7 +31,7 @@ export class Organization {
   static compare(lhs: Organization, rhs: Organization): number {
     if (lhs.id < rhs.id) {
       return -1;
-    } else if (lhs.name > rhs.name) {
+    } else if (lhs.id > rhs.id) {
       return 1;
     }
 
