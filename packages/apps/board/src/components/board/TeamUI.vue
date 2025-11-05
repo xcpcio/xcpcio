@@ -105,7 +105,7 @@ function isRenderByVisible() {
     >
       <div flex>
         <div
-          float-left pl-2 font-serif
+          float-left pl-2
         >
           <div
             v-if="!!team.organization && team.isFirstRankOfOrganization"
