@@ -42,8 +42,7 @@ const submissions = computed(() => {
 
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
-const TYPE_AWARDS = "awards";
-const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
+const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS];
 </script>
 
 <template>
@@ -113,11 +112,6 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS, TYPE_AWARDS];
 
       <div
         v-if="currentType === TYPE_STATISTICS"
-        w-full
-      />
-
-      <div
-        v-if="currentType === TYPE_AWARDS"
         w-full
       />
     </div>
