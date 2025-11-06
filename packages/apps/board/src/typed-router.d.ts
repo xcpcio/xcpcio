@@ -20,15 +20,12 @@ declare module 'vue-router/auto-routes' {
   export interface RouteNamedMap {
     '/': RouteRecordInfo<'/', '/', Record<never, never>, Record<never, never>>,
     '/[...all]': RouteRecordInfo<'/[...all]', '/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
-    '/about': RouteRecordInfo<'/about', '/about', Record<never, never>, Record<never, never>>,
     '/balloon/': RouteRecordInfo<'/balloon/', '/balloon', Record<never, never>, Record<never, never>>,
-    '/board': RouteRecordInfo<'/board', '/board', Record<never, never>, Record<never, never>>,
+    '/board/': RouteRecordInfo<'/board/', '/board', Record<never, never>, Record<never, never>>,
     '/countdown/': RouteRecordInfo<'/countdown/', '/countdown', Record<never, never>, Record<never, never>>,
-    '/hi/[name]': RouteRecordInfo<'/hi/[name]', '/hi/:name', { name: ParamValue<true> }, { name: ParamValue<false> }>,
     '/rating/': RouteRecordInfo<'/rating/', '/rating', Record<never, never>, Record<never, never>>,
     '/rating/[...all]': RouteRecordInfo<'/rating/[...all]', '/rating/:all(.*)', { all: ParamValue<true> }, { all: ParamValue<false> }>,
     '/resolver/': RouteRecordInfo<'/resolver/', '/resolver', Record<never, never>, Record<never, never>>,
-    '/test': RouteRecordInfo<'/test', '/test', Record<never, never>, Record<never, never>>,
   }
 
   /**
@@ -50,24 +47,16 @@ declare module 'vue-router/auto-routes' {
       routes: '/[...all]'
       views: never
     }
-    'src/pages/about.md': {
-      routes: '/about'
-      views: never
-    }
     'src/pages/balloon/index.vue': {
       routes: '/balloon/'
       views: never
     }
-    'src/pages/board.vue': {
-      routes: '/board'
+    'src/pages/board/index.vue': {
+      routes: '/board/'
       views: never
     }
     'src/pages/countdown/index.vue': {
       routes: '/countdown/'
-      views: never
-    }
-    'src/pages/hi/[name].vue': {
-      routes: '/hi/[name]'
       views: never
     }
     'src/pages/rating/index.vue': {
@@ -80,10 +69,6 @@ declare module 'vue-router/auto-routes' {
     }
     'src/pages/resolver/index.vue': {
       routes: '/resolver/'
-      views: never
-    }
-    'src/pages/test.vue': {
-      routes: '/test'
       views: never
     }
   }
