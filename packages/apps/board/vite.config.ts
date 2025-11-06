@@ -16,7 +16,6 @@ import { VueRouterAutoImports } from "unplugin-vue-router";
 import VueRouter from "unplugin-vue-router/vite";
 import { defineConfig } from "vite";
 import { createHtmlPlugin } from "vite-plugin-html";
-import { VitePWA } from "vite-plugin-pwa";
 import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
@@ -120,35 +119,6 @@ export default defineConfig({
       },
     }),
 
-    // https://github.com/antfu/vite-plugin-pwa
-    VitePWA({
-      registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "safari-pinned-tab.svg"],
-      manifest: {
-        name: "Board",
-        short_name: "Board",
-        theme_color: "#ffffff",
-        icons: [
-          {
-            src: "/balloon2-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/balloon2-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-          {
-            src: "/balloon2-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-            purpose: "any maskable",
-          },
-        ],
-      },
-    }),
-
     // https://github.com/intlify/bundle-tools/tree/main/packages/unplugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
@@ -199,7 +169,7 @@ export default defineConfig({
 
   ssr: {
     // TODO: workaround until they support native ESM
-    noExternal: ["workbox-window", /vue-i18n/],
+    noExternal: [/vue-i18n/],
   },
 
   server: {
