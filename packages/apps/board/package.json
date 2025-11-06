@@ -102,15 +102,12 @@
     "vite-bundle-visualizer": "catalog:",
     "vite-plugin-html": "catalog:",
     "vite-plugin-inspect": "catalog:",
-    "vite-plugin-pwa": "catalog:",
     "vite-plugin-vue-devtools": "catalog:",
     "vite-plugin-vue-layouts": "catalog:",
     "vite-plugin-webfont-dl": "catalog:",
     "vite-ssg": "catalog:",
     "vite-ssg-sitemap": "catalog:",
     "vitest": "catalog:",
-    "vue-tsc": "catalog:",
-    "workbox-build": "catalog:",
-    "workbox-window": "catalog:"
+    "vue-tsc": "catalog:"
   }
 }
