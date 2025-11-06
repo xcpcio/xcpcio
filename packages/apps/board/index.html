@@ -20,6 +20,22 @@
     </script>
     <!-- End Google Tag Manager -->
 
+    <!-- Remove all registered service workers -->
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+          for (let registration of registrations) {
+            registration.unregister().then(function (success) {
+              if (success) {
+                console.log("Service worker unregistered successfully");
+              }
+            });
+          }
+        });
+      }
+    </script>
+    <!-- End service worker cleanup -->
+
     <link rel="icon" href="/balloon-512x512.svg" type="image/svg+xml" />
     <link rel="mask-icon" href="/balloon-512x512.svg" color="#00aba9" />
     <link rel="apple-touch-icon" href="/balloon-192x192.png" />
