@@ -22,6 +22,7 @@ export default antfu(
       "**/test-data/**/*",
 
       "python/**/*",
+      ".pytest_cache/**/*",
 
       "*.html",
     ],
