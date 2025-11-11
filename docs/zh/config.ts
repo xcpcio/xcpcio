@@ -61,6 +61,13 @@ const Nav: DefaultTheme.NavItem[] = [
 const ICPCs: DefaultTheme.SidebarItem[] = [
   { text: "一切的开始", link: "/zh/site/icpc/" },
   {
+    text: "50th",
+    collapsed: true,
+    items: [
+      { text: "南京", link: "/zh/site/icpc/50th/nanjing" },
+    ],
+  },
+  {
     text: "49th",
     collapsed: true,
     items: [
