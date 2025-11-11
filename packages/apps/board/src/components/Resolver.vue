@@ -23,7 +23,6 @@ const contest = ref({} as Contest);
 const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const resolver = ref({} as ResolverVue);
-const now = useNow();
 
 function reBuildResolver() {
   const newResolver = new ResolverVue(contest.value, teams.value, submissions.value);
@@ -31,7 +30,7 @@ function reBuildResolver() {
   resolver.value = newResolver;
 }
 
-const { data, isError, error } = useQueryBoardData(props.dataSourceUrl, now, /* queryOnce= */true);
+const { data, isError, error } = useQueryBoardData(props.dataSourceUrl, /* queryOnce= */true);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;

@@ -80,6 +80,12 @@
       } catch (e) {
         window.DEFAULT_LANG = "en";
       }
+
+      try {
+        window.REFETCH_INTERVAL = Number(__REFETCH_INTERVAL__);
+      } catch (e) {
+        window.REFETCH_INTERVAL = 15_000;
+      }
     </script>
     <script>
       (function () {

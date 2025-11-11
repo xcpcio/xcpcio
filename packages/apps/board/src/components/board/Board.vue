@@ -94,7 +94,7 @@ function updateContestName() {
   title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
 }
 
-const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path, now);
+const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
