@@ -82,10 +82,10 @@ class Image(BaseModel):
     base64: Optional[str] = None
     type: Optional[Literal["png", "svg", "jpg", "jpeg"]] = None
 
-    preset: Optional[ImagePreset] = None
-
     width: Optional[int] = None
     height: Optional[int] = None
+
+    preset: Optional[ImagePreset] = None
 
 
 class DataItem(BaseModel):
@@ -205,6 +205,8 @@ class ContestOptions(BaseModel):
 
 class Contest(BaseModel):
     contest_name: Text = ""
+    description: Optional[Text] = None
+    og_image: Optional[Image] = None
 
     start_time: Union[int, DateTimeISO8601String] = 0
     end_time: Union[int, DateTimeISO8601String] = 0
@@ -231,13 +233,13 @@ class Contest(BaseModel):
     logo: Optional[Image] = None
     banner: Optional[Image] = None
     banner_mode: Optional[BannerMode] = None
-    board_link: Optional[str] = None
-
-    version: Optional[str] = None
 
     options: Optional[ContestOptions] = None
 
     organizations: Optional[Union[DataItem, Organizations]] = None
+
+    board_link: Optional[str] = None
+    version: Optional[str] = None
 
     thaw_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
 
