@@ -34,6 +34,8 @@ export type BannerMode = "ONLY_BANNER" | "ALL";
 
 export interface Contest {
   contest_name: Text;
+  description?: Text;
+  og_image?: Image;
 
   start_time: number | DateTimeISO8601String;
   end_time: number | DateTimeISO8601String;
@@ -60,11 +62,11 @@ export interface Contest {
   logo?: Image;
   banner?: Image;
   banner_mode?: BannerMode;
-  board_link?: string;
-
-  version?: string;
 
   options?: ContestOptions;
 
   organizations?: DataItem | Organizations;
+
+  board_link?: string;
+  version?: string;
 }
