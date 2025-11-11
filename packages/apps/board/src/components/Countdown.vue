@@ -16,7 +16,7 @@ const now = useNow();
 const contest = ref({} as Contest);
 const firstLoaded = ref(false);
 
-const { data, isError, error } = useQueryBoardData(props.dataSourceUrl, now);
+const { data, isError, error } = useQueryBoardData(props.dataSourceUrl);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;

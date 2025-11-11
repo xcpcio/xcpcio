@@ -1,8 +1,5 @@
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
 import { useQuery } from "@tanstack/vue-query";
-import { DATA_REGION } from "./constant";
-
-const RETRY = 3;
 
 export interface BoardData {
   contest: Contest;
@@ -10,7 +7,7 @@ export interface BoardData {
   submissions: Submissions;
 }
 
-async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
+async function fetch_board_data(target: string): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
   let prefix = `${window.DATA_HOST}${endpoint}`;
   const options = {
@@ -30,16 +27,12 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
     prefix = prefix.slice(0, -1);
   }
 
-  const addTimestamp = (url: string) => {
-    return url.includes("?") ? `${url}&t=${timestamp ?? 0}` : `${url}?t=${timestamp ?? 0}`;
-  };
-
   const res = options.allInOne
-    ? [await fetch(addTimestamp(prefix))]
+    ? [await fetch(prefix)]
     : [
-        await fetch(addTimestamp(`${prefix}/config.json`)),
-        await fetch(addTimestamp(`${prefix}/team.json`)),
-        await fetch(addTimestamp(`${prefix}/run.json`)),
+        await fetch(`${prefix}/config.json`),
+        await fetch(`${prefix}/team.json`),
+        await fetch(`${prefix}/run.json`),
       ];
 
   const { status, statusText } = res[0];
@@ -60,25 +53,19 @@ async function fetcher(target: string, timestamp?: number): Promise<BoardData> {
   return p;
 }
 
-export function useQueryBoardData(target: string, timestamp?: any, queryOnce = false) {
-  let staleTime = 30 * 1000;
-  let refetchInterval: number | false = staleTime;
-  const timestampSeconds = computed(() => Math.floor(timestamp.value.getTime() / 1000 / 10));
-
-  if (DATA_REGION.value === "I18N") {
-    staleTime = 10 * 1000;
-    refetchInterval = staleTime;
-  }
+export function useQueryBoardData(target: string, queryOnce = false) {
+  const retry = 3;
+  const staleTime = 30_000;
+  let refetchInterval: number | false = window.REFETCH_INTERVAL;
 
   if (queryOnce) {
-    staleTime = Number.POSITIVE_INFINITY;
     refetchInterval = false;
   }
 
   return useQuery({
-    queryKey: [target, timestampSeconds.value],
-    queryFn: () => fetcher(target, timestampSeconds.value),
-    retry: RETRY,
+    queryKey: [target],
+    queryFn: () => fetch_board_data(target),
+    retry,
     staleTime,
     refetchInterval,
   });

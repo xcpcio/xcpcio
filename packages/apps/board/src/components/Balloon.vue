@@ -18,7 +18,6 @@ const contestData = ref({} as Contest);
 const teamsData = ref([] as Teams);
 const submissionsData = ref([] as Submissions);
 const rank = ref({} as Rank);
-const now = useNow();
 
 function reBuildBalloons() {
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
@@ -26,7 +25,7 @@ function reBuildBalloons() {
   rank.value = newRank;
 }
 
-const { data, isError, error } = useQueryBoardData(props.dataSourceUrl, now);
+const { data, isError, error } = useQueryBoardData(props.dataSourceUrl);
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
