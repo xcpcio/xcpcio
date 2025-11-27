@@ -40,6 +40,8 @@ const btnDisable = ref({
   ICPCStandingsCsvDownload: false,
 });
 
+const includeFakeRussianTeams = ref(false);
+
 async function waitDisabled() {
   await nextTick();
   await sleep(16);
@@ -50,7 +52,7 @@ async function onClickForCfDatDownload() {
   await waitDisabled();
 
   const converter = new CodeforcesGymGhostDATConverter();
-  const dat = converter.convert(rank.value);
+  const dat = converter.convert(rank.value, { includeFakeRussianTeams: includeFakeRussianTeams.value });
   const blob = new Blob([dat], { type: "text/plain;charset=utf-8" });
   FileSaver.saveAs(blob, "contest.dat");
 
@@ -67,7 +69,7 @@ async function onClickForCfDatCopyToClipboard() {
   await waitDisabled();
 
   const converter = new CodeforcesGymGhostDATConverter();
-  const dat = converter.convert(rank.value);
+  const dat = converter.convert(rank.value, { includeFakeRussianTeams: includeFakeRussianTeams.value });
   copy(dat);
 
   btnDisable.value.CfDatCopy = false;
@@ -117,23 +119,33 @@ async function onClickForICPCStandingsCsvDownload() {
     >
       <div
         v-if="currentItem.value === 'cf-dat'"
-        flex flex-row justify-center gap-4
+        flex flex-col gap-4
       >
-        <button
-          :disabled="btnDisable.CfDatDownload"
-          btn
-          @click="onClickForCfDatDownload"
-        >
-          Download
-        </button>
+        <div flex justify-center>
+          <TheCheckbox v-model="includeFakeRussianTeams">
+            <span ml-3 text-sm font-medium text-gray-900 dark:text-gray-300>
+              Include fake Russian teams (100 placeholder teams)
+            </span>
+          </TheCheckbox>
+        </div>
 
-        <button
-          :disabled="btnDisable.CfDatCopy"
-          btn
-          @click="onClickForCfDatCopyToClipboard"
-        >
-          Copy to Clipboard
-        </button>
+        <div flex flex-row justify-center gap-4>
+          <button
+            :disabled="btnDisable.CfDatDownload"
+            btn
+            @click="onClickForCfDatDownload"
+          >
+            Download
+          </button>
+
+          <button
+            :disabled="btnDisable.CfDatCopy"
+            btn
+            @click="onClickForCfDatCopyToClipboard"
+          >
+            Copy to Clipboard
+          </button>
+        </div>
       </div>
 
       <div

@@ -115,7 +115,7 @@ describe("contest", () => {
 
     {
       const converter = new CodeforcesGymGhostDATConverter();
-      const dat = converter.convert(rank);
+      const dat = converter.convert(rank, { includeFakeRussianTeams: true });
       expect(dat.length).toMatchInlineSnapshot(`44756`);
     }
 
