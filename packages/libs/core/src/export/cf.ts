@@ -10,16 +10,23 @@ import {
 
 import dayjs from "../utils/dayjs";
 
+export interface Options {
+  includeFakeRussianTeams?: boolean;
+};
+
 export class CodeforcesGymGhostDATConverter {
   constructor() {}
 
-  public convert(rank: Rank): string {
+  public convert(rank: Rank, options?: Options): string {
+    const includeFakeRussianTeams = options?.includeFakeRussianTeams ?? false;
+    const fakeTeamsCount = includeFakeRussianTeams ? 100 : 0;
+
     let res = "";
 
     res += `@contest "${rank.contest.name.getOrDefault()}"
 @contlen ${Math.floor(dayjs.duration(rank.contest.endTime.diff(rank.contest.startTime)).asMinutes())}
 @problems ${rank.contest.problems.length}
-@teams ${rank.teams.length + 100}
+@teams ${rank.teams.length + fakeTeamsCount}
 @submissions ${rank.submissions.length}
 `;
 
@@ -55,9 +62,11 @@ export class CodeforcesGymGhostDATConverter {
       }
     });
 
-    for (let i = 0; i < 100; i++) {
-      res += `@t ${teamIndex},0,1,"Пополнить команду"\n`;
-      teamIndex++;
+    if (includeFakeRussianTeams) {
+      for (let i = 0; i < 100; i++) {
+        res += `@t ${teamIndex},0,1,"Пополнить команду"\n`;
+        teamIndex++;
+      }
     }
 
     rank.getSubmissions().forEach((submission) => {
