@@ -43,7 +43,7 @@ export interface ReactiveRouteOptionsWithTransform<V, R> extends ReactiveRouteOp
 }
 
 export function useRouteQueryWithoutParam(
-  name: string
+  name: string,
 ): Ref<undefined | null | string | string[]>;
 
 export function useRouteQueryWithoutParam<
@@ -52,7 +52,7 @@ export function useRouteQueryWithoutParam<
 >(
   name: string,
   defaultValue?: MaybeRefOrGetter<T>,
-  options?: ReactiveRouteOptionsWithTransform<T, K>
+  options?: ReactiveRouteOptionsWithTransform<T, K>,
 ): Ref<K>;
 
 export function useRouteQueryWithoutParam<

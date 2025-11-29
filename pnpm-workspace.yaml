@@ -3,13 +3,13 @@ packages:
   - packages/**/*
 
 catalog:
-  "@antfu/eslint-config": ^5.4.1
-  "@antfu/ni": ^25.0.0
+  "@antfu/eslint-config": ^6.2.0
+  "@antfu/ni": ^27.0.1
   "@babel/types": ^7.28.5
-  "@iconify/json": ^2.2.410
+  "@iconify/json": ^2.2.412
   "@intlify/unplugin-vue-i18n": ^11.0.1
-  "@shikijs/markdown-it": ^3.15.0
-  "@tanstack/vue-query": ^5.91.4
+  "@shikijs/markdown-it": ^3.17.0
+  "@tanstack/vue-query": ^5.92.0
   "@types/chroma-js": ^3.1.2
   "@types/color-diff": ^1.2.5
   "@types/file-saver": ^2.0.7
@@ -26,11 +26,11 @@ catalog:
   "@vitejs/plugin-vue": ^6.0.2
   "@vue-macros/volar": ^3.1.1
   "@vue/test-utils": ^2.4.6
-  "@vueuse/components": ^13.9.0
-  "@vueuse/core": ^13.9.0
-  "@vueuse/router": ^13.9.0
-  bumpp: ^10.3.1
-  chroma-js: ^3.1.2
+  "@vueuse/components": ^14.1.0
+  "@vueuse/core": ^14.1.0
+  "@vueuse/router": ^14.1.0
+  bumpp: ^10.3.2
+  chroma-js: ^3.2.0
   color-diff: ^1.4.0
   critters: ^0.0.25
   cross-env: ^10.1.0
@@ -43,10 +43,10 @@ catalog:
   esmo: ^4.8.0
   file-saver: ^2.0.5
   floating-vue: 5.2.2
-  flowbite: ^3.1.2
+  flowbite: ^4.0.1
   fsxx: ^0.1.0
   git-repo-info: ^2.1.1
-  glob: ^11.1.0
+  glob: ^13.0.0
   gsap: ^3.13.0
   highcharts: ^12.4.0
   highcharts-vue: ^2.0.1
@@ -60,20 +60,20 @@ catalog:
   ordinal: ^1.0.3
   papaparse: ^5.5.3
   pinia: ^3.0.4
-  pnpm: ^10.23.0
+  pnpm: ^10.24.0
   rollup: ^4.53.3
-  shiki: ^3.15.0
+  shiki: ^3.17.0
   sleep-promise: ^9.1.0
   string-width: ^8.1.0
-  taze: ^19.9.0
+  taze: ^19.9.2
   typescript: ^5.9.3
   unbuild: ^3.6.1
   unocss: ^66.5.9
-  unplugin-auto-import: ^20.2.0
-  unplugin-vue-components: ^29.2.0
+  unplugin-auto-import: ^20.3.0
+  unplugin-vue-components: ^30.0.0
   unplugin-vue-macros: ^2.14.5
   unplugin-vue-markdown: ^29.2.0
-  unplugin-vue-router: ^0.15.0
+  unplugin-vue-router: ^0.18.0
   vite: ^7.2.4
   vite-bundle-visualizer: ^1.2.1
   vite-plugin-html: ^3.2.2
@@ -85,7 +85,7 @@ catalog:
   vite-ssg-sitemap: ^0.10.0
   vitepress: ^2.0.0-alpha.15
   vitepress-plugin-group-icons: ^1.6.5
-  vitest: ^3.2.4
+  vitest: ^4.0.14
   vue: ^3.5.25
   vue-demi: ^0.14.10
   vue-i18n: ^11.2.2
