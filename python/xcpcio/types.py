@@ -178,6 +178,8 @@ class Team(BaseModel):
     location: Optional[str] = None
     icpc_id: Optional[str] = None
 
+    ip: Optional[str] = None
+
     extra: Dict[str, Any] = Field(default_factory=dict, exclude=True)
 
     def add_group(self, group: str):

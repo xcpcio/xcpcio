@@ -67,6 +67,8 @@ export class Team {
   location?: string;
   icpcID?: string;
 
+  ip?: string;
+
   se: number;
 
   constructor() {
@@ -340,6 +342,10 @@ export function createTeam(teamJSON: ITeam): Team {
 
   if (teamJSON.icpc_id) {
     t.icpcID = teamJSON.icpc_id;
+  }
+
+  if (teamJSON.ip) {
+    t.ip = teamJSON.ip;
   }
 
   return t;

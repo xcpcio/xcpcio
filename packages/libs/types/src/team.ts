@@ -29,6 +29,8 @@ export interface Team {
 
   location?: string;
   icpc_id?: string;
+
+  ip?: string;
 }
 
 export type Teams = Array<Team> | Record<string /* team_id */, Team>;
