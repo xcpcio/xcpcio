@@ -1,8 +1,10 @@
 import type { Image } from "@xcpcio/types";
 
-export function getImageSource(image: Image, asset_host?: string): string {
+import { normalizePath } from "./utils";
+
+export function getImageSource(image: Image, data_host?: string): string {
   if (image?.url) {
-    if (!asset_host) {
+    if (!data_host) {
       return image.url;
     }
 
@@ -10,7 +12,11 @@ export function getImageSource(image: Image, asset_host?: string): string {
       return image.url;
     }
 
-    return new URL(image.url, asset_host === "/" ? window.location.host : asset_host).toString();
+    if (image.url.startsWith("/")) {
+      return image.url;
+    }
+
+    return `${normalizePath(data_host)}${image.url}`;
   }
 
   if (image?.base64) {
