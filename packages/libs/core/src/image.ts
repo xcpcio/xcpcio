@@ -10,7 +10,7 @@ export function getImageSource(image: Image, asset_host?: string): string {
       return image.url;
     }
 
-    return new URL(image.url, asset_host === "/" ? window.location.host : asset_host).toString();
+    return `${asset_host}/${image.url}`;
   }
 
   if (image?.base64) {
