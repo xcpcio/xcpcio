@@ -167,10 +167,10 @@ export function createSubmission(submissionJSON: ISubmission, contest?: Contest)
 
 export function createSubmissions(submissionsJSON: ISubmissions, contest?: Contest): Submissions {
   if (Array.isArray(submissionsJSON)) {
-    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.submission_id ?? String(index) }, contest));
+    return submissionsJSON.map((s, index) => createSubmission({ ...s, id: s.id ?? s.submission_id ?? String(index) }, contest));
   } else {
     const submissions = Object.entries(submissionsJSON).map(([submissionId, s]) =>
-      createSubmission({ ...s, id: s.submission_id ?? submissionId }, contest),
+      createSubmission({ ...s, id: s.id ?? s.submission_id ?? String(submissionId) }, contest),
     );
     return submissions;
   }
