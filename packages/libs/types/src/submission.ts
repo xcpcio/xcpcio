@@ -19,6 +19,7 @@ export interface Submission {
   is_ignore?: boolean;
 
   reaction?: SubmissionReaction;
+  missing_reaction?: boolean;
 }
 
 export type Submissions = Array<Submission> | Record<string /* submission_id */, Submission>;

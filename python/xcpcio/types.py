@@ -151,6 +151,7 @@ class Submission(BaseModel):
     is_ignore: Optional[bool] = None
 
     reaction: Optional[SubmissionReaction] = None
+    missing_reaction: Optional[bool] = None
 
 
 class Submissions(RootModel[List[Submission]]):
