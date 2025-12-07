@@ -156,7 +156,7 @@ export function createSubmission(submissionJSON: ISubmission, contest?: Contest)
 
   if (submissionJSON.reaction) {
     s.reaction = submissionJSON.reaction;
-  } else if (contest?.options.reactionVideoUrlTemplate) {
+  } else if (contest?.options.reactionVideoUrlTemplate && !submissionJSON.missing_reaction) {
     s.reaction = {
       url: contest.options.reactionVideoUrlTemplate.replace(/\$\{submission_id\}/, s.id),
     };
