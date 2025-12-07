@@ -356,7 +356,7 @@ export function createTeams(teamsJSON: ITeams): Teams {
     return teamsJSON.map(t => createTeam(t));
   } else {
     const teams = Object.entries(teamsJSON).map(([teamId, team]) =>
-      createTeam({ ...team, team_id: team.team_id ?? teamId }),
+      createTeam({ ...team, id: team.id ?? team.team_id ?? String(teamId) }),
     );
     return teams;
   }
