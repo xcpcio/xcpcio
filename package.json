@@ -1,7 +1,7 @@
 {
   "name": "@xcpcio/monorepo",
   "type": "module",
-  "version": "0.76.3",
+  "version": "0.76.4",
   "private": true,
   "packageManager": "pnpm@10.24.0",
   "engines": {
