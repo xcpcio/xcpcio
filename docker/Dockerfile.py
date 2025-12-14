@@ -7,6 +7,7 @@ COPY docker/ /app/xcpcio/
 COPY package.json /app/xcpcio/
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.local/bin:$PATH"
 ENV PATH="/app/xcpcio/python/.venv/bin:$PATH"
 
 RUN apt-get update && apt-get install -y \
