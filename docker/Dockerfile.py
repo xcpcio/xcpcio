@@ -2,9 +2,9 @@ FROM ubuntu:24.04
 
 USER root
 WORKDIR /app/xcpcio
-COPY python /app/xcpcio/
-COPY docker /app/xcpcio/
-COPY package.json /app/xcpcio/
+COPY python /app/xcpcio/python
+COPY docker /app/xcpcio/docker
+COPY package.json /app/xcpcio
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="/root/.local/bin:$PATH"
