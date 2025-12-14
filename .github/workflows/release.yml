@@ -115,14 +115,14 @@ jobs:
           username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
-      - name: Build and Push
+      - name: Build and Push Python Image
         uses: docker/build-push-action@v6
         env:
-          image_name: xcpcio
+          image_name: xcpcio-py
           tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
           context: ./
-          file: ./docker/Dockerfile
+          file: ./docker/Dockerfile.py
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |
@@ -133,14 +133,14 @@ jobs:
             registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
             registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
 
-      - name: Build and Push Python Image
+      - name: Build and Push
         uses: docker/build-push-action@v6
         env:
-          image_name: xcpcio-py
+          image_name: xcpcio
           tag: ${{ steps.get-version-id.outputs.version-id }}
         with:
           context: ./
-          file: ./docker/Dockerfile.python
+          file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

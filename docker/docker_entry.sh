@@ -25,7 +25,7 @@ if [[ -n "${APP_PATH}" ]]; then
   echo "Exported ${APP_PATH} to ${EXPORT_PATH}"
 fi
 
-if [[ "${1}" = "primary" ]]; then
+if [[ "${1}" == "default" ]]; then
   echo "Done"
 else
   exec "${@}"
