@@ -4,6 +4,7 @@
     "antfu.unocss",
     "antfu.vite",
     "antfu.goto-alias",
+    "antfu.pnpm-catalog-lens",
     "vitest.explorer",
     "dbaeumer.vscode-eslint",
     "vue.volar",

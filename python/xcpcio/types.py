@@ -205,6 +205,8 @@ class ContestOptions(BaseModel):
 
     team_photo_url_template: Optional[Image] = None
 
+    submission_source_code_url_template: Optional[str] = None
+
 
 class Contest(BaseModel):
     contest_name: Text = ""
