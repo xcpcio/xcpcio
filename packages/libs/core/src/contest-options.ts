@@ -38,7 +38,7 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
     o.submissionTimestampUnit = j.submission_timestamp_unit;
   }
 
-  if (j.submission_has_reaction || j.has_reaction_videos) {
+  if (j.has_reaction_videos) {
     o.submissionHasReactionField = true;
   }
 
