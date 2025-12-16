@@ -27,6 +27,10 @@ export interface ContestOptions {
   // example: https://your.image.cdn/wf/2025/${team_id}.jpg
   // ${team_id} will be replaced with the team id
   team_photo_url_template?: Image;
+
+  // example: https://your.code.cdn/wf/2025/${submission_id}.zip
+  // ${submission_id} will be replaced with the submission id
+  submission_source_code_url_template?: string;
 }
 
 export type MedalPreset = "ccpc" | "icpc";
