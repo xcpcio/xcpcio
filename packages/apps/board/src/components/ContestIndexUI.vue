@@ -50,7 +50,7 @@ const logo = computed(() => {
               class="logo"
             >
               <img
-                class="h-10 w-10"
+                class="h-10"
                 :src="getImageSource(logo)"
                 alt="logo"
               >
