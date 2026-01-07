@@ -1,7 +1,7 @@
 {
   "name": "@xcpcio/core",
   "type": "module",
-  "version": "0.76.8",
+  "version": "0.76.9",
   "description": "The core library for XCPCIO",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
