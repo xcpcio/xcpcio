@@ -6,30 +6,17 @@ COPY ./ ./xcpcio
 WORKDIR /app/xcpcio
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV NVM_DIR=/root/.nvm
-ENV NVM_VERSION="v0.40.3"
 ENV PATH="/root/.local/bin:$PATH"
 ENV PATH="/app/xcpcio/python/.venv/bin:$PATH"
 
-# Install system dependencies, uv, nvm, and build project
 RUN apt-get update && apt-get install -y \
-    curl \
-    wget \
-    git \
-    build-essential \
-    ca-certificates \
+    curl ca-certificates \
     && rm -rf /var/lib/apt/lists/* \
-    && curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/${NVM_VERSION}/install.sh | bash \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install 24 \
-    && nvm use 24 \
-    && nvm alias default 24 \
-    && corepack enable pnpm \
-    && pnpm install --force \
+    && rm -rf node_modules \
+    && rm -rf packages/*/node_modules \
     && curl -LsSf https://astral.sh/uv/install.sh | sh \
     && cd python && uv sync --no-dev \
     && cd ..
 
-EXPOSE 3000
 ENTRYPOINT ["/app/xcpcio/docker/docker_entry.sh"]
 CMD ["default"]
