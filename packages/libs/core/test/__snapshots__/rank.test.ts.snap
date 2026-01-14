@@ -94,6 +94,7 @@ iVBORw0KGgoAAAANSUhEUgAAAL0AAAC9CAMAAADRCYwCAAAB41BMVEVHcEwau034r2WEe974tmmF5Wgn
   "options": ContestOptions {
     "calculationOfPenalty": "in_minutes",
     "submissionEnableActionField": false,
+    "submissionHasExternalUrlField": false,
     "submissionHasLanguageField": false,
     "submissionHasReactionField": false,
     "submissionHasTimeField": false,

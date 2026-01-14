@@ -22,6 +22,7 @@ export class Submission {
   language?: string;
 
   reaction?: SubmissionReaction;
+  externalUrl?: string;
 
   status = SubmissionStatus.UNKNOWN;
   isIgnore = false;
@@ -160,6 +161,10 @@ export function createSubmission(submissionJSON: ISubmission, contest?: Contest)
     s.reaction = {
       url: contest.options.reactionVideoUrlTemplate.replace(/\$\{submission_id\}/, s.id),
     };
+  }
+
+  if (contest?.options.submissionExternalUrlTemplate) {
+    s.externalUrl = contest.options.submissionExternalUrlTemplate.replace(/\$\{submission_id\}/, s.id);
   }
 
   return s;

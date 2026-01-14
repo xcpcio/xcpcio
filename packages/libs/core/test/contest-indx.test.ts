@@ -47,6 +47,7 @@ describe("contest-index", () => {
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
             "submissionEnableActionField": false,
+            "submissionHasExternalUrlField": false,
             "submissionHasLanguageField": false,
             "submissionHasReactionField": false,
             "submissionHasTimeField": false,
@@ -101,6 +102,7 @@ describe("contest-index", () => {
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
             "submissionEnableActionField": false,
+            "submissionHasExternalUrlField": false,
             "submissionHasLanguageField": false,
             "submissionHasReactionField": false,
             "submissionHasTimeField": false,

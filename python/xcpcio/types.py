@@ -207,6 +207,7 @@ class ContestOptions(BaseModel):
     team_webcam_stream_url_template: Optional[str] = None
     team_screen_stream_url_template: Optional[str] = None
 
+    submission_external_url_template: Optional[str] = None
     submission_source_code_url_template: Optional[str] = None
 
 

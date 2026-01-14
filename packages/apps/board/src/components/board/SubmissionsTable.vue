@@ -522,19 +522,37 @@ function closeVideoModal() {
                     v-if="rank.contest.options.submissionEnableActionField"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
-                    <Tooltip>
-                      <div
-                        v-if="s.reaction"
-                        flex items-center justify-start
-                        text-lg
-                        cursor-pointer
-                        i-material-symbols-slow-motion-video
-                        @click="openVideoModal(s.reaction)"
-                      />
-                      <template #popper>
-                        Reaction Video
-                      </template>
-                    </Tooltip>
+                    <div flex items-center gap-2>
+                      <Tooltip v-if="s.externalUrl">
+                        <a
+                          :href="s.externalUrl"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          flex items-center justify-start
+                          text-lg
+                          cursor-pointer
+                          hover:text-primary-600
+                        >
+                          <span i-material-symbols-link-rounded />
+                        </a>
+                        <template #popper>
+                          View on Original OJ
+                        </template>
+                      </Tooltip>
+
+                      <Tooltip v-if="s.reaction">
+                        <div
+                          flex items-center justify-start
+                          text-lg
+                          cursor-pointer
+                          i-material-symbols-slow-motion-video
+                          @click="openVideoModal(s.reaction)"
+                        />
+                        <template #popper>
+                          Reaction Video
+                        </template>
+                      </Tooltip>
+                    </div>
                   </td>
                 </tr>
               </template>
