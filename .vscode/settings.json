@@ -89,6 +89,8 @@
   ],
 
   "cSpell.words": [
+    "ALIYUN",
+    "aliyuncs",
     "antd",
     "antfu",
     "archiver",
@@ -131,6 +133,7 @@
     "prettierrc",
     "problemset",
     "Pydantic",
+    "pypi",
     "pytest",
     "rollup",
     "shiki",
