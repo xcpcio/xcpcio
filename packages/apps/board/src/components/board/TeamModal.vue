@@ -14,7 +14,16 @@ const emit = defineEmits(["update:isHidden"]);
 const TYPE_OVERVIEW = "overview";
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
-const types = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS];
+const TYPE_STREAMS = "streams";
+
+const types = computed(() => {
+  const baseTypes = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS];
+  const options = props.rank.contest.options;
+  if (options.teamWebcamStreamUrlTemplate || options.teamScreenStreamUrlTemplate) {
+    baseTypes.push(TYPE_STREAMS);
+  }
+  return baseTypes;
+});
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -143,6 +152,16 @@ const headerTitle = computed(() => {
       >
         <Chart
           :options="getTeamPlaceChart(rank, team)"
+        />
+      </div>
+
+      <div
+        v-if="currentType === TYPE_STREAMS"
+        w-full
+      >
+        <TeamStreams
+          :rank="rank"
+          :team="team"
         />
       </div>
     </div>

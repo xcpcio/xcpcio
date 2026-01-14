@@ -26,6 +26,14 @@ export interface ContestOptions {
   // ${team_id} will be replaced with the team id
   team_photo_url_template?: Image;
 
+  // example: https://your.stream.cdn/wf/2025/${team_id}/webcam/index.m3u8
+  // ${team_id} will be replaced with the team id
+  team_webcam_stream_url_template?: string;
+
+  // example: https://your.stream.cdn/wf/2025/${team_id}/screen/index.m3u8
+  // ${team_id} will be replaced with the team id
+  team_screen_stream_url_template?: string;
+
   // example: https://your.code.cdn/wf/2025/${submission_id}.zip
   // ${submission_id} will be replaced with the submission id
   submission_source_code_url_template?: string;

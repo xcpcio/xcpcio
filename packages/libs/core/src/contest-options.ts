@@ -13,6 +13,8 @@ export class ContestOptions {
   reactionVideoUrlTemplate?: string;
 
   teamPhotoTemplate?: Image;
+  teamWebcamStreamUrlTemplate?: string;
+  teamScreenStreamUrlTemplate?: string;
 
   constructor() {
     this.calculationOfPenalty = "in_minutes";
@@ -45,6 +47,9 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
   o.submissionEnableActionField = o.submissionHasReactionField;
   o.reactionVideoUrlTemplate = j.reaction_video_url_template;
   o.teamPhotoTemplate = j.team_photo_url_template;
+
+  o.teamWebcamStreamUrlTemplate = j.team_webcam_stream_url_template;
+  o.teamScreenStreamUrlTemplate = j.team_screen_stream_url_template;
 
   return o;
 }

@@ -147,6 +147,9 @@ catalogs:
     highcharts-vue:
       specifier: ^2.0.1
       version: 2.0.1
+    hls.js:
+      specifier: ^1.5.7
+      version: 1.6.15
     https-localhost:
       specifier: ^4.7.1
       version: 4.7.1
@@ -431,6 +434,9 @@ importers:
       highcharts-vue:
         specifier: 'catalog:'
         version: 2.0.1(highcharts@12.4.0)(vue@3.5.25(typescript@5.9.3))
+      hls.js:
+        specifier: 'catalog:'
+        version: 1.6.15
       lodash:
         specifier: 'catalog:'
         version: 4.17.21
@@ -4697,6 +4703,9 @@ packages:
 
   highcharts@12.4.0:
     resolution: {integrity: sha512-o6UxxfChSUrvrZUbWrAuqL1HO/+exhAUPcZY6nnqLsadZQlnP16d082sg7DnXKZCk1gtfkyfkp6g3qkIZ9miZg==}
+
+  hls.js@1.6.15:
+    resolution: {integrity: sha512-E3a5VwgXimGHwpRGV+WxRTKeSp2DW5DI5MWv34ulL3t5UNmyJWCQ1KmLEHbYzcfThfXG8amBL+fCYPneGHC4VA==}
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
@@ -11939,6 +11948,8 @@ snapshots:
       vue: 3.5.25(typescript@5.9.3)
 
   highcharts@12.4.0: {}
+
+  hls.js@1.6.15: {}
 
   hookable@5.5.3: {}
 
