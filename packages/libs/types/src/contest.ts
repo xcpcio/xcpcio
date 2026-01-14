@@ -34,6 +34,10 @@ export interface ContestOptions {
   // ${team_id} will be replaced with the team id
   team_screen_stream_url_template?: string;
 
+  // example: https://your.online.judge/contest/1234/submission/${submission_id}
+  // ${submission_id} will be replaced with the submission id
+  submission_external_url_template?: string;
+
   // example: https://your.code.cdn/wf/2025/${submission_id}.zip
   // ${submission_id} will be replaced with the submission id
   submission_source_code_url_template?: string;

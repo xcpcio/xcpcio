@@ -9,8 +9,10 @@ export class ContestOptions {
 
   submissionEnableActionField: boolean;
   submissionHasReactionField: boolean;
+  submissionHasExternalUrlField: boolean;
 
   reactionVideoUrlTemplate?: string;
+  submissionExternalUrlTemplate?: string;
 
   teamPhotoTemplate?: Image;
   teamWebcamStreamUrlTemplate?: string;
@@ -25,6 +27,7 @@ export class ContestOptions {
 
     this.submissionEnableActionField = false;
     this.submissionHasReactionField = false;
+    this.submissionHasExternalUrlField = false;
   }
 }
 
@@ -44,7 +47,12 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
     o.submissionHasReactionField = true;
   }
 
-  o.submissionEnableActionField = o.submissionHasReactionField;
+  if (j.submission_external_url_template) {
+    o.submissionHasExternalUrlField = true;
+    o.submissionExternalUrlTemplate = j.submission_external_url_template;
+  }
+
+  o.submissionEnableActionField = o.submissionHasReactionField || o.submissionHasExternalUrlField;
   o.reactionVideoUrlTemplate = j.reaction_video_url_template;
   o.teamPhotoTemplate = j.team_photo_url_template;
 
