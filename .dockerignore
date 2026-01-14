@@ -1,0 +1,35 @@
+# Dependencies (rebuilt in container)
+node_modules
+**/node_modules
+python/.venv
+
+# Build outputs (not needed, container serves pre-built files)
+# Note: Keep packages/apps/board/dist - this is the built app!
+
+# Git and version control
+.git
+
+# Development tools and IDE
+.vscode
+.claude
+.github
+
+# Cache directories
+.cache
+.eslintcache
+.pytest_cache
+.ruff_cache
+__pycache__
+
+# Temporary and log files
+logs
+temp
+*.log
+*.tgz
+
+# OS files
+.DS_Store
+
+# Environment files
+.env.local
+python/.env
