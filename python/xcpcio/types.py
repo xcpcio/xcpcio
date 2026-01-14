@@ -204,6 +204,8 @@ class ContestOptions(BaseModel):
     reaction_video_url_template: Optional[str] = None
 
     team_photo_url_template: Optional[Image] = None
+    team_webcam_stream_url_template: Optional[str] = None
+    team_screen_stream_url_template: Optional[str] = None
 
     submission_source_code_url_template: Optional[str] = None
 

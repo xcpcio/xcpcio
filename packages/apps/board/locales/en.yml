@@ -28,12 +28,18 @@ type_menu:
   overview: Overview
   submissions: Submissions
   statistics: Statistics
+  streams: Streams
   balloon: Balloon
   resolver: Resolver
   filter: Filter
   options: Options
   utility: Utility
   countdown: Countdown
+
+streams:
+  webcam: Webcam
+  screen: Screen
+  unavailable: Stream unavailable
 
 utility:
   tools: Tools

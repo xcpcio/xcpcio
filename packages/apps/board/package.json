@@ -55,6 +55,7 @@
     "gsap": "catalog:",
     "highcharts": "catalog:",
     "highcharts-vue": "catalog:",
+    "hls.js": "catalog:",
     "lodash": "catalog:",
     "nprogress": "catalog:",
     "pinia": "catalog:",

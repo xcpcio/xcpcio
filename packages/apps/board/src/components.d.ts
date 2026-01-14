@@ -65,6 +65,7 @@ declare module 'vue' {
     TeamModal: typeof import('./components/board/TeamModal.vue')['default']
     TeamOverview: typeof import('./components/board/TeamOverview.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']
+    TeamStreams: typeof import('./components/board/TeamStreams.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCheckbox: typeof import('./components/common/TheCheckbox.vue')['default']
     TheCounter: typeof import('./components/common/TheCounter.vue')['default']

@@ -28,12 +28,18 @@ type_menu:
   overview: 简介
   submissions: 提交
   statistics: 统计
+  streams: 直播
   balloon: 气球
   resolver: 滚榜
   filter: 筛选
   options: 选项
   utility: 工具
   countdown: 倒计时
+
+streams:
+  webcam: 摄像头
+  screen: 屏幕
+  unavailable: 直播不可用
 
 utility:
   tools: 工具集
