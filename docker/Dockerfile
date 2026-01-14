@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
     curl ca-certificates \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf node_modules \
-    && rm -rf packages/*/node_modules \
+    && rm -rf packages/*/*/node_modules \
     && curl -LsSf https://astral.sh/uv/install.sh | sh \
     && cd python && uv sync --no-dev \
     && cd ..
