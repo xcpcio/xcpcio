@@ -115,24 +115,6 @@ jobs:
           username: ${{ secrets.ALIYUN_REGISTRY_USERNAME }}
           password: ${{ secrets.ALIYUN_REGISTRY_TOKEN }}
 
-      - name: Build and Push Python Image
-        uses: docker/build-push-action@v6
-        env:
-          image_name: xcpcio-py
-          tag: ${{ steps.get-version-id.outputs.version-id }}
-        with:
-          context: ./
-          file: ./docker/Dockerfile.py
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: |
-            xcpcio/${{ env.image_name }}:latest
-            xcpcio/${{ env.image_name }}:${{ env.tag }}
-            ghcr.io/xcpcio/${{ env.image_name }}:latest
-            ghcr.io/xcpcio/${{ env.image_name }}:${{ env.tag }}
-            registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:latest
-            registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
-
       - name: Build and Push
         uses: docker/build-push-action@v6
         env:
