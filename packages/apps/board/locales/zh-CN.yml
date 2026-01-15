@@ -40,6 +40,12 @@ streams:
   webcam: 摄像头
   screen: 屏幕
   unavailable: 直播不可用
+  layout:
+    side_by_side: 并排
+    pip: 画中画
+  pip:
+    main: 主画面
+    position: 位置
 
 utility:
   tools: 工具集

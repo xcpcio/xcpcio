@@ -58,11 +58,13 @@ const headerTitle = computed(() => {
 <template>
   <Modal
     v-model:is-hidden="isHidden"
+    mt="md:mt-8 sm:mt-4"
   >
     <template #header>
       <div
         w-full max-w-screen-xl
-        px-4 mx-auto lg:px-12
+        px-4 lg:px-12
+        mx-auto
       >
         <div
           relative overflow-hidden
