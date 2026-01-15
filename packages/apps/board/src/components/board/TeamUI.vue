@@ -89,21 +89,20 @@ function isRenderByVisible() {
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.badge && team.badge && isRenderByVisible()"
-      class="empty flex items-center justify-center"
-      style="padding: 0px !important; margin: 0px !important;"
-    >
-      <Badge
-        :image="team.badge"
-        width-class="w-full h-full"
-      />
-    </td>
-    <td
       v-if="rank.contest.organization && isRenderByVisible()"
-      class="stnd"
+      class="stnd relative"
       :class="[getStandClassName(team)]"
     >
-      <div flex>
+      <div
+        v-if="team?.organization?.logo"
+        class="absolute left-0 top-0 bottom-0 flex items-center px-1"
+      >
+        <Badge
+          :image="team?.organization?.logo"
+          width-class="h-full w-auto"
+        />
+      </div>
+      <div flex flex-1 :class="team?.organization?.logo ? 'pl-10' : ''">
         <div
           float-left pl-2
         >
@@ -124,11 +123,21 @@ function isRenderByVisible() {
 
     <td
       v-if="isRenderByVisible()"
-      class="stnd"
+      class="stnd relative"
       :class="[getStandClassName(team)]"
     >
       <div
-        cursor-pointer
+        v-if="team.badge"
+        class="absolute left-0 top-0 bottom-0 flex items-center px-1"
+      >
+        <Badge
+          :image="team.badge"
+          width-class="h-full w-auto"
+        />
+      </div>
+      <div
+        flex items-center justify-center cursor-pointer
+        :class="team.badge ? 'pl-10' : ''"
         @click="onClickTeamModal"
       >
         <span>{{ teamName }}</span>

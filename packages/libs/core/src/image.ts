@@ -20,6 +20,9 @@ export function getImageSource(image: Image, data_host?: string): string {
   }
 
   if (image?.base64) {
+    if (image.mime) {
+      return `data:${image.mime};base64,${image.base64}`;
+    }
     return `data:image/${image.type ?? "png"};base64,${image.base64}`;
   }
 

@@ -1,12 +1,14 @@
-import type { BannerMode, Contest as IContest, Image, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
+import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
 import type { Awards } from "./award";
+import type { Organizations } from "./organization";
 import type { Problem, Problems } from "./problem";
-import { ContestState } from "@xcpcio/types";
 
+import { ContestState } from "@xcpcio/types";
 import { Award, MedalType } from "./award";
 import { I18nText } from "./basic-types";
 import { ContestOptions, createContestOptions } from "./contest-options";
 import { Group } from "./group";
+import { createOrganizations } from "./organization";
 import { createProblems, createProblemsByProblemIds } from "./problem";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
 
@@ -50,6 +52,8 @@ export class Contest {
   boardLink?: string;
 
   options: ContestOptions;
+
+  organizations?: Organizations;
 
   constructor() {
     this.name = new I18nText();
@@ -350,6 +354,10 @@ export function createContest(contestJSON: IContest): Contest {
 
   if (contestJSON.options) {
     c.options = createContestOptions(contestJSON.options);
+  }
+
+  if (contestJSON.organizations) {
+    c.organizations = createOrganizations(contestJSON.organizations as IOrganizations);
   }
 
   return c;

@@ -58,6 +58,7 @@ standings:
   remaining: Remaining
 
   place: Place
+  organization: Organization
   team: Team
   solved: Solved
   penalty: Penalty

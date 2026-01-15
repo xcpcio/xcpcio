@@ -16,10 +16,6 @@ function getColSpan() {
     res++;
   }
 
-  if (rank.value.contest.badge) {
-    res++;
-  }
-
   return res;
 }
 

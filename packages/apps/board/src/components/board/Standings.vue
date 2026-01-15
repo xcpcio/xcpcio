@@ -167,18 +167,11 @@ const maxTeamLength = computed(() => {
               {{ t("standings.place") }}
             </th>
             <th
-              v-if="rank.contest.badge"
-              class="title"
-              style="width: 2.5rem;"
-            >
-              {{ rank.contest.badge }}
-            </th>
-            <th
               v-if="rank.contest.organization"
               class="title"
               :style="{ width: `${Math.min(32, Math.ceil(maxOrgLength * 1.1))}rem` }"
             >
-              {{ rank.contest.organization }}
+              {{ t("standings.organization") }}
             </th>
             <th
               class="title"

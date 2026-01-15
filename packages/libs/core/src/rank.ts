@@ -191,8 +191,16 @@ export class Rank {
 
     this.submissionsMap = new Map(this.submissions.map(s => [s.id, s]));
 
-    this.organizationsMap = this.buildOrganizationsMap();
-    this.organizations = [...this.organizationsMap.values()];
+    if (this.contest.organizations) {
+      this.organizations = this.contest.organizations;
+      this.organizationsMap = new Map<string, Organization>(
+        this.organizations.map(org => [org.id, org]),
+      );
+      this.linkTeamAndOrg();
+    } else {
+      this.organizationsMap = this.buildOrganizationsMap();
+      this.organizations = [...this.organizationsMap.values()];
+    }
     this.organizations.sort(Organization.compare);
 
     this.originTeams = this.teams.map(t => t);
@@ -225,6 +233,15 @@ export class Rank {
 
       this.statuses = [...se].sort();
     }
+  }
+
+  linkTeamAndOrg() {
+    this.teams.forEach((t) => {
+      if (!t.organizationId) {
+        return;
+      }
+      t.organization = this.organizationsMap.get(t.organizationId);
+    });
   }
 
   buildOrganizationsMap() {
