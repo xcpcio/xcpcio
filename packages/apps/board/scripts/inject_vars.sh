@@ -8,6 +8,7 @@ if [[ -n "${BOARD_CDN_HOST}" ]]; then
   CDN_HOST="${BOARD_CDN_HOST}"
 fi
 
+BASE_URL="${BOARD_BASE_URL}"
 DATA_HOST="${BOARD_DATA_HOST}"
 DATA_REGION="${BOARD_DATA_REGION}"
 DEFAULT_LANG="${BOARD_DEFAULT_LANG}"
@@ -17,6 +18,10 @@ UMAMI_JS_URL="${BOARD_UMAMI_JS_URL}"
 UMAMI_WEBSITE_ID="${BOARD_UMAMI_WEBSITE_ID}"
 
 sed -i "s|__CDN_HOST__|${CDN_HOST}|g" "${TARGET_FILE}"
+
+if [[ -n "${BASE_URL}" ]]; then
+  sed -i "s|__BASE_URL__|\"${BASE_URL}\"|g" "${TARGET_FILE}"
+fi
 
 if [[ -n "${DATA_HOST}" ]]; then
   sed -i "s|__DATA_HOST__|\"${DATA_HOST}\"|g" "${TARGET_FILE}"
