@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional
 
-from xcpcio.clics.base.types import FileAttr
+from xcpcio.clics.base.types import FileAttr, Image
 
 
 class BaseContestReader(ABC):
@@ -81,6 +81,10 @@ class BaseContestReader(ABC):
 
     @abstractmethod
     def get_organization_logo(self, organization_id: str) -> FileAttr:
+        pass
+
+    @abstractmethod
+    def get_organization_logo_image(self, organization_id: str) -> Optional[Image]:
         pass
 
     # Group operations
