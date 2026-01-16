@@ -13,7 +13,7 @@ class TestTeam:
         team = Team()
         assert team.id == ""
         assert team.name == ""
-        assert team.organization == ""
+        assert team.organization is None
         assert team.members is None
         assert team.coaches is None
         assert team.location is None

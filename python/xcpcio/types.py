@@ -164,7 +164,7 @@ class Team(BaseModel):
     id: str = ""
     name: Text = ""
 
-    organization: str = ""
+    organization: Optional[str] = None
     organization_id: Optional[str] = None
 
     group: List[str] = Field(default_factory=list)
