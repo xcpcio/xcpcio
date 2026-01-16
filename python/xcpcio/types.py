@@ -98,6 +98,7 @@ class Organization(BaseModel):
     name: Text
 
     logo: Optional[Image] = None
+    icpc_id: Optional[str] = None
 
 
 Organizations = List[Organization]
