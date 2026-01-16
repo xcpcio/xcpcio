@@ -1,3 +1,4 @@
+import base64
 import bisect
 import json
 import logging
@@ -7,10 +8,18 @@ from typing import Any, Dict, List, Optional, Union
 
 from fastapi import HTTPException
 
-from xcpcio.clics.base.types import FileAttr
+from xcpcio.clics.base.types import FileAttr, Image
 from xcpcio.clics.reader.interface import BaseContestReader
 
 logger = logging.getLogger(__name__)
+
+
+def image_to_base64(image_path: Path):
+    with open(image_path, "rb") as image_file:
+        binary_data = image_file.read()
+        base64_bytes = base64.b64encode(binary_data)
+        base64_string = base64_bytes.decode("utf-8")
+        return base64_string
 
 
 class ContestPackageReader(BaseContestReader):
@@ -238,6 +247,19 @@ class ContestPackageReader(BaseContestReader):
                 status_code=404,
                 detail=f"Organization logo not found. [contest_id={self.contest_id}] [organization_id={organization_id}] [err={e}]",
             )
+
+    def get_organization_logo_image(self, organization_id: str) -> Optional[Image]:
+        org_list = self.get_organization(organization_id).get("logo", [])
+        if len(org_list) == 0:
+            return None
+
+        org: Dict = org_list[0]
+        return Image(
+            base64=image_to_base64(self.contest_package_dir / f"organizations/{organization_id}/{org['filename']}"),
+            mime_type=str(org.get("mime")),
+            width=int(org.get("width")),
+            height=int(org.get("height")),
+        )
 
     # Group operations
     def get_groups(self) -> List[Dict[str, Any]]:
