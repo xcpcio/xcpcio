@@ -135,6 +135,7 @@ export interface Organization {
   name: Text;
 
   logo?: Image;
+  icpc_id?: string;
 }
 
 export type Organizations = Array<Organization>;

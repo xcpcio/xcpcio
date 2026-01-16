@@ -9,6 +9,7 @@ export class Organization {
   name: I18nText;
 
   logo?: Image;
+  icpcID?: string;
 
   // Teams belonging to this organization
   teams: Teams;
@@ -48,6 +49,7 @@ export function createOrganization(orgJSON: IOrganization): Organization {
   org.name = I18nText.fromIText(orgJSON.name);
 
   org.logo = orgJSON.logo;
+  org.icpcID = orgJSON.icpc_id;
 
   return org;
 }
