@@ -101,7 +101,8 @@ class Organization(BaseModel):
     icpc_id: Optional[str] = None
 
 
-Organizations = List[Organization]
+class Organizations(RootModel[List[Organization]]):
+    pass
 
 
 class BalloonColor(BaseModel):
