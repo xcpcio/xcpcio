@@ -1,29 +1,19 @@
 <script setup lang="ts">
-import type { Rank, Team } from "@xcpcio/core";
+import type { Organization, Rank } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
-
-import { Chart } from "highcharts-vue";
 
 const props = defineProps<{
   isHidden: boolean;
 
   rank: Rank;
-  team: Team;
+  organization: Organization;
 }>();
 const emit = defineEmits(["update:isHidden"]);
-const TYPE_OVERVIEW = "overview";
-const TYPE_SUBMISSIONS = "submissions";
-const TYPE_STATISTICS = "statistics";
-const TYPE_STREAMS = "streams";
 
-const types = computed(() => {
-  const baseTypes = [TYPE_OVERVIEW, TYPE_SUBMISSIONS, TYPE_STATISTICS];
-  const options = props.rank.contest.options;
-  if (options.teamWebcamStreamUrlTemplate || options.teamScreenStreamUrlTemplate) {
-    baseTypes.push(TYPE_STREAMS);
-  }
-  return baseTypes;
-});
+const TYPE_OVERVIEW = "overview";
+const TYPE_TEAMS = "teams";
+
+const types = [TYPE_OVERVIEW, TYPE_TEAMS];
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -40,15 +30,16 @@ const isHidden = computed({
 const currentType = ref(TYPE_OVERVIEW);
 
 const rank = computed(() => props.rank);
-const team = computed(() => props.team);
+const organization = computed(() => props.organization);
 
-const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
+const headerTitle = computed(() => {
+  return organization.value.name.getOrDefault(lang.value);
+});
 </script>
 
 <template>
   <Modal
     v-model:is-hidden="isHidden"
-    mt="md:mt-8 sm:mt-4"
   >
     <template #header>
       <div
@@ -70,8 +61,8 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
               space-x-4
             >
               <Badge
-                v-if="team.badge"
-                :image="team.badge"
+                v-if="organization.logo"
+                :image="organization.logo"
                 width-class="h-16 w-16"
               />
 
@@ -90,10 +81,10 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
                     justify-start items-start
                   >
                     <div>
-                      Team ID: {{ team.id }}
+                      Org ID: {{ organization.id }}
                     </div>
-                    <div v-if="team.icpcID && team.icpcID.length > 0">
-                      ICPC ID: {{ team.icpcID }}
+                    <div v-if="organization.icpcID && organization.icpcID.length > 0">
+                      ICPC ID: {{ organization.icpcID }}
                     </div>
                   </div>
                 </template>
@@ -118,42 +109,20 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
         v-if="currentType === TYPE_OVERVIEW"
         w-full
       >
-        <TeamOverview
+        <OrgOverview
           :rank="rank"
-          :team="team"
+          :organization="organization"
         />
       </div>
 
       <div
-        v-if="currentType === TYPE_SUBMISSIONS"
+        v-if="currentType === TYPE_TEAMS"
         w-full
-        class="mt-[-12px]"
       >
-        <SubmissionsTable
+        <OrgBoard
           w-full
           :rank="rank"
-          :submissions="team.submissions"
-          :page-size="8"
-          :remove-border="true"
-        />
-      </div>
-
-      <div
-        v-if="currentType === TYPE_STATISTICS"
-        w-full
-      >
-        <Chart
-          :options="getTeamPlaceChart(rank, team)"
-        />
-      </div>
-
-      <div
-        v-if="currentType === TYPE_STREAMS"
-        w-full
-      >
-        <TeamStreams
-          :rank="rank"
-          :team="team"
+          :organization-id="organization.id"
         />
       </div>
     </div>

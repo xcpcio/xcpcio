@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useModalStack } from "@board/composables/useModalStack";
 import { useMagicKeys } from "@vueuse/core";
 
 export type ModalCloseReason = "esc" | "outside" | "close-button";
@@ -12,6 +13,11 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:isHidden", "onBeforeClose"]);
+
+const { register, unregister, isTopModal } = useModalStack();
+
+onMounted(() => register());
+onUnmounted(() => unregister());
 
 const isHidden = computed({
   get() {
@@ -29,7 +35,7 @@ function onClose(reason: ModalCloseReason = "outside") {
 
 const { Escape } = useMagicKeys();
 watch(Escape, (v) => {
-  if (v) {
+  if (v && isTopModal()) {
     onClose("esc");
   }
 });

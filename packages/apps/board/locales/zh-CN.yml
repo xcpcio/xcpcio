@@ -35,6 +35,7 @@ type_menu:
   options: 选项
   utility: 工具
   countdown: 倒计时
+  teams: 队伍
 
 streams:
   webcam: 摄像头
@@ -104,3 +105,9 @@ medal:
   silver: 银奖
   bronze: 铜奖
   honorable: 优胜奖
+
+org_info:
+  rank: 排名
+  name: 组织
+  icpc_id: ICPC ID
+  teams_count: 队伍数

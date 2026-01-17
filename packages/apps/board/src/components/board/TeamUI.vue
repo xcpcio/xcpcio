@@ -9,6 +9,7 @@ const props = defineProps<{
   team: Team;
   isFilter?: boolean;
   giantsType?: GiantsType;
+  hideOrganization?: boolean;
 }>();
 
 const el = ref(null);
@@ -19,12 +20,21 @@ function onClickTeamModal() {
   hiddenTeamModal.value = false;
 }
 
+const hiddenOrgModal = ref(true);
+function onClickOrgModal() {
+  hiddenOrgModal.value = false;
+}
+
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 const teamName = computed(() => team.value.name.getOrDefault(lang.value));
+
+const showOrganization = computed(() => {
+  return rank.value.contest.options.enableOrganization && !props.hideOrganization;
+});
 
 function getStandClassName(t: Team, isRankField = false): string {
   if (isRankField) {
@@ -89,7 +99,7 @@ function isRenderByVisible() {
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.options.enableOrganization && isRenderByVisible()"
+      v-if="showOrganization && isRenderByVisible()"
       class="stnd relative"
       :class="[getStandClassName(team)]"
     >
@@ -114,10 +124,21 @@ function isRenderByVisible() {
         </div>
         <div
           flex-1
+          cursor-pointer
+          @click="onClickOrgModal"
         >
           {{ team.organization?.name.getOrDefault(lang) }}
         </div>
         <div float-right />
+      </div>
+
+      <div>
+        <OrgModal
+          v-if="!hiddenOrgModal && team.organization"
+          v-model:is-hidden="hiddenOrgModal"
+          :rank="rank"
+          :organization="team.organization"
+        />
       </div>
     </td>
 

@@ -35,6 +35,7 @@ type_menu:
   options: Options
   utility: Utility
   countdown: Countdown
+  teams: Teams
 
 streams:
   webcam: Webcam
@@ -104,3 +105,9 @@ medal:
   silver: Silver Medal
   bronze: Bronze Medal
   honorable: Honorable Mention
+
+org_info:
+  rank: Rank
+  name: Organization
+  icpc_id: ICPC ID
+  teams_count: Teams Count
