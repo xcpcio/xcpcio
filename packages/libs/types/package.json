@@ -1,7 +1,7 @@
 {
   "name": "@xcpcio/types",
   "type": "module",
-  "version": "0.81.1",
+  "version": "0.82.0",
   "description": "Types for XCPCIO",
   "author": "Dup4 <hi@dup4.com>",
   "license": "MIT",
