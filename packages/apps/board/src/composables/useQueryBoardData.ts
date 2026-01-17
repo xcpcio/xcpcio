@@ -7,6 +7,27 @@ export interface BoardData {
   submissions: Submissions;
 }
 
+function isDataItem(obj: unknown): obj is { url: string } {
+  return obj !== null && typeof obj === "object" && "url" in obj;
+}
+
+async function fetchAndAssignOrganizations(contest: Contest, baseUrl: string): Promise<void> {
+  if (!contest?.organizations || !isDataItem(contest.organizations)) {
+    return;
+  }
+
+  const { url } = contest.organizations;
+  let fetchUrl = url;
+  if (!url.startsWith("http")) {
+    fetchUrl = `${baseUrl}/${url}`;
+  }
+
+  const orgRes = await fetch(fetchUrl);
+  if (orgRes.ok) {
+    contest.organizations = await orgRes.json();
+  }
+}
+
 async function fetch_board_data(target: string): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
   let prefix = `${window.DATA_HOST}${endpoint}`;
@@ -36,21 +57,23 @@ async function fetch_board_data(target: string): Promise<BoardData> {
       ];
 
   const { status, statusText } = res[0];
-  if (status >= 300 || status < 200) {
+  if (status >= 400 || status < 200) {
     throw new Error(`fetch data failed. [status=${status}] [statusText=${statusText}]`);
   }
 
-  const p = Promise.all(res.map(r => r.json())).then((res) => {
-    return options.allInOne
-      ? res[0]
-      : {
-          contest: res[0],
-          teams: res[1],
-          submissions: res[2],
-        };
-  });
+  const jsonData = await Promise.all(res.map(r => r.json()));
+  if (options.allInOne) {
+    return jsonData[0];
+  }
 
-  return p;
+  const contest = jsonData[0];
+  await fetchAndAssignOrganizations(contest, prefix);
+
+  return {
+    contest,
+    teams: jsonData[1],
+    submissions: jsonData[2],
+  };
 }
 
 export function useQueryBoardData(target: string, queryOnce = false) {

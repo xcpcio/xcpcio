@@ -22,7 +22,6 @@ class TestContest:
         assert contest.logo is None
         assert contest.banner is None
         assert contest.banner_mode is None
-        assert contest.badge is None
         assert contest.group is None
         assert contest.tag is None
         assert contest.board_link is None
