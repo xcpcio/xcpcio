@@ -36,6 +36,10 @@ type_menu:
   utility: Utility
   countdown: Countdown
   teams: Teams
+  info: Info
+
+info_modal:
+  color_legend: Color Legend
 
 streams:
   webcam: Webcam
