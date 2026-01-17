@@ -98,9 +98,6 @@ pnpm preview-https
 # Start production server
 pnpm start
 
-# Type checking
-pnpm typecheck
-
 # Run E2E tests with Cypress
 pnpm test:e2e
 
@@ -238,9 +235,8 @@ Libraries export both ESM and CommonJS formats with proper TypeScript declaratio
 3. Make changes to libraries first, then applications
 4. Build libraries before testing apps: `pnpm build:libs`
 5. Run tests: `pnpm test` or `pnpm test:ci` for full pipeline
-6. Type check: `pnpm typecheck` (from board app directory)
-7. Lint before committing: `pnpm lint` or `pnpm lint:fix`
-8. Build for production: `pnpm build`
+6. Lint before committing: `pnpm lint` or `pnpm lint:fix`
+7. Build for production: `pnpm build`
 
 ### Package Development Order
 
