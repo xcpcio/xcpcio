@@ -32,7 +32,7 @@ const maxTeamLength = computed(() => {
   <div flex justify-center>
     <table
       class="standings"
-      font-mono dark:text-gray-700
+      font-mono dark:text-gray-200
     >
       <thead
         class="sticky top-0 z-99"

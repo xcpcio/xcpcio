@@ -43,7 +43,7 @@ html {
 }
 
 html.dark {
-  --global-background: #323443;
+  --global-background: #1f2937;
 
   --theme-status-pending: #6cf;
   --theme-status-configuration-error: #e28989;
