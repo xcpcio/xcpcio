@@ -37,8 +37,6 @@ export class Contest {
 
   statusTimeDisplay: StatusTimeDisplay;
 
-  organization?: string;
-
   medal?: Record<string, Record<string, number>> | MedalPreset;
   awards?: Awards;
 
@@ -258,8 +256,6 @@ export function createContest(contestJSON: IContest): Contest {
     };
   }
 
-  c.organization = contestJSON.organization;
-
   c.medal = contestJSON.medal;
 
   (() => {
@@ -352,10 +348,6 @@ export function createContest(contestJSON: IContest): Contest {
 
   if (contestJSON.options) {
     c.options = createContestOptions(contestJSON.options);
-  }
-
-  if (c.organization) {
-    c.options.enableOrganization = true;
   }
 
   if (contestJSON.organizations) {

@@ -66,8 +66,6 @@ export interface Contest {
 
   status_time_display?: StatusTimeDisplay;
 
-  organization?: string;
-
   medal?: Record<string, Record<string, number>> | MedalPreset;
 
   group?: Record<string, string>;

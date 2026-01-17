@@ -102,7 +102,6 @@ Contest {
     "teamScreenStreamUrlTemplate": undefined,
     "teamWebcamStreamUrlTemplate": undefined,
   },
-  "organization": undefined,
   "penalty": 1200,
   "problems": [
     Problem {
