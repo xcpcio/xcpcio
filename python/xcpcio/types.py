@@ -199,6 +199,7 @@ class Teams(RootModel[List[Team]]):
 
 
 class ContestOptions(BaseModel):
+    enable_organization: Optional[bool] = None
     calculation_of_penalty: Optional[CalculationOfPenalty] = None
     submission_timestamp_unit: Optional[TimeUnit] = None
 

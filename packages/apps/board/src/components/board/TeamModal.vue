@@ -45,7 +45,7 @@ const team = computed(() => props.team);
 const headerTitle = computed(() => {
   let res = "";
 
-  if (rank.value.contest.organization && !!team.value.organization) {
+  if (rank.value.contest.options.enableOrganization && !!team.value.organization) {
     res += `${team.value.organization.name.getOrDefault(lang.value)} - `;
   }
 

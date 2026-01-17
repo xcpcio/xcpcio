@@ -122,15 +122,15 @@ function onConfirm() {
           grid grid-cols-6 gap-y-4
         >
           <div
-            v-if="rank.contest.organization"
+            v-if="rank.contest.options.enableOrganization"
             flex items-center
             text-sm
           >
-            {{ rank.contest.organization }}:
+            {{ t("standings.organization") }}:
           </div>
 
           <div
-            v-if="rank.contest.organization"
+            v-if="rank.contest.options.enableOrganization"
             flex items-center
             w-full
             col-span-6

@@ -30,7 +30,7 @@ const props = defineProps<{
   enableFilter?: EnableFilterOptions;
 }>();
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
@@ -304,13 +304,13 @@ function closeVideoModal() {
             md:space-x-3 md:space-y-0
           >
             <div
-              v-if="rank.contest.organization && enableFilter?.organization"
+              v-if="rank.contest.options.enableOrganization && enableFilter?.organization"
               w-64
             >
               <TheMultiSelect
                 :options="orgOptions"
                 :selected-options="orgSelectedItems"
-                :placeholder="rank.contest.organization"
+                :placeholder="t('standings.organization')"
                 @select="orgOnSelect"
               />
             </div>
@@ -386,11 +386,11 @@ function closeVideoModal() {
                   Problem
                 </th>
                 <th
-                  v-if="rank.contest.organization"
+                  v-if="rank.contest.options.enableOrganization"
                   scope="col"
                   class="px-4 py-3"
                 >
-                  {{ rank.contest.organization }}
+                  {{ t("standings.organization") }}
                 </th>
                 <th
                   scope="col"
@@ -462,7 +462,7 @@ function closeVideoModal() {
                   </td>
 
                   <td
-                    v-if="rank.contest.organization"
+                    v-if="rank.contest.options.enableOrganization"
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
                     {{ rank.teamsMap.get(s.teamId)?.organization?.name.getOrDefault(lang) }}
