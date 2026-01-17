@@ -80,6 +80,24 @@ function teamsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: 
   rankOptions.value.setFilterTeams(selectedItems);
 }
 
+const teamIdsOptions = computed(() => {
+  const res = rank.value.originTeams.map((t) => {
+    const teamName = t.name.getOrDefault(lang.value);
+    return {
+      value: t.id,
+      text: `${t.id} - ${teamName}`,
+    };
+  });
+
+  return res;
+});
+
+const teamIdsSelectedItems = ref<Array<SelectOptionItem>>(rankOptions.value.filterTeamIds);
+function teamIdsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: SelectOptionItem) {
+  teamIdsSelectedItems.value = selectedItems;
+  rankOptions.value.setFilterTeamIds(selectedItems);
+}
+
 async function onCancel() {
   rankOptions.value.setSelf(beforeRankOptions);
   await nextTick();
@@ -88,12 +106,14 @@ async function onCancel() {
 
 const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
+const localStorageKeyForFilterTeamIds = getLocalStorageKeyForFilterTeamIds();
 
 async function onBeforeClose(reason: ModalCloseReason) {
   if (reason === "outside") {
     // Click outside: confirm and save changes
     localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
     localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
+    localStorage.setItem(localStorageKeyForFilterTeamIds, JSON.stringify(teamIdsSelectedItems.value));
   } else {
     // Esc key or X button: cancel and restore previous state
     rankOptions.value.setSelf(beforeRankOptions);
@@ -105,6 +125,7 @@ function onConfirm() {
   // can't use useStorage, maybe it's a bug
   localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
   localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
+  localStorage.setItem(localStorageKeyForFilterTeamIds, JSON.stringify(teamIdsSelectedItems.value));
 
   isHidden.value = true;
 }
@@ -131,6 +152,44 @@ function onConfirm() {
           grid grid-cols-6 gap-y-4
         >
           <div
+            text-sm
+            flex items-center
+          >
+            Team:
+          </div>
+
+          <div
+            flex items-center
+            w-full
+            col-span-6
+          >
+            <TheMultiSelect
+              :options="teamsOptions"
+              :selected-options="teamsSelectedItems"
+              @select="teamsOnSelect"
+            />
+          </div>
+
+          <div
+            text-sm
+            flex items-center
+          >
+            Team ID:
+          </div>
+
+          <div
+            flex items-center
+            w-full
+            col-span-6
+          >
+            <TheMultiSelect
+              :options="teamIdsOptions"
+              :selected-options="teamIdsSelectedItems"
+              @select="teamIdsOnSelect"
+            />
+          </div>
+
+          <div
             v-if="rank.contest.options.enableOrganization"
             flex items-center
             text-sm
@@ -148,25 +207,6 @@ function onConfirm() {
               :options="orgOptions"
               :selected-options="orgSelectedItems"
               @select="orgOnSelect"
-            />
-          </div>
-
-          <div
-            text-sm
-            flex items-center
-          >
-            Team:
-          </div>
-
-          <div
-            flex items-center
-            w-full
-            col-span-6
-          >
-            <TheMultiSelect
-              :options="teamsOptions"
-              :selected-options="teamsSelectedItems"
-              @select="teamsOnSelect"
             />
           </div>
         </div>

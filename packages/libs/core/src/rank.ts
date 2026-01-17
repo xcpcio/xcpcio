@@ -30,6 +30,8 @@ export class RankOptions {
   filterOrganizationMap: Map<string, SelectOptionItem>;
   filterTeams: Array<SelectOptionItem>;
   filterTeamMap: Map<string, SelectOptionItem>;
+  filterTeamIds: Array<SelectOptionItem>;
+  filterTeamIdMap: Map<string, SelectOptionItem>;
 
   enableAnimatedSubmissions: boolean;
 
@@ -48,6 +50,8 @@ export class RankOptions {
 
     this.filterTeams = [];
     this.filterTeamMap = new Map<string, SelectOptionItem>();
+    this.filterTeamIds = [];
+    this.filterTeamIdMap = new Map<string, SelectOptionItem>();
 
     this.enableAnimatedSubmissions = false;
 
@@ -67,6 +71,8 @@ export class RankOptions {
 
     this.filterTeams = self.filterTeams;
     this.filterTeamMap = self.filterTeamMap;
+    this.filterTeamIds = self.filterTeamIds;
+    this.filterTeamIdMap = self.filterTeamIdMap;
 
     this.enableAnimatedSubmissions = self.enableAnimatedSubmissions;
 
@@ -115,6 +121,16 @@ export class RankOptions {
 
     this.filterTeams = filterTeams;
     this.filterTeamMap = m;
+  }
+
+  setFilterTeamIds(filterTeamIds: Array<SelectOptionItem>) {
+    const m = new Map<string, SelectOptionItem>();
+    filterTeamIds.forEach((item) => {
+      m.set(item.value, item);
+    });
+
+    this.filterTeamIds = filterTeamIds;
+    this.filterTeamIdMap = m;
   }
 
   isNeedReBuildRank(nextRankOptions: RankOptions): boolean {
