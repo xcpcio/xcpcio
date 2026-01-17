@@ -45,6 +45,7 @@ streams:
   webcam: Webcam
   screen: Screen
   unavailable: Stream unavailable
+  realtime_reaction: Realtime Reaction
   layout:
     side_by_side: Side by Side
     pip: Picture in Picture

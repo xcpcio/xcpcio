@@ -42,6 +42,14 @@ export interface ContestOptions {
   // example: https://your.code.cdn/wf/2025/${submission_id}.zip
   // ${submission_id} will be replaced with the submission id
   submission_source_code_url_template?: string;
+
+  // example: https://your.stream.cdn/wf/2025/${submission_id}/webcam/index.m3u8
+  // ${submission_id} will be replaced with the submission id
+  realtime_reaction_webcam_stream_url_template?: string;
+
+  // example: https://your.stream.cdn/wf/2025/${submission_id}/screen/index.m3u8
+  // ${submission_id} will be replaced with the submission id
+  realtime_reaction_screen_stream_url_template?: string;
 }
 
 export type MedalPreset = "ccpc" | "icpc";

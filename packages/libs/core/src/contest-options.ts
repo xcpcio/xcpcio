@@ -11,6 +11,7 @@ export class ContestOptions {
   submissionEnableActionField: boolean;
   submissionHasReactionField: boolean;
   submissionHasExternalUrlField: boolean;
+  submissionHasRealtimeReactionStreamField: boolean;
 
   reactionVideoUrlTemplate?: string;
   submissionExternalUrlTemplate?: string;
@@ -18,6 +19,9 @@ export class ContestOptions {
   teamPhotoTemplate?: Image;
   teamWebcamStreamUrlTemplate?: string;
   teamScreenStreamUrlTemplate?: string;
+
+  realtimeReactionWebcamStreamUrlTemplate?: string;
+  realtimeReactionScreenStreamUrlTemplate?: string;
 
   constructor() {
     this.enableOrganization = false;
@@ -30,6 +34,7 @@ export class ContestOptions {
     this.submissionEnableActionField = false;
     this.submissionHasReactionField = false;
     this.submissionHasExternalUrlField = false;
+    this.submissionHasRealtimeReactionStreamField = false;
   }
 }
 
@@ -56,7 +61,13 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
     o.submissionExternalUrlTemplate = j.submission_external_url_template;
   }
 
-  o.submissionEnableActionField = o.submissionHasReactionField || o.submissionHasExternalUrlField;
+  if (j.realtime_reaction_webcam_stream_url_template || j.realtime_reaction_screen_stream_url_template) {
+    o.submissionHasRealtimeReactionStreamField = true;
+    o.realtimeReactionWebcamStreamUrlTemplate = j.realtime_reaction_webcam_stream_url_template;
+    o.realtimeReactionScreenStreamUrlTemplate = j.realtime_reaction_screen_stream_url_template;
+  }
+
+  o.submissionEnableActionField = o.submissionHasReactionField || o.submissionHasExternalUrlField || o.submissionHasRealtimeReactionStreamField;
   o.reactionVideoUrlTemplate = j.reaction_video_url_template;
   o.teamPhotoTemplate = j.team_photo_url_template;
 

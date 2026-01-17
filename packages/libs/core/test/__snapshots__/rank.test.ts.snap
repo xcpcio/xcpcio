@@ -96,6 +96,7 @@ Contest {
     "submissionHasExternalUrlField": false,
     "submissionHasLanguageField": false,
     "submissionHasReactionField": false,
+    "submissionHasRealtimeReactionStreamField": false,
     "submissionHasTimeField": false,
     "submissionTimestampUnit": "second",
     "teamPhotoTemplate": undefined,

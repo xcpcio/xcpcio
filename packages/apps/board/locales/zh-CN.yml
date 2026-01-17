@@ -45,6 +45,7 @@ streams:
   webcam: 摄像头
   screen: 屏幕
   unavailable: 直播不可用
+  realtime_reaction: 实时反应
   layout:
     side_by_side: 并排
     pip: 画中画
