@@ -1215,6 +1215,8 @@ RankOptions {
   "enableFilterTeamsByGroup": false,
   "filterOrganizationMap": Map {},
   "filterOrganizations": [],
+  "filterTeamIdMap": Map {},
+  "filterTeamIds": [],
   "filterTeamMap": Map {},
   "filterTeams": [],
   "group": "all",

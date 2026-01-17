@@ -26,6 +26,10 @@ const filterTeams = computed(() => {
       return true;
     }
 
+    if (props.rank.options.filterTeamIdMap.has(t.id)) {
+      return true;
+    }
+
     return false;
   });
 

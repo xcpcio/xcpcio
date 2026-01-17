@@ -31,6 +31,7 @@ const enableAutoScroll = ref(false);
 (() => {
   const filterOrganizations = useLocalStorageForFilterOrganizations();
   const filterTeams = useLocalStorageForFilterTeams();
+  const filterTeamIds = useLocalStorageForFilterTeamIds();
 
   if (filterOrganizations.value.length > 0) {
     rankOptions.value.setFilterOrganizations(filterOrganizations.value);
@@ -38,6 +39,10 @@ const enableAutoScroll = ref(false);
 
   if (filterTeams.value.length > 0) {
     rankOptions.value.setFilterTeams(filterTeams.value);
+  }
+
+  if (filterTeamIds.value.length > 0) {
+    rankOptions.value.setFilterTeamIds(filterTeamIds.value);
   }
 })();
 

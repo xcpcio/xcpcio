@@ -14,6 +14,13 @@ export function getLocalStorageKeyForFilterTeams() {
   return key;
 }
 
+export function getLocalStorageKeyForFilterTeamIds() {
+  const route = useRoute();
+  const key = `filter-team-ids-${route.path}`;
+
+  return key;
+}
+
 export function useLocalStorageForFilterOrganizations() {
   const route = useRoute();
   const key = `filter-organizations-${route.path}`;
@@ -24,6 +31,13 @@ export function useLocalStorageForFilterOrganizations() {
 export function useLocalStorageForFilterTeams() {
   const route = useRoute();
   const key = `filter-teams-${route.path}`;
+
+  return useStorage(key, [] as Array<SelectOptionItem>);
+}
+
+export function useLocalStorageForFilterTeamIds() {
+  const route = useRoute();
+  const key = `filter-team-ids-${route.path}`;
 
   return useStorage(key, [] as Array<SelectOptionItem>);
 }
