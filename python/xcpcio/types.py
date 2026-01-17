@@ -213,6 +213,9 @@ class ContestOptions(BaseModel):
     submission_external_url_template: Optional[str] = None
     submission_source_code_url_template: Optional[str] = None
 
+    realtime_reaction_webcam_stream_url_template: Optional[str] = None
+    realtime_reaction_screen_stream_url_template: Optional[str] = None
+
 
 class Contest(BaseModel):
     contest_name: Text = ""

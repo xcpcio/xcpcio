@@ -264,6 +264,18 @@ function openVideoModal(submissionReaction: SubmissionReaction) {
 function closeVideoModal() {
   showVideoModal.value = false;
 }
+
+const showRealtimeStreamModal = ref(false);
+const currentRealtimeStreamSubmissionId = ref("");
+
+function openRealtimeStreamModal(submissionId: string) {
+  currentRealtimeStreamSubmissionId.value = submissionId;
+  showRealtimeStreamModal.value = true;
+}
+
+function closeRealtimeStreamModal() {
+  showRealtimeStreamModal.value = false;
+}
 </script>
 
 <template>
@@ -279,6 +291,18 @@ function closeVideoModal() {
           :is-open="showVideoModal"
           :submission-reaction="currentSubmissionReaction"
           @close="closeVideoModal"
+        />
+      </div>
+
+      <div
+        v-if="showRealtimeStreamModal"
+        flex justify-start items-start
+      >
+        <RealtimeReactionStreamModal
+          :is-open="showRealtimeStreamModal"
+          :submission-id="currentRealtimeStreamSubmissionId"
+          :rank="rank"
+          @close="closeRealtimeStreamModal"
         />
       </div>
 
@@ -537,6 +561,19 @@ function closeVideoModal() {
                         </a>
                         <template #popper>
                           View on Original OJ
+                        </template>
+                      </Tooltip>
+
+                      <Tooltip v-if="rank.contest.options.submissionHasRealtimeReactionStreamField">
+                        <div
+                          flex items-center justify-start
+                          text-lg
+                          cursor-pointer
+                          i-hugeicons-live-streaming-01
+                          @click="openRealtimeStreamModal(s.id)"
+                        />
+                        <template #popper>
+                          Realtime Reaction
                         </template>
                       </Tooltip>
 
