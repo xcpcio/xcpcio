@@ -11,9 +11,14 @@ const props = defineProps<{
 
 const rank = computed(() => props.rank);
 
-const { t } = useI18n();
 const $toast = useToast();
 const { copy, isSupported } = useClipboard();
+
+const isHiddenInfoModal = ref(true);
+
+function openInfoModal() {
+  isHiddenInfoModal.value = false;
+}
 
 let dropdown: Dropdown | null = null;
 const dropdownTargetEl = ref(null);
@@ -79,26 +84,12 @@ onMounted(() => {
     flex
   >
     <div>
-      <Tooltip
-        w-inherit
-      >
-        <div>
-          <div
-            i-material-symbols-info-outline
-            text-lg
-          />
-        </div>
-
-        <template #popper>
-          <div
-            flex
-          >
-            <div>
-              {{ t("standings.options.calculation_of_penalty") }}: {{ t(`standings.options.${rank.contest.options?.calculationOfPenalty}`) }}
-            </div>
-          </div>
-        </template>
-      </Tooltip>
+      <div
+        i-material-symbols-info-outline
+        text-lg
+        cursor-pointer
+        @click="openInfoModal"
+      />
     </div>
 
     <div
@@ -149,5 +140,11 @@ onMounted(() => {
         </ul>
       </div>
     </div>
+
+    <InfoModal
+      v-if="!isHiddenInfoModal"
+      v-model:is-hidden="isHiddenInfoModal"
+      :rank="rank"
+    />
   </div>
 </template>

@@ -36,6 +36,10 @@ type_menu:
   utility: 工具
   countdown: 倒计时
   teams: 队伍
+  info: 信息
+
+info_modal:
+  color_legend: 颜色图例
 
 streams:
   webcam: 摄像头

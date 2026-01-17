@@ -497,9 +497,7 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             <div class="float-left">
               {{ elapsedTime }}
             </div>
-            <div class="flex-1">
-              <StandingsAnnotate />
-            </div>
+            <div class="flex-1" />
             <div class="float-right">
               {{ remainingTime }}
             </div>
