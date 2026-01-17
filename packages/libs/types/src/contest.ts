@@ -65,7 +65,6 @@ export interface Contest {
 
   status_time_display?: StatusTimeDisplay;
 
-  badge?: string;
   organization?: string;
 
   medal?: Record<string, Record<string, number>> | MedalPreset;

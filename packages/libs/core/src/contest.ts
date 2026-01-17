@@ -37,7 +37,6 @@ export class Contest {
 
   statusTimeDisplay: StatusTimeDisplay;
 
-  badge?: string;
   organization?: string;
 
   medal?: Record<string, Record<string, number>> | MedalPreset;
@@ -259,7 +258,6 @@ export function createContest(contestJSON: IContest): Contest {
     };
   }
 
-  c.badge = contestJSON.badge;
   c.organization = contestJSON.organization;
 
   c.medal = contestJSON.medal;
