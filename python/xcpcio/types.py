@@ -233,8 +233,6 @@ class Contest(BaseModel):
 
     status_time_display: Dict[str, bool] = constants.FULL_STATUS_TIME_DISPLAY
 
-    organization: str = "School"
-
     medal: Optional[Union[Dict[str, Dict[str, int]], MedalPreset]] = None
 
     group: Optional[Dict[str, str]] = None

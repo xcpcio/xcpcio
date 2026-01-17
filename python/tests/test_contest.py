@@ -16,7 +16,6 @@ class TestContest:
         assert contest.thaw_time == 0x3F3F3F3F3F3F3F3F
         assert contest.penalty == 20 * 60  # 20 minutes
         assert contest.problem_id is None
-        assert contest.organization == "School"
         assert contest.medal is None
         assert contest.balloon_color is None
         assert contest.logo is None
@@ -45,7 +44,6 @@ class TestContest:
             penalty=20 * 60,  # 20 minutes
             problem_quantity=12,
             problem_id=["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"],
-            organization="ICPC",
             medal="icpc",  # Use Literal value
             options=contest_options,
         )
@@ -56,7 +54,6 @@ class TestContest:
         assert len(contest.problem_id) == 12
         assert contest.problem_id[0] == "A"
         assert contest.problem_id[-1] == "L"
-        assert contest.organization == "ICPC"
         assert contest.medal == "icpc"
         assert contest.options == contest_options
 
@@ -67,14 +64,12 @@ class TestContest:
             start_time=1000000000,
             end_time=1000000000 + 60 * 60 * 5,
             problem_id=["A", "B", "C", "D", "E"],
-            organization="Test Org",
         )
 
         # Test model_dump
         contest_dict = contest.model_dump()
         assert contest_dict["contest_name"] == "Test Contest"
         assert contest_dict["start_time"] == 1000000000
-        assert contest_dict["organization"] == "Test Org"
 
         # Test JSON round-trip
         contest_json = contest.model_dump_json()
@@ -174,7 +169,6 @@ class TestContest:
             contest_name="Complex Contest",
             start_time=1234567890,
             end_time=1234567890 + 5 * 60 * 60,
-            organization="Complex Org",
             medal="ccpc",  # Use preset instead of dict
         )
 
