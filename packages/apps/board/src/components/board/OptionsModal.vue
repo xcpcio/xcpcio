@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, RankOptions } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
+import type { ModalCloseReason } from "./Modal.vue";
 import _ from "lodash";
 
 const props = defineProps<{
@@ -92,8 +93,16 @@ async function onCancel() {
   isHidden.value = true;
 }
 
-async function onBeforeClose() {
-  await onCancel();
+async function onBeforeClose(reason: ModalCloseReason) {
+  if (reason === "outside") {
+    // Click outside: confirm
+    persistBattleOfGiants();
+  } else {
+    // Esc key or X button: cancel and restore previous state
+    rankOptions.value.setSelf(beforeRankOptions);
+    await nextTick();
+    persistBattleOfGiants();
+  }
 }
 
 function onConfirm() {

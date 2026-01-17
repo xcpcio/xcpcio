@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, RankOptions, SelectOptionItem } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
+import type { ModalCloseReason } from "./Modal.vue";
 import _ from "lodash";
 
 const props = defineProps<{
@@ -85,12 +86,20 @@ async function onCancel() {
   isHidden.value = true;
 }
 
-async function onBeforeClose() {
-  await onCancel();
-}
-
 const localStorageKeyForFilterOrganizations = getLocalStorageKeyForFilterOrganizations();
 const localStorageKeyForFilterTeams = getLocalStorageKeyForFilterTeams();
+
+async function onBeforeClose(reason: ModalCloseReason) {
+  if (reason === "outside") {
+    // Click outside: confirm and save changes
+    localStorage.setItem(localStorageKeyForFilterOrganizations, JSON.stringify(orgSelectedItems.value));
+    localStorage.setItem(localStorageKeyForFilterTeams, JSON.stringify(teamsSelectedItems.value));
+  } else {
+    // Esc key or X button: cancel and restore previous state
+    rankOptions.value.setSelf(beforeRankOptions);
+    await nextTick();
+  }
+}
 
 function onConfirm() {
   // can't use useStorage, maybe it's a bug
