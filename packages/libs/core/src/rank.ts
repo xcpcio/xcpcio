@@ -245,7 +245,7 @@ export class Rank {
   }
 
   buildOrganizationsMap() {
-    if (!this.contest.organization) {
+    if (!this.contest.options.enableOrganization) {
       return new Map<string, Organization>();
     }
 
@@ -487,7 +487,7 @@ export class Rank {
   }
 
   buildOrgRank() {
-    if (!this.contest.organization) {
+    if (!this.contest.options.enableOrganization) {
       return;
     }
 

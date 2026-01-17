@@ -13,6 +13,8 @@ const emit = defineEmits([
   "update:giants",
 ]);
 
+const { t } = useI18n();
+
 const giants = computed({
   get() {
     return props.giants;
@@ -95,15 +97,15 @@ const color = computed(() => {
       </div>
 
       <div
-        v-if="rank.contest.organization"
+        v-if="rank.contest.options.enableOrganization"
         flex items-center
         text-sm
       >
-        {{ rank.contest.organization }}:
+        {{ t("standings.organization") }}:
       </div>
 
       <div
-        v-if="rank.contest.organization"
+        v-if="rank.contest.options.enableOrganization"
         flex items-center
         w-full
         col-span-5

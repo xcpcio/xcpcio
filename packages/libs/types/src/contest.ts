@@ -14,6 +14,7 @@ export type CalculationOfPenalty = "in_minutes"
   | "accumulate_in_seconds_and_finally_to_the_minute";
 
 export interface ContestOptions {
+  enable_organization?: boolean;
   calculation_of_penalty?: CalculationOfPenalty;
   submission_timestamp_unit?: TimeUnit;
 

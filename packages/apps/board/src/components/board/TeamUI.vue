@@ -89,7 +89,7 @@ function isRenderByVisible() {
       {{ team.rank }}
     </td>
     <td
-      v-if="rank.contest.organization && isRenderByVisible()"
+      v-if="rank.contest.options.enableOrganization && isRenderByVisible()"
       class="stnd relative"
       :class="[getStandClassName(team)]"
     >

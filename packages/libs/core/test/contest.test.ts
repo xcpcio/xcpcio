@@ -20,7 +20,6 @@ describe("contest", () => {
     expect(contest.endTime).toMatchInlineSnapshot("\"2023-05-14T06:10:00.000Z\"");
     expect(contest.freezeTime).toMatchInlineSnapshot("\"2023-05-14T05:10:00.000Z\"");
     expect(contest.penalty).toMatchInlineSnapshot("1200");
-    expect(contest.organization).toMatchInlineSnapshot("\"School\"");
     expect(contest.problems).toMatchInlineSnapshot(`
       [
         Problem {

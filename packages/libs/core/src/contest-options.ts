@@ -1,6 +1,7 @@
 import type { CalculationOfPenalty, ContestOptions as IContestOptions, Image, TimeUnit } from "@xcpcio/types";
 
 export class ContestOptions {
+  enableOrganization: boolean;
   calculationOfPenalty: CalculationOfPenalty;
   submissionTimestampUnit: TimeUnit;
 
@@ -19,6 +20,7 @@ export class ContestOptions {
   teamScreenStreamUrlTemplate?: string;
 
   constructor() {
+    this.enableOrganization = false;
     this.calculationOfPenalty = "in_minutes";
     this.submissionTimestampUnit = "second";
 
@@ -34,6 +36,8 @@ export class ContestOptions {
 export function createContestOptions(contestOptionsJSON: IContestOptions = {}): ContestOptions {
   const j = contestOptionsJSON;
   const o = new ContestOptions();
+
+  o.enableOrganization = !!j.enable_organization;
 
   if (j.calculation_of_penalty) {
     o.calculationOfPenalty = j.calculation_of_penalty;

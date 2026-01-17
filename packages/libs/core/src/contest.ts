@@ -354,6 +354,10 @@ export function createContest(contestJSON: IContest): Contest {
     c.options = createContestOptions(contestJSON.options);
   }
 
+  if (c.organization) {
+    c.options.enableOrganization = true;
+  }
+
   if (contestJSON.organizations) {
     c.organizations = createOrganizations(contestJSON.organizations as IOrganizations);
   }

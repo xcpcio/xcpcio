@@ -151,9 +151,9 @@ export class GeneralExcelConverter {
       const head: string[] = [];
       head.push("Rank");
 
-      if (rank.contest.organization) {
-        head.push(`${rank.contest.organization} Rank`);
-        head.push(rank.contest.organization);
+      if (rank.contest.options.enableOrganization) {
+        head.push("Organization Rank");
+        head.push("Organization");
       }
 
       head.push("Team", "Solved", "Penalty", ...rank.contest.problems.map(p => p.label), "Dirt");
