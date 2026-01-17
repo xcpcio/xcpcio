@@ -20,5 +20,9 @@ export function useModalStack() {
     return modalStack.value[modalStack.value.length - 1] === id;
   }
 
-  return { register, unregister, isTopModal };
+  function isAnyModalOpen() {
+    return modalStack.value.length > 0;
+  }
+
+  return { register, unregister, isTopModal, isAnyModalOpen };
 }

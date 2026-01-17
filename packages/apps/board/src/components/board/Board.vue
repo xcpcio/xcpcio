@@ -16,6 +16,7 @@ const route = useRoute();
 const title = useTitle(TITLE_SUFFIX);
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
+const { isAnyModalOpen } = useModalStack();
 
 const firstLoaded = ref(false);
 const contestData = ref({} as Contest);
@@ -247,14 +248,52 @@ function clearAutoScrollInterval() {
   }
 }
 
-function isAnyModalOpen(): boolean {
-  return !(isHiddenOptionsModal.value && isHiddenFilterModal.value);
-}
-
 function isUserTyping(): boolean {
   const activeElement = document.activeElement;
   return activeElement?.matches("input, textarea, select, [contenteditable]") ?? false;
 }
+
+const startTime = computed(() => {
+  const time = rank.value.contest.getStartTime().format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.start_time")}${t("common.colon")}${time}`;
+});
+
+const endTime = computed(() => {
+  const time = rank.value.contest.getEndTime().format("YYYY-MM-DD HH:mm:ss");
+  return `${t("standings.end_time")}${t("common.colon")}${time}`;
+});
+
+const elapsedTime = computed(() => {
+  const time = rank.value.contest.getContestElapsedTime(now.value);
+  return `${t("standings.elapsed")}${t("common.colon")}${time}`;
+});
+
+const remainingTime = computed(() => {
+  const time = rank.value.contest.getContestRemainingTime(now.value);
+  return `${t("standings.remaining")}${t("common.colon")}${time}`;
+});
+
+const contestState = computed(() => {
+  if (rank.value.options.enableFilterSubmissionsByTimestamp) {
+    return ContestState.PAUSED;
+  }
+
+  return rank.value.contest.getContestState(now.value);
+});
+
+const pausedTime = computed(() => {
+  return getTimeDiff(rank.value.options.timestamp);
+});
+
+const showPendingPage = computed(() => {
+  if (contestState.value === ContestState.PENDING) {
+    return true;
+  }
+  if (contestState.value === ContestState.PAUSED && rank.value.options.timestamp <= 0) {
+    return true;
+  }
+  return false;
+});
 
 onKeyStroke("S", (_e) => {
   if (isAnyModalOpen()) {
@@ -262,6 +301,10 @@ onKeyStroke("S", (_e) => {
   }
 
   if (isUserTyping()) {
+    return;
+  }
+
+  if (showPendingPage.value) {
     return;
   }
 
@@ -302,6 +345,18 @@ onKeyStroke("S", (_e) => {
 }, { dedupe: false });
 
 onKeyStroke("f", (e) => {
+  if (isAnyModalOpen()) {
+    return;
+  }
+
+  if (isUserTyping()) {
+    return;
+  }
+
+  if (showPendingPage.value) {
+    return;
+  }
+
   // Check for Command+F (Meta+F on macOS, Ctrl+F on other platforms)
   if (!e.metaKey && !e.ctrlKey) {
     return;
@@ -325,38 +380,6 @@ onKeyStroke("f", (e) => {
 
   isHiddenFilterModal.value = false;
 }, { dedupe: false, target: window });
-
-const startTime = computed(() => {
-  const time = rank.value.contest.getStartTime().format("YYYY-MM-DD HH:mm:ss");
-  return `${t("standings.start_time")}${t("common.colon")}${time}`;
-});
-
-const endTime = computed(() => {
-  const time = rank.value.contest.getEndTime().format("YYYY-MM-DD HH:mm:ss");
-  return `${t("standings.end_time")}${t("common.colon")}${time}`;
-});
-
-const elapsedTime = computed(() => {
-  const time = rank.value.contest.getContestElapsedTime(now.value);
-  return `${t("standings.elapsed")}${t("common.colon")}${time}`;
-});
-
-const remainingTime = computed(() => {
-  const time = rank.value.contest.getContestRemainingTime(now.value);
-  return `${t("standings.remaining")}${t("common.colon")}${time}`;
-});
-
-const contestState = computed(() => {
-  if (rank.value.options.enableFilterSubmissionsByTimestamp) {
-    return ContestState.PAUSED;
-  }
-
-  return rank.value.contest.getContestState(now.value);
-});
-
-const pausedTime = computed(() => {
-  return getTimeDiff(rank.value.options.timestamp);
-});
 
 const reFetchThrottleFn = useThrottleFn(() => {
   refetch();
@@ -482,7 +505,10 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
             </div>
           </div>
 
-          <div class="mt-4 flex">
+          <div
+            v-if="!showPendingPage"
+            class="mt-4 flex"
+          >
             <div class="float-left">
               <SecondLevelMenu
                 v-model:current-item="currentGroup"
@@ -506,6 +532,18 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
       </div>
 
       <div
+        v-if="showPendingPage"
+        mt-4
+        :class="[widthClass]"
+        flex justify-center
+      >
+        <div class="w-[92%]">
+          <PendingPage :rank="rank" />
+        </div>
+      </div>
+
+      <div
+        v-else
         mt-4
         :class="[widthClass]"
         flex justify-center

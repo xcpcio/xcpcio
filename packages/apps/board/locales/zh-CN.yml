@@ -61,6 +61,7 @@ standings:
   place: Place
   organization: Organization
   team: Team
+  group: Group
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -92,7 +93,10 @@ submissions:
 
 team_info:
   rank: 排名
+  team_id: 队伍 ID
   team_name: 队名
+  org_id: 组织 ID
+  org_name: 组织名
   organization: 组织
   group: 组别
   members: 队员
@@ -111,3 +115,6 @@ org_info:
   name: 组织
   icpc_id: ICPC ID
   teams_count: 队伍数
+
+pending_page:
+  no_teams: 暂无注册队伍
