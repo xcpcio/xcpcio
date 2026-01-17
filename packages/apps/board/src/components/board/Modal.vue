@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useMagicKeys } from "@vueuse/core";
 
+export type ModalCloseReason = "esc" | "outside" | "close-button";
+
 const props = defineProps<{
   isHidden: boolean;
 
@@ -20,15 +22,15 @@ const isHidden = computed({
   },
 });
 
-function onClose() {
-  emit("onBeforeClose");
+function onClose(reason: ModalCloseReason = "outside") {
+  emit("onBeforeClose", reason);
   isHidden.value = true;
 }
 
 const { Escape } = useMagicKeys();
 watch(Escape, (v) => {
   if (v) {
-    onClose();
+    onClose("esc");
   }
 });
 </script>
@@ -48,7 +50,7 @@ watch(Escape, (v) => {
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
-      @click="onClose"
+      @click="onClose('outside')"
     />
 
     <div
@@ -81,7 +83,7 @@ watch(Escape, (v) => {
             ml-auto p-1.5
             text-sm text-gray-400
             items-center inline-flex rounded-lg
-            @click="onClose"
+            @click="onClose('close-button')"
           >
             <svg
               class="h-5 w-5"
