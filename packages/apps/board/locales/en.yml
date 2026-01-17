@@ -61,6 +61,7 @@ standings:
   place: Place
   organization: Organization
   team: Team
+  group: Group
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -92,7 +93,10 @@ submissions:
 
 team_info:
   rank: Rank
+  team_id: Team ID
   team_name: Team Name
+  org_id: Org ID
+  org_name: Org Name
   organization: Organization
   group: Group
   members: Members
@@ -111,3 +115,6 @@ org_info:
   name: Organization
   icpc_id: ICPC ID
   teams_count: Teams Count
+
+pending_page:
+  no_teams: No teams registered yet
