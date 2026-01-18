@@ -25,7 +25,7 @@ const Nav: DefaultTheme.NavItem[] = [
     items: [{ items: Sponsors }],
     activeMatch: "^/sponsor/",
   },
-  { text: "Board", link: "https://board.xcpcio.com" },
+  { text: "Board", link: "https://xcpcio.com/board/" },
   {
     text: `v${version}`,
     items: [

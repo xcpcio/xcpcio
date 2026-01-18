@@ -46,7 +46,7 @@ const Nav: DefaultTheme.NavItem[] = [
     ],
     activeMatch: "^/zh/sponsor/",
   },
-  { text: "榜单", link: "https://board.xcpcio.com" },
+  { text: "榜单", link: "https://xcpcio.com/board/" },
   {
     text: `v${version}`,
     items: [
