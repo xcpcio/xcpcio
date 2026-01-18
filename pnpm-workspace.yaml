@@ -11,23 +11,23 @@ catalog:
   "@antfu/eslint-config": ^6.7.3
   "@antfu/ni": ^27.0.1
   "@babel/types": ^7.28.6
-  "@iconify/json": ^2.2.427
+  "@iconify/json": ^2.2.429
   "@intlify/unplugin-vue-i18n": ^11.0.3
   "@shikijs/markdown-it": ^3.21.0
-  "@tanstack/vue-query": ^5.92.5
+  "@tanstack/vue-query": ^5.92.8
   "@types/chroma-js": ^3.1.2
   "@types/color-diff": ^1.2.5
   "@types/file-saver": ^2.0.7
   "@types/lodash": ^4.17.23
   "@types/markdown-it-link-attributes": ^3.0.5
-  "@types/node": ^24.10.8
+  "@types/node": ^24.10.9
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.5.2
   "@typescript-eslint/eslint-plugin": ^8.53.0
   "@typescript-eslint/parser": ^8.53.0
   "@unhead/vue": ^2.1.2
-  "@unocss/eslint-config": ^66.5.12
-  "@unocss/reset": ^66.5.12
+  "@unocss/eslint-config": ^66.6.0
+  "@unocss/reset": ^66.6.0
   "@vitejs/plugin-vue": ^6.0.3
   "@vue-macros/volar": ^3.1.2
   "@vue/test-utils": ^2.4.6
@@ -74,7 +74,7 @@ catalog:
   taze: ^19.9.2
   typescript: ^5.9.3
   unbuild: ^3.6.1
-  unocss: ^66.5.12
+  unocss: ^66.6.0
   unplugin-auto-import: ^20.3.0
   unplugin-vue-components: ^30.0.0
   unplugin-vue-macros: ^2.14.5
@@ -90,7 +90,7 @@ catalog:
   vite-ssg: ^28.2.2
   vite-ssg-sitemap: ^0.10.0
   vitepress: ^2.0.0-alpha.15
-  vitepress-plugin-group-icons: ^1.6.5
+  vitepress-plugin-group-icons: ^1.7.1
   vitest: ^4.0.17
   vue: ^3.5.26
   vue-demi: ^0.14.10
