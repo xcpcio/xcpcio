@@ -125,6 +125,7 @@ function isRenderByVisible() {
         <div
           flex-1
           cursor-pointer
+          line-clamp-2
           @click="onClickOrgModal"
         >
           {{ team.organization?.name.getOrDefault(lang) }}
@@ -157,11 +158,12 @@ function isRenderByVisible() {
         />
       </div>
       <div
-        flex items-center justify-center cursor-pointer
+        flex items-center justify-center
+        cursor-pointer
         :class="team.badge ? 'pl-10' : ''"
         @click="onClickTeamModal"
       >
-        <span>{{ teamName }}</span>
+        <span line-clamp-2>{{ teamName }}</span>
         <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
         <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
       </div>
