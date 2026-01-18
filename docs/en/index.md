@@ -15,7 +15,7 @@ hero:
       link: /guide/
     - theme: alt
       text: Go to Board
-      link: https://board.xcpcio.com
+      link: https://xcpcio.com/board/
       target: _blank
     - theme: alt
       text: View on GitHub

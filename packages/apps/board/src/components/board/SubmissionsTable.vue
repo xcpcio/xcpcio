@@ -547,23 +547,6 @@ function closeRealtimeStreamModal() {
                     class="whitespace-nowrap px-4 py-2 text-gray-900 dark:text-white"
                   >
                     <div flex items-center gap-2>
-                      <Tooltip v-if="s.externalUrl">
-                        <a
-                          :href="s.externalUrl"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          flex items-center justify-start
-                          text-lg
-                          cursor-pointer
-                          hover:text-primary-600
-                        >
-                          <span i-material-symbols-link-rounded />
-                        </a>
-                        <template #popper>
-                          View on Original OJ
-                        </template>
-                      </Tooltip>
-
                       <Tooltip v-if="rank.contest.options.submissionHasRealtimeReactionStreamField">
                         <div
                           flex items-center justify-start
@@ -587,6 +570,23 @@ function closeRealtimeStreamModal() {
                         />
                         <template #popper>
                           Reaction Video
+                        </template>
+                      </Tooltip>
+
+                      <Tooltip v-if="s.externalUrl">
+                        <a
+                          :href="s.externalUrl"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          flex items-center justify-start
+                          text-lg
+                          cursor-pointer
+                          hover:text-primary-600
+                        >
+                          <span i-material-symbols-link-rounded />
+                        </a>
+                        <template #popper>
+                          View on Source Platform
                         </template>
                       </Tooltip>
                     </div>

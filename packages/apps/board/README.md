@@ -11,7 +11,7 @@
 
 ## Preview
 
-- [board.xcpcio.com](https://board.xcpcio.com)
+- [xcpcio.com/board/](https://xcpcio.com/board/)
 
 ## :clap: Our Supporters
 
