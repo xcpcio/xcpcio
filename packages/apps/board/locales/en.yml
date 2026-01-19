@@ -52,6 +52,10 @@ streams:
   pip:
     main: Main
     position: Position
+    top_left: Top Left
+    top_right: Top Right
+    bottom_left: Bottom Left
+    bottom_right: Bottom Right
 
 utility:
   tools: Tools

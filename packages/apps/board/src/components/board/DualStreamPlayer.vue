@@ -11,6 +11,11 @@ const props = defineProps<{
 const { t } = useI18n();
 const { initHlsPlayer } = useHlsPlayer();
 
+// Helper to detect HLS URLs
+function isHlsUrl(url: string): boolean {
+  return url.includes(".m3u8");
+}
+
 // Video element refs
 const webcamVideoRef = ref<HTMLVideoElement | null>(null);
 const screenVideoRef = ref<HTMLVideoElement | null>(null);
@@ -50,46 +55,75 @@ const showPipMode = computed(() => layoutMode.value === "pip" && props.webcamUrl
 const hasBothStreams = computed(() => props.webcamUrl && props.screenUrl);
 
 // Cleanup function
-function destroyHlsPlayers() {
+function destroyPlayers() {
   if (webcamHls) {
     webcamHls.destroy();
     webcamHls = null;
+  } else if (webcamVideoRef.value) {
+    webcamVideoRef.value.pause();
+    webcamVideoRef.value.removeAttribute("src");
+    webcamVideoRef.value.load();
   }
+
   if (screenHls) {
     screenHls.destroy();
     screenHls = null;
+  } else if (screenVideoRef.value) {
+    screenVideoRef.value.pause();
+    screenVideoRef.value.removeAttribute("src");
+    screenVideoRef.value.load();
   }
 }
 
 // Initialize players
 function initPlayers() {
   if (webcamVideoRef.value && props.webcamUrl) {
-    webcamHls = initHlsPlayer(
-      webcamVideoRef.value,
-      props.webcamUrl,
-      () => {
+    if (isHlsUrl(props.webcamUrl)) {
+      webcamHls = initHlsPlayer(
+        webcamVideoRef.value,
+        props.webcamUrl,
+        () => {
+          webcamError.value = true;
+        },
+      );
+    } else {
+      webcamVideoRef.value.src = props.webcamUrl;
+      webcamVideoRef.value.addEventListener("error", () => {
         webcamError.value = true;
-      },
-    );
+      }, { once: true });
+      webcamVideoRef.value.play().catch(() => {
+        // Autoplay was prevented, user needs to interact
+      });
+    }
   }
 
   if (screenVideoRef.value && props.screenUrl) {
-    screenHls = initHlsPlayer(
-      screenVideoRef.value,
-      props.screenUrl,
-      () => {
+    if (isHlsUrl(props.screenUrl)) {
+      screenHls = initHlsPlayer(
+        screenVideoRef.value,
+        props.screenUrl,
+        () => {
+          screenError.value = true;
+        },
+      );
+    } else {
+      screenVideoRef.value.src = props.screenUrl;
+      screenVideoRef.value.addEventListener("error", () => {
         screenError.value = true;
-      },
-    );
+      }, { once: true });
+      screenVideoRef.value.play().catch(() => {
+        // Autoplay was prevented, user needs to interact
+      });
+    }
   }
 }
 
 // Reset and reinitialize
 function resetPlayers() {
-  webcamError.value = false;
-  screenError.value = false;
-  destroyHlsPlayers();
+  destroyPlayers();
   nextTick(() => {
+    webcamError.value = false;
+    screenError.value = false;
     initPlayers();
   });
 }
@@ -101,10 +135,7 @@ watch([() => props.webcamUrl, () => props.screenUrl], () => {
 
 // Watch for layout mode changes to reinitialize players
 watch([layoutMode, pipMain], () => {
-  destroyHlsPlayers();
-  nextTick(() => {
-    initPlayers();
-  });
+  resetPlayers();
 });
 
 onMounted(() => {
@@ -112,7 +143,7 @@ onMounted(() => {
 });
 
 onBeforeUnmount(() => {
-  destroyHlsPlayers();
+  destroyPlayers();
 });
 
 // Expose reset function for parent components
