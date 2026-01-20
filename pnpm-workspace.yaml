@@ -11,7 +11,7 @@ catalog:
   "@antfu/eslint-config": ^6.7.3
   "@antfu/ni": ^27.0.1
   "@babel/types": ^7.28.6
-  "@iconify/json": ^2.2.429
+  "@iconify/json": ^2.2.430
   "@intlify/unplugin-vue-i18n": ^11.0.3
   "@shikijs/markdown-it": ^3.21.0
   "@tanstack/vue-query": ^5.92.8
@@ -23,8 +23,8 @@ catalog:
   "@types/node": ^24.10.9
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.5.2
-  "@typescript-eslint/eslint-plugin": ^8.53.0
-  "@typescript-eslint/parser": ^8.53.0
+  "@typescript-eslint/eslint-plugin": ^8.53.1
+  "@typescript-eslint/parser": ^8.53.1
   "@unhead/vue": ^2.1.2
   "@unocss/eslint-config": ^66.6.0
   "@unocss/reset": ^66.6.0
@@ -66,8 +66,8 @@ catalog:
   ordinal: ^1.0.3
   papaparse: ^5.5.3
   pinia: ^3.0.4
-  pnpm: ^10.28.0
-  rollup: ^4.55.1
+  pnpm: ^10.28.1
+  rollup: ^4.55.2
   shiki: ^3.21.0
   sleep-promise: ^9.1.0
   string-width: ^8.1.0
@@ -92,7 +92,7 @@ catalog:
   vitepress: ^2.0.0-alpha.15
   vitepress-plugin-group-icons: ^1.7.1
   vitest: ^4.0.17
-  vue: ^3.5.26
+  vue: ^3.5.27
   vue-demi: ^0.14.10
   vue-i18n: ^11.2.8
   vue-router: ^4.6.4
