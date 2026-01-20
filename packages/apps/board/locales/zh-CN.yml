@@ -52,6 +52,10 @@ streams:
   pip:
     main: 主画面
     position: 位置
+    top_left: 左上角
+    top_right: 右上角
+    bottom_left: 左下角
+    bottom_right: 右下角
 
 utility:
   tools: 工具集
