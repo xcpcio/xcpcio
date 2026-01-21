@@ -38,6 +38,46 @@ class TestTeam:
         assert team.coaches == "Dr. Smith"
         assert team.location == "Building A"
 
+    def test_team_members_with_null_values(self):
+        """Test team creation with null values in members list"""
+        team = Team(
+            id="team002",
+            name="Test Team 2",
+            organization="Test University",
+            members=[None, "Alice", None, "Bob", None],
+            coaches=[None, "Dr. Smith", None],
+        )
+
+        assert team.id == "team002"
+        assert team.members == ["Alice", "Bob"]
+        assert team.coaches == ["Dr. Smith"]
+
+    def test_team_members_all_null(self):
+        """Test team creation with all null values in members list"""
+        team = Team(
+            id="team003",
+            name="Test Team 3",
+            organization="Test University",
+            members=[None, None, None],
+            coaches=[None, None],
+        )
+
+        assert team.id == "team003"
+        assert team.members == []
+        assert team.coaches == []
+
+    def test_team_members_empty_after_filtering(self):
+        """Test team creation where filtering leaves empty list"""
+        team = Team(
+            id="team004",
+            name="Test Team 4",
+            members=[None],
+            coaches=[],
+        )
+
+        assert team.members == []
+        assert team.coaches == []
+
     def test_group_management(self):
         """Test add_group and remove_group methods"""
         team = Team(id="test", name="Test Team", organization="Test Org")
