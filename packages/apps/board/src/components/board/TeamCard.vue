@@ -50,13 +50,13 @@ const isGirl = computed(() => team.value.isGirl);
       <div flex="~ items-center gap-3" mb="2">
         <img
           v-if="team.organization?.logo"
-          :src="getImageSource(team.organization.logo)"
+          :src="getImageSource(team.organization.logo, DATA_HOST)"
           alt="org logo"
           class="h-12 w-12"
         >
         <img
-          v-if="team.badge && (team.badge.base64 || team.badge.url)"
-          :src="getImageSource(team.badge)"
+          v-if="team.badge"
+          :src="getImageSource(team.badge, DATA_HOST)"
           alt="team badge"
           class="h-12 w-12"
         >
