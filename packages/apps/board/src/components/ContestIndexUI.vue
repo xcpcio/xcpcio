@@ -51,7 +51,7 @@ const logo = computed(() => {
             >
               <img
                 class="h-10"
-                :src="getImageSource(logo)"
+                :src="getImageSource(logo, DATA_HOST)"
                 alt="logo"
               >
             </div>

@@ -23,7 +23,7 @@ const widthClass = computed(() => {
 <template>
   <img
     v-if="image.base64 || image.url"
-    :src="getImageSource(image)"
+    :src="getImageSource(image, DATA_HOST)"
     alt="badge"
     :class="[widthClass]"
   >
