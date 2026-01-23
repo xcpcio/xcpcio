@@ -92,6 +92,40 @@ onMounted(() => {
       />
     </div>
 
+    <template v-if="rank.contest.socialMedia">
+      <div
+        class="border-l-[1px] border-r-[1px]"
+        mx-2
+        h-6
+        border-color-black
+        dark:border-color-white
+      />
+
+      <div flex gap-2>
+        <a
+          v-if="rank.contest.socialMedia?.bilibili"
+          icon-btn
+          :href="rank.contest.socialMedia.bilibili"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Watch on Bilibili"
+        >
+          <div i-simple-icons-bilibili text-lg />
+        </a>
+
+        <a
+          v-if="rank.contest.socialMedia?.youtube"
+          icon-btn
+          :href="rank.contest.socialMedia.youtube"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="Watch on YouTube"
+        >
+          <div i-simple-icons-youtube text-lg />
+        </a>
+      </div>
+    </template>
+
     <div
       class="border-l-[1px] border-r-[1px]"
       mx-2
@@ -100,9 +134,7 @@ onMounted(() => {
       dark:border-color-white
     />
 
-    <div
-      flex
-    >
+    <div flex>
       <div
         ref="dropdownTriggerEl"
         i-material-symbols-share
@@ -112,29 +144,31 @@ onMounted(() => {
 
       <div
         ref="dropdownTargetEl"
-        class="z-9999 hidden divide-y divide-gray-100 rounded shadow w-36"
+        class="z-9999 hidden rounded-lg shadow-lg border border-gray-200 dark:border-gray-600"
         bg-white
-        dark:bg-gray-700
+        dark:bg-gray-800
       >
         <ul
-          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+          class="py-1 text-sm text-gray-700 dark:text-gray-200"
         >
           <li>
             <div
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
               cursor-pointer
               @click="copyLink"
             >
-              Copy Page Link
+              <div i-material-symbols-link text-base />
+              <span>Copy Link</span>
             </div>
           </li>
           <li>
             <div
-              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
               cursor-pointer
               @click="copyCode"
             >
-              Copy Page Code
+              <div i-material-symbols-code text-base />
+              <span>Copy Embed Code</span>
             </div>
           </li>
         </ul>

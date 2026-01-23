@@ -1178,6 +1178,7 @@ Contest {
       },
     },
   },
+  "socialMedia": undefined,
   "startTime": "2023-05-14T01:10:00.000Z",
   "statusTimeDisplay": {
     "correct": true,

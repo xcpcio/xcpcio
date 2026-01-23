@@ -55,6 +55,11 @@ export interface ContestOptions {
 export type MedalPreset = "ccpc" | "icpc";
 export type BannerMode = "ONLY_BANNER" | "ALL";
 
+export interface SocialMedia {
+  bilibili?: string;
+  youtube?: string;
+}
+
 export interface Contest {
   contest_name: Text;
   description?: Text;
@@ -89,4 +94,6 @@ export interface Contest {
 
   board_link?: string;
   version?: string;
+
+  social_media?: SocialMedia;
 }
