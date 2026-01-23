@@ -198,6 +198,11 @@ class Teams(RootModel[List[Team]]):
     pass
 
 
+class SocialMedia(BaseModel):
+    bilibili: Optional[str] = None
+    youtube: Optional[str] = None
+
+
 class ContestOptions(BaseModel):
     enable_organization: Optional[bool] = None
     calculation_of_penalty: Optional[CalculationOfPenalty] = None
@@ -251,6 +256,8 @@ class Contest(BaseModel):
 
     board_link: Optional[str] = None
     version: Optional[str] = None
+
+    social_media: Optional[SocialMedia] = None
 
     thaw_time: int = Field(default=0x3F3F3F3F3F3F3F3F, exclude=True)
 

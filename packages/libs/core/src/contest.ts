@@ -1,4 +1,4 @@
-import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, MedalPreset, StatusTimeDisplay } from "@xcpcio/types";
+import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, MedalPreset, SocialMedia, StatusTimeDisplay } from "@xcpcio/types";
 import type { Awards } from "./award";
 import type { Organizations } from "./organization";
 import type { Problem, Problems } from "./problem";
@@ -47,6 +47,7 @@ export class Contest {
   banner?: Image;
   bannerMode?: BannerMode;
   boardLink?: string;
+  socialMedia?: SocialMedia;
 
   options: ContestOptions;
 
@@ -345,6 +346,7 @@ export function createContest(contestJSON: IContest): Contest {
 
   c.logo = contestJSON.logo;
   c.boardLink = contestJSON.board_link;
+  c.socialMedia = contestJSON.social_media;
 
   if (contestJSON.options) {
     c.options = createContestOptions(contestJSON.options);
