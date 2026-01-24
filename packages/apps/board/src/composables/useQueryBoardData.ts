@@ -28,6 +28,23 @@ async function fetchAndAssignOrganizations(contest: Contest, baseUrl: string): P
   }
 }
 
+async function fetchAndAssignSeatMap(contest: Contest, baseUrl: string): Promise<void> {
+  if (!contest?.seat_map || !isDataItem(contest.seat_map)) {
+    return;
+  }
+
+  const { url } = contest.seat_map;
+  let fetchUrl = url;
+  if (!url.startsWith("http")) {
+    fetchUrl = `${baseUrl}/${url}`;
+  }
+
+  const seatMapRes = await fetch(fetchUrl);
+  if (seatMapRes.ok) {
+    contest.seat_map = await seatMapRes.json();
+  }
+}
+
 async function fetch_board_data(target: string): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
   let prefix = `${window.DATA_HOST}${endpoint}`;
@@ -68,6 +85,7 @@ async function fetch_board_data(target: string): Promise<BoardData> {
 
   const contest = jsonData[0];
   await fetchAndAssignOrganizations(contest, prefix);
+  await fetchAndAssignSeatMap(contest, prefix);
 
   return {
     contest,

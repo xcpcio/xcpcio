@@ -1,5 +1,6 @@
 import type { BalloonColor, DataItem, DateTimeISO8601String, Image, Organizations, StatusTimeDisplay, Text, TimeUnit } from "./basic-types";
 import type { Problem } from "./problem";
+import type { SeatMap } from "./seat-map";
 
 export enum ContestState {
   PENDING = "PENDING",
@@ -91,6 +92,7 @@ export interface Contest {
   options?: ContestOptions;
 
   organizations?: DataItem | Organizations;
+  seat_map?: DataItem | SeatMap;
 
   board_link?: string;
   version?: string;

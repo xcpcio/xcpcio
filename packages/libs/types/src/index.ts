@@ -4,6 +4,7 @@ export * from "./contest-index";
 export * from "./person";
 export * from "./problem";
 export * from "./rating";
+export * from "./seat-map";
 export * from "./submission";
 export * from "./submission-status";
 export * from "./team";

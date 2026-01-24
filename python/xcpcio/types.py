@@ -105,6 +105,16 @@ class Organizations(RootModel[List[Organization]]):
     pass
 
 
+class SeatMapSection(BaseModel):
+    title: Optional[Text] = None
+    rowLabels: Optional[List[Optional[str]]] = None
+    grid: List[List[Optional[str]]] = Field(default_factory=list)
+
+
+class SeatMap(BaseModel):
+    sections: List[SeatMapSection] = Field(default_factory=list)
+
+
 class BalloonColor(BaseModel):
     color: str
     background_color: str
@@ -253,6 +263,7 @@ class Contest(BaseModel):
     options: Optional[ContestOptions] = None
 
     organizations: Optional[Union[DataItem, Organizations]] = None
+    seat_map: Optional[Union[DataItem, SeatMap]] = None
 
     board_link: Optional[str] = None
     version: Optional[str] = None
