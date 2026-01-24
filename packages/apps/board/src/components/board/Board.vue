@@ -397,8 +397,8 @@ onUnmounted(() => {
   clearAutoScrollInterval();
 });
 
-const wrapperWidthClass = "sm:w-[1280px] xl:w-screen";
-const widthClass = "sm:w-[1260px] xl:w-screen";
+const wrapperWidthClass = "w-full sm:w-[1280px] xl:w-screen";
+const widthClass = "w-full sm:w-[1260px] xl:w-screen";
 </script>
 
 <template>
@@ -431,10 +431,10 @@ const widthClass = "sm:w-[1260px] xl:w-screen";
           :class="[widthClass]"
           flex justify-center items-center
         >
-          <div class="max-w-[92%]">
+          <div class="w-[92%]">
             <img
               :src="getImageSource(rank.contest.banner, DATA_HOST)"
-              class="w-screen"
+              class="w-full"
               alt="banner"
             >
           </div>
