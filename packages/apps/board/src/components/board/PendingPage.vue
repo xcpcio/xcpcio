@@ -120,13 +120,8 @@ const filteredTeamIds = computed(() => {
   <div class="w-full">
     <div
       v-if="hasFilters || hasSeatMap"
-      class="filter-bar dark:bg-gray-800/30 border-gray-200/50 dark:border-gray-700/30"
       flex="~ wrap gap-3 items-center"
       mb-6
-      p-4
-      bg-white
-      rounded-xl
-      border
     >
       <!-- Filters on the left -->
       <div flex="~ wrap gap-3 items-center" flex-1>
