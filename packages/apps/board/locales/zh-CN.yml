@@ -127,3 +127,5 @@ org_info:
 
 pending_page:
   no_teams: 暂无注册队伍
+  teams_tab: 队伍列表
+  seat_map_tab: 座位图

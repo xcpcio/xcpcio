@@ -1,7 +1,8 @@
-import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, MedalPreset, SocialMedia, StatusTimeDisplay } from "@xcpcio/types";
+import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, SeatMap as ISeatMap, MedalPreset, SocialMedia, StatusTimeDisplay } from "@xcpcio/types";
 import type { Awards } from "./award";
 import type { Organizations } from "./organization";
 import type { Problem, Problems } from "./problem";
+import type { SeatMap } from "./seat-map";
 
 import { ContestState } from "@xcpcio/types";
 import { Award, MedalType } from "./award";
@@ -10,6 +11,7 @@ import { ContestOptions, createContestOptions } from "./contest-options";
 import { Group } from "./group";
 import { createOrganizations } from "./organization";
 import { createProblems, createProblemsByProblemIds } from "./problem";
+import { createSeatMap } from "./seat-map";
 import { createDayJS, dayjs, getTimeDiff } from "./utils";
 
 export class Contest {
@@ -52,6 +54,7 @@ export class Contest {
   options: ContestOptions;
 
   organizations?: Organizations;
+  seatMap?: SeatMap;
 
   constructor() {
     this.name = new I18nText();
@@ -354,6 +357,10 @@ export function createContest(contestJSON: IContest): Contest {
 
   if (contestJSON.organizations) {
     c.organizations = createOrganizations(contestJSON.organizations as IOrganizations);
+  }
+
+  if (contestJSON.seat_map && !("url" in contestJSON.seat_map)) {
+    c.seatMap = createSeatMap(contestJSON.seat_map as ISeatMap);
   }
 
   return c;

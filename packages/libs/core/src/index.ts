@@ -14,6 +14,7 @@ export * from "./rank-statistics";
 export * from "./rating";
 export * from "./resolver";
 export * from "./resolver-vue";
+export * from "./seat-map";
 export * from "./submission";
 export * from "./submission-status";
 export * from "./team";

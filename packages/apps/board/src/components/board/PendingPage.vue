@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank, SelectOptionItem } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
+import type { SegmentedControlOption } from "../common/SegmentedControl.vue";
 
 const props = defineProps<{
   rank: Rank;
@@ -10,6 +11,15 @@ const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
+
+// Tab state - only show seat map tab if config exists
+const hasSeatMap = computed(() => !!rank.value.contest.seatMap);
+const currentTab = ref<"teams" | "seat-map">("teams");
+
+const tabOptions = computed<SegmentedControlOption[]>(() => [
+  { value: "teams", label: t("pending_page.teams_tab") },
+  { value: "seat-map", label: t("pending_page.seat_map_tab") },
+]);
 
 const orgOptions = computed(() => {
   return rank.value.organizations.map((o) => {
@@ -99,72 +109,105 @@ const hasFilters = computed(() => {
     || rank.value.originTeams.length > 0
     || rank.value.contest.group.size > 0;
 });
+
+// Compute filtered team IDs for seat map highlighting
+const filteredTeamIds = computed(() => {
+  return new Set(filteredTeams.value.map(t => t.id));
+});
 </script>
 
 <template>
   <div class="w-full">
     <div
-      v-if="hasFilters"
+      v-if="hasFilters || hasSeatMap"
+      class="filter-bar dark:bg-gray-800/30 border-gray-200/50 dark:border-gray-700/30"
       flex="~ wrap gap-3 items-center"
-      mb="4"
+      mb-6
+      p-4
+      bg-white
+      rounded-xl
+      border
     >
-      <div
-        v-if="groupOptions.length > 0"
-        w-48
-      >
-        <TheMultiSelect
-          :options="groupOptions"
-          :selected-options="groupSelectedItems"
-          :placeholder="t('standings.group')"
-          @select="groupOnSelect"
-        />
+      <!-- Filters on the left -->
+      <div flex="~ wrap gap-3 items-center" flex-1>
+        <div
+          v-if="groupOptions.length > 0"
+          w-48
+        >
+          <TheMultiSelect
+            :options="groupOptions"
+            :selected-options="groupSelectedItems"
+            :placeholder="t('standings.group')"
+            @select="groupOnSelect"
+          />
+        </div>
+
+        <div
+          v-if="rank.contest.options.enableOrganization && orgOptions.length > 0"
+          w-80
+        >
+          <TheMultiSelect
+            :options="orgOptions"
+            :selected-options="orgSelectedItems"
+            :placeholder="t('standings.organization')"
+            @select="orgOnSelect"
+          />
+        </div>
+
+        <div
+          v-if="teamsOptions.length > 0"
+          w-80
+        >
+          <TheMultiSelect
+            :options="teamsOptions"
+            :selected-options="teamsSelectedItems"
+            :placeholder="t('standings.team')"
+            @select="teamsOnSelect"
+          />
+        </div>
       </div>
 
-      <div
-        v-if="rank.contest.options.enableOrganization && orgOptions.length > 0"
-        w-116
-      >
-        <TheMultiSelect
-          :options="orgOptions"
-          :selected-options="orgSelectedItems"
-          :placeholder="t('standings.organization')"
-          @select="orgOnSelect"
-        />
-      </div>
-
-      <div
-        v-if="teamsOptions.length > 0"
-        w-116
-      >
-        <TheMultiSelect
-          :options="teamsOptions"
-          :selected-options="teamsSelectedItems"
-          :placeholder="t('standings.team')"
-          @select="teamsOnSelect"
-        />
-      </div>
-    </div>
-
-    <div
-      v-if="hasTeams"
-      class="grid gap-4"
-      grid="~ cols-1 sm:cols-2 lg:cols-3 xl:cols-4"
-    >
-      <TeamCard
-        v-for="team in filteredTeams"
-        :key="team.id"
-        :rank="rank"
-        :team="team"
+      <!-- Tab switcher on the right side -->
+      <SegmentedControl
+        v-if="hasSeatMap"
+        v-model="currentTab"
+        :options="tabOptions"
       />
     </div>
 
-    <div
-      v-else
-      flex="~ col items-center justify-center"
-      py="12"
-      text="gray-500 dark:gray-400"
-    >
-      <span text="lg">{{ t("pending_page.no_teams") }}</span>
-    </div>
+    <!-- Teams Grid View -->
+    <template v-if="currentTab === 'teams'">
+      <div
+        v-if="hasTeams"
+        class="grid gap-4"
+        grid="~ cols-1 sm:cols-2 lg:cols-3 xl:cols-4"
+      >
+        <TeamCard
+          v-for="team in filteredTeams"
+          :key="team.id"
+          :rank="rank"
+          :team="team"
+        />
+      </div>
+
+      <div
+        v-else
+        flex="~ col items-center justify-center"
+        py="12"
+        text="gray-500 dark:gray-400"
+      >
+        <span text="lg">{{ t("pending_page.no_teams") }}</span>
+      </div>
+    </template>
+
+    <!-- Seat Map View -->
+    <template v-else-if="currentTab === 'seat-map' && hasSeatMap">
+      <SeatMapView
+        :rank="rank"
+        :seat-map="rank.contest.seatMap!"
+        :filtered-team-ids="filteredTeamIds"
+        :all-teams="rank.originTeams"
+      />
+    </template>
   </div>
 </template>

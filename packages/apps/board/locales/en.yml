@@ -127,3 +127,5 @@ org_info:
 
 pending_page:
   no_teams: No teams registered yet
+  teams_tab: Teams
+  seat_map_tab: Seat Map
