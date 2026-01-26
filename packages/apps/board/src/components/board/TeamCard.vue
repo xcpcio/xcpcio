@@ -61,7 +61,7 @@ const isGirl = computed(() => team.value.isGirl);
           class="h-12 w-12"
         >
         <div flex="1 ~ col" min-w-0>
-          <HeatMapTooltip position="top">
+          <Tooltip placement="top">
             <div
               text="lg gray-900 dark:white"
               font="semibold"
@@ -71,23 +71,23 @@ const isGirl = computed(() => team.value.isGirl);
               <span v-if="isUnofficial" class="i-line-md:star-alt-filled" text="sm" />
               <span v-if="isGirl" class="i-tabler:gender-female" text="sm pink-500" />
             </div>
-            <template #tooltip-content>
+            <template #popper>
               <div>{{ t("team_info.team_id") }}{{ t("common.colon") }}{{ team.id }}</div>
               <div>{{ t("team_info.team_name") }}{{ t("common.colon") }}{{ teamName }}</div>
             </template>
-          </HeatMapTooltip>
-          <HeatMapTooltip v-if="organizationName" position="top">
+          </Tooltip>
+          <Tooltip v-if="organizationName" placement="top">
             <div
               text="sm gray-500 dark:gray-400"
               class="line-clamp-1"
             >
               {{ organizationName }}
             </div>
-            <template #tooltip-content>
+            <template #popper>
               <div>{{ t("team_info.org_id") }}{{ t("common.colon") }}{{ team.organization?.id }}</div>
               <div>{{ t("team_info.org_name") }}{{ t("common.colon") }}{{ organizationName }}</div>
             </template>
-          </HeatMapTooltip>
+          </Tooltip>
         </div>
       </div>
 

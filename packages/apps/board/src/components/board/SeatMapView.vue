@@ -165,7 +165,7 @@ function getRowLabelStyle() {
         <div :style="getSectionGridStyle(section)">
           <template v-for="(row, rowIdx) in section.grid" :key="rowIdx">
             <template v-for="(seatId, colIdx) in getNormalizedRow(row, getMaxCols(section))" :key="`${rowIdx}-${colIdx}`">
-              <HeatMapTooltip v-if="seatId" :content="getTooltipContent(seatId)" position="bottom">
+              <Tooltip v-if="seatId" placement="bottom">
                 <div
                   class="seat"
                   :class="{
@@ -181,7 +181,10 @@ function getRowLabelStyle() {
                 >
                   {{ seatId }}
                 </div>
-              </HeatMapTooltip>
+                <template #popper>
+                  {{ getTooltipContent(seatId) }}
+                </template>
+              </Tooltip>
               <div
                 v-else
                 :style="getSeatStyle(section)"
