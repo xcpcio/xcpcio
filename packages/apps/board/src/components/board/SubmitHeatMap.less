@@ -1,13 +1,21 @@
 @correct-colors: #9be9a8, #40c463, #30a14e, #216e39;
 @incorrect-colors: #ff8c8c, #ff4d4f, #ff1a1a, #d40d0d;
+@correct-colors-dark: #216e39, #30a14e, #40c463, #9be9a8;
+@incorrect-colors-dark: #d40d0d, #ff1a1a, #ff4d4f, #ff8c8c;
 
-.generate-heat-rules(@class, @colors) {
+.generate-heat-rules(@class, @colors, @dark-colors) {
   each(@colors, {
     .@{class}[data-level="@{index}"] {
       background-color: @value;
     }
   });
+
+  each(@dark-colors, {
+    .dark .@{class}[data-level="@{index}"] {
+      background-color: @value;
+    }
+  });
 }
 
-.generate-heat-rules(correct-heat, @correct-colors);
-.generate-heat-rules(incorrect-heat, @incorrect-colors);
+.generate-heat-rules(correct-heat, @correct-colors, @correct-colors-dark);
+.generate-heat-rules(incorrect-heat, @incorrect-colors, @incorrect-colors-dark);
