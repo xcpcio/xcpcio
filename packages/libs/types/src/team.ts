@@ -8,6 +8,8 @@ export interface Team {
   name?: Text;
   team_name?: Text;
 
+  description?: Text;
+
   organization?: string;
   organization_id?: string;
 
