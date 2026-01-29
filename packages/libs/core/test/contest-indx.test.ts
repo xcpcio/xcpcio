@@ -45,6 +45,7 @@ describe("contest-index", () => {
           },
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
+            "disablePendingPage": false,
             "enableOrganization": false,
             "submissionEnableActionField": false,
             "submissionHasExternalUrlField": false,
@@ -101,6 +102,7 @@ describe("contest-index", () => {
           },
           "options": ContestOptions {
             "calculationOfPenalty": "in_minutes",
+            "disablePendingPage": false,
             "enableOrganization": false,
             "submissionEnableActionField": false,
             "submissionHasExternalUrlField": false,

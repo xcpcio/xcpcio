@@ -231,6 +231,8 @@ class ContestOptions(BaseModel):
     realtime_reaction_webcam_stream_url_template: Optional[str] = None
     realtime_reaction_screen_stream_url_template: Optional[str] = None
 
+    disable_pending_page: Optional[bool] = None
+
 
 class Contest(BaseModel):
     contest_name: Text = ""

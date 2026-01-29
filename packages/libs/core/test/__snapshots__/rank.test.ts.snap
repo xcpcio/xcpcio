@@ -90,6 +90,7 @@ Contest {
   },
   "options": ContestOptions {
     "calculationOfPenalty": "in_minutes",
+    "disablePendingPage": false,
     "enableOrganization": true,
     "reactionVideoUrlTemplate": undefined,
     "submissionEnableActionField": false,

@@ -286,6 +286,9 @@ const pausedTime = computed(() => {
 });
 
 const showPendingPage = computed(() => {
+  if (rank.value.contest.options.disablePendingPage) {
+    return false;
+  }
   if (contestState.value === ContestState.PENDING) {
     return true;
   }
