@@ -51,6 +51,8 @@ export interface ContestOptions {
   // example: https://your.stream.cdn/wf/2025/${submission_id}/screen/index.m3u8
   // ${submission_id} will be replaced with the submission id
   realtime_reaction_screen_stream_url_template?: string;
+
+  disable_pending_page?: boolean;
 }
 
 export type MedalPreset = "ccpc" | "icpc";

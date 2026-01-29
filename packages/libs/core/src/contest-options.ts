@@ -23,6 +23,8 @@ export class ContestOptions {
   realtimeReactionWebcamStreamUrlTemplate?: string;
   realtimeReactionScreenStreamUrlTemplate?: string;
 
+  disablePendingPage: boolean;
+
   constructor() {
     this.enableOrganization = false;
     this.calculationOfPenalty = "in_minutes";
@@ -35,6 +37,8 @@ export class ContestOptions {
     this.submissionHasReactionField = false;
     this.submissionHasExternalUrlField = false;
     this.submissionHasRealtimeReactionStreamField = false;
+
+    this.disablePendingPage = false;
   }
 }
 
@@ -73,6 +77,8 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
 
   o.teamWebcamStreamUrlTemplate = j.team_webcam_stream_url_template;
   o.teamScreenStreamUrlTemplate = j.team_screen_stream_url_template;
+
+  o.disablePendingPage = !!j.disable_pending_page;
 
   return o;
 }
