@@ -104,6 +104,7 @@ team_info:
   rank: 排名
   team_id: 队伍 ID
   team_name: 队名
+  description: 简介
   org_id: 组织 ID
   org_name: 组织名
   organization: 组织

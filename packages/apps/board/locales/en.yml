@@ -104,6 +104,7 @@ team_info:
   rank: Rank
   team_id: Team ID
   team_name: Team Name
+  description: Description
   org_id: Org ID
   org_name: Org Name
   organization: Organization

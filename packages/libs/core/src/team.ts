@@ -27,6 +27,7 @@ export class PlaceChartPointData {
 export class Team {
   id: string;
   name: I18nText;
+  description?: I18nText;
 
   organizationId?: string;
   organizationName?: string;
@@ -283,6 +284,10 @@ export function createTeam(teamJSON: ITeam): Team {
 
   t.id = teamJSON.id ?? teamJSON.team_id ?? "";
   t.name = I18nText.fromIText(teamJSON.name ?? teamJSON.team_name ?? "");
+
+  if (teamJSON.description) {
+    t.description = I18nText.fromIText(teamJSON.description);
+  }
 
   if (teamJSON.organization) {
     t.organizationId = teamJSON.organization;

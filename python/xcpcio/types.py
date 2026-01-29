@@ -173,6 +173,7 @@ class Submissions(RootModel[List[Submission]]):
 class Team(BaseModel):
     id: str = ""
     name: Text = ""
+    description: Optional[Text] = None
 
     organization: Optional[str] = None
     organization_id: Optional[str] = None
