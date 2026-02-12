@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 import { CodeforcesGymGhostDATConverter, GeneralExcelConverter, ICPCStandingsCsvConverter } from "@xcpcio/core";
+
 import FileSaver from "file-saver";
 import sleep from "sleep-promise";
 
@@ -12,6 +14,8 @@ const props = defineProps<{
 }>();
 
 const $toast = useToast();
+const { locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 
 const { copy, isSupported } = useClipboard();
 
@@ -80,7 +84,7 @@ async function onClickForGeneralXLSXDownload() {
   btnDisable.value.GeneralXLSXDownload = true;
   await waitDisabled();
 
-  const converter = new GeneralExcelConverter();
+  const converter = new GeneralExcelConverter(lang.value);
   converter.convertAndWrite(rank.value, `${rank.value.contest.name.getOrDefault()}.xlsx`);
 
   btnDisable.value.GeneralXLSXDownload = false;
