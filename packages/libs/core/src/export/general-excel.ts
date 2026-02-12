@@ -1,5 +1,6 @@
-import type { Rank } from "../rank";
+import type { Lang } from "@xcpcio/types";
 
+import type { Rank } from "../rank";
 import _ from "lodash";
 import stringWidth from "string-width";
 import * as XLSX from "xlsx-js-style";
@@ -22,7 +23,11 @@ interface AoaConvertResult {
 }
 
 export class GeneralExcelConverter {
-  constructor() { }
+  lang?: Lang;
+
+  constructor(lang?: Lang) {
+    this.lang = lang;
+  }
 
   public convert(oriRank: Rank): XLSX.WorkBook {
     const rank = _.cloneDeep(oriRank);
@@ -37,7 +42,7 @@ export class GeneralExcelConverter {
       rank.buildRank();
 
       const sheet = this.convertToSheet(rank);
-      XLSX.utils.book_append_sheet(workbook, sheet, v.name.getOrDefault());
+      XLSX.utils.book_append_sheet(workbook, sheet, v.name.getOrDefault(this.lang));
     }
 
     return workbook;
@@ -144,7 +149,7 @@ export class GeneralExcelConverter {
     const enableCoach = rank.teams[0]?.coaches.length > 0;
 
     {
-      aoa.push([rank.contest.name.getOrDefault()]);
+      aoa.push([rank.contest.name.getOrDefault(this.lang)]);
     }
 
     {
@@ -172,6 +177,7 @@ export class GeneralExcelConverter {
 
       head.push("Unofficial");
       head.push("Girl");
+      head.push("ICPC ID");
 
       aoa.push(head);
     }
@@ -188,10 +194,10 @@ export class GeneralExcelConverter {
           arr.push("");
         }
 
-        arr.push(team.organization.name.getOrDefault());
+        arr.push(team.organization.name.getOrDefault(this.lang));
       }
 
-      arr.push(team.name.getOrDefault(), team.solvedProblemNum.toString(), team.penaltyToMinute.toString());
+      arr.push(team.name.getOrDefault(this.lang), team.solvedProblemNum.toString(), team.penaltyToMinute.toString());
 
       for (const p of team.problemStatistics) {
         if (p.isUnSubmitted) {
@@ -230,9 +236,9 @@ export class GeneralExcelConverter {
       if (enableMembers) {
         const members = team.members;
         if (Array.isArray(members)) {
-          arr.push(members[0]?.name.getOrDefault() ?? "");
-          arr.push(members[1]?.name.getOrDefault() ?? "");
-          arr.push(members[2]?.name.getOrDefault() ?? "");
+          arr.push(members[0]?.name.getOrDefault(this.lang) ?? "");
+          arr.push(members[1]?.name.getOrDefault(this.lang) ?? "");
+          arr.push(members[2]?.name.getOrDefault(this.lang) ?? "");
         } else {
           arr.push("", "", "");
         }
@@ -244,6 +250,7 @@ export class GeneralExcelConverter {
 
       arr.push(team.isUnofficial ? "Y" : "N");
       arr.push(team.isGirl ? "Y" : "N");
+      arr.push(team.icpcID ?? "");
 
       aoa.push(arr);
     }
