@@ -16,8 +16,8 @@ catalogs:
       specifier: ^7.29.0
       version: 7.29.0
     '@iconify/json':
-      specifier: ^2.2.438
-      version: 2.2.438
+      specifier: ^2.2.439
+      version: 2.2.439
     '@intlify/unplugin-vue-i18n':
       specifier: ^11.0.3
       version: 11.0.3
@@ -136,8 +136,8 @@ catalogs:
       specifier: ^2.1.1
       version: 2.1.1
     glob:
-      specifier: ^13.0.2
-      version: 13.0.2
+      specifier: ^13.0.3
+      version: 13.0.3
     gsap:
       specifier: ^3.14.2
       version: 3.14.2
@@ -241,8 +241,8 @@ catalogs:
       specifier: ^0.11.0
       version: 0.11.0
     vite-plugin-webfont-dl:
-      specifier: ^3.11.1
-      version: 3.11.1
+      specifier: ^3.12.0
+      version: 3.12.0
     vite-ssg:
       specifier: ^28.3.0
       version: 28.3.0
@@ -328,7 +328,7 @@ importers:
         version: 0.1.0
       glob:
         specifier: 'catalog:'
-        version: 13.0.2
+        version: 13.0.3
       npm-run-all:
         specifier: 'catalog:'
         version: 4.1.5
@@ -361,7 +361,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: 'catalog:'
-        version: 2.2.438
+        version: 2.2.439
       '@unocss/reset':
         specifier: 'catalog:'
         version: 66.6.0
@@ -470,7 +470,7 @@ importers:
     devDependencies:
       '@iconify/json':
         specifier: 'catalog:'
-        version: 2.2.438
+        version: 2.2.439
       '@intlify/unplugin-vue-i18n':
         specifier: 'catalog:'
         version: 11.0.3(@vue/compiler-dom@3.5.28)(eslint@9.39.2(jiti@2.6.1))(rollup@4.57.1)(typescript@5.9.3)(vue-i18n@11.2.8(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
@@ -581,7 +581,7 @@ importers:
         version: 0.11.0(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
       vite-plugin-webfont-dl:
         specifier: 'catalog:'
-        version: 3.11.1(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2))
+        version: 3.12.0(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2))
       vite-ssg:
         specifier: 'catalog:'
         version: 28.3.0(prettier@3.8.1)(unhead@2.1.4)(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2))(vue-router@4.6.4(vue@3.5.28(typescript@5.9.3)))(vue@3.5.28(typescript@5.9.3))
@@ -1632,8 +1632,8 @@ packages:
   '@iconify-json/vscode-icons@1.2.40':
     resolution: {integrity: sha512-Q7JIWAxENwmcRg4EGRY+u16gBwrAj6mWeuSmuyuPvNvoTJHh8Ss8qoeDhrFYNgtWqNkzH5hSf4b2T9XLK5MsrA==}
 
-  '@iconify/json@2.2.438':
-    resolution: {integrity: sha512-vDZEuUxqO9b29GBNQrblIH/sE4e1fwNuwZjm3q22w8sKv6bJnqtMw0nCDAf0RVlp+7IPPCRVkFnk6L78cXZ6cg==}
+  '@iconify/json@2.2.439':
+    resolution: {integrity: sha512-DFpo7ZqntngeDaVFtsj+AydUrJoEPW0FIpMrmngo3iHxLXpqcNe5lhztPqvVBoXllbohomcA1YRjRO/ljo7AnQ==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -1704,17 +1704,13 @@ packages:
       vue-i18n:
         optional: true
 
-  '@isaacs/balanced-match@4.0.1':
-    resolution: {integrity: sha512-yzMTt9lEb8Gv7zRioUilSglI0c0smZ9k5D65677DLWLtWJaXIS3CqcGyUFByYKlnUj6TkjLVs54fBl6+TiGQDQ==}
-    engines: {node: 20 || >=22}
-
-  '@isaacs/brace-expansion@5.0.1':
-    resolution: {integrity: sha512-WMz71T1JS624nWj2n2fnYAuPovhv7EUhk69R6i9dsVyzxt5eM3bjwvgk9L+APE1TRscGysAVMANkB0jh0LQZrQ==}
-    engines: {node: 20 || >=22}
-
   '@isaacs/cliui@8.0.2':
     resolution: {integrity: sha512-O8jcjabXaleOG9DQ0+ARXWZBTfnP4WNAqzuiJK7ll44AmxGKv/J2M4TPjxjY3znBCfvBXFzucm1twdyFybFqEA==}
     engines: {node: '>=12'}
+
+  '@isaacs/cliui@9.0.0':
+    resolution: {integrity: sha512-AokJm4tuBHillT+FpMtxQ60n8ObyXBatq7jD2/JA9dxbDDokKQm8KMht5ibGzLVU9IJDIKK4TPKgMHEYMn3lMg==}
+    engines: {node: '>=18'}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -3682,6 +3678,10 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
+  balanced-match@4.0.2:
+    resolution: {integrity: sha512-x0K50QvKQ97fdEz2kPehIerj+YTeptKF9hyYkKf6egnwmMWAkADiO0QCzSp0R5xN8FTZgYaBfSaue46Ej62nMg==}
+    engines: {node: 20 || >=22}
+
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
@@ -3723,6 +3723,10 @@ packages:
 
   brace-expansion@2.0.1:
     resolution: {integrity: sha512-XnAIvQ8eM+kC6aULx6wuQiwVsnzsi9d3WxzV3FpWTGA19F621kwdbsAcFKXgKUHZWsy+mY6iL1sHTxWEFCytDA==}
+
+  brace-expansion@5.0.2:
+    resolution: {integrity: sha512-Pdk8c9poy+YhOgVWw1JNN22/HcivgKWwpxKq04M/jTmHyCZn12WPJebZxdjSa5TmBqISrUSgNYU3eRORljfCCw==}
+    engines: {node: 20 || >=22}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -5008,8 +5012,8 @@ packages:
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
-  glob@13.0.2:
-    resolution: {integrity: sha512-035InabNu/c1lW0tzPhAgapKctblppqsKKG9ZaNzbr+gXwWMjXoiyGSyB9sArzrjG7jY+zntRq5ZSUYemrnWVQ==}
+  glob@13.0.3:
+    resolution: {integrity: sha512-/g3B0mC+4x724v1TgtBlBtt2hPi/EWptsIAmXUx9Z2rvBYleQcsrmaOzd5LyL50jf/Soi83ZDJmw2+XqvH/EeA==}
     engines: {node: 20 || >=22}
 
   global-dirs@3.0.1:
@@ -5430,6 +5434,10 @@ packages:
   jackspeak@3.4.3:
     resolution: {integrity: sha512-OGlZQpz2yfahA/Rd1Y8Cd9SIEsqvXkLVoSw/cgwhnhFMDbsQFeZYoJJ7bIZBS9BcamUW96asq/npPWugM+RQBw==}
 
+  jackspeak@4.2.3:
+    resolution: {integrity: sha512-ykkVRwrYvFm1nb2AJfKKYPr0emF6IiXDYUaFx4Zn9ZuIH7MrzEZ3sD5RlqGXNRpHtvUHJyOnCEFxOlNDtGo7wg==}
+    engines: {node: 20 || >=22}
+
   jake@10.9.2:
     resolution: {integrity: sha512-2P4SQ0HrLQ+fw6llpLnOaGAvN2Zu6778SJMrCUwns4fOoG9ayrTiZk3VV8sCPkVZF8ab0zksVpS8FDY5pRCNBA==}
     engines: {node: '>=10'}
@@ -5701,10 +5709,6 @@ packages:
   lru-cache@10.4.3:
     resolution: {integrity: sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==}
 
-  lru-cache@11.2.2:
-    resolution: {integrity: sha512-F9ODfyqML2coTIsQpSkRHnLSZMtkU8Q+mSfcaIyKwy58u+8k5nvAYeiNhsyMARvzNcXJ9QfWVrcPsC9e9rAxtg==}
-    engines: {node: 20 || >=22}
-
   lru-cache@11.2.6:
     resolution: {integrity: sha512-ESL2CrkS/2wTPfuend7Zhkzo2u0daGJ/A2VucJOgQ/C48S/zB8MMeMHSGKYpXhIjbPxfuezITkaBH1wqv00DDQ==}
     engines: {node: 20 || >=22}
@@ -5958,8 +5962,8 @@ packages:
   minimalistic-assert@1.0.1:
     resolution: {integrity: sha512-UtJcAD4yEaGtjPezWuO9wC4nwUnVH/8/Im3yEHQP4b67cXlD/Qr9hdITCU1xDbSEXg2XKNaP8jsReV7vQd00/A==}
 
-  minimatch@10.1.2:
-    resolution: {integrity: sha512-fu656aJ0n2kcXwsnwnv9g24tkU5uSmOlTjd6WyyaKm2Z+h1qmY6bAjrcaIxF/BslFqbZ8UBtbJi7KgQOZD2PTw==}
+  minimatch@10.2.0:
+    resolution: {integrity: sha512-ugkC31VaVg9cF0DFVoADH12k6061zNZkZON+aX8AWsR9GhPcErkcMBceb6znR8wLERM2AkkOxy2nWRLpT9Jq5w==}
     engines: {node: 20 || >=22}
 
   minimatch@3.1.2:
@@ -7624,10 +7628,10 @@ packages:
       vue: ^3.2.4
       vue-router: ^4.0.11
 
-  vite-plugin-webfont-dl@3.11.1:
-    resolution: {integrity: sha512-5eQaMn3mJ0qNnL64R6wZouh0I4zkvK8aS+GsoCDLY4WYfWCYvNpf6TyauxEsMlbwwfznkKjXTd1DNBGs4fKAhQ==}
+  vite-plugin-webfont-dl@3.12.0:
+    resolution: {integrity: sha512-0jxsr8ycuoK/uV5Y3ytttTRhgvfZo8v3O4JZBlVc4C7QWIws/vCLVR4B3ag+TGVkLNQya6hXfY3UnZge3M8vmA==}
     peerDependencies:
-      vite: ^2 || ^3 || ^4 || ^5 || ^6 || ^7
+      vite: ^2 || ^3 || ^4 || ^5 || ^6 || ^7 || ^8
 
   vite-ssg-sitemap@0.10.0:
     resolution: {integrity: sha512-OIja4fqUMcvWl5+bxQARe3LgzWTd8U/dWHWgrqiC7vv3AmTn0YnhMNUAimQ0M/0Aa9myEIAGLV0yKlYbKP8BJQ==}
@@ -8730,7 +8734,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify/json@2.2.438':
+  '@iconify/json@2.2.439':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
@@ -8809,12 +8813,6 @@ snapshots:
       vue: 3.5.28(typescript@5.9.3)
       vue-i18n: 11.2.8(vue@3.5.28(typescript@5.9.3))
 
-  '@isaacs/balanced-match@4.0.1': {}
-
-  '@isaacs/brace-expansion@5.0.1':
-    dependencies:
-      '@isaacs/balanced-match': 4.0.1
-
   '@isaacs/cliui@8.0.2':
     dependencies:
       string-width: 5.1.2
@@ -8823,6 +8821,8 @@ snapshots:
       strip-ansi-cjs: strip-ansi@6.0.1
       wrap-ansi: 8.1.0
       wrap-ansi-cjs: wrap-ansi@7.0.0
+
+  '@isaacs/cliui@9.0.0': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -10882,6 +10882,10 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
+  balanced-match@4.0.2:
+    dependencies:
+      jackspeak: 4.2.3
+
   base64-js@1.5.1: {}
 
   baseline-browser-mapping@2.8.32: {}
@@ -10931,6 +10935,10 @@ snapshots:
   brace-expansion@2.0.1:
     dependencies:
       balanced-match: 1.0.2
+
+  brace-expansion@5.0.2:
+    dependencies:
+      balanced-match: 4.0.2
 
   braces@3.0.3:
     dependencies:
@@ -12537,9 +12545,9 @@ snapshots:
       package-json-from-dist: 1.0.1
       path-scurry: 1.11.1
 
-  glob@13.0.2:
+  glob@13.0.3:
     dependencies:
-      minimatch: 10.1.2
+      minimatch: 10.2.0
       minipass: 7.1.2
       path-scurry: 2.0.0
 
@@ -12936,6 +12944,10 @@ snapshots:
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
 
+  jackspeak@4.2.3:
+    dependencies:
+      '@isaacs/cliui': 9.0.0
+
   jake@10.9.2:
     dependencies:
       async: 3.2.6
@@ -13195,8 +13207,6 @@ snapshots:
       tslib: 2.8.1
 
   lru-cache@10.4.3: {}
-
-  lru-cache@11.2.2: {}
 
   lru-cache@11.2.6: {}
 
@@ -13625,9 +13635,9 @@ snapshots:
 
   minimalistic-assert@1.0.1: {}
 
-  minimatch@10.1.2:
+  minimatch@10.2.0:
     dependencies:
-      '@isaacs/brace-expansion': 5.0.1
+      brace-expansion: 5.0.2
 
   minimatch@3.1.2:
     dependencies:
@@ -13947,7 +13957,7 @@ snapshots:
 
   path-scurry@2.0.0:
     dependencies:
-      lru-cache: 11.2.2
+      lru-cache: 11.2.6
       minipass: 7.1.2
 
   path-to-regexp@0.1.10: {}
@@ -15583,7 +15593,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  vite-plugin-webfont-dl@3.11.1(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2)):
+  vite-plugin-webfont-dl@3.12.0(vite@7.3.1(@types/node@24.10.13)(jiti@2.6.1)(less@4.5.1)(lightningcss@1.30.2)(terser@5.34.1)(tsx@4.19.1)(yaml@2.8.2)):
     dependencies:
       axios: 1.7.7
       clean-css: 5.3.3
