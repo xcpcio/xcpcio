@@ -11,7 +11,7 @@ catalog:
   "@antfu/eslint-config": ^6.7.3
   "@antfu/ni": ^27.0.1
   "@babel/types": ^7.29.0
-  "@iconify/json": ^2.2.438
+  "@iconify/json": ^2.2.439
   "@intlify/unplugin-vue-i18n": ^11.0.3
   "@shikijs/markdown-it": ^3.22.0
   "@tanstack/vue-query": ^5.92.9
@@ -51,7 +51,7 @@ catalog:
   flowbite: ^4.0.1
   fsxx: ^0.1.0
   git-repo-info: ^2.1.1
-  glob: ^13.0.2
+  glob: ^13.0.3
   gsap: ^3.14.2
   highcharts: ^12.5.0
   highcharts-vue: ^2.0.1
@@ -86,7 +86,7 @@ catalog:
   vite-plugin-inspect: ^11.3.3
   vite-plugin-vue-devtools: ^8.0.6
   vite-plugin-vue-layouts: ^0.11.0
-  vite-plugin-webfont-dl: ^3.11.1
+  vite-plugin-webfont-dl: ^3.12.0
   vite-ssg: ^28.3.0
   vite-ssg-sitemap: ^0.10.0
   vitepress: ^2.0.0-alpha.16
