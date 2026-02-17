@@ -10,11 +10,11 @@
     "editor.formatOnSave": true
   },
 
-  // https://github.com/microsoft/pylance-release/issues/5457#issuecomment-1944145281
-  "python.analysis.diagnosticSeverityOverrides": {
-    "reportInvalidTypeForm": "none"
-  },
-
+  "python.defaultInterpreterPath": "${workspaceFolder}/python/.venv/bin/python",
+  "python.languageServer": "Default",
+  "ruff.interpreter": [
+    "${workspaceFolder}/python/.venv/bin/python"
+  ],
   "[python]": {
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
