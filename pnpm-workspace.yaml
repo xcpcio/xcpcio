@@ -11,8 +11,8 @@ catalog:
   "@antfu/eslint-config": ^6.7.3
   "@antfu/ni": ^27.0.1
   "@babel/types": ^7.29.0
-  "@iconify/json": ^2.2.439
-  "@intlify/unplugin-vue-i18n": ^11.0.3
+  "@iconify/json": ^2.2.441
+  "@intlify/unplugin-vue-i18n": ^11.0.7
   "@shikijs/markdown-it": ^3.22.0
   "@tanstack/vue-query": ^5.92.9
   "@types/chroma-js": ^3.1.2
@@ -23,8 +23,8 @@ catalog:
   "@types/node": ^24.10.13
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.5.2
-  "@typescript-eslint/eslint-plugin": ^8.55.0
-  "@typescript-eslint/parser": ^8.55.0
+  "@typescript-eslint/eslint-plugin": ^8.56.0
+  "@typescript-eslint/parser": ^8.56.0
   "@unhead/vue": ^2.1.4
   "@unocss/eslint-config": ^66.6.0
   "@unocss/reset": ^66.6.0
@@ -51,7 +51,7 @@ catalog:
   flowbite: ^4.0.1
   fsxx: ^0.1.0
   git-repo-info: ^2.1.1
-  glob: ^13.0.3
+  glob: ^13.0.6
   gsap: ^3.14.2
   highcharts: ^12.5.0
   highcharts-vue: ^2.0.1
@@ -66,11 +66,11 @@ catalog:
   ordinal: ^1.0.3
   papaparse: ^5.5.3
   pinia: ^3.0.4
-  pnpm: ^10.29.3
+  pnpm: ^10.30.1
   rollup: ^4.57.1
   shiki: ^3.22.0
   sleep-promise: ^9.1.0
-  string-width: ^8.1.1
+  string-width: ^8.2.0
   taze: ^19.9.2
   typescript: ^5.9.3
   unbuild: ^3.6.1
