@@ -38,6 +38,7 @@ documentation = "https://github.com/xcpcio/xcpcio"
 repository = "https://github.com/xcpcio/xcpcio"
 
 [project.scripts]
+board-server = "xcpcio.app.board_server:main"
 clics-archiver = "xcpcio.app.clics_archiver:main"
 clics-server = "xcpcio.app.clics_server:main"
 clics-uploader = "xcpcio.app.clics_uploader:main"
