@@ -36,6 +36,8 @@ class ArchiveConfig:
     timeout: int = 30
     max_concurrent: int = 10
     include_event_feed: bool = False
+    ssl_verify: bool = True
+    ssl_ca_cert: Optional[Path] = None
 
     def to_api_config(self) -> ClicsApiConfig:
         """Convert to ClicsApiConfig"""
@@ -44,6 +46,8 @@ class ArchiveConfig:
             credentials=self.credentials,
             timeout=self.timeout,
             max_concurrent=self.max_concurrent,
+            ssl_verify=self.ssl_verify,
+            ssl_ca_cert=self.ssl_ca_cert,
         )
 
 

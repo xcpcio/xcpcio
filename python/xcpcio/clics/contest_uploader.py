@@ -129,6 +129,8 @@ class UploaderConfig:
     max_concurrent: int = 10
     poll_interval: int = 5
     version: Optional[str] = None
+    ssl_verify: bool = True
+    ssl_ca_cert: Optional[Path] = None
 
     def to_clics_api_config(self) -> ClicsApiConfig:
         return ClicsApiConfig(
@@ -136,6 +138,8 @@ class UploaderConfig:
             credentials=self.clics_credentials,
             timeout=self.timeout,
             max_concurrent=self.max_concurrent,
+            ssl_verify=self.ssl_verify,
+            ssl_ca_cert=self.ssl_ca_cert,
         )
 
 

@@ -72,6 +72,12 @@ def calculate_checksums(file_path: Path) -> dict:
     help="Log level",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose logging (same as --log-level DEBUG)")
+@click.option("--no-verify-ssl", is_flag=True, help="Disable SSL certificate verification for CLICS API")
+@click.option(
+    "--ssl-ca-cert",
+    type=click.Path(exists=True, path_type=Path),
+    help="Path to a CA certificate file for SSL verification",
+)
 def main(
     base_url: str,
     contest_id: str,
@@ -86,6 +92,8 @@ def main(
     max_concurrent: int,
     log_level: str,
     verbose: bool,
+    no_verify_ssl: bool,
+    ssl_ca_cert: Optional[Path],
 ):
     """
     Archive CCS Contest API data to contest package format.
@@ -163,6 +171,8 @@ def main(
         timeout=timeout,
         max_concurrent=max_concurrent,
         include_event_feed=not no_event_feed,
+        ssl_verify=not no_verify_ssl,
+        ssl_ca_cert=ssl_ca_cert,
     )
 
     click.echo(f"Archiving contest '{contest_id}' from {base_url}")
