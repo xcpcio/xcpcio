@@ -38,6 +38,12 @@ def setup_logging(level: str = "INFO"):
     help="Log level",
 )
 @click.option("--verbose", "-v", is_flag=True, help="Enable verbose logging (same as --log-level DEBUG)")
+@click.option("--no-verify-ssl", is_flag=True, help="Disable SSL certificate verification for CLICS API")
+@click.option(
+    "--ssl-ca-cert",
+    type=click.Path(exists=True, path_type=Path),
+    help="Path to a CA certificate file for SSL verification",
+)
 def main(
     base_url: str,
     contest_id: str,
@@ -51,6 +57,8 @@ def main(
     interval: int,
     log_level: str,
     verbose: bool,
+    no_verify_ssl: bool,
+    ssl_ca_cert: Optional[Path],
 ):
     """
     Upload CLICS Contest API data to XCPCIO with polling support.
@@ -80,6 +88,8 @@ def main(
         max_concurrent=max_concurrent,
         poll_interval=interval,
         version=__version__,
+        ssl_verify=not no_verify_ssl,
+        ssl_ca_cert=ssl_ca_cert,
     )
 
     click.echo(f"Fetching contest '{contest_id}' from {base_url}")

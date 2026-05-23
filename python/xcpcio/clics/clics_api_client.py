@@ -8,6 +8,7 @@ https://ccs-specs.icpc.io/2023-06/contest_api
 
 import asyncio
 import logging
+import ssl
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Dict, Optional
@@ -38,6 +39,8 @@ class ClicsApiConfig:
     credentials: APICredentials
     timeout: int = 30
     max_concurrent: int = 10
+    ssl_verify: bool = True
+    ssl_ca_cert: Optional[Path] = None
 
 
 class ClicsApiClient:
@@ -71,6 +74,24 @@ class ClicsApiClient:
         """Async context manager exit"""
         await self.close_session()
 
+    def _build_connector(self) -> Optional[aiohttp.TCPConnector]:
+        """Build TCP connector with SSL configuration"""
+        if not self._config.ssl_verify:
+            return aiohttp.TCPConnector(ssl=False)
+
+        if self._config.ssl_ca_cert:
+            ssl_ctx = ssl.create_default_context(cafile=str(self._config.ssl_ca_cert))
+            return aiohttp.TCPConnector(ssl=ssl_ctx)
+
+        try:
+            import truststore
+
+            ssl_ctx = truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT)
+            return aiohttp.TCPConnector(ssl=ssl_ctx)
+        except ImportError:
+            logger.debug("truststore not available, using default SSL context")
+            return None
+
     async def start_session(self):
         """Initialize the HTTP session with authentication"""
         auth = None
@@ -81,7 +102,7 @@ class ClicsApiClient:
         elif self._config.credentials.token:
             headers["Authorization"] = f"Bearer {self._config.credentials.token}"
 
-        self._session = aiohttp.ClientSession(auth=auth, headers=headers)
+        self._session = aiohttp.ClientSession(auth=auth, headers=headers, connector=self._build_connector())
 
     async def close_session(self):
         """Close the HTTP session"""
@@ -189,7 +210,9 @@ class ClicsApiClient:
             logger.debug(f"Fetched {len(content)} bytes from {file_url}")
             return content
 
-    async def fetch_file_content(self, file_url: Optional[str], override_timeout: Optional[int] = None) -> Optional[bytes]:
+    async def fetch_file_content(
+        self, file_url: Optional[str], override_timeout: Optional[int] = None
+    ) -> Optional[bytes]:
         """Fetch file content as bytes from URL"""
         if not file_url:
             return None
