@@ -11,7 +11,8 @@ env:
 
 permissions:
   id-token: write
-  contents: read
+  contents: write
+  packages: write
 
 jobs:
   release-github-packages:
@@ -139,8 +140,6 @@ jobs:
             registry.cn-shanghai.aliyuncs.com/xcpcio/${{ env.image_name }}:${{ env.tag }}
 
       - name: Publish to NPM
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           bash packages/apps/board/scripts/replace_jsdelivr_cdn_host.sh
           pnpm publish:npm
