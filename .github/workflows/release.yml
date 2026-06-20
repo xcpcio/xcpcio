@@ -9,8 +9,13 @@ on:
 env:
   node-version: 24.x
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   release-github-packages:
+    environment: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -29,6 +34,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   release-pypi:
+    environment: release
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -48,6 +54,7 @@ jobs:
         run: uv publish
 
   release-docker-image-and-npm:
+    environment: release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
