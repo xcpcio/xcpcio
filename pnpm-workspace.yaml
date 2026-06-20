@@ -3,6 +3,7 @@ catalogMode: prefer
 minimumReleaseAge: 10080
 shellEmulator: true
 trustPolicy: no-downgrade
+trustPolicyIgnoreAfter: 43200
 
 packages:
   - docs
@@ -67,7 +68,6 @@ catalog:
   ordinal: ^1.0.3
   papaparse: ^5.5.3
   pinia: ^3.0.4
-  pnpm: ^10.30.1
   rollup: ^4.57.1
   shiki: ^3.22.0
   sleep-promise: ^9.1.0
