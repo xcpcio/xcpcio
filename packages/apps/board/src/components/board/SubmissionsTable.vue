@@ -150,8 +150,7 @@ const submissions = computed(() => {
     if (o.orgIds.length === 0
       && o.teamIds.length === 0
       && o.languages.length === 0
-      && o.statuses.length === 0
-    ) {
+      && o.statuses.length === 0) {
       return true;
     }
 

@@ -18,6 +18,7 @@ const rankOptions = computed({
     return props!.rankOptions;
   },
   set(value) {
+    // eslint-disable-next-line vue/custom-event-name-casing
     emit("update:rank-options", value);
   },
 });
