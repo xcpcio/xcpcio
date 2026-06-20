@@ -105,8 +105,3 @@ catalog:
 
 ignoredBuiltDependencies:
   - cypress
-  - less
-
-onlyBuiltDependencies:
-  - esbuild
-  - vue-demi
