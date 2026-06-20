@@ -9,6 +9,10 @@ on:
 env:
   node-version: 24.x
 
+permissions:
+  id-token: write  # Required for OIDC
+  contents: read
+
 jobs:
   release-github-packages:
     runs-on: ubuntu-latest
