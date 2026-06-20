@@ -85,7 +85,7 @@ function getNormalizedRow(row: Array<string | null>, maxCols: number): Array<str
   if (row.length >= maxCols) {
     return row;
   }
-  return [...row, ...Array.from({ length: maxCols - row.length }, () => null)];
+  return [...row, ...Array.from({ length: maxCols - row.length }).fill(null) as Array<string | null>];
 }
 
 // Get grid style for a section

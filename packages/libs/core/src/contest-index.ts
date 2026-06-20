@@ -57,7 +57,7 @@ export function createContestIndexList(contestListJSON: any): ContestIndexList {
   const contestIndexList = [] as ContestIndexList;
 
   const dfs = (contestList: any) => {
-    if (Object.prototype.hasOwnProperty.call(contestList, "config")) {
+    if (Object.hasOwn(contestList, "config")) {
       contestIndexList.push(createContestIndex(contestList));
     } else {
       for (const k in contestList) {

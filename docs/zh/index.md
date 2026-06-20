@@ -16,11 +16,11 @@ hero:
     - theme: alt
       text: 榜单
       link: https://xcpcio.com/board/
-      target: _blank
+      target: \_blank
     - theme: alt
       text: GitHub
       link: https://github.com/xcpcio/xcpcio
-      target: _blank
+      target: \_blank
 
 features:
   - icon: <span class="i-oui-app-management"></span>
