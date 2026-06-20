@@ -10,7 +10,7 @@ env:
   node-version: 24.x
 
 permissions:
-  id-token: write  # Required for OIDC
+  id-token: write
   contents: read
 
 jobs:
