@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, Field, RootModel, field_validator
 
 from . import constants
 
@@ -195,6 +195,15 @@ class Team(BaseModel):
     ip: Optional[str] = None
 
     extra: Dict[str, Any] = Field(default_factory=dict, exclude=True)
+
+    @field_validator("members", "coaches", mode="before")
+    @classmethod
+    def filter_null_values(cls, v):
+        """Filter out null/None values from members and coaches lists"""
+        if isinstance(v, list):
+            # Filter out None/null values
+            return [item for item in v if item is not None]
+        return v
 
     def add_group(self, group: str):
         if group not in self.group:
