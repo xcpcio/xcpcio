@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import { getRuntimeConfig } from "@board/composables/runtimeConfig";
+
 const { t } = useI18n();
 const route = useRoute();
+const runtimeConfig = getRuntimeConfig();
 
 const contestTypes = [
   "camp",
@@ -10,8 +13,9 @@ const contestTypes = [
 ];
 
 const isNotFound = !contestTypes.some(c => route.fullPath.startsWith(`/${c}`));
-const component = useQueryForComponent();
-const dataSource = window.DATA_SOURCE;
+const queryComponent = useQueryForComponent();
+const component = computed(() => runtimeConfig.component ?? queryComponent.value);
+const dataSource = runtimeConfig.dataSource;
 </script>
 
 <template>

@@ -1,3 +1,5 @@
+import { getRuntimeConfig } from "./runtimeConfig";
+
 export const APP_VERSION = __APP_VERSION__;
 export const GITHUB_URL = __GITHUB_URL__;
 export const GITHUB_SHA = __GITHUB_SHA__;
@@ -11,19 +13,11 @@ export const COUNTDOWN_TITLE_SUFFIX = "Countdown - XCPCIO";
 export const SUBMISSION_TITLE_SUFFIX = "Submission - XCPCIO";
 
 export const CDN_HOST = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.CDN_HOST;
+  return getRuntimeConfig().cdnHost ?? "";
 });
 
 export const DATA_HOST = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.DATA_HOST;
+  return getRuntimeConfig().dataHost ?? "";
 });
 
 export const RATING_DATA_HOST = computed(() => {
@@ -32,9 +26,5 @@ export const RATING_DATA_HOST = computed(() => {
 });
 
 export const DATA_REGION = computed(() => {
-  if (!window) {
-    return "";
-  }
-
-  return window.DATA_REGION;
+  return getRuntimeConfig().dataRegion ?? "";
 });

@@ -1,5 +1,6 @@
 import type { UserModule } from "@board/types";
 import type { Locale } from "vue-i18n";
+import { getRuntimeConfig } from "@board/composables/runtimeConfig";
 import { createI18n } from "vue-i18n";
 
 // Import i18n resources
@@ -48,5 +49,5 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export const install: UserModule = async ({ app }) => {
   app.use(i18n);
-  await loadLanguageAsync(window.DEFAULT_LANG);
+  await loadLanguageAsync(getRuntimeConfig().defaultLang ?? "en");
 };

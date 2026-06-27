@@ -1,5 +1,6 @@
 import type { Contest, Submissions, Teams } from "@xcpcio/types";
 import { useQuery } from "@tanstack/vue-query";
+import { getRuntimeConfig } from "./runtimeConfig";
 
 export interface BoardData {
   contest: Contest;
@@ -47,7 +48,7 @@ async function fetchAndAssignSeatMap(contest: Contest, baseUrl: string): Promise
 
 async function fetch_board_data(target: string): Promise<BoardData> {
   const endpoint = target.startsWith("/") ? target.slice(1) : target;
-  let prefix = `${window.DATA_HOST}${endpoint}`;
+  let prefix = `${getRuntimeConfig().dataHost ?? ""}${endpoint}`;
   const options = {
     allInOne: false,
   };
@@ -97,7 +98,7 @@ async function fetch_board_data(target: string): Promise<BoardData> {
 export function useQueryBoardData(target: string, queryOnce = false) {
   const retry = 3;
   const staleTime = 30_000;
-  let refetchInterval: number | false = window.REFETCH_INTERVAL;
+  let refetchInterval: number | false = getRuntimeConfig().refetchInterval ?? 15_000;
 
   if (queryOnce) {
     refetchInterval = false;
