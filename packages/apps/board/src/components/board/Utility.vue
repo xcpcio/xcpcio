@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
+import { getRuntimeConfig } from "@board/composables/runtimeConfig";
 
 const props = defineProps<{
   rank: Rank;
@@ -10,9 +11,10 @@ const { t } = useI18n();
 const route = useRoute();
 const router = useRouter();
 const component = useQueryForComponent();
+const dataSource = getRuntimeConfig().dataSource;
 
 function goResolver() {
-  if (window.DATA_SOURCE) {
+  if (dataSource) {
     component.value = "resolver";
   } else {
     router.push(`/resolver/?data-source=${route.path}`);
@@ -20,7 +22,7 @@ function goResolver() {
 }
 
 function goBalloon() {
-  if (window.DATA_SOURCE) {
+  if (dataSource) {
     component.value = "balloon";
   } else {
     router.push(`/balloon/?data-source=${route.path}`);
@@ -28,7 +30,7 @@ function goBalloon() {
 }
 
 function goCountdown() {
-  if (window.DATA_SOURCE) {
+  if (dataSource) {
     component.value = "countdown";
   } else {
     router.push(`/countdown/?data-source=${route.path}`);

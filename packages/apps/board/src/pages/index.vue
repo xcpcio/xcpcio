@@ -4,7 +4,7 @@ import type { Lang } from "@xcpcio/types";
 
 import ContestIndexUI from "@board/components/ContestIndexUI.vue";
 import SearchInput from "@board/components/SearchInput.vue";
-import { TITLE_SUFFIX } from "@board/composables/constant";
+import { DATA_HOST, TITLE_SUFFIX } from "@board/composables/constant";
 
 import { useFetch } from "@vueuse/core";
 import { createContestIndexList } from "@xcpcio/core";
@@ -19,7 +19,7 @@ const now = useNow();
 const nowMinutes = computed(() => Math.floor(now.value.getTime() / FETCH_INTERVAL));
 
 function genURL() {
-  return `${window.DATA_HOST}index/contest_list.json?t=${nowMinutes.value}`;
+  return `${DATA_HOST.value}index/contest_list.json?t=${nowMinutes.value}`;
 }
 const url = ref(genURL());
 
