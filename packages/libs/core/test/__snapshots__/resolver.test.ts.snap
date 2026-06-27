@@ -531,6 +531,7 @@ ResolverOperation {
     },
     "organization": Organization {
       "id": "一汽红旗",
+      "logo": undefined,
       "name": I18nText {
         "fallback": "一汽红旗",
         "texts": Map {},
@@ -4635,6 +4636,7 @@ ResolverOperation {
     },
     "organization": Organization {
       "id": "北京大学",
+      "logo": undefined,
       "name": I18nText {
         "fallback": "北京大学",
         "texts": Map {},

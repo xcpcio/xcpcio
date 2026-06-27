@@ -92,6 +92,7 @@ Contest {
     "calculationOfPenalty": "in_minutes",
     "disablePendingPage": false,
     "enableOrganization": true,
+    "organizationLogoTemplate": undefined,
     "reactionVideoUrlTemplate": undefined,
     "submissionEnableActionField": false,
     "submissionHasExternalUrlField": false,
