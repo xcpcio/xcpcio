@@ -17,6 +17,7 @@ export class ContestOptions {
   submissionExternalUrlTemplate?: string;
 
   teamPhotoTemplate?: Image;
+  organizationLogoTemplate?: Image;
   teamWebcamStreamUrlTemplate?: string;
   teamScreenStreamUrlTemplate?: string;
 
@@ -74,6 +75,7 @@ export function createContestOptions(contestOptionsJSON: IContestOptions = {}): 
   o.submissionEnableActionField = o.submissionHasReactionField || o.submissionHasExternalUrlField || o.submissionHasRealtimeReactionStreamField;
   o.reactionVideoUrlTemplate = j.reaction_video_url_template;
   o.teamPhotoTemplate = j.team_photo_url_template;
+  o.organizationLogoTemplate = j.organization_logo_template;
 
   o.teamWebcamStreamUrlTemplate = j.team_webcam_stream_url_template;
   o.teamScreenStreamUrlTemplate = j.team_screen_stream_url_template;

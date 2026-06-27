@@ -11,7 +11,6 @@
   },
 
   "python.defaultInterpreterPath": "${workspaceFolder}/python/.venv/bin/python",
-  "python.languageServer": "Default",
   "ruff.interpreter": [
     "${workspaceFolder}/python/.venv/bin/python"
   ],

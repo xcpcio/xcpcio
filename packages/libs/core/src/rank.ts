@@ -12,7 +12,7 @@ import { Award, MedalType } from "./award";
 import { Balloon } from "./balloon";
 import { I18nText } from "./basic-types";
 import { BattleOfGiants } from "./battle-of-giants";
-import { Organization } from "./organization";
+import { createOrganizationLogoFromTemplate, Organization } from "./organization";
 import { TeamProblemStatistics } from "./problem";
 import { RankStatistics } from "./rank-statistics";
 import { Submission } from "./submission";
@@ -284,6 +284,7 @@ export class Rank {
       org.id = t.organizationId;
       org.name = new I18nText();
       org.name.fallback = t.organizationName;
+      org.logo = createOrganizationLogoFromTemplate(this.contest.options.organizationLogoTemplate, org.id);
 
       org.teams.push(t);
       t.organization = org;
