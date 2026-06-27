@@ -219,6 +219,8 @@ class ContestOptions(BaseModel):
     calculation_of_penalty: Optional[CalculationOfPenalty] = None
     submission_timestamp_unit: Optional[TimeUnit] = None
 
+    organization_logo_template: Optional[Image] = None
+
     has_reaction_videos: Optional[bool] = None
     reaction_video_url_template: Optional[str] = None
 

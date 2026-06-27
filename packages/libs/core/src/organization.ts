@@ -42,18 +42,29 @@ export class Organization {
 
 export type Organizations = Array<Organization>;
 
-export function createOrganization(orgJSON: IOrganization): Organization {
+export function createOrganizationLogoFromTemplate(template: Image | undefined, organizationId: string): Image | undefined {
+  if (!template?.url) {
+    return undefined;
+  }
+
+  return {
+    ...template,
+    url: template.url.replace(/\$\{organization_id\}/g, organizationId),
+  };
+}
+
+export function createOrganization(orgJSON: IOrganization, organizationLogoTemplate?: Image): Organization {
   const org = new Organization();
 
   org.id = orgJSON.id;
   org.name = I18nText.fromIText(orgJSON.name);
 
-  org.logo = orgJSON.logo;
+  org.logo = orgJSON.logo ?? createOrganizationLogoFromTemplate(organizationLogoTemplate, org.id);
   org.icpcID = orgJSON.icpc_id;
 
   return org;
 }
 
-export function createOrganizations(orgsJSON: IOrganizations): Organizations {
-  return orgsJSON.map(org => createOrganization(org));
+export function createOrganizations(orgsJSON: IOrganizations, organizationLogoTemplate?: Image): Organizations {
+  return orgsJSON.map(org => createOrganization(org, organizationLogoTemplate));
 }

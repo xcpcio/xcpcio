@@ -77,12 +77,15 @@ class TestContestOptions:
             submission_timestamp_unit=constants.TIME_UNIT_MILLISECOND,
             has_reaction_videos=True,
             reaction_video_url_template="https://videos.com/{team_id}/{problem_id}",
+            organization_logo_template=Image(url="https://images.com/orgs/{organization_id}.png"),
         )
 
         assert options.calculation_of_penalty == constants.CALCULATION_OF_PENALTY_IN_SECONDS
         assert options.submission_timestamp_unit == constants.TIME_UNIT_MILLISECOND
         assert options.has_reaction_videos is True
         assert options.reaction_video_url_template == "https://videos.com/{team_id}/{problem_id}"
+        assert options.organization_logo_template is not None
+        assert options.organization_logo_template.url == "https://images.com/orgs/{organization_id}.png"
 
     def test_contest_options_serialization(self):
         """Test ContestOptions serialization"""

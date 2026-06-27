@@ -356,7 +356,7 @@ export function createContest(contestJSON: IContest): Contest {
   }
 
   if (contestJSON.organizations) {
-    c.organizations = createOrganizations(contestJSON.organizations as IOrganizations);
+    c.organizations = createOrganizations(contestJSON.organizations as IOrganizations, c.options.organizationLogoTemplate);
   }
 
   if (contestJSON.seat_map && !("url" in contestJSON.seat_map)) {
