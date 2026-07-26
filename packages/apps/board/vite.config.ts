@@ -172,6 +172,10 @@ export default defineConfig({
     noExternal: [/vue-i18n/],
   },
 
+  optimizeDeps: {
+    exclude: ["vue-i18n"],
+  },
+
   server: {
     host: true,
     proxy: {
