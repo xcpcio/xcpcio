@@ -104,13 +104,15 @@ function isRenderByVisible() {
       :class="[getStandClassName(team)]"
     >
       <div
-        v-if="team?.organization?.logo"
-        class="absolute left-0 top-0 bottom-0 flex items-center px-1"
+        class="absolute left-0 top-0 bottom-0 flex items-center justify-center px-1 w-12"
       >
-        <Badge
-          :image="team?.organization?.logo"
-          width-class="h-full w-auto"
-        />
+        <div class="flex items-center justify-center w-full h-full">
+          <Badge
+            v-if="team?.organization?.logo"
+            :image="team?.organization?.logo"
+            width-class="max-h-full max-w-full object-contain mx-auto"
+          />
+        </div>
       </div>
       <div flex flex-1 :class="team?.organization?.logo ? 'pl-10' : ''">
         <div
@@ -149,13 +151,15 @@ function isRenderByVisible() {
       :class="[getStandClassName(team)]"
     >
       <div
-        v-if="team.badge"
-        class="absolute left-0 top-0 bottom-0 flex items-center px-1"
+        class="absolute left-0 top-0 bottom-0 flex items-center justify-center px-1 w-12"
       >
-        <Badge
-          :image="team.badge"
-          width-class="h-full w-auto"
-        />
+        <div class="flex items-center justify-center w-full h-full">
+          <Badge
+            v-if="team.badge"
+            :image="team.badge"
+            width-class="max-h-full max-w-full object-contain mx-auto"
+          />
+        </div>
       </div>
       <div
         flex items-center justify-center

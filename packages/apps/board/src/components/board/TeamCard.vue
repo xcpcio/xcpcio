@@ -48,18 +48,26 @@ const isGirl = computed(() => team.value.isGirl);
   >
     <template v-if="isVisible">
       <div flex="~ items-center gap-3" mb="2">
-        <img
+        <div
           v-if="team.organization?.logo"
-          :src="getImageSource(team.organization.logo, DATA_HOST)"
-          alt="org logo"
-          class="h-12 w-12"
+          class="h-12 w-12 flex items-center justify-center bg-transparent"
         >
-        <img
+          <img
+            :src="getImageSource(team.organization.logo, DATA_HOST)"
+            alt="org logo"
+            class="max-h-12 max-w-full object-contain mx-auto h-full w-auto block"
+          >
+        </div>
+        <div
           v-if="team.badge"
-          :src="getImageSource(team.badge, DATA_HOST)"
-          alt="team badge"
-          class="h-12 w-12"
+          class="h-12 w-12 flex items-center justify-center bg-transparent"
         >
+          <img
+            :src="getImageSource(team.badge, DATA_HOST)"
+            alt="team badge"
+            class="max-h-12 max-w-full object-contain mx-auto h-full w-auto block"
+          >
+        </div>
         <div flex="1 ~ col" min-w-0>
           <Tooltip placement="top">
             <div
