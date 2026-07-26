@@ -22,11 +22,15 @@ declare global {
   const RATING_DATA_HOST: typeof import('./composables/constant').RATING_DATA_HOST
   const RATING_TITLE_SUFFIX: typeof import('./composables/constant').RATING_TITLE_SUFFIX
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant').RESOLVER_TITLE_SUFFIX
+  const RUNTIME_CONFIG_STORAGE_KEY: typeof import('./composables/runtimeConfig').RUNTIME_CONFIG_STORAGE_KEY
   const SUBMISSION_TITLE_SUFFIX: typeof import('./composables/constant').SUBMISSION_TITLE_SUFFIX
   const TITLE_SUFFIX: typeof import('./composables/constant').TITLE_SUFFIX
   const XCPCIO_HOME: typeof import('./composables/constant').XCPCIO_HOME
+  const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
+  const computeSchemaAnnotations: typeof import('./composables/jsonSchemaCompletion').computeSchemaAnnotations
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
   const computedEager: typeof import('@vueuse/core').computedEager
@@ -39,6 +43,7 @@ declare global {
   const createEventHook: typeof import('@vueuse/core').createEventHook
   const createGlobalState: typeof import('@vueuse/core').createGlobalState
   const createInjectionState: typeof import('@vueuse/core').createInjectionState
+  const createJsonSchemaCompletionSource: typeof import('./composables/jsonSchemaCompletion').createJsonSchemaCompletionSource
   const createReactiveFn: typeof import('@vueuse/core').createReactiveFn
   const createRef: typeof import('@vueuse/core').createRef
   const createReusableTemplate: typeof import('@vueuse/core').createReusableTemplate
@@ -53,6 +58,7 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
   const extendRef: typeof import('@vueuse/core').extendRef
+  const filterMarks: typeof import('./composables/codemirror').filterMarks
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
@@ -62,8 +68,10 @@ declare global {
   const getMedalColor: typeof import('./composables/color').getMedalColor
   const getProblemChart: typeof import('./composables/statistics').getProblemChart
   const getRatingGraphOptions: typeof import('./composables/rating').getRatingGraphOptions
+  const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
   const getRuntimeConfig: typeof import('./composables/runtimeConfig').getRuntimeConfig
   const getStandingsStatusColor: typeof import('./composables/color').getStandingsStatusColor
+  const getStoredRuntimeConfig: typeof import('./composables/runtimeConfig').getStoredRuntimeConfig
   const getSubmitChart: typeof import('./composables/statistics').getSubmitChart
   const getTeamChart: typeof import('./composables/statistics').getTeamChart
   const getTeamPlaceChart: typeof import('./composables/statistics').getTeamPlaceChart
@@ -124,6 +132,7 @@ declare global {
   const resolveComponent: typeof import('vue').resolveComponent
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const setStoredRuntimeConfig: typeof import('./composables/runtimeConfig').setStoredRuntimeConfig
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
@@ -174,6 +183,7 @@ declare global {
   const useClipboard: typeof import('@vueuse/core').useClipboard
   const useClipboardItems: typeof import('@vueuse/core').useClipboardItems
   const useCloned: typeof import('@vueuse/core').useCloned
+  const useCodeMirror: typeof import('./composables/codemirror').useCodeMirror
   const useColorMode: typeof import('@vueuse/core').useColorMode
   const useConfirmDialog: typeof import('@vueuse/core').useConfirmDialog
   const useCountdown: typeof import('@vueuse/core').useCountdown
@@ -339,6 +349,9 @@ declare global {
   const useWindowFocus: typeof import('@vueuse/core').useWindowFocus
   const useWindowScroll: typeof import('@vueuse/core').useWindowScroll
   const useWindowSize: typeof import('@vueuse/core').useWindowSize
+  const vitesse: typeof import('./composables/codemirror-theme').vitesse
+  const vitesseHighlightStyle: typeof import('./composables/codemirror-theme').vitesseHighlightStyle
+  const vitesseTheme: typeof import('./composables/codemirror-theme').vitesseTheme
   const watch: typeof import('vue').watch
   const watchArray: typeof import('@vueuse/core').watchArray
   const watchAtMost: typeof import('@vueuse/core').watchAtMost
@@ -361,6 +374,9 @@ declare global {
   // @ts-ignore
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
+  // @ts-ignore
+  export type { JsonSchema, SchemaAnnotation } from './composables/jsonSchemaCompletion'
+  import('./composables/jsonSchemaCompletion')
   // @ts-ignore
   export type { Pagination } from './composables/pagination'
   import('./composables/pagination')
@@ -394,11 +410,15 @@ declare module 'vue' {
     readonly RATING_DATA_HOST: UnwrapRef<typeof import('./composables/constant')['RATING_DATA_HOST']>
     readonly RATING_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RATING_TITLE_SUFFIX']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
+    readonly RUNTIME_CONFIG_STORAGE_KEY: UnwrapRef<typeof import('./composables/runtimeConfig')['RUNTIME_CONFIG_STORAGE_KEY']>
     readonly SUBMISSION_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['SUBMISSION_TITLE_SUFFIX']>
     readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
     readonly XCPCIO_HOME: UnwrapRef<typeof import('./composables/constant')['XCPCIO_HOME']>
+    readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
+    readonly computeSchemaAnnotations: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['computeSchemaAnnotations']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>
@@ -411,6 +431,7 @@ declare module 'vue' {
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
     readonly createInjectionState: UnwrapRef<typeof import('@vueuse/core')['createInjectionState']>
+    readonly createJsonSchemaCompletionSource: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['createJsonSchemaCompletionSource']>
     readonly createReactiveFn: UnwrapRef<typeof import('@vueuse/core')['createReactiveFn']>
     readonly createRef: UnwrapRef<typeof import('@vueuse/core')['createRef']>
     readonly createReusableTemplate: UnwrapRef<typeof import('@vueuse/core')['createReusableTemplate']>
@@ -425,6 +446,7 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly filterMarks: UnwrapRef<typeof import('./composables/codemirror')['filterMarks']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
@@ -434,8 +456,10 @@ declare module 'vue' {
     readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getRatingGraphOptions: UnwrapRef<typeof import('./composables/rating')['getRatingGraphOptions']>
+    readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>
     readonly getRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeConfig']>
     readonly getStandingsStatusColor: UnwrapRef<typeof import('./composables/color')['getStandingsStatusColor']>
+    readonly getStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getStoredRuntimeConfig']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
     readonly getTeamChart: UnwrapRef<typeof import('./composables/statistics')['getTeamChart']>
     readonly getTeamPlaceChart: UnwrapRef<typeof import('./composables/statistics')['getTeamPlaceChart']>
@@ -494,6 +518,7 @@ declare module 'vue' {
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly setStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['setStoredRuntimeConfig']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
@@ -544,6 +569,7 @@ declare module 'vue' {
     readonly useClipboard: UnwrapRef<typeof import('@vueuse/core')['useClipboard']>
     readonly useClipboardItems: UnwrapRef<typeof import('@vueuse/core')['useClipboardItems']>
     readonly useCloned: UnwrapRef<typeof import('@vueuse/core')['useCloned']>
+    readonly useCodeMirror: UnwrapRef<typeof import('./composables/codemirror')['useCodeMirror']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
     readonly useCountdown: UnwrapRef<typeof import('@vueuse/core')['useCountdown']>
@@ -706,6 +732,9 @@ declare module 'vue' {
     readonly useWindowFocus: UnwrapRef<typeof import('@vueuse/core')['useWindowFocus']>
     readonly useWindowScroll: UnwrapRef<typeof import('@vueuse/core')['useWindowScroll']>
     readonly useWindowSize: UnwrapRef<typeof import('@vueuse/core')['useWindowSize']>
+    readonly vitesse: UnwrapRef<typeof import('./composables/codemirror-theme')['vitesse']>
+    readonly vitesseHighlightStyle: UnwrapRef<typeof import('./composables/codemirror-theme')['vitesseHighlightStyle']>
+    readonly vitesseTheme: UnwrapRef<typeof import('./composables/codemirror-theme')['vitesseTheme']>
     readonly watch: UnwrapRef<typeof import('vue')['watch']>
     readonly watchArray: UnwrapRef<typeof import('@vueuse/core')['watchArray']>
     readonly watchAtMost: UnwrapRef<typeof import('@vueuse/core')['watchAtMost']>

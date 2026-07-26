@@ -58,6 +58,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/custom/': RouteRecordInfo<
+      '/custom/',
+      '/custom',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/rating/': RouteRecordInfo<
       '/rating/',
       '/rating',
@@ -119,6 +126,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/countdown/index.vue': {
       routes:
         | '/countdown/'
+      views:
+        | never
+    }
+    'src/pages/custom/index.vue': {
+      routes:
+        | '/custom/'
       views:
         | never
     }

@@ -8,7 +8,7 @@ import { ViteSSG } from "vite-ssg";
 import { routes } from "vue-router/auto-routes";
 // import Previewer from 'virtual:vue-component-preview'
 import App from "./App.vue";
-import { getRuntimeConfig } from "./composables/runtimeConfig";
+import { getRuntimeBaseUrl } from "./composables/runtimeConfig";
 
 import "floating-vue/dist/style.css";
 import "vue-search-select/dist/VueSearchSelect.css";
@@ -25,7 +25,7 @@ export const createApp = ViteSSG(
   App,
   {
     routes: setupLayouts(routes),
-    base: getRuntimeConfig().baseUrl ?? import.meta.env.BASE_URL,
+    base: getRuntimeBaseUrl() ?? import.meta.env.BASE_URL,
   },
   (ctx) => {
     // install all modules under `modules/`

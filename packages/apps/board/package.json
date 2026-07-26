@@ -40,6 +40,14 @@
     "sizecheck": "npx vite-bundle-visualizer"
   },
   "dependencies": {
+    "@codemirror/autocomplete": "catalog:",
+    "@codemirror/lang-json": "catalog:",
+    "@codemirror/language": "catalog:",
+    "@codemirror/lint": "catalog:",
+    "@codemirror/state": "catalog:",
+    "@codemirror/view": "catalog:",
+    "@lezer/common": "catalog:",
+    "@lezer/highlight": "catalog:",
     "@tanstack/vue-query": "catalog:",
     "@unhead/vue": "catalog:",
     "@unocss/reset": "catalog:",
@@ -48,6 +56,7 @@
     "@vueuse/router": "catalog:",
     "@xcpcio/core": "workspace:*",
     "@xcpcio/types": "workspace:*",
+    "codemirror": "catalog:",
     "dayjs": "catalog:",
     "file-saver": "catalog:",
     "floating-vue": "catalog:",
