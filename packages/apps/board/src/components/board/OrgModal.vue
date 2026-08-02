@@ -61,9 +61,8 @@ const headerTitle = computed(() => {
               space-x-4
             >
               <Badge
-                v-if="organization.logo"
                 :image="organization.logo"
-                width-class="h-16 w-16"
+                class="h-16 w-16"
               />
 
               <Tooltip>

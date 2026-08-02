@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Rank, Team } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
-import { getImageSource } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
@@ -48,26 +47,16 @@ const isGirl = computed(() => team.value.isGirl);
   >
     <template v-if="isVisible">
       <div flex="~ items-center gap-3" mb="2">
-        <div
-          v-if="team.organization?.logo"
-          class="h-12 w-12 flex items-center justify-center bg-transparent"
-        >
-          <img
-            :src="getImageSource(team.organization.logo, DATA_HOST)"
-            alt="org logo"
-            class="max-h-12 max-w-full object-contain mx-auto h-full w-auto block"
-          >
-        </div>
-        <div
-          v-if="team.badge"
-          class="h-12 w-12 flex items-center justify-center bg-transparent"
-        >
-          <img
-            :src="getImageSource(team.badge, DATA_HOST)"
-            alt="team badge"
-            class="max-h-12 max-w-full object-contain mx-auto h-full w-auto block"
-          >
-        </div>
+        <Badge
+          :image="team.organization?.logo"
+          alt="org logo"
+          class="h-12 w-12 bg-transparent"
+        />
+        <Badge
+          :image="team.badge"
+          alt="team badge"
+          class="h-12 w-12 bg-transparent"
+        />
         <div flex="1 ~ col" min-w-0>
           <Tooltip placement="top">
             <div
