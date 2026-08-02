@@ -3,28 +3,28 @@ import type { Image } from "@xcpcio/types";
 import { getImageSource } from "@xcpcio/core";
 
 const props = defineProps<{
-  image: Image;
-  widthClass?: string;
+  image?: Image;
+  alt?: string;
 }>();
 
-const image = computed(() => {
-  return props.image;
-});
-
-const widthClass = computed(() => {
-  if (props.widthClass) {
-    return props.widthClass;
+const imageSource = computed(() => {
+  if (!props.image || (!props.image.base64 && !props.image.url)) {
+    return undefined;
   }
 
-  return "h-8 w-8";
+  return getImageSource(props.image, unref(DATA_HOST));
 });
 </script>
 
 <template>
-  <img
-    v-if="image.base64 || image.url"
-    :src="getImageSource(image, DATA_HOST)"
-    alt="badge"
-    :class="[widthClass]"
+  <div
+    v-if="imageSource"
+    class="flex items-center justify-center"
   >
+    <img
+      :src="imageSource"
+      :alt="props.alt ?? 'badge'"
+      class="max-h-full max-w-full object-contain mx-auto"
+    >
+  </div>
 </template>

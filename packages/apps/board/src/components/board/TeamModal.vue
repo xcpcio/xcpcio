@@ -70,9 +70,8 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
               space-x-4
             >
               <Badge
-                v-if="team.badge"
                 :image="team.badge"
-                width-class="h-16 w-16"
+                class="h-16 w-16"
               />
 
               <Tooltip>
