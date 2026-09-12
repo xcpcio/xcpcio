@@ -1,13 +1,18 @@
 catalogMode: prefer
-
 minimumReleaseAge: 10080
-shellEmulator: true
+minimumReleaseAgeExcludePrune: true
 trustPolicy: no-downgrade
 trustPolicyIgnoreAfter: 43200
+shellEmulator: true
 
 packages:
   - docs
   - packages/**/*
+
+allowBuilds:
+  cypress: false
+  esbuild: false
+  vue-demi: false
 
 catalog:
   "@antfu/eslint-config": ^9.5.1
@@ -111,8 +116,3 @@ catalog:
   vue-tsc: ^3.3.11
   xlsx-js-style: ^1.2.0
   zx: ^8.8.5
-
-allowBuilds:
-  cypress: false
-  esbuild: false
-  vue-demi: false
