@@ -20,11 +20,12 @@ import VueDevTools from "vite-plugin-vue-devtools";
 import Layouts from "vite-plugin-vue-layouts";
 import WebfontDownload from "vite-plugin-webfont-dl";
 import generateSitemap from "vite-ssg-sitemap";
-import { alias } from "../../../alias";
-import { homepage, version } from "./package.json";
+import { alias } from "../../../alias.ts";
+import packageJson from "./package.json" with { type: "json" };
 import "vitest/config";
 
 const gitRepoInfo = getGitRepoInfo();
+const { homepage, version } = packageJson;
 
 const proxyConfig = {
   target: process.env.PROXY_TARGET || "https://board.xcpcio.com",
@@ -124,7 +125,7 @@ export default defineConfig({
       runtimeOnly: true,
       compositionOnly: true,
       fullInstall: true,
-      include: [path.resolve(__dirname, "locales/**")],
+      include: [path.resolve(import.meta.dirname, "locales/**")],
     }),
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
