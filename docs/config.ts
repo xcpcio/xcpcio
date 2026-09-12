@@ -1,6 +1,8 @@
 import type { DefaultTheme } from "vitepress";
 import { defineAdditionalConfig } from "vitepress";
-import { version } from "../package.json";
+import packageJson from "../package.json" with { type: "json" };
+
+const { version } = packageJson;
 
 const Guides: DefaultTheme.NavItemWithLink[] = [
   { text: "Getting Started", link: "/guide/" },
