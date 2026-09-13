@@ -4,14 +4,22 @@ import packageJson from "../package.json" with { type: "json" };
 
 const { version } = packageJson;
 
-const Guides: DefaultTheme.NavItemWithLink[] = [
+// Shared by the navbar and the sidebar. `NavItemWithLink["link"]` also accepts
+// a `(payload: PageData) => string` resolver, which `SidebarItem["link"]` does
+// not, so a plain string link is the common denominator of the two.
+interface NavSidebarItem {
+  text: string;
+  link: string;
+}
+
+const Guides: NavSidebarItem[] = [
   { text: "快速开始", link: "/zh/guide/" },
   { text: "榜单集成", link: "/zh/guide/board" },
   { text: "数据格式", link: "/zh/guide/data-format" },
   { text: "Clics 工具集", link: "/zh/guide/clics-utility" },
 ];
 
-const Sponsors: DefaultTheme.NavItemWithLink[] = [
+const Sponsors: NavSidebarItem[] = [
   { text: "赞助我们", link: "/zh/sponsor/" },
   { text: "杭师 Coder", link: "/zh/sponsor/hznu-coder" },
 ];
