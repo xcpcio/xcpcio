@@ -147,47 +147,26 @@ const submissions = computed(() => {
   return ss.filter((s) => {
     const o = filterOptions.value;
 
-    if (o.orgIds.length === 0
-      && o.teamIds.length === 0
-      && o.languages.length === 0
-      && o.statuses.length === 0) {
-      return true;
-    }
-
-    if (o.teamIds.length > 0) {
-      for (const t of o.teamIds) {
-        if (t === s.teamId) {
-          return true;
-        }
-      }
+    if (o.teamIds.length > 0 && !o.teamIds.includes(s.teamId)) {
+      return false;
     }
 
     if (o.orgIds.length > 0) {
-      const team = rank.value.teamsMap.get(s.teamId);
-      for (const n of o.orgIds) {
-        if (n === team?.organization?.id) {
-          return true;
-        }
+      const orgId = rank.value.teamsMap.get(s.teamId)?.organization?.id;
+      if (orgId === undefined || !o.orgIds.includes(orgId)) {
+        return false;
       }
     }
 
-    if (o.languages.length > 0) {
-      for (const l of o.languages) {
-        if (l === s.language) {
-          return true;
-        }
-      }
+    if (o.languages.length > 0 && (s.language === undefined || !o.languages.includes(s.language))) {
+      return false;
     }
 
-    if (o.statuses.length > 0) {
-      for (const sta of o.statuses) {
-        if (sta === s.status) {
-          return true;
-        }
-      }
+    if (o.statuses.length > 0 && !o.statuses.includes(s.status)) {
+      return false;
     }
 
-    return false;
+    return true;
   }).sort(Submission.compare).reverse();
 });
 
