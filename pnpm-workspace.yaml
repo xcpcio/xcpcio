@@ -16,36 +16,36 @@ allowBuilds:
 
 catalog:
   "@antfu/eslint-config": ^9.5.1
-  "@antfu/ni": ^30.5.0
-  "@babel/types": ^7.29.8
-  "@codemirror/autocomplete": ^6.20.3
+  "@antfu/ni": ^30.6.0
+  "@babel/types": ^7.29.11
+  "@codemirror/autocomplete": ^6.20.4
   "@codemirror/lang-json": ^6.0.2
-  "@codemirror/language": ^6.12.4
+  "@codemirror/language": ^6.13.1
   "@codemirror/lint": ^6.9.7
-  "@codemirror/state": ^6.7.4
-  "@codemirror/view": ^6.43.11
-  "@iconify/json": ^2.2.525
-  "@intlify/unplugin-vue-i18n": ^11.2.5
-  "@lezer/common": ^1.5.2
-  "@lezer/highlight": ^1.2.3
-  "@shikijs/markdown-it": ^4.4.3
-  "@tanstack/vue-query": ^5.102.8
-  "@types/chroma-js": ^3.1.2
+  "@codemirror/state": ^6.7.6
+  "@codemirror/view": ^6.43.15
+  "@iconify/json": ^2.2.548
+  "@intlify/unplugin-vue-i18n": ^11.2.8
+  "@lezer/common": ^1.5.4
+  "@lezer/highlight": ^1.2.5
+  "@shikijs/markdown-it": ^4.5.0
+  "@tanstack/vue-query": ^5.105.0
+  "@types/chroma-js": ^3.1.3
   "@types/color-diff": ^1.2.5
   "@types/file-saver": ^2.0.7
-  "@types/lodash": ^4.17.25
+  "@types/lodash": ^4.17.27
   "@types/markdown-it-link-attributes": ^3.0.5
-  "@types/node": ^25.9.5
+  "@types/node": ^25.9.9
   "@types/nprogress": ^0.2.3
   "@types/papaparse": ^5.5.2
-  "@typescript-eslint/eslint-plugin": ^8.69.0
-  "@typescript-eslint/parser": ^8.69.0
-  "@unhead/vue": ^3.4.0
-  "@unocss/eslint-config": ^66.10.0
-  "@unocss/reset": ^66.10.0
-  "@vitejs/plugin-vue": ^6.0.8
+  "@typescript-eslint/eslint-plugin": ^8.72.1
+  "@typescript-eslint/parser": ^8.72.1
+  "@unhead/vue": ^3.4.3
+  "@unocss/eslint-config": ^66.12.0
+  "@unocss/reset": ^66.12.0
+  "@vitejs/plugin-vue": ^6.0.10
   "@vue-macros/volar": ^3.1.4
-  "@vue/test-utils": ^2.5.0
+  "@vue/test-utils": ^2.5.1
   "@vueuse/components": ^14.4.0
   "@vueuse/core": ^14.4.0
   "@vueuse/router": ^14.4.0
@@ -58,7 +58,7 @@ catalog:
   cypress: ^15.21.1
   cypress-vite: ^1.10.2
   dayjs: ^1.11.23
-  eslint: ^10.10.0
+  eslint: ^10.13.0
   eslint-plugin-cypress: ^6.4.4
   eslint-plugin-format: ^2.0.1
   esmo: ^4.8.0
@@ -69,11 +69,11 @@ catalog:
   git-repo-info: ^2.1.1
   glob: ^13.0.6
   gsap: ^3.15.0
-  highcharts: ^13.0.2
+  highcharts: ^13.1.1
   highcharts-vue: ^2.0.2
-  hls.js: ^1.7.2
-  https-localhost: ^4.7.1
-  js-base64: ^3.9.3
+  hls.js: ^1.7.3
+  https-localhost: ^4.7.2
+  js-base64: ^3.9.5
   less: ^4.9.1
   lodash: ^4.18.1
   markdown-it-link-attributes: ^4.0.1
@@ -82,20 +82,20 @@ catalog:
   ordinal: ^1.0.3
   papaparse: ^5.7.0
   pinia: ^3.0.4
-  rollup: ^4.63.1
-  shiki: ^4.4.3
+  rollup: ^4.65.1
+  shiki: ^4.5.0
   sleep-promise: ^9.1.0
-  string-width: ^8.2.2
+  string-width: ^8.3.0
   taze: ^19.17.2
   typescript: ^6.0.3
   unbuild: ^3.6.1
-  unocss: ^66.10.0
+  unocss: ^66.12.0
   unplugin-auto-import: ^21.1.0
   unplugin-vue-components: ^32.1.0
   unplugin-vue-macros: ^2.14.5
   unplugin-vue-markdown: ^32.1.1
   unplugin-vue-router: ^0.18.0
-  vite: ^8.2.2
+  vite: ^8.3.5
   vite-bundle-visualizer: ^1.2.1
   vite-plugin-html: ^3.2.2
   vite-plugin-inspect: ^11.4.1
@@ -104,15 +104,15 @@ catalog:
   vite-plugin-webfont-dl: ^3.13.1
   vite-ssg: ^28.3.0
   vite-ssg-sitemap: ^0.10.0
-  vitepress: ^2.0.0-alpha.20
-  vitepress-plugin-group-icons: ^1.7.6
-  vitest: ^4.1.11
-  vue: ^3.5.42
+  vitepress: ^2.0.0-alpha.21
+  vitepress-plugin-group-icons: ^1.8.1
+  vitest: ^4.1.12
+  vue: ^3.5.44
   vue-demi: ^0.14.10
-  vue-i18n: ^11.4.10
-  vue-router: ^5.3.1
+  vue-i18n: ^11.4.16
+  vue-router: ^5.4.0
   vue-search-select: ^3.2.0
   vue-toast-notification: ^3.1.3
-  vue-tsc: ^3.3.11
+  vue-tsc: ^3.3.13
   xlsx-js-style: ^1.2.0
   zx: ^8.8.5
