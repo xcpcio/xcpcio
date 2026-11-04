@@ -131,6 +131,7 @@ jobs:
           file: ./docker/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
+          provenance: false
           tags: |
             xcpcio/${{ env.image_name }}:latest
             xcpcio/${{ env.image_name }}:${{ env.tag }}
