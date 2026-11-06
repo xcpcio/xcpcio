@@ -42,6 +42,7 @@ clics-uploader \
 | `--max-concurrent`   |       | Max concurrent requests for CLICS API (default: 10)      |
 | `--log-level`        |       | Log level: DEBUG, INFO, WARNING, ERROR (default: INFO)   |
 | `--verbose`          | `-v`  | Enable verbose logging (same as --log-level DEBUG)       |
+| `--upload-logo`      |       | Fetch and upload organization logos (default: disabled)  |
 
 ### How It Works
 
@@ -52,6 +53,11 @@ The uploader:
 3. Uploads only changed data to XCPCIO
 4. Polls every 5 seconds for updates
 5. Continues until interrupted (Ctrl+C)
+
+When `--upload-logo` is enabled, organization logos are fetched from the CLICS API and uploaded to XCPCIO as
+`organizations/{organization_id}/{filename}`. Logos are revalidated on every poll with HTTP conditional requests
+(`If-None-Match` / `If-Modified-Since`) and uploaded only when they change. If the CLICS API does not provide
+validators, logos are re-fetched when the organizations data changes.
 
 ### Advanced Usage
 

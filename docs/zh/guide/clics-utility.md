@@ -42,6 +42,7 @@ clics-uploader \
 | `--max-concurrent`   |      | CLICS API 的最大并发请求数 (默认: 10)              |
 | `--log-level`        |      | 日志级别: DEBUG, INFO, WARNING, ERROR (默认: INFO) |
 | `--verbose`          | `-v` | 启用详细日志 (等同于 --log-level DEBUG)            |
+| `--upload-logo`      |      | 获取并上传组织 logo (默认: 关闭)                   |
 
 ### 工作原理
 
@@ -52,6 +53,11 @@ clics-uploader \
 3. 仅上传变更的数据到 XCPCIO
 4. 每 5 秒轮询一次更新
 5. 持续运行直到中断 (Ctrl+C)
+
+启用 `--upload-logo` 后，会从 CLICS API 获取组织 logo，并按
+`organizations/{organization_id}/{filename}` 上传到 XCPCIO。每轮会通过 HTTP 条件请求
+（`If-None-Match` / `If-Modified-Since`）校验 logo 是否变化，只有变化时才上传；如果 CLICS API
+不提供校验器，则在组织数据发生变化时重新获取。
 
 ### 高级用法
 
