@@ -10,21 +10,26 @@ const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
 // Computed stream URLs with template replacement
-const webcamStreamUrl = computed(() => {
-  const template = rank.value.contest.options.teamWebcamStreamUrlTemplate;
-  if (!template) {
-    return null;
-  }
-  return template.replace(/\$\{team_id\}/, team.value.id);
-});
+const TEAM_ID_PLACEHOLDER = /\$\{team_id\}/g;
+const TEAM_IP_PLACEHOLDER = /\$\{team_ip\}/;
+const TEAM_IP_PLACEHOLDER_GLOBAL = /\$\{team_ip\}/g;
 
-const screenStreamUrl = computed(() => {
-  const template = rank.value.contest.options.teamScreenStreamUrlTemplate;
+function buildStreamUrl(template: string | undefined, team: Team): string | null {
   if (!template) {
     return null;
   }
-  return template.replace(/\$\{team_id\}/, team.value.id);
-});
+
+  if (TEAM_IP_PLACEHOLDER.test(template) && !team.ip) {
+    return null;
+  }
+
+  return template
+    .replace(TEAM_ID_PLACEHOLDER, team.id)
+    .replace(TEAM_IP_PLACEHOLDER_GLOBAL, team.ip ?? "");
+}
+
+const webcamStreamUrl = computed(() => buildStreamUrl(rank.value.contest.options.teamWebcamStreamUrlTemplate, team.value));
+const screenStreamUrl = computed(() => buildStreamUrl(rank.value.contest.options.teamScreenStreamUrlTemplate, team.value));
 </script>
 
 <template>

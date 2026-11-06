@@ -33,11 +33,11 @@ export interface ContestOptions {
   team_photo_url_template?: Image;
 
   // example: https://your.stream.cdn/wf/2025/${team_id}/webcam/index.m3u8
-  // ${team_id} will be replaced with the team id
+  // ${team_id} and ${team_ip} will be replaced with the team id and ip
   team_webcam_stream_url_template?: string;
 
   // example: https://your.stream.cdn/wf/2025/${team_id}/screen/index.m3u8
-  // ${team_id} will be replaced with the team id
+  // ${team_id} and ${team_ip} will be replaced with the team id and ip
   team_screen_stream_url_template?: string;
 
   // example: https://your.online.judge/contest/1234/submission/${submission_id}
