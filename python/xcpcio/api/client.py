@@ -1,8 +1,12 @@
+import asyncio
+import logging
 from typing import Any, Dict, Optional
 
 import aiohttp
 
-from .models import FileData, UploadBoardDataReq, UploadBoardDataResp
+from .models import FileData, FileValidationResult, UploadBoardDataReq, UploadBoardDataResp
+
+logger = logging.getLogger(__name__)
 
 
 class ApiClient:
@@ -72,3 +76,38 @@ class ApiClient:
             response.raise_for_status()
             data = await response.json()
             return UploadBoardDataResp(**data)
+
+    async def upload_board_file(
+        self,
+        path: str,
+        content: bytes,
+        checksum: Optional[str] = None,
+        max_retries: int = 3,
+    ) -> FileValidationResult:
+        await self._ensure_session()
+        await self._ensure_token()
+
+        filename = path.rsplit("/", 1)[-1]
+
+        for attempt in range(max_retries + 1):
+            form = aiohttp.FormData()
+            form.add_field("token", self._token)
+            form.add_field("path", path)
+            if checksum:
+                form.add_field("checksum", checksum)
+            form.add_field("file", content, filename=filename, content_type="application/octet-stream")
+
+            async with self._session.post(f"{self._base_url}/api/upload-board-file", data=form) as response:
+                if response.status == 429 and attempt < max_retries:
+                    try:
+                        delay = float(response.headers.get("Retry-After", "1"))
+                    except ValueError:
+                        delay = 1.0
+
+                    logger.warning(f"Upload file rate limited, retrying in {delay}s. [path={path}]")
+                    await asyncio.sleep(delay)
+                    continue
+
+                response.raise_for_status()
+                data = await response.json()
+                return FileValidationResult(**data)

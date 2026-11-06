@@ -44,6 +44,11 @@ def setup_logging(level: str = "INFO"):
     type=click.Path(exists=True, path_type=Path),
     help="Path to a CA certificate file for SSL verification",
 )
+@click.option(
+    "--upload-logo/--no-upload-logo",
+    default=False,
+    help="Fetch organization logos from CLICS API and upload them to XCPCIO",
+)
 def main(
     base_url: str,
     contest_id: str,
@@ -59,6 +64,7 @@ def main(
     verbose: bool,
     no_verify_ssl: bool,
     ssl_ca_cert: Optional[Path],
+    upload_logo: bool,
 ):
     """
     Upload CLICS Contest API data to XCPCIO with polling support.
@@ -90,6 +96,7 @@ def main(
         version=__version__,
         ssl_verify=not no_verify_ssl,
         ssl_ca_cert=ssl_ca_cert,
+        upload_logo=upload_logo,
     )
 
     click.echo(f"Fetching contest '{contest_id}' from {base_url}")

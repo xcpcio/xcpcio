@@ -43,6 +43,15 @@ class ClicsApiConfig:
     ssl_ca_cert: Optional[Path] = None
 
 
+@dataclass
+class FetchedFile:
+    """Result of a (conditional) file fetch. `content` is None for HTTP 304 Not Modified."""
+
+    content: Optional[bytes]
+    etag: Optional[str] = None
+    last_modified: Optional[str] = None
+
+
 class ClicsApiClient:
     """
     Client for interacting with CLICS (Contest Logging for ICPC Systems) APIs.
@@ -223,6 +232,70 @@ class ClicsApiClient:
         async with self._semaphore:
             try:
                 return await self._fetch_file_content_internal(file_url, override_timeout)
+            except Exception as e:
+                logger.error(f"Failed to fetch file content from {file_url} after retries: {e}")
+                return None
+
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=1, max=10),
+        retry=retry_if_exception_type((asyncio.TimeoutError, aiohttp.ClientError)),
+        before_sleep=before_sleep_log(logger, logging.WARNING),
+        reraise=True,
+    )
+    async def _fetch_file_content_conditional_internal(
+        self,
+        file_url: str,
+        etag: Optional[str] = None,
+        last_modified: Optional[str] = None,
+        override_timeout: Optional[int] = None,
+    ) -> FetchedFile:
+        """Internal conditional fetch method with retry logic"""
+        headers = {}
+        if etag:
+            headers["If-None-Match"] = etag
+        if last_modified:
+            headers["If-Modified-Since"] = last_modified
+
+        logger.info(f"Fetching file content from {file_url}")
+        timeout = aiohttp.ClientTimeout(total=override_timeout or self._config.timeout)
+        async with self._session.get(file_url, timeout=timeout, headers=headers) as response:
+            if response.status == 304:
+                logger.debug(f"File not modified: {file_url}")
+                return FetchedFile(content=None, etag=etag, last_modified=last_modified)
+
+            if response.status != 200:
+                raise aiohttp.ClientResponseError(
+                    request_info=response.request_info, history=response.history, status=response.status
+                )
+
+            content = await response.read()
+            logger.debug(f"Fetched {len(content)} bytes from {file_url}")
+            return FetchedFile(
+                content=content,
+                etag=response.headers.get("ETag"),
+                last_modified=response.headers.get("Last-Modified"),
+            )
+
+    async def fetch_file_content_with_metadata(
+        self,
+        file_url: Optional[str],
+        etag: Optional[str] = None,
+        last_modified: Optional[str] = None,
+        override_timeout: Optional[int] = None,
+    ) -> Optional[FetchedFile]:
+        """Fetch file content with conditional request support. Returns None if the request failed."""
+        if not file_url:
+            return None
+
+        if not file_url.startswith(("http://", "https://")):
+            file_url = self._build_url(file_url)
+
+        async with self._semaphore:
+            try:
+                return await self._fetch_file_content_conditional_internal(
+                    file_url, etag, last_modified, override_timeout
+                )
             except Exception as e:
                 logger.error(f"Failed to fetch file content from {file_url} after retries: {e}")
                 return None
