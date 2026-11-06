@@ -57,8 +57,7 @@ The uploader:
 When `--upload-logo` is enabled, organization logos are fetched from the CLICS API and uploaded to XCPCIO as
 `organizations/{organization_id}/{filename}`. Logos are revalidated on every poll with HTTP conditional requests
 (`If-None-Match` / `If-Modified-Since`) and uploaded only when they change. If the CLICS API does not provide
-validators, logos are re-fetched when the organizations data changes. This requires a board-admin service that
-provides the `/api/upload-board-file` endpoint.
+validators, logos are re-fetched when the organizations data changes.
 
 ### Advanced Usage
 

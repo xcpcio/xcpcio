@@ -57,7 +57,7 @@ clics-uploader \
 启用 `--upload-logo` 后，会从 CLICS API 获取组织 logo，并按
 `organizations/{organization_id}/{filename}` 上传到 XCPCIO。每轮会通过 HTTP 条件请求
 （`If-None-Match` / `If-Modified-Since`）校验 logo 是否变化，只有变化时才上传；如果 CLICS API
-不提供校验器，则在组织数据发生变化时重新获取。该功能需要 board-admin 提供 `/api/upload-board-file` 接口。
+不提供校验器，则在组织数据发生变化时重新获取。
 
 ### 高级用法
 
