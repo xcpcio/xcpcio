@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { AnimatedSubmissionBlockItem, Lang } from "@board/composables/type";
+import type { AnimatedSubmissionBlockItem } from "@board/composables/type";
 import type { Rank } from "@xcpcio/core";
+import type { Lang } from "@xcpcio/types";
 
 import { LastBlockDisplayType } from "@board/composables/type";
 import { Submission } from "@xcpcio/core";
@@ -44,7 +45,7 @@ const submissions = computed(() => {
       continue;
     }
 
-    let displayName = team.name;
+    let displayName = team.name.getOrDefault(lang.value);
 
     if (team.organization) {
       displayName = `${team.organization.name.getOrDefault(lang.value)} - ${displayName}`;

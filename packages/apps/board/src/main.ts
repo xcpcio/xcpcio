@@ -24,7 +24,7 @@ import "./styles/main.css";
 export const createApp = ViteSSG(
   App,
   {
-    routes: setupLayouts(routes),
+    routes: [...setupLayouts([...routes])],
     base: getRuntimeBaseUrl() ?? import.meta.env.BASE_URL,
   },
   (ctx) => {

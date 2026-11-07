@@ -11,13 +11,10 @@ const props = defineProps<{
 const index = computed(() => props.index);
 const team = computed(() => props.team);
 const resolver = computed(() => props.resolver);
-const el = ref(null);
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
-// TODO(Dup4): Optimizing performance with useElementVisibility
-// const isVisible = useElementVisibility(el);
 const isVisible = true;
 
 function showTeamName(team: Team) {
@@ -28,7 +25,6 @@ function showTeamName(team: Team) {
 
 <template>
   <div
-    ref="el"
     h-24
   >
     <div

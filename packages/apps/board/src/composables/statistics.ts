@@ -1,7 +1,8 @@
 import type { Rank, Team } from "@xcpcio/core";
+import type { Options } from "highcharts";
 import { getTimeDiff } from "@xcpcio/core";
 
-function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any) {
+function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any): Options {
   return {
     colors,
     chart:
@@ -65,7 +66,7 @@ function getChartObj(title: string, xText: string, yText: string, cat: any, seri
       enabled: false,
     },
     series,
-  };
+  } as Options;
 }
 
 export function getProblemChart(rank: Rank) {

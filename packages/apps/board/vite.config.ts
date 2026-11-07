@@ -103,20 +103,21 @@ export default defineConfig({
       wrapperClasses: "prose prose-sm m-auto text-left",
       headEnabled: true,
       async markdownItSetup(md) {
-        md.use(LinkAttributes, {
+        // markdown-exit and @types/markdown-it expose incompatible plugin types.
+        md.use(LinkAttributes as any, {
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {
             target: "_blank",
             rel: "noopener",
           },
         });
-        md.use(await Shiki({
+        md.use((await Shiki({
           defaultColor: false,
           themes: {
             light: "vitesse-light",
             dark: "vitesse-dark",
           },
-        }));
+        })) as any);
       },
     }),
 

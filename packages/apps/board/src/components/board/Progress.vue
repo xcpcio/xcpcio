@@ -50,7 +50,6 @@ const scroll = ref<HTMLElement>(null as unknown as HTMLElement);
 const mask = ref<HTMLElement>(null as unknown as HTMLElement);
 const bar = ref<HTMLElement>(null as unknown as HTMLElement);
 const tooltip = ref<HTMLElement>(null as unknown as HTMLElement);
-const tooltipInner = ref<HTMLElement>(null as unknown as HTMLElement);
 
 function startDrag(event: MouseEvent) {
   isDragging.value = true;
@@ -203,7 +202,6 @@ onUnmounted(() => {});
           }"
         >
           <div
-            ref="tooltipInner"
             class="tooltip-inner"
           >
             {{ elapsedTime() }}
