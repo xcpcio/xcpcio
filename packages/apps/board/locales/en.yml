@@ -53,6 +53,9 @@ streams:
   loading_recordings: Loading recordings...
   no_recordings: No recordings
   recordings_failed: Failed to load recordings
+  recording_range: Recording range
+  no_recording: No recording
+  no_recording_at_time: No recording at this time
   layout:
     side_by_side: Side by Side
     pip: Picture in Picture

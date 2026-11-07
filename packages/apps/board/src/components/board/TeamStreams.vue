@@ -36,6 +36,7 @@ interface SubmissionMarker {
   id: string;
   absoluteTimeMs: number;
   percent: number;
+  hasRecording: boolean;
   title: string;
   problemLabel: string;
   statusClass: string;
@@ -188,37 +189,79 @@ const range = computed(() => {
   return webcam ?? screen;
 });
 
-const timelineStart = computed(() => range.value?.start ?? 0);
-const timelineEnd = computed(() => range.value?.end ?? 0);
+const contestRange = computed(() => {
+  const start = rank.value.contest.startTime.valueOf();
+  const end = rank.value.contest.endTime.valueOf();
+  return Number.isFinite(start) && Number.isFinite(end) && end > start ? { start, end } : null;
+});
+
+const timelineRange = computed(() => contestRange.value ?? range.value);
+const timelineStart = computed(() => timelineRange.value?.start ?? 0);
+const timelineEnd = computed(() => timelineRange.value?.end ?? 0);
+const recordingStart = computed(() => range.value?.start ?? 0);
+const recordingEnd = computed(() => range.value?.end ?? 0);
+const recordingStartPercent = computed(() => {
+  const timeline = timelineRange.value;
+  const recording = range.value;
+  if (!timeline || !recording) {
+    return 0;
+  }
+
+  const duration = timeline.end - timeline.start;
+  if (duration <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(100, ((recording.start - timeline.start) / duration) * 100));
+});
+const recordingEndPercent = computed(() => {
+  const timeline = timelineRange.value;
+  const recording = range.value;
+  if (!timeline || !recording) {
+    return 0;
+  }
+
+  const duration = timeline.end - timeline.start;
+  if (duration <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(100, ((recording.end - timeline.start) / duration) * 100));
+});
+const recordingWidthPercent = computed(() => Math.max(0, recordingEndPercent.value - recordingStartPercent.value));
 
 const submissionMarkers = computed<SubmissionMarker[]>(() => {
-  const currentRange = range.value;
-  if (!currentRange) {
+  const timeline = timelineRange.value;
+  const recording = range.value;
+  if (!timeline) {
     return [];
   }
 
-  const rangeDuration = currentRange.end - currentRange.start;
-  if (rangeDuration <= 0) {
+  const timelineDuration = timeline.end - timeline.start;
+  if (timelineDuration <= 0) {
     return [];
   }
 
   const contestStartMs = rank.value.contest.startTime.valueOf();
+  const noRecordingLabel = t("streams.no_recording");
 
   return team.value.submissions
     .map(submission => ({
       submission,
       absoluteTimeMs: contestStartMs + submission.timestampToSecond * 1000,
     }))
-    .filter(({ absoluteTimeMs }) => absoluteTimeMs >= currentRange.start && absoluteTimeMs <= currentRange.end)
     .map(({ submission, absoluteTimeMs }) => {
       const problemLabel = rank.value.contest.problemsMap.get(submission.problemId)?.label ?? submission.problemId;
       const statusLabel = SubmissionStatusToString[submission.status] ?? submission.status.toString();
+      const hasRecording = !!recording && absoluteTimeMs >= recording.start && absoluteTimeMs <= recording.end;
+      const percent = Math.max(0, Math.min(100, ((absoluteTimeMs - timeline.start) / timelineDuration) * 100));
 
       return {
         id: submission.id || String(absoluteTimeMs),
         absoluteTimeMs,
-        percent: ((absoluteTimeMs - currentRange.start) / rangeDuration) * 100,
-        title: `${formatTimestamp(absoluteTimeMs)} (${submission.timestampDisplayFormatWithSecond}) · ${problemLabel} · ${statusLabel}`,
+        percent,
+        hasRecording,
+        title: `${formatTimestamp(absoluteTimeMs)} (${submission.timestampDisplayFormatWithSecond}) · ${problemLabel} · ${statusLabel}${hasRecording ? "" : ` · ${noRecordingLabel}`}`,
         problemLabel,
         statusClass: submission.status.toString(),
       };
@@ -226,28 +269,56 @@ const submissionMarkers = computed<SubmissionMarker[]>(() => {
 });
 
 const maxOffset = computed(() => {
-  const currentRange = range.value;
-  if (!currentRange) {
+  const timeline = timelineRange.value;
+  if (!timeline) {
     return 0;
   }
 
-  return Math.max(0, Math.floor((currentRange.end - currentRange.start) / 1000) - PLAYBACK_WINDOW_SECONDS);
+  return Math.max(0, Math.floor((timeline.end - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS);
+});
+
+const defaultPlaybackOffset = computed(() => {
+  const timeline = timelineRange.value;
+  if (!timeline) {
+    return 0;
+  }
+
+  const recording = range.value;
+  if (!recording) {
+    return maxOffset.value;
+  }
+
+  const recordingStartOffset = Math.floor((recording.start - timeline.start) / 1000);
+  const latestRecordedOffset = Math.floor((recording.end - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS;
+  return Math.max(0, Math.min(maxOffset.value, Math.max(recordingStartOffset, latestRecordedOffset)));
 });
 
 const canPlayback = computed(() => !!(webcamPlaybackSource.value || screenPlaybackSource.value));
-const playbackStartMs = computed(() => (range.value ? range.value.start + playbackOffset.value * 1000 : 0));
+const playbackStartMs = computed(() => {
+  const timeline = timelineRange.value;
+  return timeline ? timeline.start + playbackOffset.value * 1000 : 0;
+});
 const playbackDurationSeconds = computed(() => {
-  const currentRange = range.value;
-  if (!currentRange) {
+  const timeline = timelineRange.value;
+  if (!timeline) {
     return 0;
   }
 
-  return Math.max(1, Math.min(PLAYBACK_WINDOW_SECONDS, (currentRange.end - playbackStartMs.value) / 1000));
+  return Math.max(1, Math.min(PLAYBACK_WINDOW_SECONDS, (timeline.end - playbackStartMs.value) / 1000));
+});
+
+const hasRecordingAtPlaybackStart = computed(() => {
+  const recording = range.value;
+  if (!recording) {
+    return false;
+  }
+
+  return playbackStartMs.value >= recording.start && playbackStartMs.value < recording.end;
 });
 
 const playbackWebcamUrl = computed(() => {
   const source = webcamPlaybackSource.value;
-  if (!source || !range.value) {
+  if (!source || !hasRecordingAtPlaybackStart.value) {
     return null;
   }
 
@@ -256,7 +327,7 @@ const playbackWebcamUrl = computed(() => {
 
 const playbackScreenUrl = computed(() => {
   const source = screenPlaybackSource.value;
-  if (!source || !range.value) {
+  if (!source || !hasRecordingAtPlaybackStart.value) {
     return null;
   }
 
@@ -305,12 +376,12 @@ function commitSlider() {
 }
 
 function jumpToSubmission(marker: SubmissionMarker) {
-  const currentRange = range.value;
-  if (!currentRange) {
+  const timeline = timelineRange.value;
+  if (!timeline) {
     return;
   }
 
-  const offsetSeconds = Math.floor((marker.absoluteTimeMs - currentRange.start) / 1000) - SUBMISSION_JUMP_PREROLL_SECONDS;
+  const offsetSeconds = Math.floor((marker.absoluteTimeMs - timeline.start) / 1000) - SUBMISSION_JUMP_PREROLL_SECONDS;
   const clampedOffset = Math.max(0, Math.min(maxOffset.value, offsetSeconds));
 
   mode.value = "playback";
@@ -335,8 +406,8 @@ watch(range, (currentRange) => {
     return;
   }
 
-  sliderValue.value = maxOffset.value;
-  playbackOffset.value = maxOffset.value;
+  sliderValue.value = defaultPlaybackOffset.value;
+  playbackOffset.value = defaultPlaybackOffset.value;
   offsetInitialized.value = true;
 }, { immediate: true });
 
@@ -417,13 +488,19 @@ watch(() => team.value.id, resetPlayback);
             type="button"
             class="absolute bottom-0 -translate-x-1/2 cursor-pointer border-0 bg-transparent p-0"
             :style="{ left: `${marker.percent}%` }"
-            :class="[marker.statusClass]"
+            :class="[marker.statusClass, marker.hasRecording ? '' : 'opacity-50']"
             :title="marker.title"
             @click="jumpToSubmission(marker)"
           >
             <span class="block text-[10px] font-semibold leading-3">{{ marker.problemLabel }}</span>
             <span class="mx-auto block h-3 w-0.5 bg-current" />
           </button>
+        </div>
+        <div class="relative h-1.5 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
+          <div
+            class="absolute inset-y-0 bg-blue-300 dark:bg-blue-800"
+            :style="{ left: `${recordingStartPercent}%`, width: `${recordingWidthPercent}%` }"
+          />
         </div>
         <input
           v-model.number="sliderValue"
@@ -441,6 +518,18 @@ watch(() => team.value.id, resetPlayback);
             {{ formatTimestamp(timelineStart + sliderValue * 1000) }}
           </span>
           <span>{{ formatTimestamp(timelineEnd) }}</span>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs text-gray-500 dark:text-gray-400">
+          <span class="inline-flex items-center gap-2">
+            <span class="inline-block h-1.5 w-4 rounded bg-blue-300 dark:bg-blue-800" />
+            {{ t("streams.recording_range") }}: {{ formatTimestamp(recordingStart) }} - {{ formatTimestamp(recordingEnd) }}
+          </span>
+          <span
+            v-if="!hasRecordingAtPlaybackStart"
+            class="text-amber-600 dark:text-amber-400"
+          >
+            {{ t("streams.no_recording_at_time") }}
+          </span>
         </div>
       </template>
     </div>
