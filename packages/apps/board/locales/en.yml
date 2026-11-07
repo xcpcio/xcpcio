@@ -46,6 +46,13 @@ streams:
   screen: Screen
   unavailable: Stream unavailable
   realtime_reaction: Realtime Reaction
+  live: Live
+  playback: Playback
+  playback_range: "{start} - {end}"
+  playback_position: Playback start
+  loading_recordings: Loading recordings...
+  no_recordings: No recordings
+  recordings_failed: Failed to load recordings
   layout:
     side_by_side: Side by Side
     pip: Picture in Picture
