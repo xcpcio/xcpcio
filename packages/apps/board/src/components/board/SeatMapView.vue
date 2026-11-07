@@ -38,22 +38,59 @@ function getSeatWidth(section: SeatMapSection): number {
   return Math.round(maxLen * charWidth + SEAT_PADDING);
 }
 
+// Get max columns in the grid
+function getMaxCols(section: SeatMapSection): number {
+  if (section.grid.length === 0) {
+    return 0;
+  }
+  return Math.max(...section.grid.map(row => row.length));
+}
+
+interface SeatCell {
+  seatId: string;
+  colIdx: number;
+}
+
+interface SeatRow {
+  rowIdx: number;
+  seats: SeatCell[];
+}
+
+interface SectionLayout {
+  section: SeatMapSection;
+  maxCols: number;
+  seatWidth: number;
+  rows: SeatRow[];
+}
+
+// Precompute the layout once per seat map instead of per cell. Empty cells are not
+// rendered at all; their grid tracks are still reserved by gridTemplateRows/Columns.
+const sectionLayouts = computed<SectionLayout[]>(() => props.seatMap.sections.map((section) => {
+  const maxCols = getMaxCols(section);
+
+  return {
+    section,
+    maxCols,
+    seatWidth: getSeatWidth(section),
+    rows: section.grid.map((row, rowIdx) => ({
+      rowIdx,
+      seats: row
+        .map((seatId, colIdx) => (seatId ? { seatId, colIdx } : null))
+        .filter((seat): seat is SeatCell => seat !== null),
+    })),
+  };
+}));
+
 // Build seat ID to team mapping
 const seatToTeam = computed(() => {
   return props.seatMap.buildSeatToTeamMap(props.allTeams);
 });
 
-// Get team for a given seat
-function getTeamForSeat(seatId: string | null): Team | undefined {
-  if (!seatId) {
-    return undefined;
-  }
-  return seatToTeam.value.get(seatId);
-}
+// One shared hover tooltip instead of a floating-vue Tooltip per seat.
+const hoveredSeat = ref<{ text: string; x: number; y: number } | null>(null);
 
-// Get tooltip content for a seat
 function getTooltipContent(seatId: string): string {
-  const team = getTeamForSeat(seatId);
+  const team = seatToTeam.value.get(seatId);
   if (!team) {
     return seatId;
   }
@@ -63,47 +100,45 @@ function getTooltipContent(seatId: string): string {
   return org ? `${name} - ${org}` : name;
 }
 
-// Check if a seat's team should be highlighted
-function isSeatHighlighted(seatId: string | null): boolean {
-  const team = getTeamForSeat(seatId);
-  if (!team) {
-    return false;
-  }
-  return props.filteredTeamIds.size === 0 || props.filteredTeamIds.has(team.id);
+function onSeatEnter(seatId: string, event: MouseEvent) {
+  hoveredSeat.value = {
+    text: getTooltipContent(seatId),
+    x: event.clientX,
+    y: event.clientY,
+  };
 }
 
-// Get max columns in the grid
-function getMaxCols(section: SeatMapSection): number {
-  if (section.grid.length === 0) {
-    return 0;
-  }
-  return Math.max(...section.grid.map(row => row.length));
+function onSeatLeave() {
+  hoveredSeat.value = null;
 }
 
-// Normalize row to have consistent column count
-function getNormalizedRow(row: Array<string | null>, maxCols: number): Array<string | null> {
-  if (row.length >= maxCols) {
-    return row;
-  }
-  return [...row, ...Array.from({ length: maxCols - row.length }).fill(null) as Array<string | null>];
+function seatClass(seatId: string): Record<string, boolean> {
+  const team = seatToTeam.value.get(seatId);
+  const hasFilter = props.filteredTeamIds.size > 0;
+  const highlighted = !!team && (!hasFilter || props.filteredTeamIds.has(team.id));
+
+  return {
+    "seat-occupied": !!team,
+    "seat-highlighted": highlighted,
+    "seat-dimmed": hasFilter && !!team && !highlighted,
+  };
 }
 
-// Get grid style for a section
-function getSectionGridStyle(section: SeatMapSection) {
-  const cols = getMaxCols(section);
-  const width = getSeatWidth(section);
+function getSectionGridStyle(layout: SectionLayout) {
+  const rows = layout.section.grid.length;
+
   return {
     display: "grid",
-    gridTemplateColumns: `repeat(${cols}, ${width}px)`,
+    gridTemplateColumns: layout.maxCols > 0 ? `repeat(${layout.maxCols}, ${layout.seatWidth}px)` : undefined,
+    gridTemplateRows: rows > 0 ? `repeat(${rows}, ${SEAT_HEIGHT}px)` : undefined,
     gap: `${GAP_SIZE}px`,
   };
 }
 
-function getSeatStyle(section: SeatMapSection) {
+function getSeatStyle(rowIdx: number, colIdx: number) {
   return {
-    width: `${getSeatWidth(section)}px`,
-    height: `${SEAT_HEIGHT}px`,
-    fontSize: `${FONT_SIZE}px`,
+    gridRow: `${rowIdx + 1}`,
+    gridColumn: `${colIdx + 1}`,
   };
 }
 
@@ -118,18 +153,18 @@ function getRowLabelStyle() {
 <template>
   <div class="seat-map-container" flex="~ col items-center">
     <div
-      v-for="(section, sectionIdx) in seatMap.sections"
+      v-for="(layout, sectionIdx) in sectionLayouts"
       :key="sectionIdx"
       class="seat-map-section"
       mb-8
     >
       <h3
-        v-if="section.title.getOrDefault(lang)"
+        v-if="layout.section.title.getOrDefault(lang)"
         text="lg center gray-700 dark:gray-300"
         font="semibold"
         mb-4
       >
-        {{ section.title.getOrDefault(lang) }}
+        {{ layout.section.title.getOrDefault(lang) }}
       </h3>
 
       <div
@@ -143,13 +178,13 @@ function getRowLabelStyle() {
       >
         <!-- Row labels -->
         <div
-          v-if="section.rowLabels.length > 0"
+          v-if="layout.section.rowLabels.length > 0"
           class="row-labels"
           flex="~ col"
           mr-3
         >
           <div
-            v-for="(label, rowIdx) in section.rowLabels"
+            v-for="(label, rowIdx) in layout.section.rowLabels"
             :key="rowIdx"
             :style="getRowLabelStyle()"
             flex="~ items-center justify-center"
@@ -161,38 +196,35 @@ function getRowLabelStyle() {
           </div>
         </div>
 
-        <!-- Seat grid -->
-        <div :style="getSectionGridStyle(section)">
-          <template v-for="(row, rowIdx) in section.grid" :key="rowIdx">
-            <template v-for="(seatId, colIdx) in getNormalizedRow(row, getMaxCols(section))" :key="`${rowIdx}-${colIdx}`">
-              <Tooltip v-if="seatId" placement="bottom">
-                <div
-                  class="seat"
-                  :class="{
-                    'seat-occupied': getTeamForSeat(seatId),
-                    'seat-highlighted': isSeatHighlighted(seatId),
-                    'seat-dimmed': filteredTeamIds.size > 0 && !isSeatHighlighted(seatId) && getTeamForSeat(seatId),
-                  }"
-                  :style="getSeatStyle(section)"
-                  flex="~ items-center justify-center"
-                  rounded="sm"
-                  font="mono"
-                  cursor-pointer
-                >
-                  {{ seatId }}
-                </div>
-                <template #popper>
-                  {{ getTooltipContent(seatId) }}
-                </template>
-              </Tooltip>
-              <div
-                v-else
-                :style="getSeatStyle(section)"
-              />
-            </template>
+        <!-- Seat grid: only non-empty seats are rendered, placed explicitly -->
+        <div :style="getSectionGridStyle(layout)">
+          <template v-for="row in layout.rows" :key="row.rowIdx">
+            <div
+              v-for="seat in row.seats"
+              :key="seat.seatId"
+              class="seat"
+              :class="seatClass(seat.seatId)"
+              :style="getSeatStyle(row.rowIdx, seat.colIdx)"
+              flex="~ items-center justify-center"
+              rounded="sm"
+              font="mono"
+              cursor-pointer
+              @mouseenter="onSeatEnter(seat.seatId, $event)"
+              @mouseleave="onSeatLeave"
+            >
+              {{ seat.seatId }}
+            </div>
           </template>
         </div>
       </div>
+    </div>
+
+    <div
+      v-if="hoveredSeat"
+      class="seat-tooltip"
+      :style="{ left: `${hoveredSeat.x + 12}px`, top: `${hoveredSeat.y + 12}px` }"
+    >
+      {{ hoveredSeat.text }}
     </div>
   </div>
 </template>
@@ -200,9 +232,14 @@ function getRowLabelStyle() {
 <style scoped>
 /* Empty seat - flat gray */
 .seat {
+  font-size: 10px;
   background-color: #f3f4f6;
   border: 1px solid #d1d5db;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .seat:hover {
@@ -235,6 +272,19 @@ function getRowLabelStyle() {
   opacity: 0.35;
 }
 
+.seat-tooltip {
+  position: fixed;
+  z-index: 60;
+  max-width: 360px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background-color: rgb(17 24 39 / 0.9);
+  color: white;
+  font-size: 12px;
+  line-height: 1.4;
+  pointer-events: none;
+}
+
 /* === Dark Mode === */
 .dark .seat {
   background-color: #374151;
@@ -255,11 +305,16 @@ function getRowLabelStyle() {
   background-color: #1e4a7f;
 }
 
-/* Dark mode highlight - blue glow effect */
+/* Dark mode highlight - 0-blur ring instead of a blurred glow (hundreds of seats are highlighted) */
 .dark .seat-highlighted {
   background-color: #3b82f6;
   border-color: #60a5fa;
   color: white;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 1px rgb(96 165 250 / 0.7);
+}
+
+.dark .seat-tooltip {
+  background-color: rgb(229 231 235 / 0.95);
+  color: #111827;
 }
 </style>
