@@ -3,6 +3,7 @@ import { availableLocales, loadLanguageAsync } from "@board/modules/i18n";
 
 const props = defineProps<{
   width?: string;
+  contentInset?: string;
 }>();
 
 const { t, locale } = useI18n();
@@ -61,10 +62,12 @@ const homeLink = computed(() => {
     <nav
       class="nav"
       :class="[props?.width ? '' : 'fixed']"
+      :style="props.contentInset ? { paddingLeft: props.contentInset, paddingRight: props.contentInset } : undefined"
       text-xl
     >
+      <div class="spacer" />
       <div
-        class="spacer"
+        class="right"
         print:op0
       >
         <RouterLink
@@ -75,11 +78,7 @@ const homeLink = computed(() => {
         >
           <div i-ion-balloon-sharp />
         </RouterLink>
-      </div>
-      <div
-        class="right"
-        print:op0
-      >
+
         <a
           icon-btn
           :title="t('button.toggle_langs')"
@@ -141,12 +140,6 @@ const homeLink = computed(() => {
 
 .nav > * {
   margin: auto;
-}
-
-.nav .spacer {
-  display: flex;
-  align-items: center;
-  margin: 0;
 }
 
 .nav img {
