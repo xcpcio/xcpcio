@@ -98,6 +98,7 @@ const tableRows = computed(() => {
     { label: t("team_info.members"), value: team.value.membersToString(lang.value), show: team.value.members.length > 0 },
     { label: t("team_info.coaches"), value: team.value.coachesToString(lang.value), show: team.value.coaches.length > 0 },
     { label: t("team_info.location"), value: team.value.location, show: !!team.value.location },
+    { label: t("team_info.ip"), value: team.value.ip, show: !!team.value.ip },
     { label: t("team_info.award"), value: medal.value?.text, emoji: medal.value?.emoji, show: !!medal.value },
   ];
   return rows.filter(row => row.show);

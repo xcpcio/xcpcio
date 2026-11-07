@@ -112,6 +112,7 @@ team_info:
   members: Members
   coaches: Coaches
   location: Location
+  ip: IP
   award: Award
 
 medal:
