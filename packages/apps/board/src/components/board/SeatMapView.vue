@@ -235,7 +235,11 @@ function getRowLabelStyle() {
   font-size: 10px;
   background-color: #f3f4f6;
   border: 1px solid #d1d5db;
-  transition: all 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
 
 .seat:hover {
@@ -301,12 +305,12 @@ function getRowLabelStyle() {
   background-color: #1e4a7f;
 }
 
-/* Dark mode highlight - blue glow effect */
+/* Dark mode highlight - 0-blur ring instead of a blurred glow (hundreds of seats are highlighted) */
 .dark .seat-highlighted {
   background-color: #3b82f6;
   border-color: #60a5fa;
   color: white;
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 0 1px rgb(96 165 250 / 0.7);
 }
 
 .dark .seat-tooltip {
