@@ -36,16 +36,18 @@ type PipMain = "webcam" | "screen";
 const layoutMode = ref<LayoutMode>("side-by-side");
 const pipPosition = ref<PipPosition>("top-right");
 const pipMain = ref<PipMain>("screen");
+const pipVideoPaused = ref(false);
 
 const pipPositionOptions: PipPosition[] = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
 // PiP position class mapping
+// Leave room at the bottom for the main video's native control bar.
 const pipPositionClass = computed(() => {
   const positionMap: Record<PipPosition, string> = {
     "top-left": "top-3 left-3",
     "top-right": "top-3 right-3",
-    "bottom-left": "bottom-3 left-3",
-    "bottom-right": "bottom-3 right-3",
+    "bottom-left": "bottom-14 left-3",
+    "bottom-right": "bottom-14 right-3",
   };
   return positionMap[pipPosition.value];
 });
@@ -118,6 +120,28 @@ function initPlayers() {
   }
 }
 
+// The PiP overlay has no native controls; clicking it toggles play/pause.
+function getPipVideo(): HTMLVideoElement | null {
+  return pipMain.value === "screen" ? webcamVideoRef.value : screenVideoRef.value;
+}
+
+function togglePipVideo() {
+  const video = getPipVideo();
+  if (!video) {
+    return;
+  }
+
+  if (video.paused) {
+    video.play().catch(() => {});
+  } else {
+    video.pause();
+  }
+}
+
+function syncPipVideoState() {
+  pipVideoPaused.value = getPipVideo()?.paused ?? false;
+}
+
 // Reset and reinitialize
 function resetPlayers() {
   destroyPlayers();
@@ -125,6 +149,7 @@ function resetPlayers() {
     webcamError.value = false;
     screenError.value = false;
     initPlayers();
+    syncPipVideoState();
   });
 }
 
@@ -395,18 +420,20 @@ defineExpose({ resetPlayers });
 
       <!-- PiP Overlay Video -->
       <div
-        class="absolute w-1/4 aspect-video rounded-lg overflow-hidden shadow-lg border-2 border-white dark:border-gray-800" :class="[
+        class="absolute w-1/4 aspect-video rounded-lg overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 cursor-pointer group" :class="[
           pipPositionClass,
         ]"
+        @click="togglePipVideo"
       >
         <template v-if="pipMain === 'screen'">
           <video
             v-if="!webcamError"
             ref="webcamVideoRef"
-            controls
             muted
             playsinline
             class="w-full h-full object-contain bg-black"
+            @play="syncPipVideoState"
+            @pause="syncPipVideoState"
           />
           <div
             v-else
@@ -423,10 +450,11 @@ defineExpose({ resetPlayers });
           <video
             v-if="!screenError"
             ref="screenVideoRef"
-            controls
             muted
             playsinline
             class="w-full h-full object-contain bg-black"
+            @play="syncPipVideoState"
+            @pause="syncPipVideoState"
           />
           <div
             v-else
@@ -439,6 +467,15 @@ defineExpose({ resetPlayers });
             </span>
           </div>
         </template>
+
+        <div
+          class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+        >
+          <span
+            :class="pipVideoPaused ? 'i-carbon-play' : 'i-carbon-pause'"
+            text-3xl text-white
+          />
+        </div>
       </div>
     </div>
   </div>
