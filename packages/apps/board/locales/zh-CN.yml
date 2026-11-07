@@ -46,6 +46,13 @@ streams:
   screen: 屏幕
   unavailable: 直播不可用
   realtime_reaction: 实时反应
+  live: 直播
+  playback: 回放
+  playback_range: "{start} - {end}"
+  playback_position: 回放起点
+  loading_recordings: 正在加载录像...
+  no_recordings: 暂无录像
+  recordings_failed: 录像加载失败
   layout:
     side_by_side: 并排
     pip: 画中画
