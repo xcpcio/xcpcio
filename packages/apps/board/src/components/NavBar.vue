@@ -63,9 +63,8 @@ const homeLink = computed(() => {
       :class="[props?.width ? '' : 'fixed']"
       text-xl
     >
-      <div class="spacer" />
       <div
-        class="right"
+        class="spacer"
         print:op0
       >
         <RouterLink
@@ -76,7 +75,11 @@ const homeLink = computed(() => {
         >
           <div i-ion-balloon-sharp />
         </RouterLink>
-
+      </div>
+      <div
+        class="right"
+        print:op0
+      >
         <a
           icon-btn
           :title="t('button.toggle_langs')"
@@ -138,6 +141,12 @@ const homeLink = computed(() => {
 
 .nav > * {
   margin: auto;
+}
+
+.nav .spacer {
+  display: flex;
+  align-items: center;
+  margin: 0;
 }
 
 .nav img {

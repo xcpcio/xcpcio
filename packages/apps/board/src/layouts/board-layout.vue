@@ -1,6 +1,6 @@
 <template>
   <NavBar
-    width="sm:w-[1280px] xl:w-screen"
+    width="sm:w-[1159px] xl:w-[92vw] mx-auto"
   />
   <main
     py-2
