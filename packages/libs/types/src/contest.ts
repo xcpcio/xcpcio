@@ -49,11 +49,17 @@ export interface ContestOptions {
   submission_source_code_url_template?: string;
 
   // example: https://your.stream.cdn/wf/2025/${submission_id}/webcam/index.m3u8
-  // ${submission_id} will be replaced with the submission id
+  // or: http://${team_ip}:9996/get?path=webcam&start=${reaction_start_time:-5}&duration=180
+  // supported placeholders: ${submission_id}, ${team_id}, ${team_ip}, ${problem_id},
+  // ${submit_time} (RFC3339), ${reaction_start_time} (RFC3339, submit time - 5s by default;
+  // use ${reaction_start_time:-10} to override the signed offset in seconds)
   realtime_reaction_webcam_stream_url_template?: string;
 
   // example: https://your.stream.cdn/wf/2025/${submission_id}/screen/index.m3u8
-  // ${submission_id} will be replaced with the submission id
+  // or: http://${team_ip}:9996/get?path=screen&start=${reaction_start_time:-5}&duration=180
+  // supported placeholders: ${submission_id}, ${team_id}, ${team_ip}, ${problem_id},
+  // ${submit_time} (RFC3339), ${reaction_start_time} (RFC3339, submit time - 5s by default;
+  // use ${reaction_start_time:-10} to override the signed offset in seconds)
   realtime_reaction_screen_stream_url_template?: string;
 
   disable_pending_page?: boolean;
