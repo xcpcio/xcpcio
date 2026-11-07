@@ -1,3 +1,4 @@
+import type { CompletionResult } from "@codemirror/autocomplete";
 import { CompletionContext } from "@codemirror/autocomplete";
 import { json } from "@codemirror/lang-json";
 import { EditorState } from "@codemirror/state";
@@ -5,9 +6,10 @@ import { describe, expect, it } from "vitest";
 import { computeSchemaAnnotations } from "../src/composables/jsonSchemaCompletion";
 import { runtimeConfigAnnotations, runtimeConfigHints, runtimeConfigSchema } from "../src/pages/custom/runtimeConfigSchema";
 
-function hints(doc: string, pos = doc.length) {
+function hints(doc: string, pos = doc.length): CompletionResult | null {
   const state = EditorState.create({ doc, extensions: [json()] });
-  return runtimeConfigHints(new CompletionContext(state, pos, false));
+  // runtimeConfigHints is synchronous here; its CompletionSource type also allows a Promise.
+  return runtimeConfigHints(new CompletionContext(state, pos, false)) as CompletionResult | null;
 }
 
 describe("runtimeConfigHints", () => {

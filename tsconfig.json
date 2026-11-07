@@ -5,7 +5,6 @@
     "lib": [
       "esnext"
     ],
-    "baseUrl": ".",
     "module": "esnext",
     "moduleResolution": "Bundler",
     "paths": {

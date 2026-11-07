@@ -1,5 +1,6 @@
 import type { RatingUser } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
+import type { Options } from "highcharts";
 import { RatingLevelToString, RatingUtility } from "@xcpcio/core";
 
 interface RatingGraphData {
@@ -25,7 +26,7 @@ function getDiffRating(oldRating: number, newRating: number) {
 
 export function getRatingGraphOptions(
   ratingUser: RatingUser,
-) {
+): Options {
   const data: RatingGraphData[] = [];
 
   const { locale } = useI18n();
@@ -216,6 +217,6 @@ export function getRatingGraphOptions(
         data,
       },
     ],
-  };
+  } as unknown as Options;
   return options;
 }
