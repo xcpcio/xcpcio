@@ -36,22 +36,62 @@ onBeforeUnmount(() => {
   unregister();
 });
 
-// Computed stream URLs from templates
-const webcamStreamUrl = computed(() => {
-  const template = props.rank.contest.options.realtimeReactionWebcamStreamUrlTemplate;
-  if (!template) {
-    return null;
+const DEFAULT_REACTION_START_OFFSET_SECONDS = -5;
+
+const TEAM_IP_PLACEHOLDER = /\$\{team_ip\}/;
+const SUBMIT_TIME_PLACEHOLDER = /\$\{submit_time\}/;
+const REACTION_START_TIME_PLACEHOLDER = /\$\{reaction_start_time(?::-?\d+)?\}/;
+const REACTION_START_TIME_PLACEHOLDER_GLOBAL = /\$\{reaction_start_time(?::(-?\d+))?\}/g;
+
+const submission = computed(() => props.rank.submissionsMap.get(props.submissionId));
+const team = computed(() => {
+  if (!submission.value) {
+    return undefined;
   }
-  return template.replace(/\$\{submission_id\}/, props.submissionId);
+
+  return props.rank.teamsMap.get(submission.value.teamId);
 });
 
-const screenStreamUrl = computed(() => {
-  const template = props.rank.contest.options.realtimeReactionScreenStreamUrlTemplate;
+function formatStreamTime(offsetSeconds: number): string {
+  if (!submission.value) {
+    return "";
+  }
+
+  return props.rank.contest.startTime
+    .add(submission.value.timestampToSecond + offsetSeconds, "second")
+    .format("YYYY-MM-DDTHH:mm:ssZ");
+}
+
+const submitTime = computed(() => formatStreamTime(0));
+
+function buildStreamUrl(template: string | undefined): string | null {
   if (!template) {
     return null;
   }
-  return template.replace(/\$\{submission_id\}/, props.submissionId);
-});
+
+  if (TEAM_IP_PLACEHOLDER.test(template) && !team.value?.ip) {
+    return null;
+  }
+
+  if ((SUBMIT_TIME_PLACEHOLDER.test(template) || REACTION_START_TIME_PLACEHOLDER.test(template)) && !submission.value) {
+    return null;
+  }
+
+  return template
+    .replace(/\$\{submission_id\}/g, props.submissionId)
+    .replace(/\$\{team_id\}/g, submission.value?.teamId ?? "")
+    .replace(/\$\{team_ip\}/g, team.value?.ip ?? "")
+    .replace(/\$\{problem_id\}/g, submission.value?.problemId ?? "")
+    .replace(/\$\{submit_time\}/g, encodeURIComponent(submitTime.value))
+    .replace(REACTION_START_TIME_PLACEHOLDER_GLOBAL, (_match: string, offset?: string) => {
+      const offsetSeconds = offset === undefined ? DEFAULT_REACTION_START_OFFSET_SECONDS : Number(offset);
+      return encodeURIComponent(formatStreamTime(offsetSeconds));
+    });
+}
+
+// Computed stream URLs from templates
+const webcamStreamUrl = computed(() => buildStreamUrl(props.rank.contest.options.realtimeReactionWebcamStreamUrlTemplate));
+const screenStreamUrl = computed(() => buildStreamUrl(props.rank.contest.options.realtimeReactionScreenStreamUrlTemplate));
 
 function closeModal() {
   emit("close");
