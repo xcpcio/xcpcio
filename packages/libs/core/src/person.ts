@@ -46,11 +46,18 @@ export function createPersons(iPersons?: IText | Array<IText> | IPersons): Perso
   }
 
   if (Array.isArray(iPersons)) {
-    if (iPersons.length > 0 && typeof iPersons[0] === "object" && "name" in iPersons[0]) {
-      return iPersons.map(iPerson => Person.fromIPerson(iPerson as IPerson));
+    // Filter out null/undefined elements first
+    const validPersons = iPersons.filter(p => p != null);
+
+    if (validPersons.length === 0) {
+      return [];
     }
 
-    return iPersons.map(name => new Person(I18nText.fromIText(name as IText)));
+    if (typeof validPersons[0] === "object" && "name" in validPersons[0]) {
+      return validPersons.map(iPerson => Person.fromIPerson(iPerson as IPerson));
+    }
+
+    return validPersons.map(name => new Person(I18nText.fromIText(name as IText)));
   }
 
   return [new Person(I18nText.fromIText(iPersons))];
