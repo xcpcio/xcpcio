@@ -53,6 +53,9 @@ streams:
   loading_recordings: 正在加载录像...
   no_recordings: 暂无录像
   recordings_failed: 录像加载失败
+  recording_range: 录像范围
+  no_recording: 无录像
+  no_recording_at_time: 该时间点没有录像
   layout:
     side_by_side: 并排
     pip: 画中画
