@@ -172,6 +172,8 @@ const mode = ref<StreamMode>("live");
 const sliderValue = ref(0);
 const playbackOffset = ref(0);
 const offsetInitialized = ref(false);
+const timelineRef = ref<HTMLElement | null>(null);
+let draggingTimeline = false;
 
 const webcamRange = computed(() => getRecordingRange(webcamRecordings.value));
 const screenRange = computed(() => getRecordingRange(screenRecordings.value));
@@ -274,7 +276,7 @@ const maxOffset = computed(() => {
     return 0;
   }
 
-  return Math.max(0, Math.floor((timeline.end - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS);
+  return Math.max(0, Math.floor((timeline.end - timeline.start) / 1000));
 });
 
 const defaultPlaybackOffset = computed(() => {
@@ -289,8 +291,17 @@ const defaultPlaybackOffset = computed(() => {
   }
 
   const recordingStartOffset = Math.floor((recording.start - timeline.start) / 1000);
-  const latestRecordedOffset = Math.floor((recording.end - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS;
+  const recordingEndMs = Math.min(recording.end, timeline.end);
+  const latestRecordedOffset = Math.floor((recordingEndMs - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS;
   return Math.max(0, Math.min(maxOffset.value, Math.max(recordingStartOffset, latestRecordedOffset)));
+});
+
+const sliderPercent = computed(() => {
+  if (maxOffset.value <= 0) {
+    return 0;
+  }
+
+  return Math.max(0, Math.min(100, (sliderValue.value / maxOffset.value) * 100));
 });
 
 const canPlayback = computed(() => !!(webcamPlaybackSource.value || screenPlaybackSource.value));
@@ -373,6 +384,82 @@ function enterPlayback() {
 
 function commitSlider() {
   playbackOffset.value = sliderValue.value;
+}
+
+function updateSliderFromClientX(clientX: number) {
+  const element = timelineRef.value;
+  if (!element || maxOffset.value <= 0) {
+    return;
+  }
+
+  const rect = element.getBoundingClientRect();
+  if (rect.width <= 0) {
+    return;
+  }
+
+  const percent = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+  sliderValue.value = Math.round(percent * maxOffset.value);
+}
+
+function onTimelinePointerDown(event: PointerEvent) {
+  if (maxOffset.value <= 0) {
+    return;
+  }
+
+  draggingTimeline = true;
+  (event.currentTarget as HTMLElement).setPointerCapture(event.pointerId);
+  updateSliderFromClientX(event.clientX);
+}
+
+function onTimelinePointerMove(event: PointerEvent) {
+  if (!draggingTimeline) {
+    return;
+  }
+
+  updateSliderFromClientX(event.clientX);
+}
+
+function onTimelinePointerUp(event: PointerEvent) {
+  if (!draggingTimeline) {
+    return;
+  }
+
+  draggingTimeline = false;
+  const element = event.currentTarget as HTMLElement;
+  if (element.hasPointerCapture(event.pointerId)) {
+    element.releasePointerCapture(event.pointerId);
+  }
+  commitSlider();
+}
+
+function onTimelineKeydown(event: KeyboardEvent) {
+  if (maxOffset.value <= 0) {
+    return;
+  }
+
+  let nextValue = sliderValue.value;
+  switch (event.key) {
+    case "ArrowLeft":
+    case "ArrowDown":
+      nextValue -= 1;
+      break;
+    case "ArrowRight":
+    case "ArrowUp":
+      nextValue += 1;
+      break;
+    case "Home":
+      nextValue = 0;
+      break;
+    case "End":
+      nextValue = maxOffset.value;
+      break;
+    default:
+      return;
+  }
+
+  event.preventDefault();
+  sliderValue.value = Math.max(0, Math.min(maxOffset.value, nextValue));
+  commitSlider();
 }
 
 function jumpToSubmission(marker: SubmissionMarker) {
@@ -496,21 +583,31 @@ watch(() => team.value.id, resetPlayback);
             <span class="mx-auto block h-3 w-0.5 bg-current" />
           </button>
         </div>
-        <div class="relative h-1.5 w-full overflow-hidden rounded bg-gray-200 dark:bg-gray-700">
+        <div
+          ref="timelineRef"
+          class="relative h-6 w-full cursor-pointer touch-none"
+          role="slider"
+          tabindex="0"
+          :aria-valuemin="0"
+          :aria-valuemax="maxOffset"
+          :aria-valuenow="sliderValue"
+          @pointerdown="onTimelinePointerDown"
+          @pointermove="onTimelinePointerMove"
+          @pointerup="onTimelinePointerUp"
+          @pointercancel="onTimelinePointerUp"
+          @keydown="onTimelineKeydown"
+        >
+          <div class="absolute inset-x-0 top-1/2 h-1.5 -translate-y-1/2 rounded bg-gray-200 dark:bg-gray-700">
+            <div
+              class="absolute inset-y-0 bg-blue-300 dark:bg-blue-800"
+              :style="{ left: `${recordingStartPercent}%`, width: `${recordingWidthPercent}%` }"
+            />
+          </div>
           <div
-            class="absolute inset-y-0 bg-blue-300 dark:bg-blue-800"
-            :style="{ left: `${recordingStartPercent}%`, width: `${recordingWidthPercent}%` }"
+            class="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white bg-blue-600 shadow"
+            :style="{ left: `${sliderPercent}%` }"
           />
         </div>
-        <input
-          v-model.number="sliderValue"
-          type="range"
-          min="0"
-          :max="maxOffset"
-          step="1"
-          class="w-full accent-blue-600"
-          @change="commitSlider"
-        >
         <div flex justify-between text-xs text-gray-500 dark:text-gray-400>
           <span>{{ formatTimestamp(timelineStart) }}</span>
           <span>
