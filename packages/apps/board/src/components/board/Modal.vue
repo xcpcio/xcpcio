@@ -65,11 +65,11 @@ watch(Escape, (v) => {
       z-1999
     >
       <div
-        class="relative bg-white dark:bg-gray-800 sm:p-4"
+        class="relative bg-white dark:bg-gray-800 sm:p-4 max-h-[calc(100vh-5rem)] flex flex-col"
         rounded-sm shadow-sm
       >
         <div
-          class="mb-4 border-b rounded-t pb-4 sm:mb-4 dark:border-gray-600"
+          class="mb-4 border-b rounded-t pb-4 sm:mb-4 dark:border-gray-600 shrink-0"
           flex items-center justify-between
         >
           <slot name="header">
@@ -110,7 +110,9 @@ watch(Escape, (v) => {
             </span>
           </button>
         </div>
-        <slot />
+        <div class="min-h-0 flex-1 overflow-y-auto">
+          <slot />
+        </div>
       </div>
     </div>
   </div>
