@@ -140,6 +140,8 @@ export default defineConfig({
         collapseWhitespace: true,
         keepClosingSlash: true,
         removeComments: true,
+        // keep board-server's OG placeholder comments (<!--!xcpcio-og:start/end-->)
+        ignoreCustomComments: [/^!/],
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
