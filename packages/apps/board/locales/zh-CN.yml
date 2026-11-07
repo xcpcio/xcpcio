@@ -112,6 +112,7 @@ team_info:
   members: 队员
   coaches: 教练
   location: 位置
+  ip: IP
   award: 奖项
 
 medal:
