@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Rank, Team } from "@xcpcio/core";
 import { dayjs } from "@xcpcio/core";
+import { SubmissionStatusToString } from "@xcpcio/types";
+
+import "@board/styles/submission-status.css";
 
 const props = defineProps<{
   rank: Rank;
@@ -10,6 +13,7 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const PLAYBACK_WINDOW_SECONDS = 180;
+const SUBMISSION_JUMP_PREROLL_SECONDS = 5;
 
 const TEAM_ID_PLACEHOLDER = /\$\{team_id\}/g;
 const TEAM_IP_PLACEHOLDER = /\$\{team_ip\}/;
@@ -26,6 +30,15 @@ interface PlaybackSource {
   listUrl: string;
   getUrl: string;
   path: string;
+}
+
+interface SubmissionMarker {
+  id: string;
+  absoluteTimeMs: number;
+  percent: number;
+  title: string;
+  problemLabel: string;
+  statusClass: string;
 }
 
 type StreamMode = "live" | "playback";
@@ -93,6 +106,10 @@ function buildPlaybackUrl(source: PlaybackSource, startMs: number, durationSecon
 
 function parseRecordingTime(value: string): number {
   return Date.parse(value.replace(RFC3339_FRACTION, "$1$2"));
+}
+
+function formatTimestamp(ms: number): string {
+  return dayjs(ms).format("MM-DD HH:mm:ss");
 }
 
 function getRecordingRange(recordings: PlaybackRecording[]): { start: number; end: number } | null {
@@ -174,6 +191,40 @@ const range = computed(() => {
 const timelineStart = computed(() => range.value?.start ?? 0);
 const timelineEnd = computed(() => range.value?.end ?? 0);
 
+const submissionMarkers = computed<SubmissionMarker[]>(() => {
+  const currentRange = range.value;
+  if (!currentRange) {
+    return [];
+  }
+
+  const rangeDuration = currentRange.end - currentRange.start;
+  if (rangeDuration <= 0) {
+    return [];
+  }
+
+  const contestStartMs = rank.value.contest.startTime.valueOf();
+
+  return team.value.submissions
+    .map(submission => ({
+      submission,
+      absoluteTimeMs: contestStartMs + submission.timestampToSecond * 1000,
+    }))
+    .filter(({ absoluteTimeMs }) => absoluteTimeMs >= currentRange.start && absoluteTimeMs <= currentRange.end)
+    .map(({ submission, absoluteTimeMs }) => {
+      const problemLabel = rank.value.contest.problemsMap.get(submission.problemId)?.label ?? submission.problemId;
+      const statusLabel = SubmissionStatusToString[submission.status] ?? submission.status.toString();
+
+      return {
+        id: submission.id || String(absoluteTimeMs),
+        absoluteTimeMs,
+        percent: ((absoluteTimeMs - currentRange.start) / rangeDuration) * 100,
+        title: `${formatTimestamp(absoluteTimeMs)} (${submission.timestampDisplayFormatWithSecond}) · ${problemLabel} · ${statusLabel}`,
+        problemLabel,
+        statusClass: submission.status.toString(),
+      };
+    });
+});
+
 const maxOffset = computed(() => {
   const currentRange = range.value;
   if (!currentRange) {
@@ -253,8 +304,18 @@ function commitSlider() {
   playbackOffset.value = sliderValue.value;
 }
 
-function formatTimestamp(ms: number): string {
-  return dayjs(ms).format("MM-DD HH:mm:ss");
+function jumpToSubmission(marker: SubmissionMarker) {
+  const currentRange = range.value;
+  if (!currentRange) {
+    return;
+  }
+
+  const offsetSeconds = Math.floor((marker.absoluteTimeMs - currentRange.start) / 1000) - SUBMISSION_JUMP_PREROLL_SECONDS;
+  const clampedOffset = Math.max(0, Math.min(maxOffset.value, offsetSeconds));
+
+  mode.value = "playback";
+  sliderValue.value = clampedOffset;
+  playbackOffset.value = clampedOffset;
 }
 
 function resetPlayback() {
@@ -346,6 +407,24 @@ watch(() => team.value.id, resetPlayback);
         {{ t("streams.no_recordings") }}
       </div>
       <template v-else>
+        <div
+          v-if="submissionMarkers.length > 0"
+          class="relative h-7"
+        >
+          <button
+            v-for="marker in submissionMarkers"
+            :key="marker.id"
+            type="button"
+            class="absolute bottom-0 -translate-x-1/2 cursor-pointer border-0 bg-transparent p-0"
+            :style="{ left: `${marker.percent}%` }"
+            :class="[marker.statusClass]"
+            :title="marker.title"
+            @click="jumpToSubmission(marker)"
+          >
+            <span class="block text-[10px] font-semibold leading-3">{{ marker.problemLabel }}</span>
+            <span class="mx-auto block h-3 w-0.5 bg-current" />
+          </button>
+        </div>
         <input
           v-model.number="sliderValue"
           type="range"
