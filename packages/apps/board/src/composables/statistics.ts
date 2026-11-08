@@ -196,12 +196,22 @@ export function getSubmitChart(rank: Rank) {
 }
 
 export function getTeamPlaceChart(_rank: Rank, team: Team) {
-  const data = team.placeChartPoints.map((p) => {
+  const points = team.placeChartPoints;
+
+  const data = points.map((p, index) => {
+    const previousPoint = points[index - 1];
+    const solvedProblem = index > 0
+      && p.lastSolvedProblem !== null
+      && p.lastSolvedProblem !== previousPoint.lastSolvedProblem;
+
     return {
       x: p.timePoint,
       y: p.rank,
-      showX: getTimeDiff(p.timePoint),
+      showX: getTimeDiff(p.timePoint * 60),
       lastSolved: p.lastSolvedProblem?.label ? `Last Solved Problem ${p.lastSolvedProblem?.label}` : "",
+      marker: {
+        enabled: solvedProblem,
+      },
     };
   });
 
@@ -221,6 +231,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
         type: "spline",
         data,
         marker: {
+          enabled: false,
           symbol: "circle",
           radius: 4,
           lineWidth: 2,
@@ -248,19 +259,6 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
         gridLineWidth: 1,
       },
     ],
-    plotOptions: {
-      line: {
-        color: "#efbc47",
-        dataLabels: {
-          enabled: false,
-        },
-        enableMouseTracking: true,
-        marker: {
-          enabled: true,
-          fillColor: "#fff566",
-        },
-      },
-    },
     tooltip: {
       enabled: true,
       headerFormat: "",

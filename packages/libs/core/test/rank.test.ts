@@ -113,6 +113,15 @@ describe("contest", () => {
     expect(lastTeam.placeChartPoints.map(p => [p.timePoint, p.rank])).matchSnapshot();
     expect(lastTeam.awards).toMatchInlineSnapshot("[]");
 
+    // Every accepted problem should be recorded on a chart point at the
+    // minute it was solved, so the trend chart can highlight each solve.
+    for (const team of rank.teams) {
+      const points = team.placeChartPoints;
+      for (const ps of team.problemStatistics.filter(ps => ps.isSolved)) {
+        expect(points.some(p => p.timePoint === ps.solvedTimestampToMinute && p.lastSolvedProblem === ps.problem)).toBe(true);
+      }
+    }
+
     {
       const converter = new CodeforcesGymGhostDATConverter();
       const dat = converter.convert(rank, { includeFakeRussianTeams: true });
