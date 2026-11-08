@@ -10,6 +10,13 @@ const props = defineProps<{
   title?: string;
   width?: string;
   mt?: string;
+
+  /**
+   * Whether the modal body is a scroll container.
+   * Disabling it lets popups (e.g. dropdown menus) extend past the
+   * modal border; the body still scrolls when its content overflows.
+   */
+  scrollable?: boolean;
 }>();
 
 const emit = defineEmits(["update:isHidden", "onBeforeClose"]);
@@ -26,6 +33,58 @@ const isHidden = computed({
   set(value) {
     emit("update:isHidden", value);
   },
+});
+
+const bodyRef = ref<HTMLElement | null>(null);
+const hasOverflowingContent = ref(true);
+
+const isBodyScrollable = computed(() => (props.scrollable ?? true) || hasOverflowingContent.value);
+
+let bodyResizeObserver: ResizeObserver | undefined;
+let bodyMutationObserver: MutationObserver | undefined;
+
+function updateHasOverflowingContent() {
+  const body = bodyRef.value;
+  if (!body) {
+    return;
+  }
+
+  // An open dropdown renders an absolutely positioned menu whose height counts
+  // towards scrollHeight, so only measure while no dropdown menu is open.
+  if (body.querySelector(".ui.dropdown.active")) {
+    return;
+  }
+
+  hasOverflowingContent.value = body.scrollHeight - body.clientHeight > 1;
+}
+
+onMounted(async () => {
+  if (props.scrollable !== false) {
+    return;
+  }
+
+  await nextTick();
+  updateHasOverflowingContent();
+
+  if (!bodyRef.value) {
+    return;
+  }
+
+  bodyResizeObserver = new ResizeObserver(updateHasOverflowingContent);
+  bodyResizeObserver.observe(bodyRef.value);
+
+  bodyMutationObserver = new MutationObserver(updateHasOverflowingContent);
+  bodyMutationObserver.observe(bodyRef.value, {
+    subtree: true,
+    childList: true,
+    characterData: true,
+    attributes: true,
+  });
+});
+
+onUnmounted(() => {
+  bodyResizeObserver?.disconnect();
+  bodyMutationObserver?.disconnect();
 });
 
 function onClose(reason: ModalCloseReason = "outside") {
@@ -110,7 +169,11 @@ watch(Escape, (v) => {
             </span>
           </button>
         </div>
-        <div class="min-h-0 flex-1 overflow-y-auto">
+        <div
+          ref="bodyRef"
+          class="min-h-0 flex-1"
+          :class="isBodyScrollable ? 'overflow-y-auto' : 'overflow-visible'"
+        >
           <slot />
         </div>
       </div>
