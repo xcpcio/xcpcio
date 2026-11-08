@@ -12,7 +12,12 @@ const props = defineProps<{
 
 const { t } = useI18n();
 
-const PLAYBACK_WINDOW_SECONDS = 180;
+const PLAYBACK_CHUNK_SECONDS = 180;
+const PLAYBACK_END_THROTTLE_MS = 1000;
+// The latest recording is considered live when its edge is this close to now.
+const LIVE_EDGE_TOLERANCE_MS = 2 * 60 * 1000;
+// Hand over to live instead of replaying a short tail at the recording edge.
+const LIVE_SWITCH_REMAINING_MS = 30 * 1000;
 const SUBMISSION_JUMP_PREROLL_SECONDS = 5;
 
 const TEAM_ID_PLACEHOLDER = /\$\{team_id\}/g;
@@ -174,6 +179,8 @@ const playbackOffset = ref(0);
 const offsetInitialized = ref(false);
 const timelineRef = ref<HTMLElement | null>(null);
 let draggingTimeline = false;
+let lastPlaybackEndedAt = 0;
+let recordingsRefreshing = false;
 
 const webcamRange = computed(() => getRecordingRange(webcamRecordings.value));
 const screenRange = computed(() => getRecordingRange(screenRecordings.value));
@@ -292,7 +299,7 @@ const defaultPlaybackOffset = computed(() => {
 
   const recordingStartOffset = Math.floor((recording.start - timeline.start) / 1000);
   const recordingEndMs = Math.min(recording.end, timeline.end);
-  const latestRecordedOffset = Math.floor((recordingEndMs - timeline.start) / 1000) - PLAYBACK_WINDOW_SECONDS;
+  const latestRecordedOffset = Math.floor((recordingEndMs - timeline.start) / 1000) - PLAYBACK_CHUNK_SECONDS;
   return Math.max(0, Math.min(maxOffset.value, Math.max(recordingStartOffset, latestRecordedOffset)));
 });
 
@@ -305,6 +312,8 @@ const sliderPercent = computed(() => {
 });
 
 const canPlayback = computed(() => !!(webcamPlaybackSource.value || screenPlaybackSource.value));
+const canLive = computed(() => !!(liveWebcamUrl.value || liveScreenUrl.value));
+const latestRecordingEnd = computed(() => getRecordingRange([...webcamRecordings.value, ...screenRecordings.value])?.end ?? null);
 const playbackStartMs = computed(() => {
   const timeline = timelineRange.value;
   return timeline ? timeline.start + playbackOffset.value * 1000 : 0;
@@ -315,17 +324,116 @@ const playbackDurationSeconds = computed(() => {
     return 0;
   }
 
-  return Math.max(1, Math.min(PLAYBACK_WINDOW_SECONDS, (timeline.end - playbackStartMs.value) / 1000));
+  return Math.max(1, Math.min(PLAYBACK_CHUNK_SECONDS, (timeline.end - playbackStartMs.value) / 1000));
 });
 
-const hasRecordingAtPlaybackStart = computed(() => {
-  const recording = range.value;
-  if (!recording) {
-    return false;
+const hasRecordingAtPlaybackStart = computed(() => hasRecordingAt(playbackStartMs.value));
+
+function containsRecording(recordings: PlaybackRecording[], timestampMs: number): boolean {
+  return recordings.some((recording) => {
+    const start = parseRecordingTime(recording.start);
+    const end = start + Number(recording.duration) * 1000;
+    return Number.isFinite(start) && timestampMs >= start && timestampMs < end;
+  });
+}
+
+// Gap-aware check that mirrors how `range` picks the playable streams: when
+// both streams overlap, playback requires both of them; otherwise it falls
+// back to the webcam and then the screen. The /list range is a union of
+// recording segments, so segment boundaries have to be checked individually.
+function hasRecordingAt(timestampMs: number): boolean {
+  const webcam = webcamRange.value;
+  const screen = screenRange.value;
+
+  if (webcam && screen) {
+    const intersects = Math.min(webcam.end, screen.end) > Math.max(webcam.start, screen.start);
+    if (intersects) {
+      return containsRecording(webcamRecordings.value, timestampMs)
+        && containsRecording(screenRecordings.value, timestampMs);
+    }
   }
 
-  return playbackStartMs.value >= recording.start && playbackStartMs.value < recording.end;
-});
+  if (webcam) {
+    return containsRecording(webcamRecordings.value, timestampMs);
+  }
+
+  if (screen) {
+    return containsRecording(screenRecordings.value, timestampMs);
+  }
+
+  return false;
+}
+
+async function onPlaybackEnded(playedSeconds: number) {
+  if (mode.value !== "playback") {
+    return;
+  }
+
+  const timeline = timelineRange.value;
+  if (!timeline) {
+    return;
+  }
+
+  // Both the webcam and screen players report the end of the same chunk; only
+  // handle the first report (the second can land after the players were reset).
+  const now = Date.now();
+  if (now - lastPlaybackEndedAt < PLAYBACK_END_THROTTLE_MS) {
+    return;
+  }
+  lastPlaybackEndedAt = now;
+
+  const currentOffset = playbackOffset.value;
+  const currentTeamId = team.value.id;
+  const requestedSeconds = Math.ceil(playbackDurationSeconds.value);
+  const played = Number.isFinite(playedSeconds) && playedSeconds > 0
+    ? Math.min(Math.ceil(playedSeconds), requestedSeconds + 10)
+    : requestedSeconds;
+  const nextOffset = currentOffset + Math.max(1, played);
+  if (nextOffset >= maxOffset.value) {
+    return;
+  }
+
+  const nextStartMs = timeline.start + nextOffset * 1000;
+  const advance = () => {
+    sliderValue.value = nextOffset;
+    playbackOffset.value = nextOffset;
+  };
+
+  // Keep playing past the current chunk while recordings are available.
+  if (hasRecordingAt(nextStartMs)) {
+    advance();
+    return;
+  }
+
+  // The recordings snapshot is taken when playback starts; while the contest
+  // is running, more footage may have been recorded since then.
+  await refreshRecordings();
+
+  // The user may have switched teams/modes or seeked while the refresh was in flight.
+  if (team.value.id !== currentTeamId || mode.value !== "playback" || playbackOffset.value !== currentOffset) {
+    return;
+  }
+
+  const edge = latestRecordingEnd.value;
+  if (edge === null) {
+    return;
+  }
+
+  const isLiveEdge = Date.now() - edge <= LIVE_EDGE_TOLERANCE_MS;
+  const remainingMs = edge - nextStartMs;
+
+  if (hasRecordingAt(nextStartMs) && (!isLiveEdge || remainingMs > LIVE_SWITCH_REMAINING_MS)) {
+    advance();
+    return;
+  }
+
+  // Caught up with the live recording: hand over to the live stream instead of
+  // requesting ever-shorter chunks at the edge. Realtime reaction keeps its
+  // own 3-minute window.
+  if (isLiveEdge && canLive.value) {
+    mode.value = "live";
+  }
+}
 
 const playbackWebcamUrl = computed(() => {
   const source = webcamPlaybackSource.value;
@@ -348,6 +456,22 @@ const playbackScreenUrl = computed(() => {
 const webcamUrl = computed(() => (mode.value === "playback" ? playbackWebcamUrl.value : liveWebcamUrl.value));
 const screenUrl = computed(() => (mode.value === "playback" ? playbackScreenUrl.value : liveScreenUrl.value));
 
+async function fetchRecordingsSnapshot(teamId: string) {
+  const results = await Promise.allSettled([
+    fetchRecordings(webcamPlaybackSource.value?.listUrl),
+    fetchRecordings(screenPlaybackSource.value?.listUrl),
+  ]);
+
+  if (team.value.id !== teamId) {
+    return null;
+  }
+
+  return {
+    webcam: results[0].status === "fulfilled" ? results[0].value : null,
+    screen: results[1].status === "fulfilled" ? results[1].value : null,
+  };
+}
+
 async function loadRecordings() {
   if (recordingsLoaded.value || recordingsLoading.value) {
     return;
@@ -357,21 +481,48 @@ async function loadRecordings() {
   recordingsError.value = false;
 
   try {
-    const results = await Promise.allSettled([
-      fetchRecordings(webcamPlaybackSource.value?.listUrl),
-      fetchRecordings(screenPlaybackSource.value?.listUrl),
-    ]);
+    const snapshot = await fetchRecordingsSnapshot(team.value.id);
+    if (!snapshot) {
+      return;
+    }
 
-    webcamRecordings.value = results[0].status === "fulfilled" ? results[0].value : [];
-    screenRecordings.value = results[1].status === "fulfilled" ? results[1].value : [];
+    webcamRecordings.value = snapshot.webcam ?? [];
+    screenRecordings.value = snapshot.screen ?? [];
     recordingsLoaded.value = true;
 
     const hasRecordings = webcamRecordings.value.length > 0 || screenRecordings.value.length > 0;
-    recordingsError.value = !hasRecordings && results.some(result => result.status === "rejected");
+    recordingsError.value = !hasRecordings && (snapshot.webcam === null || snapshot.screen === null);
   } catch {
     recordingsError.value = true;
   } finally {
     recordingsLoading.value = false;
+  }
+}
+
+async function refreshRecordings(): Promise<boolean> {
+  if (recordingsRefreshing) {
+    return false;
+  }
+
+  recordingsRefreshing = true;
+  try {
+    const snapshot = await fetchRecordingsSnapshot(team.value.id);
+    if (!snapshot) {
+      return false;
+    }
+
+    let updated = false;
+    if (snapshot.webcam) {
+      webcamRecordings.value = snapshot.webcam;
+      updated = true;
+    }
+    if (snapshot.screen) {
+      screenRecordings.value = snapshot.screen;
+      updated = true;
+    }
+    return updated;
+  } finally {
+    recordingsRefreshing = false;
   }
 }
 
@@ -634,6 +785,7 @@ watch(() => team.value.id, resetPlayback);
     <DualStreamPlayer
       :webcam-url="webcamUrl"
       :screen-url="screenUrl"
+      @ended="onPlaybackEnded"
     />
   </div>
 </template>
