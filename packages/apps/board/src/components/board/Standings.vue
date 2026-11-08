@@ -9,6 +9,10 @@ const props = defineProps<{
 
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
+// Below 1280px the Organization column is merged into the Team cell to keep the
+// standings compact. (`index.html` omits the viewport meta tag, so mobile
+// browsers use the default ~980px layout viewport and fall into this range too.)
+const isCompactLayout = useMediaQuery("(max-width: 1279.98px)");
 
 const rank = computed(() => props.rank);
 const teams = computed(() => props.rank.teams);
@@ -171,7 +175,7 @@ const maxTeamLength = computed(() => {
               {{ t("standings.place") }}
             </th>
             <th
-              v-if="rank.contest.options.enableOrganization"
+              v-if="rank.contest.options.enableOrganization && !isCompactLayout"
               class="title"
               :style="{ width: `${Math.min(32, Math.ceil(maxOrgLength * 1.1))}rem` }"
             >
@@ -260,6 +264,7 @@ const maxTeamLength = computed(() => {
                 :rank="rank"
                 :team="giantTeam.team"
                 :giants-type="giantTeam.giantsType"
+                :is-compact-layout="isCompactLayout"
               />
             </template>
           </template>
@@ -273,6 +278,7 @@ const maxTeamLength = computed(() => {
               :rank="rank"
               :team="team"
               :is-filter="true"
+              :is-compact-layout="isCompactLayout"
             />
           </template>
 
@@ -284,11 +290,13 @@ const maxTeamLength = computed(() => {
               :ix="ix"
               :rank="rank"
               :team="team"
+              :is-compact-layout="isCompactLayout"
             />
           </template>
 
           <BottomStatistics
             :rank="rank"
+            :is-compact-layout="isCompactLayout"
           />
         </tbody>
       </table>

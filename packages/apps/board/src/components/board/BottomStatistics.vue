@@ -3,6 +3,7 @@ import type { ProblemStatistics, Rank } from "@xcpcio/core";
 
 const props = defineProps<{
   rank: Rank;
+  isCompactLayout?: boolean;
 }>();
 
 const { t } = useI18n();
@@ -12,7 +13,7 @@ const rank = computed(() => props.rank);
 function getColSpan() {
   let res = 3;
 
-  if (rank.value.contest.options.enableOrganization) {
+  if (rank.value.contest.options.enableOrganization && !props.isCompactLayout) {
     res++;
   }
 
