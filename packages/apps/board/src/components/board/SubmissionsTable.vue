@@ -285,7 +285,7 @@ function closeRealtimeStreamModal() {
       </div>
 
       <div
-        relative overflow-hidden
+        relative
         bg-white dark:bg-gray-800
         :class="{
           'shadow-md': props.removeBorder !== true,
