@@ -594,128 +594,118 @@ ResolverOperation {
             },
             {
               "lastSolvedProblem": null,
-              "rank": 3,
+              "rank": 6,
               "timePoint": 5,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 7,
+              "rank": 9,
               "timePoint": 6,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 10,
+              "rank": 13,
               "timePoint": 7,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 14,
+              "rank": 19,
               "timePoint": 8,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 19,
+              "rank": 24,
               "timePoint": 9,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 25,
+              "rank": 36,
               "timePoint": 10,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 37,
+              "rank": 47,
               "timePoint": 11,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 48,
+              "rank": 60,
               "timePoint": 12,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 60,
+              "rank": 68,
               "timePoint": 13,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 69,
+              "rank": 76,
               "timePoint": 14,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 76,
+              "rank": 85,
               "timePoint": 15,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 85,
+              "rank": 90,
               "timePoint": 16,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 90,
+              "rank": 94,
               "timePoint": 17,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 95,
+              "rank": 96,
               "timePoint": 18,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 96,
+              "rank": 100,
               "timePoint": 19,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 100,
+              "rank": 104,
               "timePoint": 20,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 105,
+              "rank": 108,
               "timePoint": 21,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 108,
+              "rank": 111,
               "timePoint": 22,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 112,
+              "rank": 113,
               "timePoint": 23,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 113,
+              "rank": 116,
               "timePoint": 24,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 116,
+              "rank": 118,
               "timePoint": 25,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 118,
-              "timePoint": 26,
-            },
-            {
-              "lastSolvedProblem": null,
               "rank": 119,
-              "timePoint": 30,
-            },
-            {
-              "lastSolvedProblem": null,
-              "rank": 120,
-              "timePoint": 31,
+              "timePoint": 29,
             },
             {
               "lastSolvedProblem": null,
               "rank": 121,
-              "timePoint": 32,
+              "timePoint": 31,
             },
             {
               "lastSolvedProblem": null,
@@ -725,17 +715,17 @@ ResolverOperation {
             {
               "lastSolvedProblem": null,
               "rank": 123,
-              "timePoint": 45,
+              "timePoint": 44,
             },
             {
               "lastSolvedProblem": null,
               "rank": 124,
-              "timePoint": 58,
+              "timePoint": 57,
             },
             {
               "lastSolvedProblem": null,
               "rank": 125,
-              "timePoint": 66,
+              "timePoint": 65,
             },
             {
               "lastSolvedProblem": null,
@@ -745,7 +735,7 @@ ResolverOperation {
             {
               "lastSolvedProblem": null,
               "rank": 127,
-              "timePoint": 87,
+              "timePoint": 86,
             },
             {
               "lastSolvedProblem": null,
@@ -2233,128 +2223,118 @@ ResolverOperation {
       },
       {
         "lastSolvedProblem": null,
-        "rank": 3,
+        "rank": 6,
         "timePoint": 5,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 7,
+        "rank": 9,
         "timePoint": 6,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 10,
+        "rank": 13,
         "timePoint": 7,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 14,
+        "rank": 19,
         "timePoint": 8,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 19,
+        "rank": 24,
         "timePoint": 9,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 25,
+        "rank": 36,
         "timePoint": 10,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 37,
+        "rank": 47,
         "timePoint": 11,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 48,
+        "rank": 60,
         "timePoint": 12,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 60,
+        "rank": 68,
         "timePoint": 13,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 69,
+        "rank": 76,
         "timePoint": 14,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 76,
+        "rank": 85,
         "timePoint": 15,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 85,
+        "rank": 90,
         "timePoint": 16,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 90,
+        "rank": 94,
         "timePoint": 17,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 95,
+        "rank": 96,
         "timePoint": 18,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 96,
+        "rank": 100,
         "timePoint": 19,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 100,
+        "rank": 104,
         "timePoint": 20,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 105,
+        "rank": 108,
         "timePoint": 21,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 108,
+        "rank": 111,
         "timePoint": 22,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 112,
+        "rank": 113,
         "timePoint": 23,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 113,
+        "rank": 116,
         "timePoint": 24,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 116,
+        "rank": 118,
         "timePoint": 25,
       },
       {
         "lastSolvedProblem": null,
-        "rank": 118,
-        "timePoint": 26,
-      },
-      {
-        "lastSolvedProblem": null,
         "rank": 119,
-        "timePoint": 30,
-      },
-      {
-        "lastSolvedProblem": null,
-        "rank": 120,
-        "timePoint": 31,
+        "timePoint": 29,
       },
       {
         "lastSolvedProblem": null,
         "rank": 121,
-        "timePoint": 32,
+        "timePoint": 31,
       },
       {
         "lastSolvedProblem": null,
@@ -2364,17 +2344,17 @@ ResolverOperation {
       {
         "lastSolvedProblem": null,
         "rank": 123,
-        "timePoint": 45,
+        "timePoint": 44,
       },
       {
         "lastSolvedProblem": null,
         "rank": 124,
-        "timePoint": 58,
+        "timePoint": 57,
       },
       {
         "lastSolvedProblem": null,
         "rank": 125,
-        "timePoint": 66,
+        "timePoint": 65,
       },
       {
         "lastSolvedProblem": null,
@@ -2384,7 +2364,7 @@ ResolverOperation {
       {
         "lastSolvedProblem": null,
         "rank": 127,
-        "timePoint": 87,
+        "timePoint": 86,
       },
       {
         "lastSolvedProblem": null,
@@ -4808,26 +4788,68 @@ ResolverOperation {
             },
             {
               "lastSolvedProblem": null,
-              "rank": 3,
+              "rank": 6,
               "timePoint": 5,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 7,
+              "rank": 9,
               "timePoint": 6,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 10,
+              "rank": 13,
               "timePoint": 7,
             },
             {
               "lastSolvedProblem": null,
-              "rank": 14,
+              "rank": 19,
               "timePoint": 8,
             },
             {
-              "lastSolvedProblem": null,
+              "lastSolvedProblem": Problem {
+                "balloonColor": {
+                  "background_color": "rgba(239, 217, 9, 0.7)",
+                  "color": "#000",
+                },
+                "id": "4",
+                "label": "E",
+                "statistics": ProblemStatistics {
+                  "acceptedNum": 126,
+                  "attemptedNum": 148,
+                  "firstSolveSubmissions": [
+                    Submission {
+                      "id": "0",
+                      "isFirstSolved": true,
+                      "isIgnore": false,
+                      "isSolved": true,
+                      "problemId": "4",
+                      "status": "ACCEPTED",
+                      "teamId": "3000202305140002",
+                      "timestamp": 240,
+                      "timestampUnit": "second",
+                    },
+                  ],
+                  "ignoreNum": 0,
+                  "lastSolveSubmissions": [
+                    Submission {
+                      "id": "477",
+                      "isFirstSolved": false,
+                      "isIgnore": false,
+                      "isSolved": true,
+                      "problemId": "4",
+                      "status": "ACCEPTED",
+                      "teamId": "3000202305140119",
+                      "timestamp": 5160,
+                      "timestampUnit": "second",
+                    },
+                  ],
+                  "pendingNum": 0,
+                  "rejectedNum": 78,
+                  "se": 0.05,
+                  "submittedNum": 207,
+                },
+              },
               "rank": 19,
               "timePoint": 9,
             },
@@ -4875,55 +4897,8 @@ ResolverOperation {
                   "submittedNum": 207,
                 },
               },
-              "rank": 19,
-              "timePoint": 10,
-            },
-            {
-              "lastSolvedProblem": Problem {
-                "balloonColor": {
-                  "background_color": "rgba(239, 217, 9, 0.7)",
-                  "color": "#000",
-                },
-                "id": "4",
-                "label": "E",
-                "statistics": ProblemStatistics {
-                  "acceptedNum": 126,
-                  "attemptedNum": 148,
-                  "firstSolveSubmissions": [
-                    Submission {
-                      "id": "0",
-                      "isFirstSolved": true,
-                      "isIgnore": false,
-                      "isSolved": true,
-                      "problemId": "4",
-                      "status": "ACCEPTED",
-                      "teamId": "3000202305140002",
-                      "timestamp": 240,
-                      "timestampUnit": "second",
-                    },
-                  ],
-                  "ignoreNum": 0,
-                  "lastSolveSubmissions": [
-                    Submission {
-                      "id": "477",
-                      "isFirstSolved": false,
-                      "isIgnore": false,
-                      "isSolved": true,
-                      "problemId": "4",
-                      "status": "ACCEPTED",
-                      "teamId": "3000202305140119",
-                      "timestamp": 5160,
-                      "timestampUnit": "second",
-                    },
-                  ],
-                  "pendingNum": 0,
-                  "rejectedNum": 78,
-                  "se": 0.05,
-                  "submittedNum": 207,
-                },
-              },
               "rank": 20,
-              "timePoint": 18,
+              "timePoint": 17,
             },
             {
               "lastSolvedProblem": Problem {
@@ -4970,7 +4945,7 @@ ResolverOperation {
                 },
               },
               "rank": 4,
-              "timePoint": 25,
+              "timePoint": 24,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5063,7 +5038,7 @@ ResolverOperation {
                   "submittedNum": 441,
                 },
               },
-              "rank": 6,
+              "rank": 7,
               "timePoint": 28,
             },
             {
@@ -5110,7 +5085,7 @@ ResolverOperation {
                   "submittedNum": 441,
                 },
               },
-              "rank": 7,
+              "rank": 8,
               "timePoint": 29,
             },
             {
@@ -5157,55 +5132,8 @@ ResolverOperation {
                   "submittedNum": 441,
                 },
               },
-              "rank": 8,
-              "timePoint": 30,
-            },
-            {
-              "lastSolvedProblem": Problem {
-                "balloonColor": {
-                  "background_color": "rgba(159, 19, 236, 0.7)",
-                  "color": "#fff",
-                },
-                "id": "9",
-                "label": "J",
-                "statistics": ProblemStatistics {
-                  "acceptedNum": 108,
-                  "attemptedNum": 337,
-                  "firstSolveSubmissions": [
-                    Submission {
-                      "id": "146",
-                      "isFirstSolved": true,
-                      "isIgnore": false,
-                      "isSolved": true,
-                      "problemId": "9",
-                      "status": "ACCEPTED",
-                      "teamId": "3000202305140046",
-                      "timestamp": 1440,
-                      "timestampUnit": "second",
-                    },
-                  ],
-                  "ignoreNum": 0,
-                  "lastSolveSubmissions": [
-                    Submission {
-                      "id": "1530",
-                      "isFirstSolved": false,
-                      "isIgnore": false,
-                      "isSolved": true,
-                      "problemId": "9",
-                      "status": "ACCEPTED",
-                      "teamId": "3000202305140124",
-                      "timestamp": 17160,
-                      "timestampUnit": "second",
-                    },
-                  ],
-                  "pendingNum": 0,
-                  "rejectedNum": 329,
-                  "se": 0.18,
-                  "submittedNum": 441,
-                },
-              },
               "rank": 9,
-              "timePoint": 32,
+              "timePoint": 31,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5299,7 +5227,7 @@ ResolverOperation {
                 },
               },
               "rank": 4,
-              "timePoint": 47,
+              "timePoint": 46,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5346,7 +5274,7 @@ ResolverOperation {
                 },
               },
               "rank": 5,
-              "timePoint": 49,
+              "timePoint": 48,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5393,7 +5321,54 @@ ResolverOperation {
                 },
               },
               "rank": 2,
-              "timePoint": 51,
+              "timePoint": 50,
+            },
+            {
+              "lastSolvedProblem": Problem {
+                "balloonColor": {
+                  "background_color": "rgba(243, 88, 20, 0.7)",
+                  "color": "#fff",
+                },
+                "id": "5",
+                "label": "F",
+                "statistics": ProblemStatistics {
+                  "acceptedNum": 125,
+                  "attemptedNum": 255,
+                  "firstSolveSubmissions": [
+                    Submission {
+                      "id": "121",
+                      "isFirstSolved": true,
+                      "isIgnore": false,
+                      "isSolved": true,
+                      "problemId": "5",
+                      "status": "ACCEPTED",
+                      "teamId": "3000202305140047",
+                      "timestamp": 1200,
+                      "timestampUnit": "second",
+                    },
+                  ],
+                  "ignoreNum": 0,
+                  "lastSolveSubmissions": [
+                    Submission {
+                      "id": "1692",
+                      "isFirstSolved": false,
+                      "isIgnore": false,
+                      "isSolved": true,
+                      "problemId": "5",
+                      "status": "ACCEPTED",
+                      "teamId": "3000202305140098",
+                      "timestamp": 17640,
+                      "timestampUnit": "second",
+                    },
+                  ],
+                  "pendingNum": 0,
+                  "rejectedNum": 147,
+                  "se": 0.05,
+                  "submittedNum": 275,
+                },
+              },
+              "rank": 3,
+              "timePoint": 52,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5487,7 +5462,7 @@ ResolverOperation {
                 },
               },
               "rank": 2,
-              "timePoint": 62,
+              "timePoint": 61,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5534,7 +5509,7 @@ ResolverOperation {
                 },
               },
               "rank": 1,
-              "timePoint": 78,
+              "timePoint": 77,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5581,7 +5556,7 @@ ResolverOperation {
                 },
               },
               "rank": 1,
-              "timePoint": 120,
+              "timePoint": 119,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5675,7 +5650,7 @@ ResolverOperation {
                 },
               },
               "rank": 2,
-              "timePoint": 177,
+              "timePoint": 176,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5722,7 +5697,7 @@ ResolverOperation {
                 },
               },
               "rank": 1,
-              "timePoint": 205,
+              "timePoint": 204,
             },
             {
               "lastSolvedProblem": Problem {
@@ -5769,7 +5744,7 @@ ResolverOperation {
                 },
               },
               "rank": 2,
-              "timePoint": 239,
+              "timePoint": 238,
             },
             {
               "lastSolvedProblem": Problem {
@@ -7771,11 +7746,6 @@ ResolverOperation {
         "timePoint": 4,
       },
       {
-        "lastSolvedProblem": null,
-        "rank": 3,
-        "timePoint": 5,
-      },
-      {
         "lastSolvedProblem": Problem {
           "balloonColor": {
             "background_color": "rgba(239, 217, 9, 0.7)",
@@ -7820,7 +7790,7 @@ ResolverOperation {
           },
         },
         "rank": 2,
-        "timePoint": 6,
+        "timePoint": 5,
       },
       {
         "lastSolvedProblem": Problem {
@@ -7867,7 +7837,7 @@ ResolverOperation {
           },
         },
         "rank": 1,
-        "timePoint": 17,
+        "timePoint": 16,
       },
       {
         "lastSolvedProblem": Problem {
@@ -7961,7 +7931,7 @@ ResolverOperation {
           },
         },
         "rank": 1,
-        "timePoint": 47,
+        "timePoint": 46,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8008,7 +7978,7 @@ ResolverOperation {
           },
         },
         "rank": 3,
-        "timePoint": 62,
+        "timePoint": 61,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8102,7 +8072,7 @@ ResolverOperation {
           },
         },
         "rank": 2,
-        "timePoint": 97,
+        "timePoint": 96,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8149,7 +8119,7 @@ ResolverOperation {
           },
         },
         "rank": 2,
-        "timePoint": 129,
+        "timePoint": 128,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8243,7 +8213,7 @@ ResolverOperation {
           },
         },
         "rank": 1,
-        "timePoint": 183,
+        "timePoint": 182,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8290,7 +8260,7 @@ ResolverOperation {
           },
         },
         "rank": 2,
-        "timePoint": 205,
+        "timePoint": 204,
       },
       {
         "lastSolvedProblem": Problem {
@@ -8337,7 +8307,7 @@ ResolverOperation {
           },
         },
         "rank": 1,
-        "timePoint": 239,
+        "timePoint": 238,
       },
       {
         "lastSolvedProblem": Problem {

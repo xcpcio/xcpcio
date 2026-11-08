@@ -349,7 +349,6 @@ export class Rank {
         this.rankStatistics.teamSolvedNumIndex = Array.from({ length: this.contest.problems.length + 1 }).fill(0) as number[];
       })();
 
-      let preSubmissionTimestampToMinute = 0;
       const allSubmissions = this.getSubmissions();
 
       for (let ix = 0; ix < allSubmissions.length; ix++) {
@@ -427,7 +426,10 @@ export class Rank {
           }
         })();
 
-        if (s.timestampToMinute > preSubmissionTimestampToMinute || ix === allSubmissions.length - 1) {
+        const nextSubmission = allSubmissions[ix + 1];
+        const isLastSubmissionOfMinute = nextSubmission === undefined || nextSubmission.timestampToMinute > s.timestampToMinute;
+
+        if (isLastSubmissionOfMinute) {
           this.teams.forEach(t => t.calcSolvedData(this.contest.options));
           this.teams.sort(Team.compare);
           this.buildTeamRank();
@@ -442,8 +444,6 @@ export class Rank {
             ),
           );
         }
-
-        preSubmissionTimestampToMinute = s.timestampToMinute;
       }
 
       this.teams.forEach(t => t.calcSolvedData(this.contest.options));
