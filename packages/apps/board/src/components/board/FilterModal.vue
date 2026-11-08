@@ -137,6 +137,7 @@ function onConfirm() {
     :title="title"
     width="w-200"
     mt="mt-4"
+    :scrollable="false"
     @on-before-close="onBeforeClose"
   >
     <div
