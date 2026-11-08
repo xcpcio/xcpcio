@@ -8,6 +8,8 @@ const props = defineProps<{
   screenUrl: string | null;
 }>();
 
+const emit = defineEmits<{ (e: "ended", playedSeconds: number): void }>();
+
 const { t } = useI18n();
 const { initHlsPlayer } = useHlsPlayer();
 
@@ -27,6 +29,24 @@ let screenHls: Hls | null = null;
 // Error states
 const webcamError = ref(false);
 const screenError = ref(false);
+
+// Both videos play the same request; only report the first one reaching the end.
+let endedEmitted = false;
+
+// The playback server rebases the media timeline to the requested start, so
+// currentTime at the end is the duration that was actually served.
+function onVideoEnded(event: Event) {
+  if (endedEmitted) {
+    return;
+  }
+
+  endedEmitted = true;
+  const video = event.currentTarget;
+  const playedSeconds = video instanceof HTMLVideoElement && Number.isFinite(video.currentTime)
+    ? video.currentTime
+    : 0;
+  emit("ended", playedSeconds);
+}
 
 // Layout mode types and state
 type LayoutMode = "side-by-side" | "pip";
@@ -79,6 +99,8 @@ function destroyPlayers() {
 
 // Initialize players
 function initPlayers() {
+  endedEmitted = false;
+
   if (webcamVideoRef.value && props.webcamUrl) {
     if (isHlsUrl(props.webcamUrl)) {
       webcamHls = initHlsPlayer(
@@ -302,6 +324,7 @@ defineExpose({ resetPlayers });
             muted
             playsinline
             class="w-full h-full object-contain"
+            @ended="onVideoEnded"
           />
         </div>
         <div
@@ -346,6 +369,7 @@ defineExpose({ resetPlayers });
             muted
             playsinline
             class="w-full h-full object-contain"
+            @ended="onVideoEnded"
           />
         </div>
         <div
@@ -384,6 +408,7 @@ defineExpose({ resetPlayers });
             muted
             playsinline
             class="w-full h-full object-contain"
+            @ended="onVideoEnded"
           />
           <div
             v-else
@@ -404,6 +429,7 @@ defineExpose({ resetPlayers });
             muted
             playsinline
             class="w-full h-full object-contain"
+            @ended="onVideoEnded"
           />
           <div
             v-else
@@ -434,6 +460,7 @@ defineExpose({ resetPlayers });
             class="w-full h-full object-contain bg-black"
             @play="syncPipVideoState"
             @pause="syncPipVideoState"
+            @ended="onVideoEnded"
           />
           <div
             v-else
@@ -455,6 +482,7 @@ defineExpose({ resetPlayers });
             class="w-full h-full object-contain bg-black"
             @play="syncPipVideoState"
             @pause="syncPipVideoState"
+            @ended="onVideoEnded"
           />
           <div
             v-else
