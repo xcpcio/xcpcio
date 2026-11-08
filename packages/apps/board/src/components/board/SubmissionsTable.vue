@@ -300,10 +300,9 @@ function closeRealtimeStreamModal() {
           lg:space-x-4 lg:space-y-0
         >
           <div
-            flex flex-shrink-0 flex-col
+            flex flex-col flex-wrap gap-3
             md:flex-row md:items-center
-            lg:justify-end space-y-3
-            md:space-x-3 md:space-y-0
+            lg:justify-end
           >
             <div
               v-if="rank.contest.options.enableOrganization && enableFilter?.organization"

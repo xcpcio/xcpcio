@@ -10,6 +10,7 @@ const props = defineProps<{
   isFilter?: boolean;
   giantsType?: GiantsType;
   hideOrganization?: boolean;
+  isCompactLayout?: boolean;
 }>();
 
 const el = ref(null);
@@ -34,6 +35,20 @@ const teamName = computed(() => team.value.name.getOrDefault(lang.value));
 
 const showOrganization = computed(() => {
   return rank.value.contest.options.enableOrganization && !props.hideOrganization;
+});
+
+// In the compact layout the org column is merged into the team cell, so the org
+// logo takes over the full-height badge slot on the left.
+const bigBadge = computed(() => {
+  if (props.isCompactLayout && showOrganization.value && team.value.organization?.logo) {
+    return team.value.organization.logo;
+  }
+
+  return team.value.badge;
+});
+
+const showInlineTeamBadge = computed(() => {
+  return props.isCompactLayout && !!team.value.badge && bigBadge.value !== team.value.badge;
 });
 
 function getStandClassName(t: Team, isRankField = false): string {
@@ -99,7 +114,7 @@ function isRenderByVisible() {
       {{ team.rank }}
     </td>
     <td
-      v-if="showOrganization && isRenderByVisible()"
+      v-if="showOrganization && !props.isCompactLayout && isRenderByVisible()"
       class="stnd relative"
       :class="[getStandClassName(team)]"
     >
@@ -127,15 +142,6 @@ function isRenderByVisible() {
         </div>
         <div float-right />
       </div>
-
-      <div>
-        <OrgModal
-          v-if="!hiddenOrgModal && team.organization"
-          v-model:is-hidden="hiddenOrgModal"
-          :rank="rank"
-          :organization="team.organization"
-        />
-      </div>
     </td>
 
     <td
@@ -144,18 +150,33 @@ function isRenderByVisible() {
       :class="[getStandClassName(team)]"
     >
       <Badge
-        :image="team.badge"
+        :image="bigBadge"
         class="absolute left-0 top-0 bottom-0 px-1 w-12"
       />
       <div
-        flex items-center justify-center
+        flex flex-col items-center justify-center
         cursor-pointer
-        :class="team.badge ? 'pl-10' : ''"
+        :class="bigBadge ? 'pl-10' : ''"
         @click="onClickTeamModal"
       >
-        <span line-clamp-2>{{ teamName }}</span>
-        <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
-        <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
+        <div flex items-center>
+          <Badge
+            v-if="showInlineTeamBadge"
+            :image="team.badge"
+            class="mr-1 h-3.5 w-3.5 shrink-0"
+          />
+          <span line-clamp-2>{{ teamName }}</span>
+          <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
+          <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
+        </div>
+
+        <div
+          v-if="props.isCompactLayout && showOrganization && team.organization"
+          class="mt-0.5 cursor-pointer text-[10px] leading-tight opacity-70 line-clamp-2"
+          @click.stop="onClickOrgModal"
+        >
+          {{ team.organization.name.getOrDefault(lang) }}
+        </div>
       </div>
 
       <div>
@@ -164,6 +185,13 @@ function isRenderByVisible() {
           v-model:is-hidden="hiddenTeamModal"
           :rank="rank"
           :team="team"
+        />
+
+        <OrgModal
+          v-if="showOrganization && !hiddenOrgModal && team.organization"
+          v-model:is-hidden="hiddenOrgModal"
+          :rank="rank"
+          :organization="team.organization"
         />
       </div>
     </td>

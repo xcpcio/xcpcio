@@ -400,8 +400,48 @@ onUnmounted(() => {
   clearAutoScrollInterval();
 });
 
-const wrapperWidthClass = "w-full sm:w-[1280px] xl:w-screen";
-const widthClass = "w-full sm:w-[1260px] xl:w-screen";
+const wrapperWidthClass = "w-full";
+const widthClass = "w-full";
+
+const rankTableContainer = ref<HTMLElement | null>(null);
+const rankTableInner = ref<HTMLElement | null>(null);
+
+let rankTableZoom = 1;
+
+function updateRankTableZoom() {
+  const container = rankTableContainer.value;
+  const inner = rankTableInner.value;
+  if (!container || !inner) {
+    return;
+  }
+
+  const table = container.querySelector<HTMLTableElement>("table.standings");
+  if (!table) {
+    return;
+  }
+
+  // Measure at 100% because getBoundingClientRect() already reflects the zoom.
+  inner.style.zoom = "";
+  const tableWidth = table.getBoundingClientRect().width;
+  const nextZoom = Math.min(1, container.clientWidth / tableWidth);
+
+  if (Math.abs(nextZoom - rankTableZoom) > 0.001) {
+    rankTableZoom = nextZoom;
+  }
+
+  inner.style.zoom = rankTableZoom < 1 ? String(rankTableZoom) : "";
+}
+
+useResizeObserver(rankTableContainer, updateRankTableZoom);
+
+watch(lang, () => {
+  nextTick(updateRankTableZoom);
+});
+
+onMounted(() => {
+  nextTick(updateRankTableZoom);
+  void document.fonts.ready.then(updateRankTableZoom);
+});
 </script>
 
 <template>
@@ -555,10 +595,17 @@ const widthClass = "w-full sm:w-[1260px] xl:w-screen";
         >
           <div
             v-if="currentType === 'rank'"
+            ref="rankTableContainer"
+            class="w-full"
           >
-            <Standings
-              :rank="rank"
-            />
+            <div
+              ref="rankTableInner"
+              class="w-fit max-w-full mx-auto"
+            >
+              <Standings
+                :rank="rank"
+              />
+            </div>
           </div>
 
           <div

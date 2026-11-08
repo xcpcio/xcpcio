@@ -1,3 +1,12 @@
+/* The popper target is `position: absolute` even before Flowbite creates the
+   tooltip instance. `visibility: hidden` still contributes to layout, so a
+   hidden popper anchored to a right-edge element (e.g. the last standings
+   column) sticks out past the viewport and makes the whole page scroll
+   horizontally. Keep it out of the layout until Flowbite adds `visible`. */
+.tooltip:not(.visible) {
+  display: none;
+}
+
 .tooltip-arrow,
 .tooltip-arrow:before {
   position: absolute;
