@@ -403,6 +403,15 @@ onUnmounted(() => {
 const wrapperWidthClass = "w-full";
 const widthClass = "w-full";
 
+// The standings table is wider than the other tabs because the compact layout
+// reserves the badge slot for the org logo (the table needs ~940px). At the
+// 980px mobile layout viewport the default 92% content width is only ~902px,
+// which used to force a zoom-to-fit that WebKit does not apply reliably. Give
+// the rank tab a little more room on phones so the table fits on its own.
+const tabContentWidthClass = computed(() => {
+  return currentType.value === "rank" ? "w-[96%] lg:w-[92%]" : "w-[92%]";
+});
+
 const rankTableContainer = ref<HTMLElement | null>(null);
 const rankTableInner = ref<HTMLElement | null>(null);
 
@@ -590,7 +599,7 @@ onMounted(() => {
         flex justify-center
       >
         <div
-          class="w-[92%]"
+          :class="[tabContentWidthClass]"
           flex justify-center
         >
           <div
