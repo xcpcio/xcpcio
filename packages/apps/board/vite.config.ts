@@ -184,7 +184,6 @@ export default defineConfig({
     host: true,
     proxy: {
       "/data": proxyConfig,
-      "/rating-data": proxyConfig,
     },
   },
 

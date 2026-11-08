@@ -11,7 +11,6 @@ export * from "./person";
 export * from "./problem";
 export * from "./rank";
 export * from "./rank-statistics";
-export * from "./rating";
 export * from "./resolver";
 export * from "./resolver-vue";
 export * from "./seat-map";
