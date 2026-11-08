@@ -208,6 +208,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
   const options: Highcharts.Options = {
     chart: {
       type: "spline",
+      backgroundColor: "transparent",
     },
     title: {
       text: "排名变化趋势图",
