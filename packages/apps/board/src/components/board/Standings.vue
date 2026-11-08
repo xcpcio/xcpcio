@@ -9,10 +9,10 @@ const props = defineProps<{
 
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
-// Below 1200px the Organization column is merged into the Team cell to keep the
+// Below 1280px the Organization column is merged into the Team cell to keep the
 // standings compact. (`index.html` omits the viewport meta tag, so mobile
 // browsers use the default ~980px layout viewport and fall into this range too.)
-const isCompactLayout = useMediaQuery("(max-width: 1199.98px)");
+const isCompactLayout = useMediaQuery("(max-width: 1279.98px)");
 
 const rank = computed(() => props.rank);
 const teams = computed(() => props.rank.teams);
