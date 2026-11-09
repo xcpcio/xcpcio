@@ -10,8 +10,8 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 // Below 1280px the Organization column is merged into the Team cell to keep the
-// standings compact. (`index.html` omits the viewport meta tag, so mobile
-// browsers use the default ~980px layout viewport and fall into this range too.)
+// standings compact. (`index.html` uses a 1260px mobile layout viewport, so
+// phones fall into this range too.)
 const isCompactLayout = useMediaQuery("(max-width: 1279.98px)");
 
 const rank = computed(() => props.rank);
@@ -169,7 +169,7 @@ const maxTeamLength = computed(() => {
         >
           <tr>
             <th
-              class="title"
+              class="title place-column"
               style="width: 3rem;"
             >
               {{ t("standings.place") }}
@@ -188,13 +188,13 @@ const maxTeamLength = computed(() => {
               {{ t("standings.team") }}
             </th>
             <th
-              class="title"
+              class="title solved-column"
               style="width: 3rem;"
             >
               {{ t("standings.solved") }}
             </th>
             <th
-              class="title"
+              class="title penalty-column"
               style="width: 4rem;"
             >
               {{ t("standings.penalty") }}
@@ -209,7 +209,7 @@ const maxTeamLength = computed(() => {
               />
             </template>
 
-            <th class="title" style="width: 2.5rem;">
+            <th class="title dirt-column" style="width: 2.5rem;">
               <Tooltip
                 placement="top"
               >
@@ -229,7 +229,7 @@ const maxTeamLength = computed(() => {
               </Tooltip>
             </th>
 
-            <th class="title" style="width: 2.5rem;">
+            <th class="title se-column" style="width: 2.5rem;">
               <Tooltip
                 placement="top"
               >

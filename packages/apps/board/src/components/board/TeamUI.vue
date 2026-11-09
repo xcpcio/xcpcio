@@ -172,7 +172,7 @@ function isRenderByVisible() {
 
         <div
           v-if="props.isCompactLayout && showOrganization && team.organization"
-          class="mt-0.5 flex cursor-pointer items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
+          class="team-org-line mt-0.5 flex cursor-pointer items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
           @click.stop="onClickOrgModal"
         >
           <span
