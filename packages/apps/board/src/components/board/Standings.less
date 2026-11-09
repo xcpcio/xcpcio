@@ -23,6 +23,14 @@ table.standings {
   }
 }
 
+// The auto table layout sizes the problem columns by their content, so columns
+// with e.g. a two-digit pending count end up wider than the others. Give them
+// all the same minimum width so the blocks line up. Use px rather than rem:
+// rem values are re-scaled again under WebKit's zoom.
+th.problem-column {
+  min-width: 48px;
+}
+
 .loading {
   display: flex;
   align-items: center;
