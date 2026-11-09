@@ -6,6 +6,29 @@ table.standings {
   // border-collapse: collapse;
   /* width: 100%; */
   // max-width: 1560px;
+  // The table is sized in px and fitted with `zoom` (see Board.vue). iOS Safari
+  // otherwise text-autosizes cells and inflates the fonts, which overflows the
+  // fitted table.
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+// The auto table layout squeezes the Team column down to the longest team name
+// because the problem columns are already at their text width. Keep team names
+// readable in the compact layout. Only do this where the viewport is wide
+// enough for zoom-to-fit to stay accurate in WebKit.
+@media (min-width: 960px) and (max-width: 1279.98px) {
+  th.team-column {
+    min-width: 14rem;
+  }
+}
+
+// The auto table layout sizes the problem columns by their content, so columns
+// with e.g. a two-digit pending count end up wider than the others. Give them
+// all the same minimum width so the blocks line up. Use px rather than rem:
+// rem values are re-scaled again under WebKit's zoom.
+th.problem-column {
+  min-width: 48px;
 }
 
 .loading {

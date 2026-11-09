@@ -182,7 +182,7 @@ const maxTeamLength = computed(() => {
               {{ t("standings.organization") }}
             </th>
             <th
-              class="title"
+              class="title team-column"
               :style="{ width: `${Math.min(32, Math.ceil(maxTeamLength * 1))}rem` }"
             >
               {{ t("standings.team") }}

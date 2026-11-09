@@ -403,10 +403,17 @@ onUnmounted(() => {
 const wrapperWidthClass = "w-full";
 const widthClass = "w-full";
 
+// The standings table is wider than the other tabs because the compact layout
+// reserves the badge slot for the org logo (the table needs ~940px). At the
+// 980px mobile layout viewport the default 92% content width is only ~902px,
+// which used to force a zoom-to-fit that WebKit does not apply reliably. Give
+// the rank tab a little more room on phones so the table fits on its own.
+const tabContentWidthClass = computed(() => {
+  return currentType.value === "rank" ? "w-[96%] lg:w-[92%]" : "w-[92%]";
+});
+
 const rankTableContainer = ref<HTMLElement | null>(null);
 const rankTableInner = ref<HTMLElement | null>(null);
-
-let rankTableZoom = 1;
 
 function updateRankTableZoom() {
   const container = rankTableContainer.value;
@@ -423,13 +430,22 @@ function updateRankTableZoom() {
   // Measure at 100% because getBoundingClientRect() already reflects the zoom.
   inner.style.zoom = "";
   const tableWidth = table.getBoundingClientRect().width;
-  const nextZoom = Math.min(1, container.clientWidth / tableWidth);
+  let nextZoom = Math.min(1, container.clientWidth / tableWidth);
 
-  if (Math.abs(nextZoom - rankTableZoom) > 0.001) {
-    rankTableZoom = nextZoom;
+  if (nextZoom < 1) {
+    inner.style.zoom = String(nextZoom);
+    // WebKit can lay a zoomed table out wider than the width measured above, so
+    // verify the scaled table actually fits the container and shrink a little
+    // more if needed.
+    let guard = 0;
+    while (container.scrollWidth > container.clientWidth + 1 && guard < 8) {
+      nextZoom *= 0.985;
+      inner.style.zoom = String(nextZoom);
+      guard++;
+    }
   }
 
-  inner.style.zoom = rankTableZoom < 1 ? String(rankTableZoom) : "";
+  inner.style.zoom = nextZoom < 1 ? String(nextZoom) : "";
 }
 
 useResizeObserver(rankTableContainer, updateRankTableZoom);
@@ -590,7 +606,7 @@ onMounted(() => {
         flex justify-center
       >
         <div
-          class="w-[92%]"
+          :class="[tabContentWidthClass]"
           flex justify-center
         >
           <div

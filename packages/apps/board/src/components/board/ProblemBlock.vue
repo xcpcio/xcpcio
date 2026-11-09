@@ -20,7 +20,7 @@ const balloonColor = computed(() => problem.value.balloonColor);
 <template>
   <th
     :key="problem.id"
-    class="success"
+    class="success problem-column"
     text-center
     style="width: 3rem;"
     :style="{
