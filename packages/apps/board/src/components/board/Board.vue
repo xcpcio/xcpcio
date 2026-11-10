@@ -403,15 +403,6 @@ onUnmounted(() => {
 const wrapperWidthClass = "w-full";
 const widthClass = "w-full";
 
-// The standings table is wider than the other tabs because the compact layout
-// reserves the badge slot for the org logo (the table needs ~940px). At the
-// 980px mobile layout viewport the default 92% content width is only ~902px,
-// which used to force a zoom-to-fit that WebKit does not apply reliably. Give
-// the rank tab a little more room on phones so the table fits on its own.
-const tabContentWidthClass = computed(() => {
-  return currentType.value === "rank" ? "w-[96%] lg:w-[92%]" : "w-[92%]";
-});
-
 const rankTableContainer = ref<HTMLElement | null>(null);
 const rankTableInner = ref<HTMLElement | null>(null);
 
@@ -429,23 +420,23 @@ function updateRankTableZoom() {
 
   // Measure at 100% because getBoundingClientRect() already reflects the zoom.
   inner.style.zoom = "";
-  const tableWidth = table.getBoundingClientRect().width;
-  let nextZoom = Math.min(1, container.clientWidth / tableWidth);
 
-  if (nextZoom < 1) {
-    inner.style.zoom = String(nextZoom);
-    // WebKit can lay a zoomed table out wider than the width measured above, so
-    // verify the scaled table actually fits the container and shrink a little
-    // more if needed.
-    let guard = 0;
-    while (container.scrollWidth > container.clientWidth + 1 && guard < 8) {
-      nextZoom *= 0.985;
-      inner.style.zoom = String(nextZoom);
-      guard++;
-    }
+  const containerWidth = container.clientWidth;
+  const tableWidth = table.getBoundingClientRect().width;
+  // The table fills the available width up to its max-content width, so it only
+  // needs zooming when its preferred width clearly exceeds the container. The
+  // small tolerance avoids a pointless zoom (and Safari's zoom quirks) when the
+  // two are only a fraction of a pixel apart.
+  if (containerWidth === 0 || tableWidth <= containerWidth * 1.01) {
+    return;
   }
 
-  inner.style.zoom = nextZoom < 1 ? String(nextZoom) : "";
+  // The fitted width is a fixed point of the auto table layout: the zoom makes
+  // the available width larger again, but the table then scales back to the
+  // container. Leave a little slack for engine rounding and WebKit's zoom
+  // quirks.
+  const zoom = (containerWidth / tableWidth) * 0.995;
+  inner.style.zoom = String(zoom);
 }
 
 useResizeObserver(rankTableContainer, updateRankTableZoom);
@@ -606,7 +597,7 @@ onMounted(() => {
         flex justify-center
       >
         <div
-          :class="[tabContentWidthClass]"
+          class="w-[92%]"
           flex justify-center
         >
           <div
@@ -616,7 +607,7 @@ onMounted(() => {
           >
             <div
               ref="rankTableInner"
-              class="w-fit max-w-full mx-auto"
+              class="rank-table-inner w-fit max-w-full mx-auto"
             >
               <Standings
                 :rank="rank"
@@ -694,5 +685,15 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   text-align: center;
+}
+
+/* Phones use the default ~980px layout viewport; the standings table is fitted
+   with a fixed layout there (see Standings.less). Give the wrapper the full
+   content width so the percentage-width table resolves against it. */
+@media (min-width: 960px) and (max-width: 1000px) {
+  .rank-table-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 </style>
