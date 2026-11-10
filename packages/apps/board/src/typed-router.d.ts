@@ -65,20 +65,6 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
-    '/rating/': RouteRecordInfo<
-      '/rating/',
-      '/rating',
-      Record<never, never>,
-      Record<never, never>,
-      | never
-    >,
-    '/rating/[...all]': RouteRecordInfo<
-      '/rating/[...all]',
-      '/rating/:all(.*)',
-      { all: ParamValue<true> },
-      { all: ParamValue<false> },
-      | never
-    >,
     '/resolver/': RouteRecordInfo<
       '/resolver/',
       '/resolver',
@@ -132,18 +118,6 @@ declare module 'vue-router/auto-routes' {
     'src/pages/custom/index.vue': {
       routes:
         | '/custom/'
-      views:
-        | never
-    }
-    'src/pages/rating/index.vue': {
-      routes:
-        | '/rating/'
-      views:
-        | never
-    }
-    'src/pages/rating/[...all].vue': {
-      routes:
-        | '/rating/[...all]'
       views:
         | never
     }

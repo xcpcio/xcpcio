@@ -19,8 +19,6 @@ declare global {
   const GITHUB_URL: typeof import('./composables/constant').GITHUB_URL
   const LastBlockDisplayType: typeof import('./composables/type').LastBlockDisplayType
   const Pagination: typeof import('./composables/pagination').Pagination
-  const RATING_DATA_HOST: typeof import('./composables/constant').RATING_DATA_HOST
-  const RATING_TITLE_SUFFIX: typeof import('./composables/constant').RATING_TITLE_SUFFIX
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant').RESOLVER_TITLE_SUFFIX
   const RUNTIME_CONFIG_STORAGE_KEY: typeof import('./composables/runtimeConfig').RUNTIME_CONFIG_STORAGE_KEY
   const SUBMISSION_TITLE_SUFFIX: typeof import('./composables/constant').SUBMISSION_TITLE_SUFFIX
@@ -67,7 +65,6 @@ declare global {
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterTeams
   const getMedalColor: typeof import('./composables/color').getMedalColor
   const getProblemChart: typeof import('./composables/statistics').getProblemChart
-  const getRatingGraphOptions: typeof import('./composables/rating').getRatingGraphOptions
   const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
   const getRuntimeConfig: typeof import('./composables/runtimeConfig').getRuntimeConfig
   const getStandingsStatusColor: typeof import('./composables/color').getStandingsStatusColor
@@ -407,8 +404,6 @@ declare module 'vue' {
     readonly GITHUB_URL: UnwrapRef<typeof import('./composables/constant')['GITHUB_URL']>
     readonly LastBlockDisplayType: UnwrapRef<typeof import('./composables/type')['LastBlockDisplayType']>
     readonly Pagination: UnwrapRef<typeof import('./composables/pagination')['Pagination']>
-    readonly RATING_DATA_HOST: UnwrapRef<typeof import('./composables/constant')['RATING_DATA_HOST']>
-    readonly RATING_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RATING_TITLE_SUFFIX']>
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly RUNTIME_CONFIG_STORAGE_KEY: UnwrapRef<typeof import('./composables/runtimeConfig')['RUNTIME_CONFIG_STORAGE_KEY']>
     readonly SUBMISSION_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['SUBMISSION_TITLE_SUFFIX']>
@@ -455,7 +450,6 @@ declare module 'vue' {
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
     readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
-    readonly getRatingGraphOptions: UnwrapRef<typeof import('./composables/rating')['getRatingGraphOptions']>
     readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>
     readonly getRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeConfig']>
     readonly getStandingsStatusColor: UnwrapRef<typeof import('./composables/color')['getStandingsStatusColor']>
