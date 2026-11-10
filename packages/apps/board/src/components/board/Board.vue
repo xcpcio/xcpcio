@@ -406,8 +406,6 @@ const widthClass = "w-full";
 const rankTableContainer = ref<HTMLElement | null>(null);
 const rankTableInner = ref<HTMLElement | null>(null);
 
-let rankTableZoom = 1;
-
 function updateRankTableZoom() {
   const container = rankTableContainer.value;
   const inner = rankTableInner.value;
@@ -422,14 +420,23 @@ function updateRankTableZoom() {
 
   // Measure at 100% because getBoundingClientRect() already reflects the zoom.
   inner.style.zoom = "";
-  const tableWidth = table.getBoundingClientRect().width;
-  const nextZoom = Math.min(1, container.clientWidth / tableWidth);
 
-  if (Math.abs(nextZoom - rankTableZoom) > 0.001) {
-    rankTableZoom = nextZoom;
+  const containerWidth = container.clientWidth;
+  const tableWidth = table.getBoundingClientRect().width;
+  // The table fills the available width up to its max-content width, so it only
+  // needs zooming when its preferred width clearly exceeds the container. The
+  // small tolerance avoids a pointless zoom (and Safari's zoom quirks) when the
+  // two are only a fraction of a pixel apart.
+  if (containerWidth === 0 || tableWidth <= containerWidth * 1.01) {
+    return;
   }
 
-  inner.style.zoom = rankTableZoom < 1 ? String(rankTableZoom) : "";
+  // The fitted width is a fixed point of the auto table layout: the zoom makes
+  // the available width larger again, but the table then scales back to the
+  // container. Leave a little slack for engine rounding and WebKit's zoom
+  // quirks.
+  const zoom = (containerWidth / tableWidth) * 0.995;
+  inner.style.zoom = String(zoom);
 }
 
 useResizeObserver(rankTableContainer, updateRankTableZoom);
@@ -600,7 +607,7 @@ onMounted(() => {
           >
             <div
               ref="rankTableInner"
-              class="w-fit max-w-full mx-auto"
+              class="rank-table-inner w-fit max-w-full mx-auto"
             >
               <Standings
                 :rank="rank"
@@ -678,5 +685,15 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   text-align: center;
+}
+
+/* Phones use the default ~980px layout viewport; the standings table is fitted
+   with a fixed layout there (see Standings.less). Give the wrapper the full
+   content width so the percentage-width table resolves against it. */
+@media (min-width: 960px) and (max-width: 1000px) {
+  .rank-table-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 </style>

@@ -172,10 +172,16 @@ function isRenderByVisible() {
 
         <div
           v-if="props.isCompactLayout && showOrganization && team.organization"
-          class="mt-0.5 cursor-pointer text-[10px] leading-tight opacity-70 line-clamp-2"
+          class="team-org-line mt-0.5 flex cursor-pointer items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
           @click.stop="onClickOrgModal"
         >
-          {{ team.organization.name.getOrDefault(lang) }}
+          <span
+            v-if="team.isFirstRankOfOrganization"
+            class="shrink-0 font-bold"
+          >
+            {{ team.organization.rank }}
+          </span>
+          <span line-clamp-2>{{ team.organization.name.getOrDefault(lang) }}</span>
         </div>
       </div>
 

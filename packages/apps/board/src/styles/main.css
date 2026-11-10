@@ -10,6 +10,16 @@ body,
   padding: 0;
 }
 
+/*
+ * The board renders a desktop layout and scales it down on phones (no viewport
+ * meta tag). Automatic text inflation (iOS Safari, Android font boosting) would
+ * enlarge the standings text and make the table overflow the screen.
+ */
+html {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
 html.dark {
   background: var(--global-background);
   color-scheme: dark;

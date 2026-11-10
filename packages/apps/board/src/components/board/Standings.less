@@ -6,6 +6,80 @@ table.standings {
   // border-collapse: collapse;
   /* width: 100%; */
   // max-width: 1560px;
+  // The table is fitted with `zoom` in narrow desktop windows and with a fixed
+  // layout on the ~980px phone viewport (see below). iOS Safari otherwise
+  // text-autosizes cells and inflates the fonts, which overflows the fitted
+  // table.
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+// The auto table layout squeezes the Team column down to the longest team name
+// because the problem columns are already at their text width. Keep team names
+// readable in the compact layout. Only do this where the viewport is wide
+// enough for zoom-to-fit to stay accurate in WebKit.
+@media (min-width: 960px) and (max-width: 1279.98px) {
+  th.team-column {
+    min-width: 14rem;
+  }
+}
+
+// The auto table layout sizes the problem columns by their content, so columns
+// with e.g. a two-digit pending count end up wider than the others. Give them
+// all the same minimum width so the blocks line up. Use px rather than rem:
+// rem values are re-scaled again under WebKit's zoom.
+th.problem-column {
+  min-width: 48px;
+}
+
+// Phones use the default ~980px layout viewport. Fit the whole standings table
+// there without CSS zoom: iOS Safari does not scale font-size with `zoom`, so a
+// zoomed table paints wider than its container and gets cut off. A fixed table
+// layout with smaller fonts and columns keeps roughly the visual density of the
+// zoomed version, and the team column takes the remaining width. Only target
+// the ~980px layout viewport; other widths keep the zoom-to-fit.
+@media (min-width: 960px) and (max-width: 1000px) {
+  table.standings {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  table.standings th,
+  table.standings td,
+  table.standings td.stnd {
+    font-size: 10px;
+  }
+
+  table.standings .team-org-line {
+    font-size: 8px;
+  }
+
+  table.standings th.place-column,
+  table.standings th.solved-column {
+    width: 38px !important;
+    min-width: 0 !important;
+  }
+
+  table.standings th.problem-column {
+    width: 40px !important;
+    min-width: 0 !important;
+  }
+
+  table.standings th.penalty-column {
+    width: 52px !important;
+    min-width: 0 !important;
+  }
+
+  table.standings th.dirt-column,
+  table.standings th.se-column {
+    width: 30px !important;
+    min-width: 0 !important;
+  }
+
+  table.standings th.team-column {
+    width: auto !important;
+    min-width: 0 !important;
+  }
 }
 
 .loading {
