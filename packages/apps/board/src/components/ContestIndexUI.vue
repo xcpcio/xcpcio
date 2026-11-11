@@ -47,7 +47,7 @@ const logo = computed(() => {
           >
             <div
               v-if="logo !== undefined"
-              class="logo"
+              class="logo shrink-0"
             >
               <img
                 class="h-10"
@@ -57,8 +57,7 @@ const logo = computed(() => {
             </div>
 
             <div
-              class="title"
-              w-inherit
+              class="title min-w-0 flex-1"
             >
               <Tooltip>
                 <div
