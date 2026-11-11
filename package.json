@@ -38,6 +38,7 @@
     "fsxx": "catalog:",
     "glob": "catalog:",
     "npm-run-all": "catalog:",
+    "playwright": "catalog:",
     "taze": "catalog:",
     "typescript": "catalog:",
     "unbuild": "catalog:",
