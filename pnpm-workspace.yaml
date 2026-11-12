@@ -24,12 +24,12 @@ catalog:
   "@codemirror/lint": ^6.9.7
   "@codemirror/state": ^6.7.6
   "@codemirror/view": ^6.43.15
-  "@iconify/json": ^2.2.548
+  "@iconify/json": ^2.2.553
   "@intlify/unplugin-vue-i18n": ^11.2.8
-  "@lezer/common": ^1.5.4
+  "@lezer/common": ^1.5.5
   "@lezer/highlight": ^1.2.5
-  "@shikijs/markdown-it": ^4.5.0
-  "@tanstack/vue-query": ^5.105.0
+  "@shikijs/markdown-it": ^4.6.0
+  "@tanstack/vue-query": ^5.106.0
   "@types/chroma-js": ^3.1.3
   "@types/color-diff": ^1.2.5
   "@types/file-saver": ^2.0.7
@@ -58,7 +58,7 @@ catalog:
   cypress: ^15.21.1
   cypress-vite: ^1.10.2
   dayjs: ^1.11.23
-  eslint: ^10.13.0
+  eslint: ^10.14.0
   eslint-plugin-cypress: ^6.4.4
   eslint-plugin-format: ^2.0.1
   esmo: ^4.8.0
@@ -68,12 +68,12 @@ catalog:
   fsxx: ^0.1.0
   git-repo-info: ^2.1.1
   glob: ^13.0.6
-  gsap: ^3.15.0
+  gsap: ^3.15.1
   highcharts: ^13.1.1
   highcharts-vue: ^2.0.2
-  hls.js: ^1.7.3
+  hls.js: ^1.7.4
   https-localhost: ^4.7.2
-  js-base64: ^3.9.5
+  js-base64: ^3.9.6
   less: ^4.9.1
   lodash: ^4.18.1
   markdown-it-link-attributes: ^4.0.1
@@ -83,8 +83,8 @@ catalog:
   papaparse: ^5.7.0
   pinia: ^3.0.4
   playwright: ^1.64.1
-  rollup: ^4.65.1
-  shiki: ^4.5.0
+  rollup: ^4.67.5
+  shiki: ^4.6.0
   sleep-promise: ^9.1.0
   string-width: ^8.3.0
   taze: ^19.17.2
@@ -110,10 +110,10 @@ catalog:
   vitest: ^4.1.12
   vue: ^3.5.44
   vue-demi: ^0.14.10
-  vue-i18n: ^11.4.16
+  vue-i18n: ^11.4.18
   vue-router: ^5.4.0
   vue-search-select: ^3.2.0
   vue-toast-notification: ^3.1.3
-  vue-tsc: ^3.3.13
+  vue-tsc: ^3.3.14
   xlsx-js-style: ^1.2.0
   zx: ^8.8.5
