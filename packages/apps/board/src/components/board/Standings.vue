@@ -127,11 +127,19 @@ const giantTeams = computed(() => {
   return res;
 });
 
-const maxOrgLength = computed(() => {
+// The org cell reserves `pl-10` (2.5rem) for the logo and `pl-2` (0.5rem) for
+// the org rank. Only the name length was used to size the column, so names were
+// wrapped as soon as a logo was rendered next to them.
+const ORGANIZATION_LOGO_WIDTH_REM = 2.5;
+
+const maxOrgWidth = computed(() => {
   let res = 0;
   rank.value.teams.forEach((t) => {
     if (t.organization) {
-      res = Math.max(res, t.organization.name.getOrDefault(lang.value).length);
+      const nameLength = t.organization.name.getOrDefault(lang.value).length;
+      const logoWidth = t.organization.logo ? ORGANIZATION_LOGO_WIDTH_REM : 0;
+
+      res = Math.max(res, Math.ceil(nameLength * 1.1 + logoWidth));
     }
   });
 
@@ -177,7 +185,7 @@ const maxTeamLength = computed(() => {
             <th
               v-if="rank.contest.options.enableOrganization && !isCompactLayout"
               class="title"
-              :style="{ width: `${Math.min(32, Math.ceil(maxOrgLength * 1.1))}rem` }"
+              :style="{ width: `${Math.min(32, maxOrgWidth)}rem` }"
             >
               {{ t("standings.organization") }}
             </th>
