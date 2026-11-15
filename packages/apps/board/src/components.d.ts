@@ -51,6 +51,7 @@ declare module 'vue' {
     ReactionVideoModal: typeof import('./components/board/ReactionVideoModal.vue')['default']
     RealtimeReactionStreamModal: typeof import('./components/board/RealtimeReactionStreamModal.vue')['default']
     Resolver: typeof import('./components/Resolver.vue')['default']
+    ResolverHelpOverlay: typeof import('./components/resolver/ResolverHelpOverlay.vue')['default']
     ResolverTeamRow: typeof import('./components/ResolverTeamRow.vue')['default']
     RightArrowIcon: typeof import('./components/common/RightArrowIcon.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
