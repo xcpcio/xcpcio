@@ -6,11 +6,13 @@ const props = defineProps<{
   index: number;
   team: Team;
   resolver: ResolverVue;
+  displayRank?: number;
 }>();
 
 const index = computed(() => props.index);
 const team = computed(() => props.team);
 const resolver = computed(() => props.resolver);
+const rank = computed(() => props.displayRank ?? team.value.rank);
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -29,21 +31,28 @@ function showTeamName(team: Team) {
   >
     <div
       v-if="isVisible"
+      class="resolver-row"
       h-24
       flex flex-row gap-x-4
       font-mono text-4xl
-      :class="[index % 2 === 0 ? 'bg-resolver-bg-zero' : 'bg-resolver-bg-one',
-               resolver.duringAnimation && resolver.currentTeamId === team.id ? 'bg-resolver-selected' : '',
-               !resolver.duringAnimation && index === resolver.currentIndex ? 'bg-resolver-selected' : '',
+      :class="[
+        resolver.duringAnimation && resolver.currentTeamId === team.id ? 'bg-resolver-selected' : '',
+        !resolver.duringAnimation && index === resolver.currentIndex ? 'bg-resolver-selected' : '',
       ]"
     >
       <div
+        class="resolver-rank-cell"
         w-20
         flex flex-shrink-0 justify-center items-center
       >
-        <div>
-          {{ team.rank }}
-        </div>
+        <Transition name="resolver-rank">
+          <div
+            :key="rank"
+            class="resolver-rank-number"
+          >
+            {{ rank }}
+          </div>
+        </Transition>
       </div>
 
       <div
@@ -69,7 +78,7 @@ function showTeamName(team: Team) {
                        p.isPending ? 'bg-resolver-pending' : '',
                        p.isUnSubmitted ? 'bg-resolver-untouched' : '',
                        resolver.problemFlashingEnded === false
-                         && index === resolver.currentIndex
+                         && team.id === resolver.currentTeamId
                          && resolver.currentProblemIndex === pIndex
                          ? 'resolver-uncover'
                          : '',
@@ -108,9 +117,45 @@ function showTeamName(team: Team) {
 </template>
 
 <style scoped>
+@keyframes flashing {
+  from {
+    background-color: #8a6d3b;
+  }
+
+  to {
+    background-color: #bd995b;
+  }
+}
+
+.resolver-row {
+  transition: background-color 200ms ease;
+}
+
+.resolver-rank-cell {
+  position: relative;
+}
+
+.resolver-rank-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resolver-rank-enter-active,
+.resolver-rank-leave-active {
+  transition: opacity 100ms ease;
+}
+
+.resolver-rank-enter-from,
+.resolver-rank-leave-to {
+  opacity: 0;
+}
+
 .resolver-uncover {
   animation: flashing 300ms infinite;
-  -webkit-animation: flashing 30ms infinite; /*Safari and Chrome*/
+  -webkit-animation: flashing 300ms infinite; /*Safari and Chrome*/
 }
 
 .resolver-team-name {

@@ -122,7 +122,7 @@ export class ResolverVue extends Resolver {
     {
       let j = this.oldRank - 1;
 
-      while (j >= 0 && Team.compare(this.teams[j], this.teams[j - 1]) < 0) {
+      while (j > 0 && Team.compare(this.teams[j], this.teams[j - 1]) < 0) {
         [this.teams[j], this.teams[j - 1]] = [this.teams[j - 1], this.teams[j]];
         this.teams[j].rank = j + 1;
         this.teams[j - 1].rank = j;
