@@ -75,14 +75,6 @@ function goCountdown() {
           >
             {{ t('type_menu.resolver') }}
           </button>
-
-          <button
-            btn
-            title="Submissions"
-            disabled="true"
-          >
-            {{ t('type_menu.submissions') }}
-          </button>
         </div>
       </div>
     </div>
