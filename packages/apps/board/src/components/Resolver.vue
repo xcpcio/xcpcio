@@ -21,6 +21,8 @@ const teams = ref([] as Teams);
 const submissions = ref([] as Submissions);
 const resolver = ref({} as ResolverVue);
 
+const hasOrgLogo = computed(() => resolver.value.teams?.some(team => team.organization?.logo) ?? false);
+
 const playback = useResolverPlayback(resolver);
 const { resolverRef, currentRowRef, displayedRanks } = playback;
 
@@ -105,14 +107,63 @@ watch(data, async () => {
       <div>
         <div
           class="bg-resolver-bg-1"
-          flex flex-col justify-between
+          flex flex-col
           font-mono
           w-screen h-screen
           overflow-hidden
         >
           <div
+            class="resolver-header shrink-0 border-b border-white/10 bg-resolver-bg-1"
+            flex flex-row items-center gap-x-4
+            text-sm font-bold text-gray-400
+          >
+            <div w-20 text-center>
+              Rank
+            </div>
+
+            <div
+              flex flex-1 flex-row items-center gap-x-4
+              min-w-0
+            >
+              <div
+                v-if="hasOrgLogo"
+                w-20 shrink-0
+              />
+
+              <div
+                flex flex-1 flex-row items-center justify-between gap-x-4
+                min-w-0
+              >
+                <div shrink-0>
+                  Name
+                </div>
+
+                <div
+                  v-if="isLessMode"
+                  class="text-xs font-normal text-gray-500"
+                  truncate
+                >
+                  LESS MODE · e/y · d/u · f/b · g/G · ? help · q exit
+                </div>
+              </div>
+            </div>
+
+            <div
+              w-48
+              flex flex-row
+            >
+              <div class="w-1/3 text-center">
+                Solved
+              </div>
+              <div class="w-2/3 text-center">
+                Penalty
+              </div>
+            </div>
+          </div>
+
+          <div
             ref="resolverRef"
-            h-full
+            flex-1 min-h-0
             overflow-y-auto
           >
             <!-- Two rows of empty space so the last rows can scroll up to the
@@ -146,13 +197,6 @@ watch(data, async () => {
           </div>
         </div>
       </div>
-    </div>
-
-    <div
-      v-if="firstLoaded && isLessMode"
-      class="pointer-events-none fixed right-4 top-4 z-[1000] rounded bg-black/60 px-3 py-1 font-mono text-sm text-gray-200"
-    >
-      LESS MODE · e/y · d/u · f/b · g/G · ? help · q exit
     </div>
 
     <ResolverHelpOverlay
