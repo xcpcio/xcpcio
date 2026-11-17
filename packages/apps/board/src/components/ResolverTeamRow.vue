@@ -56,48 +56,62 @@ function showTeamName(team: Team) {
       </div>
 
       <div
-        flex flex-1 flex-col justify-center items-start gap-y-3
+        flex flex-1 flex-row items-center gap-x-4
+        min-w-0
       >
+        <Badge
+          v-if="team.organization?.logo"
+          :image="team.organization.logo"
+          class="resolver-org-logo h-20 w-20 shrink-0"
+        />
+
         <div
-          class="resolver-team-name"
-          truncate overflow-hidden
+          flex flex-1 flex-col justify-center items-start gap-y-3
+          min-w-0
         >
-          {{ showTeamName(team) }}
-        </div>
-        <div
-          flex flex-row text-sm items-start gap-x-2
-        >
-          <template
-            v-for="(p, pIndex) in team.problemStatistics"
-            :key="p.problem.id"
+          <div
+            class="resolver-team-name"
+            w-full
+            truncate overflow-hidden
           >
-            <div
-              class="rounded w-22 h-7 flex justify-center items-center"
-              :class="[p.isAccepted ? 'bg-resolver-ac' : '',
-                       p.isWrongAnswer ? 'bg-resolver-wa' : '',
-                       p.isPending ? 'bg-resolver-pending' : '',
-                       p.isUnSubmitted ? 'bg-resolver-untouched' : '',
-                       resolver.problemFlashingEnded === false
-                         && team.id === resolver.currentTeamId
-                         && resolver.currentProblemIndex === pIndex
-                         ? 'resolver-uncover'
-                         : '',
-              ]"
+            {{ showTeamName(team) }}
+          </div>
+
+          <div
+            flex flex-row text-sm items-start gap-x-2
+          >
+            <template
+              v-for="(p, pIndex) in team.problemStatistics"
+              :key="p.problem.id"
             >
-              <template v-if="p.isAccepted">
-                {{ `${p.failedCount + Number(p.isAccepted)}/${Math.floor(p.lastSubmitTimestamp / 60)}` }}
-              </template>
-              <template v-if="p.isWrongAnswer">
-                {{ `${p.failedCount}/${Math.floor(p.lastSubmitTimestamp / 60)}` }}
-              </template>
-              <template v-if="p.isPending">
-                {{ `${p.failedCount} + ${p.pendingCount}` }}
-              </template>
-              <template v-if="p.isUnSubmitted">
-                {{ p.problem.label }}
-              </template>
-            </div>
-          </template>
+              <div
+                class="rounded w-22 h-7 flex justify-center items-center"
+                :class="[p.isAccepted ? 'bg-resolver-ac' : '',
+                         p.isWrongAnswer ? 'bg-resolver-wa' : '',
+                         p.isPending ? 'bg-resolver-pending' : '',
+                         p.isUnSubmitted ? 'bg-resolver-untouched' : '',
+                         resolver.problemFlashingEnded === false
+                           && team.id === resolver.currentTeamId
+                           && resolver.currentProblemIndex === pIndex
+                           ? 'resolver-uncover'
+                           : '',
+                ]"
+              >
+                <template v-if="p.isAccepted">
+                  {{ `${p.failedCount + Number(p.isAccepted)}/${Math.floor(p.lastSubmitTimestamp / 60)}` }}
+                </template>
+                <template v-if="p.isWrongAnswer">
+                  {{ `${p.failedCount}/${Math.floor(p.lastSubmitTimestamp / 60)}` }}
+                </template>
+                <template v-if="p.isPending">
+                  {{ `${p.failedCount} + ${p.pendingCount}` }}
+                </template>
+                <template v-if="p.isUnSubmitted">
+                  {{ p.problem.label }}
+                </template>
+              </div>
+            </template>
+          </div>
         </div>
       </div>
 
@@ -160,5 +174,11 @@ function showTeamName(team: Team) {
 
 .resolver-team-name {
   max-width: calc(100vw - 80px - 192px - 112px);
+}
+
+/* Scale small logos up to the box size while object-contain keeps the ratio. */
+.resolver-org-logo :deep(img) {
+  width: 100%;
+  height: 100%;
 }
 </style>
