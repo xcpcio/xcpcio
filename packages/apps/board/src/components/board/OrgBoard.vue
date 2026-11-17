@@ -29,9 +29,9 @@ const maxTeamLength = computed(() => {
 </script>
 
 <template>
-  <div flex justify-center>
+  <div w-full>
     <table
-      class="standings"
+      class="standings mx-auto w-max"
       font-mono dark:text-gray-200
     >
       <thead
