@@ -79,13 +79,14 @@ function showTeamName(team: Team) {
 
           <div
             flex flex-row text-sm items-start gap-x-2
+            w-full
           >
             <template
               v-for="(p, pIndex) in team.problemStatistics"
               :key="p.problem.id"
             >
               <div
-                class="rounded w-22 h-7 flex justify-center items-center"
+                class="rounded h-7 flex flex-1 min-w-0 justify-center items-center"
                 :class="[p.isAccepted ? 'bg-resolver-ac' : '',
                          p.isWrongAnswer ? 'bg-resolver-wa' : '',
                          p.isPending ? 'bg-resolver-pending' : '',
@@ -119,10 +120,10 @@ function showTeamName(team: Team) {
         w-48
         flex flex-shrink-0 flex-row justify-start items-center
       >
-        <div class="w-1/3">
+        <div class="w-1/3 text-center">
           {{ team.solvedProblemNum }}
         </div>
-        <div class="w-2/3">
+        <div class="w-2/3 text-center">
           {{ team.penaltyToMinute }}
         </div>
       </div>
