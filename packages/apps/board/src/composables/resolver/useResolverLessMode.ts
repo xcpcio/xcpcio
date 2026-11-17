@@ -13,17 +13,41 @@ export interface ResolverLessModeOptions {
   loaded: Ref<boolean>;
   resolverRef: Ref<HTMLElement | null>;
   stopInitialScroll: () => void;
-  scrollActiveRowIntoPlace: (duration?: number) => void;
+  cancelScroll: () => void;
+  beginJump: () => void;
+  endJump: () => void;
+  scrollToEdge: (edge: "top" | "bottom", onComplete: () => void) => void;
+  scrollToRowIndex: (index: number, onComplete: () => void) => void;
 }
 
 export function useResolverLessMode(options: ResolverLessModeOptions) {
-  const { resolver, loaded, resolverRef, stopInitialScroll, scrollActiveRowIntoPlace } = options;
+  const {
+    resolver,
+    loaded,
+    resolverRef,
+    stopInitialScroll,
+    cancelScroll,
+    beginJump,
+    endJump,
+    scrollToEdge,
+    scrollToRowIndex,
+  } = options;
 
   const isLessMode = ref(false);
   const isHelpVisible = ref(false);
 
   // Row-step history for y. Each entry is the state before one row step (e/f).
   const rowHistory: RowCheckpoint[] = [];
+
+  // Row/page steps apply their state after the scroll. Keep the pending apply
+  // so rapid key presses still accumulate instead of being dropped.
+  let pendingRowStep: (() => void) | null = null;
+
+  function flushPendingRowStep() {
+    const apply = pendingRowStep;
+    pendingRowStep = null;
+    apply?.();
+  }
 
   function resetRowHistory() {
     rowHistory.length = 0;
@@ -104,33 +128,83 @@ export function useResolverLessMode(options: ResolverLessModeOptions) {
   }
 
   function stepRowsForward(count: number) {
-    let moved = false;
+    if (!loaded.value || resolver.value.duringAnimation) {
+      return;
+    }
 
-    for (let i = 0; i < count; i++) {
-      if (!advanceOneRow()) {
-        break;
+    flushPendingRowStep();
+
+    const rows = Math.min(count, resolver.value.currentIndex);
+    if (rows <= 0) {
+      return;
+    }
+
+    const targetIndex = resolver.value.currentIndex - rows;
+
+    cancelScroll();
+    stopInitialScroll();
+
+    const apply = () => {
+      beginJump();
+
+      for (let i = 0; i < rows; i++) {
+        if (!advanceOneRow()) {
+          break;
+        }
       }
-      moved = true;
-    }
 
-    if (moved) {
-      void nextTick(() => scrollActiveRowIntoPlace(0.3));
-    }
+      void nextTick(() => endJump());
+    };
+
+    pendingRowStep = apply;
+    scrollToRowIndex(targetIndex, () => {
+      if (pendingRowStep !== apply) {
+        return;
+      }
+
+      pendingRowStep = null;
+      apply();
+    });
   }
 
   function stepRowsBackward(count: number) {
-    let moved = false;
+    if (!loaded.value || resolver.value.duringAnimation) {
+      return;
+    }
 
-    for (let i = 0; i < count; i++) {
-      if (!retreatOneRow()) {
-        break;
+    flushPendingRowStep();
+
+    const rows = Math.min(count, rowHistory.length);
+    if (rows <= 0) {
+      return;
+    }
+
+    const targetIndex = rowHistory[rowHistory.length - rows].currentIndex;
+
+    cancelScroll();
+    stopInitialScroll();
+
+    const apply = () => {
+      beginJump();
+
+      for (let i = 0; i < rows; i++) {
+        if (!retreatOneRow()) {
+          break;
+        }
       }
-      moved = true;
-    }
 
-    if (moved) {
-      void nextTick(() => scrollActiveRowIntoPlace(0.3));
-    }
+      void nextTick(() => endJump());
+    };
+
+    pendingRowStep = apply;
+    scrollToRowIndex(targetIndex, () => {
+      if (pendingRowStep !== apply) {
+        return;
+      }
+
+      pendingRowStep = null;
+      apply();
+    });
   }
 
   function getHalfPageRows() {
@@ -166,37 +240,47 @@ export function useResolverLessMode(options: ResolverLessModeOptions) {
       return;
     }
 
+    flushPendingRowStep();
+    cancelScroll();
     stopInitialScroll();
 
     const checkpoint: RowCheckpoint = {
       currentIndex: resolver.value.currentIndex,
       currentOpIndex: resolver.value.currentOpIndex,
     };
-    let guard = resolver.value.operations.length + resolver.value.maxIndex + 4;
 
-    while (guard-- > 0) {
-      if (resolver.value.currentOpIndex > resolver.value.maxOpIndex && resolver.value.currentIndex === 0) {
-        break;
+    // Scroll first, then apply the state at the destination. Replaying the
+    // operations reorders the rows, and doing that before the scroll paints a
+    // different order at the old position, which looks like a jump.
+    scrollToEdge("top", () => {
+      beginJump();
+
+      let guard = resolver.value.operations.length + resolver.value.maxIndex + 4;
+
+      while (guard-- > 0) {
+        if (resolver.value.currentOpIndex > resolver.value.maxOpIndex && resolver.value.currentIndex === 0) {
+          break;
+        }
+
+        const indexBefore = resolver.value.currentIndex;
+        const opBefore = resolver.value.currentOpIndex;
+
+        resolver.value.next();
+
+        if (resolver.value.currentIndex === indexBefore && resolver.value.currentOpIndex === opBefore) {
+          break;
+        }
       }
 
-      const indexBefore = resolver.value.currentIndex;
-      const opBefore = resolver.value.currentOpIndex;
-
-      resolver.value.next();
-
-      if (resolver.value.currentIndex === indexBefore && resolver.value.currentOpIndex === opBefore) {
-        break;
+      if (
+        resolver.value.currentIndex !== checkpoint.currentIndex
+        || resolver.value.currentOpIndex !== checkpoint.currentOpIndex
+      ) {
+        rowHistory.push(checkpoint);
       }
-    }
 
-    if (
-      resolver.value.currentIndex !== checkpoint.currentIndex
-      || resolver.value.currentOpIndex !== checkpoint.currentOpIndex
-    ) {
-      rowHistory.push(checkpoint);
-    }
-
-    void nextTick(() => scrollActiveRowIntoPlace(0.3));
+      void nextTick(() => endJump());
+    });
   }
 
   function stepToBottom() {
@@ -204,22 +288,24 @@ export function useResolverLessMode(options: ResolverLessModeOptions) {
       return;
     }
 
+    flushPendingRowStep();
+    cancelScroll();
     stopInitialScroll();
 
-    const startIndex = resolver.value.currentIndex;
-    const startOpIndex = resolver.value.currentOpIndex;
-    let guard = resolver.value.operations.length + 4;
+    scrollToEdge("bottom", () => {
+      beginJump();
 
-    while (resolver.value.currentOpIndex > 0 && guard-- > 0) {
-      resolver.value.rewind();
-    }
+      let guard = resolver.value.operations.length + 4;
 
-    resolver.value.currentIndex = resolver.value.maxIndex;
-    resetRowHistory();
+      while (resolver.value.currentOpIndex > 0 && guard-- > 0) {
+        resolver.value.rewind();
+      }
 
-    if (startIndex !== resolver.value.currentIndex || startOpIndex !== resolver.value.currentOpIndex) {
-      void nextTick(() => scrollActiveRowIntoPlace(0.3));
-    }
+      resolver.value.currentIndex = resolver.value.maxIndex;
+      resetRowHistory();
+
+      void nextTick(() => endJump());
+    });
   }
 
   function toggleHelp() {

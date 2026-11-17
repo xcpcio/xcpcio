@@ -1,6 +1,6 @@
 import type { Ref } from "vue";
 
-import { onKeyStroke, onKeyUp } from "@vueuse/core";
+import { onKeyDown, onKeyStroke, onKeyUp } from "@vueuse/core";
 
 export interface ResolverHotkeysOptions {
   loaded: Ref<boolean>;
@@ -18,6 +18,7 @@ export interface ResolverHotkeysOptions {
   stepPageBackward: () => void;
   stepToTop: () => void;
   stepToBottom: () => void;
+  cancelScroll: () => void;
 }
 
 export function useResolverHotkeys(options: ResolverHotkeysOptions) {
@@ -37,6 +38,7 @@ export function useResolverHotkeys(options: ResolverHotkeysOptions) {
     stepPageBackward,
     stepToTop,
     stepToBottom,
+    cancelScroll,
   } = options;
 
   onKeyStroke([" "], (e) => {
@@ -91,6 +93,12 @@ export function useResolverHotkeys(options: ResolverHotkeysOptions) {
   onKeyUp(["f"], () => {
     if (isLessMode.value && !isHelpVisible.value) {
       stepPageForward();
+    }
+  });
+
+  onKeyDown(["g", "G"], () => {
+    if (isLessMode.value && !isHelpVisible.value) {
+      cancelScroll();
     }
   });
 
