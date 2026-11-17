@@ -96,7 +96,10 @@ export class ResolverVue extends Resolver {
     }
 
     if (this.currentIndex + 1 !== currentRank) {
-      return;
+      // The next operation belongs to a team below the highlighted row. This can
+      // happen after rewinding when tied teams end up in a different order. Move
+      // the highlight to that team and apply the operation instead of stalling.
+      this.currentIndex = currentRank - 1;
     }
 
     team.problemStatistics[pIx] = op.afterTeamProblemStatistics;
