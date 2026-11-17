@@ -40,6 +40,7 @@ const headerTitle = computed(() => {
 <template>
   <Modal
     v-model:is-hidden="isHidden"
+    :scrollable="true"
   >
     <template #header>
       <div

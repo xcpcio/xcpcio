@@ -29,9 +29,9 @@ const maxTeamLength = computed(() => {
 </script>
 
 <template>
-  <div flex justify-center>
+  <div w-full>
     <table
-      class="standings"
+      class="standings w-max"
       font-mono dark:text-gray-200
     >
       <thead
@@ -132,4 +132,11 @@ const maxTeamLength = computed(() => {
 
 <style scoped lang="less">
 @import "./Standings.less";
+
+// Center the table when it fits the modal. Keep it left-aligned when it is
+// wider so the horizontal scroll can reach every column.
+table.standings {
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>
