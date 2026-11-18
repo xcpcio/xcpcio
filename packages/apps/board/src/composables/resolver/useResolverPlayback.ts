@@ -17,6 +17,12 @@ const MAX_ROLL_MS = 2200;
 const ROLL_SPEED_PX_PER_MS = 0.4;
 const FLY_OUT_MARGIN_PX = 24;
 
+// Long jumps (g/G) use a distance-based duration so the viewport glides instead
+// of jumping, while normal row/page steps keep their short tween.
+const AUTO_SCROLL_MIN_MS = 350;
+const AUTO_SCROLL_MAX_MS = 1500;
+const AUTO_SCROLL_SPEED_PX_PER_MS = 8;
+
 export function useResolverPlayback(resolver: Ref<ResolverVue>) {
   const resolverRef = ref<HTMLElement | null>(null);
   const currentRowRef = ref<HTMLElement | null>(null);
@@ -29,6 +35,24 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
 
   let scrollTween: gsap.core.Tween | null = null;
   let initialScrollTween: gsap.core.Tween | null = null;
+  let scrollRequestId = 0;
+  // While g/G applies its state jump, the currentIndex watcher must not start
+  // its own scroll; the jump schedules the final scroll explicitly.
+  let isJumping = false;
+
+  function cancelScrollTween() {
+    scrollRequestId++;
+    scrollTween?.kill();
+    scrollTween = null;
+  }
+
+  function beginJump() {
+    isJumping = true;
+  }
+
+  function endJump() {
+    isJumping = false;
+  }
 
   function stopInitialScroll() {
     if (finishedFirstScroll.value) {
@@ -54,6 +78,13 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
     });
 
     return tops;
+  }
+
+  function getAutoScrollDuration(distance: number) {
+    return Math.min(
+      AUTO_SCROLL_MAX_MS,
+      Math.max(AUTO_SCROLL_MIN_MS, Math.abs(distance) / AUTO_SCROLL_SPEED_PX_PER_MS),
+    );
   }
 
   function scrollActiveRowIntoPlace(duration = 3) {
@@ -82,12 +113,84 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
       return;
     }
 
-    scrollTween?.kill();
-    scrollTween = gsap.to(container, {
-      duration,
-      ease: "power1.inOut",
-      scrollTop: `+=${scrollDistance}`,
+    cancelScrollTween();
+    const requestId = scrollRequestId;
+
+    // Start on the next frame: a big jump re-renders and reorders the rows, and
+    // starting the tween immediately would lose its first frames to that work.
+    requestAnimationFrame(() => {
+      if (requestId !== scrollRequestId) {
+        return;
+      }
+
+      scrollTween = gsap.to(container, {
+        duration,
+        ease: "power1.inOut",
+        scrollTop: `+=${scrollDistance}`,
+      });
     });
+  }
+
+  function animateScrollTo(target: number, onComplete: () => void) {
+    const container = resolverRef.value;
+    if (!container) {
+      onComplete();
+      return;
+    }
+
+    const distance = target - container.scrollTop;
+
+    if (Math.abs(distance) < 1) {
+      onComplete();
+      return;
+    }
+
+    cancelScrollTween();
+    const requestId = scrollRequestId;
+    const duration = getAutoScrollDuration(distance) / 1000;
+
+    requestAnimationFrame(() => {
+      if (requestId !== scrollRequestId) {
+        return;
+      }
+
+      scrollTween = gsap.to(container, {
+        duration,
+        ease: "power1.inOut",
+        scrollTop: target,
+        onComplete: () => {
+          scrollTween = null;
+          onComplete();
+        },
+      });
+    });
+  }
+
+  function scrollToEdge(edge: "top" | "bottom", onComplete: () => void) {
+    const container = resolverRef.value;
+    if (!container) {
+      onComplete();
+      return;
+    }
+
+    const target = edge === "top" ? 0 : container.scrollHeight - container.clientHeight;
+    animateScrollTo(target, onComplete);
+  }
+
+  function scrollToRowIndex(index: number, onComplete: () => void) {
+    const container = resolverRef.value;
+    const row = container?.querySelector<HTMLElement>("[data-team-id]");
+    if (!container || !row) {
+      onComplete();
+      return;
+    }
+
+    const rowHeight = row.getBoundingClientRect().height;
+    const targetPosition = container.clientHeight - 3 * rowHeight;
+    const maxScroll = container.scrollHeight - container.clientHeight;
+    const target = Math.max(0, Math.min(maxScroll, index * rowHeight - targetPosition));
+
+    animateScrollTo(target, onComplete);
   }
 
   function finishRowAnimation(elements: HTMLElement[] = []) {
@@ -99,8 +202,7 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
   }
 
   function animateRowReorder(tops: Map<string, number>) {
-    scrollTween?.kill();
-    scrollTween = null;
+    cancelScrollTween();
 
     const container = resolverRef.value;
     if (!container || tops.size === 0) {
@@ -209,8 +311,7 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
     }
 
     displayedRanks.value = ranksBefore;
-    scrollTween?.kill();
-    scrollTween = null;
+    cancelScrollTween();
 
     resolver.value.duringAnimation = true;
     resolver.value.problemFlashingEnded = false;
@@ -262,6 +363,10 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
     }, { immediate: true });
 
     watch(() => resolver.value.currentIndex, () => {
+      if (isJumping) {
+        return;
+      }
+
       scrollActiveRowIntoPlace();
     }, { flush: "post" });
   });
@@ -273,6 +378,11 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
     handleNextKey,
     handleRewind,
     stopInitialScroll,
+    cancelScroll: cancelScrollTween,
+    beginJump,
+    endJump,
+    scrollToEdge,
+    scrollToRowIndex,
     scrollActiveRowIntoPlace,
   };
 }

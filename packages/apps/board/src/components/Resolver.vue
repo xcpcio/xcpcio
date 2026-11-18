@@ -31,7 +31,11 @@ const navigation = useResolverLessMode({
   loaded: firstLoaded,
   resolverRef,
   stopInitialScroll: playback.stopInitialScroll,
-  scrollActiveRowIntoPlace: playback.scrollActiveRowIntoPlace,
+  cancelScroll: playback.cancelScroll,
+  beginJump: playback.beginJump,
+  endJump: playback.endJump,
+  scrollToEdge: playback.scrollToEdge,
+  scrollToRowIndex: playback.scrollToRowIndex,
 });
 
 useResolverHotkeys({
@@ -50,6 +54,7 @@ useResolverHotkeys({
   stepPageBackward: navigation.stepPageBackward,
   stepToTop: navigation.stepToTop,
   stepToBottom: navigation.stepToBottom,
+  cancelScroll: playback.cancelScroll,
 });
 
 const { isLessMode, isHelpVisible } = navigation;
@@ -163,6 +168,7 @@ watch(data, async () => {
 
           <div
             ref="resolverRef"
+            class="resolver-scroll"
             flex-1 min-h-0
             overflow-y-auto
           >
@@ -207,6 +213,11 @@ watch(data, async () => {
 </template>
 
 <style scoped>
+/* Row reorders during g/G must not make the browser shift the scroll position. */
+.resolver-scroll {
+  overflow-anchor: none;
+}
+
 /* Keep the row stripes attached to the list, not the rows: when rows reorder
    or slide, the background changes continuously with their position instead of
    flipping instantly with their index. Use the same rem-based row height as

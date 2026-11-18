@@ -24,6 +24,7 @@ const imageSource = computed(() => {
     <img
       :src="imageSource"
       :alt="props.alt ?? 'badge'"
+      decoding="async"
       class="max-h-full max-w-full object-contain mx-auto"
     >
   </div>
