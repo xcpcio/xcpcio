@@ -27,6 +27,7 @@ declare global {
   const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const buildLocaleUrl: typeof import('./composables/locale').buildLocaleUrl
   const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
   const computeSchemaAnnotations: typeof import('./composables/jsonSchemaCompletion').computeSchemaAnnotations
   const computed: typeof import('vue').computed
@@ -57,12 +58,14 @@ declare global {
   const effectScope: typeof import('vue').effectScope
   const extendRef: typeof import('@vueuse/core').extendRef
   const filterMarks: typeof import('./composables/codemirror').filterMarks
+  const findLocaleForPath: typeof import('./composables/locale').findLocaleForPath
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterOrganizations
   const getLocalStorageKeyForFilterTeamIds: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterTeamIds
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterTeams
+  const getLocaleUrls: typeof import('./composables/runtimeConfig').getLocaleUrls
   const getMedalColor: typeof import('./composables/color').getMedalColor
   const getProblemChart: typeof import('./composables/statistics').getProblemChart
   const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
@@ -412,6 +415,7 @@ declare module 'vue' {
     readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly buildLocaleUrl: UnwrapRef<typeof import('./composables/locale')['buildLocaleUrl']>
     readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
     readonly computeSchemaAnnotations: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['computeSchemaAnnotations']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -442,12 +446,14 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly filterMarks: UnwrapRef<typeof import('./composables/codemirror')['filterMarks']>
+    readonly findLocaleForPath: UnwrapRef<typeof import('./composables/locale')['findLocaleForPath']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeamIds: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeamIds']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
+    readonly getLocaleUrls: UnwrapRef<typeof import('./composables/runtimeConfig')['getLocaleUrls']>
     readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
     readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>

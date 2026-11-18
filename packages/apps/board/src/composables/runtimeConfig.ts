@@ -44,6 +44,23 @@ export function getRuntimeBaseUrl() {
   return window.RUNTIME_CONFIG?.baseUrl ?? window.BASE_URL;
 }
 
+export function getLocaleUrls() {
+  if (typeof window === "undefined") {
+    return undefined;
+  }
+
+  const raw = window.RUNTIME_CONFIG?.localeUrls;
+  if (!raw || typeof raw !== "object" || Array.isArray(raw)) {
+    return undefined;
+  }
+
+  const entries = Object.entries(raw).filter(
+    (entry): entry is [string, string] => typeof entry[1] === "string" && entry[1].length > 0,
+  );
+
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
+}
+
 export function getRuntimeConfig(): RuntimeConfig {
   if (typeof window === "undefined") {
     return {};

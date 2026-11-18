@@ -36,6 +36,7 @@ declare module 'vue' {
     GiantsScoreBoard: typeof import('./components/battle-of-giants/GiantsScoreBoard.vue')['default']
     GoBack: typeof import('./components/GoBack.vue')['default']
     InfoModal: typeof import('./components/board/InfoModal.vue')['default']
+    LocaleSwitcher: typeof import('./components/LocaleSwitcher.vue')['default']
     Modal: typeof import('./components/board/Modal.vue')['default']
     ModalMenu: typeof import('./components/board/ModalMenu.vue')['default']
     NavBar: typeof import('./components/NavBar.vue')['default']

@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { availableLocales, loadLanguageAsync } from "@board/modules/i18n";
-
 const props = defineProps<{
   width?: string;
 }>();
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 const { y: scroll } = useWindowScroll();
 
 function toTop() {
@@ -13,13 +11,6 @@ function toTop() {
     top: 0,
     behavior: "smooth",
   });
-}
-
-async function toggleLocales() {
-  const locales = availableLocales;
-  const newLocale = locales[(locales.indexOf(locale.value) + 1) % locales.length];
-  await loadLanguageAsync(newLocale);
-  locale.value = newLocale;
 }
 </script>
 
@@ -68,13 +59,7 @@ async function toggleLocales() {
           <div i-ion-balloon-sharp />
         </RouterLink>
 
-        <a
-          icon-btn
-          :title="t('button.toggle_langs')"
-          @click="toggleLocales()"
-        >
-          <div i-carbon-language />
-        </a>
+        <LocaleSwitcher />
 
         <a
           icon-btn

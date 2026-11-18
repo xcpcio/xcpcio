@@ -35,6 +35,7 @@
     "preview": "vite preview",
     "preview-https": "serve dist",
     "start": "npm run preview",
+    "test": "vitest run",
     "test:e2e": "cypress open",
     "typecheck": "vue-tsc --noEmit",
     "sizecheck": "npx vite-bundle-visualizer"
