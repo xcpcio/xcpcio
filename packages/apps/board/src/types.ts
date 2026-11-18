@@ -15,5 +15,6 @@ export interface RuntimeConfig {
   dataHost?: string;
   dataRegion?: string;
   defaultLang?: string;
+  localeUrls?: Record<string, string>;
   refetchInterval?: number;
 }

@@ -1,6 +1,7 @@
 import type { UserModule } from "@board/types";
 import type { Locale } from "vue-i18n";
-import { getRuntimeConfig } from "@board/composables/runtimeConfig";
+import { findLocaleForPath } from "@board/composables/locale";
+import { getLocaleUrls, getRuntimeConfig } from "@board/composables/runtimeConfig";
 import { createI18n } from "vue-i18n";
 
 // Import i18n resources
@@ -49,5 +50,10 @@ export async function loadLanguageAsync(lang: string): Promise<Locale> {
 
 export const install: UserModule = async ({ app }) => {
   app.use(i18n);
-  await loadLanguageAsync(getRuntimeConfig().defaultLang ?? "en");
+
+  const runtimeConfig = getRuntimeConfig();
+  const pathname = typeof window === "undefined" ? "" : window.location.pathname;
+  const urlLocale = findLocaleForPath(getLocaleUrls(), pathname);
+
+  await loadLanguageAsync(urlLocale ?? runtimeConfig.defaultLang ?? "en");
 };
