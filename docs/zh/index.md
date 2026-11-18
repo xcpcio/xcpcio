@@ -15,7 +15,7 @@ hero:
       link: /zh/guide/
     - theme: alt
       text: 榜单
-      link: https://xcpcio.com/board/
+      link: https://xcpcio.com/zh/board/
       target: \_blank
     - theme: alt
       text: GitHub
