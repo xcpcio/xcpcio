@@ -9,10 +9,13 @@ import { DATA_HOST } from "@board/composables/constant";
 import { useFetch } from "@vueuse/core";
 import { createContestIndexList } from "@xcpcio/core";
 
+const INDEX_TITLE = "ICPC Series Competition Leaderboard - XCPCIO";
+const INDEX_HEADING = "ICPC Series Competition Leaderboard";
+
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
-useTitle(computed(() => t("index.title")));
+useTitle(INDEX_TITLE);
 
 const FETCH_INTERVAL = 1000 * 60 * 5;
 const now = useNow();
@@ -93,7 +96,7 @@ onUnmounted(() => {
     flex flex-col justify-center items-center
   >
     <h1 class="sr-only">
-      {{ t("index.heading") }}
+      {{ INDEX_HEADING }}
     </h1>
 
     <div>
