@@ -3,10 +3,12 @@ import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
+import AsyncLoading from "@board/components/common/AsyncLoading.vue";
+
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
 import { ContestState } from "@xcpcio/types";
 
-import _ from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 
 const props = defineProps<{
   dataSourceUrl?: string;
@@ -19,6 +21,14 @@ const title = useTitle();
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 const { isAnyModalOpen } = useModalStack();
+
+// Keep the Highcharts statistics view out of the initial board chunk.
+const Statistics = defineAsyncComponent({
+  loader: () => import("@board/components/board/Statistics.vue"),
+  loadingComponent: AsyncLoading,
+  delay: 150,
+  timeout: 15000,
+});
 
 const firstLoaded = ref(false);
 const contestData = ref({} as Contest);
@@ -88,7 +98,7 @@ function reBuildRank(options = { force: false }) {
   isReBuildRank.value = true;
 
   const newRank = new Rank(contestData.value, teamsData.value, submissionsData.value);
-  newRank.options = _.cloneDeep(rankOptions.value);
+  newRank.options = cloneDeep(rankOptions.value);
   newRank.setReplayTime(replayStartTime.value);
 
   newRank.buildRank();
@@ -140,7 +150,7 @@ function dynamicReBuildRank() {
 
 watch(rankOptions.value, () => {
   if (!rank.value.options.isNeedReBuildRank(rankOptions.value)) {
-    rank.value.options = _.cloneDeep(rankOptions.value);
+    rank.value.options = cloneDeep(rankOptions.value);
     return;
   }
 
@@ -489,6 +499,8 @@ onMounted(() => {
               :src="getImageSource(rank.contest.banner, DATA_HOST)"
               class="w-full"
               alt="banner"
+              decoding="async"
+              fetchpriority="high"
             >
           </div>
         </div>

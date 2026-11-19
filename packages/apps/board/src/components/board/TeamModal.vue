@@ -2,7 +2,7 @@
 import type { Rank, Team } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 
-import { Chart } from "highcharts-vue";
+import AsyncLoading from "@board/components/common/AsyncLoading.vue";
 
 const props = defineProps<{
   isHidden: boolean;
@@ -11,6 +11,14 @@ const props = defineProps<{
   team: Team;
 }>();
 const emit = defineEmits(["update:isHidden"]);
+
+const TeamPlaceChart = defineAsyncComponent({
+  loader: () => import("@board/components/board/TeamPlaceChart.vue"),
+  loadingComponent: AsyncLoading,
+  delay: 150,
+  timeout: 15000,
+});
+
 const TYPE_OVERVIEW = "overview";
 const TYPE_SUBMISSIONS = "submissions";
 const TYPE_STATISTICS = "statistics";
@@ -141,8 +149,9 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
         v-if="currentType === TYPE_STATISTICS"
         w-full
       >
-        <Chart
-          :options="getTeamPlaceChart(rank, team)"
+        <TeamPlaceChart
+          :rank="rank"
+          :team="team"
         />
       </div>
 

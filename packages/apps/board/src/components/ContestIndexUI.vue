@@ -53,6 +53,8 @@ const logo = computed(() => {
                 class="h-10"
                 :src="getImageSource(logo, DATA_HOST)"
                 alt="logo"
+                loading="lazy"
+                decoding="async"
               >
             </div>
 
