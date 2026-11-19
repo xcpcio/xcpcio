@@ -11,6 +11,33 @@ const description = "The ICPC Series Competition Leaderboard Visualization Engin
 const googleTagId = "GTM-WHLF55BJ";
 const docsRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${hostname}#organization`,
+      "name": title,
+      "url": hostname,
+      "logo": `${hostname}logo.svg`,
+      "sameAs": ["https://github.com/xcpcio/xcpcio"],
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${hostname}#website`,
+      "name": title,
+      "url": hostname,
+      "description": description,
+      "publisher": { "@id": `${hostname}#organization` },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": `${hostname}board/?s={search_term_string}`,
+        "query-input": "required name=search_term_string",
+      },
+    },
+  ],
+};
+
 function pageUrl(relativePath: string) {
   return `${hostname}${relativePath}`
     .replace(/\/index\.md$/, "/")
@@ -59,6 +86,7 @@ export default defineConfig({
     ["meta", { property: "og:image:height", content: "630" }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     ["meta", { name: "twitter:image", content: ogImage }],
+    ["script", { type: "application/ld+json" }, JSON.stringify(structuredData)],
     [
       "script",
       {},
