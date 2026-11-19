@@ -99,7 +99,7 @@ function reBuildRank(options = { force: false }) {
 
 function updateContestName() {
   contestName.value = contestData.value.name.getOrDefault(lang.value);
-  title.value = `${contestName.value} | ${TITLE_SUFFIX}`;
+  title.value = `${contestName.value} - XCPCIO`;
 }
 
 const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path);
