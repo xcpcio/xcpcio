@@ -13,7 +13,9 @@ const props = defineProps<{
 }>();
 
 const route = useRoute();
-const title = useTitle(TITLE_SUFFIX);
+// Keep the server-rendered title until the contest data resolves instead of
+// flashing a generic title during loading.
+const title = useTitle();
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 const { isAnyModalOpen } = useModalStack();
