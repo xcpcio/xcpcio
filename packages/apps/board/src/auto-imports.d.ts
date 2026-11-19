@@ -22,7 +22,6 @@ declare global {
   const RESOLVER_TITLE_SUFFIX: typeof import('./composables/constant').RESOLVER_TITLE_SUFFIX
   const RUNTIME_CONFIG_STORAGE_KEY: typeof import('./composables/runtimeConfig').RUNTIME_CONFIG_STORAGE_KEY
   const SUBMISSION_TITLE_SUFFIX: typeof import('./composables/constant').SUBMISSION_TITLE_SUFFIX
-  const TITLE_SUFFIX: typeof import('./composables/constant').TITLE_SUFFIX
   const XCPCIO_HOME: typeof import('./composables/constant').XCPCIO_HOME
   const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
@@ -410,7 +409,6 @@ declare module 'vue' {
     readonly RESOLVER_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['RESOLVER_TITLE_SUFFIX']>
     readonly RUNTIME_CONFIG_STORAGE_KEY: UnwrapRef<typeof import('./composables/runtimeConfig')['RUNTIME_CONFIG_STORAGE_KEY']>
     readonly SUBMISSION_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['SUBMISSION_TITLE_SUFFIX']>
-    readonly TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['TITLE_SUFFIX']>
     readonly XCPCIO_HOME: UnwrapRef<typeof import('./composables/constant')['XCPCIO_HOME']>
     readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
