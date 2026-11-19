@@ -54,12 +54,6 @@ This project is made possible by all the sponsors supporting my work:
   </a>
 </p>
 
-### &#8627; Stargazers
-
-[![Stargazers repo roster for @xcpcio/xcpcio](https://bytecrank.com/nastyox/reporoster/php/stargazersSVG.php?user=xcpcio&repo=xcpcio)](https://github.com/xcpcio/xcpcio/stargazers)
-
-<br/>
-
 <p align="center">
   <a href="https://github.com/xcpcio/xcpcio#">
     <img
