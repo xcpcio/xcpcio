@@ -1,10 +1,21 @@
-import { defineConfig, resolveSiteDataByRoute } from "vitepress";
+import type { HeadConfig } from "vitepress";
+import { existsSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { defineConfig } from "vitepress";
 
 const hostname = "https://xcpcio.com/";
 const ogImage = `${hostname}og.png`;
 const title = "XCPCIO";
 const description = "The ICPC Series Competition Leaderboard Visualization Engine.";
 const googleTagId = "GTM-WHLF55BJ";
+const docsRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+function pageUrl(relativePath: string) {
+  return `${hostname}${relativePath}`
+    .replace(/\/index\.md$/, "/")
+    .replace(/\.md$/, "");
+}
 
 function getOgTitle(pageTitle: string) {
   if (pageTitle === title) {
@@ -91,29 +102,38 @@ export default defineConfig({
     ],
   ],
 
-  transformHead: ({ pageData, siteConfig }) => {
+  transformHead: ({ pageData }) => {
     const title = getOgTitle(pageData.title);
     const description = getOgDescription(pageData.description);
-    const canonicalUrl = `${hostname}${pageData.relativePath}`
-      .replace(/\/index\.md$/, "/")
-      .replace(/\.md$/, "");
+    const canonicalUrl = pageUrl(pageData.relativePath);
+    const isZh = pageData.relativePath.startsWith("zh/");
+    const enPath = isZh ? pageData.relativePath.slice(3) : pageData.relativePath;
+    const zhPath = isZh ? pageData.relativePath : `zh/${pageData.relativePath}`;
+    const hasLocalePair
+      = existsSync(resolve(docsRoot, "en", enPath))
+        && existsSync(resolve(docsRoot, zhPath));
 
-    const site = resolveSiteDataByRoute(
-      siteConfig.site,
-      pageData.relativePath,
-    );
+    const alternates: HeadConfig[] = hasLocalePair
+      ? [
+          ["link", { rel: "alternate", hreflang: "en", href: pageUrl(enPath) }],
+          ["link", { rel: "alternate", hreflang: "zh-Hans", href: pageUrl(zhPath) }],
+          ["link", { rel: "alternate", hreflang: "x-default", href: pageUrl(enPath) }],
+          ["meta", { property: "og:locale:alternate", content: isZh ? "en_US" : "zh_CN" }],
+        ]
+      : [];
 
     return [
       ["meta", { name: "title", content: title }],
       ["meta", { name: "description", content: description }],
       ["meta", { property: "og:title", content: title }],
       ["meta", { property: "og:description", content: description }],
-      ["meta", { property: "og:locale", content: site.lang }],
+      ["meta", { property: "og:locale", content: isZh ? "zh_CN" : "en_US" }],
       ["meta", { name: "twitter:title", content: title }],
       ["meta", { name: "twitter:description", content: description }],
       ["link", { rel: "canonical", href: canonicalUrl }],
       ["meta", { property: "og:url", content: canonicalUrl }],
       ["meta", { name: "twitter:url", content: canonicalUrl }],
+      ...alternates,
     ];
   },
 

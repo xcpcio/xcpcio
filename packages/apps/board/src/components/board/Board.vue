@@ -499,10 +499,13 @@ onMounted(() => {
         text-center text-3xl font-normal font-serif
         mb-2
       >
-        <div class="max-w-[92%]">
+        <h1 class="max-w-[92%]">
           {{ contestName }}
-        </div>
+        </h1>
       </div>
+      <h1 v-else class="sr-only">
+        {{ contestName }}
+      </h1>
 
       <div>
         <BoardTab

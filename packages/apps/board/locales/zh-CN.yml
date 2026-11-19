@@ -20,6 +20,8 @@ common:
   colon: ：
 
 index:
+  title: ICPC Series Competition Leaderboard - XCPCIO
+  heading: ICPC Series Competition Leaderboard
   start: 开始时间
   duration: 持续时长
 
