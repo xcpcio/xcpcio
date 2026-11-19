@@ -478,9 +478,10 @@ onMounted(() => {
     >
       <div
         v-if="rank.contest.banner"
+        :class="[widthClass]"
       >
         <div
-          :class="[widthClass]"
+          class="w-full"
           flex justify-center items-center
         >
           <div class="w-[92%]">
