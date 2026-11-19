@@ -4,7 +4,7 @@ import type { Lang } from "@xcpcio/types";
 
 import ContestIndexUI from "@board/components/ContestIndexUI.vue";
 import SearchInput from "@board/components/SearchInput.vue";
-import { DATA_HOST, TITLE_SUFFIX } from "@board/composables/constant";
+import { DATA_HOST } from "@board/composables/constant";
 
 import { useFetch } from "@vueuse/core";
 import { createContestIndexList } from "@xcpcio/core";
@@ -12,7 +12,7 @@ import { createContestIndexList } from "@xcpcio/core";
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
-useTitle(TITLE_SUFFIX);
+useTitle(computed(() => t("index.title")));
 
 const FETCH_INTERVAL = 1000 * 60 * 5;
 const now = useNow();
@@ -92,6 +92,10 @@ onUnmounted(() => {
     lg:of-x-hidden
     flex flex-col justify-center items-center
   >
+    <h1 class="sr-only">
+      {{ t("index.heading") }}
+    </h1>
+
     <div>
       <div
         v-if="isFetching || error"
