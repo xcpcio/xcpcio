@@ -44,7 +44,7 @@ watch(() => props.isOpen, (newValue) => {
       shadow
       relative overflow-hidden
       class="h-[100%]"
-      :class="[width ?? 'w-[540px]']"
+      :class="[width ?? 'w-full max-w-[540px]']"
       @click.stop
     >
       <video

@@ -33,7 +33,7 @@ const tableRows = computed(() => {
     flex w-full justify-center
   >
     <div
-      class="w-1/2"
+      class="w-full lg:w-1/2"
       flex items-center justify-center
     >
       <table w-full text-lg text-left text-gray-900 dark:text-gray-100>

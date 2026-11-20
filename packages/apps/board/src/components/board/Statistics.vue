@@ -9,6 +9,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 const rank = computed(() => props.rank);
 const allSubmissions = computed(() => rank.value.getSubmissions());
@@ -87,6 +88,7 @@ const headData = computed(() => {
     <div
       mt-8 gap-8
       flex flex-col
+      px-3 lg:px-0
     >
       <div>
         <SubmitHeatMap
@@ -106,19 +108,19 @@ const headData = computed(() => {
 
       <div>
         <Chart
-          :options="getSubmitChart(rank)"
+          :options="getSubmitChart(rank, isMobileLayout)"
         />
       </div>
 
       <div>
         <Chart
-          :options="getProblemChart(rank)"
+          :options="getProblemChart(rank, isMobileLayout)"
         />
       </div>
 
       <div>
         <Chart
-          :options="getTeamChart(rank)"
+          :options="getTeamChart(rank, isMobileLayout)"
         />
       </div>
     </div>

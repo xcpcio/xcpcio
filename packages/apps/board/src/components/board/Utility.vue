@@ -50,7 +50,7 @@ function goCountdown() {
       <div class="border-t border-gray-300 pt-4">
         <div
           w-full
-          flex gap-4
+          flex flex-wrap gap-4
         >
           <button
             btn

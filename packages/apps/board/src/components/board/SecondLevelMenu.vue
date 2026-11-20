@@ -49,6 +49,7 @@ const currentItem = computed({
 
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 function getTitle(item: Item) {
   if (typeof item.title === "string") {
@@ -97,12 +98,13 @@ onMounted(() => {
   <div
     font-mono
     flex
+    max-lg:w-full
   >
     <div
-      class="mr-[-4px]"
-      flex
+      class="mr-[-4px] flex max-lg:w-full max-lg:flex-wrap"
       :class="{
-        'flex-row-reverse': props.reverseOrder,
+        'flex-row-reverse': props.reverseOrder && !isMobileLayout,
+        'max-lg:justify-end': props.reverseOrder,
       }"
     >
       <template
@@ -162,5 +164,13 @@ onMounted(() => {
 
 .second-level-menu-item-current {
   background: #f30;
+}
+
+@media (max-width: 1023.98px) {
+  .second-level-menu-item {
+    height: auto;
+    min-height: 24px;
+    padding: 8px 10px !important;
+  }
 }
 </style>

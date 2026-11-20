@@ -32,13 +32,13 @@ const logo = computed(() => {
 
 <template>
   <div ref="el">
-    <div h-32>
+    <div class="min-h-32">
       <div
         v-if="isVisible"
       >
         <RouterLink
           :to="props.data.boardLink"
-          class="w-240 flex flex-col justify-center font-serif pb-2 text-inherit border-b-2 border-gray-200 dark:border-gray-700"
+          class="flex w-full flex-col justify-center border-b-2 border-gray-200 pb-2 font-serif text-inherit dark:border-gray-700"
         >
           <div
             w-full flex
@@ -62,7 +62,7 @@ const logo = computed(() => {
               <Tooltip>
                 <div
                   overflow-hidden
-                  text-2xl truncate
+                  text-2xl truncate max-lg:text-xl
                 >
                   {{ contestName }}
                 </div>
@@ -78,8 +78,8 @@ const logo = computed(() => {
             </div>
           </div>
 
-          <div flex items-end>
-            <div float-left font-mono text-base>
+          <div class="flex items-end max-lg:flex-col max-lg:items-stretch max-lg:gap-2">
+            <div class="float-left font-mono text-base max-lg:text-sm">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -87,11 +87,11 @@ const logo = computed(() => {
               {{ contest.getContestDuration() }}
             </div>
 
-            <div flex-1>
+            <div class="flex-1 max-lg:w-full">
               <div flex items-center justify-center>
                 <div
                   font-bold font-mono
-                  class="w-[68%]"
+                  class="w-[68%] max-lg:w-full"
                 >
                   <div>
                     <ContestStateBadge
@@ -106,7 +106,7 @@ const logo = computed(() => {
                 </div>
               </div>
             </div>
-            <div float-right>
+            <div class="float-right max-lg:self-end">
               <span
                 class="go MuiIconButton-root"
                 aria-hidden="true"

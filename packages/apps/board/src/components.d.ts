@@ -64,6 +64,8 @@ declare module 'vue' {
     SecondLevelMenu: typeof import('./components/board/SecondLevelMenu.vue')['default']
     SegmentedControl: typeof import('./components/common/SegmentedControl.vue')['default']
     Standings: typeof import('./components/board/Standings.vue')['default']
+    StandingsMobile: typeof import('./components/board/StandingsMobile.vue')['default']
+    StandingsTeamCard: typeof import('./components/board/StandingsTeamCard.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
     SubmissionCharts: typeof import('./components/board/SubmissionCharts.vue')['default']
     SubmissionsTable: typeof import('./components/board/SubmissionsTable.vue')['default']

@@ -108,8 +108,7 @@ async function onClickForICPCStandingsCsvDownload() {
     flex flex-col
   >
     <div
-      w-160
-      font-bold
+      class="w-full max-w-[40rem] font-bold"
     >
       <ModelSelect
         v-model="currentItem"

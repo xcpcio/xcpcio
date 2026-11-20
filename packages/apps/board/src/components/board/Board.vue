@@ -3,6 +3,7 @@ import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
+import StandingsMobile from "@board/components/board/StandingsMobile.vue";
 import AsyncLoading from "@board/components/common/AsyncLoading.vue";
 
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
@@ -21,6 +22,7 @@ const title = useTitle();
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 const { isAnyModalOpen } = useModalStack();
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 // Keep the Highcharts statistics view out of the initial board chunk.
 const Statistics = defineAsyncComponent({
@@ -425,6 +427,11 @@ function updateRankTableZoom() {
     return;
   }
 
+  if (isMobileLayout.value) {
+    inner.style.zoom = "";
+    return;
+  }
+
   const table = container.querySelector<HTMLTableElement>("table.standings");
   if (!table) {
     return;
@@ -452,6 +459,11 @@ function updateRankTableZoom() {
 }
 
 useResizeObserver(rankTableContainer, updateRankTableZoom);
+
+watch(isMobileLayout, async () => {
+  await nextTick();
+  updateRankTableZoom();
+});
 
 watch(lang, () => {
   nextTick(updateRankTableZoom);
@@ -534,7 +546,7 @@ onMounted(() => {
         flex flex-row justify-center
       >
         <div class="w-[92%]">
-          <div class="flex font-bold font-mono">
+          <div class="flex flex-wrap font-bold font-mono max-lg:flex-col max-lg:items-center max-lg:gap-1 max-lg:text-xs">
             <div class="float-left">
               {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
             </div>
@@ -561,7 +573,7 @@ onMounted(() => {
             />
           </div>
 
-          <div class="mt-2 flex font-bold font-mono">
+          <div class="mt-2 flex flex-wrap gap-x-4 font-bold font-mono max-lg:text-xs">
             <div class="float-left">
               {{ elapsedTime }}
             </div>
@@ -573,9 +585,9 @@ onMounted(() => {
 
           <div
             v-if="!showPendingPage"
-            class="mt-4 flex"
+            class="mt-4 flex max-lg:flex-col max-lg:items-stretch max-lg:gap-1"
           >
-            <div class="float-left">
+            <div class="float-left min-w-0 max-w-full max-lg:w-full">
               <SecondLevelMenu
                 v-model:current-item="currentGroup"
                 :items="groupMenuList"
@@ -583,8 +595,8 @@ onMounted(() => {
                 :on-change="onChangeCurrentGroup"
               />
             </div>
-            <div class="flex-1" />
-            <div class="float-right">
+            <div class="flex-1 max-lg:hidden" />
+            <div class="float-right min-w-0 max-w-full max-lg:w-full">
               <SecondLevelMenu
                 v-model:current-item="currentType"
                 :items="typeMenuList"
@@ -618,24 +630,31 @@ onMounted(() => {
           class="w-[92%]"
           flex justify-center
         >
-          <div
-            v-if="currentType === 'rank'"
-            ref="rankTableContainer"
-            class="w-full overflow-x-auto"
-          >
+          <template v-if="currentType === 'rank'">
+            <StandingsMobile
+              v-if="isMobileLayout"
+              :rank="rank"
+            />
+
             <div
-              ref="rankTableInner"
-              class="rank-table-inner w-fit max-w-full mx-auto"
+              v-else
+              ref="rankTableContainer"
+              class="w-full overflow-x-auto"
             >
-              <Standings
-                :rank="rank"
-              />
+              <div
+                ref="rankTableInner"
+                class="rank-table-inner w-fit max-w-full mx-auto"
+              >
+                <Standings
+                  :rank="rank"
+                />
+              </div>
             </div>
-          </div>
+          </template>
 
           <div
             v-if="currentType === 'submissions'"
-            class="sm:w-full xl:w-[92%]"
+            class="w-full xl:w-[92%]"
           >
             <SubmissionsTable
               w-full
@@ -652,7 +671,7 @@ onMounted(() => {
 
           <div
             v-if="currentType === 'statistics'"
-            class="sm:w-full xl:w-[92%]"
+            class="w-full xl:w-[92%]"
           >
             <Statistics
               :rank="rank"
@@ -703,15 +722,5 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   text-align: center;
-}
-
-/* Phones use the default ~980px layout viewport; the standings table is fitted
-   with a fixed layout there (see Standings.less). Give the wrapper the full
-   content width so the percentage-width table resolves against it. */
-@media (min-width: 960px) and (max-width: 1000px) {
-  .rank-table-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
 }
 </style>

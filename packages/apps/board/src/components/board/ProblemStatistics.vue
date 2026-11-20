@@ -39,7 +39,7 @@ const firstSolveTime = computed(() => {
     flex flex-col gap-6
   >
     <div
-      grid grid-cols-2 gap-4 xl:grid-cols-4
+      grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4
     >
       <div
         class="rounded-md border border-gray-100 p-4 text-center dark:border-gray-600 dark:bg-gray-800"

@@ -26,6 +26,8 @@ declare global {
   const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const buildFilterTeams: typeof import('./composables/useStandingsLists').buildFilterTeams
+  const buildGiantTeams: typeof import('./composables/useStandingsLists').buildGiantTeams
   const buildLocaleUrl: typeof import('./composables/locale').buildLocaleUrl
   const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
   const computeSchemaAnnotations: typeof import('./composables/jsonSchemaCompletion').computeSchemaAnnotations
@@ -58,6 +60,7 @@ declare global {
   const extendRef: typeof import('@vueuse/core').extendRef
   const filterMarks: typeof import('./composables/codemirror').filterMarks
   const findLocaleForPath: typeof import('./composables/locale').findLocaleForPath
+  const getAwardKey: typeof import('./composables/standings').getAwardKey
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
@@ -67,8 +70,12 @@ declare global {
   const getLocaleUrls: typeof import('./composables/runtimeConfig').getLocaleUrls
   const getMedalColor: typeof import('./composables/color').getMedalColor
   const getProblemChart: typeof import('./composables/statistics').getProblemChart
+  const getProblemColorClass: typeof import('./composables/standings').getProblemColorClass
+  const getProblemShow: typeof import('./composables/standings').getProblemShow
+  const getProblemSign: typeof import('./composables/standings').getProblemSign
   const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
   const getRuntimeConfig: typeof import('./composables/runtimeConfig').getRuntimeConfig
+  const getStandClassName: typeof import('./composables/standings').getStandClassName
   const getStandingsStatusColor: typeof import('./composables/color').getStandingsStatusColor
   const getStoredRuntimeConfig: typeof import('./composables/runtimeConfig').getStoredRuntimeConfig
   const getSubmitChart: typeof import('./composables/statistics').getSubmitChart
@@ -308,6 +315,7 @@ declare global {
   const useSorted: typeof import('@vueuse/core').useSorted
   const useSpeechRecognition: typeof import('@vueuse/core').useSpeechRecognition
   const useSpeechSynthesis: typeof import('@vueuse/core').useSpeechSynthesis
+  const useStandingsLists: typeof import('./composables/useStandingsLists').useStandingsLists
   const useStepper: typeof import('@vueuse/core').useStepper
   const useStorage: typeof import('@vueuse/core').useStorage
   const useStorageAsync: typeof import('@vueuse/core').useStorageAsync
@@ -339,6 +347,7 @@ declare global {
   const useVModel: typeof import('@vueuse/core').useVModel
   const useVModels: typeof import('@vueuse/core').useVModels
   const useVibrate: typeof import('@vueuse/core').useVibrate
+  const useViewportMeta: typeof import('./composables/viewport').useViewportMeta
   const useVirtualList: typeof import('@vueuse/core').useVirtualList
   const useWakeLock: typeof import('@vueuse/core').useWakeLock
   const useWebNotification: typeof import('@vueuse/core').useWebNotification
@@ -380,6 +389,9 @@ declare global {
   export type { Pagination } from './composables/pagination'
   import('./composables/pagination')
   // @ts-ignore
+  export type { AwardKey, StandClassNameOptions, ProblemColorClass } from './composables/standings'
+  import('./composables/standings')
+  // @ts-ignore
   export type { LastBlockDisplayType, AnimatedSubmissionBlockItem } from './composables/type'
   import('./composables/type')
   // @ts-ignore
@@ -388,6 +400,9 @@ declare global {
   // @ts-ignore
   export type { RouteQueryValueRaw, RouteHashValueRaw, ReactiveRouteOptions, ReactiveRouteOptionsWithTransform } from './composables/useRouteQueryWithoutParam'
   import('./composables/useRouteQueryWithoutParam')
+  // @ts-ignore
+  export type { GiantTeam, StandingsLists } from './composables/useStandingsLists'
+  import('./composables/useStandingsLists')
 }
 
 // for vue template auto import
@@ -413,6 +428,8 @@ declare module 'vue' {
     readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly buildFilterTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildFilterTeams']>
+    readonly buildGiantTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildGiantTeams']>
     readonly buildLocaleUrl: UnwrapRef<typeof import('./composables/locale')['buildLocaleUrl']>
     readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
     readonly computeSchemaAnnotations: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['computeSchemaAnnotations']>
@@ -445,6 +462,7 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly filterMarks: UnwrapRef<typeof import('./composables/codemirror')['filterMarks']>
     readonly findLocaleForPath: UnwrapRef<typeof import('./composables/locale')['findLocaleForPath']>
+    readonly getAwardKey: UnwrapRef<typeof import('./composables/standings')['getAwardKey']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
@@ -454,8 +472,12 @@ declare module 'vue' {
     readonly getLocaleUrls: UnwrapRef<typeof import('./composables/runtimeConfig')['getLocaleUrls']>
     readonly getMedalColor: UnwrapRef<typeof import('./composables/color')['getMedalColor']>
     readonly getProblemChart: UnwrapRef<typeof import('./composables/statistics')['getProblemChart']>
+    readonly getProblemColorClass: UnwrapRef<typeof import('./composables/standings')['getProblemColorClass']>
+    readonly getProblemShow: UnwrapRef<typeof import('./composables/standings')['getProblemShow']>
+    readonly getProblemSign: UnwrapRef<typeof import('./composables/standings')['getProblemSign']>
     readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>
     readonly getRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeConfig']>
+    readonly getStandClassName: UnwrapRef<typeof import('./composables/standings')['getStandClassName']>
     readonly getStandingsStatusColor: UnwrapRef<typeof import('./composables/color')['getStandingsStatusColor']>
     readonly getStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getStoredRuntimeConfig']>
     readonly getSubmitChart: UnwrapRef<typeof import('./composables/statistics')['getSubmitChart']>
@@ -690,6 +712,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useStandingsLists: UnwrapRef<typeof import('./composables/useStandingsLists')['useStandingsLists']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>
@@ -721,6 +744,7 @@ declare module 'vue' {
     readonly useVModel: UnwrapRef<typeof import('@vueuse/core')['useVModel']>
     readonly useVModels: UnwrapRef<typeof import('@vueuse/core')['useVModels']>
     readonly useVibrate: UnwrapRef<typeof import('@vueuse/core')['useVibrate']>
+    readonly useViewportMeta: UnwrapRef<typeof import('./composables/viewport')['useViewportMeta']>
     readonly useVirtualList: UnwrapRef<typeof import('@vueuse/core')['useVirtualList']>
     readonly useWakeLock: UnwrapRef<typeof import('@vueuse/core')['useWakeLock']>
     readonly useWebNotification: UnwrapRef<typeof import('@vueuse/core')['useWebNotification']>

@@ -88,6 +88,7 @@ onMounted(() => {
         i-material-symbols-info-outline
         text-lg
         cursor-pointer
+        class="max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
         @click="openInfoModal"
       />
     </div>
@@ -140,6 +141,7 @@ onMounted(() => {
         i-material-symbols-share
         text-lg
         cursor-pointer
+        class="max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
       />
 
       <div

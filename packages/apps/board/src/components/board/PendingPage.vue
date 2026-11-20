@@ -127,7 +127,7 @@ const filteredTeamIds = computed(() => {
       <div flex="~ wrap gap-3 items-center" flex-1>
         <div
           v-if="groupOptions.length > 0"
-          w-48
+          class="w-full max-w-48"
         >
           <TheMultiSelect
             :options="groupOptions"
@@ -139,7 +139,7 @@ const filteredTeamIds = computed(() => {
 
         <div
           v-if="rank.contest.options.enableOrganization && orgOptions.length > 0"
-          w-80
+          class="w-full max-w-80"
         >
           <TheMultiSelect
             :options="orgOptions"
@@ -151,7 +151,7 @@ const filteredTeamIds = computed(() => {
 
         <div
           v-if="teamsOptions.length > 0"
-          w-80
+          class="w-full max-w-80"
         >
           <TheMultiSelect
             :options="teamsOptions"
