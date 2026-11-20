@@ -121,13 +121,13 @@ const heatMapData = computed(() =>
     </span>
 
     <div
-      grid grid-cols-4
+      grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4
       gap-6 space-y-0
       place-items-center
     >
       <div
         v-for="heatMap in heatMapData" :key="heatMap.label"
-        class="w-280px h-100px"
+        class="w-full max-w-280px h-100px"
         flex flex-col gap-2
         items-center justify-center
         border border-gray-100 dark:border-gray-600
