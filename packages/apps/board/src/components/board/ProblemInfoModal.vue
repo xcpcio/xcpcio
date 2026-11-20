@@ -2,6 +2,8 @@
 import type { Problem, Rank } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 
+import AsyncLoading from "@board/components/common/AsyncLoading.vue";
+
 const props = defineProps<{
   isHidden: boolean;
 
@@ -10,6 +12,13 @@ const props = defineProps<{
 }>();
 
 const emit = defineEmits(["update:isHidden"]);
+
+const ProblemStatistics = defineAsyncComponent({
+  loader: () => import("@board/components/board/ProblemStatistics.vue"),
+  loadingComponent: AsyncLoading,
+  delay: 150,
+  timeout: 15000,
+});
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
@@ -113,7 +122,12 @@ const types = [TYPE_SUBMISSIONS, TYPE_STATISTICS];
       <div
         v-if="currentType === TYPE_STATISTICS"
         w-full
-      />
+      >
+        <ProblemStatistics
+          :rank="rank"
+          :problem="problem"
+        />
+      </div>
     </div>
   </Modal>
 </template>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
 
+import SubmissionCharts from "@board/components/board/SubmissionCharts.vue";
 import { Chart } from "highcharts-vue";
 
 const props = defineProps<{
@@ -10,6 +11,10 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const rank = computed(() => props.rank);
+const allSubmissions = computed(() => rank.value.getSubmissions());
+const durationMinutes = computed(() =>
+  rank.value.contest.getEndTime().diff(rank.value.contest.getStartTime(), "minute"),
+);
 
 const headData = computed(() => {
   const res = [];
@@ -86,6 +91,16 @@ const headData = computed(() => {
       <div>
         <SubmitHeatMap
           :rank="rank"
+        />
+      </div>
+
+      <div>
+        <div class="mb-8 text-center text-size-lg font-semibold">
+          {{ t("submission_statistics.all_submissions") }}
+        </div>
+        <SubmissionCharts
+          :submissions="allSubmissions"
+          :duration-minutes="durationMinutes"
         />
       </div>
 
