@@ -38,14 +38,6 @@ const headData = computed(() => {
 
   return res;
 });
-
-const headDataGap = computed(() => {
-  if (headData.value.length === 4) {
-    return "gap-20";
-  }
-
-  return "gap-32";
-});
 </script>
 
 <template>
@@ -59,13 +51,13 @@ const headDataGap = computed(() => {
         mx-auto px-4 py-4 lg:px-6 lg:py-6
       >
         <div
-          flex flex-nowrap justify-center items-center
-          :class="headDataGap"
+          grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-20
+          place-items-center
         >
-          <div v-for="h in headData" :key="h.title" class="w-[16rem]">
+          <div v-for="h in headData" :key="h.title" class="w-full max-w-[16rem]">
             <div
               w-full
-              p-6 xl:p-8
+              p-4 sm:p-6 xl:p-8
               flex flex-col
               border border-gray-100 dark:border-gray-600
               text-center test-gray-900
@@ -74,12 +66,12 @@ const headDataGap = computed(() => {
               shadow rounded-md
             >
               <h3
-                mb-4 text-2xl font-semibold
+                mb-2 text-xl font-semibold sm:mb-4 sm:text-2xl
               >
                 {{ t(h.title) }}
               </h3>
-              <div class="my-8 flex items-baseline justify-center">
-                <span class="mr-2 text-5xl font-extrabold">{{ h.data }}</span>
+              <div class="my-4 flex items-baseline justify-center sm:my-8">
+                <span class="text-4xl font-extrabold sm:text-5xl">{{ h.data }}</span>
               </div>
             </div>
           </div>
