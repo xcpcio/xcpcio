@@ -36,11 +36,9 @@ const logo = computed(() => {
       <div
         v-if="isVisible"
       >
-        <div
-          w-240
-          flex flex-col justify-center
-          font-serif pb-2
-          border="b-2 gray-200 dark:gray-700"
+        <RouterLink
+          :to="props.data.boardLink"
+          class="w-240 flex flex-col justify-center font-serif pb-2 text-inherit border-b-2 border-gray-200 dark:border-gray-700"
         >
           <div
             w-full flex
@@ -109,17 +107,17 @@ const logo = computed(() => {
               </div>
             </div>
             <div float-right>
-              <RouterLink
+              <span
                 class="go MuiIconButton-root"
-                :to="props.data.boardLink"
+                aria-hidden="true"
               >
                 <span class="MuiIconButton-label">
                   <RightArrowIcon />
                 </span>
-              </RouterLink>
+              </span>
             </div>
           </div>
-        </div>
+        </RouterLink>
       </div>
     </div>
   </div>
