@@ -91,7 +91,7 @@ onUnmounted(() => {
 
 <template>
   <div
-    class="sm:w-[1024px] lg:w-screen"
+    class="w-full"
     lg:of-x-hidden
     flex flex-col justify-center items-center
   >
@@ -103,7 +103,7 @@ onUnmounted(() => {
       <div
         v-if="isFetching || error"
         mt-4 mb-4
-        class="sm:w-[1000px] lg:w-screen"
+        class="w-full"
         flex justify-center items-center
       >
         <div
@@ -121,7 +121,7 @@ onUnmounted(() => {
 
       <div
         v-if="isFinished"
-        class="sm:w-[1000px] lg:w-screen min-h-120"
+        class="w-full min-h-120"
         flex flex-col items-center
       >
         <div w-240>

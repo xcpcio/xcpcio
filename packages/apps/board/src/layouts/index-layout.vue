@@ -1,6 +1,6 @@
 <template>
   <NavBar
-    width="sm:w-[1024px] lg:w-screen"
+    width="w-full"
   />
   <main
     class="lg:mt-[-52px]"
@@ -9,7 +9,7 @@
   >
     <RouterView />
     <Footer
-      class="sm:w-[1024px] lg:w-screen"
+      class="w-full"
     />
   </main>
 </template>
