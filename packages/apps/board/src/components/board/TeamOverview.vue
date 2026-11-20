@@ -147,6 +147,8 @@ const tableRows = computed(() => {
             :width="teamPhoto.width"
             :height="teamPhoto.height"
             alt="team photo"
+            loading="lazy"
+            decoding="async"
             @error="handlePhotoError"
           >
         </a>

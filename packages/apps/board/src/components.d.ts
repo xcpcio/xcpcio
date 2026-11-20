@@ -13,6 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     AnimatedSubmissionBlock: typeof import('./components/board/AnimatedSubmissionBlock.vue')['default']
     AnimatedSubmissionsModal: typeof import('./components/board/AnimatedSubmissionsModal.vue')['default']
+    AsyncLoading: typeof import('./components/common/AsyncLoading.vue')['default']
     Badge: typeof import('./components/board/Badge.vue')['default']
     Balloon: typeof import('./components/Balloon.vue')['default']
     BalloonBlock: typeof import('./components/BalloonBlock.vue')['default']
@@ -70,6 +71,7 @@ declare module 'vue' {
     TeamCard: typeof import('./components/board/TeamCard.vue')['default']
     TeamModal: typeof import('./components/board/TeamModal.vue')['default']
     TeamOverview: typeof import('./components/board/TeamOverview.vue')['default']
+    TeamPlaceChart: typeof import('./components/board/TeamPlaceChart.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']
     TeamStreams: typeof import('./components/board/TeamStreams.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
