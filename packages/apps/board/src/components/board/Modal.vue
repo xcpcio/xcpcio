@@ -40,6 +40,10 @@ const hasOverflowingContent = ref(true);
 
 const isBodyScrollable = computed(() => (props.scrollable ?? true) || hasOverflowingContent.value);
 
+// Reserve room for the modal's top offset and outer padding so a tall body
+// scrolls instead of pushing the panel below the viewport.
+const maxHeight = computed(() => `calc(100vh - ${props.mt ? "7rem" : "10rem"})`);
+
 let bodyResizeObserver: ResizeObserver | undefined;
 let bodyMutationObserver: MutationObserver | undefined;
 
@@ -124,8 +128,9 @@ watch(Escape, (v) => {
       z-1999
     >
       <div
-        class="relative bg-white dark:bg-gray-800 sm:p-4 max-h-[calc(100vh-5rem)] flex flex-col"
+        class="relative bg-white dark:bg-gray-800 sm:p-4 flex flex-col"
         rounded-sm shadow-sm
+        :style="{ maxHeight }"
       >
         <div
           class="mb-4 border-b rounded-t pb-4 sm:mb-4 dark:border-gray-600 shrink-0"

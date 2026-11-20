@@ -23,6 +23,20 @@ index:
   start: StartTime
   duration: Duration
 
+problem_statistics:
+  accepted_teams: Accepted Teams
+  acceptance_rate: Acceptance Rate
+  first_solve: First Solve
+
+submission_statistics:
+  all_submissions: All Submissions
+  submissions: Submissions
+  verdict_title: Verdict Distribution
+  over_time_title: Submissions over Time
+  language_title: Languages
+  minutes: Minutes
+  no_submissions: No submissions yet
+
 type_menu:
   rank: Rank
   overview: Overview

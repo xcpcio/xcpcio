@@ -23,6 +23,20 @@ index:
   start: 开始时间
   duration: 持续时长
 
+problem_statistics:
+  accepted_teams: 通过队伍
+  acceptance_rate: 通过率
+  first_solve: 首杀时间
+
+submission_statistics:
+  all_submissions: 全部提交统计
+  submissions: 提交数
+  verdict_title: 判题结果分布
+  over_time_title: 提交时间分布
+  language_title: 语言分布
+  minutes: 分钟
+  no_submissions: 暂无提交
+
 type_menu:
   rank: 排名
   overview: 简介
