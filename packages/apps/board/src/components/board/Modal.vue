@@ -124,7 +124,7 @@ watch(Escape, (v) => {
 
     <div
       class="relative p-4"
-      :class="[props.width ?? 'w-[78%]']"
+      :class="[props.width ?? 'w-[78%] max-lg:w-[96%]']"
       z-1999
     >
       <div

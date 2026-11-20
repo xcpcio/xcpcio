@@ -143,4 +143,15 @@ function toTop() {
 .nav .right > * {
   margin: auto;
 }
+
+@media (max-width: 1023px) {
+  .nav :deep(a),
+  .nav :deep(button) {
+    padding: 0.5rem;
+  }
+
+  .nav .right {
+    grid-gap: 0.25rem;
+  }
+}
 </style>
