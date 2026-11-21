@@ -4,6 +4,7 @@ import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
 import BoardMenuDrawer from "@board/components/board/BoardMenuDrawer.vue";
+import ProblemInfoModal from "@board/components/board/ProblemInfoModal.vue";
 import StandingsMobile from "@board/components/board/StandingsMobile.vue";
 import AsyncLoading from "@board/components/common/AsyncLoading.vue";
 
@@ -247,6 +248,11 @@ const groupMenuList = computed(() => {
 const currentType = ref("rank");
 const isHiddenOptionsModal = ref(true);
 const isHiddenFilterModal = ref(true);
+const selectedProblemId = ref<string | null>(null);
+
+const selectedProblem = computed(() => {
+  return selectedProblemId.value ? rank.value.contest.problemsMap.get(selectedProblemId.value) : undefined;
+});
 
 function onChangeCurrentType(type: string) {
   if (type === "options") {
@@ -637,18 +643,21 @@ onMounted(() => {
               class="mt-2 flex gap-[2px] font-mono"
               data-testid="problem-color-legend"
             >
-              <div
+              <button
                 v-for="p in rank.contest.problems"
                 :key="p.id"
+                type="button"
                 class="flex min-h-6 min-w-0 flex-1 items-center justify-center rounded-sm text-[11px] font-bold"
                 :style="{
                   backgroundColor: p.balloonColor.background_color,
                   color: p.balloonColor.color,
                 }"
                 :title="p.name?.getOrDefault(lang) ?? p.label"
+                :aria-label="p.name?.getOrDefault(lang) ?? p.label"
+                @click="selectedProblemId = p.id"
               >
                 {{ p.label }}
-              </div>
+              </button>
             </div>
           </template>
 
@@ -777,6 +786,15 @@ onMounted(() => {
         v-model:is-hidden="isHiddenOptionsModal"
         v-model:rank-options="rankOptions"
         :rank="rank"
+      />
+
+      <ProblemInfoModal
+        v-if="selectedProblem"
+        :key="selectedProblem.id"
+        :is-hidden="false"
+        :rank="rank"
+        :problem="selectedProblem"
+        @update:is-hidden="selectedProblemId = null"
       />
 
       <BoardMenuDrawer
