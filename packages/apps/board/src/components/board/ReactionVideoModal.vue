@@ -177,7 +177,7 @@ function onTouchCancel() {
       bg-white
       shadow
       relative overflow-hidden
-      class="h-[100%] max-lg:h-[100dvh] max-lg:max-h-[100dvh] max-lg:w-full max-lg:max-w-none max-lg:flex max-lg:items-center max-lg:justify-center max-lg:rounded-none max-lg:bg-white max-lg:shadow-none max-lg:ring-0"
+      class="h-[100%] max-lg:h-[100dvh] max-lg:max-h-[100dvh] max-lg:w-full max-lg:max-w-none max-lg:flex max-lg:items-center max-lg:justify-center max-lg:rounded-none max-lg:bg-black max-lg:shadow-none max-lg:ring-0"
       :class="[width ?? 'w-full max-w-[540px]']"
       @click.stop
       @touchstart="onTouchStart"
@@ -192,7 +192,7 @@ function onTouchCancel() {
         autoplay
         :playsinline="isMobileLayout"
         preload="metadata"
-        class="w-full h-full max-lg:h-[calc(100dvh-2rem)] max-lg:bg-white object-contain max-lg:object-cover"
+        class="w-full h-full max-lg:bg-black object-contain"
       >
         <source
           :src="submissionReaction.url"
