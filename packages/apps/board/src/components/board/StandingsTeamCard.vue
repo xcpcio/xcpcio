@@ -92,9 +92,11 @@ function onSelectProblem(p: TeamProblemStatistics) {
           {{ team.rank }}
         </button>
 
-        <div v-if="bigBadge" class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-gray-50 dark:bg-gray-700">
-          <Badge :image="bigBadge" class="h-9 w-9" />
-        </div>
+        <Badge
+          v-if="bigBadge"
+          :image="bigBadge"
+          class="h-9 w-9 shrink-0"
+        />
 
         <div class="min-w-0 flex-1">
           <div class="flex min-w-0 items-center gap-1">
