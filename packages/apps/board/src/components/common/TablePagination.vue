@@ -27,7 +27,7 @@ const mobilePages = computed(() => {
   }
 
   const current = p.value.currentPage;
-  const maxPages = isNarrowScreen.value ? 7 : 9;
+  const maxPages = isNarrowScreen.value ? 5 : 7;
   const pages = new Set([0, total - 1, current]);
   const powerPages: Array<number> = [];
 
@@ -192,10 +192,20 @@ const mobilePages = computed(() => {
 
 <style scoped>
 @media (max-width: 1023.98px) {
+  .pagination-list {
+    width: 100%;
+  }
+
+  .pagination-list > li {
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
   .pagination-list > li > a {
-    padding-right: 0.25rem;
-    padding-left: 0.25rem;
-    font-size: 0.75rem;
+    width: 100%;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8125rem;
   }
 }
 </style>
