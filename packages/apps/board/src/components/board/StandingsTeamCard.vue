@@ -76,7 +76,7 @@ function onSelectProblem(p: TeamProblemStatistics) {
 <template>
   <article
     ref="el"
-    class="standings-card min-h-[11.75rem] overflow-hidden rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+    class="standings-card min-h-[8.5rem] overflow-hidden rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
     :class="cardClass"
     data-testid="standings-card"
   >
@@ -150,12 +150,12 @@ function onSelectProblem(p: TeamProblemStatistics) {
         {{ t("standings.dirt") }} {{ team.dirt }}% · {{ t("standings.se") }} {{ team.se.toFixed(2) }}
       </div>
 
-      <div class="mt-2 grid grid-cols-[repeat(auto-fill,minmax(2.5rem,1fr))] gap-1">
+      <div class="mt-2 flex gap-[2px]">
         <button
           v-for="p in team.problemStatistics"
           :key="p.problem.id"
           type="button"
-          class="problem-chip"
+          class="problem-chip flex-1"
           :class="getProblemColorClass(p)"
           :aria-label="problemAriaLabel(p)"
           data-testid="problem-chip"
@@ -223,17 +223,17 @@ function onSelectProblem(p: TeamProblemStatistics) {
 
 .problem-chip {
   display: flex;
-  min-height: 2.5rem;
+  min-height: 2rem;
   min-width: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 1px;
   border: 1px solid transparent;
-  border-radius: 0.375rem;
-  padding: 2px 1px;
+  border-radius: 0.25rem;
+  padding: 1px;
   font-size: 10px;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .problem-chip.first-solve {
@@ -263,7 +263,7 @@ function onSelectProblem(p: TeamProblemStatistics) {
 }
 
 .chip-label {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
