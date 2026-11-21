@@ -13,6 +13,7 @@ const emit = defineEmits(["close", "previous", "next"]);
 
 const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 const videoPlayer = ref<HTMLVideoElement | null>(null);
+const videoAspectRatio = ref("9 / 16");
 
 const SWIPE_THRESHOLD = 56;
 
@@ -80,6 +81,13 @@ async function playVideo() {
     await player.play();
   } catch {
     // Autoplay can be rejected; the native controls still let the user play it.
+  }
+}
+
+function updateVideoAspectRatio() {
+  const player = videoPlayer.value;
+  if (player?.videoWidth && player.videoHeight) {
+    videoAspectRatio.value = `${player.videoWidth} / ${player.videoHeight}`;
   }
 }
 
@@ -177,7 +185,7 @@ function onTouchCancel() {
       bg-white
       shadow
       relative overflow-hidden
-      class="h-[100%] max-lg:h-[100dvh] max-lg:max-h-[100dvh] max-lg:w-full max-lg:max-w-none max-lg:rounded-none max-lg:bg-black max-lg:shadow-none max-lg:ring-0"
+      class="h-[100%] max-lg:h-[100dvh] max-lg:max-h-[100dvh] max-lg:w-full max-lg:max-w-none max-lg:flex max-lg:items-center max-lg:justify-center max-lg:rounded-none max-lg:bg-white max-lg:shadow-none max-lg:ring-0"
       :class="[width ?? 'w-full max-w-[540px]']"
       @click.stop
       @touchstart="onTouchStart"
@@ -192,7 +200,9 @@ function onTouchCancel() {
         autoplay
         :playsinline="isMobileLayout"
         preload="metadata"
-        class="w-full h-full max-lg:bg-black object-contain"
+        class="w-full h-full max-lg:h-auto max-lg:max-h-[100dvh] max-lg:bg-white object-contain"
+        :style="isMobileLayout ? { aspectRatio: videoAspectRatio } : undefined"
+        @loadedmetadata="updateVideoAspectRatio"
       >
         <source
           :src="submissionReaction.url"
