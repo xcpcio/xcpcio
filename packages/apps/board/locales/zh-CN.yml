@@ -95,7 +95,7 @@ standings:
   place: Place
   organization: Organization
   team: Team
-  group: Group
+  group: 组别
   view: 视图
   solved: Solved
   penalty: Penalty
