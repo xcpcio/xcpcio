@@ -132,7 +132,7 @@ function onSelectProblem(p: TeamProblemStatistics) {
           </button>
 
           <div class="mt-0.5 truncate text-[10px] leading-tight opacity-60">
-            {{ team.icpcID || team.id }}
+            {{ team.id }}
           </div>
         </div>
 
@@ -165,8 +165,6 @@ function onSelectProblem(p: TeamProblemStatistics) {
           @click="onSelectProblem(p)"
         >
           <span class="chip-label">{{ p.problem.label }}</span>
-          <span class="chip-sign">{{ getProblemSign(p) }}</span>
-          <span class="chip-time">{{ problemShow(p) }}</span>
         </button>
       </div>
     </div>
@@ -265,17 +263,8 @@ function onSelectProblem(p: TeamProblemStatistics) {
 }
 
 .chip-label {
+  font-size: 13px;
   font-weight: 700;
-}
-
-.chip-sign {
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.chip-time {
-  font-size: 9px;
-  opacity: 0.8;
 }
 
 .dark .rank-default {
