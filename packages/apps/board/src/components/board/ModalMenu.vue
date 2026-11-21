@@ -27,6 +27,8 @@ const typesLength = computed(() => props.types.length);
 <template>
   <div
     role="group"
+    class="modal-menu"
+    :class="{ 'modal-menu-dense': typesLength >= 4 }"
     inline-flex flex-col w-full
     md:w-auto md:flex-row
     rounded-md shadow-sm
@@ -62,3 +64,54 @@ const typesLength = computed(() => props.types.length);
     </template>
   </div>
 </template>
+
+<style scoped>
+@media (max-width: 767.98px) {
+  .modal-menu {
+    display: flex !important;
+    width: 100%;
+    flex-direction: row !important;
+  }
+
+  .modal-menu > button {
+    min-width: 0;
+    min-height: 2.5rem;
+    flex: 1 1 0;
+    margin: 0 !important;
+    padding: 0.5rem 0.25rem !important;
+    overflow: hidden;
+    border-width: 1px !important;
+    border-style: solid !important;
+    border-radius: 0 !important;
+    font-size: 0.75rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .modal-menu > button + button {
+    margin-left: -1px !important;
+  }
+
+  .modal-menu > button:first-child {
+    border-top-left-radius: 0.5rem !important;
+    border-bottom-left-radius: 0.5rem !important;
+  }
+
+  .modal-menu > button:last-child {
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+  }
+
+  .modal-menu-dense > button {
+    padding: 0.5rem 0.125rem !important;
+    font-size: 0.625rem;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .modal-menu > button {
+    padding: 0.5rem 0.125rem !important;
+    font-size: 0.625rem;
+  }
+}
+</style>

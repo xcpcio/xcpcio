@@ -39,48 +39,48 @@ const firstSolveTime = computed(() => {
     flex flex-col gap-6
   >
     <div
-      grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4
+      grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4
     >
       <div
-        class="rounded-md border border-gray-100 p-4 text-center dark:border-gray-600 dark:bg-gray-800"
+        class="rounded-md border border-gray-100 p-3 text-center dark:border-gray-600 dark:bg-gray-800 sm:p-4"
       >
-        <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
           {{ t("problem_statistics.accepted_teams") }}
         </div>
-        <div class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white">
+        <div class="mt-2 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
           {{ statistics.acceptedNum }}
         </div>
       </div>
 
       <div
-        class="rounded-md border border-gray-100 p-4 text-center dark:border-gray-600 dark:bg-gray-800"
+        class="rounded-md border border-gray-100 p-3 text-center dark:border-gray-600 dark:bg-gray-800 sm:p-4"
       >
-        <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
           {{ t("submission_statistics.submissions") }}
         </div>
-        <div class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white">
+        <div class="mt-2 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
           {{ submissions.length }}
         </div>
       </div>
 
       <div
-        class="rounded-md border border-gray-100 p-4 text-center dark:border-gray-600 dark:bg-gray-800"
+        class="rounded-md border border-gray-100 p-3 text-center dark:border-gray-600 dark:bg-gray-800 sm:p-4"
       >
-        <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
           {{ t("problem_statistics.acceptance_rate") }}
         </div>
-        <div class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white">
+        <div class="mt-2 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
           {{ acceptanceRate }}
         </div>
       </div>
 
       <div
-        class="rounded-md border border-gray-100 p-4 text-center dark:border-gray-600 dark:bg-gray-800"
+        class="rounded-md border border-gray-100 p-3 text-center dark:border-gray-600 dark:bg-gray-800 sm:p-4"
       >
-        <div class="text-sm text-gray-500 dark:text-gray-400">
+        <div class="text-xs text-gray-500 dark:text-gray-400 sm:text-sm">
           {{ t("problem_statistics.first_solve") }}
         </div>
-        <div class="mt-2 text-3xl font-extrabold text-gray-900 dark:text-white">
+        <div class="mt-2 text-2xl font-extrabold text-gray-900 dark:text-white sm:text-3xl">
           {{ firstSolveTime }}
         </div>
       </div>
