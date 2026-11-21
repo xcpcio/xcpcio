@@ -18,6 +18,7 @@ const p = computed({
 const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white leading-tight";
 
 const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
+const isNarrowScreen = useMediaQuery("(max-width: 359.98px)");
 
 const mobilePages = computed(() => {
   const total = p.value.totalPage;
@@ -26,11 +27,25 @@ const mobilePages = computed(() => {
   }
 
   const current = p.value.currentPage;
-  const candidates = new Set([0, total - 1, current - 1, current, current + 1]);
+  const maxPages = isNarrowScreen.value ? 7 : 9;
+  const pages = new Set([0, total - 1, current]);
+  const powerPages: Array<number> = [];
 
-  return [...candidates]
-    .filter(page => page >= 0 && page < total)
-    .sort((lhs, rhs) => lhs - rhs);
+  for (let page = 2; page <= total; page *= 2) {
+    powerPages.push(page - 1);
+  }
+
+  powerPages.sort((lhs, rhs) => Math.abs(lhs - current) - Math.abs(rhs - current));
+
+  for (const page of powerPages) {
+    if (pages.size >= maxPages) {
+      break;
+    }
+
+    pages.add(page);
+  }
+
+  return [...pages].sort((lhs, rhs) => lhs - rhs);
 });
 </script>
 
@@ -178,8 +193,9 @@ const mobilePages = computed(() => {
 <style scoped>
 @media (max-width: 1023.98px) {
   .pagination-list > li > a {
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 0.75rem;
   }
 }
 </style>
