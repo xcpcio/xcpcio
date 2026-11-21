@@ -406,10 +406,11 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilterButton"
+              class="max-lg:flex max-lg:w-full max-lg:justify-center"
             >
               <button
                 type="button"
-                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 max-lg:w-32"
                 @click="onFilter"
               >
                 <div
@@ -429,12 +430,12 @@ function closeRealtimeStreamModal() {
           <div
             v-for="s in currentSubmissions"
             :key="s.id"
-            class="py-3"
+            class="py-2"
           >
-            <div class="flex items-start justify-between gap-3">
-              <div class="flex min-w-0 items-start gap-2">
+            <div class="flex min-w-0 items-center justify-between gap-3">
+              <div class="flex min-w-0 flex-1 items-center gap-2.5">
                 <span
-                  class="shrink-0 rounded px-2 py-0.5 text-xs font-bold"
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-sm font-bold"
                   :class="[getProblemLabelColorClass(s)]"
                   :style="getProblemLabelColorStyle(s)"
                 >
@@ -463,20 +464,26 @@ function closeRealtimeStreamModal() {
               </span>
             </div>
 
-            <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
-              <span>{{ s.timestampDisplayFormatWithSecond }}</span>
+            <div class="mt-1.5 flex min-w-0 items-center gap-x-3 text-xs text-gray-500 dark:text-gray-400">
+              <span class="shrink-0 whitespace-nowrap">{{ s.timestampDisplayFormatWithSecond }}</span>
 
-              <span v-if="rank.contest.options.submissionHasLanguageField && s.language">
+              <span
+                v-if="rank.contest.options.submissionHasLanguageField && s.language"
+                class="min-w-0 truncate"
+              >
                 {{ s.language }}
               </span>
 
-              <span v-if="rank.contest.options.submissionHasTimeField">
+              <span
+                v-if="rank.contest.options.submissionHasTimeField"
+                class="shrink-0 whitespace-nowrap"
+              >
                 {{ s.time ?? 0 }} ms
               </span>
 
               <span
                 v-if="rank.contest.options.submissionEnableActionField"
-                class="ml-auto flex items-center gap-1"
+                class="ml-auto flex shrink-0 items-center gap-1"
               >
                 <button
                   v-if="rank.contest.options.submissionHasRealtimeReactionStreamField"
