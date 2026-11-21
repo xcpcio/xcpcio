@@ -35,6 +35,7 @@ const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const enableFilter = computed(() => props.enableFilter);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 const enableFilterButton = computed(() => {
   if (!enableFilter.value) {
     return false;
@@ -306,7 +307,7 @@ function closeRealtimeStreamModal() {
           >
             <div
               v-if="rank.contest.options.enableOrganization && enableFilter?.organization"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="orgOptions"
@@ -318,7 +319,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.team"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="teamsOptions"
@@ -330,7 +331,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.status"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="statusOptions"
@@ -343,7 +344,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.language && languageOptions.length > 0"
-              w-48
+              class="w-full sm:w-48"
             >
               <TheMultiSelect
                 :options="languageOptions"
@@ -372,6 +373,101 @@ function closeRealtimeStreamModal() {
         </div>
 
         <div
+          v-if="isMobileLayout"
+          class="divide-y divide-gray-200 dark:divide-gray-700"
+        >
+          <div
+            v-for="s in currentSubmissions"
+            :key="s.id"
+            class="py-3"
+          >
+            <div class="flex items-start justify-between gap-3">
+              <div class="flex min-w-0 items-start gap-2">
+                <span
+                  class="shrink-0 rounded px-2 py-0.5 text-xs font-bold"
+                  :class="[getProblemLabelColorClass(s)]"
+                  :style="getProblemLabelColorStyle(s)"
+                >
+                  {{ rank.contest.problemsMap.get(s.problemId)?.label }}
+                </span>
+
+                <div class="min-w-0">
+                  <div class="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                    {{ rank.teamsMap.get(s.teamId)?.name.getOrDefault(lang) }}
+                  </div>
+
+                  <div
+                    v-if="rank.contest.options.enableOrganization"
+                    class="truncate text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    {{ rank.teamsMap.get(s.teamId)?.organization?.name.getOrDefault(lang) }}
+                  </div>
+                </div>
+              </div>
+
+              <span
+                class="max-w-[45%] shrink-0 text-right text-xs font-bold leading-tight"
+                :class="[s.status.toString()]"
+              >
+                {{ SubmissionStatusToString[s.status] }}
+              </span>
+            </div>
+
+            <div class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-gray-500 dark:text-gray-400">
+              <span>{{ s.timestampDisplayFormatWithSecond }}</span>
+
+              <span v-if="rank.contest.options.submissionHasLanguageField && s.language">
+                {{ s.language }}
+              </span>
+
+              <span v-if="rank.contest.options.submissionHasTimeField">
+                {{ s.time ?? 0 }} ms
+              </span>
+
+              <span
+                v-if="rank.contest.options.submissionEnableActionField"
+                class="ml-auto flex items-center gap-1"
+              >
+                <button
+                  v-if="rank.contest.options.submissionHasRealtimeReactionStreamField"
+                  type="button"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                  title="Realtime Reaction"
+                  aria-label="Realtime Reaction"
+                  @click="openRealtimeStreamModal(s.id)"
+                >
+                  <div i-hugeicons-live-streaming-01 text-base />
+                </button>
+
+                <button
+                  v-if="s.reaction"
+                  type="button"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                  title="Reaction Video"
+                  aria-label="Reaction Video"
+                  @click="openVideoModal(s.reaction)"
+                >
+                  <div i-material-symbols-slow-motion-video text-base />
+                </button>
+
+                <a
+                  v-if="s.externalUrl"
+                  :href="s.externalUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 hover:text-primary-600 dark:hover:bg-gray-700"
+                  title="View on Source Platform"
+                  aria-label="View on Source Platform"
+                >
+                  <div i-material-symbols-link-rounded text-base />
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          v-else
           class="overflow-x-auto"
         >
           <table
