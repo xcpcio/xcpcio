@@ -29,6 +29,7 @@ declare global {
   const buildFilterTeams: typeof import('./composables/useStandingsLists').buildFilterTeams
   const buildGiantTeams: typeof import('./composables/useStandingsLists').buildGiantTeams
   const buildLocaleUrl: typeof import('./composables/locale').buildLocaleUrl
+  const buildRankForGroup: typeof import('./composables/standings-image').buildRankForGroup
   const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
   const computeSchemaAnnotations: typeof import('./composables/jsonSchemaCompletion').computeSchemaAnnotations
   const computed: typeof import('vue').computed
@@ -48,6 +49,7 @@ declare global {
   const createRef: typeof import('@vueuse/core').createRef
   const createReusableTemplate: typeof import('@vueuse/core').createReusableTemplate
   const createSharedComposable: typeof import('@vueuse/core').createSharedComposable
+  const createStandingsImage: typeof import('./composables/standings-image').createStandingsImage
   const createTemplatePromise: typeof import('@vueuse/core').createTemplatePromise
   const createUnrefFn: typeof import('@vueuse/core').createUnrefFn
   const customRef: typeof import('vue').customRef
@@ -389,6 +391,9 @@ declare global {
   export type { Pagination } from './composables/pagination'
   import('./composables/pagination')
   // @ts-ignore
+  export type { StandingsImageLabels, StandingsImageOptions } from './composables/standings-image'
+  import('./composables/standings-image')
+  // @ts-ignore
   export type { AwardKey, StandClassNameOptions, ProblemColorClass } from './composables/standings'
   import('./composables/standings')
   // @ts-ignore
@@ -431,6 +436,7 @@ declare module 'vue' {
     readonly buildFilterTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildFilterTeams']>
     readonly buildGiantTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildGiantTeams']>
     readonly buildLocaleUrl: UnwrapRef<typeof import('./composables/locale')['buildLocaleUrl']>
+    readonly buildRankForGroup: UnwrapRef<typeof import('./composables/standings-image')['buildRankForGroup']>
     readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
     readonly computeSchemaAnnotations: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['computeSchemaAnnotations']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
@@ -450,6 +456,7 @@ declare module 'vue' {
     readonly createRef: UnwrapRef<typeof import('@vueuse/core')['createRef']>
     readonly createReusableTemplate: UnwrapRef<typeof import('@vueuse/core')['createReusableTemplate']>
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
+    readonly createStandingsImage: UnwrapRef<typeof import('./composables/standings-image')['createStandingsImage']>
     readonly createTemplatePromise: UnwrapRef<typeof import('@vueuse/core')['createTemplatePromise']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>

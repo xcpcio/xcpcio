@@ -88,6 +88,13 @@ streams:
 utility:
   tools: 工具集
   export: 导出
+  group: 组别
+  teams: 队伍数
+  image_place: 排名
+  image_team: 队伍
+  image_organization: 组织
+  image_solved: 过题数
+  image_penalty: 罚时
 
 standings:
   start_time: 开始时间
