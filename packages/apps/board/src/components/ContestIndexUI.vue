@@ -21,6 +21,43 @@ const isDesktopLayout = useMediaQuery("(min-width: 1024px)");
 
 const el = ref(null);
 const isVisible = useElementVisibility(el);
+const titleEl = ref<HTMLDivElement | null>(null);
+const titleFontSize = ref<number | undefined>();
+
+const MOBILE_TITLE_MIN_FONT_SIZE = 10;
+
+function fitMobileTitle() {
+  if (isDesktopLayout.value) {
+    titleFontSize.value = undefined;
+    return;
+  }
+
+  const title = titleEl.value;
+  if (!title) {
+    return;
+  }
+
+  title.style.fontSize = "";
+  const baseFontSize = Number.parseFloat(getComputedStyle(title).fontSize);
+  let fontSize = baseFontSize;
+
+  while (fontSize > MOBILE_TITLE_MIN_FONT_SIZE && title.scrollHeight > title.clientHeight + 1) {
+    fontSize -= 1;
+    title.style.fontSize = `${fontSize}px`;
+  }
+
+  titleFontSize.value = fontSize < baseFontSize ? fontSize : undefined;
+}
+
+const fitMobileTitleDebounced = useDebounceFn(fitMobileTitle, 100);
+
+watch([isVisible, contestName, isDesktopLayout], () => {
+  void nextTick(fitMobileTitle);
+}, { flush: "post" });
+
+useResizeObserver(titleEl, () => {
+  fitMobileTitleDebounced();
+});
 
 const logo = computed(() => {
   if (!contest.value.logo) {
@@ -62,7 +99,9 @@ const logo = computed(() => {
             >
               <Tooltip>
                 <div
-                  class="text-2xl max-lg:text-lg max-lg:break-words lg:truncate"
+                  ref="titleEl"
+                  class="text-2xl max-lg:line-clamp-2 max-lg:break-words max-lg:text-lg max-lg:leading-normal lg:truncate"
+                  :style="{ fontSize: titleFontSize ? `${titleFontSize}px` : undefined }"
                 >
                   {{ contestName }}
                 </div>
