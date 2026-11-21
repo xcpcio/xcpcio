@@ -98,8 +98,12 @@ watch(() => props.submissionReaction.url, () => {
   }
 });
 
+function isPlayerControl(target: EventTarget | null) {
+  return target instanceof Element && target.closest("button, [data-player-control]") !== null;
+}
+
 function onTouchStart(event: TouchEvent) {
-  if (!isMobileLayout.value || event.touches.length !== 1) {
+  if (!isMobileLayout.value || event.touches.length !== 1 || isPlayerControl(event.target)) {
     touchActive = false;
     return;
   }
@@ -180,10 +184,10 @@ function onTouchCancel() {
       class="h-[100%] max-lg:h-[100dvh] max-lg:max-h-[100dvh] max-lg:w-full max-lg:max-w-none max-lg:flex max-lg:items-center max-lg:justify-center max-lg:rounded-none max-lg:bg-black max-lg:shadow-none max-lg:ring-0"
       :class="[width ?? 'w-full max-w-[540px]']"
       @click.stop
-      @touchstart="onTouchStart"
-      @touchmove="onTouchMove"
-      @touchend="onTouchEnd"
-      @touchcancel="onTouchCancel"
+      @touchstart.capture="onTouchStart"
+      @touchmove.capture="onTouchMove"
+      @touchend.capture="onTouchEnd"
+      @touchcancel.capture="onTouchCancel"
     >
       <video
         ref="videoPlayer"
@@ -239,6 +243,7 @@ function onTouchCancel() {
         text-black
         rounded-md p-2 transition-colors duration-300 focus:outline-none
         class="max-lg:top-2 max-lg:right-2 max-lg:rounded-full max-lg:bg-black/45 max-lg:text-white max-lg:backdrop-blur"
+        data-player-control
         cursor-pointer
         @click="closeModal"
         @touchstart.stop
