@@ -172,6 +172,32 @@ useEventListener(document, "keydown", (event) => {
             </div>
 
             <div class="flex flex-col gap-1">
+              <a
+                v-if="rank.contest.socialMedia?.bilibili"
+                :href="rank.contest.socialMedia.bilibili"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Watch on Bilibili"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="close"
+              >
+                <div i-ri:bilibili-line class="text-xl opacity-75" />
+                <span>Bilibili</span>
+              </a>
+
+              <a
+                v-if="rank.contest.socialMedia?.youtube"
+                :href="rank.contest.socialMedia.youtube"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Watch on YouTube"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="close"
+              >
+                <div i-ri:youtube-line class="text-xl opacity-75" />
+                <span>YouTube</span>
+              </a>
+
               <button
                 type="button"
                 class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"

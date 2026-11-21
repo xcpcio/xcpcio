@@ -543,7 +543,7 @@ onMounted(() => {
         {{ contestName }}
       </h1>
 
-      <div>
+      <div v-if="!isMobileLayout">
         <BoardTab
           :rank="rank"
         />
