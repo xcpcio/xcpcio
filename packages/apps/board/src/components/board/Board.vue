@@ -532,7 +532,7 @@ onMounted(() => {
         class="title"
         :class="[widthClass]"
         flex justify-center
-        text-center text-3xl font-normal font-serif
+        text-center text-3xl font-normal font-serif max-lg:text-xl
         mb-2
       >
         <h1 class="max-w-[92%]">
