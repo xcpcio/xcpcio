@@ -12,9 +12,10 @@ const PADDING = 32;
 const TITLE_HEIGHT = 92;
 const HEADER_HEIGHT = 52;
 const ROW_HEIGHT = 54;
-const FOOTER_HEIGHT = 36;
+const FOOTER_HEIGHT = 40;
 const BANNER_GAP = 18;
 const ORG_LOGO_SIZE = 28;
+const BRAND_LOGO_SIZE = 20;
 const IMAGE_PROXY_URL = "https://wsrv.nl/?url=";
 
 interface StandingsTheme {
@@ -93,8 +94,6 @@ export interface StandingsImageLabels {
   organization: string;
   solved: string;
   penalty: string;
-  dirt: string;
-  se: string;
   group: string;
   teams: string;
 }
@@ -103,6 +102,7 @@ export interface StandingsImageOptions {
   teamCount: number;
   lang: Lang;
   theme: StandingsImageTheme;
+  link: string;
   labels: StandingsImageLabels;
 }
 
@@ -132,6 +132,16 @@ function getMeasureContext() {
 
 function fontSpec(size: number, weight = 400) {
   return `${weight} ${size}px ${FONT_FAMILY}`;
+}
+
+function measureTextWidth(text: string, font: string) {
+  const context = getMeasureContext();
+  if (!context) {
+    return text.length * 7;
+  }
+
+  context.font = font;
+  return context.measureText(text).width;
 }
 
 function truncateText(text: string, maxWidth: number, font: string) {
@@ -336,8 +346,6 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     ...(showOrganization ? [{ key: "organization", width: 220, align: "start" as const }] : []),
     { key: "solved", width: 70, align: "middle" },
     { key: "penalty", width: 84, align: "middle" },
-    { key: "dirt", width: 48, align: "middle" },
-    { key: "se", width: 48, align: "middle" },
     ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 48, align: "middle" as const })),
   ];
 
@@ -354,9 +362,14 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       })
     : [];
 
-  const [bannerData, logoMap] = await Promise.all([
+  const brandLogoUrl = typeof window !== "undefined"
+    ? new URL("/favicon.svg", window.location.href).href
+    : "";
+
+  const [bannerData, logoMap, brandLogoData] = await Promise.all([
     bannerUrl ? loadImageData(bannerUrl) : Promise.resolve(undefined),
     loadImageMap(organizationLogoUrls, 64),
+    brandLogoUrl ? loadImageData(brandLogoUrl) : Promise.resolve(undefined),
   ]);
 
   const bannerWidth = width - PADDING * 2;
@@ -391,14 +404,16 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
   }
 
   parts.push(
-    textElement(title, PADDING, titleTop + 18, {
+    textElement(title, width / 2, titleTop + 18, {
       size: 30,
       weight: 700,
       fill: theme.text,
+      anchor: "middle",
     }),
-    textElement(subtitle, PADDING, titleTop + 54, {
+    textElement(subtitle, width / 2, titleTop + 54, {
       size: 15,
       fill: theme.muted,
+      anchor: "middle",
     }),
     `<rect x="${PADDING}" y="${tableTop}" width="${width - PADDING * 2}" height="${HEADER_HEIGHT}" fill="${theme.headerBackground}" />`,
   );
@@ -502,24 +517,6 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       anchor: "middle",
     }));
 
-    const dirtLeft = columnLefts.get("dirt") as number;
-    const dirtWidth = columns.find(column => column.key === "dirt")?.width ?? 48;
-    parts.push(textElement(`${team.dirt}%`, dirtLeft + dirtWidth / 2, rowMiddle, {
-      size: 12,
-      weight: 600,
-      fill: theme.text,
-      anchor: "middle",
-    }));
-
-    const seLeft = columnLefts.get("se") as number;
-    const seWidth = columns.find(column => column.key === "se")?.width ?? 48;
-    parts.push(textElement(team.se.toFixed(2), seLeft + seWidth / 2, rowMiddle, {
-      size: 12,
-      weight: 600,
-      fill: theme.text,
-      anchor: "middle",
-    }));
-
     for (let problemIndex = 0; problemIndex < problems.length; problemIndex += 1) {
       const p = team.problemStatistics[problemIndex];
       const column = columns.find(item => item.key === `problem-${problemIndex}`);
@@ -563,11 +560,45 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     parts.push(`<line x1="${PADDING}" y1="${y}" x2="${width - PADDING}" y2="${y}" stroke="${theme.border}" />`);
   }
 
-  parts.push(textElement(`XCPCIO · ${generatedDate}`, width - PADDING, tableBottom + FOOTER_HEIGHT / 2 + 8, {
-    size: 12,
-    fill: theme.muted,
-    anchor: "end",
-  }));
+  {
+    const footerY = tableBottom + FOOTER_HEIGHT / 2 + 6;
+    const dateText = `Generated ${generatedDate}`;
+    const dateFont = fontSpec(12);
+    const brandFont = fontSpec(13, 700);
+    const linkFont = fontSpec(12);
+    const brandText = "XCPCIO";
+    const brandWidth = measureTextWidth(brandText, brandFont);
+    const logoWidth = brandLogoData ? BRAND_LOGO_SIZE + 6 : 0;
+    const separatorWidth = 12;
+    const maxLinkWidth = Math.max(80, width - PADDING * 2 - measureTextWidth(dateText, dateFont) - 24 - logoWidth - brandWidth - separatorWidth);
+    const linkText = truncateText(options.link, maxLinkWidth, linkFont);
+    const linkWidth = measureTextWidth(linkText, linkFont);
+    const groupWidth = logoWidth + brandWidth + separatorWidth + linkWidth;
+    const groupLeft = width - PADDING - groupWidth;
+    let cursorX = groupLeft;
+
+    if (brandLogoData) {
+      parts.push(imageElement(brandLogoData.dataUrl, cursorX, footerY - BRAND_LOGO_SIZE / 2, BRAND_LOGO_SIZE, BRAND_LOGO_SIZE));
+      cursorX += logoWidth;
+    }
+
+    parts.push(textElement(brandText, cursorX, footerY, {
+      size: 13,
+      weight: 700,
+      fill: theme.text,
+    }));
+    cursorX += brandWidth + separatorWidth;
+
+    parts.push(textElement(linkText, cursorX, footerY, {
+      size: 12,
+      fill: theme.muted,
+    }));
+
+    parts.push(textElement(dateText, PADDING, footerY, {
+      size: 12,
+      fill: theme.muted,
+    }));
+  }
 
   const svg = [
     `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">`,
