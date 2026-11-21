@@ -81,16 +81,15 @@ onMounted(() => {
 
 <template>
   <div
-    flex
+    flex items-center
   >
     <div>
       <div
-        i-material-symbols-info-outline
-        text-lg
-        cursor-pointer
-        class="max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
+        class="cursor-pointer max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
         @click="openInfoModal"
-      />
+      >
+        <div i-material-symbols-info-outline text-lg />
+      </div>
     </div>
 
     <template v-if="rank.contest.socialMedia">
@@ -106,23 +105,25 @@ onMounted(() => {
         <a
           v-if="rank.contest.socialMedia?.bilibili"
           icon-btn
+          class="inline-flex items-center justify-center max-lg:h-11 max-lg:w-11"
           :href="rank.contest.socialMedia.bilibili"
           target="_blank"
           rel="noopener noreferrer"
           title="Watch on Bilibili"
         >
-          <div i-simple-icons-bilibili text-lg />
+          <div i-ri:bilibili-line text-xl />
         </a>
 
         <a
           v-if="rank.contest.socialMedia?.youtube"
           icon-btn
+          class="inline-flex items-center justify-center max-lg:h-11 max-lg:w-11"
           :href="rank.contest.socialMedia.youtube"
           target="_blank"
           rel="noopener noreferrer"
           title="Watch on YouTube"
         >
-          <div i-simple-icons-youtube text-lg />
+          <div i-ri:youtube-line text-xl />
         </a>
       </div>
     </template>
@@ -138,11 +139,10 @@ onMounted(() => {
     <div flex>
       <div
         ref="dropdownTriggerEl"
-        i-material-symbols-share
-        text-lg
-        cursor-pointer
-        class="max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
-      />
+        class="cursor-pointer max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
+      >
+        <div i-material-symbols-share text-lg />
+      </div>
 
       <div
         ref="dropdownTargetEl"
