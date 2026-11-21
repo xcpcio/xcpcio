@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Rank } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
-import { GiantsType, Team } from "@xcpcio/core";
+import { useStandingsLists } from "@board/composables/useStandingsLists";
 
 const props = defineProps<{
   rank: Rank;
@@ -10,122 +10,12 @@ const props = defineProps<{
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 // Below 1280px the Organization column is merged into the Team cell to keep the
-// standings compact. (`index.html` uses a 1260px mobile layout viewport, so
-// phones fall into this range too.)
+// standings compact. Phones render the mobile card list instead, so this only
+// affects narrow desktop windows and tablets at 1024px and above.
 const isCompactLayout = useMediaQuery("(max-width: 1279.98px)");
 
 const rank = computed(() => props.rank);
-const teams = computed(() => props.rank.teams);
-const rankOptions = computed(() => props.rank.options);
-
-const filterTeams = computed(() => {
-  const res = props.rank.teams.filter((t) => {
-    if (props.rank.organizations && t.organization) {
-      if (props.rank.options.filterOrganizationMap.has(t.organization.id)) {
-        return true;
-      }
-    }
-
-    if (props.rank.options.filterTeamMap.has(t.id)) {
-      return true;
-    }
-
-    if (props.rank.options.filterTeamIdMap.has(t.id)) {
-      return true;
-    }
-
-    return false;
-  });
-
-  return res;
-});
-
-interface GiantTeam {
-  team: Team;
-  giantsType: GiantsType;
-}
-
-const giantTeams = computed(() => {
-  const battleOfGiants = rankOptions.value.battleOfGiants;
-  const blueTeam = battleOfGiants.blueTeam;
-  const redTeam = battleOfGiants.redTeam;
-  blueTeam.teams = [];
-  redTeam.teams = [];
-
-  let blueCnt = 0;
-  let redCnt = 0;
-
-  for (const t of props.rank.teams) {
-    const giantsType = (() => {
-      if (
-        (!!t.organization && blueTeam.filterOrganizationMap.has(t.organization.id))
-        || blueTeam.filterTeamMap.has(t.id)
-      ) {
-        if (blueCnt >= battleOfGiants.topX) {
-          return null;
-        }
-
-        blueCnt++;
-        return GiantsType.BLUE;
-      }
-
-      if (
-        (!!t.organization && redTeam.filterOrganizationMap.has(t.organization.id))
-        || redTeam.filterTeamMap.has(t.id)
-      ) {
-        if (redCnt >= battleOfGiants.topX) {
-          return null;
-        }
-
-        redCnt++;
-        return GiantsType.RED;
-      }
-
-      return null;
-    })();
-
-    if (giantsType === null) {
-      continue;
-    }
-
-    if (giantsType === GiantsType.BLUE) {
-      blueTeam.teams.push(t);
-    } else {
-      redTeam.teams.push(t);
-    }
-
-    if (blueCnt === battleOfGiants.topX && redCnt === battleOfGiants.topX) {
-      break;
-    }
-  }
-
-  if (battleOfGiants.equalTeams) {
-    while (blueTeam.teams.length < redTeam.teams.length) {
-      redTeam.teams.pop();
-    }
-    while (redTeam.teams.length < blueTeam.teams.length) {
-      blueTeam.teams.pop();
-    }
-  }
-
-  const res: GiantTeam[] = [...blueTeam.teams.map((t) => {
-    return {
-      team: t,
-      giantsType: GiantsType.BLUE,
-    };
-  }), ...redTeam.teams.map((t) => {
-    return {
-      team: t,
-      giantsType: GiantsType.RED,
-    };
-  })];
-
-  res.sort((lhs, rhs) => {
-    return Team.compare(lhs.team, rhs.team);
-  });
-
-  return res;
-});
+const { teams, filterTeams, giantTeams, rankOptions } = useStandingsLists(rank);
 
 // The org cell reserves `pl-10` (2.5rem) for the logo and `pl-2` (0.5rem) for
 // the org rank. Only the name length was used to size the column, so names were

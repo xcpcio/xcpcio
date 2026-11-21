@@ -3,6 +3,9 @@ import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
+import BoardMenuDrawer from "@board/components/board/BoardMenuDrawer.vue";
+import ProblemInfoModal from "@board/components/board/ProblemInfoModal.vue";
+import StandingsMobile from "@board/components/board/StandingsMobile.vue";
 import AsyncLoading from "@board/components/common/AsyncLoading.vue";
 
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
@@ -21,6 +24,7 @@ const title = useTitle();
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 const { isAnyModalOpen } = useModalStack();
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 // Keep the Highcharts statistics view out of the initial board chunk.
 const Statistics = defineAsyncComponent({
@@ -182,28 +186,34 @@ const typeMenuList = ref<Array<Item>>([
   {
     title: "type_menu.rank",
     keyword: "rank",
+    icon: "i-material-symbols-leaderboard-outline",
     isDefault: true,
   },
   {
     title: "type_menu.submissions",
     keyword: "submissions",
+    icon: "i-material-symbols-list-alt-outline",
   },
   {
     title: "type_menu.statistics",
     keyword: "statistics",
+    icon: "i-material-symbols-bar-chart",
   },
   {
     title: "type_menu.utility",
     keyword: "utility",
+    icon: "i-material-symbols-build-outline",
   },
   {
     title: "type_menu.filter",
     keyword: "filter",
+    icon: "i-material-symbols-filter-alt-outline",
     isModal: true,
   },
   {
     title: "type_menu.options",
     keyword: "options",
+    icon: "i-material-symbols-settings-outline",
     isModal: true,
   },
 ]);
@@ -219,6 +229,7 @@ const groupMenuList = computed(() => {
     const item = {
       title: v.name,
       keyword: k,
+      icon: "i-material-symbols-groups",
       isDefault: v.isDefault,
     };
 
@@ -231,6 +242,11 @@ const groupMenuList = computed(() => {
 const currentType = ref("rank");
 const isHiddenOptionsModal = ref(true);
 const isHiddenFilterModal = ref(true);
+const selectedProblemId = ref<string | null>(null);
+
+const selectedProblem = computed(() => {
+  return selectedProblemId.value ? rank.value.contest.problemsMap.get(selectedProblemId.value) : undefined;
+});
 
 function onChangeCurrentType(type: string) {
   if (type === "options") {
@@ -425,6 +441,11 @@ function updateRankTableZoom() {
     return;
   }
 
+  if (isMobileLayout.value) {
+    inner.style.zoom = "";
+    return;
+  }
+
   const table = container.querySelector<HTMLTableElement>("table.standings");
   if (!table) {
     return;
@@ -452,6 +473,11 @@ function updateRankTableZoom() {
 }
 
 useResizeObserver(rankTableContainer, updateRankTableZoom);
+
+watch(isMobileLayout, async () => {
+  await nextTick();
+  updateRankTableZoom();
+});
 
 watch(lang, () => {
   nextTick(updateRankTableZoom);
@@ -511,7 +537,7 @@ onMounted(() => {
         class="title"
         :class="[widthClass]"
         flex justify-center
-        text-center text-3xl font-normal font-serif
+        text-center text-3xl font-normal font-serif max-lg:text-xl
         mb-2
       >
         <h1 class="max-w-[92%]">
@@ -522,7 +548,7 @@ onMounted(() => {
         {{ contestName }}
       </h1>
 
-      <div>
+      <div v-if="!isMobileLayout">
         <BoardTab
           :rank="rank"
         />
@@ -534,48 +560,107 @@ onMounted(() => {
         flex flex-row justify-center
       >
         <div class="w-[92%]">
-          <div class="flex font-bold font-mono">
-            <div class="float-left">
-              {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+          <template v-if="!isMobileLayout">
+            <div class="flex font-bold font-mono">
+              <div class="float-left">
+                {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+              </div>
+              <div class="flex-1">
+                <ContestStateBadge
+                  :state="contestState"
+                  :pending-time="rank.contest.getContestPendingTime(now)"
+                  :paused-time="pausedTime"
+                />
+              </div>
+              <div class="float-right">
+                {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+              </div>
             </div>
-            <div class="flex-1">
-              <ContestStateBadge
-                :state="contestState"
-                :pending-time="rank.contest.getContestPendingTime(now)"
-                :paused-time="pausedTime"
+
+            <div class="mt-2">
+              <Progress
+                v-model:rank-options="rankOptions"
+                :width="rank.contest.getContestProgressRatio(now)"
+                :state="rank.contest.getContestState(now)"
+                :need-scroll="true"
+                :rank="rank"
+                :elapsed-time="rank.contest.getContestElapsedTime(now)"
               />
             </div>
-            <div class="float-right">
-              {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
-            </div>
-          </div>
 
-          <div class="mt-2">
-            <Progress
-              v-model:rank-options="rankOptions"
-              :width="rank.contest.getContestProgressRatio(now)"
-              :state="rank.contest.getContestState(now)"
-              :need-scroll="true"
-              :rank="rank"
-              :elapsed-time="rank.contest.getContestElapsedTime(now)"
-            />
-          </div>
+            <div class="mt-2 flex font-bold font-mono">
+              <div class="float-left">
+                {{ elapsedTime }}
+              </div>
+              <div class="flex-1" />
+              <div class="float-right">
+                {{ remainingTime }}
+              </div>
+            </div>
+          </template>
 
-          <div class="mt-2 flex font-bold font-mono">
-            <div class="float-left">
-              {{ elapsedTime }}
+          <template v-else>
+            <div class="flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
+              <div class="min-w-0">
+                {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+              </div>
+              <div class="shrink-0">
+                <ContestStateBadge
+                  :state="contestState"
+                  :pending-time="rank.contest.getContestPendingTime(now)"
+                  :paused-time="pausedTime"
+                />
+              </div>
             </div>
-            <div class="flex-1" />
-            <div class="float-right">
-              {{ remainingTime }}
+
+            <div class="mt-2">
+              <Progress
+                v-model:rank-options="rankOptions"
+                :width="rank.contest.getContestProgressRatio(now)"
+                :state="rank.contest.getContestState(now)"
+                :need-scroll="true"
+                :rank="rank"
+                :elapsed-time="rank.contest.getContestElapsedTime(now)"
+              />
             </div>
-          </div>
+
+            <div class="mt-2 flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
+              <div class="min-w-0">
+                {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+              </div>
+              <div class="shrink-0">
+                {{ remainingTime }}
+              </div>
+            </div>
+
+            <div
+              v-if="currentType === 'rank'"
+              class="mt-2 flex gap-[2px] font-mono"
+              data-testid="problem-color-legend"
+            >
+              <button
+                v-for="p in rank.contest.problems"
+                :key="p.id"
+                type="button"
+                class="flex min-h-6 min-w-0 flex-1 items-center justify-center rounded-sm text-[11px] font-bold"
+                :style="{
+                  backgroundColor: p.balloonColor.background_color,
+                  color: p.balloonColor.color,
+                }"
+                :title="p.name?.getOrDefault(lang) ?? p.label"
+                :aria-label="p.name?.getOrDefault(lang) ?? p.label"
+                @click="selectedProblemId = p.id"
+              >
+                {{ p.label }}
+              </button>
+            </div>
+          </template>
 
           <div
-            v-if="!showPendingPage"
-            class="mt-4 flex"
+            v-if="!showPendingPage && !isMobileLayout"
+            class="mt-4 flex max-lg:flex-col max-lg:items-stretch max-lg:gap-1"
           >
-            <div class="float-left">
+            <div class="float-left min-w-0 max-w-full max-lg:w-full">
               <SecondLevelMenu
                 v-model:current-item="currentGroup"
                 :items="groupMenuList"
@@ -583,8 +668,8 @@ onMounted(() => {
                 :on-change="onChangeCurrentGroup"
               />
             </div>
-            <div class="flex-1" />
-            <div class="float-right">
+            <div class="flex-1 max-lg:hidden" />
+            <div class="float-right min-w-0 max-w-full max-lg:w-full">
               <SecondLevelMenu
                 v-model:current-item="currentType"
                 :items="typeMenuList"
@@ -618,24 +703,31 @@ onMounted(() => {
           class="w-[92%]"
           flex justify-center
         >
-          <div
-            v-if="currentType === 'rank'"
-            ref="rankTableContainer"
-            class="w-full overflow-x-auto"
-          >
+          <template v-if="currentType === 'rank'">
+            <StandingsMobile
+              v-if="isMobileLayout"
+              :rank="rank"
+            />
+
             <div
-              ref="rankTableInner"
-              class="rank-table-inner w-fit max-w-full mx-auto"
+              v-else
+              ref="rankTableContainer"
+              class="w-full overflow-x-auto"
             >
-              <Standings
-                :rank="rank"
-              />
+              <div
+                ref="rankTableInner"
+                class="rank-table-inner w-fit max-w-full mx-auto"
+              >
+                <Standings
+                  :rank="rank"
+                />
+              </div>
             </div>
-          </div>
+          </template>
 
           <div
             v-if="currentType === 'submissions'"
-            class="sm:w-full xl:w-[92%]"
+            class="w-full xl:w-[92%]"
           >
             <SubmissionsTable
               w-full
@@ -652,7 +744,7 @@ onMounted(() => {
 
           <div
             v-if="currentType === 'statistics'"
-            class="sm:w-full xl:w-[92%]"
+            class="w-full xl:w-[92%]"
           >
             <Statistics
               :rank="rank"
@@ -661,6 +753,7 @@ onMounted(() => {
 
           <div
             v-if="currentType === 'utility'"
+            class="flex w-full justify-center"
           >
             <Utility
               :rank="rank"
@@ -690,6 +783,26 @@ onMounted(() => {
         v-model:rank-options="rankOptions"
         :rank="rank"
       />
+
+      <ProblemInfoModal
+        v-if="selectedProblem"
+        :key="selectedProblem.id"
+        :is-hidden="false"
+        :rank="rank"
+        :problem="selectedProblem"
+        @update:is-hidden="selectedProblemId = null"
+      />
+
+      <BoardMenuDrawer
+        v-if="!showPendingPage && isMobileLayout"
+        v-model:current-group="currentGroup"
+        v-model:current-type="currentType"
+        :rank="rank"
+        :group-items="groupMenuList"
+        :type-items="typeMenuList"
+        @change-group="onChangeCurrentGroup"
+        @change-type="onChangeCurrentType"
+      />
     </div>
   </div>
 </template>
@@ -703,15 +816,5 @@ onMounted(() => {
   position: relative;
   overflow: hidden;
   text-align: center;
-}
-
-/* Phones use the default ~980px layout viewport; the standings table is fitted
-   with a fixed layout there (see Standings.less). Give the wrapper the full
-   content width so the percentage-width table resolves against it. */
-@media (min-width: 960px) and (max-width: 1000px) {
-  .rank-table-inner {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
 }
 </style>

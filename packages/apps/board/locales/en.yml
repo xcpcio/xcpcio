@@ -16,6 +16,10 @@ intro:
 not-found: Not found
 
 common:
+  actions: Actions
+  copy_link: Copy Link
+  copy_embed_code: Copy Embed Code
+  menu: Menu
   loading: Loading
   colon: ":"
 
@@ -84,6 +88,12 @@ streams:
 utility:
   tools: Tools
   export: Export
+  group: Group
+  teams: Teams
+  image_place: Rank
+  image_team: Team
+  image_solved: Solved
+  image_penalty: Penalty
 
 standings:
   start_time: Start
@@ -95,6 +105,7 @@ standings:
   organization: Organization
   team: Team
   group: Group
+  view: View
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -123,6 +134,20 @@ standings:
 
 submissions:
   total_submissions: Total Submissions
+
+team_statistics:
+  title: Problem Attempts
+  solved_summary: Solved
+  wrong_summary: Wrong
+  pending_summary: Pending
+  attempts: "Attempts {count}"
+  wrong_count: "Wrong {count}"
+  no_attempts: No attempts
+  status:
+    accepted: Accepted
+    pending: Pending
+    wrong_answer: Wrong Answer
+    not_submitted: Not submitted
 
 team_info:
   rank: Rank

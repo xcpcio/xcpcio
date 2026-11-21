@@ -40,9 +40,41 @@ const hasOverflowingContent = ref(true);
 
 const isBodyScrollable = computed(() => (props.scrollable ?? true) || hasOverflowingContent.value);
 
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
+const isFullscreen = computed(() => isMobileLayout.value);
+
 // Reserve room for the modal's top offset and outer padding so a tall body
 // scrolls instead of pushing the panel below the viewport.
 const maxHeight = computed(() => `calc(100vh - ${props.mt ? "7rem" : "10rem"})`);
+
+const wrapperClass = computed(() => {
+  if (isFullscreen.value) {
+    return "relative w-full h-[100dvh] p-0";
+  }
+
+  return `relative p-4 ${props.width ?? "w-[78%]"}`;
+});
+
+const overlayMarginClass = computed(() => {
+  if (isFullscreen.value) {
+    return "";
+  }
+
+  return props.mt ?? "md:mt-32 sm:mt-16";
+});
+
+const panelStyle = computed(() => {
+  if (isFullscreen.value) {
+    return {
+      height: "100dvh",
+      maxHeight: "100dvh",
+      paddingTop: "max(1rem, env(safe-area-inset-top))",
+      paddingBottom: "max(1rem, env(safe-area-inset-bottom))",
+    };
+  }
+
+  return { maxHeight: maxHeight.value };
+});
 
 let bodyResizeObserver: ResizeObserver | undefined;
 let bodyMutationObserver: MutationObserver | undefined;
@@ -106,16 +138,16 @@ watch(Escape, (v) => {
 
 <template>
   <div
-    class="md:inset-0 w-[100%] h-[100%]"
-    :class="[props.mt ?? 'md:mt-32 sm:mt-16']"
+    class="inset-0 h-[100%] w-[100%]"
+    :class="overlayMarginClass"
     fixed z-1997
     of-x-hidden
     flex justify-center items-start
   >
     <!-- background -->
     <div
-      class="w-[100%] h-[100%]"
-      fixed left-0 top-0 z-1998
+      class="h-full w-full"
+      fixed inset-0 z-1998
       :style="{
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
       }"
@@ -123,24 +155,26 @@ watch(Escape, (v) => {
     />
 
     <div
-      class="relative p-4"
-      :class="[props.width ?? 'w-[78%] max-lg:w-[96%]']"
+      class="relative"
+      :class="wrapperClass"
       z-1999
     >
       <div
-        class="relative bg-white dark:bg-gray-800 sm:p-4 flex flex-col"
-        rounded-sm shadow-sm
-        :style="{ maxHeight }"
+        class="relative flex flex-col bg-white p-4 dark:bg-gray-800"
+        :class="isFullscreen ? 'rounded-none' : 'rounded-sm shadow-sm'"
+        :style="panelStyle"
+        data-testid="modal-panel"
       >
         <div
-          class="mb-4 border-b rounded-t pb-4 sm:mb-4 dark:border-gray-600 shrink-0"
-          flex items-center justify-between
+          class="mb-4 flex shrink-0 items-center justify-between rounded-t border-b pb-4 sm:mb-4 dark:border-gray-600"
+          :class="isFullscreen ? 'gap-2' : ''"
         >
           <slot name="header">
             <h3
               text-gray-900 dark:text-white
               text-xl
               font-sans font-semibold italic
+              :class="isFullscreen ? 'min-w-0 break-words' : ''"
             >
               {{ props.title }}
             </h3>
@@ -150,9 +184,11 @@ watch(Escape, (v) => {
             type="button"
             class="hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
             bg-transparent
-            ml-auto p-1.5
+            ml-auto
             text-sm text-gray-400
             items-center inline-flex rounded-lg
+            :class="isFullscreen ? 'shrink-0 p-3' : 'p-1.5'"
+            data-testid="modal-close"
             @click="onClose('close-button')"
           >
             <svg
@@ -176,7 +212,7 @@ watch(Escape, (v) => {
         </div>
         <div
           ref="bodyRef"
-          class="min-h-0 flex-1"
+          class="min-h-0 flex-1 overscroll-contain"
           :class="isBodyScrollable ? 'overflow-y-auto' : 'overflow-visible'"
         >
           <slot />

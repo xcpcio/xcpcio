@@ -16,6 +16,10 @@ intro:
 not-found: 未找到页面
 
 common:
+  actions: 操作
+  copy_link: 复制链接
+  copy_embed_code: 复制嵌入代码
+  menu: 菜单
   loading: 加载中
   colon: ：
 
@@ -84,6 +88,12 @@ streams:
 utility:
   tools: 工具集
   export: 导出
+  group: 组别
+  teams: 队伍数
+  image_place: 排名
+  image_team: 队伍
+  image_solved: 过题数
+  image_penalty: 罚时
 
 standings:
   start_time: 开始时间
@@ -94,7 +104,8 @@ standings:
   place: Place
   organization: Organization
   team: Team
-  group: Group
+  group: 组别
+  view: 视图
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -123,6 +134,20 @@ standings:
 
 submissions:
   total_submissions: 总提交数
+
+team_statistics:
+  title: 题目提交
+  solved_summary: 通过
+  wrong_summary: 错误
+  pending_summary: 判题中
+  attempts: "提交 {count} 次"
+  wrong_count: "错误 {count} 次"
+  no_attempts: 未提交
+  status:
+    accepted: 通过
+    pending: 判题中
+    wrong_answer: 答案错误
+    not_submitted: 未提交
 
 team_info:
   rank: 排名

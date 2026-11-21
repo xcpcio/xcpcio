@@ -11,8 +11,7 @@ const battleOfGiants = computed(() => props.battleOfGiants);
 <template>
   <div>
     <div
-      text-8xl font-mono
-      flex justify-center items-center
+      class="flex flex-wrap items-center justify-center gap-y-2 font-mono text-4xl sm:text-6xl lg:text-8xl"
     >
       <div
         flex justify-end items-center
@@ -28,13 +27,13 @@ const battleOfGiants = computed(() => props.battleOfGiants);
           ml-4
         >
           <div
-            text-6xl
+            class="text-3xl sm:text-5xl lg:text-6xl"
           >
             {{ battleOfGiants.blueTeam.totalSolvedProblemNum }}
           </div>
 
           <div
-            text-4xl
+            class="text-xl sm:text-3xl lg:text-4xl"
           >
             {{ battleOfGiants.blueTeam.totalPenaltyToString }}
           </div>
@@ -43,7 +42,7 @@ const battleOfGiants = computed(() => props.battleOfGiants);
 
       <div
         flex justify-center items-center
-        ml-4 mr-4
+        mx-2 lg:mx-4
       >
         :
       </div>
@@ -58,13 +57,13 @@ const battleOfGiants = computed(() => props.battleOfGiants);
           mr-4
         >
           <div
-            text-6xl
+            class="text-3xl sm:text-5xl lg:text-6xl"
           >
             {{ battleOfGiants.redTeam.totalSolvedProblemNum }}
           </div>
 
           <div
-            text-4xl
+            class="text-xl sm:text-3xl lg:text-4xl"
           >
             {{ battleOfGiants.redTeam.totalPenaltyToString }}
           </div>

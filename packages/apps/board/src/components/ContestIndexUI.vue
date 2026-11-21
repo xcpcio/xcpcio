@@ -17,9 +17,47 @@ const lang = computed(() => locale.value as unknown as Lang);
 const contest = computed(() => props.data.contest);
 const contestName = computed(() => contest.value.name.getOrDefault(lang.value));
 const now = useNow();
+const isDesktopLayout = useMediaQuery("(min-width: 1024px)");
 
 const el = ref(null);
 const isVisible = useElementVisibility(el);
+const titleEl = ref<HTMLDivElement | null>(null);
+const titleFontSize = ref<number | undefined>();
+
+const MOBILE_TITLE_MIN_FONT_SIZE = 10;
+
+function fitMobileTitle() {
+  if (isDesktopLayout.value) {
+    titleFontSize.value = undefined;
+    return;
+  }
+
+  const title = titleEl.value;
+  if (!title) {
+    return;
+  }
+
+  title.style.fontSize = "";
+  const baseFontSize = Number.parseFloat(getComputedStyle(title).fontSize);
+  let fontSize = baseFontSize;
+
+  while (fontSize > MOBILE_TITLE_MIN_FONT_SIZE && title.scrollHeight > title.clientHeight + 1) {
+    fontSize -= 1;
+    title.style.fontSize = `${fontSize}px`;
+  }
+
+  titleFontSize.value = fontSize < baseFontSize ? fontSize : undefined;
+}
+
+const fitMobileTitleDebounced = useDebounceFn(fitMobileTitle, 100);
+
+watch([isVisible, contestName, isDesktopLayout], () => {
+  void nextTick(fitMobileTitle);
+}, { flush: "post" });
+
+useResizeObserver(titleEl, () => {
+  fitMobileTitleDebounced();
+});
 
 const logo = computed(() => {
   if (!contest.value.logo) {
@@ -32,16 +70,16 @@ const logo = computed(() => {
 
 <template>
   <div ref="el">
-    <div h-32>
+    <div class="h-32 max-lg:h-auto max-lg:min-h-32">
       <div
         v-if="isVisible"
       >
         <RouterLink
           :to="props.data.boardLink"
-          class="w-240 flex flex-col justify-center font-serif pb-2 text-inherit border-b-2 border-gray-200 dark:border-gray-700"
+          class="flex w-full flex-col justify-center border-b-2 border-gray-200 pb-2 font-serif text-inherit dark:border-gray-700"
         >
           <div
-            w-full flex
+            class="flex w-full max-lg:items-center"
           >
             <div
               v-if="logo !== undefined"
@@ -61,8 +99,9 @@ const logo = computed(() => {
             >
               <Tooltip>
                 <div
-                  overflow-hidden
-                  text-2xl truncate
+                  ref="titleEl"
+                  class="text-2xl max-lg:line-clamp-2 max-lg:break-words max-lg:text-lg max-lg:leading-normal lg:truncate"
+                  :style="{ fontSize: titleFontSize ? `${titleFontSize}px` : undefined }"
                 >
                   {{ contestName }}
                 </div>
@@ -78,8 +117,8 @@ const logo = computed(() => {
             </div>
           </div>
 
-          <div flex items-end>
-            <div float-left font-mono text-base>
+          <div v-if="isDesktopLayout" class="flex items-end">
+            <div class="float-left font-mono text-base">
               {{ t("index.start") }}:
               {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
               <br>
@@ -87,7 +126,7 @@ const logo = computed(() => {
               {{ contest.getContestDuration() }}
             </div>
 
-            <div flex-1>
+            <div class="flex-1">
               <div flex items-center justify-center>
                 <div
                   font-bold font-mono
@@ -106,7 +145,7 @@ const logo = computed(() => {
                 </div>
               </div>
             </div>
-            <div float-right>
+            <div class="float-right">
               <span
                 class="go MuiIconButton-root"
                 aria-hidden="true"
@@ -115,6 +154,36 @@ const logo = computed(() => {
                   <RightArrowIcon />
                 </span>
               </span>
+            </div>
+          </div>
+
+          <div v-else class="w-full">
+            <div class="font-mono text-sm">
+              <div>
+                {{ t("index.start") }}:
+                {{ contest.startTime.format("YYYY-MM-DD HH:mm:ss") }}<sup class="pl-0.5">{{ contest.startTime.format("z") }}</sup>
+              </div>
+
+              <div class="flex items-end justify-between gap-3">
+                <div>
+                  {{ t("index.duration") }}:
+                  {{ contest.getContestDuration() }}
+                </div>
+
+                <div class="shrink-0 font-bold">
+                  <ContestStateBadge
+                    :state="contest.getContestState(now)"
+                    :pending-time="contest.getContestPendingTime(now)"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-1 w-full font-bold font-mono">
+              <Progress
+                :width="contest.getContestProgressRatio(now)"
+                :state="contest.getContestState(now)"
+              />
             </div>
           </div>
         </RouterLink>
@@ -130,6 +199,12 @@ const logo = computed(() => {
   font-size: 16px;
   padding-top: 12px;
   padding-right: 8px;
+}
+
+@media (max-width: 1023.98px) {
+  .logo {
+    padding-top: 0;
+  }
 }
 
 .title {

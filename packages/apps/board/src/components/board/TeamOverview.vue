@@ -108,10 +108,10 @@ const tableRows = computed(() => {
 <template>
   <div
     flex w-full
-    :class="hasPhoto ? 'flex-row gap-8' : 'justify-center'"
+    :class="hasPhoto ? 'flex-col gap-4 lg:flex-row lg:gap-8' : 'justify-center'"
   >
     <div
-      :class="hasPhoto ? 'flex-1' : 'w-1/2'"
+      :class="hasPhoto ? 'w-full lg:flex-1' : 'w-full lg:w-1/2'"
       flex items-center justify-center
     >
       <table w-full text-lg text-left text-gray-900 dark:text-gray-100>
@@ -136,7 +136,7 @@ const tableRows = computed(() => {
         </tbody>
       </table>
     </div>
-    <div v-if="hasPhoto" flex-1>
+    <div v-if="hasPhoto" class="w-full lg:flex-1">
       <div flex items-center justify-center>
         <a
           class="max-w-[98%]"

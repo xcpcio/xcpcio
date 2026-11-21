@@ -6,6 +6,7 @@ export interface Item {
   title: string | I18nText;
   keyword: string;
 
+  icon?: string;
   link?: string;
   isModal?: boolean;
   isDefault?: boolean;
@@ -16,6 +17,7 @@ const props = defineProps<{
   currentItem: string;
   queryParamName: string;
   reverseOrder?: boolean;
+  vertical?: boolean;
 
   onChange?: (current: string) => void;
 }>();
@@ -49,6 +51,7 @@ const currentItem = computed({
 
 const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 function getTitle(item: Item) {
   if (typeof item.title === "string") {
@@ -97,13 +100,19 @@ onMounted(() => {
   <div
     font-mono
     flex
+    max-lg:w-full
+    :class="props.vertical ? 'flex-col' : ''"
   >
     <div
-      class="mr-[-4px]"
-      flex
-      :class="{
-        'flex-row-reverse': props.reverseOrder,
-      }"
+      :class="[
+        props.vertical
+          ? 'flex w-full flex-col gap-1'
+          : 'mr-[-4px] flex max-lg:w-full max-lg:flex-wrap',
+        {
+          'flex-row-reverse': !props.vertical && props.reverseOrder && !isMobileLayout,
+          'max-lg:justify-end': !props.vertical && props.reverseOrder,
+        },
+      ]"
     >
       <template
         v-for="item in props.items"
@@ -111,10 +120,19 @@ onMounted(() => {
       >
         <div
           class="second-level-menu-item"
-          :class="[isCurrent(item) ? 'second-level-menu-item-current' : '']"
+          :class="[
+            isCurrent(item) ? 'second-level-menu-item-current' : '',
+            props.vertical ? 'second-level-menu-item-vertical' : '',
+          ]"
           @click="onClick(item)"
         >
-          <div>
+          <div
+            v-if="props.vertical && item.icon"
+            :class="item.icon"
+            class="second-level-menu-icon shrink-0"
+          />
+
+          <div :class="props.vertical ? 'min-w-0' : ''">
             <a
               v-if="item.link"
               :href="item.link"
@@ -162,5 +180,65 @@ onMounted(() => {
 
 .second-level-menu-item-current {
   background: #f30;
+}
+
+@media (max-width: 1023.98px) {
+  .second-level-menu-item {
+    height: auto;
+    min-height: 24px;
+    padding: 8px 10px !important;
+  }
+}
+
+.second-level-menu-item-vertical {
+  box-sizing: border-box !important;
+  width: 100%;
+  height: auto !important;
+  min-height: 44px;
+  justify-content: flex-start;
+  gap: 0.625rem;
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.second-level-menu-item-vertical:hover {
+  background: #f3f4f6;
+  color: #0f766e;
+}
+
+.second-level-menu-item-vertical.second-level-menu-item-current {
+  border-color: #99f6e4;
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.second-level-menu-icon {
+  font-size: 1.25rem;
+  opacity: 0.75;
+}
+
+.dark .second-level-menu-item-vertical {
+  color: #e5e7eb;
+}
+
+.dark .second-level-menu-item-vertical:hover {
+  background: #374151;
+  color: #5eead4;
+}
+
+.dark .second-level-menu-item-vertical.second-level-menu-item-current {
+  border-color: #0f766e;
+  background: #134e4a;
+  color: #5eead4;
 }
 </style>

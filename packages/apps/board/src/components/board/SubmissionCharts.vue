@@ -12,6 +12,7 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 const STATUS_COLOR_VARS: Partial<Record<SubmissionStatus, string>> = {
   [Status.ACCEPTED]: "--theme-status-accepted",
@@ -70,6 +71,7 @@ const statusColors = computed<Partial<Record<SubmissionStatus, string>>>(() => {
 });
 
 const verdictOptions = computed<Options>(() => {
+  const isMobile = isMobileLayout.value;
   const counts = new Map<SubmissionStatus, number>();
   for (const submission of props.submissions) {
     counts.set(submission.status, (counts.get(submission.status) ?? 0) + 1);
@@ -87,17 +89,29 @@ const verdictOptions = computed<Options>(() => {
     chart: {
       type: "pie",
       backgroundColor: "transparent",
+      ...(isMobile ? { height: 300 } : {}),
     },
     title: {
       text: t("submission_statistics.verdict_title"),
+      ...(isMobile ? { style: { fontSize: "14px" } } : {}),
     },
     tooltip: {
       pointFormat: "<b>{point.y}</b> ({point.percentage:.1f}%)",
     },
+    ...(isMobile
+      ? {
+          legend: {
+            itemStyle: {
+              fontSize: "10px",
+            },
+          },
+        }
+      : {}),
     plotOptions: {
       pie: {
         innerSize: "45%",
         dataLabels: {
+          ...(isMobile ? { enabled: false } : {}),
           format: "{point.name}: {point.y}",
         },
       },
@@ -115,6 +129,7 @@ const verdictOptions = computed<Options>(() => {
 });
 
 const timeOptions = computed<Options>(() => {
+  const isMobile = isMobileLayout.value;
   const bucketSize = 10;
   const bucketCount = Math.max(1, Math.ceil((Number.isFinite(props.durationMinutes) ? props.durationMinutes : 0) / bucketSize));
 
@@ -148,22 +163,46 @@ const timeOptions = computed<Options>(() => {
     chart: {
       type: "column",
       backgroundColor: "transparent",
+      ...(isMobile ? { height: 320 } : {}),
     },
     title: {
       text: t("submission_statistics.over_time_title"),
+      ...(isMobile ? { style: { fontSize: "14px" } } : {}),
     },
     xAxis: {
       categories,
+      ...(isMobile
+        ? {
+            labels: {
+              step: 2,
+              rotation: -45,
+              style: {
+                fontSize: "9px",
+              },
+            },
+          }
+        : {}),
       title: {
         text: t("submission_statistics.minutes"),
+        ...(isMobile ? { style: { fontSize: "11px" } } : {}),
       },
     },
     yAxis: {
       min: 0,
       title: {
         text: t("submission_statistics.submissions"),
+        ...(isMobile ? { style: { fontSize: "11px" } } : {}),
       },
     },
+    ...(isMobile
+      ? {
+          legend: {
+            itemStyle: {
+              fontSize: "10px",
+            },
+          },
+        }
+      : {}),
     tooltip: {
       shared: true,
       pointFormat: "{series.name}: <b>{point.y}</b><br/>",
@@ -181,6 +220,7 @@ const timeOptions = computed<Options>(() => {
 });
 
 const languageOptions = computed<Options>(() => {
+  const isMobile = isMobileLayout.value;
   const counts = new Map<string, number>();
   for (const submission of props.submissions) {
     const language = submission.language?.trim();
@@ -195,18 +235,31 @@ const languageOptions = computed<Options>(() => {
     chart: {
       type: "bar",
       backgroundColor: "transparent",
-      height: Math.max(240, entries.length * 36 + 100),
+      height: isMobile
+        ? Math.min(320, Math.max(200, entries.length * 28 + 80))
+        : Math.max(240, entries.length * 36 + 100),
     },
     title: {
       text: t("submission_statistics.language_title"),
+      ...(isMobile ? { style: { fontSize: "14px" } } : {}),
     },
     xAxis: {
       categories: entries.map(([language]) => language),
+      ...(isMobile
+        ? {
+            labels: {
+              style: {
+                fontSize: "9px",
+              },
+            },
+          }
+        : {}),
     },
     yAxis: {
       min: 0,
       title: {
         text: t("submission_statistics.submissions"),
+        ...(isMobile ? { style: { fontSize: "11px" } } : {}),
       },
     },
     series: [

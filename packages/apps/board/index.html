@@ -2,7 +2,36 @@
 <html lang="en-US" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <script>
+      (function () {
+        try {
+          var headless = /(^|\/)(resolver|balloon)\/?$/.test(location.pathname);
+          var contestPath = /(^|\/)(camp|icpc|ccpc|provincial-contest)(\/|$)/.test(location.pathname);
+          var queryComponent = new URLSearchParams(location.search).get("component");
+          var stored = {};
+          var injected = window.RUNTIME_CONFIG || {};
+
+          try {
+            stored = JSON.parse(localStorage.getItem("xcpcio-runtime-config") || "{}") || {};
+          } catch (e) {}
+
+          var component = stored.component || injected.component || queryComponent;
+
+          var hasDataSource = stored.dataSource || injected.dataSource;
+          var headlessComponent = component === "resolver" || component === "balloon";
+
+          headless = headless || (contestPath && hasDataSource && headlessComponent);
+
+          if (headless) {
+            var meta = document.querySelector('meta[name="viewport"]');
+            if (meta) {
+              meta.setAttribute("content", "width=980");
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- Google Tag Manager -->
     <script>
