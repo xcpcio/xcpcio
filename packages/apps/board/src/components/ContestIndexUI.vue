@@ -41,7 +41,7 @@ const logo = computed(() => {
           class="flex w-full flex-col justify-center border-b-2 border-gray-200 pb-2 font-serif text-inherit dark:border-gray-700"
         >
           <div
-            w-full flex
+            class="flex w-full max-lg:items-center"
           >
             <div
               v-if="logo !== undefined"
@@ -129,6 +129,12 @@ const logo = computed(() => {
   font-size: 16px;
   padding-top: 12px;
   padding-right: 8px;
+}
+
+@media (max-width: 1023.98px) {
+  .logo {
+    padding-top: 0;
+  }
 }
 
 .title {
