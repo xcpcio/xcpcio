@@ -380,6 +380,8 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     currentLeft += column.width;
   }
 
+  const problemAreaLeft = problems.length > 0 ? columnLefts.get("problem-0") : undefined;
+
   const titleFont = fontSpec(30, 700);
   const title = truncateText(contestName, width - PADDING * 2, titleFont);
   const subtitle = truncateText(`${options.labels.group}: ${groupName} · ${options.labels.teams}: ${teams.length} / ${rank.teams.length}`, width - PADDING * 2, fontSpec(15));
@@ -443,6 +445,10 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     const rowBackground = theme.rows[rowClass as keyof StandingsTheme["rows"]] ?? theme.background;
 
     parts.push(`<rect x="${PADDING}" y="${rowTop}" width="${width - PADDING * 2}" height="${ROW_HEIGHT}" fill="${rowBackground}" />`);
+
+    if (problemAreaLeft !== undefined) {
+      parts.push(`<rect x="${problemAreaLeft}" y="${rowTop}" width="${width - PADDING - problemAreaLeft}" height="${ROW_HEIGHT}" fill="${theme.background}" />`);
+    }
 
     const award = getAwardKey(team);
     const placeLeft = columnLefts.get("place") as number;
@@ -521,7 +527,6 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       const cellWidth = column?.width ?? 48;
 
       if (colorClass === "unattempted") {
-        parts.push(`<rect x="${left}" y="${rowTop}" width="${cellWidth}" height="${ROW_HEIGHT}" fill="${theme.background}" />`);
         continue;
       }
 

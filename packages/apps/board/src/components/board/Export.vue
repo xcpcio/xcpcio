@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { StandingsImageTheme } from "@board/composables/standings-image";
 import type { Rank } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 import { buildRankForGroup, createStandingsImage } from "@board/composables/standings-image";
@@ -45,7 +44,6 @@ const options = ref([
 
 const selectedGroup = ref(rank.value.options.group || "all");
 const teamCount = ref(20);
-const imageTheme = ref<StandingsImageTheme>(isDark.value ? "dark" : "light");
 
 const groupOptions = computed(() => {
   return Array.from(rank.value.contest.group, ([value, group]) => ({
@@ -133,7 +131,7 @@ async function onClickForStandingsImageDownload() {
     const blob = await createStandingsImage(imageRank, {
       teamCount: count,
       lang: lang.value,
-      theme: imageTheme.value,
+      theme: isDark.value ? "dark" : "light",
       link: `${window.location.origin}${window.location.pathname}`,
       labels: {
         place: t("utility.image_place"),
@@ -177,7 +175,7 @@ async function onClickForStandingsImageDownload() {
         v-if="currentItem.value === 'standings-image'"
         flex flex-col gap-4
       >
-        <div class="grid gap-4 sm:grid-cols-3">
+        <div class="grid gap-4 sm:grid-cols-2">
           <label class="block">
             <span class="mb-1 block text-sm font-semibold text-gray-900 dark:text-gray-300">
               {{ t("utility.group") }}
@@ -208,23 +206,6 @@ async function onClickForStandingsImageDownload() {
               inputmode="numeric"
               class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             >
-          </label>
-
-          <label class="block">
-            <span class="mb-1 block text-sm font-semibold text-gray-900 dark:text-gray-300">
-              {{ t("utility.image_theme") }}
-            </span>
-            <select
-              v-model="imageTheme"
-              class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-            >
-              <option value="light">
-                {{ t("utility.image_theme_light") }}
-              </option>
-              <option value="dark">
-                {{ t("utility.image_theme_dark") }}
-              </option>
-            </select>
           </label>
         </div>
 
