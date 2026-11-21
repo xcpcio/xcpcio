@@ -753,6 +753,7 @@ onMounted(() => {
 
           <div
             v-if="currentType === 'utility'"
+            class="flex w-full justify-center"
           >
             <Utility
               :rank="rank"

@@ -41,6 +41,7 @@ function goCountdown() {
 <template>
   <div
     flex flex-col
+    class="w-full max-w-[40rem]"
   >
     <div>
       <div class="mb-2 text-xl font-bold">
