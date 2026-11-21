@@ -182,7 +182,7 @@ useEventListener(document, "keydown", (event) => {
                 @click="close"
               >
                 <div i-ri:bilibili-line class="text-xl opacity-75" />
-                <span>Bilibili</span>
+                <span>Bilibili Live</span>
               </a>
 
               <a
