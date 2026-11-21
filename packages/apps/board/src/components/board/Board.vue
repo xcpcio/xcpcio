@@ -3,6 +3,7 @@ import type { Item } from "@board/components/board/SecondLevelMenu.vue";
 import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
+import BoardMenuDrawer from "@board/components/board/BoardMenuDrawer.vue";
 import StandingsMobile from "@board/components/board/StandingsMobile.vue";
 import AsyncLoading from "@board/components/common/AsyncLoading.vue";
 
@@ -575,7 +576,7 @@ onMounted(() => {
           </div>
 
           <div
-            v-if="!showPendingPage"
+            v-if="!showPendingPage && !isMobileLayout"
             class="mt-4 flex max-lg:flex-col max-lg:items-stretch max-lg:gap-1"
           >
             <div class="float-left min-w-0 max-w-full max-lg:w-full">
@@ -699,6 +700,16 @@ onMounted(() => {
         v-model:is-hidden="isHiddenOptionsModal"
         v-model:rank-options="rankOptions"
         :rank="rank"
+      />
+
+      <BoardMenuDrawer
+        v-if="!showPendingPage && isMobileLayout"
+        v-model:current-group="currentGroup"
+        v-model:current-type="currentType"
+        :group-items="groupMenuList"
+        :type-items="typeMenuList"
+        @change-group="onChangeCurrentGroup"
+        @change-type="onChangeCurrentType"
       />
     </div>
   </div>

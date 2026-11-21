@@ -16,6 +16,7 @@ intro:
 not-found: 未找到页面
 
 common:
+  menu: 菜单
   loading: 加载中
   colon: ：
 
@@ -95,6 +96,7 @@ standings:
   organization: Organization
   team: Team
   group: Group
+  view: 视图
   solved: Solved
   penalty: Penalty
   dirt: Dirt

@@ -16,6 +16,7 @@ const props = defineProps<{
   currentItem: string;
   queryParamName: string;
   reverseOrder?: boolean;
+  vertical?: boolean;
 
   onChange?: (current: string) => void;
 }>();
@@ -99,13 +100,18 @@ onMounted(() => {
     font-mono
     flex
     max-lg:w-full
+    :class="props.vertical ? 'flex-col' : ''"
   >
     <div
-      class="mr-[-4px] flex max-lg:w-full max-lg:flex-wrap"
-      :class="{
-        'flex-row-reverse': props.reverseOrder && !isMobileLayout,
-        'max-lg:justify-end': props.reverseOrder,
-      }"
+      :class="[
+        props.vertical
+          ? 'flex w-full flex-col'
+          : 'mr-[-4px] flex max-lg:w-full max-lg:flex-wrap',
+        {
+          'flex-row-reverse': !props.vertical && props.reverseOrder && !isMobileLayout,
+          'max-lg:justify-end': !props.vertical && props.reverseOrder,
+        },
+      ]"
     >
       <template
         v-for="item in props.items"
@@ -113,7 +119,10 @@ onMounted(() => {
       >
         <div
           class="second-level-menu-item"
-          :class="[isCurrent(item) ? 'second-level-menu-item-current' : '']"
+          :class="[
+            isCurrent(item) ? 'second-level-menu-item-current' : '',
+            props.vertical ? 'second-level-menu-item-vertical' : '',
+          ]"
           @click="onClick(item)"
         >
           <div>
@@ -172,5 +181,15 @@ onMounted(() => {
     min-height: 24px;
     padding: 8px 10px !important;
   }
+}
+
+.second-level-menu-item-vertical {
+  box-sizing: border-box !important;
+  height: auto !important;
+  min-height: 40px;
+  width: 100%;
+  justify-content: flex-start;
+  margin: 0 !important;
+  padding: 8px 12px !important;
 }
 </style>
