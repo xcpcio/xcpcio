@@ -92,8 +92,8 @@ function onSelectProblem(p: TeamProblemStatistics) {
           {{ team.rank }}
         </button>
 
-        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded bg-gray-50 dark:bg-gray-700">
-          <Badge :image="bigBadge" class="h-7 w-7" />
+        <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-gray-50 dark:bg-gray-700">
+          <Badge :image="bigBadge" class="h-9 w-9" />
         </div>
 
         <div class="min-w-0 flex-1">
