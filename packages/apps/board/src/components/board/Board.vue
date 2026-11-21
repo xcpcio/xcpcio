@@ -222,12 +222,6 @@ const group = computed(() => {
   return rank.value.contest.group;
 });
 
-const groupIconMap: Record<string, string> = {
-  all: "i-material-symbols-groups",
-  official: "i-material-symbols-verified-outline",
-  unofficial: "i-material-symbols-person-outline",
-};
-
 const groupMenuList = computed(() => {
   const res = new Array<Item>();
 
@@ -235,7 +229,7 @@ const groupMenuList = computed(() => {
     const item = {
       title: v.name,
       keyword: k,
-      icon: groupIconMap[k] ?? "i-material-symbols-group-outline",
+      icon: "i-material-symbols-groups",
       isDefault: v.isDefault,
     };
 
@@ -640,6 +634,7 @@ onMounted(() => {
             </div>
 
             <div
+              v-if="currentType === 'rank'"
               class="mt-2 flex gap-[2px] font-mono"
               data-testid="problem-color-legend"
             >

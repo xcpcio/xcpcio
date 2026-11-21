@@ -3,14 +3,18 @@ import { getRuntimeConfig } from "@board/composables/runtimeConfig";
 
 const DEVICE_VIEWPORT = "width=device-width, initial-scale=1, viewport-fit=cover";
 const HEADLESS_VIEWPORT = "width=980";
-const HEADLESS_COMPONENTS = new Set(["resolver", "balloon", "countdown"]);
+const HEADLESS_COMPONENTS = new Set(["resolver", "balloon"]);
 const CONTEST_PATH = /^\/(?:camp|icpc|ccpc|provincial-contest)(?:\/|$)/;
 
 function hasHeadlessPath(path: string): boolean {
-  return /\/(?:resolver|balloon|countdown)\/?$/.test(path);
+  return /\/(?:resolver|balloon)\/?$/.test(path);
 }
 
 function isHeadlessRoute(route: RouteLocationNormalizedLoaded): boolean {
+  if (/\/countdown\/?$/.test(route.path)) {
+    return false;
+  }
+
   if (route.meta.layout === "headless" || hasHeadlessPath(route.path)) {
     return true;
   }

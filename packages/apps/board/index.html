@@ -6,7 +6,7 @@
     <script>
       (function () {
         try {
-          var headless = /(^|\/)(resolver|balloon|countdown)\/?$/.test(location.pathname);
+          var headless = /(^|\/)(resolver|balloon)\/?$/.test(location.pathname);
           var contestPath = /(^|\/)(camp|icpc|ccpc|provincial-contest)(\/|$)/.test(location.pathname);
           var queryComponent = new URLSearchParams(location.search).get("component");
           var stored = {};
@@ -19,7 +19,7 @@
           var component = stored.component || injected.component || queryComponent;
 
           var hasDataSource = stored.dataSource || injected.dataSource;
-          var headlessComponent = component === "resolver" || component === "balloon" || component === "countdown";
+          var headlessComponent = component === "resolver" || component === "balloon";
 
           headless = headless || (contestPath && hasDataSource && headlessComponent);
 
