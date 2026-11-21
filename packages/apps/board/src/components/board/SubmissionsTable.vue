@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
-import type { Lang, SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
+import type { Lang, SubmissionStatus } from "@xcpcio/types";
 
 import { Pagination } from "@board/composables/pagination";
 import { Submission } from "@xcpcio/core";
@@ -233,16 +233,62 @@ function getProblemLabelColorStyle(s: Submission) {
 }
 
 const showVideoModal = ref(false);
-const currentSubmissionReaction = ref(null as unknown as SubmissionReaction);
+const currentReactionSubmissionId = ref("");
 
-function openVideoModal(submissionReaction: SubmissionReaction) {
-  currentSubmissionReaction.value = submissionReaction;
+const reactionSubmissions = computed(() => submissions.value.filter(s => s.reaction));
+const currentReactionIndex = computed(() => {
+  return reactionSubmissions.value.findIndex(s => s.id === currentReactionSubmissionId.value);
+});
+const currentSubmissionReaction = computed(() => {
+  return reactionSubmissions.value[currentReactionIndex.value]?.reaction;
+});
+const hasPreviousReaction = computed(() => currentReactionIndex.value > 0);
+const hasNextReaction = computed(() => {
+  const index = currentReactionIndex.value;
+  return index >= 0 && index < reactionSubmissions.value.length - 1;
+});
+
+function openVideoModal(submission: Submission) {
+  if (!submission.reaction) {
+    return;
+  }
+
+  currentReactionSubmissionId.value = submission.id;
   showVideoModal.value = true;
 }
 
 function closeVideoModal() {
   showVideoModal.value = false;
+  currentReactionSubmissionId.value = "";
 }
+
+function showPreviousReaction() {
+  if (!hasPreviousReaction.value) {
+    return;
+  }
+
+  const previous = reactionSubmissions.value[currentReactionIndex.value - 1];
+  if (previous) {
+    currentReactionSubmissionId.value = previous.id;
+  }
+}
+
+function showNextReaction() {
+  if (!hasNextReaction.value) {
+    return;
+  }
+
+  const next = reactionSubmissions.value[currentReactionIndex.value + 1];
+  if (next) {
+    currentReactionSubmissionId.value = next.id;
+  }
+}
+
+watch(currentReactionIndex, (index) => {
+  if (showVideoModal.value && index < 0) {
+    closeVideoModal();
+  }
+});
 
 const showRealtimeStreamModal = ref(false);
 const currentRealtimeStreamSubmissionId = ref("");
@@ -263,13 +309,17 @@ function closeRealtimeStreamModal() {
       mx-auto w-full
     >
       <div
-        v-if="showVideoModal"
+        v-if="showVideoModal && currentSubmissionReaction"
         flex justify-start items-start
       >
         <ReactionVideoModal
           :is-open="showVideoModal"
           :submission-reaction="currentSubmissionReaction"
+          :has-previous="hasPreviousReaction"
+          :has-next="hasNextReaction"
           @close="closeVideoModal"
+          @previous="showPreviousReaction"
+          @next="showNextReaction"
         />
       </div>
 
@@ -445,7 +495,7 @@ function closeRealtimeStreamModal() {
                   class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
                   title="Reaction Video"
                   aria-label="Reaction Video"
-                  @click="openVideoModal(s.reaction)"
+                  @click="openVideoModal(s)"
                 >
                   <div i-material-symbols-slow-motion-video text-base />
                 </button>
@@ -639,7 +689,7 @@ function closeRealtimeStreamModal() {
                           text-lg
                           cursor-pointer
                           i-material-symbols-slow-motion-video
-                          @click="openVideoModal(s.reaction)"
+                          @click="openVideoModal(s)"
                         />
                         <template #popper>
                           Reaction Video
