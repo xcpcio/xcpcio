@@ -129,6 +129,20 @@ standings:
 submissions:
   total_submissions: 总提交数
 
+team_statistics:
+  title: 题目提交
+  solved_summary: 通过
+  wrong_summary: 错误
+  pending_summary: 判题中
+  attempts: "提交 {count} 次"
+  wrong_count: "错误 {count} 次"
+  no_attempts: 未提交
+  status:
+    accepted: 通过
+    pending: 判题中
+    wrong_answer: 答案错误
+    not_submitted: 未提交
+
 team_info:
   rank: 排名
   team_id: 队伍 ID

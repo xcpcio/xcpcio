@@ -129,6 +129,20 @@ standings:
 submissions:
   total_submissions: Total Submissions
 
+team_statistics:
+  title: Problem Attempts
+  solved_summary: Solved
+  wrong_summary: Wrong
+  pending_summary: Pending
+  attempts: "Attempts {count}"
+  wrong_count: "Wrong {count}"
+  no_attempts: No attempts
+  status:
+    accepted: Accepted
+    pending: Pending
+    wrong_answer: Wrong Answer
+    not_submitted: Not submitted
+
 team_info:
   rank: Rank
   team_id: Team ID
