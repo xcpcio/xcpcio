@@ -61,8 +61,7 @@ const logo = computed(() => {
             >
               <Tooltip>
                 <div
-                  overflow-hidden
-                  text-2xl truncate max-lg:text-xl
+                  class="text-2xl max-lg:text-lg max-lg:break-words lg:truncate"
                 >
                   {{ contestName }}
                 </div>
