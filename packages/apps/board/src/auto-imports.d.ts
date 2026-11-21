@@ -391,7 +391,7 @@ declare global {
   export type { Pagination } from './composables/pagination'
   import('./composables/pagination')
   // @ts-ignore
-  export type { StandingsImageLabels, StandingsImageOptions } from './composables/standings-image'
+  export type { StandingsImageTheme, StandingsImageLabels, StandingsImageOptions } from './composables/standings-image'
   import('./composables/standings-image')
   // @ts-ignore
   export type { AwardKey, StandClassNameOptions, ProblemColorClass } from './composables/standings'

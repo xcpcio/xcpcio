@@ -95,6 +95,9 @@ utility:
   image_organization: 组织
   image_solved: 过题数
   image_penalty: 罚时
+  image_theme: 主题
+  image_theme_light: 日间
+  image_theme_dark: 夜间
 
 standings:
   start_time: 开始时间

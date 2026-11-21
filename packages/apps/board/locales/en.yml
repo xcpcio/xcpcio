@@ -95,6 +95,9 @@ utility:
   image_organization: Organization
   image_solved: Solved
   image_penalty: Penalty
+  image_theme: Theme
+  image_theme_light: Day
+  image_theme_dark: Night
 
 standings:
   start_time: Start
