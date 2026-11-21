@@ -6,6 +6,7 @@ export interface Item {
   title: string | I18nText;
   keyword: string;
 
+  icon?: string;
   link?: string;
   isModal?: boolean;
   isDefault?: boolean;
@@ -105,7 +106,7 @@ onMounted(() => {
     <div
       :class="[
         props.vertical
-          ? 'flex w-full flex-col'
+          ? 'flex w-full flex-col gap-1'
           : 'mr-[-4px] flex max-lg:w-full max-lg:flex-wrap',
         {
           'flex-row-reverse': !props.vertical && props.reverseOrder && !isMobileLayout,
@@ -125,7 +126,13 @@ onMounted(() => {
           ]"
           @click="onClick(item)"
         >
-          <div>
+          <div
+            v-if="props.vertical && item.icon"
+            :class="item.icon"
+            class="second-level-menu-icon shrink-0"
+          />
+
+          <div class="min-w-0">
             <a
               v-if="item.link"
               :href="item.link"
@@ -185,11 +192,53 @@ onMounted(() => {
 
 .second-level-menu-item-vertical {
   box-sizing: border-box !important;
-  height: auto !important;
-  min-height: 40px;
   width: 100%;
+  height: auto !important;
+  min-height: 44px;
   justify-content: flex-start;
+  gap: 0.625rem;
   margin: 0 !important;
-  padding: 8px 12px !important;
+  padding: 0.5rem 0.75rem !important;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.second-level-menu-item-vertical:hover {
+  background: #f3f4f6;
+  color: #0f766e;
+}
+
+.second-level-menu-item-vertical.second-level-menu-item-current {
+  border-color: #99f6e4;
+  background: #ccfbf1;
+  color: #0f766e;
+}
+
+.second-level-menu-icon {
+  font-size: 1.25rem;
+  opacity: 0.75;
+}
+
+.dark .second-level-menu-item-vertical {
+  color: #e5e7eb;
+}
+
+.dark .second-level-menu-item-vertical:hover {
+  background: #374151;
+  color: #5eead4;
+}
+
+.dark .second-level-menu-item-vertical.second-level-menu-item-current {
+  border-color: #0f766e;
+  background: #134e4a;
+  color: #5eead4;
 }
 </style>

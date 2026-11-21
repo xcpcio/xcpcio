@@ -185,28 +185,34 @@ const typeMenuList = ref<Array<Item>>([
   {
     title: "type_menu.rank",
     keyword: "rank",
+    icon: "i-material-symbols-leaderboard-outline",
     isDefault: true,
   },
   {
     title: "type_menu.submissions",
     keyword: "submissions",
+    icon: "i-material-symbols-list-alt-outline",
   },
   {
     title: "type_menu.statistics",
     keyword: "statistics",
+    icon: "i-material-symbols-bar-chart",
   },
   {
     title: "type_menu.utility",
     keyword: "utility",
+    icon: "i-material-symbols-build-outline",
   },
   {
     title: "type_menu.filter",
     keyword: "filter",
+    icon: "i-material-symbols-filter-alt-outline",
     isModal: true,
   },
   {
     title: "type_menu.options",
     keyword: "options",
+    icon: "i-material-symbols-settings-outline",
     isModal: true,
   },
 ]);
@@ -215,6 +221,12 @@ const group = computed(() => {
   return rank.value.contest.group;
 });
 
+const groupIconMap: Record<string, string> = {
+  all: "i-material-symbols-groups",
+  official: "i-material-symbols-verified-outline",
+  unofficial: "i-material-symbols-person-outline",
+};
+
 const groupMenuList = computed(() => {
   const res = new Array<Item>();
 
@@ -222,6 +234,7 @@ const groupMenuList = computed(() => {
     const item = {
       title: v.name,
       keyword: k,
+      icon: groupIconMap[k] ?? "i-material-symbols-group-outline",
       isDefault: v.isDefault,
     };
 
