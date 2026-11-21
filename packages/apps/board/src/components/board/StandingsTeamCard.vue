@@ -76,7 +76,7 @@ function onSelectProblem(p: TeamProblemStatistics) {
 <template>
   <article
     ref="el"
-    class="standings-card min-h-[8.5rem] overflow-hidden rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+    class="standings-card min-h-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
     :class="cardClass"
     data-testid="standings-card"
   >
@@ -130,10 +130,6 @@ function onSelectProblem(p: TeamProblemStatistics) {
             </span>
             <span class="truncate">{{ team.organization.name.getOrDefault(lang) }}</span>
           </button>
-
-          <div class="mt-0.5 truncate text-[10px] leading-tight opacity-60">
-            {{ team.id }}
-          </div>
         </div>
 
         <div class="ml-1 flex shrink-0 flex-col items-end leading-tight">
