@@ -430,7 +430,7 @@ function closeRealtimeStreamModal() {
           <div
             v-for="s in currentSubmissions"
             :key="s.id"
-            class="py-2"
+            class="py-1"
           >
             <div class="flex min-w-0 items-center justify-between gap-3">
               <div class="flex min-w-0 flex-1 items-center gap-2.5">
@@ -464,7 +464,7 @@ function closeRealtimeStreamModal() {
               </span>
             </div>
 
-            <div class="mt-1.5 flex min-w-0 items-center gap-x-3 text-xs text-gray-500 dark:text-gray-400">
+            <div class="mt-1 flex min-w-0 items-center gap-x-3 text-xs text-gray-500 dark:text-gray-400">
               <span class="shrink-0 whitespace-nowrap">{{ s.timestampDisplayFormatWithSecond }}</span>
 
               <span
