@@ -92,7 +92,6 @@ utility:
   teams: Teams
   image_place: Rank
   image_team: Team
-  image_organization: Organization
   image_solved: Solved
   image_penalty: Penalty
   image_theme: Theme

@@ -138,7 +138,6 @@ async function onClickForStandingsImageDownload() {
       labels: {
         place: t("utility.image_place"),
         team: t("utility.image_team"),
-        organization: t("utility.image_organization"),
         solved: t("utility.image_solved"),
         penalty: t("utility.image_penalty"),
         group: t("utility.group"),
