@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import type { Item } from "@board/components/board/SecondLevelMenu.vue";
+import type { Rank } from "@xcpcio/core";
 
+import InfoModal from "@board/components/board/InfoModal.vue";
 import SecondLevelMenu from "@board/components/board/SecondLevelMenu.vue";
 import { useEventListener } from "@vueuse/core";
+import { useToast } from "vue-toast-notification";
 
 const props = defineProps<{
+  rank: Rank;
   groupItems: Array<Item>;
   typeItems: Array<Item>;
   currentGroup: string;
@@ -19,7 +23,10 @@ const emit = defineEmits<{
 }>();
 
 const { t } = useI18n();
+const $toast = useToast();
+const { copy, isSupported } = useClipboard();
 const isOpen = ref(false);
+const isHiddenInfoModal = ref(true);
 
 const groupModel = computed({
   get: () => props.currentGroup,
@@ -46,6 +53,41 @@ function onGroupChange(value: string) {
 
 function onTypeChange(value: string) {
   emit("changeType", value);
+  close();
+}
+
+function openInfo() {
+  close();
+  isHiddenInfoModal.value = false;
+}
+
+function checkClipboard() {
+  if (!isSupported.value) {
+    $toast.warning("clipboard is not supported");
+    return false;
+  }
+
+  return true;
+}
+
+function copyLink() {
+  if (!checkClipboard()) {
+    return;
+  }
+
+  copy(window.location.href);
+  $toast.success("copy success");
+  close();
+}
+
+function copyCode() {
+  if (!checkClipboard()) {
+    return;
+  }
+
+  const code = `<iframe src="${window.location.href}" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; height: 720px"></iframe>`;
+  copy(code);
+  $toast.success("copy success");
   close();
 }
 
@@ -123,8 +165,49 @@ useEventListener(document, "keydown", (event) => {
               :on-change="onTypeChange"
             />
           </div>
+
+          <div class="mt-6 border-t border-gray-200 pt-4 dark:border-gray-700">
+            <div class="mb-2 text-xs font-semibold uppercase tracking-wide opacity-60">
+              {{ t("common.actions") }}
+            </div>
+
+            <div class="flex flex-col gap-1">
+              <button
+                type="button"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="openInfo"
+              >
+                <div i-material-symbols-info-outline class="text-xl opacity-75" />
+                <span>{{ t("type_menu.info") }}</span>
+              </button>
+
+              <button
+                type="button"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="copyLink"
+              >
+                <div i-material-symbols-link-rounded class="text-xl opacity-75" />
+                <span>{{ t("common.copy_link") }}</span>
+              </button>
+
+              <button
+                type="button"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="copyCode"
+              >
+                <div i-material-symbols-code class="text-xl opacity-75" />
+                <span>{{ t("common.copy_embed_code") }}</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </Teleport>
+
+  <InfoModal
+    v-if="!isHiddenInfoModal"
+    v-model:is-hidden="isHiddenInfoModal"
+    :rank="rank"
+  />
 </template>

@@ -83,9 +83,9 @@ onMounted(() => {
   <div
     flex items-center
   >
-    <div>
+    <div class="hidden lg:block">
       <div
-        class="cursor-pointer max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
+        class="cursor-pointer"
         @click="openInfoModal"
       >
         <div i-material-symbols-info-outline text-lg />
@@ -94,7 +94,7 @@ onMounted(() => {
 
     <template v-if="rank.contest.socialMedia">
       <div
-        class="border-l-[1px] border-r-[1px]"
+        class="hidden border-l-[1px] border-r-[1px] lg:block"
         mx-2
         h-6
         border-color-black
@@ -129,17 +129,17 @@ onMounted(() => {
     </template>
 
     <div
-      class="border-l-[1px] border-r-[1px]"
+      class="hidden border-l-[1px] border-r-[1px] lg:block"
       mx-2
       h-6
       border-color-black
       dark:border-color-white
     />
 
-    <div flex>
+    <div class="hidden lg:flex">
       <div
         ref="dropdownTriggerEl"
-        class="cursor-pointer max-lg:inline-flex max-lg:h-11 max-lg:w-11 max-lg:items-center max-lg:justify-center"
+        class="cursor-pointer"
       >
         <div i-material-symbols-share text-lg />
       </div>

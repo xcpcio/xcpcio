@@ -719,6 +719,7 @@ onMounted(() => {
         v-if="!showPendingPage && isMobileLayout"
         v-model:current-group="currentGroup"
         v-model:current-type="currentType"
+        :rank="rank"
         :group-items="groupMenuList"
         :type-items="typeMenuList"
         @change-group="onChangeCurrentGroup"

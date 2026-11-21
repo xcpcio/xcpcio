@@ -16,6 +16,9 @@ intro:
 not-found: Not found
 
 common:
+  actions: Actions
+  copy_link: Copy Link
+  copy_embed_code: Copy Embed Code
   menu: Menu
   loading: Loading
   colon: ":"

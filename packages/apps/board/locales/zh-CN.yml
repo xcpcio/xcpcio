@@ -16,6 +16,9 @@ intro:
 not-found: 未找到页面
 
 common:
+  actions: 操作
+  copy_link: 复制链接
+  copy_embed_code: 复制嵌入代码
   menu: 菜单
   loading: 加载中
   colon: ：
