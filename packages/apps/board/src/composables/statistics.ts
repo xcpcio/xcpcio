@@ -197,7 +197,7 @@ export function getSubmitChart(rank: Rank, isMobile = false) {
   return getChartObj("提交分类", "题目编号", "提交数", cat, series, colors, isMobile);
 }
 
-export function getTeamPlaceChart(_rank: Rank, team: Team) {
+export function getTeamPlaceChart(_rank: Rank, team: Team, isMobile = false) {
   const points = team.placeChartPoints;
 
   const data = points.map((p, index) => {
@@ -221,6 +221,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
     chart: {
       type: "spline",
       backgroundColor: "transparent",
+      ...(isMobile ? { marginLeft: 36 } : {}),
     },
     title: {
       text: "排名变化趋势图",
@@ -254,9 +255,20 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
     yAxis: [
       {
         allowDecimals: false,
-        title: {
-          text: "Place",
-        },
+        title: isMobile
+          ? {
+              text: "Place",
+              rotation: 0,
+              align: "high",
+              offset: 0,
+              y: -8,
+              style: {
+                fontSize: "12px",
+              },
+            }
+          : {
+              text: "Place",
+            },
         reversed: true,
         gridLineWidth: 1,
       },
