@@ -13,7 +13,7 @@ const HEADER_HEIGHT = 52;
 const ROW_HEIGHT = 54;
 const FOOTER_HEIGHT = 40;
 const BANNER_GAP = 18;
-const ORG_LOGO_SIZE = 36;
+const ORG_LOGO_SIZE = ROW_HEIGHT;
 const BRAND_LOGO_SIZE = 20;
 const IMAGE_PROXY_URL = "https://wsrv.nl/?url=";
 
@@ -358,7 +358,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
 
   const [bannerData, logoMap, brandLogoData] = await Promise.all([
     bannerUrl ? loadImageData(bannerUrl) : Promise.resolve(undefined),
-    loadImageMap(organizationLogoUrls, 96),
+    loadImageMap(organizationLogoUrls, 160),
     brandLogoUrl ? loadImageData(brandLogoUrl) : Promise.resolve(undefined),
   ]);
 
