@@ -339,7 +339,7 @@ function closeRealtimeStreamModal() {
         relative
         bg-white dark:bg-gray-800
         :class="{
-          'shadow-md': props.removeBorder !== true,
+          'shadow-md': props.removeBorder !== true && !isMobileLayout,
           'sm:rounded-sm': props.removeBorder !== true,
         }"
       >
