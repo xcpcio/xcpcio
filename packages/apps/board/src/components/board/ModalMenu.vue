@@ -55,7 +55,7 @@ const typesLength = computed(() => props.types.length);
           'border-t border-x md:border-x-0 md:border-b': index > 0 && index + 1 < typesLength,
           'md:border-r-0': index === 0,
           'md:border-l': index > 0,
-          'z-10 ring-2 ring-primary-700 text-primary-700 dark:ring-primary-600 dark:text-white': currentType === type,
+          'modal-menu-button-active z-10 ring-2 ring-primary-700 text-primary-700 dark:ring-primary-600 dark:text-white': currentType === type,
         }"
         @click="onChangeType(type)"
       >
@@ -71,6 +71,18 @@ const typesLength = computed(() => props.types.length);
     display: flex !important;
     width: 100%;
     flex-direction: row !important;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .modal-menu > button.modal-menu-button-active {
+    z-index: 1;
+    border-color: #93c5fd !important;
+    box-shadow: none !important;
+  }
+
+  .dark .modal-menu > button.modal-menu-button-active {
+    border-color: #1d4ed8 !important;
   }
 
   .modal-menu > button {
