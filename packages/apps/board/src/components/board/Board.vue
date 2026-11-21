@@ -632,6 +632,24 @@ onMounted(() => {
                 {{ remainingTime }}
               </div>
             </div>
+
+            <div
+              class="mt-2 flex gap-[2px] font-mono"
+              data-testid="problem-color-legend"
+            >
+              <div
+                v-for="p in rank.contest.problems"
+                :key="p.id"
+                class="flex min-h-6 min-w-0 flex-1 items-center justify-center rounded-sm text-[11px] font-bold"
+                :style="{
+                  backgroundColor: p.balloonColor.background_color,
+                  color: p.balloonColor.color,
+                }"
+                :title="p.name?.getOrDefault(lang) ?? p.label"
+              >
+                {{ p.label }}
+              </div>
+            </div>
           </template>
 
           <div
