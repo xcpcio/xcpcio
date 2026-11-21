@@ -13,7 +13,6 @@ const emit = defineEmits(["close", "previous", "next"]);
 
 const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 const videoPlayer = ref<HTMLVideoElement | null>(null);
-const videoAspectRatio = ref("9 / 16");
 
 const SWIPE_THRESHOLD = 56;
 
@@ -81,13 +80,6 @@ async function playVideo() {
     await player.play();
   } catch {
     // Autoplay can be rejected; the native controls still let the user play it.
-  }
-}
-
-function updateVideoAspectRatio() {
-  const player = videoPlayer.value;
-  if (player?.videoWidth && player.videoHeight) {
-    videoAspectRatio.value = `${player.videoWidth} / ${player.videoHeight}`;
   }
 }
 
@@ -200,9 +192,7 @@ function onTouchCancel() {
         autoplay
         :playsinline="isMobileLayout"
         preload="metadata"
-        class="w-full h-full max-lg:h-auto max-lg:max-h-[100dvh] max-lg:bg-white object-contain"
-        :style="isMobileLayout ? { aspectRatio: videoAspectRatio } : undefined"
-        @loadedmetadata="updateVideoAspectRatio"
+        class="w-full h-full max-lg:h-[calc(100dvh-2rem)] max-lg:bg-white object-contain max-lg:object-cover"
       >
         <source
           :src="submissionReaction.url"
