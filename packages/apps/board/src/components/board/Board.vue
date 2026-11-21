@@ -291,6 +291,11 @@ const endTime = computed(() => {
   return `${t("standings.end_time")}${t("common.colon")}${time}`;
 });
 
+const elapsedTime = computed(() => {
+  const time = rank.value.contest.getContestElapsedTime(now.value);
+  return `${t("standings.elapsed")}${t("common.colon")}${time}`;
+});
+
 const remainingTime = computed(() => {
   const time = rank.value.contest.getContestRemainingTime(now.value);
   return `${t("standings.remaining")}${t("common.colon")}${time}`;
@@ -555,38 +560,79 @@ onMounted(() => {
         flex flex-row justify-center
       >
         <div class="w-[92%]">
-          <div class="flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
-            <div class="min-w-0">
-              {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+          <template v-if="!isMobileLayout">
+            <div class="flex font-bold font-mono">
+              <div class="float-left">
+                {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+              </div>
+              <div class="flex-1">
+                <ContestStateBadge
+                  :state="contestState"
+                  :pending-time="rank.contest.getContestPendingTime(now)"
+                  :paused-time="pausedTime"
+                />
+              </div>
+              <div class="float-right">
+                {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+              </div>
             </div>
-            <div class="shrink-0">
-              <ContestStateBadge
-                :state="contestState"
-                :pending-time="rank.contest.getContestPendingTime(now)"
-                :paused-time="pausedTime"
+
+            <div class="mt-2">
+              <Progress
+                v-model:rank-options="rankOptions"
+                :width="rank.contest.getContestProgressRatio(now)"
+                :state="rank.contest.getContestState(now)"
+                :need-scroll="true"
+                :rank="rank"
+                :elapsed-time="rank.contest.getContestElapsedTime(now)"
               />
             </div>
-          </div>
 
-          <div class="mt-2">
-            <Progress
-              v-model:rank-options="rankOptions"
-              :width="rank.contest.getContestProgressRatio(now)"
-              :state="rank.contest.getContestState(now)"
-              :need-scroll="true"
-              :rank="rank"
-              :elapsed-time="rank.contest.getContestElapsedTime(now)"
-            />
-          </div>
+            <div class="mt-2 flex font-bold font-mono">
+              <div class="float-left">
+                {{ elapsedTime }}
+              </div>
+              <div class="flex-1" />
+              <div class="float-right">
+                {{ remainingTime }}
+              </div>
+            </div>
+          </template>
 
-          <div class="mt-2 flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
-            <div class="min-w-0">
-              {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+          <template v-else>
+            <div class="flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
+              <div class="min-w-0">
+                {{ startTime }}<sup class="pl-0.5">{{ rank.contest.getStartTime().format("z") }}</sup>
+              </div>
+              <div class="shrink-0">
+                <ContestStateBadge
+                  :state="contestState"
+                  :pending-time="rank.contest.getContestPendingTime(now)"
+                  :paused-time="pausedTime"
+                />
+              </div>
             </div>
-            <div class="shrink-0">
-              {{ remainingTime }}
+
+            <div class="mt-2">
+              <Progress
+                v-model:rank-options="rankOptions"
+                :width="rank.contest.getContestProgressRatio(now)"
+                :state="rank.contest.getContestState(now)"
+                :need-scroll="true"
+                :rank="rank"
+                :elapsed-time="rank.contest.getContestElapsedTime(now)"
+              />
             </div>
-          </div>
+
+            <div class="mt-2 flex items-start justify-between gap-x-4 font-bold font-mono max-lg:text-xs">
+              <div class="min-w-0">
+                {{ endTime }}<sup class="pl-0.5">{{ rank.contest.endTime.format("z") }}</sup>
+              </div>
+              <div class="shrink-0">
+                {{ remainingTime }}
+              </div>
+            </div>
+          </template>
 
           <div
             v-if="!showPendingPage && !isMobileLayout"

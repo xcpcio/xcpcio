@@ -132,7 +132,7 @@ onMounted(() => {
             class="second-level-menu-icon shrink-0"
           />
 
-          <div class="min-w-0">
+          <div :class="props.vertical ? 'min-w-0' : ''">
             <a
               v-if="item.link"
               :href="item.link"

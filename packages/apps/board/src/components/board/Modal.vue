@@ -166,15 +166,15 @@ watch(Escape, (v) => {
         data-testid="modal-panel"
       >
         <div
-          class="mb-4 shrink-0 rounded-t border-b pb-4 sm:mb-4 dark:border-gray-600"
-          flex items-center justify-between gap-2
+          class="mb-4 flex shrink-0 items-center justify-between rounded-t border-b pb-4 sm:mb-4 dark:border-gray-600"
+          :class="isFullscreen ? 'gap-2' : ''"
         >
           <slot name="header">
             <h3
               text-gray-900 dark:text-white
               text-xl
               font-sans font-semibold italic
-              min-w-0 break-words
+              :class="isFullscreen ? 'min-w-0 break-words' : ''"
             >
               {{ props.title }}
             </h3>
@@ -184,10 +184,10 @@ watch(Escape, (v) => {
             type="button"
             class="hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
             bg-transparent
-            ml-auto shrink-0
+            ml-auto
             text-sm text-gray-400
             items-center inline-flex rounded-lg
-            :class="isFullscreen ? 'p-3' : 'p-1.5'"
+            :class="isFullscreen ? 'shrink-0 p-3' : 'p-1.5'"
             data-testid="modal-close"
             @click="onClose('close-button')"
           >

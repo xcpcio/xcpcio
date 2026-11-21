@@ -27,7 +27,7 @@ const class_pagination_ix = "flex items-center justify-center px-3 py-2 text-sm 
       <span class="font-semibold text-gray-900 dark:text-white">{{ p.totalSize }}</span>
     </span>
 
-    <ul class="inline-flex max-w-full flex-wrap items-stretch font-mono -space-x-px">
+    <ul class="inline-flex items-stretch font-mono -space-x-px max-lg:max-w-full max-lg:flex-wrap">
       <li>
         <a
           class="ml-0 h-full flex items-center justify-center border border-gray-300 rounded-l-lg bg-white px-3 py-1.5 text-gray-500 dark:border-gray-700 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white"
