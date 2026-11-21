@@ -18,6 +18,7 @@ const props = defineProps<{
   ix: number;
   isFilter?: boolean;
   giantsType?: GiantsType;
+  hideOrganization?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -33,7 +34,7 @@ const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 const teamName = computed(() => team.value.name.getOrDefault(lang.value));
 
-const showOrganization = computed(() => rank.value.contest.options.enableOrganization && !!team.value.organization);
+const showOrganization = computed(() => !props.hideOrganization && rank.value.contest.options.enableOrganization && !!team.value.organization);
 
 const bigBadge = computed(() => {
   if (showOrganization.value && team.value.organization?.logo) {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Rank } from "@xcpcio/core";
+import type { Rank, Teams } from "@xcpcio/core";
 
 import GiantsScoreBoard from "@board/components/battle-of-giants/GiantsScoreBoard.vue";
 import OrgModal from "@board/components/board/OrgModal.vue";
@@ -10,9 +10,14 @@ import { useStandingsLists } from "@board/composables/useStandingsLists";
 
 const props = defineProps<{
   rank: Rank;
+  teams?: Teams;
+  hideOrganization?: boolean;
 }>();
 
-const { rankOptions, teams, filterTeams, giantTeams } = useStandingsLists(() => props.rank);
+const { rankOptions, teams: allTeams, filterTeams, giantTeams } = useStandingsLists(() => props.rank);
+
+const showFullStandings = computed(() => props.teams === undefined);
+const displayTeams = computed(() => props.teams ?? allTeams.value);
 
 const selectedTeamId = ref<string | null>(null);
 const selectedOrgId = ref<string | null>(null);
@@ -63,7 +68,7 @@ function selectProblem(payload: { teamId: string; problemId: string }) {
     data-testid="standings-mobile"
   >
     <div
-      v-if="rankOptions.battleOfGiants.enable"
+      v-if="showFullStandings && rankOptions.battleOfGiants.enable"
       class="mb-4"
     >
       <GiantsScoreBoard
@@ -72,36 +77,41 @@ function selectProblem(payload: { teamId: string; problemId: string }) {
     </div>
 
     <div class="flex flex-col gap-2">
-      <StandingsTeamCard
-        v-for="(giantTeam, ix) in giantTeams"
-        :key="`giant-${giantTeam.team.id}`"
-        :ix="ix"
-        :rank="rank"
-        :team="giantTeam.team"
-        :giants-type="giantTeam.giantsType"
-        @select-team="selectTeam"
-        @select-org="selectOrganization"
-        @select-problem="selectProblem"
-      />
+      <template v-if="showFullStandings">
+        <StandingsTeamCard
+          v-for="(giantTeam, ix) in giantTeams"
+          :key="`giant-${giantTeam.team.id}`"
+          :ix="ix"
+          :rank="rank"
+          :team="giantTeam.team"
+          :giants-type="giantTeam.giantsType"
+          :hide-organization="props.hideOrganization"
+          @select-team="selectTeam"
+          @select-org="selectOrganization"
+          @select-problem="selectProblem"
+        />
+
+        <StandingsTeamCard
+          v-for="(team, ix) in filterTeams"
+          :key="`filter-${team.id}`"
+          :ix="ix"
+          :rank="rank"
+          :team="team"
+          :is-filter="true"
+          :hide-organization="props.hideOrganization"
+          @select-team="selectTeam"
+          @select-org="selectOrganization"
+          @select-problem="selectProblem"
+        />
+      </template>
 
       <StandingsTeamCard
-        v-for="(team, ix) in filterTeams"
-        :key="`filter-${team.id}`"
-        :ix="ix"
-        :rank="rank"
-        :team="team"
-        :is-filter="true"
-        @select-team="selectTeam"
-        @select-org="selectOrganization"
-        @select-problem="selectProblem"
-      />
-
-      <StandingsTeamCard
-        v-for="(team, ix) in teams"
+        v-for="(team, ix) in displayTeams"
         :key="`team-${team.id}`"
         :ix="ix"
         :rank="rank"
         :team="team"
+        :hide-organization="props.hideOrganization"
         @select-team="selectTeam"
         @select-org="selectOrganization"
         @select-problem="selectProblem"
