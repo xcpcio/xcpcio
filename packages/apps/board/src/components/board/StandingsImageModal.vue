@@ -30,7 +30,7 @@ const isHidden = computed({
 
 const rank = computed(() => props.rank);
 const selectedGroup = ref(rank.value.options.group || "all");
-const teamCount = ref(20);
+const teamCount = ref(30);
 const isWorking = ref(false);
 
 const groupOptions = computed(() => {
