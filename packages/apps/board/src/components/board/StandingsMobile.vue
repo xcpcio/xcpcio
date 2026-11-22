@@ -83,9 +83,6 @@ function selectProblem(payload: { teamId: string; problemId: string }) {
         :teams="allTeams"
         :filter-teams="filterTeams"
         :giant-teams="giantTeams"
-        @select-team="selectTeam"
-        @select-org="selectOrganization"
-        @select-problem="selectProblem"
       />
     </template>
 

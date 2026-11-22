@@ -11,6 +11,7 @@ const props = defineProps<{
   giantsType?: GiantsType;
   hideOrganization?: boolean;
   isCompactLayout?: boolean;
+  isStickyLayout?: boolean;
 }>();
 
 const el = ref(null);
@@ -37,10 +38,12 @@ const showOrganization = computed(() => {
   return rank.value.contest.options.enableOrganization && !props.hideOrganization;
 });
 
+const isCompact = computed(() => !!props.isCompactLayout || !!props.isStickyLayout);
+
 // In the compact layout the org column is merged into the team cell, so the org
 // logo takes over the full-height badge slot on the left.
 const bigBadge = computed(() => {
-  if (props.isCompactLayout && showOrganization.value && team.value.organization?.logo) {
+  if (isCompact.value && showOrganization.value && team.value.organization?.logo) {
     return team.value.organization.logo;
   }
 
@@ -48,7 +51,25 @@ const bigBadge = computed(() => {
 });
 
 const showInlineTeamBadge = computed(() => {
-  return props.isCompactLayout && !!team.value.badge && bigBadge.value !== team.value.badge;
+  return isCompact.value && !!team.value.badge && bigBadge.value !== team.value.badge;
+});
+
+const badgeClass = computed(() => {
+  return props.isStickyLayout
+    ? "absolute left-0 top-0 bottom-0 w-9 px-0.5"
+    : "absolute left-0 top-0 bottom-0 px-1 w-12";
+});
+
+const badgePaddingClass = computed(() => {
+  if (!bigBadge.value) {
+    return "";
+  }
+
+  return props.isStickyLayout ? "pl-9" : "pl-10";
+});
+
+const nameLineClass = computed(() => {
+  return props.isStickyLayout ? "line-clamp-1" : "line-clamp-2";
 });
 
 function getStandClassName(t: Team, isRankField = false): string {
@@ -79,18 +100,18 @@ function isRenderByVisible() {
     <td
       v-if="isRenderByVisible()"
       class="stnd"
-      :class="[getStandClassName(team, true)]"
+      :class="[getStandClassName(team, true), props.isStickyLayout ? 'm-sticky m-place' : '']"
     >
       {{ team.rank }}
     </td>
     <td
-      v-if="showOrganization && !props.isCompactLayout && isRenderByVisible()"
+      v-if="showOrganization && !isCompact && isRenderByVisible()"
       class="stnd relative"
       :class="[getStandClassName(team)]"
     >
       <Badge
         :image="team?.organization?.logo"
-        class="absolute left-0 top-0 bottom-0 px-1 w-12"
+        :class="badgeClass"
       />
       <div flex flex-1 :class="team?.organization?.logo ? 'pl-10' : ''">
         <div
@@ -117,16 +138,16 @@ function isRenderByVisible() {
     <td
       v-if="isRenderByVisible()"
       class="stnd relative"
-      :class="[getStandClassName(team)]"
+      :class="[getStandClassName(team), props.isStickyLayout ? 'm-sticky m-team' : '']"
     >
       <Badge
         :image="bigBadge"
-        class="absolute left-0 top-0 bottom-0 px-1 w-12"
+        :class="badgeClass"
       />
       <div
         flex flex-col items-center justify-center
         cursor-pointer
-        :class="bigBadge ? 'pl-10' : ''"
+        :class="badgePaddingClass"
         @click="onClickTeamModal"
       >
         <div flex items-center>
@@ -135,13 +156,13 @@ function isRenderByVisible() {
             :image="team.badge"
             class="mr-1 h-3.5 w-3.5 shrink-0"
           />
-          <span line-clamp-2>{{ teamName }}</span>
+          <span :class="nameLineClass">{{ teamName }}</span>
           <span v-if="team.group.includes('unofficial')" class="i-line-md:star-alt-filled" />
           <span v-if="team.group.includes('girl')" class="i-tabler:flower-filled" />
         </div>
 
         <div
-          v-if="props.isCompactLayout && showOrganization && team.organization"
+          v-if="isCompact && showOrganization && team.organization"
           class="team-org-line mt-0.5 flex cursor-pointer items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
           @click.stop="onClickOrgModal"
         >
@@ -151,7 +172,7 @@ function isRenderByVisible() {
           >
             {{ team.organization.rank }}
           </span>
-          <span line-clamp-2>{{ team.organization.name.getOrDefault(lang) }}</span>
+          <span :class="nameLineClass">{{ team.organization.name.getOrDefault(lang) }}</span>
         </div>
       </div>
 
@@ -175,7 +196,7 @@ function isRenderByVisible() {
     <td
       v-if="isRenderByVisible()"
       class="stnd"
-      :class="[getStandClassName(team)]"
+      :class="[getStandClassName(team), props.isStickyLayout ? 'm-sticky m-solved' : '']"
     >
       {{ team.solvedProblemNum }}
     </td>
@@ -183,7 +204,7 @@ function isRenderByVisible() {
     <td
       v-if="isRenderByVisible()"
       class="stnd"
-      :class="[getStandClassName(team)]"
+      :class="[getStandClassName(team), props.isStickyLayout ? 'm-sticky m-penalty' : '']"
     >
       {{ team.penaltyToMinute }}
     </td>

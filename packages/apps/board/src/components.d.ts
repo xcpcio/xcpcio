@@ -67,7 +67,6 @@ declare module 'vue' {
     Standings: typeof import('./components/board/Standings.vue')['default']
     StandingsImageModal: typeof import('./components/board/StandingsImageModal.vue')['default']
     StandingsMobile: typeof import('./components/board/StandingsMobile.vue')['default']
-    StandingsMobileRow: typeof import('./components/board/StandingsMobileRow.vue')['default']
     StandingsMobileTable: typeof import('./components/board/StandingsMobileTable.vue')['default']
     StandingsTeamCard: typeof import('./components/board/StandingsTeamCard.vue')['default']
     Statistics: typeof import('./components/board/Statistics.vue')['default']
