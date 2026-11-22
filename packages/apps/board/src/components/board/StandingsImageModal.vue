@@ -30,7 +30,7 @@ const isHidden = computed({
 const rank = computed(() => props.rank);
 const selectedGroup = ref(rank.value.options.group || "all");
 const teamCount = ref(20);
-const isDownloading = ref(false);
+const isWorking = ref(false);
 
 const groupOptions = computed(() => {
   return Array.from(rank.value.contest.group, ([value, group]) => ({
@@ -41,39 +41,74 @@ const groupOptions = computed(() => {
 
 const maxTeamCount = computed(() => rank.value.originTeams.length);
 
-async function download() {
-  isDownloading.value = true;
+async function generateImage() {
+  const requestedCount = Math.min(Math.max(Math.floor(teamCount.value) || 1, 1), maxTeamCount.value);
+  const imageRank = buildRankForGroup(rank.value, selectedGroup.value);
+  const count = Math.min(requestedCount, imageRank.teams.length);
+
+  const blob = await createStandingsImage(imageRank, {
+    teamCount: count,
+    lang: lang.value,
+    theme: isDark.value ? "dark" : "light",
+    link: `${window.location.origin}${window.location.pathname}`,
+    labels: {
+      place: t("utility.image_place"),
+      team: t("utility.image_team"),
+      solved: t("utility.image_solved"),
+      penalty: t("utility.image_penalty"),
+      group: t("utility.group"),
+      teams: t("utility.teams"),
+    },
+  });
+
+  return { blob, count };
+}
+
+async function runWithWorkingState(action: () => Promise<void>) {
+  isWorking.value = true;
   await nextTick();
   await sleep(16);
 
   try {
-    const requestedCount = Math.min(Math.max(Math.floor(teamCount.value) || 1, 1), maxTeamCount.value);
-    const imageRank = buildRankForGroup(rank.value, selectedGroup.value);
-    const count = Math.min(requestedCount, imageRank.teams.length);
-
-    const blob = await createStandingsImage(imageRank, {
-      teamCount: count,
-      lang: lang.value,
-      theme: isDark.value ? "dark" : "light",
-      link: `${window.location.origin}${window.location.pathname}`,
-      labels: {
-        place: t("utility.image_place"),
-        team: t("utility.image_team"),
-        solved: t("utility.image_solved"),
-        penalty: t("utility.image_penalty"),
-        group: t("utility.group"),
-        teams: t("utility.teams"),
-      },
-    });
-
-    FileSaver.saveAs(blob, `standings-${selectedGroup.value}-top${count}.png`);
-    $toast.success("Download Success");
-  } catch (error) {
-    console.error(error);
-    $toast.error("Download Failed");
+    await action();
   } finally {
-    isDownloading.value = false;
+    isWorking.value = false;
   }
+}
+
+async function download() {
+  await runWithWorkingState(async () => {
+    try {
+      const { blob, count } = await generateImage();
+      FileSaver.saveAs(blob, `standings-${selectedGroup.value}-top${count}.png`);
+      $toast.success(t("utility.download_success"));
+    } catch (error) {
+      console.error(error);
+      $toast.error(t("utility.download_failed"));
+    }
+  });
+}
+
+async function copyImage() {
+  if (!navigator.clipboard?.write || typeof ClipboardItem === "undefined") {
+    $toast.warning(t("common.clipboard_not_supported"));
+    return;
+  }
+
+  await runWithWorkingState(async () => {
+    try {
+      const { blob } = await generateImage();
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "image/png": blob,
+        }),
+      ]);
+      $toast.success(t("common.copy_success"));
+    } catch (error) {
+      console.error(error);
+      $toast.error(t("common.copy_failed"));
+    }
+  });
 }
 </script>
 
@@ -117,15 +152,27 @@ async function download() {
         >
       </label>
 
-      <button
-        type="button"
-        :disabled="isDownloading"
-        btn
-        class="w-full"
-        @click="download"
-      >
-        Download
-      </button>
+      <div class="flex gap-3">
+        <button
+          type="button"
+          :disabled="isWorking"
+          btn
+          class="flex-1"
+          @click="copyImage"
+        >
+          {{ t("utility.copy_image") }}
+        </button>
+
+        <button
+          type="button"
+          :disabled="isWorking"
+          btn
+          class="flex-1"
+          @click="download"
+        >
+          {{ t("utility.download") }}
+        </button>
+      </div>
     </div>
   </Modal>
 </template>

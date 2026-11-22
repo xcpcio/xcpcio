@@ -19,6 +19,9 @@ common:
   actions: Actions
   copy_link: Copy Link
   copy_embed_code: Copy Embed Code
+  copy_success: Copy Success
+  copy_failed: Copy Failed
+  clipboard_not_supported: Clipboard is not supported
   menu: Menu
   loading: Loading
   colon: ":"
@@ -89,6 +92,10 @@ utility:
   tools: Tools
   export: Export
   export_image: Export Image
+  copy_image: Copy Image
+  download: Download
+  download_success: Download Success
+  download_failed: Download Failed
   group: Group
   teams: Teams
   image_place: Rank

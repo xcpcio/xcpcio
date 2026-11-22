@@ -37,7 +37,7 @@ function preCheck() {
   }
 
   if (!isSupported.value) {
-    $toast.warning("clipboard is not supported");
+    $toast.warning(t("common.clipboard_not_supported"));
     dropdown?.hide();
     return false;
   }
@@ -46,7 +46,7 @@ function preCheck() {
 }
 
 function postCall() {
-  $toast.success("copy success");
+  $toast.success(t("common.copy_success"));
   dropdown?.hide();
 }
 
@@ -165,7 +165,7 @@ onMounted(() => {
               @click="copyLink"
             >
               <div i-material-symbols-link text-base />
-              <span>Copy Link</span>
+              <span>{{ t("common.copy_link") }}</span>
             </div>
           </li>
           <li>
@@ -175,7 +175,7 @@ onMounted(() => {
               @click="copyCode"
             >
               <div i-material-symbols-code text-base />
-              <span>Copy Embed Code</span>
+              <span>{{ t("common.copy_embed_code") }}</span>
             </div>
           </li>
           <li>

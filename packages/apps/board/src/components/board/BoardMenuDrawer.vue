@@ -69,7 +69,7 @@ function openImageExport() {
 
 function checkClipboard() {
   if (!isSupported.value) {
-    $toast.warning("clipboard is not supported");
+    $toast.warning(t("common.clipboard_not_supported"));
     return false;
   }
 
@@ -82,7 +82,7 @@ function copyLink() {
   }
 
   copy(window.location.href);
-  $toast.success("copy success");
+  $toast.success(t("common.copy_success"));
   close();
 }
 
@@ -93,7 +93,7 @@ function copyCode() {
 
   const code = `<iframe src="${window.location.href}" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%; height: 720px"></iframe>`;
   copy(code);
-  $toast.success("copy success");
+  $toast.success(t("common.copy_success"));
   close();
 }
 

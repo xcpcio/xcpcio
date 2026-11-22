@@ -19,6 +19,9 @@ common:
   actions: 操作
   copy_link: 复制链接
   copy_embed_code: 复制嵌入代码
+  copy_success: 复制成功
+  copy_failed: 复制失败
+  clipboard_not_supported: 当前浏览器不支持剪贴板
   menu: 菜单
   loading: 加载中
   colon: ：
@@ -89,6 +92,10 @@ utility:
   tools: 工具集
   export: 导出
   export_image: 导出图片
+  copy_image: 复制图片
+  download: 下载
+  download_success: 下载成功
+  download_failed: 下载失败
   group: 组别
   teams: 队伍数
   image_place: 排名
