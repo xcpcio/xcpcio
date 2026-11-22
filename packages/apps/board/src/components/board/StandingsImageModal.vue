@@ -5,6 +5,7 @@ import { buildRankForGroup, createStandingsImage } from "@board/composables/stan
 
 import FileSaver from "file-saver";
 import sleep from "sleep-promise";
+import { ModelSelect } from "vue-search-select";
 import { useToast } from "vue-toast-notification";
 
 const props = defineProps<{
@@ -37,6 +38,13 @@ const groupOptions = computed(() => {
     value,
     text: group.name.getOrDefault(lang.value),
   }));
+});
+
+const selectedGroupItem = computed({
+  get: () => groupOptions.value.find(option => option.value === selectedGroup.value) ?? groupOptions.value[0] ?? { value: "all", text: "All" },
+  set: (option: { value: string; text: string } | undefined) => {
+    selectedGroup.value = option?.value ?? "all";
+  },
 });
 
 const maxTeamCount = computed(() => rank.value.originTeams.length);
@@ -120,23 +128,17 @@ async function copyImage() {
     mt="mt-16"
   >
     <div class="flex w-full flex-col gap-4">
-      <label class="block">
+      <div class="block">
         <span class="mb-1 block text-sm font-semibold text-gray-900 dark:text-gray-300">
           {{ t("utility.group") }}
         </span>
-        <select
-          v-model="selectedGroup"
-          class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-        >
-          <option
-            v-for="group in groupOptions"
-            :key="group.value"
-            :value="group.value"
-          >
-            {{ group.text }}
-          </option>
-        </select>
-      </label>
+        <ModelSelect
+          v-model="selectedGroupItem"
+          :options="groupOptions"
+          :placeholder="t('utility.group')"
+          class="w-full font-normal"
+        />
+      </div>
 
       <label class="block">
         <span class="mb-1 block text-sm font-semibold text-gray-900 dark:text-gray-300">
