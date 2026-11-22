@@ -12,9 +12,11 @@ const props = defineProps<{
 const rank = computed(() => props.rank);
 
 const $toast = useToast();
+const { t } = useI18n();
 const { copy, isSupported } = useClipboard();
 
 const isHiddenInfoModal = ref(true);
+const isHiddenImageModal = ref(true);
 
 function openInfoModal() {
   isHiddenInfoModal.value = false;
@@ -24,13 +26,18 @@ let dropdown: Dropdown | null = null;
 const dropdownTargetEl = ref(null);
 const dropdownTriggerEl = ref(null);
 
+function openImageModal() {
+  dropdown?.hide();
+  isHiddenImageModal.value = false;
+}
+
 function preCheck() {
   if (!window) {
     return false;
   }
 
   if (!isSupported.value) {
-    $toast.warning("clipboard is not supported");
+    $toast.warning(t("common.clipboard_not_supported"));
     dropdown?.hide();
     return false;
   }
@@ -39,7 +46,7 @@ function preCheck() {
 }
 
 function postCall() {
-  $toast.success("copy success");
+  $toast.success(t("common.copy_success"));
   dropdown?.hide();
 }
 
@@ -155,10 +162,20 @@ onMounted(() => {
             <div
               class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
               cursor-pointer
+              @click="openImageModal"
+            >
+              <div i-material-symbols-image text-base />
+              <span>{{ t("utility.export_image") }}</span>
+            </div>
+          </li>
+          <li>
+            <div
+              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
+              cursor-pointer
               @click="copyLink"
             >
               <div i-material-symbols-link text-base />
-              <span>Copy Link</span>
+              <span>{{ t("common.copy_link") }}</span>
             </div>
           </li>
           <li>
@@ -168,7 +185,7 @@ onMounted(() => {
               @click="copyCode"
             >
               <div i-material-symbols-code text-base />
-              <span>Copy Embed Code</span>
+              <span>{{ t("common.copy_embed_code") }}</span>
             </div>
           </li>
         </ul>
@@ -178,6 +195,12 @@ onMounted(() => {
     <InfoModal
       v-if="!isHiddenInfoModal"
       v-model:is-hidden="isHiddenInfoModal"
+      :rank="rank"
+    />
+
+    <StandingsImageModal
+      v-if="!isHiddenImageModal"
+      v-model:is-hidden="isHiddenImageModal"
       :rank="rank"
     />
   </div>

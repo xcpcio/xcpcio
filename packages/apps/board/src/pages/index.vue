@@ -99,7 +99,7 @@ onUnmounted(() => {
       {{ INDEX_HEADING }}
     </h1>
 
-    <div>
+    <div class="w-full">
       <div
         v-if="isFetching || error"
         mt-4 mb-4
@@ -124,7 +124,7 @@ onUnmounted(() => {
         class="w-full min-h-120"
         flex flex-col items-center
       >
-        <div w-240>
+        <div class="w-full max-w-[62rem] px-4 lg:max-w-[60rem] lg:px-0">
           <SearchInput
             ref="searchInputRef"
             v-model="searchText"
@@ -133,7 +133,7 @@ onUnmounted(() => {
 
         <div
           v-if="contestIndexList.length"
-          mt-4
+          class="mt-4 w-full max-w-[62rem] px-4 lg:max-w-[60rem] lg:px-0"
         >
           <template
             v-for="item in contestIndexList"

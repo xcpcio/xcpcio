@@ -229,4 +229,10 @@ onUnmounted(() => {});
   width: 10px;
   height: 25px;
 }
+
+@media (max-width: 1023.98px) {
+  .tooltip {
+    display: none !important;
+  }
+}
 </style>

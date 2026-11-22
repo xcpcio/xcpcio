@@ -150,7 +150,7 @@ function onConfirm() {
         flex flex-col w-full
       >
         <div
-          grid grid-cols-6 gap-y-4
+          grid grid-cols-1 gap-y-4 sm:grid-cols-6
         >
           <div
             text-sm
@@ -162,7 +162,7 @@ function onConfirm() {
           <div
             flex items-center
             w-full
-            col-span-6
+            col-span-full
           >
             <TheMultiSelect
               :options="teamsOptions"
@@ -181,7 +181,7 @@ function onConfirm() {
           <div
             flex items-center
             w-full
-            col-span-6
+            col-span-full
           >
             <TheMultiSelect
               :options="teamIdsOptions"
@@ -202,7 +202,7 @@ function onConfirm() {
             v-if="rank.contest.options.enableOrganization"
             flex items-center
             w-full
-            col-span-6
+            col-span-full
           >
             <TheMultiSelect
               :options="orgOptions"

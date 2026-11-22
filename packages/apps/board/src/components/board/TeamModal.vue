@@ -35,6 +35,7 @@ const types = computed(() => {
 
 const { locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 const isHidden = computed({
   get() {
@@ -149,6 +150,12 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
         v-if="currentType === TYPE_STATISTICS"
         w-full
       >
+        <TeamProblemStats
+          v-if="isMobileLayout"
+          :team="team"
+          class="mb-4"
+        />
+
         <TeamPlaceChart
           :rank="rank"
           :team="team"

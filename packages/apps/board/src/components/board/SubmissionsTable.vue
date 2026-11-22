@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Rank, SelectOptionItem, Submissions } from "@xcpcio/core";
-import type { Lang, SubmissionReaction, SubmissionStatus } from "@xcpcio/types";
+import type { Lang, SubmissionStatus } from "@xcpcio/types";
 
 import { Pagination } from "@board/composables/pagination";
 import { Submission } from "@xcpcio/core";
@@ -35,6 +35,7 @@ const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
 const enableFilter = computed(() => props.enableFilter);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 const enableFilterButton = computed(() => {
   if (!enableFilter.value) {
     return false;
@@ -232,16 +233,62 @@ function getProblemLabelColorStyle(s: Submission) {
 }
 
 const showVideoModal = ref(false);
-const currentSubmissionReaction = ref(null as unknown as SubmissionReaction);
+const currentReactionSubmissionId = ref("");
 
-function openVideoModal(submissionReaction: SubmissionReaction) {
-  currentSubmissionReaction.value = submissionReaction;
+const reactionSubmissions = computed(() => submissions.value.filter(s => s.reaction));
+const currentReactionIndex = computed(() => {
+  return reactionSubmissions.value.findIndex(s => s.id === currentReactionSubmissionId.value);
+});
+const currentSubmissionReaction = computed(() => {
+  return reactionSubmissions.value[currentReactionIndex.value]?.reaction;
+});
+const hasPreviousReaction = computed(() => currentReactionIndex.value > 0);
+const hasNextReaction = computed(() => {
+  const index = currentReactionIndex.value;
+  return index >= 0 && index < reactionSubmissions.value.length - 1;
+});
+
+function openVideoModal(submission: Submission) {
+  if (!submission.reaction) {
+    return;
+  }
+
+  currentReactionSubmissionId.value = submission.id;
   showVideoModal.value = true;
 }
 
 function closeVideoModal() {
   showVideoModal.value = false;
+  currentReactionSubmissionId.value = "";
 }
+
+function showPreviousReaction() {
+  if (!hasPreviousReaction.value) {
+    return;
+  }
+
+  const previous = reactionSubmissions.value[currentReactionIndex.value - 1];
+  if (previous) {
+    currentReactionSubmissionId.value = previous.id;
+  }
+}
+
+function showNextReaction() {
+  if (!hasNextReaction.value) {
+    return;
+  }
+
+  const next = reactionSubmissions.value[currentReactionIndex.value + 1];
+  if (next) {
+    currentReactionSubmissionId.value = next.id;
+  }
+}
+
+watch(currentReactionIndex, (index) => {
+  if (showVideoModal.value && index < 0) {
+    closeVideoModal();
+  }
+});
 
 const showRealtimeStreamModal = ref(false);
 const currentRealtimeStreamSubmissionId = ref("");
@@ -262,13 +309,17 @@ function closeRealtimeStreamModal() {
       mx-auto w-full
     >
       <div
-        v-if="showVideoModal"
+        v-if="showVideoModal && currentSubmissionReaction"
         flex justify-start items-start
       >
         <ReactionVideoModal
           :is-open="showVideoModal"
           :submission-reaction="currentSubmissionReaction"
+          :has-previous="hasPreviousReaction"
+          :has-next="hasNextReaction"
           @close="closeVideoModal"
+          @previous="showPreviousReaction"
+          @next="showNextReaction"
         />
       </div>
 
@@ -288,7 +339,7 @@ function closeRealtimeStreamModal() {
         relative
         bg-white dark:bg-gray-800
         :class="{
-          'shadow-md': props.removeBorder !== true,
+          'shadow-md': props.removeBorder !== true && !isMobileLayout,
           'sm:rounded-sm': props.removeBorder !== true,
         }"
       >
@@ -306,7 +357,7 @@ function closeRealtimeStreamModal() {
           >
             <div
               v-if="rank.contest.options.enableOrganization && enableFilter?.organization"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="orgOptions"
@@ -318,7 +369,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.team"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="teamsOptions"
@@ -330,7 +381,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.status"
-              w-64
+              class="w-full sm:w-64"
             >
               <TheMultiSelect
                 :options="statusOptions"
@@ -343,7 +394,7 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilter?.language && languageOptions.length > 0"
-              w-48
+              class="w-full sm:w-48"
             >
               <TheMultiSelect
                 :options="languageOptions"
@@ -355,10 +406,11 @@ function closeRealtimeStreamModal() {
 
             <div
               v-if="enableFilterButton"
+              class="max-lg:flex max-lg:w-full max-lg:justify-center"
             >
               <button
                 type="button"
-                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700"
+                class="flex flex-shrink-0 items-center justify-center border border-gray-200 rounded-lg bg-white px-3 py-2 text-sm font-medium text-gray-900 focus:z-10 dark:border-gray-600 dark:bg-gray-800 hover:bg-gray-100 dark:text-gray-400 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 max-lg:w-32"
                 @click="onFilter"
               >
                 <div
@@ -372,6 +424,107 @@ function closeRealtimeStreamModal() {
         </div>
 
         <div
+          v-if="isMobileLayout"
+          class="divide-y divide-gray-200 dark:divide-gray-700"
+        >
+          <div
+            v-for="s in currentSubmissions"
+            :key="s.id"
+            class="py-1"
+          >
+            <div class="flex min-w-0 items-center justify-between gap-3">
+              <div class="flex min-w-0 flex-1 items-center gap-2.5">
+                <span
+                  class="flex h-10 w-10 shrink-0 items-center justify-center rounded-md text-sm font-bold"
+                  :class="[getProblemLabelColorClass(s)]"
+                  :style="getProblemLabelColorStyle(s)"
+                >
+                  {{ rank.contest.problemsMap.get(s.problemId)?.label }}
+                </span>
+
+                <div class="min-w-0">
+                  <div class="truncate text-sm font-semibold text-gray-900 dark:text-white">
+                    {{ rank.teamsMap.get(s.teamId)?.name.getOrDefault(lang) }}
+                  </div>
+
+                  <div
+                    v-if="rank.contest.options.enableOrganization"
+                    class="truncate text-xs text-gray-500 dark:text-gray-400"
+                  >
+                    {{ rank.teamsMap.get(s.teamId)?.organization?.name.getOrDefault(lang) }}
+                  </div>
+                </div>
+              </div>
+
+              <span
+                class="max-w-[45%] shrink-0 text-right text-xs font-bold leading-tight"
+                :class="[s.status.toString()]"
+              >
+                {{ SubmissionStatusToString[s.status] }}
+              </span>
+            </div>
+
+            <div class="mt-1 flex min-w-0 items-center gap-x-3 text-xs text-gray-500 dark:text-gray-400">
+              <span class="shrink-0 whitespace-nowrap">{{ s.timestampDisplayFormatWithSecond }}</span>
+
+              <span
+                v-if="rank.contest.options.submissionHasLanguageField && s.language"
+                class="min-w-0 truncate"
+              >
+                {{ s.language }}
+              </span>
+
+              <span
+                v-if="rank.contest.options.submissionHasTimeField"
+                class="shrink-0 whitespace-nowrap"
+              >
+                {{ s.time ?? 0 }} ms
+              </span>
+
+              <span
+                v-if="rank.contest.options.submissionEnableActionField"
+                class="ml-auto flex shrink-0 items-center gap-1"
+              >
+                <button
+                  v-if="rank.contest.options.submissionHasRealtimeReactionStreamField"
+                  type="button"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                  title="Realtime Reaction"
+                  aria-label="Realtime Reaction"
+                  @click="openRealtimeStreamModal(s.id)"
+                >
+                  <div i-hugeicons-live-streaming-01 text-base />
+                </button>
+
+                <button
+                  v-if="s.reaction"
+                  type="button"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                  title="Reaction Video"
+                  aria-label="Reaction Video"
+                  @click="openVideoModal(s)"
+                >
+                  <div i-material-symbols-slow-motion-video text-base />
+                </button>
+
+                <a
+                  v-if="s.externalUrl"
+                  :href="s.externalUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 hover:text-primary-600 dark:hover:bg-gray-700"
+                  title="View on Source Platform"
+                  aria-label="View on Source Platform"
+                >
+                  <div i-material-symbols-link-rounded text-base />
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div
+          v-else
           class="overflow-x-auto"
         >
           <table
@@ -543,7 +696,7 @@ function closeRealtimeStreamModal() {
                           text-lg
                           cursor-pointer
                           i-material-symbols-slow-motion-video
-                          @click="openVideoModal(s.reaction)"
+                          @click="openVideoModal(s)"
                         />
                         <template #popper>
                           Reaction Video

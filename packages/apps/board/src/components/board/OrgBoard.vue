@@ -2,6 +2,8 @@
 import type { Rank } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 
+import StandingsMobile from "@board/components/board/StandingsMobile.vue";
+
 const props = defineProps<{
   rank: Rank;
   organizationId: string;
@@ -11,6 +13,7 @@ const { t, locale } = useI18n();
 const lang = computed(() => locale.value as unknown as Lang);
 
 const rank = computed(() => props.rank);
+const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 const teams = computed(() => {
   return props.rank.teams
@@ -29,7 +32,14 @@ const maxTeamLength = computed(() => {
 </script>
 
 <template>
-  <div w-full>
+  <StandingsMobile
+    v-if="isMobileLayout"
+    :rank="rank"
+    :teams="teams"
+    hide-organization
+  />
+
+  <div v-else w-full>
     <table
       class="standings w-max"
       font-mono dark:text-gray-200
