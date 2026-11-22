@@ -172,7 +172,7 @@ function getProblemHeaderStyle(problemIndex: number) {
 <style scoped>
 .standings-mobile-sticky-header {
   position: sticky;
-  top: 0;
+  top: 3.5rem;
   z-index: 40;
   width: 100%;
   overflow: hidden;
