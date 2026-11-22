@@ -34,7 +34,17 @@ const selectedProblem = computed(() => {
   return selectedProblemId.value ? rank.value.contest.problemsMap.get(selectedProblemId.value) : undefined;
 });
 const scroller = ref<HTMLElement | null>(null);
+const headerScroller = ref<HTMLElement | null>(null);
 const { width: scrollerWidth } = useElementSize(scroller);
+
+function syncHeaderScroll() {
+  const body = scroller.value;
+  const header = headerScroller.value;
+
+  if (body && header && header.scrollLeft !== body.scrollLeft) {
+    header.scrollLeft = body.scrollLeft;
+  }
+}
 
 const viewportStyle = computed(() => {
   return scrollerWidth.value > 0
@@ -89,40 +99,50 @@ function getProblemHeaderStyle(problemIndex: number) {
     class="standings-mobile-table w-full"
     data-testid="standings-mobile-table"
   >
+    <div class="standings-mobile-sticky-header">
+      <div
+        ref="headerScroller"
+        class="overflow-hidden"
+      >
+        <div class="min-w-max">
+          <div class="standings-mobile-header">
+            <div class="standings-mobile-header-stats">
+              <div class="standings-mobile-header-place">
+                {{ t("standings.place") }}
+              </div>
+              <div class="standings-mobile-header-solved">
+                {{ t("standings.solved") }}
+              </div>
+              <div class="standings-mobile-header-penalty">
+                {{ t("standings.penalty") }}
+              </div>
+            </div>
+
+            <button
+              v-for="(problem, problemIndex) in rank.contest.problems"
+              :key="problem.id"
+              type="button"
+              class="standings-mobile-problem-header"
+              :style="getProblemHeaderStyle(problemIndex)"
+              :title="problem.name?.getOrDefault(lang) ?? problem.label"
+              :aria-label="problem.name?.getOrDefault(lang) ?? problem.label"
+              @click="selectedProblemId = problem.id"
+            >
+              <span class="standings-mobile-problem-header-label">{{ problem.label }}</span>
+              <span class="standings-mobile-problem-header-count">{{ problem.statistics.acceptedNum }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div
       ref="scroller"
       class="standings-mobile-scroller w-full overflow-x-auto overscroll-x-contain"
       :style="viewportStyle"
+      @scroll.passive="syncHeaderScroll"
     >
       <div class="min-w-max">
-        <div class="standings-mobile-header">
-          <div class="standings-mobile-header-stats">
-            <div class="standings-mobile-header-place">
-              {{ t("standings.place") }}
-            </div>
-            <div class="standings-mobile-header-solved">
-              {{ t("standings.solved") }}
-            </div>
-            <div class="standings-mobile-header-penalty">
-              {{ t("standings.penalty") }}
-            </div>
-          </div>
-
-          <button
-            v-for="(problem, problemIndex) in rank.contest.problems"
-            :key="problem.id"
-            type="button"
-            class="standings-mobile-problem-header"
-            :style="getProblemHeaderStyle(problemIndex)"
-            :title="problem.name?.getOrDefault(lang) ?? problem.label"
-            :aria-label="problem.name?.getOrDefault(lang) ?? problem.label"
-            @click="selectedProblemId = problem.id"
-          >
-            <span class="standings-mobile-problem-header-label">{{ problem.label }}</span>
-            <span class="standings-mobile-problem-header-count">{{ problem.statistics.acceptedNum }}</span>
-          </button>
-        </div>
-
         <StandingsMobileRow
           v-for="row in rows"
           :key="row.key"
@@ -150,8 +170,16 @@ function getProblemHeaderStyle(problemIndex: number) {
 </template>
 
 <style scoped>
+.standings-mobile-sticky-header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  overflow: hidden;
+  background: #f9fafb;
+}
+
 .standings-mobile-header {
-  position: relative;
   display: flex;
   height: 30px;
   align-items: stretch;
@@ -202,9 +230,8 @@ function getProblemHeaderStyle(problemIndex: number) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2px 0;
   border: 0;
-  border-radius: 4px;
+  border-radius: 0;
   padding: 0;
   line-height: 1;
   cursor: pointer;
@@ -226,6 +253,7 @@ function getProblemHeaderStyle(problemIndex: number) {
   -webkit-overflow-scrolling: touch;
 }
 
+.dark .standings-mobile-sticky-header,
 .dark .standings-mobile-header,
 .dark .standings-mobile-header-stats {
   border-color: #374151;
