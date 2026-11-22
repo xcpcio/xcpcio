@@ -16,9 +16,10 @@ intro:
 not-found: Not found
 
 common:
-  actions: Actions
+  actions: Other
   copy_link: Copy Link
   copy_embed_code: Copy Embed Code
+  bilibili_live: Bilibili Live
   copy_success: Copy Success
   copy_failed: Copy Failed
   clipboard_not_supported: Clipboard is not supported
@@ -57,7 +58,7 @@ type_menu:
   utility: Utility
   countdown: Countdown
   teams: Teams
-  info: Info
+  info: Legend
 
 info_modal:
   color_legend: Color Legend

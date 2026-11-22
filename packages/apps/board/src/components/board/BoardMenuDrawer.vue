@@ -178,6 +178,15 @@ useEventListener(document, "keydown", (event) => {
             </div>
 
             <div class="flex flex-col gap-1">
+              <button
+                type="button"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="openInfo"
+              >
+                <div i-material-symbols-info-outline class="text-xl opacity-75" />
+                <span>{{ t("type_menu.info") }}</span>
+              </button>
+
               <a
                 v-if="rank.contest.socialMedia?.bilibili"
                 :href="rank.contest.socialMedia.bilibili"
@@ -188,7 +197,7 @@ useEventListener(document, "keydown", (event) => {
                 @click="close"
               >
                 <div i-ri:bilibili-line class="text-xl opacity-75" />
-                <span>Bilibili Live</span>
+                <span>{{ t("common.bilibili_live") }}</span>
               </a>
 
               <a
@@ -207,10 +216,10 @@ useEventListener(document, "keydown", (event) => {
               <button
                 type="button"
                 class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
-                @click="openInfo"
+                @click="openImageExport"
               >
-                <div i-material-symbols-info-outline class="text-xl opacity-75" />
-                <span>{{ t("type_menu.info") }}</span>
+                <div i-material-symbols-image class="text-xl opacity-75" />
+                <span>{{ t("utility.export_image") }}</span>
               </button>
 
               <button
@@ -229,15 +238,6 @@ useEventListener(document, "keydown", (event) => {
               >
                 <div i-material-symbols-code class="text-xl opacity-75" />
                 <span>{{ t("common.copy_embed_code") }}</span>
-              </button>
-
-              <button
-                type="button"
-                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
-                @click="openImageExport"
-              >
-                <div i-material-symbols-image class="text-xl opacity-75" />
-                <span>{{ t("utility.export_image") }}</span>
               </button>
             </div>
           </div>
