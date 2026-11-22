@@ -162,6 +162,16 @@ onMounted(() => {
             <div
               class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
               cursor-pointer
+              @click="openImageModal"
+            >
+              <div i-material-symbols-image text-base />
+              <span>{{ t("utility.export_image") }}</span>
+            </div>
+          </li>
+          <li>
+            <div
+              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
+              cursor-pointer
               @click="copyLink"
             >
               <div i-material-symbols-link text-base />
@@ -176,16 +186,6 @@ onMounted(() => {
             >
               <div i-material-symbols-code text-base />
               <span>{{ t("common.copy_embed_code") }}</span>
-            </div>
-          </li>
-          <li>
-            <div
-              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
-              cursor-pointer
-              @click="openImageModal"
-            >
-              <div i-material-symbols-image text-base />
-              <span>{{ t("utility.export_image") }}</span>
             </div>
           </li>
         </ul>
