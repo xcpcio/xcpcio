@@ -3,6 +3,7 @@ import type { Rank, Teams } from "@xcpcio/core";
 
 import GiantsScoreBoard from "@board/components/battle-of-giants/GiantsScoreBoard.vue";
 import OrgModal from "@board/components/board/OrgModal.vue";
+import StandingsMobileTable from "@board/components/board/StandingsMobileTable.vue";
 import StandingsTeamCard from "@board/components/board/StandingsTeamCard.vue";
 import SubmissionsTableModal from "@board/components/board/SubmissionsTableModal.vue";
 import TeamModal from "@board/components/board/TeamModal.vue";
@@ -76,38 +77,25 @@ function selectProblem(payload: { teamId: string; problemId: string }) {
       />
     </div>
 
-    <div class="flex flex-col gap-2">
-      <template v-if="showFullStandings">
-        <StandingsTeamCard
-          v-for="(giantTeam, ix) in giantTeams"
-          :key="`giant-${giantTeam.team.id}`"
-          :ix="ix"
-          :rank="rank"
-          :team="giantTeam.team"
-          :giants-type="giantTeam.giantsType"
-          :hide-organization="props.hideOrganization"
-          @select-team="selectTeam"
-          @select-org="selectOrganization"
-          @select-problem="selectProblem"
-        />
+    <template v-if="showFullStandings">
+      <StandingsMobileTable
+        :rank="rank"
+        :teams="allTeams"
+        :filter-teams="filterTeams"
+        :giant-teams="giantTeams"
+        @select-team="selectTeam"
+        @select-org="selectOrganization"
+        @select-problem="selectProblem"
+      />
+    </template>
 
-        <StandingsTeamCard
-          v-for="(team, ix) in filterTeams"
-          :key="`filter-${team.id}`"
-          :ix="ix"
-          :rank="rank"
-          :team="team"
-          :is-filter="true"
-          :hide-organization="props.hideOrganization"
-          @select-team="selectTeam"
-          @select-org="selectOrganization"
-          @select-problem="selectProblem"
-        />
-      </template>
-
+    <div
+      v-else
+      class="flex flex-col gap-2"
+    >
       <StandingsTeamCard
         v-for="(team, ix) in displayTeams"
-        :key="`team-${team.id}`"
+        :key="team.id"
         :ix="ix"
         :rank="rank"
         :team="team"
