@@ -49,6 +49,21 @@ const selectedGroupItem = computed({
 
 const maxTeamCount = computed(() => rank.value.originTeams.length);
 
+const canDecreaseTeamCount = computed(() => (Number(teamCount.value) || 1) > 1);
+const canIncreaseTeamCount = computed(() => (Number(teamCount.value) || 0) < maxTeamCount.value);
+
+function clampTeamCount(value: number) {
+  return Math.min(maxTeamCount.value, Math.max(1, Number.isFinite(value) ? Math.floor(value) : 1));
+}
+
+function normalizeTeamCount() {
+  teamCount.value = clampTeamCount(Number(teamCount.value));
+}
+
+function stepTeamCount(delta: number) {
+  teamCount.value = clampTeamCount((Number(teamCount.value) || 1) + delta);
+}
+
 async function generateImage() {
   const requestedCount = Math.min(Math.max(Math.floor(teamCount.value) || 1, 1), maxTeamCount.value);
   const imageRank = buildRankForGroup(rank.value, selectedGroup.value);
@@ -140,19 +155,43 @@ async function copyImage() {
         />
       </div>
 
-      <label class="block">
+      <div class="block">
         <span class="mb-1 block text-sm font-semibold text-gray-900 dark:text-gray-300">
           {{ t("utility.teams") }}
         </span>
-        <input
-          v-model.number="teamCount"
-          type="number"
-          min="1"
-          :max="maxTeamCount"
-          inputmode="numeric"
-          class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm font-normal text-gray-900 focus:border-primary-500 focus:outline-none focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
-        >
-      </label>
+        <div class="flex h-10 w-full items-center overflow-hidden rounded-lg border border-gray-300 bg-white transition focus-within:border-primary-500 focus-within:ring-1 focus-within:ring-primary-500 dark:border-gray-600 dark:bg-gray-700">
+          <button
+            type="button"
+            class="flex h-full w-10 shrink-0 items-center justify-center border-r border-gray-200 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-30 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+            :disabled="!canDecreaseTeamCount || isWorking"
+            :aria-label="t('utility.decrease_teams')"
+            @click="stepTeamCount(-1)"
+          >
+            <div i-material-symbols-remove text-lg />
+          </button>
+
+          <input
+            v-model.number="teamCount"
+            type="number"
+            min="1"
+            :max="maxTeamCount"
+            inputmode="numeric"
+            class="team-count-input min-w-0 flex-1 border-0 bg-transparent px-2 text-center text-sm font-normal text-gray-900 outline-none dark:text-white"
+            @blur="normalizeTeamCount"
+            @keydown.enter="normalizeTeamCount"
+          >
+
+          <button
+            type="button"
+            class="flex h-full w-10 shrink-0 items-center justify-center border-l border-gray-200 text-gray-500 transition hover:bg-gray-100 hover:text-gray-900 disabled:cursor-not-allowed disabled:opacity-30 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+            :disabled="!canIncreaseTeamCount || isWorking"
+            :aria-label="t('utility.increase_teams')"
+            @click="stepTeamCount(1)"
+          >
+            <div i-material-symbols-add text-lg />
+          </button>
+        </div>
+      </div>
 
       <div class="flex gap-3">
         <button
@@ -178,3 +217,16 @@ async function copyImage() {
     </div>
   </Modal>
 </template>
+
+<style scoped>
+.team-count-input {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.team-count-input::-webkit-inner-spin-button,
+.team-count-input::-webkit-outer-spin-button {
+  margin: 0;
+  -webkit-appearance: none;
+}
+</style>

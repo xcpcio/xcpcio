@@ -99,6 +99,8 @@ utility:
   download_failed: 下载失败
   group: 组别
   teams: 队伍数
+  decrease_teams: 减少队伍数
+  increase_teams: 增加队伍数
   image_place: 排名
   image_team: 队伍
   image_solved: 过题数

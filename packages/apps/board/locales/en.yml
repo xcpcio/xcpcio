@@ -99,6 +99,8 @@ utility:
   download_failed: Download Failed
   group: Group
   teams: Teams
+  decrease_teams: Decrease team count
+  increase_teams: Increase team count
   image_place: Rank
   image_team: Team
   image_solved: Solved
