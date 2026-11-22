@@ -15,7 +15,9 @@ const FOOTER_HEIGHT = 40;
 const BANNER_GAP = 18;
 const ORG_LOGO_SIZE = ROW_HEIGHT;
 const BRAND_LOGO_SIZE = 20;
-const IMAGE_PROXY_URL = "https://wsrv.nl/?url=";
+const CORSFIX_PROXY_URL = "https://proxy.corsfix.com/?";
+const ALLORIGINS_PROXY_URL = "https://api.allorigins.win/raw?url=";
+const WSRV_PROXY_URL = "https://wsrv.nl/?url=";
 
 interface StandingsTheme {
   background: string;
@@ -227,36 +229,66 @@ async function fetchImageData(url: string, proxyWidth?: number): Promise<LoadedI
 
   const fetchDirect = async () => {
     const response = await fetch(url, { mode: "cors" });
-    if (!response.ok) {
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
       throw new Error("Failed to fetch image");
     }
     return response.blob();
   };
 
-  const fetchThroughProxy = async () => {
+  const fetchThroughCorsfix = async () => {
+    if (!isAbsoluteHttp) {
+      throw new Error("Image proxy requires an absolute URL");
+    }
+
+    const response = await fetch(`${CORSFIX_PROXY_URL}${url}`);
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
+      throw new Error("Failed to fetch image");
+    }
+    return response.blob();
+  };
+
+  const fetchThroughAllOrigins = async () => {
+    if (!isAbsoluteHttp) {
+      throw new Error("Image proxy requires an absolute URL");
+    }
+
+    const response = await fetch(`${ALLORIGINS_PROXY_URL}${encodeURIComponent(url)}`);
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
+      throw new Error("Failed to fetch image");
+    }
+    return response.blob();
+  };
+
+  const fetchThroughWsrv = async () => {
     if (!isAbsoluteHttp) {
       throw new Error("Image proxy requires an absolute URL");
     }
 
     const widthParam = proxyWidth ? `&w=${proxyWidth}&h=${proxyWidth}&fit=inside` : "";
-    const response = await fetch(`${IMAGE_PROXY_URL}${encodeURIComponent(url)}&output=png${widthParam}`);
-    if (!response.ok) {
+    const response = await fetch(`${WSRV_PROXY_URL}${encodeURIComponent(url)}&output=png${widthParam}`);
+    if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
       throw new Error("Failed to fetch image");
     }
     return response.blob();
   };
 
   const loaders: Array<() => Promise<Blob>> = isCrossOrigin
-    ? [fetchThroughProxy, fetchDirect]
-    : [fetchDirect, ...(isAbsoluteHttp ? [fetchThroughProxy] : [])];
+    ? [fetchThroughCorsfix, fetchThroughAllOrigins, fetchThroughWsrv, fetchDirect]
+    : [fetchDirect, ...(isAbsoluteHttp ? [fetchThroughCorsfix, fetchThroughAllOrigins, fetchThroughWsrv] : [])];
 
   let blob: Blob | undefined;
   for (const load of loaders) {
-    try {
-      blob = await load();
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      try {
+        blob = await load();
+        break;
+      } catch {
+        await new Promise(resolve => setTimeout(resolve, 150 * (attempt + 1)));
+      }
+    }
+
+    if (blob) {
       break;
-    } catch {
-      // Try the next source.
     }
   }
 
@@ -267,10 +299,32 @@ async function fetchImageData(url: string, proxyWidth?: number): Promise<LoadedI
   try {
     const dataUrl = await blobToDataUrl(blob);
     const image = await loadImage(dataUrl);
+    const naturalWidth = image.naturalWidth || 1;
+    const naturalHeight = image.naturalHeight || 1;
+
+    if (proxyWidth && Math.max(naturalWidth, naturalHeight) > proxyWidth) {
+      const scale = proxyWidth / Math.max(naturalWidth, naturalHeight);
+      const width = Math.max(1, Math.round(naturalWidth * scale));
+      const height = Math.max(1, Math.round(naturalHeight * scale));
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      const context = canvas.getContext("2d");
+
+      if (context) {
+        context.drawImage(image, 0, 0, width, height);
+        return {
+          dataUrl: canvas.toDataURL("image/png"),
+          width,
+          height,
+        };
+      }
+    }
+
     return {
       dataUrl,
-      width: image.naturalWidth || 1,
-      height: image.naturalHeight || 1,
+      width: naturalWidth,
+      height: naturalHeight,
     };
   } catch {
     return undefined;
@@ -284,7 +338,15 @@ function loadImageData(url: string, proxyWidth?: number) {
 
   const cacheKey = `${url}|${proxyWidth ?? ""}`;
   if (!imageCache.has(cacheKey)) {
-    imageCache.set(cacheKey, fetchImageData(url, proxyWidth));
+    const promise = fetchImageData(url, proxyWidth).then((image) => {
+      if (!image) {
+        imageCache.delete(cacheKey);
+      }
+
+      return image;
+    });
+
+    imageCache.set(cacheKey, promise);
   }
 
   return imageCache.get(cacheKey) as Promise<LoadedImageData | undefined>;
@@ -307,7 +369,7 @@ async function loadImageMap(urls: string[], proxyWidth?: number) {
     }
   }
 
-  await Promise.all(Array.from({ length: Math.min(6, uniqueUrls.length) }, worker));
+  await Promise.all(Array.from({ length: Math.min(3, uniqueUrls.length) }, worker));
   return result;
 }
 
@@ -358,7 +420,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
 
   const [bannerData, logoMap, brandLogoData] = await Promise.all([
     bannerUrl ? loadImageData(bannerUrl) : Promise.resolve(undefined),
-    loadImageMap(organizationLogoUrls, 160),
+    loadImageMap(organizationLogoUrls, 128),
     brandLogoUrl ? loadImageData(brandLogoUrl) : Promise.resolve(undefined),
   ]);
 

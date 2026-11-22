@@ -27,6 +27,7 @@ const $toast = useToast();
 const { copy, isSupported } = useClipboard();
 const isOpen = ref(false);
 const isHiddenInfoModal = ref(true);
+const isHiddenImageModal = ref(true);
 
 const groupModel = computed({
   get: () => props.currentGroup,
@@ -59,6 +60,11 @@ function onTypeChange(value: string) {
 function openInfo() {
   close();
   isHiddenInfoModal.value = false;
+}
+
+function openImageExport() {
+  close();
+  isHiddenImageModal.value = false;
 }
 
 function checkClipboard() {
@@ -224,6 +230,15 @@ useEventListener(document, "keydown", (event) => {
                 <div i-material-symbols-code class="text-xl opacity-75" />
                 <span>{{ t("common.copy_embed_code") }}</span>
               </button>
+
+              <button
+                type="button"
+                class="flex min-h-11 w-full items-center gap-2.5 rounded-lg border border-transparent px-3 py-2 text-left text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
+                @click="openImageExport"
+              >
+                <div i-material-symbols-image class="text-xl opacity-75" />
+                <span>{{ t("utility.export_image") }}</span>
+              </button>
             </div>
           </div>
         </div>
@@ -234,6 +249,12 @@ useEventListener(document, "keydown", (event) => {
   <InfoModal
     v-if="!isHiddenInfoModal"
     v-model:is-hidden="isHiddenInfoModal"
+    :rank="rank"
+  />
+
+  <StandingsImageModal
+    v-if="!isHiddenImageModal"
+    v-model:is-hidden="isHiddenImageModal"
     :rank="rank"
   />
 </template>

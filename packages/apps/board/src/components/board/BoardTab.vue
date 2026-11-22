@@ -12,9 +12,11 @@ const props = defineProps<{
 const rank = computed(() => props.rank);
 
 const $toast = useToast();
+const { t } = useI18n();
 const { copy, isSupported } = useClipboard();
 
 const isHiddenInfoModal = ref(true);
+const isHiddenImageModal = ref(true);
 
 function openInfoModal() {
   isHiddenInfoModal.value = false;
@@ -23,6 +25,11 @@ function openInfoModal() {
 let dropdown: Dropdown | null = null;
 const dropdownTargetEl = ref(null);
 const dropdownTriggerEl = ref(null);
+
+function openImageModal() {
+  dropdown?.hide();
+  isHiddenImageModal.value = false;
+}
 
 function preCheck() {
   if (!window) {
@@ -171,6 +178,16 @@ onMounted(() => {
               <span>Copy Embed Code</span>
             </div>
           </li>
+          <li>
+            <div
+              class="flex items-center gap-2 px-4 py-2.5 hover:bg-teal-50 hover:text-teal-700 dark:hover:bg-gray-700 dark:hover:text-teal-400 transition-colors duration-150"
+              cursor-pointer
+              @click="openImageModal"
+            >
+              <div i-material-symbols-image text-base />
+              <span>{{ t("utility.export_image") }}</span>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
@@ -178,6 +195,12 @@ onMounted(() => {
     <InfoModal
       v-if="!isHiddenInfoModal"
       v-model:is-hidden="isHiddenInfoModal"
+      :rank="rank"
+    />
+
+    <StandingsImageModal
+      v-if="!isHiddenImageModal"
+      v-model:is-hidden="isHiddenImageModal"
       :rank="rank"
     />
   </div>

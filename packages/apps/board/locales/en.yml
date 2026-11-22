@@ -88,6 +88,7 @@ streams:
 utility:
   tools: Tools
   export: Export
+  export_image: Export Image
   group: Group
   teams: Teams
   image_place: Rank

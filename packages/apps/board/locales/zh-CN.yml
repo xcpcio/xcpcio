@@ -88,6 +88,7 @@ streams:
 utility:
   tools: 工具集
   export: 导出
+  export_image: 导出图片
   group: 组别
   teams: 队伍数
   image_place: 排名
