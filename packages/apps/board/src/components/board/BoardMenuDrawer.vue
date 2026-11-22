@@ -4,6 +4,7 @@ import type { Rank } from "@xcpcio/core";
 
 import InfoModal from "@board/components/board/InfoModal.vue";
 import SecondLevelMenu from "@board/components/board/SecondLevelMenu.vue";
+import { isBoardMenuButtonVisible, useBoardMenuButtonAutoHide } from "@board/composables/boardMenuButton";
 import { useEventListener } from "@vueuse/core";
 import { useToast } from "vue-toast-notification";
 
@@ -28,6 +29,12 @@ const { copy, isSupported } = useClipboard();
 const isOpen = ref(false);
 const isHiddenInfoModal = ref(true);
 const isHiddenImageModal = ref(true);
+
+useBoardMenuButtonAutoHide(() => props.currentType === "rank");
+
+watch(() => props.currentType, () => {
+  isBoardMenuButtonVisible.value = true;
+});
 
 const groupModel = computed({
   get: () => props.currentGroup,
@@ -107,9 +114,12 @@ useEventListener(document, "keydown", (event) => {
 <template>
   <button
     type="button"
-    class="fixed left-3 top-3 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-gray-700 shadow-md backdrop-blur dark:bg-gray-800/95 dark:text-gray-200"
+    class="fixed left-3 top-3 z-50 inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/95 text-gray-700 shadow-md backdrop-blur transition duration-200 ease-out dark:bg-gray-800/95 dark:text-gray-200"
+    :class="isBoardMenuButtonVisible ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-16 opacity-0'"
     aria-label="Open board menu"
     :aria-expanded="isOpen"
+    :aria-hidden="!isBoardMenuButtonVisible"
+    :tabindex="isBoardMenuButtonVisible ? 0 : -1"
     data-testid="board-menu-trigger"
     @click="open"
   >
