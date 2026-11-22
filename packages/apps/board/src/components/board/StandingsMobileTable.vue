@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import type { GiantTeam } from "@board/composables/useStandingsLists";
-
 import type { GiantsType, Rank, Team, Teams } from "@xcpcio/core";
+
+import type { Lang } from "@xcpcio/types";
+import ProblemInfoModal from "@board/components/board/ProblemInfoModal.vue";
 
 const props = defineProps<{
   rank: Rank;
@@ -24,8 +26,13 @@ interface TableRow {
   giantsType?: GiantsType;
 }
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const lang = computed(() => locale.value as unknown as Lang);
 const rank = computed(() => props.rank);
+const selectedProblemId = ref<string | null>(null);
+const selectedProblem = computed(() => {
+  return selectedProblemId.value ? rank.value.contest.problemsMap.get(selectedProblemId.value) : undefined;
+});
 const scroller = ref<HTMLElement | null>(null);
 const { width: scrollerWidth } = useElementSize(scroller);
 
@@ -101,15 +108,19 @@ function getProblemHeaderStyle(problemIndex: number) {
             </div>
           </div>
 
-          <div
+          <button
             v-for="(problem, problemIndex) in rank.contest.problems"
             :key="problem.id"
+            type="button"
             class="standings-mobile-problem-header"
             :style="getProblemHeaderStyle(problemIndex)"
+            :title="problem.name?.getOrDefault(lang) ?? problem.label"
+            :aria-label="problem.name?.getOrDefault(lang) ?? problem.label"
+            @click="selectedProblemId = problem.id"
           >
             <span class="standings-mobile-problem-header-label">{{ problem.label }}</span>
             <span class="standings-mobile-problem-header-count">{{ problem.statistics.acceptedNum }}</span>
-          </div>
+          </button>
         </div>
 
         <StandingsMobileRow
@@ -126,6 +137,15 @@ function getProblemHeaderStyle(problemIndex: number) {
         />
       </div>
     </div>
+
+    <ProblemInfoModal
+      v-if="selectedProblem"
+      :key="selectedProblem.id"
+      :is-hidden="false"
+      :rank="rank"
+      :problem="selectedProblem"
+      @update:is-hidden="selectedProblemId = null"
+    />
   </div>
 </template>
 
@@ -183,8 +203,11 @@ function getProblemHeaderStyle(problemIndex: number) {
   align-items: center;
   justify-content: center;
   margin: 2px 0;
+  border: 0;
   border-radius: 4px;
+  padding: 0;
   line-height: 1;
+  cursor: pointer;
 }
 
 .standings-mobile-problem-header-label {
