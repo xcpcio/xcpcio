@@ -621,7 +621,7 @@ onMounted(() => {
           <div
             v-if="currentType === 'rank'"
             ref="rankTableContainer"
-            class="w-full overflow-x-auto"
+            class="w-full overflow-x-clip"
           >
             <div
               ref="rankTableInner"
