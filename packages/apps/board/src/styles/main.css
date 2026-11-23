@@ -11,8 +11,9 @@ body,
 }
 
 /*
- * Automatic text inflation (iOS Safari, Android font boosting) would enlarge
- * the standings text and make the desktop table overflow the screen.
+ * The board renders a desktop layout and scales it down on phones (no viewport
+ * meta tag). Automatic text inflation (iOS Safari, Android font boosting) would
+ * enlarge the standings text and make the table overflow the screen.
  */
 html {
   -webkit-text-size-adjust: none;

@@ -145,10 +145,6 @@ function toTop() {
 }
 
 @media (max-width: 1023px) {
-  .nav {
-    padding: 0.5rem 1rem;
-  }
-
   .nav :deep(a),
   .nav :deep(button) {
     padding: 0.5rem;

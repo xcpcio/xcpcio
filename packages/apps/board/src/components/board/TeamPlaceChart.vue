@@ -6,10 +6,8 @@ const props = defineProps<{
   rank: Rank;
   team: Team;
 }>();
-
-const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 </script>
 
 <template>
-  <Chart :options="getTeamPlaceChart(props.rank, props.team, isMobileLayout)" />
+  <Chart :options="getTeamPlaceChart(props.rank, props.team)" />
 </template>

@@ -169,7 +169,7 @@ function onConfirm() {
           ml-4 mt-2
         >
           <div
-            grid grid-cols-2 gap-y-2 sm:grid-cols-8 sm:gap-y-0
+            grid grid-cols-8
             items-center
           >
             <span

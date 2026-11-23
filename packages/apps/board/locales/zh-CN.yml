@@ -16,14 +16,11 @@ intro:
 not-found: 未找到页面
 
 common:
-  actions: 其它
   copy_link: 复制链接
   copy_embed_code: 复制嵌入代码
-  bilibili_live: Bilibili 直播
   copy_success: 复制成功
   copy_failed: 复制失败
   clipboard_not_supported: 当前浏览器不支持剪贴板
-  menu: 菜单
   loading: 加载中
   colon: ：
 
@@ -116,7 +113,6 @@ standings:
   organization: Organization
   team: Team
   group: 组别
-  view: 视图
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -145,20 +141,6 @@ standings:
 
 submissions:
   total_submissions: 总提交数
-
-team_statistics:
-  title: 题目提交
-  solved_summary: 通过
-  wrong_summary: 错误
-  pending_summary: 判题中
-  attempts: "提交 {count} 次"
-  wrong_count: "错误 {count} 次"
-  no_attempts: 未提交
-  status:
-    accepted: 通过
-    pending: 判题中
-    wrong_answer: 答案错误
-    not_submitted: 未提交
 
 team_info:
   rank: 排名

@@ -60,7 +60,7 @@ const color = computed(() => {
 
     <div
       ml-4 mt-2
-      grid grid-cols-1 gap-y-4 sm:grid-cols-6
+      grid grid-cols-6 gap-y-4
     >
       <div
         flex items-center
@@ -72,7 +72,7 @@ const color = computed(() => {
       <div
         flex items-center
         w-full
-        col-span-full sm:col-span-5
+        col-span-5
       >
         <TheInput
           v-model="giants.name"
@@ -108,7 +108,7 @@ const color = computed(() => {
         v-if="rank.contest.options.enableOrganization"
         flex items-center
         w-full
-        col-span-full sm:col-span-5
+        col-span-5
       >
         <TheMultiSelect
           :options="orgOptions"
@@ -127,7 +127,7 @@ const color = computed(() => {
       <div
         flex items-center
         w-full
-        col-span-full sm:col-span-5
+        col-span-5
       >
         <TheMultiSelect
           :options="teamsOptions"

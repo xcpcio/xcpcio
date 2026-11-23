@@ -41,7 +41,6 @@ function goCountdown() {
 <template>
   <div
     flex flex-col
-    class="w-full max-w-[40rem]"
   >
     <div>
       <div class="mb-2 text-xl font-bold">
@@ -51,7 +50,7 @@ function goCountdown() {
       <div class="border-t border-gray-300 pt-4">
         <div
           w-full
-          flex flex-wrap gap-4
+          flex gap-4
         >
           <button
             btn

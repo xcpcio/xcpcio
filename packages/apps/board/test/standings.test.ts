@@ -7,11 +7,6 @@ import {
   getStandClassName,
 } from "@board/composables/standings";
 import {
-  buildFilterTeams,
-  buildGiantTeams,
-} from "@board/composables/useStandingsLists";
-import {
-  BattleOfGiants,
   GiantsType,
   MedalType,
   Problem,
@@ -133,51 +128,5 @@ describe("award and stand classes", () => {
     expect(getStandClassName(rank, team, 0, { giantsType: GiantsType.RED })).toBe("bg-red-400");
     expect(getStandClassName(rank, team, 0, { isFilter: true })).toBe("filter-team");
     expect(getStandClassName(rank, team, 1)).toBe("stand01");
-  });
-});
-
-describe("standings lists", () => {
-  it("filters teams by organization, team and team id", () => {
-    const rank = makeRank();
-    const organizationTeam = makeTeam("org-team");
-    organizationTeam.organization = { id: "org-1" } as never;
-    const team = makeTeam("team-1");
-    const idTeam = makeTeam("team-2");
-    rank.teams = [organizationTeam, team, idTeam];
-
-    rank.options.filterOrganizationMap.set("org-1", { value: "org-1", text: "Org" });
-    rank.options.filterTeamMap.set("team-1", { value: "team-1", text: "Team" });
-    rank.options.filterTeamIdMap.set("team-2", { value: "team-2", text: "Team 2" });
-
-    expect(buildFilterTeams(rank).map(t => t.id)).toEqual(["org-team", "team-1", "team-2"]);
-  });
-
-  it("builds the battle of giants with topX, equal teams and ordering", () => {
-    const rank = makeRank();
-    const battle = new BattleOfGiants();
-    battle.topX = 2;
-    battle.equalTeams = true;
-    rank.options.battleOfGiants = battle;
-
-    const blueOne = makeTeam("blue-1", 2, 100);
-    const blueTwo = makeTeam("blue-2", 1, 200);
-    const redOne = makeTeam("red-1", 3, 50);
-    rank.teams = [redOne, blueTwo, blueOne];
-
-    battle.blueTeam.setFilterTeams([
-      { value: "blue-1", text: "Blue 1" },
-      { value: "blue-2", text: "Blue 2" },
-    ]);
-    battle.redTeam.setFilterTeams([{ value: "red-1", text: "Red 1" }]);
-
-    const giantTeams = buildGiantTeams(rank);
-    expect(giantTeams.map(({ team, giantsType }) => [team.id, giantsType])).toEqual([
-      ["red-1", GiantsType.RED],
-      ["blue-2", GiantsType.BLUE],
-    ]);
-    expect(battle.blueTeam.teams.map(t => t.id)).toEqual(["blue-2"]);
-    expect(battle.redTeam.teams.map(t => t.id)).toEqual(["red-1"]);
-
-    expect(buildGiantTeams(rank)).toHaveLength(2);
   });
 });

@@ -18,7 +18,7 @@ function go() {
     class="flex flex-col items-center"
   >
     <div
-      class="w-full max-w-lg px-4 lg:px-0"
+      w-128
     >
       <TheInput
         v-model="dataSourceUrlInput"

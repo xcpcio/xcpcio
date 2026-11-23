@@ -9,7 +9,6 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
-const isMobileLayout = useMediaQuery("(max-width: 1023.98px)");
 
 const rank = computed(() => props.rank);
 const allSubmissions = computed(() => rank.value.getSubmissions());
@@ -57,13 +56,13 @@ const headData = computed(() => {
         mx-auto px-4 py-4 lg:px-6 lg:py-6
       >
         <div
-          grid grid-cols-2 gap-3 sm:gap-6 xl:grid-cols-4 xl:gap-20
+          grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 xl:grid-cols-4 xl:gap-20
           place-items-center
         >
           <div v-for="h in headData" :key="h.title" class="w-full max-w-[16rem]">
             <div
               w-full
-              p-3 sm:p-6 xl:p-8
+              p-4 sm:p-6 xl:p-8
               flex flex-col
               border border-gray-100 dark:border-gray-600
               text-center test-gray-900
@@ -72,12 +71,12 @@ const headData = computed(() => {
               shadow rounded-md
             >
               <h3
-                mb-2 text-base font-semibold sm:mb-4 sm:text-2xl
+                mb-2 text-xl font-semibold sm:mb-4 sm:text-2xl
               >
                 {{ t(h.title) }}
               </h3>
-              <div class="my-3 flex items-baseline justify-center sm:my-8">
-                <span class="text-3xl font-extrabold sm:text-5xl">{{ h.data }}</span>
+              <div class="my-4 flex items-baseline justify-center sm:my-8">
+                <span class="text-4xl font-extrabold sm:text-5xl">{{ h.data }}</span>
               </div>
             </div>
           </div>
@@ -88,7 +87,6 @@ const headData = computed(() => {
     <div
       mt-8 gap-8
       flex flex-col
-      px-3 lg:px-0
     >
       <div>
         <SubmitHeatMap
@@ -108,19 +106,19 @@ const headData = computed(() => {
 
       <div>
         <Chart
-          :options="getSubmitChart(rank, isMobileLayout)"
+          :options="getSubmitChart(rank)"
         />
       </div>
 
       <div>
         <Chart
-          :options="getProblemChart(rank, isMobileLayout)"
+          :options="getProblemChart(rank)"
         />
       </div>
 
       <div>
         <Chart
-          :options="getTeamChart(rank, isMobileLayout)"
+          :options="getTeamChart(rank)"
         />
       </div>
     </div>

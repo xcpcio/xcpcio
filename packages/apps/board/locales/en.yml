@@ -16,14 +16,11 @@ intro:
 not-found: Not found
 
 common:
-  actions: Other
   copy_link: Copy Link
   copy_embed_code: Copy Embed Code
-  bilibili_live: Bilibili Live
   copy_success: Copy Success
   copy_failed: Copy Failed
   clipboard_not_supported: Clipboard is not supported
-  menu: Menu
   loading: Loading
   colon: ":"
 
@@ -116,7 +113,6 @@ standings:
   organization: Organization
   team: Team
   group: Group
-  view: View
   solved: Solved
   penalty: Penalty
   dirt: Dirt
@@ -145,20 +141,6 @@ standings:
 
 submissions:
   total_submissions: Total Submissions
-
-team_statistics:
-  title: Problem Attempts
-  solved_summary: Solved
-  wrong_summary: Wrong
-  pending_summary: Pending
-  attempts: "Attempts {count}"
-  wrong_count: "Wrong {count}"
-  no_attempts: No attempts
-  status:
-    accepted: Accepted
-    pending: Pending
-    wrong_answer: Wrong Answer
-    not_submitted: Not submitted
 
 team_info:
   rank: Rank

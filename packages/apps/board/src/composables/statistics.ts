@@ -2,22 +2,20 @@ import type { Rank, Team } from "@xcpcio/core";
 import type { Options } from "highcharts";
 import { getTimeDiff } from "@xcpcio/core";
 
-function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any, isMobile = false): Options {
-  const axisFontSize = isMobile ? "12px" : "16px";
-
+function getChartObj(title: string, xText: string, yText: string, cat: any, series: any, colors: any): Options {
   return {
     colors,
-    chart: isMobile
-      ? {
-          type: "bar",
-          backgroundColor: "transparent",
-          height: "320px",
-        }
-      : {
-          type: "column",
-          backgroundColor: "transparent",
-          height: "420px",
-        },
+    chart:
+      window.innerWidth < 992
+        ? {
+            type: "bar",
+            backgroundColor: "transparent",
+          }
+        : {
+            type: "column",
+            backgroundColor: "transparent",
+            height: "420px",
+          },
     title: {
       text: title,
     },
@@ -25,13 +23,13 @@ function getChartObj(title: string, xText: string, yText: string, cat: any, seri
       categories: cat,
       labels: {
         style: {
-          fontSize: axisFontSize,
+          fontSize: "16px",
         },
       },
       title: {
         text: xText,
         style: {
-          fontSize: axisFontSize,
+          fontSize: "16px",
         },
       },
     },
@@ -40,14 +38,14 @@ function getChartObj(title: string, xText: string, yText: string, cat: any, seri
       title: {
         text: yText,
         style: {
-          fontSize: axisFontSize,
+          fontSize: "16px",
           height: "320px",
         },
       },
       stackLabels: {
         enabled: true,
         style: {
-          fontSize: axisFontSize,
+          fontSize: "16px",
         },
       },
     },
@@ -71,7 +69,7 @@ function getChartObj(title: string, xText: string, yText: string, cat: any, seri
   } as Options;
 }
 
-export function getProblemChart(rank: Rank, isMobile = false) {
+export function getProblemChart(rank: Rank) {
   const problemList: any = [];
 
   rank.contest.problems.forEach((p, ix) => {
@@ -123,10 +121,10 @@ export function getProblemChart(rank: Rank, isMobile = false) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("题目通过数", "题目编号", "通过数", cat, series, colors, isMobile);
+  return getChartObj("题目通过数", "题目编号", "通过数", cat, series, colors);
 }
 
-export function getTeamChart(rank: Rank, isMobile = false) {
+export function getTeamChart(rank: Rank) {
   const num = rank.rankStatistics.teamSolvedNum.map((n, ix) => {
     return {
       index: ix,
@@ -155,10 +153,10 @@ export function getTeamChart(rank: Rank, isMobile = false) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("队伍过题数", "过题数", "队伍数", cat, series, colors, isMobile);
+  return getChartObj("队伍过题数", "过题数", "队伍数", cat, series, colors);
 }
 
-export function getSubmitChart(rank: Rank, isMobile = false) {
+export function getSubmitChart(rank: Rank) {
   const { cat, series, colors } = (() => {
     const cat: any = [];
     const Accepted: any = [];
@@ -194,10 +192,10 @@ export function getSubmitChart(rank: Rank, isMobile = false) {
     return { cat, series, colors };
   })();
 
-  return getChartObj("提交分类", "题目编号", "提交数", cat, series, colors, isMobile);
+  return getChartObj("提交分类", "题目编号", "提交数", cat, series, colors);
 }
 
-export function getTeamPlaceChart(_rank: Rank, team: Team, isMobile = false) {
+export function getTeamPlaceChart(_rank: Rank, team: Team) {
   const points = team.placeChartPoints;
 
   const data = points.map((p, index) => {
@@ -221,7 +219,6 @@ export function getTeamPlaceChart(_rank: Rank, team: Team, isMobile = false) {
     chart: {
       type: "spline",
       backgroundColor: "transparent",
-      ...(isMobile ? { marginLeft: 36 } : {}),
     },
     title: {
       text: "排名变化趋势图",
@@ -255,20 +252,9 @@ export function getTeamPlaceChart(_rank: Rank, team: Team, isMobile = false) {
     yAxis: [
       {
         allowDecimals: false,
-        title: isMobile
-          ? {
-              text: "Place",
-              rotation: 0,
-              align: "high",
-              offset: 0,
-              y: -8,
-              style: {
-                fontSize: "12px",
-              },
-            }
-          : {
-              text: "Place",
-            },
+        title: {
+          text: "Place",
+        },
         reversed: true,
         gridLineWidth: 1,
       },
