@@ -149,6 +149,11 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
         v-if="currentType === TYPE_STATISTICS"
         w-full
       >
+        <TeamProblemStats
+          :team="team"
+          class="mb-4"
+        />
+
         <TeamPlaceChart
           :rank="rank"
           :team="team"
