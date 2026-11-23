@@ -26,8 +26,6 @@ declare global {
   const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
-  const buildFilterTeams: typeof import('./composables/useStandingsLists').buildFilterTeams
-  const buildGiantTeams: typeof import('./composables/useStandingsLists').buildGiantTeams
   const buildLocaleUrl: typeof import('./composables/locale').buildLocaleUrl
   const buildRankForGroup: typeof import('./composables/standings-image').buildRankForGroup
   const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
@@ -317,7 +315,6 @@ declare global {
   const useSorted: typeof import('@vueuse/core').useSorted
   const useSpeechRecognition: typeof import('@vueuse/core').useSpeechRecognition
   const useSpeechSynthesis: typeof import('@vueuse/core').useSpeechSynthesis
-  const useStandingsLists: typeof import('./composables/useStandingsLists').useStandingsLists
   const useStepper: typeof import('@vueuse/core').useStepper
   const useStorage: typeof import('@vueuse/core').useStorage
   const useStorageAsync: typeof import('@vueuse/core').useStorageAsync
@@ -405,9 +402,6 @@ declare global {
   // @ts-ignore
   export type { RouteQueryValueRaw, RouteHashValueRaw, ReactiveRouteOptions, ReactiveRouteOptionsWithTransform } from './composables/useRouteQueryWithoutParam'
   import('./composables/useRouteQueryWithoutParam')
-  // @ts-ignore
-  export type { GiantTeam, StandingsLists } from './composables/useStandingsLists'
-  import('./composables/useStandingsLists')
 }
 
 // for vue template auto import
@@ -433,8 +427,6 @@ declare module 'vue' {
     readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
-    readonly buildFilterTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildFilterTeams']>
-    readonly buildGiantTeams: UnwrapRef<typeof import('./composables/useStandingsLists')['buildGiantTeams']>
     readonly buildLocaleUrl: UnwrapRef<typeof import('./composables/locale')['buildLocaleUrl']>
     readonly buildRankForGroup: UnwrapRef<typeof import('./composables/standings-image')['buildRankForGroup']>
     readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
@@ -719,7 +711,6 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
-    readonly useStandingsLists: UnwrapRef<typeof import('./composables/useStandingsLists')['useStandingsLists']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>

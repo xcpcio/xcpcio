@@ -5,6 +5,8 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const { y: scroll } = useWindowScroll();
+const route = useRoute();
+const isIndexPage = computed(() => route.path === "/");
 
 function toTop() {
   window.scrollTo({
@@ -42,7 +44,7 @@ function toTop() {
 
     <nav
       class="nav"
-      :class="[props?.width ? '' : 'fixed']"
+      :class="[props?.width ? '' : 'fixed', isIndexPage ? 'is-index-nav' : '']"
       text-xl
     >
       <div class="spacer" />
@@ -145,7 +147,7 @@ function toTop() {
 }
 
 @media (max-width: 1023px) {
-  .nav {
+  .nav.is-index-nav {
     padding: 0.5rem 1rem;
   }
 

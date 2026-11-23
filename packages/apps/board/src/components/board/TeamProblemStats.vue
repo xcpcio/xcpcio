@@ -81,7 +81,7 @@ function getProblemStyle(p: TeamProblemStatistics) {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2">
+    <div class="grid grid-cols-1 gap-2 min-[360px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       <div
         v-for="p in team.problemStatistics"
         :key="p.problem.id"

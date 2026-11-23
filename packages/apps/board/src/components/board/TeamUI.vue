@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { GiantsType, Rank, Team } from "@xcpcio/core";
+import type { Rank, Team } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
-import { getStandClassName as getStandClassNameHelper } from "@board/composables/standings";
+import { GiantsType, MedalType } from "@xcpcio/core";
 
 const props = defineProps<{
   ix: number;
@@ -52,11 +52,41 @@ const showInlineTeamBadge = computed(() => {
 });
 
 function getStandClassName(t: Team, isRankField = false): string {
-  return getStandClassNameHelper(rank.value, t, props.ix, {
-    isRankField,
-    isFilter: props.isFilter,
-    giantsType: props.giantsType,
-  });
+  if (isRankField) {
+    if (t.awards.includes(MedalType.GOLD)) {
+      return "gold";
+    }
+
+    if (t.awards.includes(MedalType.SILVER)) {
+      return "silver";
+    }
+
+    if (t.awards.includes(MedalType.BRONZE)) {
+      return "bronze";
+    }
+
+    if (t.awards.includes(MedalType.HONORABLE)) {
+      return "honorable";
+    }
+  }
+
+  if (props.giantsType !== undefined) {
+    switch (props.giantsType) {
+      case GiantsType.BLUE:
+        return "bg-blue-400";
+      case GiantsType.RED:
+        return "bg-red-400";
+    }
+  }
+
+  if (props.isFilter) {
+    return "filter-team";
+  }
+
+  const solvedProblemIndex = (rank.value.rankStatistics.getTeamSolvedNumIndex(t.solvedProblemNum) - 1) % 2;
+  const rankIndex = props.ix % 2;
+
+  return `stand${solvedProblemIndex}${rankIndex}`;
 }
 
 function isRenderByVisible() {

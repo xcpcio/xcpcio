@@ -16,14 +16,11 @@ intro:
 not-found: Not found
 
 common:
-  actions: Other
   copy_link: Copy Link
   copy_embed_code: Copy Embed Code
-  bilibili_live: Bilibili Live
   copy_success: Copy Success
   copy_failed: Copy Failed
   clipboard_not_supported: Clipboard is not supported
-  menu: Menu
   loading: Loading
   colon: ":"
 
@@ -116,7 +113,6 @@ standings:
   organization: Organization
   team: Team
   group: Group
-  view: View
   solved: Solved
   penalty: Penalty
   dirt: Dirt

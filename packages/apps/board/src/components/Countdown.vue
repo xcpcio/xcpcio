@@ -31,7 +31,7 @@ watch(data, async () => {
 
 <template>
   <div
-    class="bg-[#323443] max-lg:overflow-hidden"
+    class="bg-[#323443]"
     text-gray-200
     w-screen h-screen
   >
@@ -59,11 +59,10 @@ watch(data, async () => {
         flex flex-col
         items-center justify-center
         font-mono
-        max-lg:min-h-screen max-lg:justify-center max-lg:px-4
       >
         <div
-          mt-20 text-6xl
-          max-lg:mt-0 max-lg:text-3xl
+          mt-20
+          text-6xl
           :class="[contest.getContestState(now).toString()]"
         >
           {{ contest.getContestState(now) }}
@@ -71,7 +70,7 @@ watch(data, async () => {
 
         <div
           mt-20
-          class="text-[320px] max-lg:mt-6 max-lg:text-[18vw]"
+          class="text-[320px]"
           :class="[contest.getContestState(now).toString()]"
         >
           <div

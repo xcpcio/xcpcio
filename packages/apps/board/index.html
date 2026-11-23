@@ -2,7 +2,7 @@
 <html lang="en-US" dir="ltr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
     <!-- Google Tag Manager -->
     <script>
@@ -97,6 +97,45 @@
     </script>
 
     <!--!xcpcio-runtime-config-->
+
+    <script>
+      (function () {
+        function normalizeBase(base) {
+          if (!base) {
+            return "/";
+          }
+
+          try {
+            if (/^[a-z][a-z\d+.-]*:\/\//i.test(base)) {
+              base = new URL(base).pathname;
+            }
+          } catch (e) {}
+
+          if (base.charAt(0) !== "/") {
+            base = "/" + base;
+          }
+
+          return base.replace(/\/+$/, "") || "/";
+        }
+
+        var base = "/";
+        try {
+          base = (window.RUNTIME_CONFIG && window.RUNTIME_CONFIG.baseUrl) || window.BASE_URL || "/";
+        } catch (e) {}
+        base = normalizeBase(base);
+
+        var path = location.pathname.replace(/\/+$/, "") || "/";
+        var content = path === base ? "width=device-width, initial-scale=1, viewport-fit=cover" : "width=980";
+
+        var meta = document.querySelector('meta[name="viewport"]');
+        if (!meta) {
+          meta = document.createElement("meta");
+          meta.setAttribute("name", "viewport");
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute("content", content);
+      })();
+    </script>
 
     <script>
       (function () {
