@@ -1,0 +1,92 @@
+/* Match the board's cards and status colours instead of the library's solid
+   coloured toasts. The accent on the left conveys the toast type. */
+.v-toast.v-toast {
+  z-index: 2100;
+  padding: 1rem;
+}
+
+.v-toast .v-toast__item {
+  min-height: 0;
+  max-width: min(24rem, 100%);
+  margin: 0.375rem 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid var(--toast-accent, #64748b);
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  color: #1f2937;
+  opacity: 1;
+  box-shadow:
+    0 16px 40px -20px rgb(15 23 42 / 0.35),
+    0 4px 12px -4px rgb(15 23 42 / 0.12);
+}
+
+.v-toast .v-toast__item--success {
+  --toast-accent: #0f766e;
+}
+
+.v-toast .v-toast__item--info {
+  --toast-accent: #0284c7;
+}
+
+.v-toast .v-toast__item--warning {
+  --toast-accent: #d97706;
+}
+
+.v-toast .v-toast__item--error {
+  --toast-accent: #dc2626;
+}
+
+.v-toast .v-toast__item--default {
+  --toast-accent: #64748b;
+}
+
+.v-toast .v-toast__item .v-toast__icon {
+  display: none;
+}
+
+.v-toast .v-toast__item .v-toast__text {
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  word-break: break-word;
+}
+
+.dark .v-toast .v-toast__item {
+  border-color: #374151;
+  border-left-color: var(--toast-accent);
+  background-color: #1f2937;
+  color: #f3f4f6;
+  box-shadow:
+    0 16px 40px -20px rgb(0 0 0 / 0.8),
+    0 4px 12px -4px rgb(0 0 0 / 0.4);
+}
+
+.dark .v-toast .v-toast__item--success {
+  --toast-accent: #2dd4bf;
+}
+
+.dark .v-toast .v-toast__item--info {
+  --toast-accent: #38bdf8;
+}
+
+.dark .v-toast .v-toast__item--warning {
+  --toast-accent: #fbbf24;
+}
+
+.dark .v-toast .v-toast__item--error {
+  --toast-accent: #f87171;
+}
+
+.dark .v-toast .v-toast__item--default {
+  --toast-accent: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  .v-toast.v-toast {
+    padding: 0.75rem;
+  }
+}
