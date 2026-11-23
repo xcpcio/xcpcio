@@ -7,10 +7,16 @@ import { getImageSource, Rank, RankOptions } from "@xcpcio/core";
 import cloneDeep from "lodash/cloneDeep";
 
 const FONT_FAMILY = "Arial, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif";
+// The live standings table uses `font-mono`; keep table text monospaced too.
+const TABLE_FONT_FAMILY = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace, 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif";
 const PADDING = 32;
 const TITLE_HEIGHT = 92;
 const HEADER_HEIGHT = 52;
 const ROW_HEIGHT = 54;
+// The live table uses separate borders; keep the same background-coloured gaps
+// between cells in the exported image.
+const CELL_GAP = 2;
+const ROW_PITCH = ROW_HEIGHT + CELL_GAP;
 const FOOTER_HEIGHT = 40;
 const BANNER_GAP = 18;
 const ORG_LOGO_SIZE = ROW_HEIGHT;
@@ -127,8 +133,8 @@ function getMeasureContext() {
   return measureContext;
 }
 
-function fontSpec(size: number, weight = 400) {
-  return `${weight} ${size}px ${FONT_FAMILY}`;
+function fontSpec(size: number, weight = 400, family = FONT_FAMILY) {
+  return `${weight} ${size}px ${family}`;
 }
 
 function measureTextWidth(text: string, font: string) {
@@ -185,8 +191,9 @@ function textElement(content: string, x: number, y: number, options: {
   weight?: number;
   fill: string;
   anchor?: "start" | "middle" | "end";
+  family?: string;
 }) {
-  return `<text x="${x}" y="${y}" fill="${options.fill}" font-family="${FONT_FAMILY}" font-size="${options.size}" font-weight="${options.weight ?? 400}" text-anchor="${options.anchor ?? "start"}" dominant-baseline="middle">${escapeXml(content)}</text>`;
+  return `<text x="${x}" y="${y}" fill="${options.fill}" font-family="${options.family ?? FONT_FAMILY}" font-size="${options.size}" font-weight="${options.weight ?? 400}" text-anchor="${options.anchor ?? "start"}" dominant-baseline="middle">${escapeXml(content)}</text>`;
 }
 
 function imageElement(href: string, x: number, y: number, width: number, height: number) {
@@ -398,7 +405,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     { key: "team", width: showOrganization ? 460 : 240, align: "start" },
     { key: "solved", width: 70, align: "middle" },
     { key: "penalty", width: 84, align: "middle" },
-    ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 48, align: "middle" as const })),
+    ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 56, align: "middle" as const })),
   ];
 
   const width = PADDING * 2 + columns.reduce((sum, column) => sum + column.width, 0);
@@ -431,7 +438,8 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
   const bannerBlockHeight = bannerData ? bannerHeight + BANNER_GAP : 0;
   const titleTop = PADDING + bannerBlockHeight;
   const tableTop = titleTop + TITLE_HEIGHT;
-  const tableBottom = tableTop + HEADER_HEIGHT + teams.length * ROW_HEIGHT;
+  const rowsTop = tableTop + HEADER_HEIGHT + CELL_GAP;
+  const tableBottom = rowsTop + teams.length * ROW_PITCH - (teams.length > 0 ? CELL_GAP : 0);
   const height = tableBottom + FOOTER_HEIGHT + PADDING;
 
   const columnLefts = new Map<string, number>();
@@ -441,8 +449,6 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     columnLefts.set(column.key, currentLeft);
     currentLeft += column.width;
   }
-
-  const problemAreaLeft = problems.length > 0 ? columnLefts.get("problem-0") : undefined;
 
   const titleFont = fontSpec(30, 700);
   const title = truncateText(contestName, width - PADDING * 2, titleFont);
@@ -469,62 +475,72 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       fill: theme.muted,
       anchor: "middle",
     }),
-    `<rect x="${PADDING}" y="${tableTop}" width="${width - PADDING * 2}" height="${HEADER_HEIGHT}" fill="${theme.headerBackground}" />`,
   );
 
   const headerY = tableTop + HEADER_HEIGHT / 2;
   for (const column of columns) {
     const left = columnLefts.get(column.key) as number;
+    const cellLeft = left + CELL_GAP / 2;
+    const cellWidth = column.width - CELL_GAP;
+
     if (column.key.startsWith("problem-")) {
       const problem = problems[Number(column.key.slice("problem-".length))];
-      const x = left + 3;
-      const y = tableTop + 6;
-      parts.push(`<rect x="${x}" y="${y}" width="${column.width - 6}" height="${HEADER_HEIGHT - 12}" rx="5" fill="${problem.balloonColor.background_color}" />`);
-      parts.push(textElement(problem.label, left + column.width / 2, headerY, {
-        size: 14,
+      parts.push(`<rect x="${cellLeft}" y="${tableTop}" width="${cellWidth}" height="${HEADER_HEIGHT}" fill="${problem.balloonColor.background_color}" />`);
+      parts.push(textElement(problem.label, left + column.width / 2, tableTop + 18, {
+        size: 13,
         weight: 700,
         fill: problem.balloonColor.color,
         anchor: "middle",
+        family: TABLE_FONT_FAMILY,
+      }));
+      parts.push(textElement(String(problem.statistics.acceptedNum), left + column.width / 2, tableTop + 34, {
+        size: 13,
+        weight: 700,
+        fill: problem.balloonColor.color,
+        anchor: "middle",
+        family: TABLE_FONT_FAMILY,
       }));
       continue;
     }
 
-    const label = options.labels[column.key as keyof StandingsImageLabels];
-    const x = column.align === "middle" ? left + column.width / 2 : left + 12;
-    parts.push(textElement(label, x, headerY, {
+    parts.push(`<rect x="${cellLeft}" y="${tableTop}" width="${cellWidth}" height="${HEADER_HEIGHT}" fill="${theme.headerBackground}" />`);
+    parts.push(textElement(options.labels[column.key as keyof StandingsImageLabels], left + column.width / 2, headerY, {
       size: 13,
       weight: 700,
       fill: theme.headerText,
-      anchor: column.align,
+      anchor: "middle",
+      family: TABLE_FONT_FAMILY,
     }));
   }
 
   for (let index = 0; index < teams.length; index += 1) {
     const team = teams[index];
-    const rowTop = tableTop + HEADER_HEIGHT + index * ROW_HEIGHT;
+    const rowTop = rowsTop + index * ROW_PITCH;
     const rowMiddle = rowTop + ROW_HEIGHT / 2;
     const rowClass = getStandClassName(rank, team, index);
     const rowBackground = theme.rows[rowClass as keyof StandingsTheme["rows"]] ?? theme.background;
+    const award = getAwardKey(team);
 
-    parts.push(`<rect x="${PADDING}" y="${rowTop}" width="${width - PADDING * 2}" height="${ROW_HEIGHT}" fill="${rowBackground}" />`);
+    for (const key of ["place", "team", "solved", "penalty"] as const) {
+      const column = columns.find(item => item.key === key);
+      if (!column) {
+        continue;
+      }
 
-    if (problemAreaLeft !== undefined) {
-      parts.push(`<rect x="${problemAreaLeft}" y="${rowTop}" width="${width - PADDING - problemAreaLeft}" height="${ROW_HEIGHT}" fill="${theme.background}" />`);
+      const cellLeft = (columnLefts.get(key) as number) + CELL_GAP / 2;
+      const background = key === "place" && award ? theme.awards[award].background : rowBackground;
+      parts.push(`<rect x="${cellLeft}" y="${rowTop}" width="${column.width - CELL_GAP}" height="${ROW_HEIGHT}" fill="${background}" />`);
     }
 
-    const award = getAwardKey(team);
     const placeLeft = columnLefts.get("place") as number;
     const placeWidth = columns[0].width;
-
-    if (award) {
-      parts.push(`<rect x="${placeLeft}" y="${rowTop}" width="${placeWidth}" height="${ROW_HEIGHT}" fill="${theme.awards[award].background}" />`);
-    }
 
     parts.push(textElement(String(team.rank), placeLeft + placeWidth / 2, rowMiddle, {
       size: 15,
       weight: 700,
       fill: award ? theme.awards[award].text : theme.text,
       anchor: "middle",
+      family: TABLE_FONT_FAMILY,
     }));
 
     const teamLeft = columnLefts.get("team") as number;
@@ -539,26 +555,33 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       : organizationName;
     const teamTextLeft = teamLeft + 12 + (organizationLogo ? ORG_LOGO_SIZE + 6 : 0);
     const teamTextWidth = teamWidth - (teamTextLeft - teamLeft) - 12;
+    const teamTextCenter = teamTextLeft + teamTextWidth / 2;
 
     if (organizationLogo) {
       parts.push(imageElement(organizationLogo.dataUrl, teamLeft + 12, rowMiddle - ORG_LOGO_SIZE / 2, ORG_LOGO_SIZE, ORG_LOGO_SIZE));
     }
 
     if (organizationText) {
-      parts.push(textElement(truncateText(team.name.getOrDefault(options.lang), teamTextWidth, fontSpec(15, 600)), teamTextLeft, rowMiddle - 8, {
+      parts.push(textElement(truncateText(team.name.getOrDefault(options.lang), teamTextWidth, fontSpec(15, 600, TABLE_FONT_FAMILY)), teamTextCenter, rowMiddle - 8, {
         size: 15,
         weight: 600,
         fill: theme.text,
+        anchor: "middle",
+        family: TABLE_FONT_FAMILY,
       }));
-      parts.push(textElement(truncateText(organizationText, teamTextWidth, fontSpec(12)), teamTextLeft, rowMiddle + 10, {
+      parts.push(textElement(truncateText(organizationText, teamTextWidth, fontSpec(12, 400, TABLE_FONT_FAMILY)), teamTextCenter, rowMiddle + 10, {
         size: 12,
         fill: theme.muted,
+        anchor: "middle",
+        family: TABLE_FONT_FAMILY,
       }));
     } else {
-      parts.push(textElement(truncateText(team.name.getOrDefault(options.lang), teamTextWidth, fontSpec(15, 600)), teamTextLeft, rowMiddle, {
+      parts.push(textElement(truncateText(team.name.getOrDefault(options.lang), teamTextWidth, fontSpec(15, 600, TABLE_FONT_FAMILY)), teamTextCenter, rowMiddle, {
         size: 15,
         weight: 600,
         fill: theme.text,
+        anchor: "middle",
+        family: TABLE_FONT_FAMILY,
       }));
     }
 
@@ -569,6 +592,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       weight: 700,
       fill: theme.text,
       anchor: "middle",
+      family: TABLE_FONT_FAMILY,
     }));
 
     const penaltyLeft = columnLefts.get("penalty") as number;
@@ -578,6 +602,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       weight: 600,
       fill: theme.text,
       anchor: "middle",
+      family: TABLE_FONT_FAMILY,
     }));
 
     for (let problemIndex = 0; problemIndex < problems.length; problemIndex += 1) {
@@ -592,24 +617,27 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
         continue;
       }
 
-      parts.push(`<rect x="${left + 2}" y="${rowTop + 3}" width="${cellWidth - 4}" height="${ROW_HEIGHT - 6}" rx="4" fill="${colors.background}" />`);
+      parts.push(`<rect x="${left + CELL_GAP / 2}" y="${rowTop}" width="${cellWidth - CELL_GAP}" height="${ROW_HEIGHT}" fill="${colors.background}" />`);
 
       const sign = getProblemSign(p);
       const show = getProblemShow(p, rank.contest.statusTimeDisplay);
       if (sign.length > 0) {
         parts.push(textElement(sign, left + cellWidth / 2, rowMiddle - 8, {
-          size: 13,
+          size: 12,
           weight: 700,
           fill: colors.text,
           anchor: "middle",
+          family: TABLE_FONT_FAMILY,
         }));
       }
 
       if (show.length > 0) {
-        parts.push(textElement(truncateText(show, cellWidth - 6, fontSpec(11)), left + cellWidth / 2, rowMiddle + 10, {
-          size: 11,
+        parts.push(textElement(truncateText(show, cellWidth - 2, fontSpec(12, 700, TABLE_FONT_FAMILY)), left + cellWidth / 2, rowMiddle + 10, {
+          size: 12,
+          weight: 700,
           fill: colors.text,
           anchor: "middle",
+          family: TABLE_FONT_FAMILY,
         }));
       }
     }
