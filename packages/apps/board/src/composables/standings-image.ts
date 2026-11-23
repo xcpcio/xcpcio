@@ -11,6 +11,10 @@ const PADDING = 32;
 const TITLE_HEIGHT = 92;
 const HEADER_HEIGHT = 52;
 const ROW_HEIGHT = 54;
+// The live table uses separate borders; keep the same background-coloured gap
+// between team rows in the exported image.
+const ROW_GAP = 2;
+const ROW_PITCH = ROW_HEIGHT + ROW_GAP;
 const FOOTER_HEIGHT = 40;
 const BANNER_GAP = 18;
 const ORG_LOGO_SIZE = ROW_HEIGHT;
@@ -431,7 +435,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
   const bannerBlockHeight = bannerData ? bannerHeight + BANNER_GAP : 0;
   const titleTop = PADDING + bannerBlockHeight;
   const tableTop = titleTop + TITLE_HEIGHT;
-  const tableBottom = tableTop + HEADER_HEIGHT + teams.length * ROW_HEIGHT;
+  const tableBottom = tableTop + HEADER_HEIGHT + teams.length * ROW_PITCH - (teams.length > 0 ? ROW_GAP : 0);
   const height = tableBottom + FOOTER_HEIGHT + PADDING;
 
   const columnLefts = new Map<string, number>();
@@ -507,7 +511,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
 
   for (let index = 0; index < teams.length; index += 1) {
     const team = teams[index];
-    const rowTop = tableTop + HEADER_HEIGHT + index * ROW_HEIGHT;
+    const rowTop = tableTop + HEADER_HEIGHT + index * ROW_PITCH;
     const rowMiddle = rowTop + ROW_HEIGHT / 2;
     const rowClass = getStandClassName(rank, team, index);
     const rowBackground = theme.rows[rowClass as keyof StandingsTheme["rows"]] ?? theme.background;
