@@ -405,7 +405,7 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     { key: "team", width: showOrganization ? 460 : 240, align: "start" },
     { key: "solved", width: 70, align: "middle" },
     { key: "penalty", width: 84, align: "middle" },
-    ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 48, align: "middle" as const })),
+    ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 56, align: "middle" as const })),
   ];
 
   const width = PADDING * 2 + columns.reduce((sum, column) => sum + column.width, 0);
