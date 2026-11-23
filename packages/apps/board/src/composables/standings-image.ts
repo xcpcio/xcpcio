@@ -480,9 +480,15 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       const x = left + 3;
       const y = tableTop + 6;
       parts.push(`<rect x="${x}" y="${y}" width="${column.width - 6}" height="${HEADER_HEIGHT - 12}" rx="5" fill="${problem.balloonColor.background_color}" />`);
-      parts.push(textElement(problem.label, left + column.width / 2, headerY, {
+      parts.push(textElement(problem.label, left + column.width / 2, tableTop + 17, {
         size: 14,
         weight: 700,
+        fill: problem.balloonColor.color,
+        anchor: "middle",
+      }));
+      parts.push(textElement(String(problem.statistics.acceptedNum), left + column.width / 2, tableTop + 33, {
+        size: 11,
+        weight: 600,
         fill: problem.balloonColor.color,
         anchor: "middle",
       }));
