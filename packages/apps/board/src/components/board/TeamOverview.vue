@@ -155,4 +155,10 @@ const tableRows = computed(() => {
       </div>
     </div>
   </div>
+
+  <TeamRankTable
+    :rank="rank"
+    :team="team"
+    class="mt-6"
+  />
 </template>
