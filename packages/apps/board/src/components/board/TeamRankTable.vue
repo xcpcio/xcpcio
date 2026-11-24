@@ -13,6 +13,18 @@ const lang = computed(() => locale.value as unknown as Lang);
 const rank = computed(() => props.rank);
 const team = computed(() => props.team);
 
+const showOrganization = computed(() => rank.value.contest.options.enableOrganization);
+
+// Match the organization column width calculation used by the main table.
+const ORGANIZATION_LOGO_WIDTH_REM = 2.5;
+
+const organizationWidth = computed(() => {
+  const nameLength = team.value.organization?.name.getOrDefault(lang.value).length ?? 0;
+  const logoWidth = team.value.organization?.logo ? ORGANIZATION_LOGO_WIDTH_REM : 0;
+
+  return Math.min(32, Math.ceil(nameLength * 1.1 + logoWidth));
+});
+
 const teamNameLength = computed(() => {
   return team.value.name.getOrDefault(lang.value).length;
 });
@@ -33,6 +45,13 @@ const teamNameLength = computed(() => {
             style="width: 3rem;"
           >
             {{ t("standings.place") }}
+          </th>
+          <th
+            v-if="showOrganization"
+            class="title"
+            :style="{ width: `${organizationWidth}rem` }"
+          >
+            {{ t("standings.organization") }}
           </th>
           <th
             class="title"
@@ -108,7 +127,6 @@ const teamNameLength = computed(() => {
           :ix="0"
           :rank="rank"
           :team="team"
-          hide-organization
           readonly
         />
       </tbody>

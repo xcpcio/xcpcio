@@ -106,6 +106,12 @@ const tableRows = computed(() => {
 </script>
 
 <template>
+  <TeamRankTable
+    :rank="rank"
+    :team="team"
+    class="mb-6"
+  />
+
   <div
     flex w-full
     :class="hasPhoto ? 'flex-row gap-8' : 'justify-center'"
@@ -155,10 +161,4 @@ const tableRows = computed(() => {
       </div>
     </div>
   </div>
-
-  <TeamRankTable
-    :rank="rank"
-    :team="team"
-    class="mt-6"
-  />
 </template>
