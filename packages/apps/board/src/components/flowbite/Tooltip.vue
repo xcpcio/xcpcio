@@ -45,6 +45,16 @@ function destroyTooltip() {
 
 function showTooltip() {
   createTooltip();
+
+  const targetEl = tooltipTargetEl.value;
+  const triggerEl = tooltipTriggerEl.value;
+  if (targetEl && triggerEl) {
+    // The target is teleported to body, so it no longer inherits the font from
+    // the table/card that owns the trigger. Keep the original look by copying
+    // the trigger's computed font before showing it.
+    targetEl.style.fontFamily = getComputedStyle(triggerEl).fontFamily;
+  }
+
   tooltip?.show();
 }
 
