@@ -77,6 +77,7 @@ declare module 'vue' {
     TeamPlaceChart: typeof import('./components/board/TeamPlaceChart.vue')['default']
     TeamProblemBlock: typeof import('./components/board/TeamProblemBlock.vue')['default']
     TeamProblemStats: typeof import('./components/board/TeamProblemStats.vue')['default']
+    TeamRankTable: typeof import('./components/board/TeamRankTable.vue')['default']
     TeamStreams: typeof import('./components/board/TeamStreams.vue')['default']
     TeamUI: typeof import('./components/board/TeamUI.vue')['default']
     TheCheckbox: typeof import('./components/common/TheCheckbox.vue')['default']

@@ -11,6 +11,7 @@ const props = defineProps<{
   giantsType?: GiantsType;
   hideOrganization?: boolean;
   isCompactLayout?: boolean;
+  readonly?: boolean;
 }>();
 
 const el = ref(null);
@@ -18,11 +19,19 @@ const isVisible = useElementVisibility(el);
 
 const hiddenTeamModal = ref(true);
 function onClickTeamModal() {
+  if (props.readonly) {
+    return;
+  }
+
   hiddenTeamModal.value = false;
 }
 
 const hiddenOrgModal = ref(true);
 function onClickOrgModal() {
+  if (props.readonly) {
+    return;
+  }
+
   hiddenOrgModal.value = false;
 }
 
@@ -134,8 +143,8 @@ function isRenderByVisible() {
         </div>
         <div
           flex-1
-          cursor-pointer
           line-clamp-2
+          :class="props.readonly ? '' : 'cursor-pointer'"
           @click="onClickOrgModal"
         >
           {{ team.organization?.name.getOrDefault(lang) }}
@@ -155,8 +164,7 @@ function isRenderByVisible() {
       />
       <div
         flex flex-col items-center justify-center
-        cursor-pointer
-        :class="bigBadge ? 'pl-10' : ''"
+        :class="[bigBadge ? 'pl-10' : '', props.readonly ? '' : 'cursor-pointer']"
         @click="onClickTeamModal"
       >
         <div flex items-center>
@@ -172,7 +180,8 @@ function isRenderByVisible() {
 
         <div
           v-if="props.isCompactLayout && showOrganization && team.organization"
-          class="team-org-line mt-0.5 flex cursor-pointer items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
+          class="team-org-line mt-0.5 flex items-center justify-center gap-1 text-[10px] leading-tight opacity-70"
+          :class="props.readonly ? '' : 'cursor-pointer'"
           @click.stop="onClickOrgModal"
         >
           <span
