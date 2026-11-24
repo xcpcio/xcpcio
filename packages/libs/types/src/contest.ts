@@ -76,6 +76,7 @@ export interface SocialMedia {
 export interface Contest {
   contest_name: Text;
   description?: Text;
+  location?: Text;
   og_image?: Image;
 
   start_time: number | DateTimeISO8601String;
