@@ -104,25 +104,27 @@ onBeforeUnmount(() => {
       <slot />
     </div>
 
-    <div
-      ref="tooltipTargetEl"
-      role="tooltip"
-      class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
-      z-99999
-      rounded
-      text-base text-white font-medium
-      bg-gray-900 dark:bg-gray-700
-    >
-      <div>
-        <slot
-          name="popper"
+    <Teleport to="body">
+      <div
+        ref="tooltipTargetEl"
+        role="tooltip"
+        class="tooltip inline-block absolute invisible px-3 py-2 transition-opacity duration-300 shadow-sm opacity-0"
+        z-99999
+        rounded
+        text-base text-white font-medium
+        bg-gray-900 dark:bg-gray-700
+      >
+        <div>
+          <slot
+            name="popper"
+          />
+        </div>
+
+        <div
+          class="tooltip-arrow"
+          data-popper-arrow
         />
       </div>
-
-      <div
-        class="tooltip-arrow"
-        data-popper-arrow
-      />
-    </div>
+    </Teleport>
   </div>
 </template>
