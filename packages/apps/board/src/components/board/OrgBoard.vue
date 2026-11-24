@@ -81,7 +81,7 @@ const maxTeamLength = computed(() => {
               </div>
 
               <template #popper>
-                <div>
+                <div class="text-center">
                   number of submits on the
                   <br>
                   all solved problems / number
@@ -101,7 +101,7 @@ const maxTeamLength = computed(() => {
               </div>
 
               <template #popper>
-                <div>
+                <div class="text-center">
                   "average hardness".
                   <br>
                   Problem, solved by N teams out of M,
