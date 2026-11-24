@@ -298,4 +298,16 @@ describe("contest", () => {
 
     expect(JSON.stringify(contest)).toMatchSnapshot();
   });
+
+  it("keeps the contest location", () => {
+    const contest = createContest({
+      contest_name: "Test Contest",
+      location: "Nanjing University",
+      start_time: 0,
+      end_time: 0,
+      penalty: 1200,
+    });
+
+    expect(contest.location?.getOrDefault("en")).toBe("Nanjing University");
+  });
 });
