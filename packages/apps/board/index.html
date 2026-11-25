@@ -124,8 +124,14 @@
         } catch (e) {}
         base = normalizeBase(base);
 
+        var pageType = "";
+        try {
+          pageType = (window.RUNTIME_CONFIG && window.RUNTIME_CONFIG.pageType) || "";
+        } catch (e) {}
+
         var path = location.pathname.replace(/\/+$/, "") || "/";
-        var content = path === base ? "width=device-width, initial-scale=1, viewport-fit=cover" : "width=980";
+        var isIndexPage = path === base || pageType === "index";
+        var content = isIndexPage ? "width=device-width, initial-scale=1, viewport-fit=cover" : "width=980";
 
         var meta = document.querySelector('meta[name="viewport"]');
         if (!meta) {

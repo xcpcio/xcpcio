@@ -8,6 +8,7 @@ export type RuntimeComponent = "board" | "resolver" | "balloon" | "countdown";
 
 export interface RuntimeConfig {
   pageType?: RuntimePageType;
+  indexPath?: string;
   component?: RuntimeComponent;
   dataSource?: string;
   baseUrl?: string;
