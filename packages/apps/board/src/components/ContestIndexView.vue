@@ -174,7 +174,7 @@ const isUnknownScope = computed(() => {
         <template v-else>
           <div
             v-if="isDirectoryPage"
-            class="flex w-full max-w-[62rem] items-baseline justify-between gap-3 px-4 text-sm op60 lg:mt-9 lg:max-w-[60rem] lg:px-0"
+            class="index-breadcrumb-row flex w-full max-w-[62rem] items-baseline justify-between gap-3 px-4 text-sm op60 lg:max-w-[60rem] lg:pl-0"
           >
             <nav
               class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 gap-y-1"
@@ -254,3 +254,18 @@ const isUnknownScope = computed(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+@media (min-width: 1024px) {
+  /*
+   * Level the breadcrumb row with the NavBar without letting the
+   * right-aligned contest count run into the nav icon group.
+   * The row's right edge sits at 50vw + 30rem; the icon group (5 × 1.5rem
+   * icons + 4 × 1.2rem gaps + 1rem nav padding) occupies 13.3rem on the
+   * right. Pad by the overlap plus a 1.5rem gap so they never collide.
+   */
+  .index-breadcrumb-row {
+    padding-right: max(0px, calc(44.8rem - 50vw));
+  }
+}
+</style>
