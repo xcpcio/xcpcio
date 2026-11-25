@@ -154,6 +154,13 @@ describe("index page kind", () => {
     expect(isContestIndexPath("/ccpc/12th/changchun")).toBe(false);
   });
 
+  it("only treats the root as an index page in query routing mode", () => {
+    expect(isContestIndexPath("/", { routingMode: "query" })).toBe(true);
+    expect(isContestIndexPath("/ccpc", { routingMode: "query", knownPaths: new Set(["/ccpc"]) })).toBe(false);
+    expect(isContestIndexPath("/ccpc", { routingMode: "query", injectedIndexPath: "/ccpc" })).toBe(false);
+    expect(isContestIndexPath("/ccpc", { routingMode: "query", fallbackPath: "/ccpc" })).toBe(false);
+  });
+
   it("only trusts the injected page type, not a stored config", () => {
     window.localStorage.setItem(
       "xcpcio-runtime-config",

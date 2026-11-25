@@ -15,6 +15,7 @@ import {
   markIndexPaths,
   normalizeIndexPath,
 } from "@board/composables/indexPage";
+import { getRoutingMode } from "@board/composables/routing";
 
 import { useFetch } from "@vueuse/core";
 import { createContestIndexList } from "@xcpcio/core";
@@ -32,6 +33,9 @@ const lang = computed(() => locale.value as unknown as Lang);
 
 const normalizedPrefix = computed(() => normalizeIndexPath(props.pathPrefix));
 const isDirectoryPage = computed(() => normalizedPrefix.value !== "/");
+// Directory routes only exist on board_server deployments; static deployments
+// expose the whole list at "/" and open boards through /board/?data-source=.
+const isQueryRouting = getRoutingMode() === "query";
 const displayLabel = computed(() => formatIndexPathLabel(normalizedPrefix.value));
 const breadcrumbs = computed(() => buildIndexBreadcrumbs(normalizedPrefix.value));
 
@@ -216,7 +220,7 @@ const isUnknownScope = computed(() => {
           </div>
 
           <IndexBrowseDrawer
-            v-if="childDirectories.length"
+            v-if="childDirectories.length && !isQueryRouting"
             class="mt-4 flex w-full max-w-[62rem] px-4 lg:max-w-[60rem] lg:px-0"
             :directories="childDirectories"
             :breadcrumbs="breadcrumbs"
