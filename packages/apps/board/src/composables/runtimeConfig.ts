@@ -75,8 +75,6 @@ export function getRuntimeConfig(): RuntimeConfig {
 
   return {
     pageType: config.pageType,
-    indexPath: config.indexPath,
-    routingMode: config.routingMode,
     component: config.component,
     dataSource: config.dataSource ?? window.DATA_SOURCE,
     baseUrl: injectedConfig.baseUrl ?? window.BASE_URL,

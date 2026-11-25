@@ -20,10 +20,9 @@ describe("runtimeConfigHints", () => {
 
     const labels = result!.options.map(o => o.label);
     expect(labels).toContain("pageType");
-    expect(labels).toContain("routingMode");
     expect(labels).toContain("dataSource");
     expect(labels).toContain("refetchInterval");
-    expect(labels).toHaveLength(10);
+    expect(labels).toHaveLength(9);
     // `pag` matches pageType, so normal filtering applies
     expect(result!.filter).toBe(true);
     // replace the typed prefix, keeping the opening quote
@@ -34,7 +33,7 @@ describe("runtimeConfigHints", () => {
     const doc = `{\n  "bo`;
     const result = hints(doc);
     expect(result).not.toBeNull();
-    expect(result!.options.map(o => o.label)).toHaveLength(10);
+    expect(result!.options.map(o => o.label)).toHaveLength(9);
     // no schema key matches `bo` — show them all without filtering
     expect(result!.filter).toBe(false);
     expect(result!.from).toBe(doc.indexOf("bo"));
@@ -44,7 +43,7 @@ describe("runtimeConfigHints", () => {
     const doc = `{\n  ""`;
     const result = hints(doc, doc.length - 1);
     expect(result).not.toBeNull();
-    expect(result!.options.map(o => o.label)).toHaveLength(10);
+    expect(result!.options.map(o => o.label)).toHaveLength(9);
     expect(result!.from).toBe(doc.length - 1);
   });
 

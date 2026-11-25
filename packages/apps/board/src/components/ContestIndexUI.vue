@@ -3,7 +3,6 @@ import type { ContestIndex } from "@xcpcio/core";
 import type { Lang } from "@xcpcio/types";
 
 import { getLogoFromPreset } from "@board/composables/logo";
-import { resolveBoardRoute } from "@board/composables/routing";
 import { useElementVisibility } from "@vueuse/core";
 
 import { getImageSource } from "@xcpcio/core";
@@ -17,7 +16,6 @@ const lang = computed(() => locale.value as unknown as Lang);
 
 const contest = computed(() => props.data.contest);
 const contestName = computed(() => contest.value.name.getOrDefault(lang.value));
-const boardRoute = computed(() => resolveBoardRoute(props.data.boardLink));
 const now = useNow();
 const isDesktopLayout = useMediaQuery("(min-width: 1024px)");
 
@@ -77,7 +75,7 @@ const logo = computed(() => {
         v-if="isVisible"
       >
         <RouterLink
-          :to="boardRoute"
+          :to="props.data.boardLink"
           class="flex w-full flex-col justify-center border-b-2 border-gray-200 pb-2 font-serif text-inherit dark:border-gray-700"
         >
           <div

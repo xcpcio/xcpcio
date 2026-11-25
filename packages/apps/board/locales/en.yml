@@ -22,16 +22,11 @@ common:
   copy_failed: Copy Failed
   clipboard_not_supported: Clipboard is not supported
   loading: Loading
-  close: Close
   colon: ":"
 
 index:
   start: StartTime
   duration: Duration
-  all_contests: All Contests
-  browse: Browse
-  sections: Sections
-  contest_count: "{count} contests"
 
 problem_statistics:
   accepted_teams: Accepted Teams
