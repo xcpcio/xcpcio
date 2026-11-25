@@ -1,7 +1,9 @@
+import type { RuntimeRoutingMode } from "@board/types";
 import type { ContestIndexList } from "@xcpcio/core";
 
 import { computed, reactive, ref, watch } from "vue";
 import { useRoute } from "vue-router";
+import { getRoutingMode } from "./routing";
 import { getRuntimeConfig } from "./runtimeConfig";
 
 const DISPLAY_NAME_ACRONYMS: Record<string, string> = {
@@ -24,6 +26,7 @@ export interface IndexChildDirectory {
 }
 
 export interface ContestIndexPathOptions {
+  routingMode?: RuntimeRoutingMode;
   injectedIndexPath?: string;
   knownPaths?: ReadonlySet<string>;
   fallbackPath?: string | null;
@@ -197,6 +200,7 @@ export function isContestIndexPath(
   options: ContestIndexPathOptions = {},
 ): boolean {
   const {
+    routingMode = "path",
     injectedIndexPath,
     knownPaths = knownIndexPaths,
     fallbackPath = fallbackIndexPath.value,
@@ -206,6 +210,9 @@ export function isContestIndexPath(
   const normalized = normalizeIndexPath(path);
   if (normalized === "/") {
     return true;
+  }
+  if (routingMode === "query") {
+    return false;
   }
   if (hasDataSource) {
     return false;
@@ -230,6 +237,7 @@ export function useIsContestIndexPage() {
     }
 
     return isContestIndexPath(route.path, {
+      routingMode: getRoutingMode(),
       injectedIndexPath: getInjectedIndexPath(),
       hasDataSource: Boolean(getRuntimeConfig().dataSource),
     });
