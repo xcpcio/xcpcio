@@ -8,20 +8,6 @@ export interface BoardData {
   submissions: Submissions;
 }
 
-export class BoardDataError extends Error {
-  readonly status: number;
-
-  constructor(status: number, statusText: string) {
-    super(`fetch data failed. [status=${status}] [statusText=${statusText}]`);
-    this.name = "BoardDataError";
-    this.status = status;
-  }
-}
-
-export function isBoardDataNotFound(error: unknown): boolean {
-  return error instanceof BoardDataError && error.status === 404;
-}
-
 function isDataItem(obj: unknown): obj is { url: string } {
   return obj !== null && typeof obj === "object" && "url" in obj;
 }
@@ -90,7 +76,7 @@ async function fetch_board_data(target: string): Promise<BoardData> {
 
   const { status, statusText } = res[0];
   if (status >= 400 || status < 200) {
-    throw new BoardDataError(status, statusText);
+    throw new Error(`fetch data failed. [status=${status}] [statusText=${statusText}]`);
   }
 
   const jsonData = await Promise.all(res.map(r => r.json()));
@@ -110,7 +96,7 @@ async function fetch_board_data(target: string): Promise<BoardData> {
 }
 
 export function useQueryBoardData(target: string, queryOnce = false) {
-  const maxRetry = 3;
+  const retry = 3;
   const staleTime = 30_000;
   let refetchInterval: number | false = getRuntimeConfig().refetchInterval ?? 15_000;
 
@@ -121,13 +107,7 @@ export function useQueryBoardData(target: string, queryOnce = false) {
   return useQuery({
     queryKey: [target],
     queryFn: () => fetch_board_data(target),
-    retry: (failureCount, error) => {
-      if (error instanceof BoardDataError && error.status < 500) {
-        return false;
-      }
-
-      return failureCount < maxRetry;
-    },
+    retry,
     staleTime,
     refetchInterval,
   });

@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { useIsContestIndexPage } from "@board/composables/indexPage";
-
 const props = defineProps<{
   width?: string;
 }>();
 
 const { t } = useI18n();
 const { y: scroll } = useWindowScroll();
-const isIndexPage = useIsContestIndexPage();
+const route = useRoute();
+const isIndexPage = computed(() => route.path === "/");
 
 function toTop() {
   window.scrollTo({
