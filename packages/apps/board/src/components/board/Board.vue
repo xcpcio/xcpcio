@@ -4,6 +4,8 @@ import type { Contest, Submissions, Teams } from "@xcpcio/core";
 import type { Contest as IContest, Submissions as ISubmissions, Teams as ITeams, Lang } from "@xcpcio/types";
 
 import AsyncLoading from "@board/components/common/AsyncLoading.vue";
+import { setFallbackIndexPath } from "@board/composables/indexPage";
+import { isBoardDataNotFound } from "@board/composables/useQueryBoardData";
 
 import { createContest, createSubmissions, createTeams, getImageSource, getTimeDiff, Rank, RankOptions } from "@xcpcio/core";
 import { ContestState } from "@xcpcio/types";
@@ -12,9 +14,11 @@ import cloneDeep from "lodash/cloneDeep";
 
 const props = defineProps<{
   dataSourceUrl?: string;
+  allowIndexFallback?: boolean;
 }>();
 
 const route = useRoute();
+const boardPath = props.dataSourceUrl ?? route.path;
 // Keep the server-rendered title until the contest data resolves instead of
 // flashing a generic title during loading.
 const title = useTitle();
@@ -112,7 +116,18 @@ function updateContestName() {
   title.value = `${contestName.value} - XCPCIO`;
 }
 
-const { data, isError, error, refetch } = useQueryBoardData(props.dataSourceUrl ?? route.path);
+const { data, isError, error, refetch } = useQueryBoardData(boardPath);
+
+watch([isError, error], () => {
+  if (!props.allowIndexFallback || props.dataSourceUrl) {
+    return;
+  }
+
+  if (isBoardDataNotFound(error.value)) {
+    setFallbackIndexPath(boardPath);
+  }
+}, { immediate: true });
+
 watch(data, async () => {
   if (data.value === null || data.value === undefined) {
     return;
