@@ -10,6 +10,7 @@ export {}
 declare global {
   const APP_VERSION: typeof import('./composables/constant').APP_VERSION
   const BALLOON_TITLE_SUFFIX: typeof import('./composables/constant').BALLOON_TITLE_SUFFIX
+  const BoardDataError: typeof import('./composables/useQueryBoardData').BoardDataError
   const CDN_HOST: typeof import('./composables/constant').CDN_HOST
   const COUNTDOWN_TITLE_SUFFIX: typeof import('./composables/constant').COUNTDOWN_TITLE_SUFFIX
   const DATA_HOST: typeof import('./composables/constant').DATA_HOST
@@ -26,9 +27,12 @@ declare global {
   const addMarks: typeof import('./composables/codemirror').addMarks
   const asyncComputed: typeof import('@vueuse/core').asyncComputed
   const autoResetRef: typeof import('@vueuse/core').autoResetRef
+  const buildIndexBreadcrumbs: typeof import('./composables/indexPage').buildIndexBreadcrumbs
   const buildLocaleUrl: typeof import('./composables/locale').buildLocaleUrl
   const buildRankForGroup: typeof import('./composables/standings-image').buildRankForGroup
+  const clearFallbackIndexPath: typeof import('./composables/indexPage').clearFallbackIndexPath
   const clearStoredRuntimeConfig: typeof import('./composables/runtimeConfig').clearStoredRuntimeConfig
+  const collectIndexDirectoryPaths: typeof import('./composables/indexPage').collectIndexDirectoryPaths
   const computeSchemaAnnotations: typeof import('./composables/jsonSchemaCompletion').computeSchemaAnnotations
   const computed: typeof import('vue').computed
   const computedAsync: typeof import('@vueuse/core').computedAsync
@@ -58,12 +62,18 @@ declare global {
   const eagerComputed: typeof import('@vueuse/core').eagerComputed
   const effectScope: typeof import('vue').effectScope
   const extendRef: typeof import('@vueuse/core').extendRef
+  const filterContestIndexByPrefix: typeof import('./composables/indexPage').filterContestIndexByPrefix
   const filterMarks: typeof import('./composables/codemirror').filterMarks
   const findLocaleForPath: typeof import('./composables/locale').findLocaleForPath
+  const formatIndexPathLabel: typeof import('./composables/indexPage').formatIndexPathLabel
+  const formatIndexSegment: typeof import('./composables/indexPage').formatIndexSegment
   const getAwardKey: typeof import('./composables/standings').getAwardKey
   const getCurrentInstance: typeof import('vue').getCurrentInstance
   const getCurrentScope: typeof import('vue').getCurrentScope
   const getCurrentWatcher: typeof import('vue').getCurrentWatcher
+  const getIndexChildDirectories: typeof import('./composables/indexPage').getIndexChildDirectories
+  const getIndexSiblingDirectories: typeof import('./composables/indexPage').getIndexSiblingDirectories
+  const getInjectedIndexPath: typeof import('./composables/indexPage').getInjectedIndexPath
   const getLocalStorageKeyForFilterOrganizations: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterOrganizations
   const getLocalStorageKeyForFilterTeamIds: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterTeamIds
   const getLocalStorageKeyForFilterTeams: typeof import('./composables/useLocalStorage').getLocalStorageKeyForFilterTeams
@@ -73,6 +83,7 @@ declare global {
   const getProblemColorClass: typeof import('./composables/standings').getProblemColorClass
   const getProblemShow: typeof import('./composables/standings').getProblemShow
   const getProblemSign: typeof import('./composables/standings').getProblemSign
+  const getRoutingMode: typeof import('./composables/routing').getRoutingMode
   const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
   const getRuntimeConfig: typeof import('./composables/runtimeConfig').getRuntimeConfig
   const getStandClassName: typeof import('./composables/standings').getStandClassName
@@ -86,16 +97,21 @@ declare global {
   const inject: typeof import('vue').inject
   const injectHead: typeof import('@unhead/vue').injectHead
   const injectLocal: typeof import('@vueuse/core').injectLocal
+  const isBoardDataNotFound: typeof import('./composables/useQueryBoardData').isBoardDataNotFound
+  const isContestIndexPath: typeof import('./composables/indexPage').isContestIndexPath
   const isDark: typeof import('./composables/dark').isDark
   const isDefined: typeof import('@vueuse/core').isDefined
   const isProxy: typeof import('vue').isProxy
+  const isQueryRoutingMode: typeof import('./composables/routing').isQueryRoutingMode
   const isReactive: typeof import('vue').isReactive
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
   const isShallow: typeof import('vue').isShallow
   const makeDestructurable: typeof import('@vueuse/core').makeDestructurable
+  const markIndexPaths: typeof import('./composables/indexPage').markIndexPaths
   const markRaw: typeof import('vue').markRaw
   const nextTick: typeof import('vue').nextTick
+  const normalizeIndexPath: typeof import('./composables/indexPage').normalizeIndexPath
   const onActivated: typeof import('vue').onActivated
   const onBeforeMount: typeof import('vue').onBeforeMount
   const onBeforeRouteLeave: typeof import('vue-router').onBeforeRouteLeave
@@ -135,13 +151,18 @@ declare global {
   const refManualReset: typeof import('@vueuse/core').refManualReset
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
+  const resetIndexPageState: typeof import('./composables/indexPage').resetIndexPageState
+  const resolveBoardRoute: typeof import('./composables/routing').resolveBoardRoute
   const resolveComponent: typeof import('vue').resolveComponent
+  const resolveComponentRoute: typeof import('./composables/routing').resolveComponentRoute
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
+  const setFallbackIndexPath: typeof import('./composables/indexPage').setFallbackIndexPath
   const setStoredRuntimeConfig: typeof import('./composables/runtimeConfig').setStoredRuntimeConfig
   const shallowReactive: typeof import('vue').shallowReactive
   const shallowReadonly: typeof import('vue').shallowReadonly
   const shallowRef: typeof import('vue').shallowRef
+  const splitIndexPath: typeof import('./composables/indexPage').splitIndexPath
   const syncRef: typeof import('@vueuse/core').syncRef
   const syncRefs: typeof import('@vueuse/core').syncRefs
   const templateRef: typeof import('@vueuse/core').templateRef
@@ -192,6 +213,7 @@ declare global {
   const useCodeMirror: typeof import('./composables/codemirror').useCodeMirror
   const useColorMode: typeof import('@vueuse/core').useColorMode
   const useConfirmDialog: typeof import('@vueuse/core').useConfirmDialog
+  const useContestIndexFallbackCleanup: typeof import('./composables/indexPage').useContestIndexFallbackCleanup
   const useCountdown: typeof import('@vueuse/core').useCountdown
   const useCounter: typeof import('@vueuse/core').useCounter
   const useCssModule: typeof import('vue').useCssModule
@@ -244,6 +266,7 @@ declare global {
   const useIntersectionObserver: typeof import('@vueuse/core').useIntersectionObserver
   const useInterval: typeof import('@vueuse/core').useInterval
   const useIntervalFn: typeof import('@vueuse/core').useIntervalFn
+  const useIsContestIndexPage: typeof import('./composables/indexPage').useIsContestIndexPage
   const useKeyModifier: typeof import('@vueuse/core').useKeyModifier
   const useLastChanged: typeof import('@vueuse/core').useLastChanged
   const useLink: typeof import('vue-router/auto').useLink
@@ -382,6 +405,9 @@ declare global {
   export type { Component, Slot, Slots, ComponentPublicInstance, ComputedRef, DirectiveBinding, ExtractDefaultPropTypes, ExtractPropTypes, ExtractPublicPropTypes, InjectionKey, PropType, Ref, ShallowRef, MaybeRef, MaybeRefOrGetter, VNode, WritableComputedRef } from 'vue'
   import('vue')
   // @ts-ignore
+  export type { IndexBreadcrumb, IndexChildDirectory, ContestIndexPathOptions } from './composables/indexPage'
+  import('./composables/indexPage')
+  // @ts-ignore
   export type { JsonSchema, SchemaAnnotation } from './composables/jsonSchemaCompletion'
   import('./composables/jsonSchemaCompletion')
   // @ts-ignore
@@ -397,7 +423,7 @@ declare global {
   export type { LastBlockDisplayType, AnimatedSubmissionBlockItem } from './composables/type'
   import('./composables/type')
   // @ts-ignore
-  export type { BoardData } from './composables/useQueryBoardData'
+  export type { BoardDataError, BoardData } from './composables/useQueryBoardData'
   import('./composables/useQueryBoardData')
   // @ts-ignore
   export type { RouteQueryValueRaw, RouteHashValueRaw, ReactiveRouteOptions, ReactiveRouteOptionsWithTransform } from './composables/useRouteQueryWithoutParam'
@@ -411,6 +437,7 @@ declare module 'vue' {
   interface ComponentCustomProperties {
     readonly APP_VERSION: UnwrapRef<typeof import('./composables/constant')['APP_VERSION']>
     readonly BALLOON_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['BALLOON_TITLE_SUFFIX']>
+    readonly BoardDataError: UnwrapRef<typeof import('./composables/useQueryBoardData')['BoardDataError']>
     readonly CDN_HOST: UnwrapRef<typeof import('./composables/constant')['CDN_HOST']>
     readonly COUNTDOWN_TITLE_SUFFIX: UnwrapRef<typeof import('./composables/constant')['COUNTDOWN_TITLE_SUFFIX']>
     readonly DATA_HOST: UnwrapRef<typeof import('./composables/constant')['DATA_HOST']>
@@ -427,9 +454,12 @@ declare module 'vue' {
     readonly addMarks: UnwrapRef<typeof import('./composables/codemirror')['addMarks']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly buildIndexBreadcrumbs: UnwrapRef<typeof import('./composables/indexPage')['buildIndexBreadcrumbs']>
     readonly buildLocaleUrl: UnwrapRef<typeof import('./composables/locale')['buildLocaleUrl']>
     readonly buildRankForGroup: UnwrapRef<typeof import('./composables/standings-image')['buildRankForGroup']>
+    readonly clearFallbackIndexPath: UnwrapRef<typeof import('./composables/indexPage')['clearFallbackIndexPath']>
     readonly clearStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['clearStoredRuntimeConfig']>
+    readonly collectIndexDirectoryPaths: UnwrapRef<typeof import('./composables/indexPage')['collectIndexDirectoryPaths']>
     readonly computeSchemaAnnotations: UnwrapRef<typeof import('./composables/jsonSchemaCompletion')['computeSchemaAnnotations']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -459,12 +489,18 @@ declare module 'vue' {
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly filterContestIndexByPrefix: UnwrapRef<typeof import('./composables/indexPage')['filterContestIndexByPrefix']>
     readonly filterMarks: UnwrapRef<typeof import('./composables/codemirror')['filterMarks']>
     readonly findLocaleForPath: UnwrapRef<typeof import('./composables/locale')['findLocaleForPath']>
+    readonly formatIndexPathLabel: UnwrapRef<typeof import('./composables/indexPage')['formatIndexPathLabel']>
+    readonly formatIndexSegment: UnwrapRef<typeof import('./composables/indexPage')['formatIndexSegment']>
     readonly getAwardKey: UnwrapRef<typeof import('./composables/standings')['getAwardKey']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly getCurrentWatcher: UnwrapRef<typeof import('vue')['getCurrentWatcher']>
+    readonly getIndexChildDirectories: UnwrapRef<typeof import('./composables/indexPage')['getIndexChildDirectories']>
+    readonly getIndexSiblingDirectories: UnwrapRef<typeof import('./composables/indexPage')['getIndexSiblingDirectories']>
+    readonly getInjectedIndexPath: UnwrapRef<typeof import('./composables/indexPage')['getInjectedIndexPath']>
     readonly getLocalStorageKeyForFilterOrganizations: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterOrganizations']>
     readonly getLocalStorageKeyForFilterTeamIds: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeamIds']>
     readonly getLocalStorageKeyForFilterTeams: UnwrapRef<typeof import('./composables/useLocalStorage')['getLocalStorageKeyForFilterTeams']>
@@ -474,6 +510,7 @@ declare module 'vue' {
     readonly getProblemColorClass: UnwrapRef<typeof import('./composables/standings')['getProblemColorClass']>
     readonly getProblemShow: UnwrapRef<typeof import('./composables/standings')['getProblemShow']>
     readonly getProblemSign: UnwrapRef<typeof import('./composables/standings')['getProblemSign']>
+    readonly getRoutingMode: UnwrapRef<typeof import('./composables/routing')['getRoutingMode']>
     readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>
     readonly getRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeConfig']>
     readonly getStandClassName: UnwrapRef<typeof import('./composables/standings')['getStandClassName']>
@@ -487,16 +524,21 @@ declare module 'vue' {
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly injectHead: UnwrapRef<typeof import('@unhead/vue')['injectHead']>
     readonly injectLocal: UnwrapRef<typeof import('@vueuse/core')['injectLocal']>
+    readonly isBoardDataNotFound: UnwrapRef<typeof import('./composables/useQueryBoardData')['isBoardDataNotFound']>
+    readonly isContestIndexPath: UnwrapRef<typeof import('./composables/indexPage')['isContestIndexPath']>
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
+    readonly isQueryRoutingMode: UnwrapRef<typeof import('./composables/routing')['isQueryRoutingMode']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly isShallow: UnwrapRef<typeof import('vue')['isShallow']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
+    readonly markIndexPaths: UnwrapRef<typeof import('./composables/indexPage')['markIndexPaths']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
+    readonly normalizeIndexPath: UnwrapRef<typeof import('./composables/indexPage')['normalizeIndexPath']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
     readonly onBeforeMount: UnwrapRef<typeof import('vue')['onBeforeMount']>
     readonly onBeforeRouteLeave: UnwrapRef<typeof import('vue-router')['onBeforeRouteLeave']>
@@ -536,11 +578,16 @@ declare module 'vue' {
     readonly refManualReset: UnwrapRef<typeof import('@vueuse/core')['refManualReset']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly resetIndexPageState: UnwrapRef<typeof import('./composables/indexPage')['resetIndexPageState']>
+    readonly resolveBoardRoute: UnwrapRef<typeof import('./composables/routing')['resolveBoardRoute']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly resolveComponentRoute: UnwrapRef<typeof import('./composables/routing')['resolveComponentRoute']>
+    readonly setFallbackIndexPath: UnwrapRef<typeof import('./composables/indexPage')['setFallbackIndexPath']>
     readonly setStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['setStoredRuntimeConfig']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>
     readonly shallowReadonly: UnwrapRef<typeof import('vue')['shallowReadonly']>
     readonly shallowRef: UnwrapRef<typeof import('vue')['shallowRef']>
+    readonly splitIndexPath: UnwrapRef<typeof import('./composables/indexPage')['splitIndexPath']>
     readonly syncRef: UnwrapRef<typeof import('@vueuse/core')['syncRef']>
     readonly syncRefs: UnwrapRef<typeof import('@vueuse/core')['syncRefs']>
     readonly templateRef: UnwrapRef<typeof import('@vueuse/core')['templateRef']>
@@ -591,6 +638,7 @@ declare module 'vue' {
     readonly useCodeMirror: UnwrapRef<typeof import('./composables/codemirror')['useCodeMirror']>
     readonly useColorMode: UnwrapRef<typeof import('@vueuse/core')['useColorMode']>
     readonly useConfirmDialog: UnwrapRef<typeof import('@vueuse/core')['useConfirmDialog']>
+    readonly useContestIndexFallbackCleanup: UnwrapRef<typeof import('./composables/indexPage')['useContestIndexFallbackCleanup']>
     readonly useCountdown: UnwrapRef<typeof import('@vueuse/core')['useCountdown']>
     readonly useCounter: UnwrapRef<typeof import('@vueuse/core')['useCounter']>
     readonly useCssModule: UnwrapRef<typeof import('vue')['useCssModule']>
@@ -643,6 +691,7 @@ declare module 'vue' {
     readonly useIntersectionObserver: UnwrapRef<typeof import('@vueuse/core')['useIntersectionObserver']>
     readonly useInterval: UnwrapRef<typeof import('@vueuse/core')['useInterval']>
     readonly useIntervalFn: UnwrapRef<typeof import('@vueuse/core')['useIntervalFn']>
+    readonly useIsContestIndexPage: UnwrapRef<typeof import('./composables/indexPage')['useIsContestIndexPage']>
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router/auto')['useLink']>

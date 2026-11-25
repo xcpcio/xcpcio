@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useContestIndexFallbackCleanup } from "@board/composables/indexPage";
 import { useViewportMeta } from "@board/composables/viewport";
 
 // https://github.com/vueuse/head
@@ -14,6 +15,7 @@ useHead({
 });
 
 useViewportMeta();
+useContestIndexFallbackCleanup();
 </script>
 
 <template>

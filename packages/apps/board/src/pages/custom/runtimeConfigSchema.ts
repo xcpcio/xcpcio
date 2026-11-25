@@ -1,5 +1,5 @@
 import type { JsonSchema, SchemaAnnotation } from "@board/composables/jsonSchemaCompletion";
-import type { RuntimeComponent, RuntimePageType } from "@board/types";
+import type { RuntimeComponent, RuntimePageType, RuntimeRoutingMode } from "@board/types";
 import type { CompletionSource } from "@codemirror/autocomplete";
 import type { EditorState } from "@codemirror/state";
 import { computeSchemaAnnotations, createJsonSchemaCompletionSource } from "@board/composables/jsonSchemaCompletion";
@@ -10,6 +10,10 @@ export const runtimeConfigSchema: JsonSchema = {
     pageType: {
       type: "string",
       enums: ["index", "contest", "custom"] satisfies RuntimePageType[],
+    },
+    routingMode: {
+      type: "string",
+      enums: ["path", "query"] satisfies RuntimeRoutingMode[],
     },
     component: {
       type: "string",
