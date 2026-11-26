@@ -240,7 +240,6 @@ class ContestOptions(BaseModel):
 class Contest(BaseModel):
     contest_name: Text = ""
     description: Optional[Text] = None
-    location: Optional[Text] = None
     og_image: Optional[Image] = None
 
     start_time: Union[int, DateTimeISO8601String] = 0

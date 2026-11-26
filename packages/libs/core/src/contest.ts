@@ -17,7 +17,6 @@ import { createDayJS, dayjs, getTimeDiff } from "./utils";
 export class Contest {
   id: string = "";
   name: I18nText;
-  location?: I18nText;
 
   startTime: dayjs.Dayjs;
   endTime: dayjs.Dayjs;
@@ -213,9 +212,6 @@ export function createContest(contestJSON: IContest): Contest {
   const c = new Contest();
 
   c.name = I18nText.fromIText(contestJSON.contest_name);
-  if (contestJSON.location !== undefined && contestJSON.location !== null) {
-    c.location = I18nText.fromIText(contestJSON.location);
-  }
 
   c.startTime = createDayJS(contestJSON.start_time);
   c.endTime = createDayJS(contestJSON.end_time);

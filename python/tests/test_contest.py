@@ -10,7 +10,6 @@ class TestContest:
         contest = Contest()
 
         assert contest.contest_name == ""
-        assert contest.location is None
         assert contest.start_time == 0
         assert contest.end_time == 0
         assert contest.frozen_time == 60 * 60  # 1 hour
@@ -39,7 +38,6 @@ class TestContest:
 
         contest = Contest(
             contest_name="ICPC World Finals 2024",
-            location="Nanjing University",
             start_time=1234567890,
             end_time=1234567890 + 5 * 60 * 60,  # 5 hours later
             frozen_time=60 * 60,  # 1 hour before end
@@ -51,7 +49,6 @@ class TestContest:
         )
 
         assert contest.contest_name == "ICPC World Finals 2024"
-        assert contest.location == "Nanjing University"
         assert contest.start_time == 1234567890
         assert contest.end_time == 1234567890 + 5 * 60 * 60
         assert len(contest.problem_id) == 12
@@ -64,7 +61,6 @@ class TestContest:
         """Test Contest serialization and deserialization"""
         contest = Contest(
             contest_name="Test Contest",
-            location="Nanjing University",
             start_time=1000000000,
             end_time=1000000000 + 60 * 60 * 5,
             problem_id=["A", "B", "C", "D", "E"],
@@ -73,7 +69,6 @@ class TestContest:
         # Test model_dump
         contest_dict = contest.model_dump()
         assert contest_dict["contest_name"] == "Test Contest"
-        assert contest_dict["location"] == "Nanjing University"
         assert contest_dict["start_time"] == 1000000000
 
         # Test JSON round-trip
