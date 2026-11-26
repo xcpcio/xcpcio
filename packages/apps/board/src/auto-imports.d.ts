@@ -83,6 +83,7 @@ declare global {
   const getProblemColorClass: typeof import('./composables/standings').getProblemColorClass
   const getProblemShow: typeof import('./composables/standings').getProblemShow
   const getProblemSign: typeof import('./composables/standings').getProblemSign
+  const getRoutingMode: typeof import('./composables/routing').getRoutingMode
   const getRuntimeBaseUrl: typeof import('./composables/runtimeConfig').getRuntimeBaseUrl
   const getRuntimeConfig: typeof import('./composables/runtimeConfig').getRuntimeConfig
   const getStandClassName: typeof import('./composables/standings').getStandClassName
@@ -101,6 +102,7 @@ declare global {
   const isDark: typeof import('./composables/dark').isDark
   const isDefined: typeof import('@vueuse/core').isDefined
   const isProxy: typeof import('vue').isProxy
+  const isQueryRoutingMode: typeof import('./composables/routing').isQueryRoutingMode
   const isReactive: typeof import('vue').isReactive
   const isReadonly: typeof import('vue').isReadonly
   const isRef: typeof import('vue').isRef
@@ -150,7 +152,9 @@ declare global {
   const refThrottled: typeof import('@vueuse/core').refThrottled
   const refWithControl: typeof import('@vueuse/core').refWithControl
   const resetIndexPageState: typeof import('./composables/indexPage').resetIndexPageState
+  const resolveBoardRoute: typeof import('./composables/routing').resolveBoardRoute
   const resolveComponent: typeof import('vue').resolveComponent
+  const resolveComponentRoute: typeof import('./composables/routing').resolveComponentRoute
   const resolveRef: typeof import('@vueuse/core').resolveRef
   const resolveUnref: typeof import('@vueuse/core')['resolveUnref']
   const setFallbackIndexPath: typeof import('./composables/indexPage').setFallbackIndexPath
@@ -506,6 +510,7 @@ declare module 'vue' {
     readonly getProblemColorClass: UnwrapRef<typeof import('./composables/standings')['getProblemColorClass']>
     readonly getProblemShow: UnwrapRef<typeof import('./composables/standings')['getProblemShow']>
     readonly getProblemSign: UnwrapRef<typeof import('./composables/standings')['getProblemSign']>
+    readonly getRoutingMode: UnwrapRef<typeof import('./composables/routing')['getRoutingMode']>
     readonly getRuntimeBaseUrl: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeBaseUrl']>
     readonly getRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['getRuntimeConfig']>
     readonly getStandClassName: UnwrapRef<typeof import('./composables/standings')['getStandClassName']>
@@ -524,6 +529,7 @@ declare module 'vue' {
     readonly isDark: UnwrapRef<typeof import('./composables/dark')['isDark']>
     readonly isDefined: UnwrapRef<typeof import('@vueuse/core')['isDefined']>
     readonly isProxy: UnwrapRef<typeof import('vue')['isProxy']>
+    readonly isQueryRoutingMode: UnwrapRef<typeof import('./composables/routing')['isQueryRoutingMode']>
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
@@ -573,7 +579,9 @@ declare module 'vue' {
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
     readonly resetIndexPageState: UnwrapRef<typeof import('./composables/indexPage')['resetIndexPageState']>
+    readonly resolveBoardRoute: UnwrapRef<typeof import('./composables/routing')['resolveBoardRoute']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
+    readonly resolveComponentRoute: UnwrapRef<typeof import('./composables/routing')['resolveComponentRoute']>
     readonly setFallbackIndexPath: UnwrapRef<typeof import('./composables/indexPage')['setFallbackIndexPath']>
     readonly setStoredRuntimeConfig: UnwrapRef<typeof import('./composables/runtimeConfig')['setStoredRuntimeConfig']>
     readonly shallowReactive: UnwrapRef<typeof import('vue')['shallowReactive']>

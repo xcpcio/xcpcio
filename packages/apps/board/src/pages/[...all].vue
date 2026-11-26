@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { useIsContestIndexPage } from "@board/composables/indexPage";
+import { isQueryRoutingMode } from "@board/composables/routing";
 import { getRuntimeConfig } from "@board/composables/runtimeConfig";
 
+const { t } = useI18n();
 const route = useRoute();
 const runtimeConfig = getRuntimeConfig();
 const isContestIndexPage = useIsContestIndexPage();
+const isQueryRouting = isQueryRoutingMode();
 
 const queryComponent = useQueryForComponent();
 const component = computed(() => runtimeConfig.component ?? queryComponent.value);
@@ -22,6 +25,13 @@ const dataSource = runtimeConfig.dataSource;
     v-else-if="isContestIndexPage"
     :path-prefix="route.path"
   />
+  <div v-else-if="isQueryRouting" class="flex flex-col items-center">
+    <div text-4xl>
+      <div i-carbon-warning />
+    </div>
+    {{ t("not-found") }}
+    <GoBack />
+  </div>
   <div v-else>
     <Board allow-index-fallback />
   </div>
