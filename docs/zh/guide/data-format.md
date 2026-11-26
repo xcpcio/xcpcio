@@ -10,7 +10,6 @@ Board 的配置分为三个文件：
 
 - [配置生成脚本](https://github.com/XCPCIO/XCPCIO-Board-Spider/blob/main/generate-config/gen-config.py)
 - 一场比赛所有的配置都在这个文件中，可以看看配置生成脚本来得知有哪些配置项。
-- 可选的 `location`：比赛场地（字符串或 i18n 文本），会用于榜单页面的结构化数据。
 
 ## team.json
 

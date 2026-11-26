@@ -10,7 +10,6 @@ Board configuration consists of three JSON files:
 
 - [Configuration Generation Script](https://github.com/XCPCIO/XCPCIO-Board-Spider/blob/main/generate-config/gen-config.py)
 - All configuration for a contest is stored in this file. You can refer to the configuration generation script to understand available configuration options.
-- Optional `location`: the contest venue (a string or localized text). It is used for the board page's structured data.
 
 ## team.json
 
