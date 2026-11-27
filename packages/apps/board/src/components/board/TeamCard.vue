@@ -55,6 +55,7 @@ const isGirl = computed(() => team.value.isGirl);
         <Badge
           :image="team.badge"
           alt="team badge"
+          square
           class="h-12 w-12 bg-transparent"
         />
         <div flex="1 ~ col" min-w-0>

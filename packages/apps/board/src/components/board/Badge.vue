@@ -5,6 +5,7 @@ import { getImageSource } from "@xcpcio/core";
 const props = defineProps<{
   image?: Image;
   alt?: string;
+  square?: boolean;
 }>();
 
 const imageSource = computed(() => {
@@ -26,7 +27,8 @@ const imageSource = computed(() => {
       :alt="props.alt ?? 'badge'"
       loading="lazy"
       decoding="async"
-      class="max-h-full max-w-full object-contain mx-auto"
+      class="max-h-full max-w-full mx-auto"
+      :class="props.square ? 'aspect-square object-cover' : 'object-contain'"
     >
   </div>
 </template>
