@@ -137,7 +137,7 @@ describe("indexBrowseDrawer.vue", () => {
     wrapper.unmount();
   });
 
-  it("closes after navigating to a directory", async () => {
+  it("stays open after navigating to a directory with sections", async () => {
     const { wrapper, router } = await mountDrawer();
 
     await wrapper.get("[data-testid=\"index-browse-trigger\"]").trigger("click");
@@ -147,7 +147,26 @@ describe("indexBrowseDrawer.vue", () => {
     await flushPromises();
 
     expect(router.currentRoute.value.path).toBe("/icpc/51st");
+    expect(wrapper.find("[role=\"dialog\"]").exists()).toBe(true);
+    // The clicked link is gone after the list re-renders, so focus stays in
+    // the modal.
+    expect(document.activeElement).toBe(wrapper.get("[role=\"dialog\"]").element);
+
+    wrapper.unmount();
+  });
+
+  it("closes once the current directory has no more sections", async () => {
+    const { wrapper } = await mountDrawer();
+
+    await wrapper.get("[data-testid=\"index-browse-trigger\"]").trigger("click");
+    await flushPromises();
+    expect(wrapper.find("[role=\"dialog\"]").exists()).toBe(true);
+
+    await wrapper.setProps({ directories: [] });
+    await flushPromises();
+
     expect(wrapper.find("[role=\"dialog\"]").exists()).toBe(false);
+    expect(wrapper.find("[data-testid=\"index-browse-trigger\"]").exists()).toBe(false);
 
     wrapper.unmount();
   });

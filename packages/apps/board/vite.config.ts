@@ -163,6 +163,11 @@ export default defineConfig({
   ssgOptions: {
     script: "async",
     formatting: "minify",
+    includedRoutes(paths) {
+      // The catch-all page serves "/" too, but its route path is dynamic so
+      // it is not picked up automatically.
+      return [...new Set([...paths, "/"])].filter(path => !path.includes(":") && !path.includes("*"));
+    },
     beastiesOptions: {
       reduceInlineStyles: false,
     },
