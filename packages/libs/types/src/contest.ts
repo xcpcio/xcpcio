@@ -68,6 +68,32 @@ export interface ContestOptions {
 export type MedalPreset = "ccpc" | "icpc";
 export type BannerMode = "ONLY_BANNER" | "ALL";
 
+/**
+ * Preset award types that can be assigned explicitly to teams.
+ * `champion` / `runner-up` / `second-runner-up` are shown as gold / silver / bronze.
+ */
+export enum MedalAwardType {
+  GOLD = "gold",
+  SILVER = "silver",
+  BRONZE = "bronze",
+  HONORABLE = "honorable",
+  CHAMPION = "champion",
+  RUNNER_UP = "runner-up",
+  SECOND_RUNNER_UP = "second-runner-up",
+}
+
+/**
+ * Explicit medal assignment for a list of teams.
+ * `group` is informational; explicit awards are shown in every board view.
+ */
+export interface MedalAward {
+  award: MedalAwardType;
+  group?: string;
+  team_ids: Array<string>;
+}
+
+export type Medal = Record<string, Record<string, number>> | MedalPreset | Array<MedalAward>;
+
 export interface SocialMedia {
   bilibili?: string;
   youtube?: string;
@@ -92,7 +118,7 @@ export interface Contest {
 
   status_time_display?: StatusTimeDisplay;
 
-  medal?: Record<string, Record<string, number>> | MedalPreset;
+  medal?: Medal;
 
   group?: Record<string, string>;
   tag?: Record<string, string>;

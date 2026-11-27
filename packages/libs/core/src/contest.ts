@@ -1,11 +1,11 @@
-import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, SeatMap as ISeatMap, MedalPreset, SocialMedia, StatusTimeDisplay } from "@xcpcio/types";
-import type { Awards } from "./award";
+import type { BannerMode, Contest as IContest, Image, Organizations as IOrganizations, SeatMap as ISeatMap, Medal, SocialMedia, StatusTimeDisplay } from "@xcpcio/types";
+import type { Awards, TeamMedals } from "./award";
 import type { Organizations } from "./organization";
 import type { Problem, Problems } from "./problem";
 import type { SeatMap } from "./seat-map";
 
 import { ContestState } from "@xcpcio/types";
-import { Award, MedalType } from "./award";
+import { Award, getMedalTypeFromAwardType, getMedalTypePriority, MedalType } from "./award";
 import { I18nText } from "./basic-types";
 import { ContestOptions, createContestOptions } from "./contest-options";
 import { Group } from "./group";
@@ -39,8 +39,13 @@ export class Contest {
 
   statusTimeDisplay: StatusTimeDisplay;
 
-  medal?: Record<string, Record<string, number>> | MedalPreset;
+  medal?: Medal;
   awards?: Awards;
+  /**
+   * Explicit medal assignment by team id, parsed from a DOMjudge-style
+   * awards list. Unlike `awards`, it is independent of the rank group.
+   */
+  teamMedals?: TeamMedals;
 
   group: Map<string, Group>;
   tag: Map<string, string>;
@@ -172,6 +177,10 @@ export class Contest {
   }
 
   isEnableAwards(group: string): boolean {
+    if (this.teamMedals !== undefined && this.teamMedals.size > 0) {
+      return true;
+    }
+
     if (!this.awards) {
       return false;
     }
@@ -181,6 +190,14 @@ export class Contest {
     }
 
     return true;
+  }
+
+  getTeamMedal(teamId: string, icpcID?: string): MedalType | undefined {
+    if (!this.teamMedals) {
+      return undefined;
+    }
+
+    return this.teamMedals.get(teamId) ?? (icpcID ? this.teamMedals.get(icpcID) : undefined);
   }
 
   resetReplayTime() {
@@ -263,18 +280,43 @@ export function createContest(contestJSON: IContest): Contest {
   c.medal = contestJSON.medal;
 
   (() => {
-    if (contestJSON.medal === undefined || contestJSON.medal === null) {
+    const medal = contestJSON.medal;
+
+    if (medal === undefined || medal === null) {
+      return;
+    }
+
+    if (Array.isArray(medal)) {
+      const teamMedals: TeamMedals = new Map<string, MedalType>();
+
+      for (const award of medal) {
+        const medalType = getMedalTypeFromAwardType(award?.award);
+
+        if (medalType === undefined) {
+          continue;
+        }
+
+        for (const teamId of award.team_ids ?? []) {
+          const current = teamMedals.get(teamId);
+
+          if (current === undefined || getMedalTypePriority(medalType) > getMedalTypePriority(current)) {
+            teamMedals.set(teamId, medalType);
+          }
+        }
+      }
+
+      c.teamMedals = teamMedals;
       return;
     }
 
     c.awards = new Map<string, Award[]>();
 
-    if (typeof contestJSON.medal === "string") {
+    if (typeof medal === "string") {
       // eslint-disable-next-line no-empty
       {}
     } else {
-      for (const k in contestJSON.medal) {
-        const v = contestJSON.medal[k];
+      for (const k in medal) {
+        const v = medal[k];
 
         {
           const award: Award[] = [];
