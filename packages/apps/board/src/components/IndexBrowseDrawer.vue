@@ -14,9 +14,11 @@ const { t } = useI18n();
 const route = useRoute();
 
 const isOpen = ref(false);
+const isLeaving = ref(false);
 const triggerEl = ref<HTMLButtonElement | null>(null);
 const closeButtonEl = ref<HTMLButtonElement | null>(null);
 const panelEl = ref<HTMLElement | null>(null);
+const listEl = ref<HTMLElement | null>(null);
 const crumbs = computed(() => props.breadcrumbs ?? []);
 
 const scrollLocked = useScrollLock(
@@ -99,15 +101,45 @@ useEventListener(
   onKeydown,
 );
 
+// The drawer stays open while browsing between sections; it only closes once
+// the current directory has no more sections (a leaf).
+watch(
+  () => props.directories.length,
+  (length) => {
+    if (length === 0) {
+      close({ restoreFocus: false });
+    }
+  },
+);
+
 watch(
   () => route.path,
-  () => close({ restoreFocus: false }),
+  async () => {
+    if (!isOpen.value) {
+      return;
+    }
+
+    await nextTick();
+
+    if (!isOpen.value || props.directories.length === 0) {
+      return;
+    }
+
+    if (listEl.value) {
+      listEl.value.scrollTop = 0;
+    }
+
+    // The clicked link is gone after the list re-renders, so keep focus
+    // inside the modal.
+    panelEl.value?.focus({ preventScroll: true });
+  },
 );
 </script>
 
 <template>
-  <div v-if="directories.length">
+  <div v-if="directories.length || isOpen || isLeaving">
     <button
+      v-if="directories.length"
       ref="triggerEl"
       type="button"
       class="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-gray-300 px-3 py-1.5 text-sm text-inherit transition hover:border-teal-600 hover:text-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 dark:border-gray-600 dark:hover:border-teal-400 dark:hover:text-teal-300"
@@ -124,7 +156,11 @@ watch(
     </button>
 
     <Teleport to="body">
-      <Transition name="browse-drawer">
+      <Transition
+        name="browse-drawer"
+        @before-leave="isLeaving = true"
+        @after-leave="isLeaving = false"
+      >
         <div
           v-if="isOpen"
           class="fixed inset-0 z-1996 bg-black/40"
@@ -137,7 +173,8 @@ watch(
             role="dialog"
             aria-modal="true"
             aria-labelledby="index-browse-drawer-title"
-            class="browse-drawer-panel absolute inset-y-0 left-0 flex w-[86%] max-w-xs flex-col bg-white shadow-xl dark:bg-gray-800"
+            tabindex="-1"
+            class="browse-drawer-panel absolute inset-y-0 left-0 flex w-[86%] max-w-xs flex-col bg-white shadow-xl outline-none dark:bg-gray-800"
             data-testid="index-browse-drawer"
           >
             <div class="flex shrink-0 items-start justify-between gap-3 border-b border-gray-200 px-4 pb-3 pt-4 dark:border-gray-700">
@@ -157,7 +194,6 @@ watch(
                   <RouterLink
                     class="text-inherit hover:underline"
                     to="/"
-                    @click="close({ restoreFocus: false })"
                   >
                     {{ t("index.all_contests") }}
                   </RouterLink>
@@ -171,7 +207,6 @@ watch(
                       v-if="index < crumbs.length - 1"
                       class="text-inherit hover:underline"
                       :to="crumb.path"
-                      @click="close({ restoreFocus: false })"
                     >
                       {{ crumb.label }}
                     </RouterLink>
@@ -191,7 +226,10 @@ watch(
               </button>
             </div>
 
-            <div class="flex-1 overflow-y-auto px-3 py-4">
+            <div
+              ref="listEl"
+              class="flex-1 overflow-y-auto px-3 py-4"
+            >
               <div class="mb-2 flex items-center justify-between px-1">
                 <span class="text-xs font-semibold uppercase tracking-wide op60">
                   {{ t("index.sections") }}
@@ -199,13 +237,15 @@ watch(
                 <span class="font-mono text-xs op50">{{ directories.length }}</span>
               </div>
 
-              <nav class="flex flex-col gap-0.5">
+              <nav
+                class="flex flex-col gap-0.5"
+                data-testid="index-browse-sections"
+              >
                 <RouterLink
                   v-for="directory in directories"
                   :key="directory.path"
                   :to="directory.path"
                   class="flex min-h-11 items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 hover:text-teal-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 dark:text-gray-200 dark:hover:bg-gray-700 dark:hover:text-teal-300"
-                  @click="close({ restoreFocus: false })"
                 >
                   <span class="min-w-0 truncate">{{ directory.label }}</span>
                   <span class="flex shrink-0 items-center gap-1.5">

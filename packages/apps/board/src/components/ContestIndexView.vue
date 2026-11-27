@@ -216,7 +216,6 @@ const isUnknownScope = computed(() => {
           </div>
 
           <IndexBrowseDrawer
-            v-if="childDirectories.length"
             class="mt-4 flex w-full max-w-[62rem] px-4 lg:max-w-[60rem] lg:px-0"
             :directories="childDirectories"
             :breadcrumbs="breadcrumbs"

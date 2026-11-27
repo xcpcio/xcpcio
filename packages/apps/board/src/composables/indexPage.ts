@@ -226,7 +226,9 @@ export function useIsContestIndexPage() {
 
   return computed(() => {
     if (typeof window === "undefined") {
-      return false;
+      // Only the root path is prerendered; directory paths are resolved
+      // from the contest index at runtime.
+      return route.path === "/";
     }
 
     return isContestIndexPath(route.path, {
