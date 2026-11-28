@@ -160,6 +160,7 @@ function isRenderByVisible() {
     >
       <Badge
         :image="bigBadge"
+        :square="bigBadge === team.badge"
         class="absolute left-0 top-0 bottom-0 px-1 w-12"
       />
       <div
@@ -171,6 +172,7 @@ function isRenderByVisible() {
           <Badge
             v-if="showInlineTeamBadge"
             :image="team.badge"
+            square
             class="mr-1 h-3.5 w-3.5 shrink-0"
           />
           <span line-clamp-2>{{ teamName }}</span>

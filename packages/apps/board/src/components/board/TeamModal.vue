@@ -79,6 +79,7 @@ const headerTitle = computed(() => team.value.name.getOrDefault(lang.value));
             >
               <Badge
                 :image="team.badge"
+                square
                 class="h-16 w-16"
               />
 
