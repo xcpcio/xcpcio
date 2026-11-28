@@ -1,5 +1,5 @@
 from xcpcio import constants
-from xcpcio.types import BalloonColor, Contest, ContestOptions, Image
+from xcpcio.types import BalloonColor, Contest, ContestOptions, Image, MedalAward
 
 
 class TestContest:
@@ -191,6 +191,43 @@ class TestContest:
         assert reconstructed_contest.medal == contest.medal
         assert len(reconstructed_contest.balloon_color) == len(contest.balloon_color)
         assert reconstructed_contest.logo.url == contest.logo.url
+
+    def test_contest_with_medal_awards(self):
+        """Test explicit team medal awards"""
+        contest = Contest(
+            medal=[
+                {"award": "gold", "group": "official", "team_ids": ["t1", "t2"]},
+                {"award": "silver", "group": "official", "team_ids": ["t3"]},
+                {"award": "bronze", "group": "girl", "team_ids": ["t4"]},
+                {"award": "honorable", "team_ids": ["t5"]},
+            ]
+        )
+
+        assert isinstance(contest.medal, list)
+        assert all(isinstance(award, MedalAward) for award in contest.medal)
+        assert contest.medal[0].award == "gold"
+        assert contest.medal[0].group == "official"
+        assert contest.medal[0].team_ids == ["t1", "t2"]
+        assert contest.medal[3].group is None
+
+        reconstructed = Contest.model_validate_json(contest.model_dump_json())
+        assert reconstructed.medal == contest.medal
+
+    def test_contest_with_placement_awards(self):
+        """Test champion/runner-up/second-runner-up award presets"""
+        contest = Contest(
+            medal=[
+                {"award": "champion", "group": "official", "team_ids": ["t1"]},
+                {"award": "runner-up", "group": "official", "team_ids": ["t2"]},
+                {"award": "second-runner-up", "group": "official", "team_ids": ["t3"]},
+            ]
+        )
+
+        assert [award.award for award in contest.medal] == [
+            "champion",
+            "runner-up",
+            "second-runner-up",
+        ]
 
     def test_custom_group_and_status_display(self):
         """Test contest with custom group and status display"""

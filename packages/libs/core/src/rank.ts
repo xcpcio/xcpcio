@@ -458,6 +458,15 @@ export class Rank {
       this.buildAwards();
 
       this.teams.forEach(t => t.calcAwards(this.contest.awards?.get(this.options.group)));
+
+      this.teams.forEach((t) => {
+        const medalType = this.contest.getTeamMedal(t.id, t.icpcID);
+
+        if (medalType !== undefined && !t.awards.includes(medalType)) {
+          t.awards.push(medalType);
+        }
+      });
+
       this.teams.forEach(t => t.postProcessPlaceChartPoints());
     })();
 

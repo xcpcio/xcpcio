@@ -60,6 +60,15 @@ SubmissionStatus = Literal[
 ]
 ImagePreset = Literal["ICPC", "CCPC", "HUNAN_CPC"]
 MedalPreset = Literal["ccpc", "icpc"]
+MedalAwardType = Literal[
+    "gold",
+    "silver",
+    "bronze",
+    "honorable",
+    "champion",
+    "runner-up",
+    "second-runner-up",
+]
 BannerMode = Literal["ONLY_BANNER", "ALL"]
 Lang = Literal["en", "zh-CN"]
 DateTimeISO8601String = str
@@ -237,6 +246,17 @@ class ContestOptions(BaseModel):
     disable_pending_page: Optional[bool] = None
 
 
+class MedalAward(BaseModel):
+    """Explicit medal assignment for a list of teams.
+
+    `group` is informational; explicit awards are shown in every board view.
+    """
+
+    award: MedalAwardType
+    group: Optional[str] = None
+    team_ids: List[str] = Field(default_factory=list)
+
+
 class Contest(BaseModel):
     contest_name: Text = ""
     description: Optional[Text] = None
@@ -256,7 +276,7 @@ class Contest(BaseModel):
 
     status_time_display: Dict[str, bool] = constants.FULL_STATUS_TIME_DISPLAY
 
-    medal: Optional[Union[Dict[str, Dict[str, int]], MedalPreset]] = None
+    medal: Optional[Union[Dict[str, Dict[str, int]], MedalPreset, List[MedalAward]]] = None
 
     group: Optional[Dict[str, str]] = None
     tag: Optional[Dict[str, str]] = None
