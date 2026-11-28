@@ -298,7 +298,7 @@ git branch -d <branch-name>
 
 - Uses pnpm with catalog feature for centralized dependency management
 - Workspace configuration in `pnpm-workspace.yaml`
-- Node.js version requirement: >=20
+- Node.js version requirement: >=24.15.0
 - Package manager version: pnpm@10.16.0
 
 ### Key Development Tools
