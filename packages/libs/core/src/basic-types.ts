@@ -19,7 +19,11 @@ export class I18nText {
   }
 
   getOrDefault(lang?: Lang): string {
-    return (lang ? this.texts.get(lang) : undefined) || (this.fallbackLang ? this.texts.get(this.fallbackLang) : undefined) || this.fallback || "";
+    return (lang
+      ? this.texts.get(lang)
+      : undefined) || (this.fallbackLang
+      ? this.texts.get(this.fallbackLang)
+      : undefined) || this.fallback || "";
   }
 
   set(lang: Lang, text: string): void {

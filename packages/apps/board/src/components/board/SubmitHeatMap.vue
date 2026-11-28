@@ -59,7 +59,9 @@ const submissionsByProblemId = computed(() => {
 
 function generateHeatMap(submissions: Submission[], type: "correct" | "incorrect") {
   const counts = Array.from<number>({ length: mapTimeDiffLength }).fill(0);
-  const size = intervalSize.value > 0 ? intervalSize.value : 1;
+  const size = intervalSize.value > 0
+    ? intervalSize.value
+    : 1;
   const descriptions = intervalDescriptions.value;
 
   submissions.forEach((s) => {

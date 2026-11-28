@@ -79,11 +79,21 @@ describe("problem display helpers", () => {
   it("returns attempts and time according to status time display", () => {
     expect(getProblemShow(makeProblemStatistics(), statusTimeDisplay)).toBe("");
     expect(getProblemShow(
-      makeProblemStatistics({ isSolved: true, failedCount: 2, totalCount: 3, lastSubmitTimestamp: 25 * 60 }),
+      makeProblemStatistics({
+        isSolved: true,
+        failedCount: 2,
+        totalCount: 3,
+        lastSubmitTimestamp: 25 * 60,
+      }),
       statusTimeDisplay,
     )).toBe("3/25");
     expect(getProblemShow(
-      makeProblemStatistics({ isSolved: true, failedCount: 2, totalCount: 3, lastSubmitTimestamp: 25 * 60 }),
+      makeProblemStatistics({
+        isSolved: true,
+        failedCount: 2,
+        totalCount: 3,
+        lastSubmitTimestamp: 25 * 60,
+      }),
       { ...statusTimeDisplay, correct: false },
     )).toBe("3");
     expect(getProblemShow(
@@ -108,7 +118,12 @@ describe("problem display helpers", () => {
 describe("award and stand classes", () => {
   it("uses medal precedence", () => {
     const team = makeTeam("gold");
-    team.awards = [MedalType.HONORABLE, MedalType.BRONZE, MedalType.SILVER, MedalType.GOLD];
+    team.awards = [
+      MedalType.HONORABLE,
+      MedalType.BRONZE,
+      MedalType.SILVER,
+      MedalType.GOLD,
+    ];
     expect(getAwardKey(team)).toBe("gold");
 
     team.awards = [MedalType.HONORABLE, MedalType.SILVER];

@@ -52,7 +52,9 @@ export const install: UserModule = async ({ app }) => {
   app.use(i18n);
 
   const runtimeConfig = getRuntimeConfig();
-  const pathname = typeof window === "undefined" ? "" : window.location.pathname;
+  const pathname = typeof window === "undefined"
+    ? ""
+    : window.location.pathname;
   const urlLocale = findLocaleForPath(getLocaleUrls(), pathname);
 
   await loadLanguageAsync(urlLocale ?? runtimeConfig.defaultLang ?? "en");

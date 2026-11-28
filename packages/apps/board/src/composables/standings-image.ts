@@ -271,7 +271,9 @@ async function fetchImageData(url: string, proxyWidth?: number): Promise<LoadedI
       throw new Error("Image proxy requires an absolute URL");
     }
 
-    const widthParam = proxyWidth ? `&w=${proxyWidth}&h=${proxyWidth}&fit=inside` : "";
+    const widthParam = proxyWidth
+      ? `&w=${proxyWidth}&h=${proxyWidth}&fit=inside`
+      : "";
     const response = await fetch(`${WSRV_PROXY_URL}${encodeURIComponent(url)}&output=png${widthParam}`);
     if (!response.ok || !response.headers.get("content-type")?.startsWith("image/")) {
       throw new Error("Failed to fetch image");
@@ -280,8 +282,18 @@ async function fetchImageData(url: string, proxyWidth?: number): Promise<LoadedI
   };
 
   const loaders: Array<() => Promise<Blob>> = isCrossOrigin
-    ? [fetchThroughCorsfix, fetchThroughAllOrigins, fetchThroughWsrv, fetchDirect]
-    : [fetchDirect, ...(isAbsoluteHttp ? [fetchThroughCorsfix, fetchThroughAllOrigins, fetchThroughWsrv] : [])];
+    ? [
+        fetchThroughCorsfix,
+        fetchThroughAllOrigins,
+        fetchThroughWsrv,
+        fetchDirect,
+      ]
+    : [
+        fetchDirect,
+        ...(isAbsoluteHttp
+          ? [fetchThroughCorsfix, fetchThroughAllOrigins, fetchThroughWsrv]
+          : []),
+      ];
 
   let blob: Blob | undefined;
   for (const load of loaders) {
@@ -360,7 +372,9 @@ function loadImageData(url: string, proxyWidth?: number) {
 }
 
 async function loadImageMap(urls: string[], proxyWidth?: number) {
-  const uniqueUrls = [...new Set(urls.filter(Boolean))];
+  const uniqueUrls = [
+    ...new Set(urls.filter(Boolean)),
+  ];
   const result = new Map<string, LoadedImageData>();
   let cursor = 0;
 
@@ -376,7 +390,9 @@ async function loadImageMap(urls: string[], proxyWidth?: number) {
     }
   }
 
-  await Promise.all(Array.from({ length: Math.min(3, uniqueUrls.length) }, worker));
+  await Promise.all(Array.from({
+    length: Math.min(3, uniqueUrls.length),
+  }, worker));
   return result;
 }
 
@@ -393,7 +409,9 @@ export function buildRankForGroup(sourceRank: Rank, group: string) {
 }
 
 export async function createStandingsImage(rank: Rank, options: StandingsImageOptions) {
-  const theme = options.theme === "dark" ? DARK_THEME : LIGHT_THEME;
+  const theme = options.theme === "dark"
+    ? DARK_THEME
+    : LIGHT_THEME;
   const teams = rank.teams.slice(0, Math.max(0, Math.floor(options.teamCount)));
   const contestName = rank.contest.name.getOrDefault(options.lang);
   const groupName = rank.contest.group.get(rank.options.group)?.name.getOrDefault(options.lang) ?? rank.options.group;
@@ -402,7 +420,11 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
 
   const columns: Column[] = [
     { key: "place", width: 60, align: "middle" },
-    { key: "team", width: showOrganization ? 460 : 240, align: "start" },
+    {
+      key: "team",
+      width: showOrganization ? 460 : 240,
+      align: "start",
+    },
     { key: "solved", width: 70, align: "middle" },
     { key: "penalty", width: 84, align: "middle" },
     ...problems.map((_problem, index) => ({ key: `problem-${index}`, width: 56, align: "middle" as const })),
@@ -426,20 +448,28 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     : "";
 
   const [bannerData, logoMap, brandLogoData] = await Promise.all([
-    bannerUrl ? loadImageData(bannerUrl) : Promise.resolve(undefined),
+    bannerUrl
+      ? loadImageData(bannerUrl)
+      : Promise.resolve(undefined),
     loadImageMap(organizationLogoUrls, 128),
-    brandLogoUrl ? loadImageData(brandLogoUrl) : Promise.resolve(undefined),
+    brandLogoUrl
+      ? loadImageData(brandLogoUrl)
+      : Promise.resolve(undefined),
   ]);
 
   const bannerWidth = width - PADDING * 2;
   const bannerHeight = bannerData
     ? Math.min(280, Math.round(bannerWidth * bannerData.height / bannerData.width))
     : 0;
-  const bannerBlockHeight = bannerData ? bannerHeight + BANNER_GAP : 0;
+  const bannerBlockHeight = bannerData
+    ? bannerHeight + BANNER_GAP
+    : 0;
   const titleTop = PADDING + bannerBlockHeight;
   const tableTop = titleTop + TITLE_HEIGHT;
   const rowsTop = tableTop + HEADER_HEIGHT + CELL_GAP;
-  const tableBottom = rowsTop + teams.length * ROW_PITCH - (teams.length > 0 ? CELL_GAP : 0);
+  const tableBottom = rowsTop + teams.length * ROW_PITCH - (teams.length > 0
+    ? CELL_GAP
+    : 0);
   const height = tableBottom + FOOTER_HEIGHT + PADDING;
 
   const columnLefts = new Map<string, number>();
@@ -528,7 +558,9 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
       }
 
       const cellLeft = (columnLefts.get(key) as number) + CELL_GAP / 2;
-      const background = key === "place" && award ? theme.awards[award].background : rowBackground;
+      const background = key === "place" && award
+        ? theme.awards[award].background
+        : rowBackground;
       parts.push(`<rect x="${cellLeft}" y="${rowTop}" width="${column.width - CELL_GAP}" height="${ROW_HEIGHT}" fill="${background}" />`);
     }
 
@@ -548,12 +580,18 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     const organizationLogoUrl = showOrganization && team.organization?.logo
       ? getImageSource(team.organization.logo, DATA_HOST.value)
       : "";
-    const organizationLogo = organizationLogoUrl ? logoMap.get(organizationLogoUrl) : undefined;
-    const organizationName = showOrganization ? (team.organization?.name.getOrDefault(options.lang) ?? "") : "";
+    const organizationLogo = organizationLogoUrl
+      ? logoMap.get(organizationLogoUrl)
+      : undefined;
+    const organizationName = showOrganization
+      ? (team.organization?.name.getOrDefault(options.lang) ?? "")
+      : "";
     const organizationText = organizationName && team.isFirstRankOfOrganization && team.organization
       ? `${team.organization.rank} ${organizationName}`
       : organizationName;
-    const teamTextLeft = teamLeft + 12 + (organizationLogo ? ORG_LOGO_SIZE + 6 : 0);
+    const teamTextLeft = teamLeft + 12 + (organizationLogo
+      ? ORG_LOGO_SIZE + 6
+      : 0);
     const teamTextWidth = teamWidth - (teamTextLeft - teamLeft) - 12;
     const teamTextCenter = teamTextLeft + teamTextWidth / 2;
 
@@ -651,7 +689,9 @@ export async function createStandingsImage(rank: Rank, options: StandingsImageOp
     const linkFont = fontSpec(12);
     const brandText = "XCPCIO";
     const brandWidth = measureTextWidth(brandText, brandFont);
-    const logoWidth = brandLogoData ? BRAND_LOGO_SIZE + 6 : 0;
+    const logoWidth = brandLogoData
+      ? BRAND_LOGO_SIZE + 6
+      : 0;
     const separatorWidth = 12;
     const maxLinkWidth = Math.max(80, width - PADDING * 2 - measureTextWidth(dateText, dateFont) - 24 - logoWidth - brandWidth - separatorWidth);
     const linkText = truncateText(options.link, maxLinkWidth, linkFont);

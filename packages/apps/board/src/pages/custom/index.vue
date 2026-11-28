@@ -18,7 +18,12 @@ const defaultConfig: RuntimeConfig = {
 };
 
 const pageTypes: RuntimePageType[] = ["index", "contest", "custom"];
-const components: RuntimeComponent[] = ["board", "resolver", "balloon", "countdown"];
+const components: RuntimeComponent[] = [
+  "board",
+  "resolver",
+  "balloon",
+  "countdown",
+];
 
 const configText = ref(JSON.stringify({
   ...defaultConfig,
@@ -39,7 +44,9 @@ function parseConfig(): RuntimeConfig | null {
   try {
     parsed = JSON.parse(configText.value);
   } catch (error) {
-    errorMessage.value = error instanceof Error ? error.message : "Invalid JSON.";
+    errorMessage.value = error instanceof Error
+      ? error.message
+      : "Invalid JSON.";
     return null;
   }
 

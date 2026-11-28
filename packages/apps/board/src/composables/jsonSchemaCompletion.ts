@@ -112,7 +112,9 @@ function keyName(state: EditorState, node: SyntaxNode | null): string | null {
     return null;
   }
   const text = state.sliceDoc(node.from, node.to);
-  return text.startsWith("\"") && text.endsWith("\"") ? text.slice(1, -1) : text;
+  return text.startsWith("\"") && text.endsWith("\"")
+    ? text.slice(1, -1)
+    : text;
 }
 
 // resolve the schema level for an object via its ancestor property names,
@@ -265,10 +267,14 @@ function valueCompletions(
 
   // when the value is already inside quotes, apply the bare value and keep
   // the quotes; otherwise apply a quoted string
-  const valueStart = valueNode !== null && valueNode.name !== ":" ? valueNode.from : context.pos;
+  const valueStart = valueNode !== null && valueNode.name !== ":"
+    ? valueNode.from
+    : context.pos;
   const prefix = doc.sliceString(valueStart, context.pos);
   const quoted = prefix.includes("\"");
-  const from = quoted ? valueStart + 1 : valueStart;
+  const from = quoted
+    ? valueStart + 1
+    : valueStart;
   // nothing typed yet and the cursor is not inside quotes (e.g. right
   // after `:`) — wait for the user to start the value
   if (from === context.pos && !inString) {
@@ -285,7 +291,9 @@ function valueCompletions(
     options: enums.map((value): Completion => ({
       label: value,
       type: "enum",
-      apply: quoted ? value : `"${value}"`,
+      apply: quoted
+        ? value
+        : `"${value}"`,
     })),
   };
 }

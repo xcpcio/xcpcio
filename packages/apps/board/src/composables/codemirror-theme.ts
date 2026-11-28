@@ -114,19 +114,35 @@ export const vitesseHighlightStyle = HighlightStyle.define([
     color: "var(--cm-decorator)",
   },
   {
-    tag: [t.name, t.deleted, t.character, t.propertyName, t.macroName],
+    tag: [
+      t.name,
+      t.deleted,
+      t.character,
+      t.propertyName,
+      t.macroName,
+    ],
     color: property,
   },
   {
-    tag: [t.function(t.variableName), t.labelName],
+    tag: [
+      t.function(t.variableName),
+      t.labelName,
+    ],
     color: variable,
   },
   {
-    tag: [t.color, t.constant(t.name), t.standard(t.name)],
+    tag: [
+      t.color,
+      t.constant(t.name),
+      t.standard(t.name),
+    ],
     color: "#c99076",
   },
   {
-    tag: [t.definition(t.name), t.separator],
+    tag: [
+      t.definition(t.name),
+      t.separator,
+    ],
     color: foreground,
   },
   {
@@ -142,7 +158,21 @@ export const vitesseHighlightStyle = HighlightStyle.define([
     color: "#4d9375",
   },
   {
-    tag: [t.typeName, t.className, t.number, t.changed, t.annotation, t.modifier, t.self, t.namespace, t.keyword, t.atom, t.bool, t.null, t.special(t.variableName)],
+    tag: [
+      t.typeName,
+      t.className,
+      t.number,
+      t.changed,
+      t.annotation,
+      t.modifier,
+      t.self,
+      t.namespace,
+      t.keyword,
+      t.atom,
+      t.bool,
+      t.null,
+      t.special(t.variableName),
+    ],
     color: keyword,
   },
   {
@@ -150,7 +180,14 @@ export const vitesseHighlightStyle = HighlightStyle.define([
     color: "var(--cm-definition-keyword)",
   },
   {
-    tag: [t.operator, t.operatorKeyword, t.url, t.escape, t.link, t.special(t.string)],
+    tag: [
+      t.operator,
+      t.operatorKeyword,
+      t.url,
+      t.escape,
+      t.link,
+      t.special(t.string),
+    ],
     color: punctuation,
   },
   {
@@ -189,4 +226,7 @@ export const vitesseHighlightStyle = HighlightStyle.define([
   },
 ]);
 
-export const vitesse: Extension = [vitesseTheme, syntaxHighlighting(vitesseHighlightStyle)];
+export const vitesse: Extension = [
+  vitesseTheme,
+  syntaxHighlighting(vitesseHighlightStyle),
+];

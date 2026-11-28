@@ -215,7 +215,9 @@ export class Rank {
       this.linkTeamAndOrg();
     } else {
       this.organizationsMap = this.buildOrganizationsMap();
-      this.organizations = [...this.organizationsMap.values()];
+      this.organizations = [
+        ...this.organizationsMap.values(),
+      ];
     }
     this.organizations.sort(Organization.compare);
 
@@ -472,7 +474,9 @@ export class Rank {
         const teamSolvedNumIndex = this.rankStatistics.teamSolvedNumIndex;
 
         for (let i = teamSolvedNumIndex.length - 1; i >= 0; i--) {
-          current += (teamSolvedNum[i] > 0 ? 1 : 0);
+          current += (teamSolvedNum[i] > 0
+            ? 1
+            : 0);
           teamSolvedNumIndex[i] = current;
         }
       }

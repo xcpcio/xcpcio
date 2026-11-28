@@ -25,7 +25,9 @@ const groupNames = computed(() => {
   return team.value.group
     .map((groupId) => {
       const group = rank.value.contest.group.get(groupId);
-      return group ? group.name.getOrDefault(lang.value) : groupId;
+      return group
+        ? group.name.getOrDefault(lang.value)
+        : groupId;
     })
     .filter(name => name && name !== "all");
 });

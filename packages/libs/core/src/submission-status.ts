@@ -3,103 +3,175 @@ import { SubmissionStatus } from "@xcpcio/types";
 export function stringToSubmissionStatus(status: string): SubmissionStatus {
   status = status.toUpperCase().replace(" ", "_");
 
-  if (["OK", "AC", SubmissionStatus.ACCEPTED.toString()].includes(status)) {
+  if ([
+    "OK",
+    "AC",
+    SubmissionStatus.ACCEPTED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.ACCEPTED;
   }
 
-  if ([SubmissionStatus.CORRECT.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.CORRECT.toString(),
+  ].includes(status)) {
     return SubmissionStatus.ACCEPTED;
   }
 
-  if ([SubmissionStatus.PARTIALLY_CORRECT.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.PARTIALLY_CORRECT.toString(),
+  ].includes(status)) {
     return SubmissionStatus.PARTIALLY_CORRECT;
   }
 
-  if (["WA", SubmissionStatus.WRONG_ANSWER.toString()].includes(status)) {
+  if ([
+    "WA",
+    SubmissionStatus.WRONG_ANSWER.toString(),
+  ].includes(status)) {
     return SubmissionStatus.WRONG_ANSWER;
   }
 
-  if (["RJ", "INCORRECT", SubmissionStatus.REJECTED.toString()].includes(status)) {
+  if ([
+    "RJ",
+    "INCORRECT",
+    SubmissionStatus.REJECTED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.REJECTED;
   }
 
-  if (["NO", SubmissionStatus.NO_OUTPUT.toString()].includes(status)) {
+  if ([
+    "NO",
+    SubmissionStatus.NO_OUTPUT.toString(),
+  ].includes(status)) {
     return SubmissionStatus.NO_OUTPUT;
   }
 
-  if (["PD", SubmissionStatus.PENDING.toString()].includes(status)) {
+  if ([
+    "PD",
+    SubmissionStatus.PENDING.toString(),
+  ].includes(status)) {
     return SubmissionStatus.PENDING;
   }
 
-  if ([SubmissionStatus.WAITING.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.WAITING.toString(),
+  ].includes(status)) {
     return SubmissionStatus.WAITING;
   }
 
-  if ([SubmissionStatus.JUDGING.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.JUDGING.toString(),
+  ].includes(status)) {
     return SubmissionStatus.JUDGING;
   }
 
-  if ([SubmissionStatus.FROZEN.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.FROZEN.toString(),
+  ].includes(status)) {
     return SubmissionStatus.FROZEN;
   }
 
-  if (["CE", SubmissionStatus.COMPILATION_ERROR.toString()].includes(status)) {
+  if ([
+    "CE",
+    SubmissionStatus.COMPILATION_ERROR.toString(),
+  ].includes(status)) {
     return SubmissionStatus.COMPILATION_ERROR;
   }
 
-  if (["PE", SubmissionStatus.PRESENTATION_ERROR.toString()].includes(status)) {
+  if ([
+    "PE",
+    SubmissionStatus.PRESENTATION_ERROR.toString(),
+  ].includes(status)) {
     return SubmissionStatus.PRESENTATION_ERROR;
   }
 
-  if (["TL", "TLE", SubmissionStatus.TIME_LIMIT_EXCEEDED.toString()].includes(status)) {
+  if ([
+    "TL",
+    "TLE",
+    SubmissionStatus.TIME_LIMIT_EXCEEDED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.TIME_LIMIT_EXCEEDED;
   }
 
-  if (["ML", "MLE", SubmissionStatus.MEMORY_LIMIT_EXCEEDED.toString()].includes(status)) {
+  if ([
+    "ML",
+    "MLE",
+    SubmissionStatus.MEMORY_LIMIT_EXCEEDED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.MEMORY_LIMIT_EXCEEDED;
   }
 
-  if (["OL", "OLE", SubmissionStatus.OUTPUT_LIMIT_EXCEEDED.toString()].includes(status)) {
+  if ([
+    "OL",
+    "OLE",
+    SubmissionStatus.OUTPUT_LIMIT_EXCEEDED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.OUTPUT_LIMIT_EXCEEDED;
   }
 
-  if (["IL", "ILE", SubmissionStatus.IDLENESS_LIMIT_EXCEEDED.toString()].includes(status)) {
+  if ([
+    "IL",
+    "ILE",
+    SubmissionStatus.IDLENESS_LIMIT_EXCEEDED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.IDLENESS_LIMIT_EXCEEDED;
   }
 
-  if (["RT", "RE", "RTE", SubmissionStatus.RUNTIME_ERROR.toString()].includes(status)) {
+  if ([
+    "RT",
+    "RE",
+    "RTE",
+    SubmissionStatus.RUNTIME_ERROR.toString(),
+  ].includes(status)) {
     return SubmissionStatus.RUNTIME_ERROR;
   }
 
-  if (["JE", SubmissionStatus.JUDGEMENT_FAILED.toString()].includes(status)) {
+  if ([
+    "JE",
+    SubmissionStatus.JUDGEMENT_FAILED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.JUDGEMENT_FAILED;
   }
 
-  if (["SE", SubmissionStatus.SYSTEM_ERROR.toString()].includes(status)) {
+  if ([
+    "SE",
+    SubmissionStatus.SYSTEM_ERROR.toString(),
+  ].includes(status)) {
     return SubmissionStatus.SYSTEM_ERROR;
   }
 
-  if ([SubmissionStatus.HACKED.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.HACKED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.HACKED;
   }
 
-  if ([SubmissionStatus.CONFIGURATION_ERROR.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.CONFIGURATION_ERROR.toString(),
+  ].includes(status)) {
     return SubmissionStatus.CONFIGURATION_ERROR;
   }
 
-  if ([SubmissionStatus.CANCELED.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.CANCELED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.CANCELED;
   }
 
-  if ([SubmissionStatus.SKIPPED.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.SKIPPED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.SKIPPED;
   }
 
-  if ([SubmissionStatus.SECURITY_VIOLATED.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.SECURITY_VIOLATED.toString(),
+  ].includes(status)) {
     return SubmissionStatus.SECURITY_VIOLATED;
   }
 
-  if ([SubmissionStatus.DENIAL_OF_JUDGEMENT.toString()].includes(status)) {
+  if ([
+    SubmissionStatus.DENIAL_OF_JUDGEMENT.toString(),
+  ].includes(status)) {
     return SubmissionStatus.DENIAL_OF_JUDGEMENT;
   }
 

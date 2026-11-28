@@ -21,7 +21,9 @@ export class Giants {
 
   constructor(type: GiantsType = GiantsType.BLUE) {
     this.type = type;
-    this.name = `${type === GiantsType.BLUE ? "Blue" : "Red"} Team`;
+    this.name = `${type === GiantsType.BLUE
+      ? "Blue"
+      : "Red"} Team`;
     this.teams = [];
 
     this.filterOrganizations = [];
@@ -54,7 +56,9 @@ export class Giants {
     if (this.filterOrganizations.length > 0) {
       this.name = this.filterOrganizations[0].text;
     } else {
-      this.name = `${this.type === GiantsType.BLUE ? "Blue" : "Red"} Team`;
+      this.name = `${this.type === GiantsType.BLUE
+        ? "Blue"
+        : "Red"} Team`;
     }
 
     return this.name;
@@ -89,7 +93,10 @@ export class Giants {
     const h = Math.floor(penalty / 60);
     const m = Math.floor(penalty % 60);
 
-    return [two(h), two(m)].join(":");
+    return [
+      two(h),
+      two(m),
+    ].join(":");
   }
 
   toJSON() {

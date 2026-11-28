@@ -105,7 +105,9 @@ export function useRouteQueryWithoutParam<
       get() {
         track();
 
-        return transformGet(query !== undefined ? query : toValue(defaultValue));
+        return transformGet(query !== undefined
+          ? query
+          : toValue(defaultValue));
       },
       set(v) {
         v = transformSet(v);
@@ -114,8 +116,12 @@ export function useRouteQueryWithoutParam<
           return;
         }
 
-        query = (v === toValue(defaultValue)) ? undefined : v;
-        _queriesQueue.set(name, (v === toValue(defaultValue)) ? undefined : v);
+        query = (v === toValue(defaultValue))
+          ? undefined
+          : v;
+        _queriesQueue.set(name, (v === toValue(defaultValue))
+          ? undefined
+          : v);
 
         trigger();
 
@@ -131,7 +137,10 @@ export function useRouteQueryWithoutParam<
 
           router[toValue(mode)]({
             path, // replace params with path could fix %2F
-            query: { ...query, ...newQueries },
+            query: {
+              ...query,
+              ...newQueries,
+            },
             hash,
           });
         });

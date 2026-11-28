@@ -42,7 +42,9 @@ export function createPersons(iPersons?: IText | Array<IText> | IPersons): Perso
       }
     }
 
-    return [new Person(I18nText.fromIText(iPersons))];
+    return [
+      new Person(I18nText.fromIText(iPersons)),
+    ];
   }
 
   if (Array.isArray(iPersons)) {
@@ -53,5 +55,7 @@ export function createPersons(iPersons?: IText | Array<IText> | IPersons): Perso
     return iPersons.map(name => new Person(I18nText.fromIText(name as IText)));
   }
 
-  return [new Person(I18nText.fromIText(iPersons))];
+  return [
+    new Person(I18nText.fromIText(iPersons)),
+  ];
 }

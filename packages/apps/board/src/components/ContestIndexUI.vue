@@ -46,7 +46,9 @@ function fitMobileTitle() {
     title.style.fontSize = `${fontSize}px`;
   }
 
-  titleFontSize.value = fontSize < baseFontSize ? fontSize : undefined;
+  titleFontSize.value = fontSize < baseFontSize
+    ? fontSize
+    : undefined;
 }
 
 const fitMobileTitleDebounced = useDebounceFn(fitMobileTitle, 100);

@@ -22,7 +22,9 @@ const listEl = ref<HTMLElement | null>(null);
 const crumbs = computed(() => props.breadcrumbs ?? []);
 
 const scrollLocked = useScrollLock(
-  typeof document === "undefined" ? null : document.body,
+  typeof document === "undefined"
+    ? null
+    : document.body,
 );
 
 watch(isOpen, (open) => {
@@ -96,7 +98,9 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 useEventListener(
-  typeof document === "undefined" ? null : document,
+  typeof document === "undefined"
+    ? null
+    : document,
   "keydown",
   onKeydown,
 );

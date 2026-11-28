@@ -29,7 +29,9 @@ const acceptanceRate = computed(() => {
 
 const firstSolveTime = computed(() => {
   const first = statistics.value.firstSolveSubmissions[0];
-  return first ? getTimeDiff(first.timestampToMinute) : "—";
+  return first
+    ? getTimeDiff(first.timestampToMinute)
+    : "—";
 });
 </script>
 

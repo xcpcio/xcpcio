@@ -331,7 +331,9 @@ export function createTeam(teamJSON: ITeam): Team {
     }
   }
 
-  t.group = [...new Set(t.group)];
+  t.group = [
+    ...new Set(t.group),
+  ];
   t.group.sort();
 
   t.badge = teamJSON.badge;

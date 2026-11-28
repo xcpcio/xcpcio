@@ -143,10 +143,15 @@ describe("index scoping", () => {
 describe("index page kind", () => {
   it("matches the root, known directories, injected path and one-shot fallback", () => {
     expect(isContestIndexPath("/")).toBe(true);
-    expect(isContestIndexPath("/ccpc", { knownPaths: new Set(["/ccpc"]) })).toBe(true);
+    expect(isContestIndexPath("/ccpc", {
+      knownPaths: new Set(["/ccpc"]),
+    })).toBe(true);
     expect(isContestIndexPath("/ccpc/12th", { injectedIndexPath: "/ccpc/12th" })).toBe(true);
     expect(isContestIndexPath("/ccpc/12th/changchun", { injectedIndexPath: "/ccpc/12th" })).toBe(false);
-    expect(isContestIndexPath("/ccpc", { knownPaths: new Set(["/ccpc"]), hasDataSource: true })).toBe(false);
+    expect(isContestIndexPath("/ccpc", {
+      knownPaths: new Set(["/ccpc"]),
+      hasDataSource: true,
+    })).toBe(false);
 
     expect(isContestIndexPath("/ccpc/12th")).toBe(false);
     setFallbackIndexPath("/ccpc/12th");
@@ -175,8 +180,14 @@ describe("index page kind", () => {
     const router = createRouter({
       history: createMemoryHistory(),
       routes: [
-        { path: "/", component: { template: "<div />" } },
-        { path: "/:pathMatch(.*)*", component: { template: "<div />" } },
+        {
+          path: "/",
+          component: { template: "<div />" },
+        },
+        {
+          path: "/:pathMatch(.*)*",
+          component: { template: "<div />" },
+        },
       ],
     });
     const Host = defineComponent({
@@ -186,7 +197,11 @@ describe("index page kind", () => {
       },
     });
 
-    const wrapper = mount(Host, { global: { plugins: [router] } });
+    const wrapper = mount(Host, {
+      global: {
+        plugins: [router],
+      },
+    });
     await router.push("/ccpc/12th");
     await router.isReady();
     expect(isContestIndexPath("/ccpc/12th")).toBe(true);

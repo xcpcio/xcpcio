@@ -24,5 +24,10 @@ export function useModalStack() {
     return modalStack.value.length > 0;
   }
 
-  return { register, unregister, isTopModal, isAnyModalOpen };
+  return {
+    register,
+    unregister,
+    isTopModal,
+    isAnyModalOpen,
+  };
 }

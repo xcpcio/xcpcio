@@ -75,7 +75,9 @@ const verdictOptions = computed<Options>(() => {
     counts.set(submission.status, (counts.get(submission.status) ?? 0) + 1);
   }
 
-  const data = [...counts.entries()]
+  const data = [
+    ...counts.entries(),
+  ]
     .sort((a, b) => b[1] - a[1])
     .map(([status, count]) => ({
       name: SubmissionStatusToString[status] ?? status,
@@ -116,7 +118,9 @@ const verdictOptions = computed<Options>(() => {
 
 const timeOptions = computed<Options>(() => {
   const bucketSize = 10;
-  const bucketCount = Math.max(1, Math.ceil((Number.isFinite(props.durationMinutes) ? props.durationMinutes : 0) / bucketSize));
+  const bucketCount = Math.max(1, Math.ceil((Number.isFinite(props.durationMinutes)
+    ? props.durationMinutes
+    : 0) / bucketSize));
 
   const byStatus = new Map<SubmissionStatus, number[]>();
   const totals = new Map<SubmissionStatus, number>();
@@ -134,7 +138,9 @@ const timeOptions = computed<Options>(() => {
   }
 
   const categories = Array.from({ length: bucketCount }, (_, index) => `${index * bucketSize}-${(index + 1) * bucketSize}`);
-  const series = [...byStatus.keys()]
+  const series = [
+    ...byStatus.keys(),
+  ]
     .sort((a, b) => (totals.get(b) ?? 0) - (totals.get(a) ?? 0))
     .map((status) => {
       return {
@@ -189,7 +195,9 @@ const languageOptions = computed<Options>(() => {
     }
   }
 
-  const entries = [...counts.entries()].sort((a, b) => b[1] - a[1]).slice(0, 10);
+  const entries = [
+    ...counts.entries(),
+  ].sort((a, b) => b[1] - a[1]).slice(0, 10);
 
   return {
     chart: {

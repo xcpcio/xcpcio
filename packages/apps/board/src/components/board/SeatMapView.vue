@@ -75,7 +75,9 @@ const sectionLayouts = computed<SectionLayout[]>(() => props.seatMap.sections.ma
     rows: section.grid.map((row, rowIdx) => ({
       rowIdx,
       seats: row
-        .map((seatId, colIdx) => (seatId ? { seatId, colIdx } : null))
+        .map((seatId, colIdx) => (seatId
+          ? { seatId, colIdx }
+          : null))
         .filter((seat): seat is SeatCell => seat !== null),
     })),
   };
@@ -97,7 +99,9 @@ function getTooltipContent(seatId: string): string {
 
   const name = team.name.getOrDefault(lang.value);
   const org = team.organization?.name.getOrDefault(lang.value);
-  return org ? `${name} - ${org}` : name;
+  return org
+    ? `${name} - ${org}`
+    : name;
 }
 
 function onSeatEnter(seatId: string, event: MouseEvent) {
@@ -129,8 +133,12 @@ function getSectionGridStyle(layout: SectionLayout) {
 
   return {
     display: "grid",
-    gridTemplateColumns: layout.maxCols > 0 ? `repeat(${layout.maxCols}, ${layout.seatWidth}px)` : undefined,
-    gridTemplateRows: rows > 0 ? `repeat(${rows}, ${SEAT_HEIGHT}px)` : undefined,
+    gridTemplateColumns: layout.maxCols > 0
+      ? `repeat(${layout.maxCols}, ${layout.seatWidth}px)`
+      : undefined,
+    gridTemplateRows: rows > 0
+      ? `repeat(${rows}, ${SEAT_HEIGHT}px)`
+      : undefined,
     gap: `${GAP_SIZE}px`,
   };
 }

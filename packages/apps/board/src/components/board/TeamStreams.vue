@@ -133,7 +133,9 @@ function getRecordingRange(recordings: PlaybackRecording[]): { start: number; en
     end = Math.max(end, recordingEnd);
   }
 
-  return Number.isFinite(start) && Number.isFinite(end) ? { start, end } : null;
+  return Number.isFinite(start) && Number.isFinite(end)
+    ? { start, end }
+    : null;
 }
 
 async function fetchRecordings(url?: string): Promise<PlaybackRecording[]> {
@@ -201,7 +203,9 @@ const range = computed(() => {
 const contestRange = computed(() => {
   const start = rank.value.contest.startTime.valueOf();
   const end = rank.value.contest.endTime.valueOf();
-  return Number.isFinite(start) && Number.isFinite(end) && end > start ? { start, end } : null;
+  return Number.isFinite(start) && Number.isFinite(end) && end > start
+    ? { start, end }
+    : null;
 });
 
 const timelineRange = computed(() => contestRange.value ?? range.value);
@@ -270,7 +274,9 @@ const submissionMarkers = computed<SubmissionMarker[]>(() => {
         absoluteTimeMs,
         percent,
         hasRecording,
-        title: `${formatTimestamp(absoluteTimeMs)} (${submission.timestampDisplayFormatWithSecond}) · ${problemLabel} · ${statusLabel}${hasRecording ? "" : ` · ${noRecordingLabel}`}`,
+        title: `${formatTimestamp(absoluteTimeMs)} (${submission.timestampDisplayFormatWithSecond}) · ${problemLabel} · ${statusLabel}${hasRecording
+          ? ""
+          : ` · ${noRecordingLabel}`}`,
         problemLabel,
         statusClass: submission.status.toString(),
       };
@@ -313,10 +319,15 @@ const sliderPercent = computed(() => {
 
 const canPlayback = computed(() => !!(webcamPlaybackSource.value || screenPlaybackSource.value));
 const canLive = computed(() => !!(liveWebcamUrl.value || liveScreenUrl.value));
-const latestRecordingEnd = computed(() => getRecordingRange([...webcamRecordings.value, ...screenRecordings.value])?.end ?? null);
+const latestRecordingEnd = computed(() => getRecordingRange([
+  ...webcamRecordings.value,
+  ...screenRecordings.value,
+])?.end ?? null);
 const playbackStartMs = computed(() => {
   const timeline = timelineRange.value;
-  return timeline ? timeline.start + playbackOffset.value * 1000 : 0;
+  return timeline
+    ? timeline.start + playbackOffset.value * 1000
+    : 0;
 });
 const playbackDurationSeconds = computed(() => {
   const timeline = timelineRange.value;
@@ -453,8 +464,12 @@ const playbackScreenUrl = computed(() => {
   return buildPlaybackUrl(source, playbackStartMs.value, playbackDurationSeconds.value);
 });
 
-const webcamUrl = computed(() => (mode.value === "playback" ? playbackWebcamUrl.value : liveWebcamUrl.value));
-const screenUrl = computed(() => (mode.value === "playback" ? playbackScreenUrl.value : liveScreenUrl.value));
+const webcamUrl = computed(() => (mode.value === "playback"
+  ? playbackWebcamUrl.value
+  : liveWebcamUrl.value));
+const screenUrl = computed(() => (mode.value === "playback"
+  ? playbackScreenUrl.value
+  : liveScreenUrl.value));
 
 async function fetchRecordingsSnapshot(teamId: string) {
   const results = await Promise.allSettled([
@@ -467,8 +482,12 @@ async function fetchRecordingsSnapshot(teamId: string) {
   }
 
   return {
-    webcam: results[0].status === "fulfilled" ? results[0].value : null,
-    screen: results[1].status === "fulfilled" ? results[1].value : null,
+    webcam: results[0].status === "fulfilled"
+      ? results[0].value
+      : null,
+    screen: results[1].status === "fulfilled"
+      ? results[1].value
+      : null,
   };
 }
 

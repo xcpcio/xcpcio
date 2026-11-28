@@ -53,7 +53,9 @@ const canDecreaseTeamCount = computed(() => (Number(teamCount.value) || 1) > 1);
 const canIncreaseTeamCount = computed(() => (Number(teamCount.value) || 0) < maxTeamCount.value);
 
 function clampTeamCount(value: number) {
-  return Math.min(maxTeamCount.value, Math.max(1, Number.isFinite(value) ? Math.floor(value) : 1));
+  return Math.min(maxTeamCount.value, Math.max(1, Number.isFinite(value)
+    ? Math.floor(value)
+    : 1));
 }
 
 function normalizeTeamCount() {

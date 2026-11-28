@@ -17,8 +17,14 @@ const hasSeatMap = computed(() => !!rank.value.contest.seatMap);
 const currentTab = ref<"teams" | "seat-map">("teams");
 
 const tabOptions = computed<SegmentedControlOption[]>(() => [
-  { value: "teams", label: t("pending_page.teams_tab") },
-  { value: "seat-map", label: t("pending_page.seat_map_tab") },
+  {
+    value: "teams",
+    label: t("pending_page.teams_tab"),
+  },
+  {
+    value: "seat-map",
+    label: t("pending_page.seat_map_tab"),
+  },
 ]);
 
 const orgOptions = computed(() => {
@@ -44,7 +50,9 @@ const teamsOptions = computed(() => {
     const orgName = t.organization?.name.getOrDefault(lang.value);
     return {
       value: t.id,
-      text: orgName ? `${teamName} - ${orgName}` : teamName,
+      text: orgName
+        ? `${teamName} - ${orgName}`
+        : teamName,
     };
   });
 });

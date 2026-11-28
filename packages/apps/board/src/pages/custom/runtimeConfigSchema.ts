@@ -13,14 +13,22 @@ export const runtimeConfigSchema: JsonSchema = {
     },
     component: {
       type: "string",
-      enums: ["board", "resolver", "balloon", "countdown"] satisfies RuntimeComponent[],
+      enums: [
+        "board",
+        "resolver",
+        "balloon",
+        "countdown",
+      ] satisfies RuntimeComponent[],
     },
     dataSource: { type: "string" },
     baseUrl: { type: "string" },
     cdnHost: { type: "string" },
     dataHost: { type: "string" },
     dataRegion: { type: "string" },
-    defaultLang: { type: "string", enums: ["en", "zh-CN"] },
+    defaultLang: {
+      type: "string",
+      enums: ["en", "zh-CN"],
+    },
     refetchInterval: { type: "number" },
   },
 };

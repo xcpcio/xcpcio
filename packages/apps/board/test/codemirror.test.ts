@@ -64,7 +64,9 @@ describe("useCodeMirror", () => {
   it("syncs editor changes back to the input ref", () => {
     const { cm, input, parent } = createEditor();
 
-    cm.dispatch({ changes: { from: 2, insert: "x" } });
+    cm.dispatch({
+      changes: { from: 2, insert: "x" },
+    });
 
     expect(input.value).toBe(cm.state.doc.toString());
     expect(input.value).toContain("x");
