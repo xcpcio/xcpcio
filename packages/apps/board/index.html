@@ -4,21 +4,6 @@
     <meta charset="UTF-8" />
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
 
-    <!-- Google Tag Manager -->
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != "dataLayer" ? "&l=" + l : "";
-        j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WHLF55BJ");
-    </script>
-    <!-- End Google Tag Manager -->
-
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="mask-icon" href="/balloon-512x512.svg" color="#00aba9" />
     <link rel="apple-touch-icon" href="/balloon-192x192.png" />
@@ -158,46 +143,10 @@
     </script>
   </head>
   <body class="font-sans">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WHLF55BJ"
-        height="0"
-        width="0"
-        style="display: none; visibility: hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
     <!--!xcpcio-noscript:start-->
     <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
     <!--!xcpcio-noscript:end-->
-    <script>
-      try {
-        var umamiJSUrl = __UMAMI_JS_URL__;
-        var umamiWebsiteId = __UMAMI_WEBSITE_ID__;
-        (function () {
-          var script = document.createElement("script");
-          script.src = umamiJSUrl;
-          script.defer = true;
-          script.setAttribute("data-website-id", umamiWebsiteId);
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(script, s);
-        })();
-      } catch (e) {}
-
-      try {
-        var baiduAnalyticsId = __BAIDU_ANALYTICS_ID__;
-        var _hmt = _hmt || [];
-        (function () {
-          var hm = document.createElement("script");
-          hm.src = `https://hm.baidu.com/hm.js?${baiduAnalyticsId}`;
-          var s = document.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(hm, s);
-        })();
-      } catch (e) {}
-    </script>
   </body>
 </html>
