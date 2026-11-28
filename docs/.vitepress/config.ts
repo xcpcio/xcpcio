@@ -128,6 +128,15 @@ export default defineConfig({
       } catch (e) {}
       `,
     ],
+    [
+      "script",
+      {
+        "defer": "",
+        "src": "https://www.pvuv.ai/f.js",
+        "data-site": "6XcnHyjK",
+        "data-api": "https://in.pvuv.ai",
+      },
+    ],
   ],
 
   transformHead: ({ pageData }) => {
