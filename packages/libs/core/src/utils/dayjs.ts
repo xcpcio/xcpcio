@@ -52,11 +52,7 @@ export function getTimeDiff(seconds: number): string {
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
 
-  return [
-    two(h),
-    two(m),
-    two(s),
-  ].join(":");
+  return [two(h), two(m), two(s)].join(":");
 }
 
 export { dayjs };

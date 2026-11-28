@@ -78,13 +78,8 @@ export class GeneralExcelConverter {
     sheet["!cols"] = cols;
 
     {
-      const mergeRange = {
-        s: { r: 0, c: 0 },
-        e: { r: 0, c: head.length - 1 },
-      };
-      const merges = [
-        { s: mergeRange.s, e: mergeRange.e },
-      ];
+      const mergeRange = { s: { r: 0, c: 0 }, e: { r: 0, c: head.length - 1 } };
+      const merges = [{ s: mergeRange.s, e: mergeRange.e }];
       sheet["!merges"] = merges;
     }
 
@@ -154,9 +149,7 @@ export class GeneralExcelConverter {
     const enableCoach = rank.teams[0]?.coaches.length > 0;
 
     {
-      aoa.push([
-        rank.contest.name.getOrDefault(this.lang),
-      ]);
+      aoa.push([rank.contest.name.getOrDefault(this.lang)]);
     }
 
     {

@@ -36,9 +36,7 @@ export function splitIndexPath(path: string): string[] {
 
 export function normalizeIndexPath(path: string | null | undefined): string {
   const segments = splitIndexPath(path ?? "");
-  return segments.length > 0
-    ? `/${segments.join("/")}`
-    : "/";
+  return segments.length > 0 ? `/${segments.join("/")}` : "/";
 }
 
 export function formatIndexSegment(segment: string): string {
@@ -88,9 +86,7 @@ export function getIndexChildDirectories(
   prefix: string,
 ): IndexChildDirectory[] {
   const normalized = normalizeIndexPath(prefix);
-  const base = normalized === "/"
-    ? "/"
-    : `${normalized}/`;
+  const base = normalized === "/" ? "/" : `${normalized}/`;
   const directories = new Map<string, IndexChildDirectory>();
 
   for (const item of list) {
@@ -124,9 +120,7 @@ export function getIndexChildDirectories(
     }
   }
 
-  return [
-    ...directories.values(),
-  ].sort((a, b) => {
+  return [...directories.values()].sort((a, b) => {
     if (a.latestStartTime !== b.latestStartTime) {
       return b.latestStartTime - a.latestStartTime;
     }

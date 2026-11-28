@@ -173,9 +173,7 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
       return;
     }
 
-    const target = edge === "top"
-      ? 0
-      : container.scrollHeight - container.clientHeight;
+    const target = edge === "top" ? 0 : container.scrollHeight - container.clientHeight;
     animateScrollTo(target, onComplete);
   }
 
@@ -262,9 +260,7 @@ export function useResolverPlayback(resolver: Ref<ResolverVue>) {
         return [];
       }
 
-      return [
-        { el, from, to, distance },
-      ];
+      return [{ el, from, to, distance }];
     });
 
     if (moves.length === 0) {

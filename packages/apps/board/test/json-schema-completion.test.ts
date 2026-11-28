@@ -7,12 +7,7 @@ import { computeSchemaAnnotations } from "../src/composables/jsonSchemaCompletio
 import { runtimeConfigAnnotations, runtimeConfigHints, runtimeConfigSchema } from "../src/pages/custom/runtimeConfigSchema";
 
 function hints(doc: string, pos = doc.length): CompletionResult | null {
-  const state = EditorState.create({
-    doc,
-    extensions: [
-      json(),
-    ],
-  });
+  const state = EditorState.create({ doc, extensions: [json()] });
   // runtimeConfigHints is synchronous here; its CompletionSource type also allows a Promise.
   return runtimeConfigHints(new CompletionContext(state, pos, false)) as CompletionResult | null;
 }
@@ -162,33 +157,18 @@ describe("runtimeConfigHints", () => {
 
 describe("computeSchemaAnnotations", () => {
   function annotations(doc: string) {
-    const state = EditorState.create({
-      doc,
-      extensions: [
-        json(),
-      ],
-    });
+    const state = EditorState.create({ doc, extensions: [json()] });
     return computeSchemaAnnotations(runtimeConfigSchema, state);
   }
 
   it("marks property names that are not in the schema", () => {
     const doc = `{\n  "foobar": "x"\n}`;
-    expect(annotations(doc)).toEqual([
-      {
-        from: doc.indexOf("foobar"),
-        to: doc.indexOf("foobar") + 6,
-      },
-    ]);
+    expect(annotations(doc)).toEqual([{ from: doc.indexOf("foobar"), to: doc.indexOf("foobar") + 6 }]);
   });
 
   it("marks enum values that match no option", () => {
     const doc = `{\n  "pageType": "board"\n}`;
-    expect(annotations(doc)).toEqual([
-      {
-        from: doc.indexOf("board"),
-        to: doc.indexOf("board") + 5,
-      },
-    ]);
+    expect(annotations(doc)).toEqual([{ from: doc.indexOf("board"), to: doc.indexOf("board") + 5 }]);
   });
 
   it("does not mark a valid config", () => {
@@ -212,9 +192,7 @@ describe("computeSchemaAnnotations", () => {
   it("is wired as runtimeConfigAnnotations", () => {
     const state = EditorState.create({
       doc: `{\n  "pageType": "board"\n}`,
-      extensions: [
-        json(),
-      ],
+      extensions: [json()],
     });
     expect(runtimeConfigAnnotations(state)).toHaveLength(1);
   });

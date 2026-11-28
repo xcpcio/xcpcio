@@ -75,55 +75,18 @@ export default defineConfig({
   },
 
   head: [
-    [
-      "link",
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-    ],
-    [
-      "meta",
-      { name: "author", content: "Dup4" },
-    ],
-    [
-      "meta",
-      { name: "keywords", content: "ICPC, Rank, Board, Leaderboard, ScoreBoard, Standings" },
-    ],
-    [
-      "meta",
-      { property: "og:site_name", content: title },
-    ],
-    [
-      "meta",
-      { property: "og:type", content: "website" },
-    ],
-    [
-      "meta",
-      { property: "og:image", content: ogImage },
-    ],
-    [
-      "meta",
-      { property: "og:image:type", content: "image/png" },
-    ],
-    [
-      "meta",
-      { property: "og:image:width", content: "1200" },
-    ],
-    [
-      "meta",
-      { property: "og:image:height", content: "630" },
-    ],
-    [
-      "meta",
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    [
-      "meta",
-      { name: "twitter:image", content: ogImage },
-    ],
-    [
-      "script",
-      { type: "application/ld+json" },
-      JSON.stringify(structuredData),
-    ],
+    ["link", { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" }],
+    ["meta", { name: "author", content: "Dup4" }],
+    ["meta", { name: "keywords", content: "ICPC, Rank, Board, Leaderboard, ScoreBoard, Standings" }],
+    ["meta", { property: "og:site_name", content: title }],
+    ["meta", { property: "og:type", content: "website" }],
+    ["meta", { property: "og:image", content: ogImage }],
+    ["meta", { property: "og:image:type", content: "image/png" }],
+    ["meta", { property: "og:image:width", content: "1200" }],
+    ["meta", { property: "og:image:height", content: "630" }],
+    ["meta", { name: "twitter:card", content: "summary_large_image" }],
+    ["meta", { name: "twitter:image", content: ogImage }],
+    ["script", { type: "application/ld+json" }, JSON.stringify(structuredData)],
     [
       "script",
       {},
@@ -181,96 +144,32 @@ export default defineConfig({
     const description = getOgDescription(pageData.description);
     const canonicalUrl = pageUrl(pageData.relativePath);
     const isZh = pageData.relativePath.startsWith("zh/");
-    const enPath = isZh
-      ? pageData.relativePath.slice(3)
-      : pageData.relativePath;
-    const zhPath = isZh
-      ? pageData.relativePath
-      : `zh/${pageData.relativePath}`;
+    const enPath = isZh ? pageData.relativePath.slice(3) : pageData.relativePath;
+    const zhPath = isZh ? pageData.relativePath : `zh/${pageData.relativePath}`;
     const hasLocalePair
       = existsSync(resolve(docsRoot, "en", enPath))
         && existsSync(resolve(docsRoot, zhPath));
 
     const alternates: HeadConfig[] = hasLocalePair
       ? [
-          [
-            "link",
-            {
-              rel: "alternate",
-              hreflang: "en",
-              href: pageUrl(enPath),
-            },
-          ],
-          [
-            "link",
-            {
-              rel: "alternate",
-              hreflang: "zh-Hans",
-              href: pageUrl(zhPath),
-            },
-          ],
-          [
-            "link",
-            {
-              rel: "alternate",
-              hreflang: "x-default",
-              href: pageUrl(enPath),
-            },
-          ],
-          [
-            "meta",
-            {
-              property: "og:locale:alternate",
-              content: isZh ? "en_US" : "zh_CN",
-            },
-          ],
+          ["link", { rel: "alternate", hreflang: "en", href: pageUrl(enPath) }],
+          ["link", { rel: "alternate", hreflang: "zh-Hans", href: pageUrl(zhPath) }],
+          ["link", { rel: "alternate", hreflang: "x-default", href: pageUrl(enPath) }],
+          ["meta", { property: "og:locale:alternate", content: isZh ? "en_US" : "zh_CN" }],
         ]
       : [];
 
     return [
-      [
-        "meta",
-        { name: "title", content: title },
-      ],
-      [
-        "meta",
-        { name: "description", content: description },
-      ],
-      [
-        "meta",
-        { property: "og:title", content: title },
-      ],
-      [
-        "meta",
-        { property: "og:description", content: description },
-      ],
-      [
-        "meta",
-        {
-          property: "og:locale",
-          content: isZh ? "zh_CN" : "en_US",
-        },
-      ],
-      [
-        "meta",
-        { name: "twitter:title", content: title },
-      ],
-      [
-        "meta",
-        { name: "twitter:description", content: description },
-      ],
-      [
-        "link",
-        { rel: "canonical", href: canonicalUrl },
-      ],
-      [
-        "meta",
-        { property: "og:url", content: canonicalUrl },
-      ],
-      [
-        "meta",
-        { name: "twitter:url", content: canonicalUrl },
-      ],
+      ["meta", { name: "title", content: title }],
+      ["meta", { name: "description", content: description }],
+      ["meta", { property: "og:title", content: title }],
+      ["meta", { property: "og:description", content: description }],
+      ["meta", { property: "og:locale", content: isZh ? "zh_CN" : "en_US" }],
+      ["meta", { name: "twitter:title", content: title }],
+      ["meta", { name: "twitter:description", content: description }],
+      ["link", { rel: "canonical", href: canonicalUrl }],
+      ["meta", { property: "og:url", content: canonicalUrl }],
+      ["meta", { name: "twitter:url", content: canonicalUrl }],
       ...alternates,
     ];
   },

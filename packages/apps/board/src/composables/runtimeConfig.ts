@@ -18,9 +18,7 @@ export function getStoredRuntimeConfig(): RuntimeConfig {
     }
 
     const config = JSON.parse(raw);
-    return isRecord(config)
-      ? config
-      : {};
+    return isRecord(config) ? config : {};
   } catch {
     return {};
   }
@@ -60,9 +58,7 @@ export function getLocaleUrls() {
     (entry): entry is [string, string] => typeof entry[1] === "string" && entry[1].length > 0,
   );
 
-  return entries.length > 0
-    ? Object.fromEntries(entries)
-    : undefined;
+  return entries.length > 0 ? Object.fromEntries(entries) : undefined;
 }
 
 export function getRuntimeConfig(): RuntimeConfig {

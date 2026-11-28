@@ -81,9 +81,7 @@ const teamsOptions = computed(() => {
     const orgName = t.organization?.name.getOrDefault(lang.value);
     return {
       value: t.id,
-      text: orgName
-        ? `${teamName} - ${orgName}`
-        : teamName,
+      text: orgName ? `${teamName} - ${orgName}` : teamName,
     };
   });
 

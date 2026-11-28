@@ -208,9 +208,7 @@ export function getTeamPlaceChart(_rank: Rank, team: Team) {
       x: p.timePoint,
       y: p.rank,
       showX: getTimeDiff(p.timePoint * 60),
-      lastSolved: p.lastSolvedProblem?.label
-        ? `Last Solved Problem ${p.lastSolvedProblem?.label}`
-        : "",
+      lastSolved: p.lastSolvedProblem?.label ? `Last Solved Problem ${p.lastSolvedProblem?.label}` : "",
       marker: {
         enabled: solvedProblem,
       },

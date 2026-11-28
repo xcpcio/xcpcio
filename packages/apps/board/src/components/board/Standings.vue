@@ -108,20 +108,17 @@ const giantTeams = computed(() => {
     }
   }
 
-  const res: GiantTeam[] = [
-    ...blueTeam.teams.map((t) => {
-      return {
-        team: t,
-        giantsType: GiantsType.BLUE,
-      };
-    }),
-    ...redTeam.teams.map((t) => {
-      return {
-        team: t,
-        giantsType: GiantsType.RED,
-      };
-    }),
-  ];
+  const res: GiantTeam[] = [...blueTeam.teams.map((t) => {
+    return {
+      team: t,
+      giantsType: GiantsType.BLUE,
+    };
+  }), ...redTeam.teams.map((t) => {
+    return {
+      team: t,
+      giantsType: GiantsType.RED,
+    };
+  })];
 
   res.sort((lhs, rhs) => {
     return Team.compare(lhs.team, rhs.team);

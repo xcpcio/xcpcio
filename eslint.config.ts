@@ -35,6 +35,7 @@ export default antfu(
       "style/brace-style": ["error", "1tbs"],
       "unocss/order": "off",
       "unocss/order-attributify": "off",
+      "antfu/reasonable-newline": "off",
     },
   },
 );

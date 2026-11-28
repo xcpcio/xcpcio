@@ -27,16 +27,12 @@ const Sponsors: NavSidebarItem[] = [
 const Nav: DefaultTheme.NavItem[] = [
   {
     text: "Guide",
-    items: [
-      { items: Guides },
-    ],
+    items: [{ items: Guides }],
     activeMatch: "^/guide/",
   },
   {
     text: "Sponsor",
-    items: [
-      { items: Sponsors },
-    ],
+    items: [{ items: Sponsors }],
     activeMatch: "^/sponsor/",
   },
   { text: "Board", link: "https://xcpcio.com/board/" },

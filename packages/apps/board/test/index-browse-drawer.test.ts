@@ -30,14 +30,8 @@ async function mountDrawer(options: {
   const router = createRouter({
     history: createMemoryHistory(),
     routes: [
-      {
-        path: "/",
-        component: { template: "<div />" },
-      },
-      {
-        path: "/:pathMatch(.*)*",
-        component: { template: "<div />" },
-      },
+      { path: "/", component: { template: "<div />" } },
+      { path: "/:pathMatch(.*)*", component: { template: "<div />" } },
     ],
   });
 

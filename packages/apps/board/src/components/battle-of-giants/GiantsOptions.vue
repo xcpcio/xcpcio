@@ -37,15 +37,11 @@ function teamsOnSelect(selectedItems: Array<SelectOptionItem>, _lastSelectItem: 
 }
 
 const title = computed(() => {
-  return `${giants.value.type === GiantsType.BLUE
-    ? "Blue"
-    : "Red"} Team`;
+  return `${giants.value.type === GiantsType.BLUE ? "Blue" : "Red"} Team`;
 });
 
 const color = computed(() => {
-  return giants.value.type === GiantsType.BLUE
-    ? "#0000FF"
-    : "#FF0000";
+  return giants.value.type === GiantsType.BLUE ? "#0000FF" : "#FF0000";
 });
 </script>
 

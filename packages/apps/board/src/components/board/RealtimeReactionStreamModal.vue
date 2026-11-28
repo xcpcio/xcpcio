@@ -84,9 +84,7 @@ function buildStreamUrl(template: string | undefined): string | null {
     .replace(/\$\{problem_id\}/g, submission.value?.problemId ?? "")
     .replace(/\$\{submit_time\}/g, encodeURIComponent(submitTime.value))
     .replace(REACTION_START_TIME_PLACEHOLDER_GLOBAL, (_match: string, offset?: string) => {
-      const offsetSeconds = offset === undefined
-        ? DEFAULT_REACTION_START_OFFSET_SECONDS
-        : Number(offset);
+      const offsetSeconds = offset === undefined ? DEFAULT_REACTION_START_OFFSET_SECONDS : Number(offset);
       return encodeURIComponent(formatStreamTime(offsetSeconds));
     });
 }

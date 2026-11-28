@@ -24,7 +24,5 @@ export function getWhiteOrBlackColor(background: string) {
   const brightness = (R * 299 + G * 587 + B * 114) / 1000;
   const threshold = 148;
 
-  return brightness <= threshold
-    ? "#fff"
-    : "#000";
+  return brightness <= threshold ? "#fff" : "#000";
 }

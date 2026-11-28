@@ -64,12 +64,7 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      include: [
-        /\.[jt]sx?$/,
-        /\.vue$/,
-        /\.vue\?vue/,
-        /\.md$/,
-      ],
+      include: [/\.[jt]sx?$/, /\.vue$/, /\.vue\?vue/, /\.md$/],
       imports: [
         "vue",
         "vue-i18n",
@@ -131,9 +126,7 @@ export default defineConfig({
       runtimeOnly: true,
       compositionOnly: true,
       fullInstall: true,
-      include: [
-        path.resolve(import.meta.dirname, "locales/**"),
-      ],
+      include: [path.resolve(import.meta.dirname, "locales/**")],
     }),
 
     // https://github.com/webfansplz/vite-plugin-vue-devtools
@@ -173,9 +166,7 @@ export default defineConfig({
     includedRoutes(paths) {
       // The catch-all page serves "/" too, but its route path is dynamic so
       // it is not picked up automatically.
-      return [
-        ...new Set([...paths, "/"]),
-      ].filter(path => !path.includes(":") && !path.includes("*"));
+      return [...new Set([...paths, "/"])].filter(path => !path.includes(":") && !path.includes("*"));
     },
     beastiesOptions: {
       reduceInlineStyles: false,

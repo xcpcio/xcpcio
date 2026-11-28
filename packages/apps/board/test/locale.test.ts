@@ -63,9 +63,7 @@ describe("getLocaleUrls", () => {
   });
 
   it("ignores an empty or invalid map", () => {
-    window.RUNTIME_CONFIG = {
-      localeUrls: { en: "" },
-    };
+    window.RUNTIME_CONFIG = { localeUrls: { en: "" } };
 
     expect(getLocaleUrls()).toBeUndefined();
   });

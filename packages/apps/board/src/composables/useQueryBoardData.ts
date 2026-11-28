@@ -61,9 +61,7 @@ async function fetchAndAssignSeatMap(contest: Contest, baseUrl: string): Promise
 }
 
 async function fetch_board_data(target: string): Promise<BoardData> {
-  const endpoint = target.startsWith("/")
-    ? target.slice(1)
-    : target;
+  const endpoint = target.startsWith("/") ? target.slice(1) : target;
   let prefix = `${getRuntimeConfig().dataHost ?? ""}${endpoint}`;
   const options = {
     allInOne: false,

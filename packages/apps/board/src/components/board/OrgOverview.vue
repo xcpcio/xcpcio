@@ -19,26 +19,10 @@ const orgTeams = computed(() => {
 
 const tableRows = computed(() => {
   const rows = [
-    {
-      label: t("org_info.rank"),
-      value: organization.value.rank,
-      show: true,
-    },
-    {
-      label: t("org_info.name"),
-      value: organization.value.name.getOrDefault(lang.value),
-      show: true,
-    },
-    {
-      label: t("org_info.icpc_id"),
-      value: organization.value.icpcID,
-      show: !!organization.value.icpcID,
-    },
-    {
-      label: t("org_info.teams_count"),
-      value: orgTeams.value.length,
-      show: true,
-    },
+    { label: t("org_info.rank"), value: organization.value.rank, show: true },
+    { label: t("org_info.name"), value: organization.value.name.getOrDefault(lang.value), show: true },
+    { label: t("org_info.icpc_id"), value: organization.value.icpcID, show: !!organization.value.icpcID },
+    { label: t("org_info.teams_count"), value: orgTeams.value.length, show: true },
   ];
   return rows.filter(row => row.show);
 });

@@ -18,9 +18,7 @@ const localeUrls = getLocaleUrls();
 
 function targetUrl(target: string) {
   const base = localeUrls?.[target];
-  return base
-    ? buildLocaleUrl(base, route.fullPath)
-    : undefined;
+  return base ? buildLocaleUrl(base, route.fullPath) : undefined;
 }
 
 const items = computed(() => availableLocales.map((target) => {

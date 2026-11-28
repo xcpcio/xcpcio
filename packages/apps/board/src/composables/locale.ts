@@ -28,12 +28,8 @@ export function buildLocaleUrl(base: string, fullPath: string, origin?: string) 
   const [path, query = ""] = pathAndQuery.split("?");
 
   target.pathname = `${basePath}${path.replace(/^\/+/, "")}`;
-  target.search = query
-    ? `?${query}`
-    : "";
-  target.hash = hash
-    ? `#${hash}`
-    : "";
+  target.search = query ? `?${query}` : "";
+  target.hash = hash ? `#${hash}` : "";
 
   return target.href;
 }

@@ -58,12 +58,7 @@ const pipPosition = ref<PipPosition>("top-right");
 const pipMain = ref<PipMain>("screen");
 const pipVideoPaused = ref(false);
 
-const pipPositionOptions: PipPosition[] = [
-  "top-left",
-  "top-right",
-  "bottom-left",
-  "bottom-right",
-];
+const pipPositionOptions: PipPosition[] = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
 // PiP position class mapping
 // Leave room at the bottom for the main video's native control bar.
@@ -149,9 +144,7 @@ function initPlayers() {
 
 // The PiP overlay has no native controls; clicking it toggles play/pause.
 function getPipVideo(): HTMLVideoElement | null {
-  return pipMain.value === "screen"
-    ? webcamVideoRef.value
-    : screenVideoRef.value;
+  return pipMain.value === "screen" ? webcamVideoRef.value : screenVideoRef.value;
 }
 
 function togglePipVideo() {
@@ -183,10 +176,7 @@ function resetPlayers() {
 }
 
 // Watch for URL changes
-watch([
-  () => props.webcamUrl,
-  () => props.screenUrl,
-], () => {
+watch([() => props.webcamUrl, () => props.screenUrl], () => {
   resetPlayers();
 });
 
