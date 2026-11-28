@@ -5,7 +5,7 @@
   "private": true,
   "packageManager": "pnpm@11.28.13",
   "engines": {
-    "node": ">=20"
+    "node": ">=24.15.0"
   },
   "scripts": {
     "build": "pnpm -r --filter \"./packages/**\" run build && nr build:docs",
